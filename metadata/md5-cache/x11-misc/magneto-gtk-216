@@ -1,12 +1,14 @@
-DEFINED_PHASES=compile install postinst postrm
-DEPEND==dev-lang/python-2*
+DEFINED_PHASES=install setup
+DEPEND=python_single_target_python2_7? ( dev-lang/python:2.7 ) dev-python/python-exec[python_targets_python2_7(-)?,python_single_target_python2_7(+)?]
 DESCRIPTION=Entropy Package Manager notification applet GTK2 frontend
-EAPI=3
+EAPI=5
 HOMEPAGE=http://www.sabayon.org
+IUSE=python_targets_python2_7 python_single_target_python2_7
 KEYWORDS=~amd64 ~arm ~x86
 LICENSE=GPL-2
-RDEPEND=~app-misc/magneto-loader-216 dev-python/notify-python dev-python/pygtk:2 =dev-lang/python-2*
+RDEPEND=~app-misc/magneto-loader-216[python_targets_python2_7(-)?,python_single_target_python2_7(+)?] dev-python/notify-python dev-python/pygtk:2 python_single_target_python2_7? ( dev-lang/python:2.7 ) dev-python/python-exec[python_targets_python2_7(-)?,python_single_target_python2_7(+)?]
+REQUIRED_USE=python_single_target_python2_7? ( python_targets_python2_7 ) ^^ ( python_single_target_python2_7 )
 SLOT=0
 SRC_URI=mirror://sabayon/sys-apps/entropy-216.tar.bz2
-_eclasses_=eutils	63afaaed8aa819fdcb814c7cd39495a2	multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=5233eec78dc8eb0932f368b7c2415e79
+_eclasses_=eutils	63afaaed8aa819fdcb814c7cd39495a2	multilib	892e597faee02a5b94eb02ab512e7622	python-single-r1	b13f5baea5da0da5a5dcc6b8b79706a2	python-utils-r1	3668f5e62c6e2526acef650e8e1e8fc4	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=762c6606bb372f5e47100542848b2be8

@@ -20,7 +20,7 @@
    always a description without a lang attribute. Also there are no overlapping
    descriptions allowed (multiple description tags with the same language)
 
-   $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/metastructure/herds/herds.xml,v 1.1051 2013/08/16 09:42:43 pinkbyte Exp $
+   $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/metastructure/herds/herds.xml,v 1.1056 2013/08/28 14:10:07 tomwij Exp $
 
 -->
 <herds>
@@ -200,6 +200,10 @@
   <maintainer>
     <email>angelos@gentoo.org</email>
     <name>Christoph Mende</name>
+  </maintainer>
+  <maintainer>
+    <email>TomWij@gentoo.org</email>
+    <name>Tom Wijsman</name>
   </maintainer>
 </herd>
 <herd>
@@ -1106,6 +1110,10 @@
     <email>ago@gentoo.org</email>
     <name>Agostino Sarubbo</name>
   </maintainer>
+  <maintainer>
+    <email>zlogene@gentoo.org</email>
+    <name>Mikle Kolyada</name>
+  </maintainer>
 </herd>
 <herd>
   <name>mips</name>
@@ -1131,6 +1139,10 @@
     <email>mattst88@gentoo.org</email>
     <name>Matt Turner</name>
   </maintainer>
+  <maintainer>
+    <email>pinkbyte@gentoo.org</email>
+    <name>Sergey Popov</name>
+  </maintainer>
 </herd>
 <herd>
   <name>web-apps</name>
@@ -1143,6 +1155,10 @@
   <maintainer>
     <email>blueness@gentoo.org</email>
     <name>Anthony G. Basile</name>
+  </maintainer>
+  <maintainer>
+    <email>twitch153@gentoo.org</email>
+    <name>Devan Franchini</name>
   </maintainer>
 </herd>
 <herd>
@@ -1632,6 +1648,10 @@
     <email>ago@gentoo.org</email>
     <name>Agostino Sarubbo</name>
   </maintainer>
+  <maintainer>
+     <email>zlogene@gentoo.org</email>
+     <name>Mikle Kolyada</name>
+  </maintainer>	
 </herd>
 <herd>
   <name>ia64</name>
@@ -1646,6 +1666,10 @@
   <maintainer>
     <email>ago@gentoo.org</email>
     <name>Agostino Sarubbo</name>
+  </maintainer>
+  <maintainer>
+    <email>zlogene@gentoo.org</email>
+    <name>Mikle Kolyada</name>
   </maintainer>
 </herd>
 <herd>

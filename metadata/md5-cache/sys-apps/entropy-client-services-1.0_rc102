@@ -1,9 +1,0 @@
-DEFINED_PHASES=-
-DESCRIPTION=Dummy ebuild to ease transition to RigoDaemon
-EAPI=3
-HOMEPAGE=http://www.sabayon.org
-KEYWORDS=~amd64 ~arm ~x86
-LICENSE=GPL-2
-PDEPEND=~sys-apps/rigo-daemon-1.0_rc102
-SLOT=0
-_md5_=270dd66e3352d5f449b73a2dce946617

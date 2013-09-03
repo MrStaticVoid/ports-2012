@@ -48,7 +48,8 @@ RDEPEND="x11-libs/libXft
 	x11-libs/libXxf86misc
 	x11-libs/libXrandr
 	x11-libs/libXrender
-	x11-libs/libXcursor"
+	x11-libs/libXcursor
+	!<gnome-base/gnome-control-center-3"
 
 DEPEND="${RDEPEND}
 	x11-proto/scrnsaverproto

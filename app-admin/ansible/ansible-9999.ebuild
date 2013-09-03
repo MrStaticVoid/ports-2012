@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/ansible/ansible-9999.ebuild,v 1.11 2013/07/16 12:23:02 pinkbyte Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/ansible/ansible-9999.ebuild,v 1.12 2013/09/03 15:11:13 pinkbyte Exp $
 
 EAPI="5"
 
@@ -37,19 +37,18 @@ Examples of config files installed in /usr/share/doc/${P}/examples\n\n
 You have to create ansible hosts file!\n
 More info on http://ansible.cc/docs/gettingstarted.html"
 
-src_prepare() {
-	distutils-r1_src_prepare
+python_prepare_all() {
+	distutils-r1_python_prepare_all
 	# Skip tests which need ssh access
 	sed -i 's:$(NOSETESTS) -d -v:\0 -e \\(TestPlayBook.py\\|TestRunner.py\\):' Makefile || die "sed failed"
 }
 
-src_test() {
+python_test() {
 	make tests || die "tests failed"
 }
 
-src_install() {
-	distutils-r1_src_install
-	readme.gentoo_create_doc
+python_install_all() {
+	distutils-r1_python_install_all
 
 	doman docs/man/man1/*.1
 	dodoc -r examples
@@ -58,4 +57,9 @@ src_install() {
 	# let this choice to user
 
 	newenvd "${FILESDIR}"/${PN}.env 95ansible
+}
+
+src_install() {
+	distutils-r1_src_install
+	readme.gentoo_create_doc
 }

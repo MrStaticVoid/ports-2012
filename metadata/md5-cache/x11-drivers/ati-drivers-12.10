@@ -10,5 +10,5 @@ RDEPEND=<=x11-base/xorg-server-1.12.49[-minimal] >=app-admin/eselect-opengl-1.0.
 RESTRICT=bindist
 SLOT=1
 SRC_URI=http://www2.ati.com/drivers/linux/amd-driver-installer-catalyst-12.10-x86.x86_64.zip
-_eclasses_=eutils	63afaaed8aa819fdcb814c7cd39495a2	linux-info	dd8fdcccc30f117673b4cba4ed4f74a7	linux-mod	c9d4931960ba253061ad823a8508bff5	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_eclasses_=eutils	63afaaed8aa819fdcb814c7cd39495a2	linux-info	dd8fdcccc30f117673b4cba4ed4f74a7	linux-mod	708d6a92c561743e612fca9d8fde5309	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
 _md5_=23e16e6d3f86cd94a2ab59646e27bb5a
