@@ -26,6 +26,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch "${FILESDIR}/${P}-doublefree.patch"
 	epatch "${FILESDIR}/${P}-EOF.patch"
+	epatch "${FILESDIR}/${P}-clear-signal-mask.patch"
 	eautoreconf
 }
 
