@@ -1,4 +1,6 @@
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/icewm/icewm-1.2.37.ebuild,v 1.11 2012/06/16 13:26:14 chithanh Exp $
 
 EAPI=1
 
@@ -16,7 +18,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P/_}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ppc ~ppc64 sparc x86"
 
 IUSE="gnome imlib nls truetype xinerama minimal debug uclibc"
 

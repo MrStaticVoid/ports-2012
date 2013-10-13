@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/autofs/autofs-5.0.7-r4.ebuild,v 1.2 2013/08/22 09:36:22 pinkbyte Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-fs/autofs/autofs-5.0.7-r4.ebuild,v 1.10 2013/09/23 17:21:40 ago Exp $
 
 EAPI=5
 
 AUTOTOOLS_AUTORECONF=true
 
-inherit autotools-utils linux-info multilib systemd
+inherit autotools-utils linux-info multilib systemd toolchain-funcs
 
 PATCH_VER=3
 [[ -n ${PATCH_VER} ]] && \
@@ -20,7 +20,7 @@ SRC_URI="
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="alpha amd64 ~arm hppa ia64 ~mips ppc ~ppc64 sparc x86"
 IUSE="-dmalloc hesiod ldap libtirpc mount-locking sasl"
 
 # USE="sasl" adds SASL support to the LDAP module which will not be build. If
@@ -80,6 +80,8 @@ src_prepare() {
 }
 
 src_configure() {
+	# bug #483716
+	tc-export AR
 	# --with-confdir is for bug #361481
 	# --with-mapdir is for bug #385113
 	local myeconfargs=(
@@ -97,6 +99,7 @@ src_configure() {
 		--enable-ignore-busy
 		--with-systemd
 		systemddir="$(systemd_get_unitdir)" #bug #479492
+		RANLIB="$(type -P $(tc-getRANLIB))" # bug #483716
 	)
 	autotools-utils_src_configure
 }

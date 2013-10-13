@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/chromium-9999-r1.ebuild,v 1.212 2013/08/31 03:27:48 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/chromium-9999-r1.ebuild,v 1.215 2013/09/20 04:13:19 phajdan.jr Exp $
 
 EAPI="5"
 PYTHON_COMPAT=( python{2_6,2_7} )
@@ -19,7 +19,7 @@ ESVN_REPO_URI="http://src.chromium.org/svn/trunk/src"
 LICENSE="BSD"
 SLOT="live"
 KEYWORDS=""
-IUSE="bindist cups gnome gnome-keyring gps kerberos neon pulseaudio selinux +system-ffmpeg system-sqlite tcmalloc"
+IUSE="bindist cups gnome gnome-keyring gps kerberos neon pulseaudio selinux system-sqlite tcmalloc"
 
 # Native Client binaries are compiled with different set of flags, bug #452066.
 QA_FLAGS_IGNORED=".*\.nexe"
@@ -58,11 +58,9 @@ RDEPEND=">=app-accessibility/speech-dispatcher-0.8:=
 	>=media-libs/libjpeg-turbo-1.2.0-r1:=
 	media-libs/libpng:0=
 	media-libs/libvpx:=
-	>=media-libs/libwebp-0.3.1:=
 	media-libs/opus:=
 	media-libs/speex:=
 	pulseaudio? ( media-sound/pulseaudio:= )
-	system-ffmpeg? ( >=media-video/ffmpeg-2.0.1:0=[opus] )
 	sys-apps/dbus:=
 	sys-apps/pciutils:=
 	sys-libs/zlib:=[minizip]
@@ -183,10 +181,9 @@ pkg_setup() {
 
 	chromium_suid_sandbox_check_kernel_config
 
-	if use bindist && ! use system-ffmpeg; then
+	if use bindist; then
 		elog "bindist enabled: H.264 video support will be disabled."
-	fi
-	if ! use bindist; then
+	else
 		elog "bindist disabled: Resulting binaries may not be legal to re-distribute."
 	fi
 }
@@ -199,8 +196,6 @@ src_prepare() {
 	#		out/Release/gen/sdk/toolchain/linux_x86_newlib || die
 	#	touch out/Release/gen/sdk/toolchain/linux_x86_newlib/stamp.untar || die
 	# fi
-
-	epatch "${FILESDIR}/${PN}-system-ffmpeg-r7.patch"
 
 	epatch_user
 
@@ -235,6 +230,7 @@ src_prepare() {
 		'third_party/libphonenumber' \
 		'third_party/libsrtp' \
 		'third_party/libusb' \
+		'third_party/libwebp' \
 		'third_party/libxml/chromium' \
 		'third_party/libXNVCtrl' \
 		'third_party/libyuv' \
@@ -246,6 +242,7 @@ src_prepare() {
 		'third_party/mt19937ar' \
 		'third_party/npapi' \
 		'third_party/ots' \
+		'third_party/ply' \
 		'third_party/pywebsocket' \
 		'third_party/qcms' \
 		'third_party/sfntly' \
@@ -307,6 +304,7 @@ src_configure() {
 	# TODO: use_system_libusb (http://crbug.com/266149).
 	# TODO: use_system_ssl (http://crbug.com/58087).
 	# TODO: use_system_sqlite (http://crbug.com/22208).
+	# TODO: use_system_libwebp (http://crbug.com/288019).
 	myconf+="
 		-Duse_system_bzip2=1
 		-Duse_system_flac=1
@@ -317,7 +315,6 @@ src_configure() {
 		-Duse_system_libjpeg=1
 		-Duse_system_libpng=1
 		-Duse_system_libvpx=1
-		-Duse_system_libwebp=1
 		-Duse_system_libxml=1
 		-Duse_system_libxslt=1
 		-Duse_system_minizip=1
@@ -330,8 +327,7 @@ src_configure() {
 		-Duse_system_speex=1
 		-Duse_system_v8=1
 		-Duse_system_xdg_utils=1
-		-Duse_system_zlib=1
-		$(gyp_use system-ffmpeg use_system_ffmpeg)"
+		-Duse_system_zlib=1"
 
 	# TODO: patch gyp so that this arm conditional is not needed.
 	if ! use arm; then
@@ -388,7 +384,7 @@ src_configure() {
 	# Always support proprietary codecs.
 	myconf+=" -Dproprietary_codecs=1"
 
-	if ! use bindist && ! use system-ffmpeg; then
+	if ! use bindist; then
 		# Enable H.264 support in bundled ffmpeg.
 		myconf+=" -Dffmpeg_branding=Chrome"
 	fi
@@ -526,13 +522,7 @@ chromium_test() {
 		(( exitstatus |= st ))
 	}
 
-	local excluded_base_unittests=(
-		"ICUStringConversionsTest.*" # bug #350347
-		"MessagePumpLibeventTest.*" # bug #398591
-		"TimeTest.JsTime" # bug #459614
-	)
-	runtest out/Release/base_unittests "${excluded_base_unittests[@]}"
-
+	runtest out/Release/base_unittests
 	runtest out/Release/cacheinvalidation_unittests
 
 	local excluded_content_unittests=(
@@ -549,24 +539,12 @@ chromium_test() {
 	local excluded_net_unittests=(
 		"NetUtilTest.IDNToUnicode*" # bug 361885
 		"NetUtilTest.FormatUrl*" # see above
-		"DnsConfigServiceTest.GetSystemConfig" # bug #394883
-		"CertDatabaseNSSTest.ImportServerCert_SelfSigned" # bug #399269
-		"CertDatabaseNSSTest.TrustIntermediateCa*" # http://crbug.com/224612
-		"URLFetcher*" # bug #425764
-		"HTTPSOCSPTest.*" # bug #426630
-		"HTTPSEVCRLSetTest.*" # see above
-		"HTTPSCRLSetTest.*" # see above
 		"SpdyFramerTests/SpdyFramerTest.CreatePushPromiseCompressed/2" # bug #478168
-		"*SpdyFramerTest.BasicCompression*" # bug #465444
 	)
 	runtest out/Release/net_unittests "${excluded_net_unittests[@]}"
 
 	runtest out/Release/printing_unittests
-
-	local excluded_sql_unittests=(
-		"SQLiteFeaturesTest.FTS2" # bug #461286
-	)
-	runtest out/Release/sql_unittests "${excluded_sql_unittests[@]}"
+	runtest out/Release/sql_unittests
 
 	return ${exitstatus}
 }
@@ -622,9 +600,7 @@ src_install() {
 	newman out/Release/chrome.1 chromium${CHROMIUM_SUFFIX}.1 || die
 	newman out/Release/chrome.1 chromium-browser${CHROMIUM_SUFFIX}.1 || die
 
-	if ! use system-ffmpeg; then
-		doexe out/Release/libffmpegsumo.so || die
-	fi
+	doexe out/Release/libffmpegsumo.so || die
 
 	# Install icons and desktop entry.
 	local branding size

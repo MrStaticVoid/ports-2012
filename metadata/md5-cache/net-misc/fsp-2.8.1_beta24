@@ -1,8 +1,0 @@
-DEFINED_PHASES=install
-DESCRIPTION=File Service Protocol - What Anonymous FTP should be!
-HOMEPAGE=http://fsp.sourceforge.net/
-KEYWORDS=~x86
-LICENSE=MIT
-SLOT=0
-SRC_URI=mirror://sourceforge/fsp/fsp-2.8.1b24.tar.bz2
-_md5_=3c278e31bb89db6a81a8dce6c39e728b

@@ -1,6 +1,14 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/package.use.mask,v 1.177 2013/08/24 12:12:45 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/package.use.mask,v 1.179 2013/09/15 14:01:16 johu Exp $
+
+# Johannes Huber <johu@gentoo.org> (15 Sep 2013)
+# # Depends on kde-misc/networkmanagement, not keyworded yet.
+kde-base/solid-runtime networkmanager
+
+# Pacho Ramos <pacho@gentoo.org> (08 Sep 2013)
+# monodevelop is not keyworded, bug #468030
+gnome-extra/zeitgeist-datasources mono
 
 # Agostino Sarubbo <ago@gentoo.org> (24 Aug 2013)
 # Klibc does not work anymore on ppc

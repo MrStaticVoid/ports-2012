@@ -5,5 +5,5 @@ EAPI=4
 HOMEPAGE=http://bdelta.org
 LICENSE=MPL-2.0
 SLOT=0
-_eclasses_=git-2	e92e09651292b1bef5656592364550f7	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	git-2	9d623256bd82ddbcc6783ae996e178fd	git-r3	df9fbf6c110cdbadcc4d6f409d7cca8d	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=de52ec82693829bf4ad761fab15ecace

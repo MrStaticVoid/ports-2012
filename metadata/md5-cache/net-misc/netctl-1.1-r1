@@ -8,5 +8,5 @@ LICENSE=BSD
 RDEPEND=>=app-shells/bash-4.0 >=net-dns/openresolv-3.5.4-r1 sys-apps/iproute2 sys-apps/systemd !<net-misc/dhcpcd-5.6.7
 SLOT=0
 SRC_URI=ftp://ftp.archlinux.org/other/packages/netctl/netctl-1.1.tar.xz
-_eclasses_=bash-completion-r1	f916a3421ae232384f9be343e36d5927	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=bash-completion-r1	09212e464bcf83382a48e5a48e199d4a	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=6e4a2f0087fcee1744cdeb71493d6805

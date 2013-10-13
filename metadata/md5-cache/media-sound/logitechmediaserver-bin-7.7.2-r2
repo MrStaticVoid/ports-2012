@@ -3,10 +3,11 @@ DEPEND=!media-sound/squeezecenter !media-sound/squeezeboxserver
 DESCRIPTION=Logitech Media Server (streaming audio server)
 EAPI=3
 HOMEPAGE=http://www.mysqueezebox.com/download
-KEYWORDS=amd64 x86
-LICENSE=GPL-2
+KEYWORDS=~amd64 ~x86
+LICENSE=logitechmediaserver-bin
 RDEPEND=!prefix? ( >=sys-apps/baselayout-2.0.0 ) !prefix? ( virtual/logger ) >=dev-lang/perl-5.8.8[ithreads] <dev-lang/perl-5.15[ithreads] >=dev-perl/Data-UUID-1.202
+RESTRICT=bindist mirror
 SLOT=0
 SRC_URI=http://downloads.slimdevices.com/LogitechMediaServer_v7.7.2/logitechmediaserver-7.7.2.tgz
-_eclasses_=eutils	63afaaed8aa819fdcb814c7cd39495a2	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=e743a9d345ce317ee151f850891148a1
+_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=ceafaafe20dc6ac7bc7c9e1ab091448e

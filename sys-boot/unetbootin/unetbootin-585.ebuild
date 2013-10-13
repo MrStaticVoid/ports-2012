@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/unetbootin/unetbootin-585.ebuild,v 1.1 2013/07/03 12:18:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/unetbootin/unetbootin-585.ebuild,v 1.3 2013/09/22 10:09:26 ago Exp $
 
 EAPI=5
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}-source-${PV}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE=""
 
 UNBI_LINGUAS="
@@ -31,7 +31,7 @@ S="${WORKDIR}"
 DEPEND="dev-qt/qtgui:4"
 RDEPEND="${DEPEND}
 		 sys-fs/mtools
-		 sys-boot/syslinux
+		 <sys-boot/syslinux-5
 		 app-arch/p7zip"
 
 src_prepare() {

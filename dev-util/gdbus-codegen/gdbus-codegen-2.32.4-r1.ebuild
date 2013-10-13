@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gdbus-codegen/gdbus-codegen-2.32.4-r1.ebuild,v 1.10 2013/09/02 11:13:17 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gdbus-codegen/gdbus-codegen-2.32.4-r1.ebuild,v 1.12 2013/09/06 18:34:45 ago Exp $
 
 EAPI="5"
 GNOME_ORG_MODULE="glib"
-PYTHON_COMPAT=( python{2_5,2_6,2_7,3_1,3_2} )
+PYTHON_COMPAT=( python{2_6,2_7,3_2} )
 PYTHON_REQ_USE="xml"
 
 inherit eutils gnome.org distutils-r1
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="${PYTHON_DEPS}"

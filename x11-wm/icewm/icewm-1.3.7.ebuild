@@ -1,4 +1,6 @@
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/icewm/icewm-1.3.7.ebuild,v 1.5 2012/10/07 10:25:13 xarthisius Exp $
 
 EAPI="4"
 
@@ -9,7 +11,7 @@ HOMEPAGE="http://www.icewm.org/"
 LICENSE="GPL-2"
 SRC_URI="mirror://sourceforge/${PN}/${P/_}.tar.gz"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~alpha ~amd64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="debug gnome minimal nls truetype uclibc xinerama"
 
 #fix for icewm preversion package names
@@ -24,7 +26,7 @@ RDEPEND="x11-libs/libX11
 	x11-libs/libSM
 	x11-libs/libICE
 	xinerama? ( x11-libs/libXinerama )
-	gnome? ( gnome-base/gnome-desktop:2 gnome-base/libgnomeui )
+	gnome? ( gnome-base/gnome-desktop:2 )
 	nls? ( sys-devel/gettext )
 	truetype? ( >=media-libs/freetype-2.0.9 )
 	media-libs/giflib"

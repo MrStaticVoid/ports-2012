@@ -1,26 +1,39 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-novaclient/python-novaclient-9999.ebuild,v 1.6 2013/05/03 19:03:54 prometheanfire Exp $
 
-EAPI=4-python
+EAPI=5
+PYTHON_COMPAT=( python2_6 python2_7 )
 
-PYTHON_MULTIPLE_ABIS="1"
+inherit distutils-r1 git-2
 
-inherit git-2 distutils
+EGIT_REPO_URI="git://github.com/openstack/${PN}.git
+	https://github.com/openstack/${PN}.git"
 
-DESCRIPTION="This is a client for the OpenStack Nova API. There's a Python API
-(the novaclient module), and a command-line script (nova). Each implements 100%
-of the OpenStack Nova API."
-HOMEPAGE="https://github.com/rackspace/python-novaclient"
-if [ "$PV" = "9999" ]; then
-	EGIT_REPO_URI="https://github.com/openstack/python-novaclient"
-else
-	SRC_URI="http://c.pypi.python.org/packages/source/${PN:0:1}/${PN}/${P}.tar.gz"
-fi
+DESCRIPTION="This is a client for the OpenStack Nova API."
+HOMEPAGE="https://github.com/openstack/python-novaclient"
+#SRC_URI="git://github.com/openstack/python-novaclient.git"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="*"
-IUSE=""
+KEYWORDS=""
+IUSE="test"
 
-DEPEND="$(python_abi_depend dev-python/setuptools)"
-RDEPEND="${DEPEND}"
+DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
+		test? ( dev-python/iso8601
+				dev-python/mock
+				dev-python/nose
+				dev-python/prettytable
+				dev-python/pytest
+				dev-python/pytest-runner
+				dev-python/requests
+				dev-python/simplejson
+				virtual/python-unittest2[${PYTHON_USEDEP}] )"
+RDEPEND="virtual/python-argparse[${PYTHON_USEDEP}]
+		dev-python/httplib2
+		dev-python/prettytable
+		dev-python/simplejson[${PYTHON_USEDEP}]"
 
+python_test() {
+	"${PYTHON}" setup.py nosetests || die
+}

@@ -18,7 +18,7 @@ SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 LICENSE="Boost-1.0"
 MAJOR_V="$(get_version_component_range 1-2)"
 SLOT="0/$(get_version_component_range 1-3)"
-KEYWORDS="~*"
+KEYWORDS="*"
 IUSE="c++11 context debug doc icu mpi +nls python static-libs +threads tools"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.6:0=::${REPOSITORY}[c++11(-)=] )
@@ -92,6 +92,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch \
+		"${FILESDIR}/${PN}-1.52.0-glibc-2.18.patch" \
 		"${FILESDIR}/${PN}-1.51.0-mpi_c++11.patch" \
 		"${FILESDIR}/${PN}-1.48.0-mpi_python3.patch" \
 		"${FILESDIR}/${PN}-1.51.0-respect_python-buildid.patch" \

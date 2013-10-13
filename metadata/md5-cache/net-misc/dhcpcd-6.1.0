@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install postinst prepare
+DEPEND=udev? ( virtual/udev )
+DESCRIPTION=A fully featured, yet light weight RFC2131 compliant DHCP client
+EAPI=5
+HOMEPAGE=http://roy.marples.name/projects/dhcpcd/
+IUSE=+zeroconf ipv6 udev
+KEYWORDS=*
+LICENSE=BSD-2
+RDEPEND=udev? ( virtual/udev )
+SLOT=0
+SRC_URI=http://roy.marples.name/downloads/dhcpcd/dhcpcd-6.1.0.tar.bz2
+_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=41fe577d89961cccb35aad74a7427d65

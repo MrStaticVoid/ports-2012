@@ -10,5 +10,5 @@ RDEPEND=dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_2.7-jython python_abis_2.7-pypy-1.9 python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/p/pip/pip-1.4.1.tar.gz
-_eclasses_=bash-completion-r1	f916a3421ae232384f9be343e36d5927	distutils	4d62465f6d5c8554c77b91c9d95dd315	multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=bash-completion-r1	09212e464bcf83382a48e5a48e199d4a	distutils	4d62465f6d5c8554c77b91c9d95dd315	multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=701a1b533fd83bfb7fa0dd99d8cfb20f

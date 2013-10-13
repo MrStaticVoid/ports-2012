@@ -1,4 +1,6 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header$
 
 EAPI="3"
 
@@ -12,9 +14,10 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Logitech Media Server (streaming audio server)"
 HOMEPAGE="http://www.mysqueezebox.com/download"
-LICENSE="GPL-2"
+LICENSE="${PN}"
+RESTRICT="bindist mirror"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 SRC_URI="http://downloads.slimdevices.com/${SRC_DIR}/${MY_P}.tgz"

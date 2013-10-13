@@ -1,8 +1,0 @@
-DEFINED_PHASES=install
-DESCRIPTION=File Service Protocol client - command-line ftp-like interface for FSP
-HOMEPAGE=http://fspclient.sourceforge.net/
-KEYWORDS=~x86
-LICENSE=MIT
-SLOT=0
-SRC_URI=mirror://sourceforge/fspclient/fspclient-0.91.0.tar.bz2
-_md5_=12750f6fe5343a5fb892bf1bec21507f

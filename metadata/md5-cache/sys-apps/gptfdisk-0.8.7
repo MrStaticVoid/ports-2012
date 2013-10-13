@@ -1,0 +1,13 @@
+DEFINED_PHASES=install prepare
+DEPEND=!static? ( dev-libs/popt ncurses? ( >=sys-libs/ncurses-5.7-r7 ) icu? ( dev-libs/icu:= ) kernel_linux? ( sys-apps/util-linux ) ) static? ( dev-libs/popt[static-libs(+)] ncurses? ( >=sys-libs/ncurses-5.7-r7[static-libs(+)] ) icu? ( dev-libs/icu:=[static-libs(+)] ) kernel_linux? ( sys-apps/util-linux[static-libs(+)] ) ) virtual/pkgconfig
+DESCRIPTION=GPT partition table manipulator for Linux
+EAPI=5
+HOMEPAGE=http://www.rodsbooks.com/gdisk/
+IUSE=+icu kernel_linux ncurses static
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=!static? ( dev-libs/popt ncurses? ( >=sys-libs/ncurses-5.7-r7 ) icu? ( dev-libs/icu:= ) kernel_linux? ( sys-apps/util-linux ) )
+SLOT=0
+SRC_URI=mirror://sourceforge/gptfdisk/gptfdisk-0.8.7.tar.gz
+_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	2ff578fb151da221e1797f12e2990e72	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=05f2f59891b13fca03cd45f12eb8399a

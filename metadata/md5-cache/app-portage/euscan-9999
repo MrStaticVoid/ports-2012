@@ -6,5 +6,5 @@ HOMEPAGE=http://euscan.iksaif.net
 LICENSE=GPL-2
 RDEPEND=sys-apps/portage >=app-portage/gentoolkit-0.2.8 dev-python/setuptools dev-python/beautifulsoup:python-2 virtual/python-argparse dev-lang/python[xml] dev-lang/python dev-lang/python[xml]
 SLOT=0
-_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	git-2	e92e09651292b1bef5656592364550f7	python	9ffa83b7b864edd2fa5dd6ebe4a63738
+_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	eutils	4878e7f88afc0ba0866ac112190b0fd4	git-2	9d623256bd82ddbcc6783ae996e178fd	git-r3	df9fbf6c110cdbadcc4d6f409d7cca8d	multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=3a3fbb6042d17811c05f2fa61851f1da
