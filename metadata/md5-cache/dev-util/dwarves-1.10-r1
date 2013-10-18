@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install prepare setup test
-DEPEND=python_single_target_python2_6? ( dev-lang/python:2.6 ) python_single_target_python2_7? ( dev-lang/python:2.7 ) dev-python/python-exec:=[python_targets_python2_6(-)?,python_targets_python2_7(-)?,python_single_target_python2_6(+)?,python_single_target_python2_7(+)?] >=dev-libs/elfutils-0.131 sys-libs/zlib sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DEPEND=python_single_target_python2_6? ( >=dev-lang/python-2.6.8-r3:2.6 ) python_single_target_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-python/python-exec:=[python_targets_python2_6(-)?,python_targets_python2_7(-)?,python_single_target_python2_6(+)?,python_single_target_python2_7(+)?] >=dev-libs/elfutils-0.131 sys-libs/zlib sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
 DESCRIPTION=pahole (Poke-a-Hole) and other DWARF2 utilities
 EAPI=5
 HOMEPAGE=http://git.kernel.org/?p=linux/kernel/git/acme/pahole.git;a=summary
 IUSE=debug python_targets_python2_6 python_targets_python2_7 python_single_target_python2_6 python_single_target_python2_7
 KEYWORDS=~amd64
 LICENSE=GPL-2
-RDEPEND=python_single_target_python2_6? ( dev-lang/python:2.6 ) python_single_target_python2_7? ( dev-lang/python:2.7 ) dev-python/python-exec:=[python_targets_python2_6(-)?,python_targets_python2_7(-)?,python_single_target_python2_6(+)?,python_single_target_python2_7(+)?] >=dev-libs/elfutils-0.131 sys-libs/zlib
+RDEPEND=python_single_target_python2_6? ( >=dev-lang/python-2.6.8-r3:2.6 ) python_single_target_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-python/python-exec:=[python_targets_python2_6(-)?,python_targets_python2_7(-)?,python_single_target_python2_6(+)?,python_single_target_python2_7(+)?] >=dev-libs/elfutils-0.131 sys-libs/zlib
 SLOT=0
 SRC_URI=http://fedorapeople.org/~acme/dwarves/dwarves-1.10.tar.bz2
-_eclasses_=cmake-utils	930116ef213eb319525fd8e27b0095ef	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	2ff578fb151da221e1797f12e2990e72	multilib	892e597faee02a5b94eb02ab512e7622	python-single-r1	2ca20eea86d11878e6bcd127a81af868	python-utils-r1	a4940acdd0a5ebdc58aaedd38de4983a	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=cmake-utils	930116ef213eb319525fd8e27b0095ef	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	08a40a43c401c96d16477c02e56d9a64	multilib	892e597faee02a5b94eb02ab512e7622	python-single-r1	fa36040985cb5e3cdd31d44be94d15bc	python-utils-r1	4f3595fa07cbecf9f3cfabd0f9a6f34b	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=fb768f040b526998c04f5f1f8c10acd3

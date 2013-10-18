@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-9999.ebuild,v 1.18 2013/09/21 13:19:47 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-9999.ebuild,v 1.22 2013/10/17 19:36:21 tomwij Exp $
 
 EAPI=5
 
 EGIT_REPO_URI="git://github.com/mpv-player/mpv.git"
 
-inherit toolchain-funcs flag-o-matic multilib base
+inherit toolchain-funcs flag-o-matic multilib base pax-utils
 [[ ${PV} == *9999* ]] && inherit git-2
 
 DESCRIPTION="Video player based on MPlayer/mplayer2"
@@ -14,12 +14,12 @@ HOMEPAGE="http://mpv.io/"
 [[ ${PV} == *9999* ]] || \
 SRC_URI="https://github.com/mpv-player/mpv/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="GPL-3"
+LICENSE="GPL-2"
 SLOT="0"
 [[ ${PV} == *9999* ]] || \
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux"
 IUSE="+alsa bluray bs2b +cdio doc-pdf dvb +dvd +enca encode +iconv jack joystick
-jpeg ladspa lcms +libass libcaca libguess lirc mng +mp3 -openal +opengl oss
+jpeg ladspa lcms +libass libcaca libguess lirc lua luajit mng +mp3 -openal +opengl oss
 portaudio +postproc pulseaudio pvr +quvi radio samba +shm +threads v4l vaapi
 vcd vdpau vf-dlopen wayland +X xinerama +xscreensaver +xv"
 
@@ -27,6 +27,7 @@ REQUIRED_USE="
 	enca? ( iconv )
 	lcms? ( opengl )
 	libguess? ( iconv )
+	luajit? ( lua )
 	opengl? ( || ( wayland X ) )
 	portaudio? ( threads )
 	pvr? ( v4l )
@@ -81,6 +82,10 @@ RDEPEND+="
 	libcaca? ( media-libs/libcaca )
 	libguess? ( >=app-i18n/libguess-1.0 )
 	lirc? ( app-misc/lirc )
+	lua? (
+		!luajit? ( >=dev-lang/lua-5.1 )
+		luajit? ( dev-lang/luajit:2 )
+	)
 	mng? ( media-libs/libmng )
 	mp3? ( media-sound/mpg123 )
 	openal? ( >=media-libs/openal-1.13 )
@@ -121,7 +126,7 @@ DEPEND="${RDEPEND}
 	x86? ( ${ASM_DEP} )
 	x86-fbsd? ( ${ASM_DEP} )
 "
-DOCS=( AUTHORS Copyright README.md etc/example.conf etc/input.conf etc/encoding-example-profiles.conf )
+DOCS=( Copyright README.md etc/example.conf etc/input.conf etc/encoding-example-profiles.conf )
 
 pkg_setup() {
 	if [[ ${PV} == *9999* ]]; then
@@ -180,6 +185,8 @@ src_configure() {
 	use quvi || myconf+=" --disable-libquvi4 --disable-libquvi9"
 	use samba || myconf+=" --disable-smb"
 	use lirc || myconf+=" --disable-lirc --disable-lircc"
+	use lua || myconf+=" --disable-lua"
+	use luajit && myconf+=" --lua=luajit"
 	use doc-pdf || myconf+=" --disable-pdf"
 
 	########
@@ -296,6 +303,10 @@ src_compile() {
 
 src_install() {
 	base_src_install
+
+	if use luajit; then
+		pax-mark -m "${ED}"usr/bin/mpv
+	fi
 
 	if use vf-dlopen; then
 		exeinto /usr/$(get_libdir)/${PN}

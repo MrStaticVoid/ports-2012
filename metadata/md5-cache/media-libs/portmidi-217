@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare setup test
-DEPEND=media-libs/alsa-lib app-arch/unzip java? ( >=virtual/jdk-1.6 ) python? ( >=dev-python/cython-0.12.1 ) doc? ( app-doc/doxygen dev-texlive/texlive-fontsrecommended dev-texlive/texlive-latexextra dev-tex/xcolor virtual/latex-base ) sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) ) java? ( >=dev-java/java-config-2.1.9-r1 )
+DEPEND=media-libs/alsa-lib app-arch/unzip java? ( >=virtual/jdk-1.6 ) python? ( >=dev-python/cython-0.12.1 ) doc? ( app-doc/doxygen dev-texlive/texlive-fontsrecommended dev-texlive/texlive-latexextra dev-tex/xcolor virtual/latex-base ) sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) python? ( =dev-lang/python-2* ) java? ( >=dev-java/java-config-2.1.9-r1 )
 DESCRIPTION=A library for real time MIDI input and output
 EAPI=4
 HOMEPAGE=http://portmedia.sourceforge.net/
 IUSE=debug doc java python static-libs test-programs elibc_FreeBSD java
 KEYWORDS=amd64 x86
 LICENSE=MIT
-RDEPEND=media-libs/alsa-lib java? ( >=virtual/jre-1.6 ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) ) java? ( >=dev-java/java-config-2.1.9-r1 )
+RDEPEND=media-libs/alsa-lib java? ( >=virtual/jre-1.6 ) python? ( =dev-lang/python-2* ) java? ( >=dev-java/java-config-2.1.9-r1 )
 SLOT=0
 SRC_URI=mirror://sourceforge/portmedia/portmidi-src-217.zip
-_eclasses_=cmake-utils	930116ef213eb319525fd8e27b0095ef	distutils	4d62465f6d5c8554c77b91c9d95dd315	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	2ff578fb151da221e1797f12e2990e72	java-pkg-opt-2	f9bbbe5092225a2059aa9e6a3a2b52f1	java-utils-2	6032f7ec6471c6459da900e11f0f7bf7	multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_eclasses_=cmake-utils	930116ef213eb319525fd8e27b0095ef	distutils	00e4a86b194f4de1a4a18039fd3632b9	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	08a40a43c401c96d16477c02e56d9a64	java-pkg-opt-2	f9bbbe5092225a2059aa9e6a3a2b52f1	java-utils-2	8d0d93b7a8605ea346cce4604f6db516	multilib	892e597faee02a5b94eb02ab512e7622	python	925399c42fdfa67082308a125dfe5f16	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
 _md5_=3a51090f57b505a2746543c20329179c

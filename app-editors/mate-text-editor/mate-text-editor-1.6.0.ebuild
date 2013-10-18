@@ -17,6 +17,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
 IUSE="python spell"
 
+# Failed tests:https://github.com/mate-desktop/mate-text-editor/issues/33
+RESTRICT="test"
+
+
 RDEPEND=">=x11-libs/libSM-1.0
 	>=dev-libs/libxml2-2.5.0:2
 	>=dev-libs/glib-2.23.1:2
@@ -54,6 +58,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# Mate test run
+	epatch "${FILESDIR}/${PN}-1.6.0-fix-POTFILES.patch"
 	mate_src_prepare
 	use python && python_clean_py-compile_files
 }

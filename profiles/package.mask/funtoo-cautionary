@@ -1,3 +1,7 @@
+#  Oleg Vinichenko cautinoary mask to latest nvidia-drivers, FL-817
+#  (10 Oct 2013)
+>=x11-drivers/nvidia-drivers-331.13
+  
 #  Oleg Vinichenko (6 Sep 2013)
 #  mask perl modules that explicitly require newer perl-5.18
 #  until we get perl-5.18 to tree.
@@ -46,10 +50,6 @@ app-benchmarks/phoronix-test-suite
 #  Oleg Vinichenko (16 Jun 2013)
 #  mask broken hexchat ebuild FL-584
 >=net-irc/hexchat-2.9.5_p20130525 
-
-# Oleg Vinichenk (16 Jun 2013)
-# cautionary mask latest icu-51.2, breaks expected
->=dev-libs/icu-51.2-r1000
 
 # Oleg Vinichenko (12 Jun 2013)
 # mask openmpi-1.6.4 due to sandbox issues, FL-578, https://bugs.gentoo.org/show_bug.cgi?id=462602

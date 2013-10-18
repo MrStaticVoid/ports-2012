@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare setup unpack
-DEPEND=X? ( dev-python/pygtk:2 ) ncurses? ( sys-libs/ncurses ) bluetooth? ( net-wireless/bluez ) usb? ( virtual/libusb:1 ) dbus? ( sys-apps/dbus dev-libs/dbus-glib ) ntp? ( || ( net-misc/ntp net-misc/chrony ) ) qt4? ( dev-qt/qtgui:4 ) virtual/pkgconfig test? ( sys-devel/bc ) virtual/pkgconfig python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) ) >=dev-util/scons-1.2.1
+DEPEND=X? ( dev-python/pygtk:2 ) ncurses? ( sys-libs/ncurses ) bluetooth? ( net-wireless/bluez ) usb? ( virtual/libusb:1 ) dbus? ( sys-apps/dbus dev-libs/dbus-glib ) ntp? ( || ( net-misc/ntp net-misc/chrony ) ) qt4? ( dev-qt/qtgui:4 ) virtual/pkgconfig test? ( sys-devel/bc ) virtual/pkgconfig python? ( =dev-lang/python-2* ) >=dev-util/scons-1.2.1
 DESCRIPTION=GPS daemon and library to support USB/serial GPS devices and various GPS/mapping clients
 EAPI=4
 HOMEPAGE=http://catb.org/gpsd/
 IUSE=gpsd_protocols_aivdm gpsd_protocols_ashtech gpsd_protocols_earthmate gpsd_protocols_evermore gpsd_protocols_fury gpsd_protocols_fv18 gpsd_protocols_garmin gpsd_protocols_garmintxt gpsd_protocols_geostar gpsd_protocols_gpsclock gpsd_protocols_itrax gpsd_protocols_mtk3301 gpsd_protocols_navcom gpsd_protocols_nmea gpsd_protocols_nmea2000 gpsd_protocols_ntrip gpsd_protocols_oceanserver gpsd_protocols_oncore gpsd_protocols_rtcm104v2 gpsd_protocols_rtcm104v3 gpsd_protocols_sirf gpsd_protocols_superstar2 gpsd_protocols_tnt gpsd_protocols_tripmate gpsd_protocols_tsip gpsd_protocols_ubx bluetooth cxx debug dbus ipv6 latency_timing ncurses ntp python qt4 +shm +sockets test udev usb X
 KEYWORDS=amd64 arm ppc ppc64 x86
 LICENSE=BSD
-RDEPEND=X? ( dev-python/pygtk:2 ) ncurses? ( sys-libs/ncurses ) bluetooth? ( net-wireless/bluez ) usb? ( virtual/libusb:1 ) dbus? ( sys-apps/dbus dev-libs/dbus-glib ) ntp? ( || ( net-misc/ntp net-misc/chrony ) ) qt4? ( dev-qt/qtgui:4 ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) )
+RDEPEND=X? ( dev-python/pygtk:2 ) ncurses? ( sys-libs/ncurses ) bluetooth? ( net-wireless/bluez ) usb? ( virtual/libusb:1 ) dbus? ( sys-apps/dbus dev-libs/dbus-glib ) ntp? ( || ( net-misc/ntp net-misc/chrony ) ) qt4? ( dev-qt/qtgui:4 ) python? ( =dev-lang/python-2* )
 REQUIRED_USE=X? ( python ) gpsd_protocols_nmea2000? ( gpsd_protocols_aivdm )
 SLOT=0
 SRC_URI=mirror://nongnu/gpsd/gpsd-3.9.tar.gz
-_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	scons-utils	988e24b9e2e4642189b4e97c03e5ae71	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	udev	a9a8d051efb42bfe884c1db82ce161de	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	python	925399c42fdfa67082308a125dfe5f16	scons-utils	988e24b9e2e4642189b4e97c03e5ae71	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	udev	a9a8d051efb42bfe884c1db82ce161de	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=a919c75e8b0787b6a2bb11cb50d891fd

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeorion/freeorion-0.4.3.ebuild,v 1.2 2013/09/19 12:10:33 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeorion/freeorion-0.4.3.ebuild,v 1.5 2013/10/07 08:08:35 tomka Exp $
 
 EAPI=5
 
@@ -13,7 +13,7 @@ DESCRIPTION="A free turn-based space empire and galactic conquest game"
 HOMEPAGE="http://www.freeorion.org"
 SRC_URI="http://dev.gentoo.org/~tomka/files/${P}.tar.bz2"
 
-LICENSE="GPL-2 CC-BY-SA-3.0"
+LICENSE="GPL-2 LGPL-2.1 CC-BY-SA-3.0"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="cg"
@@ -22,7 +22,8 @@ IUSE="cg"
 # The split version dev-games/gigi is not used anymore as of 0.4.3
 RDEPEND="
 	!dev-games/gigi
-	dev-games/ogre[cg?,opengl]
+	dev-games/ogre[cg?,ois,opengl]
+	dev-games/ois
 	>=dev-libs/boost-1.47[python]
 	media-libs/freealut
 	media-libs/libogg
@@ -58,6 +59,9 @@ src_prepare() {
 			>> "${CMAKE_USE_DIR}"/ogre_plugins.cfg || die
 	fi
 
+	# parse subdir sets -O3
+	sed -e "s:-O3::" -i parse/CMakeLists.txt
+
 	# set revision for display in game -- update on bump!
 	sed -i -e 's/???/6281/' CMakeLists.txt
 }
@@ -65,6 +69,7 @@ src_prepare() {
 src_configure() {
 	local mycmakeargs=(
 		-DRELEASE_COMPILE_FLAGS=""
+		-DCMAKE_SKIP_RPATH=ON
 		)
 
 	cmake-utils_src_configure

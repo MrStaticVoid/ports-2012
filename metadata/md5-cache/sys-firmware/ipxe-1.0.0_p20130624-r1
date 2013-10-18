@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=sys-devel/make dev-lang/perl sys-libs/zlib iso? ( sys-boot/syslinux virtual/cdrtools )
+DESCRIPTION=Open source network boot (PXE) firmware
+EAPI=5
+HOMEPAGE=http://ipxe.org
+IUSE=iso +qemu undi usb vmware
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+SLOT=0
+SRC_URI=https://git.ipxe.org/ipxe.git/snapshot/936134ed460618e18cc05d677a442d43d5e739a1.tar.bz2 -> ipxe-1.0.0_p20130624-936134e.tar.bz2
+_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=ed4cb7870a7e42828076da5d46f60066

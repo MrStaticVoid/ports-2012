@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=dev-python/cssselect[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] >=dev-python/lxml-2.1[beautifulsoup3?,python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] dev-python/webob[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] requests? ( dev-python/requests[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] ) restkit? ( ( python_abis_2.6? ( dev-python/restkit[python_abis_2.6] ) python_abis_2.7? ( dev-python/restkit[python_abis_2.7] ) ) ) dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) test? ( dev-python/nose[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] ) app-arch/unzip
+DESCRIPTION=A jquery-like library for python
+EAPI=5-progress
+HOMEPAGE=https://github.com/gawel/pyquery https://pypi.python.org/pypi/pyquery
+IUSE=beautifulsoup3 requests restkit test python_abis_2.6 python_abis_2.7 python_abis_3.2 python_abis_3.3 python_abis_3.4 test
+KEYWORDS=*
+LICENSE=BSD
+RDEPEND=dev-python/cssselect[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] >=dev-python/lxml-2.1[beautifulsoup3?,python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] dev-python/webob[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] requests? ( dev-python/requests[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?] ) restkit? ( ( python_abis_2.6? ( dev-python/restkit[python_abis_2.6] ) python_abis_2.7? ( dev-python/restkit[python_abis_2.7] ) ) ) python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 )
+REQUIRED_USE=test? ( beautifulsoup3 ) || ( python_abis_2.6 python_abis_2.7 python_abis_3.2 python_abis_3.3 python_abis_3.4 )
+SLOT=0
+SRC_URI=mirror://pypi/p/pyquery/pyquery-1.2.6.zip
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	925399c42fdfa67082308a125dfe5f16
+_md5_=acbb41f7a8eb34cd9d62e63b3c991a87

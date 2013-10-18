@@ -6,7 +6,7 @@ EAPI="5-progress"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="2.5 *-jython *-pypy-*"
+PYTHON_RESTRICTED_ABIS="*-jython *-pypy-*"
 
 inherit autotools eutils gnome2 multilib python virtualx
 
@@ -57,6 +57,9 @@ src_prepare() {
 	# Fix warning spam
 	epatch "${FILESDIR}/${P}-set_qdata.patch"
 	epatch "${FILESDIR}/${P}-gio-types-2.32.patch"
+
+	# Fix glib-2.36 compatibility, bug #486602
+	epatch "${FILESDIR}/${P}-glib-2.36-class_init.patch"
 
 	# Support Python 3.
 	epatch "${FILESDIR}/${P}-python-3.patch"

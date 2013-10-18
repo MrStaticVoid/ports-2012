@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare setup test unpack
+DEPEND=x11-libs/libXft >=x11-libs/libXi-1.2 gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) >=dev-libs/glib-2.28:2 >=gnome-base/librsvg-2.0:2 >=mate-base/mate-file-manager-1.2.2 >=media-libs/fontconfig-1 >=dev-libs/dbus-glib-0.73 >=x11-libs/libxklavier-4.0 >=x11-wm/mate-window-manager-1.5.0 >=mate-base/libmatekbd-1.2.0 >=mate-base/mate-desktop-1.5.2 >=mate-base/mate-menus-1.2.0 >=mate-base/mate-settings-daemon-1.5.2 >=gnome-base/dconf-0.10.0 dev-libs/libunique:1 x11-libs/pango dev-libs/libxml2 media-libs/freetype media-libs/libcanberra[gtk] x11-apps/xmodmap x11-libs/libXScrnSaver x11-libs/libXext x11-libs/libX11 x11-libs/libXxf86misc x11-libs/libXrandr x11-libs/libXrender x11-libs/libXcursor x11-proto/scrnsaverproto x11-proto/xextproto x11-proto/xproto x11-proto/xf86miscproto x11-proto/kbproto x11-proto/randrproto x11-proto/renderproto sys-devel/gettext >=dev-util/intltool-0.40 virtual/pkgconfig dev-util/desktop-file-utils app-text/scrollkeeper >=app-text/mate-doc-utils-1.2.1 >=mate-base/mate-common-1.2.2 || ( >=sys-devel/automake-1.12:1.12 >=sys-devel/automake-1.13:1.13 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 dev-util/gtk-doc dev-util/gtk-doc-am
+DESCRIPTION=The MATE Desktop configuration tool
+EAPI=5
+HOMEPAGE=http://mate-desktop.org
+IUSE=gtk3 debug
+KEYWORDS=~amd64 ~arm ~x86
+LICENSE=GPL-2
+RDEPEND=x11-libs/libXft >=x11-libs/libXi-1.2 gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) >=dev-libs/glib-2.28:2 >=gnome-base/librsvg-2.0:2 >=mate-base/mate-file-manager-1.2.2 >=media-libs/fontconfig-1 >=dev-libs/dbus-glib-0.73 >=x11-libs/libxklavier-4.0 >=x11-wm/mate-window-manager-1.5.0 >=mate-base/libmatekbd-1.2.0 >=mate-base/mate-desktop-1.5.2 >=mate-base/mate-menus-1.2.0 >=mate-base/mate-settings-daemon-1.5.2 >=gnome-base/dconf-0.10.0 dev-libs/libunique:1 x11-libs/pango dev-libs/libxml2 media-libs/freetype media-libs/libcanberra[gtk] x11-apps/xmodmap x11-libs/libXScrnSaver x11-libs/libXext x11-libs/libX11 x11-libs/libXxf86misc x11-libs/libXrandr x11-libs/libXrender x11-libs/libXcursor
+RESTRICT=primaryuri
+SLOT=2
+SRC_URI=http://pub.mate-desktop.org/releases/1.6/mate-control-center-1.6.1.tar.xz
+_eclasses_=autotools	16761a2f972abd686713e5967ff3c754	eutils	4878e7f88afc0ba0866ac112190b0fd4	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	libtool	b1c8688e60f9580bcb9bb46e08737eb1	mate	1c5cc96e9ccca3ad1f70a3e4e4ba4134	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	mate-utils	1e95e18a611c8f19405ca1aba47f347d	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	89580da5ec17ad687fcde876c542b91e	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_md5_=94da9267f281f3a1ec0ef167c5b58859

@@ -1,14 +1,14 @@
 DEFINED_PHASES=configure install prepare setup
-DEPEND=>=dev-libs/boost-1.48[python?,threads(+)] >=sys-devel/libtool-2.2 sys-libs/zlib examples? ( !net-p2p/mldonkey ) ssl? ( dev-libs/openssl ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) ) python? ( || ( =dev-lang/python-2.7*[threads] =dev-lang/python-2.6*[threads] ) )
+DEPEND=>=dev-libs/boost-1.48[python?,threads(+)] >=sys-devel/libtool-2.2 sys-libs/zlib examples? ( !net-p2p/mldonkey ) ssl? ( dev-libs/openssl ) python? ( =dev-lang/python-2* ) python? ( =dev-lang/python-2*[threads] )
 DESCRIPTION=C++ BitTorrent implementation focusing on efficiency and scalability
 EAPI=4
 HOMEPAGE=http://www.rasterbar.com/products/libtorrent/
 IUSE=debug doc examples python ssl static-libs
 KEYWORDS=~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd
 LICENSE=BSD
-RDEPEND=>=dev-libs/boost-1.48[python?,threads(+)] >=sys-devel/libtool-2.2 sys-libs/zlib examples? ( !net-p2p/mldonkey ) ssl? ( dev-libs/openssl ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) ) python? ( || ( =dev-lang/python-2.7*[threads] =dev-lang/python-2.6*[threads] ) )
+RDEPEND=>=dev-libs/boost-1.48[python?,threads(+)] >=sys-devel/libtool-2.2 sys-libs/zlib examples? ( !net-p2p/mldonkey ) ssl? ( dev-libs/openssl ) python? ( =dev-lang/python-2* ) python? ( =dev-lang/python-2*[threads] )
 RESTRICT=test
 SLOT=0
 SRC_URI=http://libtorrent.googlecode.com/files/libtorrent-rasterbar-0.16.11.tar.gz
-_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	python	925399c42fdfa67082308a125dfe5f16	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
 _md5_=e8d1ecadb5c59f4b896bb6b359cfee9c

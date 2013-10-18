@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=net-wireless/bluez =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://pybluez.googlecode.com/files/PyBluez-0.18.tar.gz
-_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	python	9ffa83b7b864edd2fa5dd6ebe4a63738
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	925399c42fdfa67082308a125dfe5f16
 _md5_=1ab9dbce244759fd3cf217af3e2d9c35

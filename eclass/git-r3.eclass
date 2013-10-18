@@ -28,6 +28,10 @@ EXPORT_FUNCTIONS src_unpack
 
 if [[ ! ${_GIT_R3} ]]; then
 
+if [[ ! ${_INHERITED_BY_GIT_2} ]]; then
+	DEPEND=">=dev-vcs/git-1.8.2.1"
+fi
+
 # @ECLASS-VARIABLE: EGIT3_STORE_DIR
 # @DESCRIPTION:
 # Storage directory for git sources.
@@ -42,6 +46,8 @@ if [[ ! ${_GIT_R3} ]]; then
 # if the first URI does not work.
 #
 # It can be overriden via env using ${PN}_LIVE_REPO variable.
+#
+# Can be a whitespace-separated list or an array.
 #
 # Example:
 # @CODE
@@ -83,8 +89,10 @@ if [[ ! ${_GIT_R3} ]]; then
 # a fair number of limitations. Therefore, if you'd like the eclass to
 # perform complete clones instead, set this to a non-null value.
 #
-# This variable is to be set in make.conf. Ebuilds are not allowed
-# to set it.
+# This variable can be set in make.conf and ebuilds. The make.conf
+# value specifies user-specific default, while ebuilds may use it
+# to force deep clones when the server does not support shallow clones
+# (e.g. Google Code).
 
 # @FUNCTION: _git-r3_env_setup
 # @INTERNAL
@@ -177,6 +185,8 @@ _git-r3_set_gitdir() {
 	# e.g. git://X/Y.git vs https://X/git/Y.git
 	# (but just one of the prefixes)
 	case "${repo_name}" in
+		# gnome.org... who else?
+		browse/*) repo_name=${repo_name#browse/};;
 		# cgit can proxy requests to git
 		cgit/*) repo_name=${repo_name#cgit/};;
 		# pretty common
@@ -240,6 +250,11 @@ _git-r3_set_submodules() {
 
 		l=${l#submodule.}
 		local subname=${l%%.url=*}
+
+		# skip modules that have 'update = none', bug #487262.
+		local upd=$(echo "${data}" | git config -f /dev/fd/0 \
+			submodule."${subname}".update)
+		[[ ${upd} == none ]] && continue
 
 		submodules+=(
 			"${subname}"
@@ -369,7 +384,17 @@ _git-r3_smart_fetch() {
 git-r3_fetch() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local repos=( ${1:-${EGIT_REPO_URI}} )
+	[[ ${EVCS_OFFLINE} ]] && return
+
+	local repos
+	if [[ ${1} ]]; then
+		repos=( ${1} )
+	elif [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
+		repos=( "${EGIT_REPO_URI[@]}" )
+	else
+		repos=( ${EGIT_REPO_URI} )
+	fi
+
 	local branch=${EGIT_BRANCH:+refs/heads/${EGIT_BRANCH}}
 	local remote_ref=${2:-${EGIT_COMMIT:-${branch:-HEAD}}}
 	local local_id=${3:-${CATEGORY}/${PN}/${SLOT}}
@@ -378,11 +403,11 @@ git-r3_fetch() {
 	[[ ${repos[@]} ]] || die "No URI provided and EGIT_REPO_URI unset"
 
 	local -x GIT_DIR
-	_git-r3_set_gitdir ${repos[0]}
+	_git-r3_set_gitdir "${repos[0]}"
 
 	# try to fetch from the remote
 	local r success
-	for r in ${repos[@]}; do
+	for r in "${repos[@]}"; do
 		einfo "Fetching ${remote_ref} from ${r} ..."
 
 		local is_branch lookup_ref
@@ -430,6 +455,8 @@ git-r3_fetch() {
 			if [[ -f ${GIT_DIR}/shallow ]]; then
 				ref_param+=( --unshallow )
 			fi
+			# fetch all branches
+			ref_param+=( "refs/heads/*:refs/remotes/origin/*" )
 		else
 			# 'git show-ref --heads' returns 1 when there are no branches
 			if ! git show-ref --heads -q; then
@@ -518,12 +545,20 @@ git-r3_fetch() {
 git-r3_checkout() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local repos=( ${1:-${EGIT_REPO_URI}} )
+	local repos
+	if [[ ${1} ]]; then
+		repos=( ${1} )
+	elif [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
+		repos=( "${EGIT_REPO_URI[@]}" )
+	else
+		repos=( ${EGIT_REPO_URI} )
+	fi
+
 	local out_dir=${2:-${EGIT_CHECKOUT_DIR:-${WORKDIR}/${P}}}
 	local local_id=${3:-${CATEGORY}/${PN}/${SLOT}}
 
 	local -x GIT_DIR GIT_WORK_TREE
-	_git-r3_set_gitdir ${repos[0]}
+	_git-r3_set_gitdir "${repos[0]}"
 	GIT_WORK_TREE=${out_dir}
 	mkdir -p "${GIT_WORK_TREE}"
 
@@ -615,14 +650,22 @@ git-r3_checkout() {
 git-r3_peek_remote_ref() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local repos=( ${1:-${EGIT_REPO_URI}} )
+	local repos
+	if [[ ${1} ]]; then
+		repos=( ${1} )
+	elif [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
+		repos=( "${EGIT_REPO_URI[@]}" )
+	else
+		repos=( ${EGIT_REPO_URI} )
+	fi
+
 	local branch=${EGIT_BRANCH:+refs/heads/${EGIT_BRANCH}}
 	local remote_ref=${2:-${EGIT_COMMIT:-${branch:-HEAD}}}
 
 	[[ ${repos[@]} ]] || die "No URI provided and EGIT_REPO_URI unset"
 
 	local r success
-	for r in ${repos[@]}; do
+	for r in "${repos[@]}"; do
 		einfo "Peeking ${remote_ref} on ${r} ..." >&2
 
 		local is_branch lookup_ref
@@ -652,8 +695,6 @@ git-r3_peek_remote_ref() {
 
 git-r3_src_fetch() {
 	debug-print-function ${FUNCNAME} "$@"
-
-	[[ ${EVCS_OFFLINE} ]] && return
 
 	if [[ ! ${EGIT3_STORE_DIR} && ${EGIT_STORE_DIR} ]]; then
 		ewarn "You have set EGIT_STORE_DIR but not EGIT3_STORE_DIR. Please consider"

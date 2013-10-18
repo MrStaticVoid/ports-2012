@@ -8,5 +8,5 @@ LICENSE=GPL-3
 RDEPEND=dev-python/gst-python dev-python/imaging dev-python/netifaces dev-python/notify-python dev-python/pycrypto dev-python/pygobject:3 dev-python/pygtk dev-python/twisted-core dev-python/twisted-conch media-gfx/xloadimage x11-misc/devilspie =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://winswitch.org/src/winswitch-0.12.18.src.tar.bz2
-_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	python	9ffa83b7b864edd2fa5dd6ebe4a63738
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	925399c42fdfa67082308a125dfe5f16
 _md5_=425f2815a6844bee1a3765472bf2b598

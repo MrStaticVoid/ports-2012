@@ -9,5 +9,5 @@ LICENSE=BSD
 RDEPEND=vim-syntax? ( >=app-editors/vim-core-7 ) emacs? ( virtual/emacs )
 SLOT=0
 SRC_URI=http://ctemplate.googlecode.com/files/ctemplate-2.0.tar.gz
-_eclasses_=elisp-common	57a17c02cd0f6f0c423e3d6de5c83f13	python	9ffa83b7b864edd2fa5dd6ebe4a63738
+_eclasses_=elisp-common	57a17c02cd0f6f0c423e3d6de5c83f13	python	925399c42fdfa67082308a125dfe5f16
 _md5_=53d069f098217aae759442c63b72f6e3

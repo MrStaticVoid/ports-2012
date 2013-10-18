@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare setup test
-DEPEND=>=dev-libs/glib-2.22 >=dev-libs/gmime-2.6.7 <dev-libs/xapian-1.3 sys-libs/talloc debug? ( dev-util/valgrind ) emacs? ( >=virtual/emacs-23 ) x86? ( >=dev-libs/xapian-1.2.7-r2 ) vim? ( || ( >=app-editors/vim-7.0 >=app-editors/gvim-7.0 ) ) virtual/pkgconfig doc? ( python? ( dev-python/sphinx ) ) test? ( app-misc/dtach sys-devel/gdb ) python? ( || ( =dev-lang/python-3.4* =dev-lang/python-3.3* =dev-lang/python-3.2* =dev-lang/python-2.7* =dev-lang/python-2.6* ) )
+DEPEND=>=dev-libs/glib-2.22 >=dev-libs/gmime-2.6.7 <dev-libs/xapian-1.3 sys-libs/talloc debug? ( dev-util/valgrind ) emacs? ( >=virtual/emacs-23 ) x86? ( >=dev-libs/xapian-1.2.7-r2 ) vim? ( || ( >=app-editors/vim-7.0 >=app-editors/gvim-7.0 ) ) virtual/pkgconfig doc? ( python? ( dev-python/sphinx ) ) test? ( app-misc/dtach sys-devel/gdb ) python? ( || ( =dev-lang/python-3.4* =dev-lang/python-3.3* =dev-lang/python-3.2* =dev-lang/python-2* ) )
 DESCRIPTION=Thread-based e-mail indexer, supporting quick search and tagging
 EAPI=4
 HOMEPAGE=http://notmuchmail.org/
 IUSE=bash-completion crypt debug doc emacs nmbug mutt python test vim zsh-completion
 KEYWORDS=amd64 x86
 LICENSE=GPL-3
-RDEPEND=>=dev-libs/glib-2.22 >=dev-libs/gmime-2.6.7 <dev-libs/xapian-1.3 sys-libs/talloc debug? ( dev-util/valgrind ) emacs? ( >=virtual/emacs-23 ) x86? ( >=dev-libs/xapian-1.2.7-r2 ) vim? ( || ( >=app-editors/vim-7.0 >=app-editors/gvim-7.0 ) ) crypt? ( app-crypt/gnupg ) nmbug? ( dev-vcs/git virtual/perl-File-Temp virtual/perl-PodParser ) mutt? ( dev-perl/File-Which dev-perl/Mail-Box dev-perl/MailTools dev-perl/String-ShellQuote dev-perl/Term-ReadLine-Gnu virtual/perl-Digest-SHA virtual/perl-File-Path virtual/perl-Getopt-Long virtual/perl-PodParser ) zsh-completion? ( app-shells/zsh ) python? ( || ( =dev-lang/python-3.4* =dev-lang/python-3.3* =dev-lang/python-3.2* =dev-lang/python-2.7* =dev-lang/python-2.6* ) )
+RDEPEND=>=dev-libs/glib-2.22 >=dev-libs/gmime-2.6.7 <dev-libs/xapian-1.3 sys-libs/talloc debug? ( dev-util/valgrind ) emacs? ( >=virtual/emacs-23 ) x86? ( >=dev-libs/xapian-1.2.7-r2 ) vim? ( || ( >=app-editors/vim-7.0 >=app-editors/gvim-7.0 ) ) crypt? ( app-crypt/gnupg ) nmbug? ( dev-vcs/git virtual/perl-File-Temp virtual/perl-PodParser ) mutt? ( dev-perl/File-Which dev-perl/Mail-Box dev-perl/MailTools dev-perl/String-ShellQuote dev-perl/Term-ReadLine-Gnu virtual/perl-Digest-SHA virtual/perl-File-Path virtual/perl-Getopt-Long virtual/perl-PodParser ) zsh-completion? ( app-shells/zsh ) python? ( || ( =dev-lang/python-3.4* =dev-lang/python-3.3* =dev-lang/python-3.2* =dev-lang/python-2* ) )
 REQUIRED_USE=test? ( crypt emacs python )
 SLOT=0
 SRC_URI=http://notmuchmail.org/releases/notmuch-0.14.tar.gz
-_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	elisp-common	57a17c02cd0f6f0c423e3d6de5c83f13	eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	pax-utils	2424f959506320f5196de8f79fa05297	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	elisp-common	57a17c02cd0f6f0c423e3d6de5c83f13	eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	pax-utils	2424f959506320f5196de8f79fa05297	python	925399c42fdfa67082308a125dfe5f16	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=6fd4aece2616f0dc41bd4b1a613df114

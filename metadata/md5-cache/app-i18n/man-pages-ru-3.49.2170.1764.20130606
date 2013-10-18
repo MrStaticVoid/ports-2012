@@ -8,4 +8,4 @@ RDEPEND=virtual/man
 SLOT=0
 SRC_URI=mirror://sourceforge/man-pages-ru/man-pages-ru_3.49-2170-1764-20130606.tar.bz2
 _eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
-_md5_=a38862b2a5f7533f9c622d81e807f292
+_md5_=686a8a5ed97ae225eb58fca8df520dd1

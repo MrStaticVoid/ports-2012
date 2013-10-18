@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/seamonkey/seamonkey-2.21.ebuild,v 1.3 2013/09/21 10:56:21 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/seamonkey/seamonkey-2.21.ebuild,v 1.5 2013/09/26 16:31:45 axs Exp $
 
 EAPI="3"
 WANT_AUTOCONF="2.1"
@@ -47,7 +47,7 @@ fi
 
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
-IUSE="+chatzilla +crypt gstreamer +ipc +jit minimal pulseaudio +roaming system-cairo system-icu system-jpeg system-sqlite"
+IUSE="+chatzilla +crypt gstreamer +ipc +jit minimal pulseaudio +roaming selinux system-cairo system-icu system-jpeg system-sqlite"
 
 SRC_URI="${SRC_URI}
 	${MOZ_FTP_URI}/source/${MY_MOZ_P}.source.tar.bz2 -> ${P}.source.tar.bz2
@@ -130,6 +130,8 @@ src_prepare() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}/firefox"
 	popd &>/dev/null || die
+	# drop -Wl,--build-id from LDFLAGS, bug #465466
+	epatch "${FILESDIR}"/moz${PATCHFF:8:2}-drop-Wl-build-id.patch
 
 	# Shell scripts sometimes contain DOS line endings; bug 391889
 	grep -rlZ --include="*.sh" $'\r$' . |
@@ -155,12 +157,6 @@ src_prepare() {
 		sed -i -e "s:GNOME_DISABLE_CRASH_DIALOG=1:GNOME_DISABLE_CRASH_DIALOG=0:g" \
 			"${ms}"/build/unix/run-mozilla.sh || die "sed failed!"
 	fi
-
-	# Disable gnomevfs extension
-	sed -i -e "s:gnomevfs::" "${S}"/suite/confvars.sh \
-		-e "s:gnomevfs::" "${ms}"/browser/confvars.sh \
-		-e "s:gnomevfs::" "${ms}"/xulrunner/confvars.sh \
-		|| die "Failed to remove gnomevfs extension"
 
 	# Ensure that are plugins dir is enabled as default
 	sed -i -e "s:/usr/lib/mozilla/plugins:/usr/lib/nsbrowser/plugins:" \
@@ -231,15 +227,13 @@ src_configure() {
 
 	mozconfig_use_enable gstreamer
 	mozconfig_use_enable pulseaudio
+	mozconfig_use_enable system-cairo
 	mozconfig_use_enable system-sqlite
 	mozconfig_use_with system-jpeg
 	mozconfig_use_with system-icu
 	mozconfig_use_enable system-icu intl-api
 	# Feature is know to cause problems on hardened
-	mozconfig_use_enable jit methodjit
-	mozconfig_use_enable jit tracejit
 	mozconfig_use_enable jit ion
-	mozconfig_use_enable system-cairo
 
 	# Use an objdir to keep things organized.
 	echo "mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/seamonk" \

@@ -7,7 +7,7 @@ GCONF_DEBUG="no"
 GNOME_TARBALL_SUFFIX="bz2"
 
 PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="2.5 3.* *-jython *-pypy-*"
+PYTHON_RESTRICTED_ABIS="3.* *-jython *-pypy-*"
 PYTHON_EXPORT_PHASE_FUNCTIONS="1"
 
 inherit autotools eutils flag-o-matic gnome2 python virtualx
@@ -42,8 +42,15 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-2.13.0-fix-codegen-location.patch"
 	epatch "${FILESDIR}/${PN}-2.14.1-libdir-pc.patch"
 
+	# Fix leaks of Pango objects.
+	epatch "${FILESDIR}/${PN}-2.24.0-fix-leaks.patch"
+
 	# Fix exit status of tests.
 	epatch "${FILESDIR}/${P}-tests_result.patch"
+
+	# Fix tests.
+	# https://bugzilla.gnome.org/show_bug.cgi?id=709304
+	epatch "${FILESDIR}/${P}-test_dialog.patch"
 
 	# Disable installation of examples in wrong directory.
 	sed -e "/^SUBDIRS =/s/ examples//" -i Makefile.am
