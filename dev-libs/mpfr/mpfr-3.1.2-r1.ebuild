@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.1.2-r1.ebuild,v 1.2 2013/10/16 13:15:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.1.2-r1.ebuild,v 1.6 2013/11/03 23:40:27 mattst88 Exp $
 
 EAPI="3"
 
@@ -16,7 +16,7 @@ SRC_URI="http://www.mpfr.org/mpfr-${MY_PV}/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static-libs"
 
 RDEPEND=">=dev-libs/gmp-4.1.4-r2[static-libs?]"
@@ -46,8 +46,8 @@ src_prepare() {
 src_configure() {
 	econf \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
-		--with-gmp-lib="${EPREFIX}"/usr/$(get_libdir) \
-		--with-gmp-include="${EPREFIX}"/usr/include \
+		--with-gmp-lib="${EROOT}"usr/$(get_libdir) \
+		--with-gmp-include="${EROOT}"usr/include \
 		$(use_enable static-libs static)
 }
 

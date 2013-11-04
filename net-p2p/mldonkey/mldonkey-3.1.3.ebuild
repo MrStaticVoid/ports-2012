@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/mldonkey/mldonkey-3.1.3.ebuild,v 1.7 2013/10/12 02:44:18 heroxbd Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/mldonkey/mldonkey-3.1.3.ebuild,v 1.9 2013/10/31 04:50:19 heroxbd Exp $
 
 EAPI="2"
 WANT_AUTOCONF=2.5
