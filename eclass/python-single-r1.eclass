@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python-single-r1.eclass,v 1.22 2013/09/26 11:24:30 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python-single-r1.eclass,v 1.25 2013/11/30 17:57:11 floppym Exp $
 
 # @ECLASS: python-single-r1
 # @MAINTAINER:
@@ -109,7 +109,7 @@ fi
 #
 # Example value:
 # @CODE
-# dev-python/python-exec:0
+# dev-lang/python-exec:=
 # python_single_target_python2_6? ( dev-lang/python:2.6[gdbm] )
 # python_single_target_python2_7? ( dev-lang/python:2.7[gdbm] )
 # @CODE
@@ -194,19 +194,21 @@ _python_single_set_globals() {
 	# but if new targets were added, we may need to force a rebuild
 	# 3) use whichever python-exec slot installed in EAPI 5. For EAPI 4,
 	# just fix :2 since := deps are not supported.
-	if [[ ${EAPI} != 4 ]]; then
-		PYTHON_DEPS+="dev-python/python-exec:=[${PYTHON_USEDEP}]"
+	if [[ ${_PYTHON_WANT_PYTHON_EXEC2} == 0 ]]; then
+		PYTHON_DEPS+="dev-lang/python-exec:0[${PYTHON_USEDEP}]"
+	elif [[ ${EAPI} != 4 ]]; then
+		PYTHON_DEPS+="dev-lang/python-exec:=[${PYTHON_USEDEP}]"
 	else
-		PYTHON_DEPS+="dev-python/python-exec:2[${PYTHON_USEDEP}]"
+		PYTHON_DEPS+="dev-lang/python-exec:2[${PYTHON_USEDEP}]"
 	fi
 }
 _python_single_set_globals
 
-# @FUNCTION: python-single-r1_pkg_setup
+# @FUNCTION: python_setup
 # @DESCRIPTION:
-# Determine what the selected Python implementation is and set EPYTHON
-# and PYTHON accordingly.
-python-single-r1_pkg_setup() {
+# Determine what the selected Python implementation is and set
+# the Python build environment up for it.
+python_setup() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	unset EPYTHON
@@ -248,6 +250,15 @@ python-single-r1_pkg_setup() {
 		echo
 		die "No supported Python implementation in PYTHON_SINGLE_TARGET."
 	fi
+}
+
+# @FUNCTION: python-single-r1_pkg_setup
+# @DESCRIPTION:
+# Runs python_setup.
+python-single-r1_pkg_setup() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	python_setup
 }
 
 # @FUNCTION: python_fix_shebang

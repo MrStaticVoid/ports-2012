@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-9999.ebuild,v 1.57 2013/10/14 16:39:57 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-9999.ebuild,v 1.61 2013/11/30 10:33:59 mgorny Exp $
 
 EAPI=5
 
@@ -38,7 +38,7 @@ COMMON_DEPEND="
 DEPEND="${COMMON_DEPEND}
 	dev-lang/perl
 	dev-python/sphinx
-	>=sys-devel/make-3.79
+	>=sys-devel/make-3.81
 	>=sys-devel/flex-2.5.4
 	>=sys-devel/bison-1.875d
 	|| ( >=sys-devel/gcc-3.0 >=sys-devel/gcc-apple-4.2.1
@@ -151,7 +151,7 @@ src_unpack() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.2-nodoctargz.patch
 	epatch "${FILESDIR}"/${PN}-3.4-gentoo-install.patch
-	use clang && epatch "${FILESDIR}"/clang-3.3-gentoo-install.patch
+	use clang && epatch "${FILESDIR}"/clang-3.4-gentoo-install.patch
 
 	local sub_files=(
 		Makefile.config.in
@@ -192,7 +192,7 @@ multilib_src_configure() {
 
 	if use clang; then
 		CONF_FLAGS+="
-			--with-clang-resource-dir=../lib/clang/3.4"
+			--with-clang-resource-dir=../lib/clang/3.5"
 	fi
 
 	if use multitarget; then
@@ -204,7 +204,7 @@ multilib_src_configure() {
 		fi
 	fi
 
-	if multilib_is_native_abi && use gold; then
+	if multilib_build_binaries && use gold; then
 		CONF_FLAGS="${CONF_FLAGS} --with-binutils-include=${EPREFIX}/usr/include/"
 	fi
 	if multilib_is_native_abi && use ocaml; then
@@ -276,13 +276,7 @@ src_install() {
 multilib_src_install() {
 	emake DESTDIR="${D}" GENTOO_LIBDIR=$(get_libdir) install
 
-	# Fix rpaths.
-	if use !kernel_Darwin ; then
-		chrpath -r "${EPREFIX}"/usr/$(get_libdir)/llvm \
-			"${ED}"/usr/bin/* || die
-	fi
-
-	if multilib_is_native_abi; then
+	if multilib_build_binaries; then
 		# Move files back.
 		if path_exists -o "${ED}"/tmp/llvm-config.*; then
 			mv "${ED}"/tmp/llvm-config.* "${ED}"/usr/bin || die
@@ -305,27 +299,27 @@ multilib_src_install() {
 		for lib in lib{EnhancedDisassembly,LLVM-${libpv},LTO,profile_rt,clang}.dylib {BugpointPasses,LLVMHello}.dylib ; do
 			# libEnhancedDisassembly is Darwin10 only, so non-fatal
 			# + omit clang libs if not enabled
-			[[ -f ${ED}/usr/lib/${PN}/${lib} ]] || continue
+			[[ -f ${ED}/usr/lib/${lib} ]] || continue
 
 			ebegin "fixing install_name of $lib"
 			install_name_tool \
-				-id "${EPREFIX}"/usr/lib/${PN}/${lib} \
-				"${ED}"/usr/lib/${PN}/${lib}
+				-id "${EPREFIX}"/usr/lib/${lib} \
+				"${ED}"/usr/lib/${lib}
 			eend $?
 		done
-		for f in "${ED}"/usr/bin/* "${ED}"/usr/lib/${PN}/lib{LTO,clang}.dylib ; do
+		for f in "${ED}"/usr/bin/* "${ED}"/usr/lib/lib{LTO,clang}.dylib ; do
 			# omit clang libs if not enabled
-			[[ -f ${ED}/usr/lib/${PN}/${lib} ]] || continue
+			[[ -f ${ED}/usr/lib/${lib} ]] || continue
 
 			odylib=$(scanmacho -BF'%n#f' "${f}" | tr ',' '\n' | grep libLLVM-${libpv}.dylib)
 			ebegin "fixing install_name reference to ${odylib} of ${f##*/}"
 			install_name_tool \
 				-change "${odylib}" \
-					"${EPREFIX}"/usr/lib/${PN}/libLLVM-${libpv}.dylib \
+					"${EPREFIX}"/usr/lib/libLLVM-${libpv}.dylib \
 				-change "@rpath/libclang.dylib" \
-					"${EPREFIX}"/usr/lib/llvm/libclang.dylib \
+					"${EPREFIX}"/usr/lib/libclang.dylib \
 				-change "${S}"/Release/lib/libclang.dylib \
-					"${EPREFIX}"/usr/lib/llvm/libclang.dylib \
+					"${EPREFIX}"/usr/lib/libclang.dylib \
 				"${f}"
 			eend $?
 		done

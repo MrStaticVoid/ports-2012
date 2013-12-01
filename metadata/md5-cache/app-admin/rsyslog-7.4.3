@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile config configure install postinst prepare test
-DEPEND=dev-libs/json-c dev-libs/libee >=dev-libs/libestr-0.1.5 dev-libs/liblognorm net-misc/curl dbi? ( dev-db/libdbi ) extras? ( net-libs/libnet ) kerberos? ( virtual/krb5 ) mysql? ( virtual/mysql ) postgres? ( dev-db/postgresql-base ) oracle? ( dev-db/oracle-instantclient-basic ) relp? ( >=dev-libs/librelp-1.0.3 ) snmp? ( net-analyzer/net-snmp ) ssl? ( net-libs/gnutls dev-libs/libgcrypt ) zeromq? ( net-libs/czmq ) zlib? ( sys-libs/zlib ) virtual/pkgconfig || ( >=sys-devel/automake-1.12:1.12 >=sys-devel/automake-1.13:1.13 ) >=sys-devel/autoconf-2.68 sys-devel/libtool virtual/pkgconfig
+DEPEND=dev-libs/json-c dev-libs/libee >=dev-libs/libestr-0.1.5 dev-libs/liblognorm dbi? ( dev-db/libdbi ) extras? ( net-libs/libnet ) kerberos? ( virtual/krb5 ) mysql? ( virtual/mysql ) postgres? ( dev-db/postgresql-base ) oracle? ( dev-db/oracle-instantclient-basic ) relp? ( >=dev-libs/librelp-1.0.3 ) snmp? ( net-analyzer/net-snmp ) ssl? ( net-libs/gnutls dev-libs/libgcrypt ) zeromq? ( net-libs/czmq ) zlib? ( sys-libs/zlib ) virtual/pkgconfig || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool virtual/pkgconfig
 DESCRIPTION=An enhanced multi-threaded syslogd with database support and more
 EAPI=4
 HOMEPAGE=http://www.rsyslog.com/
 IUSE=dbi debug doc extras kerberos mysql oracle postgres relp snmp ssl static-libs zeromq zlib
 KEYWORDS=~amd64 ~arm ~hppa ~x86
 LICENSE=GPL-3 LGPL-3 Apache-2.0
-RDEPEND=dev-libs/json-c dev-libs/libee >=dev-libs/libestr-0.1.5 dev-libs/liblognorm net-misc/curl dbi? ( dev-db/libdbi ) extras? ( net-libs/libnet ) kerberos? ( virtual/krb5 ) mysql? ( virtual/mysql ) postgres? ( dev-db/postgresql-base ) oracle? ( dev-db/oracle-instantclient-basic ) relp? ( >=dev-libs/librelp-1.0.3 ) snmp? ( net-analyzer/net-snmp ) ssl? ( net-libs/gnutls dev-libs/libgcrypt ) zeromq? ( net-libs/czmq ) zlib? ( sys-libs/zlib )
+RDEPEND=dev-libs/json-c dev-libs/libee >=dev-libs/libestr-0.1.5 dev-libs/liblognorm dbi? ( dev-db/libdbi ) extras? ( net-libs/libnet ) kerberos? ( virtual/krb5 ) mysql? ( virtual/mysql ) postgres? ( dev-db/postgresql-base ) oracle? ( dev-db/oracle-instantclient-basic ) relp? ( >=dev-libs/librelp-1.0.3 ) snmp? ( net-analyzer/net-snmp ) ssl? ( net-libs/gnutls dev-libs/libgcrypt ) zeromq? ( net-libs/czmq ) zlib? ( sys-libs/zlib )
 RESTRICT=test
 SLOT=0
 SRC_URI=http://www.rsyslog.com/files/download/rsyslog/rsyslog-7.4.3.tar.gz
-_eclasses_=autotools	16761a2f972abd686713e5967ff3c754	autotools-utils	2b979a5bbf3f849ae7e4866a48c66832	eutils	4878e7f88afc0ba0866ac112190b0fd4	libtool	b1c8688e60f9580bcb9bb46e08737eb1	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	89580da5ec17ad687fcde876c542b91e	systemd	b4f56e91ea206d6aff1d03e5814a29e1	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=05366112ed8eae05be5109b78ee1c16d
+_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	autotools-utils	f3015fe18e112728c1f9c46119503768	eutils	4878e7f88afc0ba0866ac112190b0fd4	libtool	5932e418cf62147cad2d902718aacc56	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	67154e3c80516dc77f9f56956f5beebe	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=41a1cfdcc302410e99c87a1bd68901e5

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/zeitgeist-datasources/zeitgeist-datasources-0.8.1.ebuild,v 1.3 2013/09/08 14:25:09 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/zeitgeist-datasources/zeitgeist-datasources-0.8.1.ebuild,v 1.6 2013/11/30 20:10:37 pacho Exp $
 
 EAPI=5
 
@@ -8,7 +8,7 @@ AUTOTOOLS_AUTORECONF=true
 VALA_MIN_API_VERSION=0.14
 PYTHON_COMPAT=( python{2_6,2_7}  )
 
-inherit autotools-utils eutils mono multilib python-single-r1 versionator vala
+inherit autotools-utils eutils mono-env multilib python-single-r1 versionator vala
 
 DIR_PV=$(get_version_component_range 1-2)
 DIR_PV2=$(get_version_component_range 1-3)
@@ -18,10 +18,10 @@ HOMEPAGE="https://launchpad.net/zeitgeist-datasources/ http://zeitgeist-project.
 SRC_URI="http://launchpad.net/zeitgeist-datasources/${DIR_PV}/${DIR_PV2}/+download/${P}.tar.gz"
 
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 LICENSE="GPL-3"
-PLUGINS_IUSE="bzr emacs firefox geany mono telepathy thunderbird tomboy vim xchat"
-PLUGINS="bzr emacs firefox geany monodevelop telepathy thunderbird tomboy vim xchat"
+PLUGINS_IUSE="bzr chromium emacs firefox geany mono telepathy thunderbird tomboy vim xchat"
+PLUGINS="bzr chrome emacs firefox geany monodevelop telepathy thunderbird tomboy vim xchat"
 IUSE="${PLUGINS_IUSE} static-libs"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -35,7 +35,7 @@ RDEPEND="
 	geany? ( dev-util/geany )
 	mono? ( dev-util/monodevelop )
 	telepathy? (
-		dev-python/telepathy-python[${PYTHON_USEDEP}]
+		net-libs/telepathy-glib[${PYTHON_USEDEP}]
 		dev-python/dbus-python[${PYTHON_USEDEP}]
 		dev-python/pygobject[${PYTHON_USEDEP}]
 		)
@@ -94,6 +94,9 @@ src_configure() {
 
 	for i in ${PLUGINS}; do
 		case ${i} in
+			chrome )
+				use chromium && myplugins+=( ${i} )
+				;;
 			monodevelop )
 				use mono && myplugins+=( ${i} )
 				;;

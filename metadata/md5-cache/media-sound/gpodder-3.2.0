@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=dev-python/eyeD3 dev-python/feedparser >=dev-python/mygpoclient-1.4 >=dev-python/pygtk-2.12:2 dbus? ( dev-python/dbus-python ) bluetooth? ( net-wireless/bluez ) gstreamer? ( dev-python/gst-python ) ipod? ( media-libs/libgpod[python] ) mtp? ( >=media-libs/libmtp-1.0.0 ) webkit? ( dev-python/pywebkitgtk ) =dev-lang/python-2* =dev-lang/python-2*[sqlite]
 SLOT=0
 SRC_URI=http://gpodder.org/src/gpodder-3.2.0.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	gnome2-utils	eb320321b288cc6cce3638421d072825	multilib	892e597faee02a5b94eb02ab512e7622	python	925399c42fdfa67082308a125dfe5f16	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	gnome2-utils	eb320321b288cc6cce3638421d072825	multilib	892e597faee02a5b94eb02ab512e7622	python	78a4afe9781c7107d0f91c07aae92026	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=9af1d9de8cc4c2b32f311917cb066f64

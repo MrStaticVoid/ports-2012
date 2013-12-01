@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-shell/gnome-shell-3.6.3.1.ebuild,v 1.4 2013/06/02 00:03:11 abcd Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -15,7 +13,7 @@ HOMEPAGE="http://live.gnome.org/GnomeShell"
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
 IUSE="+bluetooth +i18n +networkmanager systemd"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~*"
 
 # libXfixes-5.0 needed for pointer barriers
 # TODO: gstreamer support is currently automagical:
@@ -95,7 +93,7 @@ RDEPEND="${COMMON_DEPEND}
 	media-fonts/dejavu
 	x11-themes/gnome-icon-theme-symbolic
 
-	i18n? ( >=app-i18n/ibus-1.4.99[dconf,gtk3,introspection] )
+	i18n? ( >=app-i18n/ibus-1.4.99[dconf(+),gtk3,introspection] )
 	networkmanager? (
 		net-misc/mobile-broadband-provider-info
 		sys-libs/timezone-data )

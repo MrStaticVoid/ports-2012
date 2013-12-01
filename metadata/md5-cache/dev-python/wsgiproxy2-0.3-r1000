@@ -10,5 +10,5 @@ RDEPEND=dev-python/six[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python
 REQUIRED_USE=test? ( requests restkit urllib3 ) || ( python_abis_2.6 python_abis_2.7 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_2.7-jython python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/W/WSGIProxy2/WSGIProxy2-0.3.zip
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	925399c42fdfa67082308a125dfe5f16
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
 _md5_=64afa46ff3e450198212a46fa3bdb87e

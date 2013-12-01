@@ -1,6 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/use.mask,v 1.75 2013/10/19 01:58:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/use.mask,v 1.77 2013/11/10 22:53:56 chithanh Exp $
 # DON'T TOUCH THIS FILE. Instead, file a bug and assign it to <hppa@gentoo.org>.
+
+# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (10 Nov 2013)
+# sys-devel/llvm is not keyworded, bug #320221
+llvm
 
 # Jeroen Roovers <jer@gentoo.org> (22 Aug 2013)
 # No known OpenCL providers (bug #482096)
@@ -319,8 +323,5 @@ d3d
 # Matt Turner <mattst88@gentoo.org) (10 Feb 2012)
 # mask wayland since dev-libs/wayland isn't keyworded
 wayland
-
-# Unmask once sys-libs/libunwind gets keyworded. #453704
-unwind
 
 # DON'T TOUCH THIS FILE. Instead, file a bug and assign it to <hppa@gentoo.org>.

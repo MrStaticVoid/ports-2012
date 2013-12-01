@@ -1,9 +1,25 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.175 2013/10/20 17:15:44 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.181 2013/11/28 22:49:38 pacho Exp $
+
+# Pacho Ramos <pacho@gentoo.org> (28 Nov 2013)
+# Missing keywords, bug #492820
+net-im/telepathy-connection-managers sipe     
+
+# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (10 Nov 2013)
+# <sys-devel/llvm-3.2 is not keyworded
+=media-libs/mesa-7.10* llvm
+
+# Pacho Ramos <pacho@gentoo.org> (31 Oct 2013)
+# Missing keywords, bug #478254
+gnome-base/gnome classic
+
+# Benda Xu <heroxbd@gentoo.org> (31 Oct 2013)
+# Missing keywords from dev-ml/lablgtk, bug #487722
+net-p2p/mldonkey gtk guionly
 
 # Tom Wijsman <TomWij@gentoo.org> (16 Oct 2013)
-# Mask luajit on ~media-video/mpv-0.2.0 because it only has amd64 x86 keywords.
+# Mask luajit on ~media-video/mpv-0.2.0 because it only has amd64 x86 keywords. See bug #488318.
 >=media-video/mpv-0.2.0 luajit
 
 # Pacho Ramos <pacho@gentoo.org> (22 Sep 2013)
@@ -280,10 +296,6 @@ net-libs/libproxy kde
 # Justin Lecher <jlec@gentoo.org> (14 Jen 2011)
 # x11-libs/fltk is not keyworded for arm
 app-misc/nut X
-
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (28 Nov 2010)
-# sys-devel/llvm is keyworded on x86
->=media-libs/mesa-8 -llvm
 
 # Nirbheek Chauhan <nirbheek@gentoo.org> (26 Jun 2010)
 # Inter-process communication doesn't work on anything except x86/amd64/arm

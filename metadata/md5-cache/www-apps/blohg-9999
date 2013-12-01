@@ -1,11 +1,12 @@
-DEFINED_PHASES=compile install postinst postrm prepare test unpack
-DEPEND==dev-python/docutils-0.10* >=dev-python/flask-0.10.1 >=dev-python/flask-babel-0.7 >=dev-python/flask-script-0.5.3 >=dev-python/frozen-flask-0.7 >=dev-python/jinja-2.5.2 >=dev-vcs/mercurial-1.6 dev-python/pyyaml dev-python/setuptools dev-python/pygments git? ( =dev-python/pygit2-0.19* ) doc? ( dev-python/sphinx ) test? ( dev-python/mock =dev-python/pygit2-0.19* ) =dev-lang/python-2.7* dev-vcs/mercurial
+DEFINED_PHASES=compile install postinst postrm prepare setup test unpack
+DEPEND==dev-python/docutils-0.10* >=dev-python/flask-0.10.1 >=dev-python/flask-babel-0.7 >=dev-python/flask-script-0.5.3 >=dev-python/frozen-flask-0.7 >=dev-python/jinja-2.5.2 dev-python/pyyaml dev-python/setuptools dev-python/pygments git? ( =dev-python/pygit2-0.20* ) mercurial? ( >=dev-vcs/mercurial-1.6 ) doc? ( dev-python/sphinx ) test? ( dev-python/mock ) =dev-lang/python-2.7* >=dev-vcs/git-1.8.2.1
 DESCRIPTION=A Mercurial (or Git) based blogging engine.
-EAPI=3
+EAPI=5
 HOMEPAGE=http://blohg.org/ http://pypi.python.org/pypi/blohg
-IUSE=doc git test
+IUSE=doc git +mercurial test
 LICENSE=GPL-2
-RDEPEND==dev-python/docutils-0.10* >=dev-python/flask-0.10.1 >=dev-python/flask-babel-0.7 >=dev-python/flask-script-0.5.3 >=dev-python/frozen-flask-0.7 >=dev-python/jinja-2.5.2 >=dev-vcs/mercurial-1.6 dev-python/pyyaml dev-python/setuptools dev-python/pygments git? ( =dev-python/pygit2-0.19* ) =dev-lang/python-2.7*
+RDEPEND==dev-python/docutils-0.10* >=dev-python/flask-0.10.1 >=dev-python/flask-babel-0.7 >=dev-python/flask-script-0.5.3 >=dev-python/frozen-flask-0.7 >=dev-python/jinja-2.5.2 dev-python/pyyaml dev-python/setuptools dev-python/pygments git? ( =dev-python/pygit2-0.20* ) mercurial? ( >=dev-vcs/mercurial-1.6 ) =dev-lang/python-2.7*
+REQUIRED_USE=|| ( git mercurial ) test? ( git mercurial )
 SLOT=0
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	eutils	4878e7f88afc0ba0866ac112190b0fd4	mercurial	5fcb2f60868c283ece4cadfce78a5b24	multilib	892e597faee02a5b94eb02ab512e7622	python	925399c42fdfa67082308a125dfe5f16	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=03cb08b2078f16d50b54df7ae3fd4aaa
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	eutils	4878e7f88afc0ba0866ac112190b0fd4	git-r3	3d2603a6e66cd898e6b88e2135314bb8	multilib	892e597faee02a5b94eb02ab512e7622	python	78a4afe9781c7107d0f91c07aae92026	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=1ba0a9213e302bdad5f8800b61c004e3

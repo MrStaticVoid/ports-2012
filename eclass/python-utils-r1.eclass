@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python-utils-r1.eclass,v 1.43 2013/10/09 19:08:18 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python-utils-r1.eclass,v 1.45 2013/10/30 19:14:02 mgorny Exp $
 
 # @ECLASS: python-utils-r1
 # @MAINTAINER:
@@ -384,44 +384,6 @@ python_export() {
 				die "python_export: unknown variable ${var}"
 		esac
 	done
-}
-
-# @FUNCTION: python_get_PYTHON
-# @USAGE: [<impl>]
-# @DESCRIPTION:
-# Obtain and print the path to the Python interpreter for the given
-# implementation. If no implementation is provided, ${EPYTHON} will
-# be used.
-#
-# If you just need to have PYTHON set (and exported), then it is better
-# to use python_export() directly instead.
-python_get_PYTHON() {
-	debug-print-function ${FUNCNAME} "${@}"
-
-	eqawarn '$(python_get_PYTHON) is discouraged since all standard environments' >&2
-	eqawarn 'have PYTHON exported anyway. Please use ${PYTHON} instead.' >&2
-	eqawarn 'python_get_PYTHON will be removed on 2013-10-16.' >&2
-
-	python_export "${@}" PYTHON
-	echo "${PYTHON}"
-}
-
-# @FUNCTION: python_get_EPYTHON
-# @USAGE: <impl>
-# @DESCRIPTION:
-# Obtain and print the EPYTHON value for the given implementation.
-#
-# If you just need to have EPYTHON set (and exported), then it is better
-# to use python_export() directly instead.
-python_get_EPYTHON() {
-	debug-print-function ${FUNCNAME} "${@}"
-
-	eqawarn '$(python_get_EPYTHON) is discouraged since all standard environments' >&2
-	eqawarn 'have EPYTHON exported anyway. Please use ${EPYTHON} instead.' >&2
-	eqawarn 'python_get_EPYTHON will be removed on 2013-10-16.' >&2
-
-	python_export "${@}" EPYTHON
-	echo "${EPYTHON}"
 }
 
 # @FUNCTION: python_get_sitedir
@@ -1019,7 +981,7 @@ _python_want_python_exec2() {
 
 	# Check if we cached the result, or someone put an override.
 	if [[ ! ${_PYTHON_WANT_PYTHON_EXEC2+1} ]]; then
-		has_version 'dev-python/python-exec:2'
+		has_version 'dev-lang/python-exec:2'
 		_PYTHON_WANT_PYTHON_EXEC2=$(( ! ${?} ))
 	fi
 

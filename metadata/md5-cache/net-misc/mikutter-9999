@@ -8,5 +8,5 @@ LICENSE=GPL-3
 RDEPEND=libnotify? ( x11-libs/libnotify ) sound? ( media-sound/alsa-utils ) ruby_targets_ruby19? ( dev-ruby/addressable[ruby_targets_ruby19] dev-ruby/bsearch[ruby_targets_ruby19] dev-ruby/json[ruby_targets_ruby19] dev-ruby/memoize[ruby_targets_ruby19] >=dev-ruby/oauth-0.4.7[ruby_targets_ruby19] dev-ruby/ruby-gtk2[ruby_targets_ruby19] dev-ruby/typed-array[ruby_targets_ruby19] virtual/ruby-ssl[ruby_targets_ruby19] ) ruby_targets_ruby19? ( dev-lang/ruby:1.9 )
 REQUIRED_USE=|| ( ruby_targets_ruby19 )
 SLOT=0
-_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	git-2	2027b81a576527fa16bece425941e094	git-r3	ba892ed4cecbe72b258939267ac69e7b	java-utils-2	8d0d93b7a8605ea346cce4604f6db516	multilib	892e597faee02a5b94eb02ab512e7622	ruby-ng	89df90927c6d18908d75861c0778961a	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	git-2	2027b81a576527fa16bece425941e094	git-r3	3d2603a6e66cd898e6b88e2135314bb8	java-utils-2	8d0d93b7a8605ea346cce4604f6db516	multilib	892e597faee02a5b94eb02ab512e7622	ruby-ng	89df90927c6d18908d75861c0778961a	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
 _md5_=0c66433d1a2d759fa06dc87dc4d205b6

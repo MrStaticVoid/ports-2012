@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=net-libs/librsync app-crypt/gnupg dev-python/paramiko >=dev-python/pexpect-2.1 s3? ( dev-python/boto ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://code.launchpad.net/duplicity/0.6-series/0.6.20/+download/duplicity-0.6.20.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	925399c42fdfa67082308a125dfe5f16
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
 _md5_=302e9dc1e3ecc13731eb69b53845123e

@@ -1,11 +1,11 @@
 DEFINED_PHASES=configure install postinst prepare unpack
-DEPEND=>=dev-libs/boost-1.50[nls] sys-libs/ncurses[unicode?] >=media-libs/libmpdclient-2.1 curl? ( net-misc/curl ) visualizer? ( sci-libs/fftw:3.0 ) taglib? ( media-libs/taglib ) virtual/pkgconfig || ( >=sys-devel/automake-1.12:1.12 >=sys-devel/automake-1.13:1.13 ) >=sys-devel/autoconf-2.68 sys-devel/libtool dev-vcs/git
-DESCRIPTION=NCurses Music Player Client (Plus Plus)
+DEPEND=>=dev-libs/boost-1.50[nls] sys-libs/ncurses[unicode?] >=media-libs/libmpdclient-2.1 curl? ( net-misc/curl ) visualizer? ( sci-libs/fftw:3.0 ) taglib? ( media-libs/taglib ) virtual/pkgconfig || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool dev-vcs/git
+DESCRIPTION=featureful ncurses based MPD client inspired by ncmpc
 EAPI=5
 HOMEPAGE=http://ncmpcpp.rybczak.net/
 IUSE=bash-completion clock curl outputs taglib unicode visualizer
 LICENSE=GPL-2
 RDEPEND=>=dev-libs/boost-1.50[nls] sys-libs/ncurses[unicode?] >=media-libs/libmpdclient-2.1 curl? ( net-misc/curl ) visualizer? ( sci-libs/fftw:3.0 ) taglib? ( media-libs/taglib )
 SLOT=0
-_eclasses_=autotools	16761a2f972abd686713e5967ff3c754	bash-completion-r1	09212e464bcf83382a48e5a48e199d4a	eutils	4878e7f88afc0ba0866ac112190b0fd4	git-2	2027b81a576527fa16bece425941e094	git-r3	ba892ed4cecbe72b258939267ac69e7b	libtool	b1c8688e60f9580bcb9bb46e08737eb1	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	89580da5ec17ad687fcde876c542b91e	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=eecf5e2726e91e5be20de46250765f4b
+_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	bash-completion-r1	09212e464bcf83382a48e5a48e199d4a	eutils	4878e7f88afc0ba0866ac112190b0fd4	git-2	2027b81a576527fa16bece425941e094	git-r3	3d2603a6e66cd898e6b88e2135314bb8	libtool	5932e418cf62147cad2d902718aacc56	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	67154e3c80516dc77f9f56956f5beebe	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=e185454d1d51b66d8a3729b403fdd2b4

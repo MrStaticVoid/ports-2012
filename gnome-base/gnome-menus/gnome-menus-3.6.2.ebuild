@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-3.6.2.ebuild,v 1.2 2013/06/02 00:12:13 abcd Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,10 +9,12 @@ inherit gnome2 python-r1
 
 DESCRIPTION="The GNOME menu system, implementing the F.D.O cross-desktop spec"
 HOMEPAGE="http://www.gnome.org"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/gnome-menus-3.6.2.tar.xz"
+RESTRICT="mirror"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="3"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~*"
 
 # +python for gmenu-simple-editor
 IUSE="debug +introspection +python test"

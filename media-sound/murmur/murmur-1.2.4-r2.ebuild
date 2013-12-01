@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/murmur/murmur-1.2.4-r2.ebuild,v 1.2 2013/10/19 21:17:17 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/murmur/murmur-1.2.4-r2.ebuild,v 1.4 2013/11/17 23:40:26 tgurr Exp $
 
 EAPI="5"
 
 QT_MINIMAL="4.6"
 
-inherit eutils qt4-r2 systemd user
+inherit eutils qt4-r2 systemd user readme.gentoo
 
 MY_P="${PN/murmur/mumble}-${PV/_/~}"
 
@@ -16,7 +16,7 @@ SRC_URI="http://mumble.info/snapshot/${MY_P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 ~ia64 ~x86"
+KEYWORDS="amd64 ~ia64 x86"
 IUSE="+dbus debug +ice pch zeroconf"
 
 RDEPEND=">=dev-libs/openssl-1.0.0b
@@ -38,7 +38,18 @@ S="${WORKDIR}/${MY_P}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.2.4-ice-3.5.0-compat.patch
+	"${FILESDIR}"/${PN}-1.2.4-ice-3.5.1-compat.patch
 )
+
+DOC_CONTENTS="
+	Useful scripts are located in /usr/share/doc/${PF}/scripts.\n
+	Please execute:\n
+	murmurd -ini /etc/murmur/murmur.ini -supw <pw>\n
+	chown murmur:murmur /var/lib/murmur/murmur.sqlite\n
+	to set the build-in 'SuperUser' password before starting murmur.
+	Please restart dbus before starting murmur, or else dbus
+	registration will fail.
+"
 
 pkg_setup() {
 	enewgroup murmur
@@ -114,16 +125,10 @@ src_install() {
 	fperms 750 /var/lib/murmur /var/log/murmur
 
 	doman man/murmurd.1
+
+	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
-	echo
-	elog "Useful scripts are located in /usr/share/doc/${PF}/scripts."
-	elog "Please execute:"
-	elog "murmurd -ini /etc/murmur/murmur.ini -supw <pw>"
-	elog "chown murmur:murmur /var/lib/murmur/murmur.sqlite"
-	elog "to set the build-in 'SuperUser' password before starting murmur."
-	elog "Please restart dbus before starting murmur, or else dbus"
-	elog "registration will fail."
-	echo
+	readme.gentoo_print_elog
 }

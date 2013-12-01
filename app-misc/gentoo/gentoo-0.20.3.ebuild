@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gentoo/gentoo-0.20.3.ebuild,v 1.1 2013/08/24 16:48:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gentoo/gentoo-0.20.3.ebuild,v 1.4 2013/11/18 10:39:38 chainsaw Exp $
 
 EAPI=5
 inherit autotools eutils
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha amd64 hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="nls"
 
 RDEPEND="
@@ -35,7 +35,7 @@ src_prepare() {
 		-e 's^icons/gnome/16x16/mimetypes^gentoo/icons^' \
 		gentoorc.in || die
 	sed -i \
-		-e '/GTK_DISABLE_DEPRECATED/ d' \
+		-e '/GTK_DISABLE_DEPRECATED/d' \
 		-e '/^GENTOO_CFLAGS=/s|".*"|"${CFLAGS}"|g' \
 		-e 's|AM_CONFIG_HEADER|AC_CONFIG_HEADERS|g' \
 		configure.in || die #357343

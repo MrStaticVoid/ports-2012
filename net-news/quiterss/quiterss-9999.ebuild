@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-news/quiterss/quiterss-9999.ebuild,v 1.10 2013/10/10 10:29:31 pinkbyte Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-news/quiterss/quiterss-9999.ebuild,v 1.12 2013/11/24 12:18:30 pinkbyte Exp $
 
 EAPI=5
 
@@ -9,19 +9,20 @@ EHG_REPO_URI="https://code.google.com/p/quite-rss"
 inherit l10n qt4-r2 mercurial
 
 DESCRIPTION="A Qt4-based RSS/Atom feed reader"
-HOMEPAGE="http://code.google.com/p/quite-rss/"
+HOMEPAGE="http://quiterss.org"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug"
+IUSE="debug phonon"
 
 DEPEND="dev-db/sqlite:3
 	dev-qt/qtcore:4
 	dev-qt/qtgui:4
 	dev-qt/qtsingleapplication
 	dev-qt/qtsql:4[sqlite]
-	dev-qt/qtwebkit:4"
+	dev-qt/qtwebkit:4
+	phonon? ( || ( media-libs/phonon dev-qt/qtphonon:4 ) )"
 RDEPEND="${DEPEND}"
 
 DOCS=( AUTHORS HISTORY_EN HISTORY_RU README )
@@ -40,5 +41,7 @@ src_prepare() {
 }
 
 src_configure() {
-	eqmake4 PREFIX="${EPREFIX}/usr" SYSTEMQTSA=1
+	eqmake4 PREFIX="${EPREFIX}/usr" \
+		SYSTEMQTSA=1 \
+		$(use phonon || echo 'DISABLE_PHONON=1')
 }

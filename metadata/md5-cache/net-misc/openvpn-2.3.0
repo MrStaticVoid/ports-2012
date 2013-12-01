@@ -1,5 +1,5 @@
 DEFINED_PHASES=configure install postinst prepare
-DEPEND=kernel_linux? ( iproute2? ( sys-apps/iproute2[-minimal] ) !iproute2? ( sys-apps/net-tools ) ) pam? ( virtual/pam ) selinux? ( sec-policy/selinux-openvpn ) ssl? ( >=dev-libs/openssl-0.9.7 ) lzo? ( >=dev-libs/lzo-1.07 ) pkcs11? ( >=dev-libs/pkcs11-helper-1.05 ) || ( >=sys-devel/automake-1.12:1.12 >=sys-devel/automake-1.13:1.13 ) >=sys-devel/autoconf-2.68 sys-devel/libtool virtual/pkgconfig
+DEPEND=kernel_linux? ( iproute2? ( sys-apps/iproute2[-minimal] ) !iproute2? ( sys-apps/net-tools ) ) pam? ( virtual/pam ) selinux? ( sec-policy/selinux-openvpn ) ssl? ( >=dev-libs/openssl-0.9.7 ) lzo? ( >=dev-libs/lzo-1.07 ) pkcs11? ( >=dev-libs/pkcs11-helper-1.05 ) || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool virtual/pkgconfig
 DESCRIPTION=Robust and highly flexible tunneling application compatible with many OSes
 EAPI=4
 HOMEPAGE=http://openvpn.net/
@@ -10,5 +10,5 @@ RDEPEND=kernel_linux? ( iproute2? ( sys-apps/iproute2[-minimal] ) !iproute2? ( s
 REQUIRED_USE=static? ( !plugins !pkcs11 ) !plugins? ( !pam !down-root )
 SLOT=0
 SRC_URI=http://swupdate.openvpn.net/community/releases/openvpn-2.3.0.tar.gz
-_eclasses_=autotools	16761a2f972abd686713e5967ff3c754	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	08a40a43c401c96d16477c02e56d9a64	libtool	b1c8688e60f9580bcb9bb46e08737eb1	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	89580da5ec17ad687fcde876c542b91e	systemd	b4f56e91ea206d6aff1d03e5814a29e1	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	libtool	5932e418cf62147cad2d902718aacc56	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	67154e3c80516dc77f9f56956f5beebe	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=75de725c148aa1735c3d7e19c0abc37e
