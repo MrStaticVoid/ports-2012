@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install prepare test
-DEPEND=>=sci-libs/cholmod-2[metis?] tbb? ( dev-cpp/tbb ) virtual/pkgconfig doc? ( virtual/latex-base )
+DEPEND=virtual/lapack >=sci-libs/cholmod-2[metis?] tbb? ( dev-cpp/tbb ) virtual/pkgconfig doc? ( virtual/latex-base )
 DESCRIPTION=Multithreaded multifrontal sparse QR factorization library
 EAPI=5
 HOMEPAGE=http://www.cise.ufl.edu/research/sparse/SPQR
 IUSE=doc metis static-libs tbb
 KEYWORDS=~amd64 ~x86 ~amd64-linux ~x86-linux
 LICENSE=GPL-2
-RDEPEND=>=sci-libs/cholmod-2[metis?] tbb? ( dev-cpp/tbb )
+RDEPEND=virtual/lapack >=sci-libs/cholmod-2[metis?] tbb? ( dev-cpp/tbb )
 SLOT=0
 SRC_URI=http://dev.gentoo.org/~bicatali/distfiles/spqr-1.3.1.tar.bz2
-_eclasses_=autotools	16761a2f972abd686713e5967ff3c754	autotools-utils	2b979a5bbf3f849ae7e4866a48c66832	eutils	4878e7f88afc0ba0866ac112190b0fd4	libtool	b1c8688e60f9580bcb9bb46e08737eb1	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	89580da5ec17ad687fcde876c542b91e	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=eb505da80966591d7770b0e4104d1995
+_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	autotools-utils	f3015fe18e112728c1f9c46119503768	eutils	4878e7f88afc0ba0866ac112190b0fd4	libtool	5932e418cf62147cad2d902718aacc56	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	67154e3c80516dc77f9f56956f5beebe	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=9b3c318f34a9e4d50cd6cae170253a1f

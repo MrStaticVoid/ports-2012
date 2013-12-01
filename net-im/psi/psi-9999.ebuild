@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/psi/psi-9999.ebuild,v 1.20 2013/09/10 07:14:19 pinkbyte Exp $
 
 EAPI="4"
 
@@ -43,6 +41,7 @@ RDEPEND="
 	extras? ( webkit? ( dev-qt/qtwebkit:4 ) )
 	app-arch/unzip
 	|| ( >=sys-libs/zlib-1.2.5.1-r2[minizip] <sys-libs/zlib-1.2.5.1-r1 )
+	net-dns/libidn
 "
 DEPEND="${RDEPEND}
 	extras? (

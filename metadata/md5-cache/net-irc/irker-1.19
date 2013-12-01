@@ -8,5 +8,5 @@ LICENSE=BSD
 RDEPEND==dev-lang/python-2* dev-python/irc
 SLOT=0
 SRC_URI=http://www.catb.org/esr/irker/irker-1.19.tar.gz
-_eclasses_=python	925399c42fdfa67082308a125dfe5f16
+_eclasses_=python	78a4afe9781c7107d0f91c07aae92026
 _md5_=c24250618f79a68cba552a1c101410d3

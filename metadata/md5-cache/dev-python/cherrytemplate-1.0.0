@@ -8,5 +8,5 @@ LICENSE=BSD
 RDEPEND==dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://sourceforge/cherrypy/CherryTemplate-1.0.0.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	925399c42fdfa67082308a125dfe5f16
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
 _md5_=5496a892e909c72be6d192b07bd0d4e4

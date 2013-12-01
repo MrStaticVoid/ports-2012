@@ -1,6 +1,6 @@
 DEFINED_PHASES=compile install postinst postrm prepare test
 DEPEND==dev-lang/python-3*
-DESCRIPTION=SimpleTAL is a stand alone Python implementation of the TAL, TALES and METAL specifications used in Zope to power HTML and XML templates.
+DESCRIPTION=Stand alone Python implementation of the Zope TAL, TALES and METAL specs for HTML/XML templates.
 EAPI=3
 HOMEPAGE=http://www.owlfish.com/software/simpleTAL/ http://pypi.python.org/pypi/SimpleTAL
 IUSE=examples
@@ -9,5 +9,5 @@ LICENSE=BSD
 RDEPEND==dev-lang/python-3*
 SLOT=5
 SRC_URI=http://www.owlfish.com/software/simpleTAL/downloads/SimpleTAL-5.0.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	925399c42fdfa67082308a125dfe5f16
-_md5_=09f91fdf29afc2af057cc337637d4b0b
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
+_md5_=92ccbc8d7a1000c60d2e6d06913956a1

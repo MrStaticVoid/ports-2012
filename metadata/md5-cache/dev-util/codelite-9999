@@ -1,10 +1,10 @@
 DEFINED_PHASES=compile install preinst prepare unpack
-DEPEND=x11-libs/wxGTK:2.8[X] sys-devel/libtool:1.5 || ( >=sys-devel/automake-1.12:1.12 >=sys-devel/automake-1.13:1.13 ) >=sys-devel/autoconf-2.68 sys-devel/libtool || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+DEPEND=x11-libs/wxGTK:2.8[X] sys-devel/libtool:1.5 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
 DESCRIPTION=powerful open-source, cross platform IDE for the C/C++
 EAPI=2
 HOMEPAGE=http://www.codelite.org
 LICENSE=GPL-2
 RDEPEND=x11-libs/wxGTK:2.8[X] sys-devel/libtool:1.5
 SLOT=0
-_eclasses_=autotools	16761a2f972abd686713e5967ff3c754	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	libtool	b1c8688e60f9580bcb9bb46e08737eb1	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	89580da5ec17ad687fcde876c542b91e	subversion	de38ef8c5baf84d80e695a4d6ad26554	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	wxwidgets	3315ffba81a98dea5d9837edb418a587
+_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	eutils	4878e7f88afc0ba0866ac112190b0fd4	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	libtool	5932e418cf62147cad2d902718aacc56	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	67154e3c80516dc77f9f56956f5beebe	subversion	de38ef8c5baf84d80e695a4d6ad26554	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	wxwidgets	0125fdb7607a15e9047c01d27b5a6da9
 _md5_=f2d7abec6b7c675801655aa25b9a7bff

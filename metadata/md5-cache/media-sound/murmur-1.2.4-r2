@@ -9,5 +9,5 @@ LICENSE=BSD
 RDEPEND=>=dev-libs/openssl-1.0.0b >=dev-libs/protobuf-2.2.0 sys-apps/lsb-release >=sys-libs/libcap-2.15 dev-qt/qtcore:4[ssl] || ( dev-qt/qtsql:4[sqlite] dev-qt/qtsql:4[mysql] ) dev-qt/qtxmlpatterns:4 dbus? ( dev-qt/qtdbus:4 ) ice? ( dev-libs/Ice ) zeroconf? ( net-dns/avahi[mdnsresponder-compat] )
 SLOT=0
 SRC_URI=http://mumble.info/snapshot/mumble-1.2.4.tar.gz
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	qt4-r2	ffae1ea24bedb336ca8d3ffb884a1817	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=4618ced960e50bbb4f7091e732a7f61c
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	qt4-r2	ffae1ea24bedb336ca8d3ffb884a1817	readme.gentoo	2466b2f6a77a9600954c6b99ebca6e02	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=f410bbcdec0ef784186cd692544a3cb5

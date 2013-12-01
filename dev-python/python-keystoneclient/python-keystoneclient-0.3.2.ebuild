@@ -1,10 +1,9 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-keystoneclient/python-keystoneclient-0.3.2.ebuild,v 1.1 2013/10/23 05:24:14 prometheanfire Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-keystoneclient/python-keystoneclient-0.3.2.ebuild,v 1.5 2013/11/30 07:28:20 idella4 Exp $
 
 EAPI=5
-#restricted due to shitty httpretty dep
-RESTRICT="test"
+#testsuite has unpretty httpretty deps
 #PYTHON_COMPAT=( python2_5 python2_6 python2_7 )
 PYTHON_COMPAT=( python2_7 )
 
@@ -19,8 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
-#because fuck packaging this shit, I mean, really look at this shit.
-#https://github.com/gabrielfalcao/HTTPretty/blob/b5827151ddde2e3fed49f5a1ca7f2bb2ef8876a1/requirements.txt
+#Note: https://github.com/gabrielfalcao/HTTPretty/blob/b5827151ddde2e3fed49f5a1ca7f2bb2ef8876a1/requirements.txt
 #https://github.com/openstack/python-keystoneclient/blob/0.3.2/test-requirements.txt
 #https://bugs.launchpad.net/python-keystoneclient/+bug/1243528
 #				>=dev-python/httpretty-0.6.3[${PYTHON_USEDEP}]
@@ -37,7 +35,7 @@ DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
 				>=dev-python/pycrypto-2.6[${PYTHON_USEDEP}]
 				>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
 				>=dev-python/testrepository-0.0.17[${PYTHON_USEDEP}]
-				>=dev-python/testtools-0.9.32[${PYTHON_USEDEP}]
+				<=dev-python/testtools-0.9.24-r1[${PYTHON_USEDEP}]
 				>=dev-python/webob-1.2.3[${PYTHON_USEDEP}]
 				<dev-python/webob-1.3[${PYTHON_USEDEP}]
 				>=dev-python/Babel-0.9.6[${PYTHON_USEDEP}] )"
@@ -53,8 +51,17 @@ RDEPEND="virtual/python-argparse[${PYTHON_USEDEP}]
 
 PATCHES=(
 )
-#	"${FILESDIR}/0.2.3-CVE-2013-2104.patch"
 
 python_test() {
-	${PYTHON} setup.py nosetests || die
+	# https://bugs.launchpad.net/python-keystoneclient/+bug/1243528
+	# https://bugs.launchpad.net/python-keystoneclient/+bug/1174410; last touched on 
+	# 2013-05-29 with 'importance: 	Undecided → Medium' and never worked since.
+	sed -e 's:test_encrypt_cache_data:_&:' \
+		-e 's:test_no_memcache_protection:_&:' \
+		-e 's:test_sign_cache_data:_&:' \
+		-i tests/test_auth_token_middleware.py
+	rm -f $(find . -name "test_http*") || die
+	testr init
+	testr run || die "testsuite failed under python2.7"
+	flake8 tests || die "run over tests folder by flake8 drew error"
 }

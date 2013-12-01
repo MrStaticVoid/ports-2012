@@ -1,8 +1,9 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-173.14.38.ebuild,v 1.5 2013/10/12 15:14:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-173.14.38.ebuild,v 1.7 2013/11/17 17:25:04 jer Exp $
 
 EAPI=5
+
 inherit eutils flag-o-matic linux-mod multilib nvidia-driver portability \
 	unpacker user versionator
 
@@ -205,11 +206,11 @@ pkg_setup() {
 
 	export _POSIX2_VERSION="199209"
 
-	if use kernel_linux && kernel_is ge 3 12 ; then
+	if use kernel_linux && kernel_is ge 3 13 ; then
 		ewarn "Gentoo supports kernels which are supported by NVIDIA"
 		ewarn "which are limited to the following kernels:"
-		ewarn "<sys-kernel/gentoo-sources-3.12"
-		ewarn "<sys-kernel/vanilla-sources-3.12"
+		ewarn "<sys-kernel/gentoo-sources-3.13"
+		ewarn "<sys-kernel/vanilla-sources-3.13"
 		ewarn ""
 		ewarn "You are free to utilize epatch_user to provide whatever"
 		ewarn "support you feel is appropriate, but will not receive"
@@ -312,19 +313,11 @@ src_install() {
 	if use kernel_linux; then
 		linux-mod_src_install
 
-		VIDEOGROUP="$(egetent group video | cut -d ':' -f 3)"
-		if [ -z "$VIDEOGROUP" ]; then
-			eerror "Failed to determine the video group gid."
-			die "Failed to determine the video group gid."
-		fi
-
 		# Add the aliases
-		[ -f "${FILESDIR}/nvidia-169.07" ] || die "nvidia missing in FILESDIR"
-		sed -e 's:PACKAGE:'${PF}':g' \
-			-e 's:VIDEOGID:'${VIDEOGROUP}':' "${FILESDIR}"/nvidia-169.07 > \
-			"${WORKDIR}"/nvidia
+		# This file is tweaked with the appropriate video group in
+		# pkg_preinst, see bug #491414
 		insinto /etc/modprobe.d
-		newins "${WORKDIR}"/nvidia nvidia.conf
+		newins "${FILESDIR}"/nvidia-169.07 nvidia.conf
 	elif use kernel_FreeBSD; then
 		insinto /boot/modules
 		doins "${WORKDIR}/${NV_PACKAGE}/src/nvidia.kld"
@@ -506,7 +499,20 @@ src_install-libs() {
 }
 
 pkg_preinst() {
-	use kernel_linux && linux-mod_pkg_postinst
+	if use kernel_linux; then
+		linux-mod_pkg_preinst
+
+		local videogroup="$(egetent group video | cut -d ':' -f 3)"
+		if [ -z "${videogroup}" ]; then
+			eerror "Failed to determine the video group gid"
+			die "Failed to determine the video group gid"
+		else
+			sed -i \
+				-e "s:PACKAGE:${PF}:g" \
+				-e "s:VIDEOGID:${videogroup}:" \
+				"${D}"/etc/modprobe.d/nvidia.conf || die
+		fi
+	fi
 
 	# Clean the dynamic libGL stuff's home to ensure
 	# we dont have stale libs floating around
