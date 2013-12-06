@@ -8,5 +8,5 @@ LICENSE=ipw3945
 RDEPEND=|| ( >=sys-fs/udev-096 >=sys-apps/hotplug-20040923 ) >=sys-kernel/gentoo-sources-2.6.38
 SLOT=1
 SRC_URI=http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-5000-ucode-8.83.5.1.tgz
-_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	linux-info	a9cbd6bbe2b28166e403321882f3c73c	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
+_eclasses_=eutils	a82a329b538368791f5a6113c60e557e	linux-info	a9cbd6bbe2b28166e403321882f3c73c	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
 _md5_=32bc612374ab78c733bf19eca72d98ee

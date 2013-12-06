@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
-DEPEND=>=dev-libs/glib-2.4:2 gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) >=dev-libs/dbus-glib-0.78 >=sys-apps/dbus-1 >=media-libs/libcanberra-0.4[gtk] >=x11-libs/libnotify-0.7.0 x11-libs/libmatewnck x11-libs/libX11 !x11-misc/notify-osd !x11-misc/qtnotifydaemon !x11-misc/notification-daemon app-arch/xz-utils >=dev-util/intltool-0.40 virtual/pkgconfig sys-devel/gettext || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 dev-util/gtk-doc dev-util/gtk-doc-am
+DEPEND=>=dev-libs/glib-2.4:2 x11-libs/gtk+:2 >=dev-libs/dbus-glib-0.78 >=sys-apps/dbus-1 >=media-libs/libcanberra-0.4[gtk] >=x11-libs/libnotify-0.7.0 x11-libs/libmatewnck x11-libs/libX11 !x11-misc/notify-osd !x11-misc/qtnotifydaemon !x11-misc/notification-daemon app-arch/xz-utils >=dev-util/intltool-0.40 virtual/pkgconfig sys-devel/gettext || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 dev-util/gtk-doc dev-util/gtk-doc-am
 DESCRIPTION=MATE Notification daemon
 EAPI=5
 HOMEPAGE=http://mate-dekstop.org
-IUSE=-gtk3 debug
+IUSE=debug
 KEYWORDS=~amd64 ~arm ~x86
 LICENSE=GPL-2
-RDEPEND=>=dev-libs/glib-2.4:2 gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) >=dev-libs/dbus-glib-0.78 >=sys-apps/dbus-1 >=media-libs/libcanberra-0.4[gtk] >=x11-libs/libnotify-0.7.0 x11-libs/libmatewnck x11-libs/libX11 !x11-misc/notify-osd !x11-misc/qtnotifydaemon !x11-misc/notification-daemon
+RDEPEND=>=dev-libs/glib-2.4:2 x11-libs/gtk+:2 >=dev-libs/dbus-glib-0.78 >=sys-apps/dbus-1 >=media-libs/libcanberra-0.4[gtk] >=x11-libs/libnotify-0.7.0 x11-libs/libmatewnck x11-libs/libX11 !x11-misc/notify-osd !x11-misc/qtnotifydaemon !x11-misc/notification-daemon
 RESTRICT=primaryuri
 SLOT=0
 SRC_URI=http://pub.mate-desktop.org/releases/1.6/mate-notification-daemon-1.6.1.tar.xz
-_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	eutils	4878e7f88afc0ba0866ac112190b0fd4	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	libtool	5932e418cf62147cad2d902718aacc56	mate	f213e12c1be51487081913e5f05c663d	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	mate-utils	1e95e18a611c8f19405ca1aba47f347d	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	67154e3c80516dc77f9f56956f5beebe	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
-_md5_=3a63a40675cb6ff75a9f7ac8e9ac4e59
+_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	eutils	a82a329b538368791f5a6113c60e557e	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	libtool	60a86ca1cbe8068e3d9df0d3004dc520	mate	bd277042edc93b5c369c5fe73d48fba6	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	mate-utils	1e95e18a611c8f19405ca1aba47f347d	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	564523dd5817a373c272f3ce4326a317	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=05d6b467ad71b12f4a435d21e245253d

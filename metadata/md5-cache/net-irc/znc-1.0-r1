@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=perl? ( >=dev-lang/perl-5.10 ) sasl? ( >=dev-libs/cyrus-sasl-2 ) ssl? ( >=dev-libs/openssl-0.9.7d ) tcl? ( dev-lang/tcl ) python? ( =dev-lang/python-3* )
 SLOT=0
 SRC_URI=http://znc.in/releases/znc-1.0.tar.gz
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	4878e7f88afc0ba0866ac112190b0fd4	multilib	892e597faee02a5b94eb02ab512e7622	python	78a4afe9781c7107d0f91c07aae92026	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	a82a329b538368791f5a6113c60e557e	multilib	892e597faee02a5b94eb02ab512e7622	python	78a4afe9781c7107d0f91c07aae92026	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=3074e090560d9194954058d4b3a29399

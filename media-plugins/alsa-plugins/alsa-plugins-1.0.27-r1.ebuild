@@ -1,4 +1,6 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/alsa-plugins/alsa-plugins-1.0.27-r1.ebuild,v 1.1 2013/11/30 22:02:14 mgorny Exp $
 
 EAPI=5
 inherit autotools eutils flag-o-matic multilib
@@ -9,7 +11,7 @@ SRC_URI="mirror://alsaproject/plugins/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-linux"
 IUSE="debug ffmpeg jack libsamplerate pulseaudio speex"
 
 RDEPEND=">=media-libs/alsa-lib-${PV}
@@ -24,7 +26,8 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch \
 		"${FILESDIR}"/${PN}-1.0.19-missing-avutil.patch \
-		"${FILESDIR}"/${PN}-1.0.23-automagic.patch
+		"${FILESDIR}"/${PN}-1.0.23-automagic.patch \
+		"${FILESDIR}"/${PN}-1.0.27-ffmpeg-version-check.patch
 
 	epatch_user
 
@@ -69,8 +72,10 @@ src_install() {
 		doins "${FILESDIR}"/pulse-default.conf
 		insinto /usr/share/alsa/alsa.conf.d
 		doins "${FILESDIR}"/51-pulseaudio-probe.conf
+		# bug #410261, comment 5+
+		# seems to work fine without any path
 		sed -i \
-			-e "s:/lib/:/$(get_libdir)/:" \
+			-e "s:/usr/lib/alsa-lib/::" \
 			"${ED}"/usr/share/alsa/alsa.conf.d/51-pulseaudio-probe.conf || die #410261
 	fi
 
@@ -85,4 +90,3 @@ pkg_postinst() {
 		einfo "purpose should now be unnecessary."
 	fi
 }
-

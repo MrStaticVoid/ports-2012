@@ -1,14 +1,12 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-bin/libreoffice-bin-4.1.2.3.ebuild,v 1.8 2013/11/04 21:07:27 dilfridge Exp $
 
 EAPI=5
 
 KDE_REQUIRED="optional"
 CMAKE_REQUIRED="never"
 
-BASE_AMD64_URI="mirror://gentoo/amd64-bin-"
-BASE_X86_URI="mirror://gentoo/x86-bin-"
+BASE_AMD64_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/amd64-bin-"
+BASE_X86_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/x86-bin-"
 
 PYTHON_COMPAT=( python2_7 python3_3 )
 PYTHON_REQ_USE="threads,xml"
@@ -59,8 +57,8 @@ KEYWORDS="-* amd64 x86"
 BIN_COMMON_DEPEND="
 	=app-text/libexttextcat-3.4*
 	app-text/poppler:0/37
-	dev-libs/boost:0/1.52
-	dev-libs/icu:0/51.1
+	dev-libs/boost:0/1.53.0
+	dev-libs/icu:0/52
 	=media-gfx/graphite2-1.2*
 	=media-libs/harfbuzz-0.9.12
 	=media-libs/libpng-1.5*
@@ -151,7 +149,7 @@ DEPEND=""
 # only one flavor at a time
 REQUIRED_USE="kde? ( !gnome ) gnome? ( !kde )"
 
-RESTRICT="test strip"
+RESTRICT="test strip mirror"
 
 S="${WORKDIR}"
 
