@@ -15,7 +15,7 @@ SRC_URI="http://freedesktop.org/software/pulseaudio/releases/${P}.tar.xz"
 # GPL-forcing USE flags for those who use them.
 LICENSE="!gdbm? ( LGPL-2.1 ) gdbm? ( GPL-2 )"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 IUSE="+alsa +asyncns avahi bluetooth +caps dbus doc equalizer +gdbm +glib gnome
 gtk ipv6 jack libsamplerate lirc neon +orc oss qt4 realtime ssl systemd
 system-wide tcpd test +udev +webrtc-aec +X xen"
@@ -46,7 +46,7 @@ RDEPEND=">=media-libs/libsndfile-1.0.20
 		media-libs/sbc
 	)
 	asyncns? ( net-libs/libasyncns )
-	udev? ( >=virtual/udev-143[hwdb] )
+	udev? ( >=virtual/udev-143[hwdb(+)] )
 	realtime? ( sys-auth/rtkit )
 	equalizer? ( sci-libs/fftw:3.0 )
 	orc? ( >=dev-lang/orc-0.4.9 )
@@ -94,6 +94,7 @@ pkg_setup() {
 	enewgroup pulse-access
 	enewgroup pulse
 	enewuser pulse -1 -1 /var/run/pulse pulse,audio
+
 }
 
 src_prepare() {
@@ -163,7 +164,6 @@ src_install() {
 	use X || rm "${ED}"/usr/bin/start-pulseaudio-x11
 
 	if use system-wide; then
-
 		newconfd "${FILESDIR}/pulseaudio.conf.d" pulseaudio
 
 		use_define() {
