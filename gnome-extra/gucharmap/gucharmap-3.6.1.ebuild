@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gucharmap/gucharmap-3.6.1.ebuild,v 1.15 2013/04/09 16:43:45 ago Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -8,14 +6,14 @@ GNOME2_LA_PUNT="yes"
 VALA_MIN_API_VERSION="0.16"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala
+inherit autotools gnome2 vala
 
 DESCRIPTION="Unicode character map viewer and library"
 HOMEPAGE="http://live.gnome.org/Gucharmap"
 
 LICENSE="GPL-3"
 SLOT="2.90"
-KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sh sparc x86 ~x86-fbsd"
+KEYWORDS="*"
 IUSE="cjk +introspection test vala"
 REQUIRED_USE="vala? ( introspection )"
 
@@ -40,6 +38,9 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
+	## fix to FL-925, eautoreconf required
+	epatch "${FILESDIR}/${P}-vapigen-check.patch"
+	eautoreconf
 	DOCS="AUTHORS ChangeLog NEWS README TODO"
 	G2CONF="${G2CONF}
 		--disable-static
@@ -53,9 +54,11 @@ src_prepare() {
 	sed -e "s:GETTEXT_PACKAGE=gucharmap$:GETTEXT_PACKAGE=gucharmap-${SLOT}:" \
 		-i configure.ac configure || die "sed configure.ac configure failed"
 
+
 	use vala && vala_src_prepare
 	gnome2_src_prepare
 
 	# avoid autoreconf
 	sed -e 's/-Wall //g' -i configure || die "sed failed"
 }
+

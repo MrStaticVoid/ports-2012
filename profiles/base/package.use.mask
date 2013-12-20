@@ -1,10 +1,24 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.522 2013/11/23 18:53:28 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.528 2013/12/18 19:48:00 johu Exp $
 
 # This file requires >=portage-2.1.1
 # New entries go on top.
 #
+
+# Johannes Huber <johu@gentoo.org> (18 Dec 2013)
+# net-libs/libotr-4.0.0 is masked. Please remove the use mask if package mask
+# is lifted.
+>=kde-base/kopete-4.12.0 otr
+
+# Alexandre Rostovtsev <tetromino@gentoo.org> (15 Dec 2013)
+# pulseaudio patchset breaks too often on live wine ebuild
+=app-emulation/wine-9999 pulseaudio
+
+# Lars Wendler <polynomial-c@gentoo.org> (13 Dec 2013)
+# mozilla changed their build system and enigmail will not provide a fix before
+# christmas.
+>=www-client/seamonkey-2.23 crypt
 
 # Pawel Hajdan jr <phajdan.jr@gentoo.org> (13 Nov 2013)
 # Depends on masked dev-lang/v8
@@ -177,6 +191,7 @@ www-client/chromium system-sqlite
 # Justin Lecher <jlec@gentoo.org> (21 Feb 2013)
 # cuda only works on x86 and amd64
 sci-libs/cholmod cuda
+sci-libs/flann cuda
 
 # Agostino Sarubbo <ago@gentoo.org< (21 Feb 2013)
 # Mask vpx because requires new libvpx and is not ready to go to stable
