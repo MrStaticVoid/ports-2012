@@ -4,9 +4,9 @@
 
 EAPI="5"
 GCONF_DEBUG="no"
-PYTHON_DEPEND="2"
+PYTHON_COMPAT=( python2_{6,7} )
 
-inherit mate python
+inherit mate python-single-r1
 
 DESCRIPTION="Applets for the MATE Desktop and Panel"
 HOMEPAGE="http://mate-desktop.org"
@@ -34,6 +34,7 @@ RDEPEND=">=x11-libs/gtk+-2.20:2
 	gnome-base/libgtop:2
 	sys-power/cpufrequtils
 	mate-extra/mate-character-map
+	dev-python/pygobject:3
 	networkmanager? ( >=net-misc/networkmanager-0.7.0 )
 	policykit? ( >=sys-auth/polkit-0.92 )"
 
@@ -46,22 +47,7 @@ DEPEND="${RDEPEND}
 	~app-text/docbook-xml-dtd-4.3
 	>=mate-base/mate-common-1.2.2"
 
-pkg_setup() {
-	python_set_active_version 2
-	python_pkg_setup
-
-	G2CONF="${G2CONF}
-		--libexecdir=/usr/libexec/mate-applets
-		--without-hal
-		$(use_enable ipv6)
-		$(use_enable networkmanager)
-		$(use_enable policykit polkit)"
-	DOCS="AUTHORS ChangeLog NEWS README"
-}
-
 src_prepare() {
-	python_convert_shebangs -r 2 .
-
 	#Correct icon name, upstrean PR at:
 	#https://github.com/mate-desktop/mate-applets/pull/54
 	sed -i -e 's:Icon=invest-applet:Icon=mate-invest-applet:' \
@@ -70,7 +56,23 @@ src_prepare() {
 	# Make tests run
 	epatch "${FILESDIR}/${PN}-1.6.1-fix-POTFILES.patch"
 
+	# We need pygobject-3 for invest applet
+	epatch "${FILESDIR}/${PN}-1.6.1-pygobject-configure-fix.patch"
+
+	# Fix summary for invest applet
+	sed -e 's:$BUILD_INVEST_APPLET:$HAVE_PYGOBJECT:' -i configure.ac || die
 	mate_src_prepare
+}
+
+src_configure() {
+	DOCS="AUTHORS ChangeLog NEWS README"
+
+	mate_src_configure \
+		--libexecdir=/usr/libexec/mate-applets \
+		--without-hal \
+		$(use_enable ipv6) \
+		$(use_enable networkmanager) \
+		$(use_enable policykit polkit)
 }
 
 src_test() {
@@ -79,6 +81,7 @@ src_test() {
 }
 
 src_install() {
+	python_fix_shebang invest-applet timer-applet/src
 	mate_src_install
 
 	local APPLETS="accessx-status battstat charpick cpufreq drivemount geyes

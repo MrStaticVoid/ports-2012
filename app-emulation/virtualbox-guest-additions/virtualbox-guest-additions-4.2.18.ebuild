@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox-guest-additions/virtualbox-guest-additions-4.2.18.ebuild,v 1.4 2013/11/14 11:27:23 lxnay Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox-guest-additions/virtualbox-guest-additions-4.2.18.ebuild,v 1.6 2013/12/18 20:55:37 polynomial-c Exp $
 
 EAPI=5
 
@@ -15,7 +15,7 @@ SRC_URI="http://download.virtualbox.org/virtualbox/${MY_PV}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="X"
 
 RDEPEND="X? ( ~x11-drivers/xf86-video-virtualbox-${PV}
@@ -28,7 +28,8 @@ RDEPEND="X? ( ~x11-drivers/xf86-video-virtualbox-${PV}
 			 x11-libs/libXau
 			 x11-libs/libXdmcp
 			 x11-libs/libSM
-			 x11-libs/libICE )
+			 x11-libs/libICE
+			 x11-proto/glproto )
 	sys-apps/dbus
 	!!x11-drivers/xf86-input-virtualbox"
 DEPEND="${RDEPEND}

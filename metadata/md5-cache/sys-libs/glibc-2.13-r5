@@ -10,4 +10,4 @@ RESTRICT=strip
 SLOT=2.2
 SRC_URI=mirror://gnu/glibc/glibc-2.13.tar.bz2 ftp://sources.redhat.com/pub/glibc/releases/glibc-2.13.tar.bz2 ftp://sources.redhat.com/pub/glibc/snapshots/glibc-2.13.tar.bz2 mirror://gentoo/glibc-2.13.tar.bz2 mirror://gnu/glibc/glibc-ports-2.13.tar.bz2 ftp://sources.redhat.com/pub/glibc/releases/glibc-ports-2.13.tar.bz2 ftp://sources.redhat.com/pub/glibc/snapshots/glibc-ports-2.13.tar.bz2 mirror://gentoo/glibc-ports-2.13.tar.bz2 mirror://gentoo/glibc-2.13-patches-11.tar.bz2 http://dev.gentoo.org/~vapier/dist/glibc-2.13-patches-11.tar.bz2 http://dev.gentoo.org/~azarah/glibc/glibc-2.13-patches-11.tar.bz2
 _eclasses_=eutils	a82a329b538368791f5a6113c60e557e	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	gnuconfig	ee02e61d6c68cee478e2e69214b7caef	libtool	60a86ca1cbe8068e3d9df0d3004dc520	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
-_md5_=dac41c205c33045a13de009026f0e6e7
+_md5_=c467a0336f40a12abbe658517c2051ee
