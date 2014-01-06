@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.97.8.ebuild,v 1.2 2013/06/12 21:13:19 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.97.8.ebuild,v 1.5 2013/11/29 09:06:23 pinkbyte Exp $
 
 EAPI=5
 
@@ -37,7 +37,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	use ppc64 && append-flags -mminimal-toic
+	use ppc64 && append-flags -mminimal-toc
 	use uclibc && export ac_cv_type_error_t=yes
 	epatch "${FILESDIR}"/${PN}-0.97-nls.patch
 }

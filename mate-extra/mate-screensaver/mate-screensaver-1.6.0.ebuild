@@ -44,23 +44,6 @@ DEPEND="${RDEPEND}
 	systemd? ( sys-apps/systemd )
 	consolekit? ( sys-auth/consolekit )"
 
-pkg_setup() {
-	G2CONF="${G2CONF}
-		$(use_enable debug)
-		$(use_with libnotify)
-		$(use_with opengl libgl)
-		$(use_enable pam)
-		$(use_with systemd)
-		$(use_with consolekit console-kit)
-		--enable-locking
-		--with-xf86gamma-ext
-		--with-kbd-layout-indicator
-		--with-xscreensaverdir=/usr/share/xscreensaver/config
-		--with-xscreensaverhackdir=/usr/$(get_libdir)/misc/xscreensaver"
-
-	DOCS="AUTHORS ChangeLog NEWS README"
-}
-
 src_prepare() {
 	#epatch "${FILESDIR}/${PN}-1.2.0-prevent-multiple-instances.patch"
 	# Fix QA warnings due to missing includes in popsquares
@@ -70,8 +53,28 @@ src_prepare() {
 	# Fix intltoolize broken file, see upstream #577133
 	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
 		|| die "sed failed"
-
+	# Fix forgotten gnome->mate rename
+	sed -i 's:org.gnome:org.mate:' po/POTFILES.in || die "sed failed"
+	# Make tests work
+	sed -i '6 a\data/lock-dialog-default.ui' po/POTFILES.in || die "sed failed"
 	mate_src_prepare
+}
+
+src_configure() {
+	DOCS="AUTHORS ChangeLog NEWS README"
+
+	mate_src_configure \
+		$(use_enable debug) \
+		$(use_with libnotify) \
+		$(use_with opengl libgl) \
+		$(use_enable pam) \
+		$(use_with systemd) \
+		$(use_with consolekit console-kit) \
+		--enable-locking \
+		--with-xf86gamma-ext \
+		--with-kbd-layout-indicator \
+		--with-xscreensaverdir=/usr/share/xscreensaver/config \
+		--with-xscreensaverhackdir=/usr/$(get_libdir)/misc/xscreensaver
 }
 
 src_install() {

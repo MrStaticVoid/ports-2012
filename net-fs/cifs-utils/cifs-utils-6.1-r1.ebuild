@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/cifs-utils/cifs-utils-6.1-r1.ebuild,v 1.1 2013/09/21 15:52:37 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-fs/cifs-utils/cifs-utils-6.1-r1.ebuild,v 1.9 2013/12/14 00:00:14 jmbsvicetto Exp $
 
 EAPI=5
 
@@ -12,31 +12,27 @@ SRC_URI="ftp://ftp.samba.org/pub/linux-cifs/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~x86 ~arm-linux ~x86-linux"
-IUSE="acl ads +caps +caps-ng creds upcall"
+KEYWORDS="amd64 arm hppa ~ia64 ~mips ~ppc ~ppc64 ~sh x86 ~arm-linux ~x86-linux"
+IUSE="+acl +ads +caps +caps-ng creds"
 
 DEPEND="!net-fs/mount-cifs
 	!<net-fs/samba-3.6_rc1
+	ads? (
+		sys-apps/keyutils
+		sys-libs/talloc
+		virtual/krb5
+	)
+	caps? ( !caps-ng? ( sys-libs/libcap ) )
+	caps? ( caps-ng? ( sys-libs/libcap-ng ) )
+	creds? ( sys-apps/keyutils )"
+PDEPEND="${DEPEND}
 	acl? ( || (
 		=net-fs/samba-3.6*[winbind]
 		>=net-fs/samba-4.0.0_alpha1
 	) )
-	ads? (
-		sys-libs/talloc
-		virtual/krb5
-		sys-apps/keyutils
-	)
-	caps? ( !caps-ng? ( sys-libs/libcap ) )
-	caps? ( caps-ng? ( sys-libs/libcap-ng ) )
-	creds? ( sys-apps/keyutils )
-	upcall? (
-		sys-apps/keyutils
-		sys-libs/talloc
-		virtual/krb5
-	)"
-RDEPEND="${DEPEND}"
+"
 
-REQUIRED_USE="acl? ( upcall )"
+REQUIRED_USE="acl? ( ads )"
 
 DOCS="doc/linux-cifs-client-guide.odt"
 
@@ -67,8 +63,7 @@ src_configure() {
 		$(use_enable ads cifsupcall) \
 		$(use caps && use_with !caps-ng libcap || echo --without-libcap) \
 		$(use caps && use_with caps-ng libcap-ng || echo --without-libcap-ng) \
-		$(use_enable creds cifscreds) \
-		$(use_enable upcall cifsupcall)
+		$(use_enable creds cifscreds)
 }
 
 src_install() {

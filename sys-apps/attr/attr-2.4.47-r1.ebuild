@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.47-r1.ebuild,v 1.2 2013/08/10 17:20:31 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.47-r1.ebuild,v 1.4 2013/11/24 08:38:45 mgorny Exp $
 
 EAPI="4"
 
@@ -54,12 +54,16 @@ multilib_src_install() {
 		DIST_ROOT="${D}" \
 		install install-lib install-dev
 
-	# we install attr into /bin, so we need the shared lib with it
-	multilib_is_native_abi && gen_usr_ldscript -a attr
+	if multilib_is_native_abi; then
+		# we install attr into /bin, so we need the shared lib with it
+		gen_usr_ldscript -a attr
+		# the man-pages packages provides the man2 files
+		# note: man-pages are installed by TOOL_SUBDIRS
+		rm -r "${ED}"/usr/share/man/man2 || die
+	fi
 }
 
 multilib_src_install_all() {
-	use static-libs || find "${ED}" -name '*.la' -delete
-	# the man-pages packages provides the man2 files
-	rm -r "${ED}"/usr/share/man/man2 || die
+	use static-libs || prune_libtool_files --all
+	einstalldocs
 }

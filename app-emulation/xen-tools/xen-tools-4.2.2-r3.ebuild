@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/xen-tools-4.2.2-r3.ebuild,v 1.6 2013/08/23 13:03:29 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/xen-tools-4.2.2-r3.ebuild,v 1.8 2013/11/09 08:14:57 mgorny Exp $
 
 EAPI=5
 
@@ -33,24 +33,24 @@ DOCS=( README docs/README.xen-bugtool )
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="api custom-cflags debug doc flask hvm qemu ocaml pygrub screen static-libs xend"
+IUSE="api custom-cflags debug doc flask hvm qemu pygrub screen static-libs xend"
 
-REQUIRED_USE="hvm? ( qemu )"
+REQUIRED_USE="hvm? ( qemu )
+	${PYTHON_REQUIRED_USE}"
 
-CDEPEND="dev-libs/lzo:2
+DEPEND="dev-libs/lzo:2
 	dev-libs/yajl
+	dev-libs/libgcrypt
 	dev-python/lxml[${PYTHON_USEDEP}]
 	dev-python/pypam[${PYTHON_USEDEP}]
 	sys-libs/zlib
 	sys-power/iasl
 	dev-ml/findlib
 	hvm? ( media-libs/libsdl )
-	${PYTHON_DEPS}
 	api? ( dev-libs/libxml2
 		net-misc/curl )
 	${PYTHON_DEPS}
-	pygrub? ( ${PYTHON_DEPS//${PYTHON_REQ_USE}/ncurses} )"
-DEPEND="${CDEPEND}
+	pygrub? ( ${PYTHON_DEPS//${PYTHON_REQ_USE}/ncurses} )
 	sys-devel/bin86
 	sys-devel/dev86
 	dev-lang/perl
@@ -69,10 +69,8 @@ DEPEND="${CDEPEND}
 		dev-texlive/texlive-latexrecommended
 	)
 	hvm? (  x11-proto/xproto )"
-RDEPEND="${CDEPEND}
-	sys-apps/iproute2
+RDEPEND="sys-apps/iproute2
 	net-misc/bridge-utils
-	ocaml? ( >=dev-lang/ocaml-4 )
 	screen? (
 		app-misc/screen
 		app-admin/logrotate

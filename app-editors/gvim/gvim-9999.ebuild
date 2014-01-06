@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-9999.ebuild,v 1.7 2013/09/06 07:32:35 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-9999.ebuild,v 1.12 2013/12/16 10:27:51 radhermit Exp $
 
 EAPI=5
 VIM_VERSION="7.4"
@@ -20,18 +20,19 @@ else
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 fi
 
-DESCRIPTION="vim and gvim shared files"
+DESCRIPTION="GUI version of the Vim text editor"
 HOMEPAGE="http://www.vim.org/"
 
 SLOT="0"
 LICENSE="vim"
-IUSE="acl aqua cscope debug gnome gtk lua luajit motif neXt netbeans nls perl python ruby"
+IUSE="acl aqua cscope debug gnome gtk lua luajit motif neXt netbeans nls perl python racket ruby selinux session tcl"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="~app-editors/vim-core-${PV}
 	>=app-admin/eselect-vi-1.1
 	>=sys-libs/ncurses-5.2-r2
 	x11-libs/libXext
+	x11-libs/libXt
 	acl? ( kernel_linux? ( sys-apps/acl ) )
 	!aqua? (
 		gtk? (
@@ -55,7 +56,11 @@ RDEPEND="~app-editors/vim-core-${PV}
 	nls? ( virtual/libintl )
 	perl? ( dev-lang/perl )
 	python? ( ${PYTHON_DEPS} )
-	ruby? ( || ( dev-lang/ruby:2.0 dev-lang/ruby:1.9 dev-lang/ruby:1.8 ) )"
+	racket? ( dev-scheme/racket )
+	ruby? ( || ( dev-lang/ruby:2.0 dev-lang/ruby:1.9 dev-lang/ruby:1.8 ) )
+	selinux? ( sys-libs/libselinux )
+	session? ( x11-libs/libSM )
+	tcl? ( dev-lang/tcl )"
 DEPEND="${RDEPEND}
 	>=app-admin/eselect-vi-1.1
 	dev-util/ctags
@@ -83,20 +88,11 @@ src_prepare() {
 			# Apply any patches available from vim.org for this version
 			epatch "${WORKDIR}"/${VIM_ORG_PATCHES%.bz2}
 		fi
-
-		if [[ -d "${WORKDIR}"/gentoo/patches-core/ ]]; then
-			# Patches for vim-core only (runtime/*)
-			EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" \
-				epatch "${WORKDIR}"/gentoo/patches-core/
-		fi
 	fi
 
 	# Fixup a script to use awk instead of nawk
 	sed -i '1s|.*|#!'"${EPREFIX}"'/usr/bin/awk -f|' "${S}"/runtime/tools/mve.awk \
 		|| die "mve.awk sed failed"
-
-	# Patch to build with ruby-1.8.0_pre5 and following
-	sed -i 's/defout/stdout/g' "${S}"/src/if_ruby.c
 
 	# Read vimrc and gvimrc from /etc/vim
 	echo '#define SYS_VIMRC_FILE "'${EPREFIX}'/etc/vim/vimrc"' >> "${S}"/src/feature.h
@@ -125,8 +121,7 @@ src_prepare() {
 
 	# Try to avoid sandbox problems. Bug #114475.
 	if [[ -d "${S}"/src/po ]] ; then
-		sed -i -e \
-			'/-S check.vim/s,..VIM.,ln -s $(VIM) testvim \; ./testvim -X,' \
+		sed -i '/-S check.vim/s,..VIM.,ln -s $(VIM) testvim \; ./testvim -X,' \
 			"${S}"/src/po/Makefile
 	fi
 
@@ -173,8 +168,16 @@ src_configure() {
 	myconf="--with-features=huge --disable-gpm --enable-multibyte"
 	myconf+=" $(use_enable acl)"
 	myconf+=" $(use_enable cscope)"
+	myconf+=" $(use_enable lua luainterp)"
+	myconf+=" $(use_with luajit)"
+	myconf+=" $(use_enable netbeans)"
 	myconf+=" $(use_enable nls)"
 	myconf+=" $(use_enable perl perlinterp)"
+	myconf+=" $(use_enable racket mzschemeinterp)"
+	myconf+=" $(use_enable ruby rubyinterp)"
+	myconf+=" $(use_enable selinux)"
+	myconf+=" $(use_enable session xsmp)"
+	myconf+=" $(use_enable tcl tclinterp)"
 
 	if use python ; then
 		if [[ ${EPYTHON} == python3* ]] ; then
@@ -188,16 +191,10 @@ src_configure() {
 		myconf+=" --disable-pythoninterp --disable-python3interp"
 	fi
 
-	# tclinterp is broken; when you --enable-tclinterp flag, then
-	# the following command never returns:
-	#   VIMINIT='let OS=system("uname -s")' vim
-	# mzscheme support is currently broken. bug #91970
-	#myconf+=" $(use_enable mzscheme mzschemeinterp)"
-
 	# --with-features=huge forces on cscope even if we --disable it. We need
 	# to sed this out to avoid screwiness. (1 Sep 2004 ciaranm)
 	if ! use cscope ; then
-		sed -i -e '/# define FEAT_CSCOPE/d' src/feature.h || \
+		sed -i '/# define FEAT_CSCOPE/d' src/feature.h || \
 			die "couldn't disable cscope"
 	fi
 
@@ -249,11 +246,6 @@ src_configure() {
 	econf \
 		--with-modified-by=Gentoo-${PVR} \
 		--with-vim-name=gvim --with-x \
-		--disable-selinux \
-		$(use_enable lua luainterp) \
-		$(use_with luajit) \
-		$(use_enable netbeans) \
-		$(use_enable ruby rubyinterp) \
 		${myconf}
 }
 
@@ -283,18 +275,17 @@ src_test() {
 
 	# Test 49 won't work inside a portage environment
 	einfo "Test 49 isn't sandbox-friendly, so it will be skipped."
-	sed -i -e 's~test49.out~~g' Makefile
+	sed -i 's~test49.out~~g' Makefile
 
 	# We don't want to rebuild vim before running the tests
-	sed -i -e 's,: \$(VIMPROG),: ,' Makefile
+	sed -i 's,: \$(VIMPROG),: ,' Makefile
 
 	# Make gvim not try to connect to X. See :help gui-x11-start
 	# in vim for how this evil trickery works.
 	ln -s "${S}"/src/gvim "${S}"/src/testvim
 
 	# Don't try to do the additional GUI test
-	emake -j1 VIMPROG=../testvim nongui \
-		|| die "At least one test failed"
+	emake -j1 VIMPROG=../testvim nongui
 }
 
 # Make convenience symlinks, hopefully without stepping on toes.  Some
@@ -353,10 +344,8 @@ src_install() {
 	newins "${FILESDIR}"/gvimrc-r1 gvimrc
 	eprefixify "${ED}"/etc/vim/gvimrc
 
-	insinto /usr/share/applications
-	newins "${FILESDIR}"/gvim.desktop-r2 gvim.desktop
-	insinto /usr/share/pixmaps
-	doins "${FILESDIR}"/gvim.xpm
+	domenu "${FILESDIR}"/gvim.desktop-r2 gvim.desktop
+	doicon "${FILESDIR}"/gvim.xpm
 
 	# bash completion script, bug #79018.
 	newbashcomp "${FILESDIR}"/${PN}-completion ${PN}
@@ -385,9 +374,6 @@ pkg_postinst() {
 		ewarn "default."
 		echo
 	fi
-
-	echo
-	einfo "To see what's new in this release, use :help version${VIM_VERSION/.*/}.txt"
 
 	# Make convenience symlinks
 	update_vim_symlinks

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kexec-tools/kexec-tools-2.0.4-r2.ebuild,v 1.1 2013/09/21 11:35:53 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kexec-tools/kexec-tools-2.0.4-r2.ebuild,v 1.6 2013/11/12 09:09:20 jlec Exp $
 
 EAPI=5
 
@@ -12,8 +12,10 @@ SRC_URI="mirror://kernel/linux/utils/kernel/kexec/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="booke lzma xen zlib"
+
+REQUIRED_USE="lzma? ( zlib )"
 
 DEPEND="
 	lzma? ( app-arch/xz-utils )
@@ -25,6 +27,7 @@ CONFIG_CHECK="~KEXEC"
 PATCHES=(
 		"${FILESDIR}"/${PN}-2.0.0-respect-LDFLAGS.patch
 		"${FILESDIR}"/${P}-disable-kexec-test.patch
+		"${FILESDIR}"/${P}-out-of-source.patch
 	)
 
 pkg_setup() {

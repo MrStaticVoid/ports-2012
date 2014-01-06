@@ -1,9 +1,9 @@
 DEFINED_PHASES=install unpack
-DEPEND=dev-vcs/git
+DEPEND=>=dev-vcs/git-1.8.2.1
 DESCRIPTION=A tool for checking backward compatibility of a C/C++ library
-EAPI=4
+EAPI=5
 HOMEPAGE=http://ispras.linuxbase.org/index.php/ABI_compliance_checker
 LICENSE=GPL-2
 SLOT=0
-_eclasses_=eutils	4878e7f88afc0ba0866ac112190b0fd4	git-2	9d623256bd82ddbcc6783ae996e178fd	git-r3	df9fbf6c110cdbadcc4d6f409d7cca8d	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=8257aa4cbd47c3c735c222146f95a6db
+_eclasses_=eutils	a82a329b538368791f5a6113c60e557e	git-r3	3d2603a6e66cd898e6b88e2135314bb8	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=0e9af84b4b5370e2202ffee6f66cd39c

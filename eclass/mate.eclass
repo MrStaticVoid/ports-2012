@@ -1,11 +1,12 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 # @ECLASS: mate.eclass
 # @MAINTAINER:
 # micia@sabayon.org
-# @BLURB:
+# steev@gentoo.org
+# @BLURB: Privdes phases for MATE based packages
 # @DESCRIPTION:
 # Exports portage base functions used by ebuilds written for packages using the
 # MATE framework. For additional functions, see mate-utils.eclass.
@@ -15,12 +16,14 @@ inherit autotools fdo-mime libtool mate-desktop.org mate-utils eutils
 DEPEND="dev-util/gtk-doc
 		dev-util/gtk-doc-am"
 
+RESTRICT="primaryuri"
+
 case "${EAPI:-0}" in
 	0|1)
 		EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm
 		;;
 	2|3|4|5)
-		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install pkg_preinst pkg_postinst pkg_postrm
+		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install src_test pkg_preinst pkg_postinst pkg_postrm
 		;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
@@ -91,7 +94,7 @@ mate_src_unpack() {
 # Prepare environment for build, fix build of scrollkeeper documentation,
 # run elibtoolize.
 mate_src_prepare() {
-	epatch_user
+	epatch_user && eautoreconf
 	# Prevent assorted access violations and test failures
 	mate_environment_reset
 
@@ -199,16 +202,7 @@ mate_src_configure() {
 		fi
 	fi
 
-	# Enable gtk2/gtk3 depends on use for future support of MATE Desktop
-	if grep -q "with-gtk" configure; then
-		if use gtk3; then
-			G2CONF="${G2CONF} --with-gtk=3.0"
-		else
-			G2CONF="${G2CONF} --with-gtk=2.0"
-		fi
-	fi
-
-	econf "$@" ${G2CONF}
+	econf ${G2CONF} "$@"
 }
 
 # @FUNCTION: mate_src_compile
@@ -243,9 +237,14 @@ mate_src_install() {
 
 	unset MATECONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 
-	# Manual document installation
-	if [[ -n "${DOCS}" ]]; then
-		dodoc ${DOCS} || die "dodoc failed"
+	# Handle documentation as 'default' for eapi5 and newer, bug #373131
+	if has ${EAPI:-0} 0 1 2 3 4; then
+		# Manual document installation
+		if [[ -n "${DOCS}" ]]; then
+			dodoc ${DOCS} || die "dodoc failed"
+		fi
+	else
+		einstalldocs
 	fi
 
 	# Do not keep /var/lib/scrollkeeper because:
@@ -260,12 +259,28 @@ mate_src_install() {
 	rm -fr "${ED}/usr/share/applications/mimeinfo.cache"
 
 	# Delete all .la files
-	if [[ "${MATE_LA_PUNT}" != "no" ]]; then
-		ebegin "Removing .la files"
-		if ! { has static-libs ${IUSE//+} && use static-libs; }; then
-			find "${D}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
+	if has ${EAPI:-0} 0 1 2 3 4; then
+		if [[ "${MATE_LA_PUNT}" != "no" ]]; then
+			ebegin "Removing .la files"
+			if ! { has static-libs ${IUSE//+} && use static-libs; }; then
+				find "${D}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
+			fi
+			eend
 		fi
-		eend
+	else
+		case "${MATE_LA_PUNT}" in
+			yes)	prune_libtool_files --modules;;
+			no)		;;
+			*)		prune_libtool_files;;
+		esac
+	fi
+}
+
+# @FUNCTION: mate_src_test
+# @DESCRIPTION: Run make check
+mate_src_test() {
+	if grep -q "^check:" Makefile; then
+		emake check LINGUAS=""
 	fi
 }
 

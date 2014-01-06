@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-extra-apps/gnome-extra-apps-3.8.0-r1.ebuild,v 1.3 2013/08/12 22:19:09 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-extra-apps/gnome-extra-apps-3.8.0-r1.ebuild,v 1.6 2013/12/08 18:29:36 pacho Exp $
 
 EAPI="5"
 
@@ -12,7 +12,7 @@ IUSE="+games +shotwell +tracker"
 
 # when unmasking for an arch
 # double check none of the deps are still masked !
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 
 # Note to developers:
 # This is a wrapper for the extra apps integrated with GNOME 3
@@ -25,10 +25,12 @@ RDEPEND="
 	>=app-dicts/gnome-dictionary-3.6.0
 	>=gnome-extra/gconf-editor-3
 	>=gnome-extra/gnome-calculator-${PV}
+	>=gnome-extra/gnome-power-manager-${PV}
 	>=gnome-extra/gnome-search-tool-3.6
 	>=gnome-extra/gnome-system-monitor-${PV}
 	>=gnome-extra/gnome-tweak-tool-3.7.4
 	>=gnome-extra/gucharmap-${PV}:2.90
+	>=gnome-extra/nautilus-sendto-${PV}
 	>=gnome-extra/sushi-${PV}
 	>=mail-client/evolution-${PV}
 	>=media-gfx/gnome-font-viewer-${PV}

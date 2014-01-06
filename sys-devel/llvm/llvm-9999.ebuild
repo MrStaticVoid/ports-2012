@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-9999.ebuild,v 1.54 2013/09/13 15:10:34 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-9999.ebuild,v 1.68 2013/12/20 13:18:30 mgorny Exp $
 
 EAPI=5
 
 PYTHON_COMPAT=( python{2_5,2_6,2_7} pypy{1_9,2_0} )
 
-inherit eutils flag-o-matic git-r3 multilib multilib-minimal \
+inherit cmake-utils eutils flag-o-matic git-r3 multilib multilib-minimal \
 	python-r1 toolchain-funcs pax-utils check-reqs
 
 DESCRIPTION="Low Level Virtual Machine"
@@ -18,36 +18,40 @@ EGIT_REPO_URI="http://llvm.org/git/llvm.git
 LICENSE="UoI-NCSA"
 SLOT="0/${PV}"
 KEYWORDS=""
-IUSE="clang debug doc gold +libffi multitarget ocaml python
-	+static-analyzer test udis86 video_cards_radeon kernel_Darwin"
+IUSE="clang debug doc gold +libffi multitarget ncurses ocaml python
+	+static-analyzer test udis86 xml video_cards_radeon kernel_Darwin"
 
-DEPEND="!kernel_Darwin? ( app-admin/chrpath )
-	dev-lang/perl
-	dev-python/sphinx
-	>=sys-devel/make-3.79
-	>=sys-devel/flex-2.5.4
-	>=sys-devel/bison-1.875d
-	|| ( >=sys-devel/gcc-3.0 >=sys-devel/gcc-apple-4.2.1
-		( >=sys-freebsd/freebsd-lib-9.1-r10 sys-libs/libcxx )
-	)
-	|| ( >=sys-devel/binutils-2.18 >=sys-devel/binutils-apple-3.2.3 )
-	sys-libs/zlib
-	gold? ( >=sys-devel/binutils-2.22[cxx] )
-	libffi? ( virtual/pkgconfig
-		virtual/libffi[${MULTILIB_USEDEP}] )
-	ocaml? ( dev-lang/ocaml )
-	udis86? ( dev-libs/udis86[pic(+),${MULTILIB_USEDEP}] )
-	${PYTHON_DEPS}"
-RDEPEND="dev-lang/perl
-	libffi? ( virtual/libffi[${MULTILIB_USEDEP}] )
+# TODO: update libxml2 to multilib, bug #480404
+
+COMMON_DEPEND="
+	sys-libs/zlib:0=
 	clang? (
 		python? ( ${PYTHON_DEPS} )
 		static-analyzer? (
 			dev-lang/perl
 			${PYTHON_DEPS}
 		)
+		xml? ( dev-libs/libxml2:2= )
 	)
-	udis86? ( dev-libs/udis86[pic(+),${MULTILIB_USEDEP}] )
+	gold? ( >=sys-devel/binutils-2.22[cxx] )
+	libffi? ( virtual/libffi:0=[${MULTILIB_USEDEP}] )
+	ncurses? ( sys-libs/ncurses:5=[${MULTILIB_USEDEP}] )
+	ocaml? ( dev-lang/ocaml )
+	udis86? ( dev-libs/udis86:0=[pic(+),${MULTILIB_USEDEP}] )"
+DEPEND="${COMMON_DEPEND}
+	dev-lang/perl
+	dev-python/sphinx
+	>=sys-devel/make-3.81
+	>=sys-devel/flex-2.5.4
+	>=sys-devel/bison-1.875d
+	|| ( >=sys-devel/gcc-3.0 >=sys-devel/gcc-apple-4.2.1
+		( >=sys-freebsd/freebsd-lib-9.1-r10 sys-libs/libcxx )
+	)
+	|| ( >=sys-devel/binutils-2.18 >=sys-devel/binutils-apple-3.2.3 )
+	!kernel_Darwin? ( app-admin/chrpath )
+	libffi? ( virtual/pkgconfig )
+	${PYTHON_DEPS}"
+RDEPEND="${COMMON_DEPEND}
 	clang? ( !<=sys-devel/clang-9999-r99 )
 	abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r2
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] )"
@@ -98,20 +102,20 @@ pkg_setup() {
 
 	# need to check if the active compiler is ok
 
-	broken_gcc=" 3.2.2 3.2.3 3.3.2 4.1.1 "
-	broken_gcc_x86=" 3.4.0 3.4.2 "
-	broken_gcc_amd64=" 3.4.6 "
+	broken_gcc=( 3.2.2 3.2.3 3.3.2 4.1.1 )
+	broken_gcc_x86=( 3.4.0 3.4.2 )
+	broken_gcc_amd64=( 3.4.6 )
 
 	gcc_vers=$(gcc-fullversion)
 
-	if [[ ${broken_gcc} == *" ${version} "* ]] ; then
+	if has "${gcc_vers}" "${broken_gcc[@]}"; then
 		elog "Your version of gcc is known to miscompile llvm."
 		elog "Check http://www.llvm.org/docs/GettingStarted.html for"
 		elog "possible solutions."
 		die "Your currently active version of gcc is known to miscompile llvm"
 	fi
 
-	if [[ ${CHOST} == i*86-* && ${broken_gcc_x86} == *" ${version} "* ]] ; then
+	if use abi_x86_32 && has "${gcc_vers}" "${broken_gcc_x86[@]}"; then
 		elog "Your version of gcc is known to miscompile llvm on x86"
 		elog "architectures.  Check"
 		elog "http://www.llvm.org/docs/GettingStarted.html for possible"
@@ -119,8 +123,7 @@ pkg_setup() {
 		die "Your currently active version of gcc is known to miscompile llvm"
 	fi
 
-	if [[ ${CHOST} == x86_64-* && ${broken_gcc_amd64} == *" ${version} "* ]];
-	then
+	if use abi_x86_64 && has "${gcc_vers}" "${broken_gcc_amd64[@]}"; then
 		elog "Your version of gcc is known to miscompile llvm in amd64"
 		elog "architectures.  Check"
 		elog "http://www.llvm.org/docs/GettingStarted.html for possible"
@@ -149,8 +152,8 @@ src_unpack() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.2-nodoctargz.patch
-	epatch "${FILESDIR}"/${PN}-3.4-gentoo-install.patch
-	use clang && epatch "${FILESDIR}"/clang-3.3-gentoo-install.patch
+	epatch "${FILESDIR}"/${PN}-3.5-gentoo-install.patch
+	use clang && epatch "${FILESDIR}"/clang-3.5-gentoo-install.patch
 
 	local sub_files=(
 		Makefile.config.in
@@ -178,48 +181,55 @@ src_prepare() {
 }
 
 multilib_src_configure() {
-	local CONF_FLAGS="--enable-keep-symbols
+	# disable timestamps since they confuse ccache
+	local conf_flags=(
+		--disable-timestamps
+		--enable-keep-symbols
 		--enable-shared
 		--with-optimize-option=
 		$(use_enable !debug optimized)
 		$(use_enable debug assertions)
-		$(use_enable debug expensive-checks)"
+		$(use_enable debug expensive-checks)
+		$(use_enable ncurses terminfo)
+		$(use_enable libffi)
+	)
 
 	if use clang; then
-		CONF_FLAGS+="
-			--with-clang-resource-dir=../lib/clang/3.4"
+		conf_flags+=( --with-clang-resource-dir=../lib/clang/3.5 )
+	fi
+	# well, it's used only by clang but easier to pass unconditionally
+	if use xml; then
+		conf_flags+=( XML2CONFIG="$(tc-getPKG_CONFIG) libxml-2.0" )
+	else
+		conf_flags+=( ac_cv_prog_XML2CONFIG="" )
 	fi
 
+	local targets bindings
 	if use multitarget; then
-		CONF_FLAGS="${CONF_FLAGS} --enable-targets=all"
+		targets='all'
 	else
-		CONF_FLAGS="${CONF_FLAGS} --enable-targets=host,cpp"
-		if use video_cards_radeon; then
-			CONF_FLAGS="${CONF_FLAGS},r600"
-		fi
+		targets='host,cpp'
+		use video_cards_radeon && targets+=',r600'
+	fi
+	conf_flags+=( --enable-targets=${targets} )
+
+	if multilib_build_binaries; then
+		use gold && conf_flags+=( --with-binutils-include="${EPREFIX}"/usr/include/ )
+		# extra commas don't hurt
+		use ocaml && bindings+=',ocaml'
 	fi
 
-	if [[ ${ABI} == amd64 ]]; then
-		CONF_FLAGS="${CONF_FLAGS} --enable-pic"
-	fi
-
-	if multilib_is_native_abi && use gold; then
-		CONF_FLAGS="${CONF_FLAGS} --with-binutils-include=${EPREFIX}/usr/include/"
-	fi
-	if multilib_is_native_abi && use ocaml; then
-		CONF_FLAGS="${CONF_FLAGS} --enable-bindings=ocaml"
-	else
-		CONF_FLAGS="${CONF_FLAGS} --enable-bindings=none"
-	fi
+	[[ ${bindings} ]] || bindings='none'
+	conf_flags+=( --enable-bindings=${bindings} )
 
 	if use udis86; then
-		CONF_FLAGS="${CONF_FLAGS} --with-udis86"
+		conf_flags+=( --with-udis86 )
 	fi
 
 	if use libffi; then
+		local CPPFLAGS=${CPPFLAGS}
 		append-cppflags "$(pkg-config --cflags libffi)"
 	fi
-	CONF_FLAGS="${CONF_FLAGS} $(use_enable libffi)"
 
 	# build with a suitable Python version
 	python_export_best
@@ -228,14 +238,72 @@ multilib_src_configure() {
 	tc-export CC CXX
 
 	ECONF_SOURCE=${S} \
-	econf ${CONF_FLAGS}
+	econf "${conf_flags[@]}"
+
+	multilib_build_binaries && cmake_configure
+}
+
+cmake_configure() {
+	# sadly, cmake doesn't seem to have host autodetection
+	# but it's fairly easy to steal this from configured autotools
+	local targets=$(sed -n -e 's/^TARGETS_TO_BUILD=//p' Makefile.config || die)
+	local libdir=$(get_libdir)
+	local mycmakeargs=(
+		# just the stuff needed to get correct cmake modules
+		$(cmake-utils_use ncurses LLVM_ENABLE_TERMINFO)
+
+		-DLLVM_TARGETS_TO_BUILD="${targets// /;}"
+		-DLLVM_LIBDIR_SUFFIX=${libdir#lib}
+	)
+
+	BUILD_DIR=${S%/}_cmake \
+	cmake-utils_src_configure
+}
+
+set_makeargs() {
+	MAKEARGS=(
+		VERBOSE=1
+		REQUIRES_RTTI=1
+		GENTOO_LIBDIR=$(get_libdir)
+	)
+
+	# for tests, we want it all! otherwise, we may use a little filtering...
+	# adding ONLY_TOOLS also disables unittest building...
+	if [[ ${EBUILD_PHASE_FUNC} != src_test ]]; then
+		local tools=( llvm-config )
+		use clang && tools+=( clang )
+
+		if multilib_build_binaries; then
+			use gold && tools+=( gold )
+			tools+=(
+				opt llvm-as llvm-dis llc llvm-ar llvm-nm llvm-link lli
+				llvm-extract llvm-mc llvm-bcanalyzer llvm-diff macho-dump
+				llvm-objdump llvm-readobj llvm-rtdyld llvm-dwarfdump llvm-cov
+				llvm-size llvm-stress llvm-mcmarkup llvm-symbolizer obj2yaml
+				yaml2obj lto llvm-lto
+			)
+		fi
+
+		MAKEARGS+=(
+			# filter tools + disable unittests implicitly
+			ONLY_TOOLS="${tools[*]}"
+
+			# this disables unittests & docs from clang
+			BUILD_CLANG_ONLY=YES
+		)
+	fi
 }
 
 multilib_src_compile() {
-	emake VERBOSE=1 REQUIRES_RTTI=1 GENTOO_LIBDIR=$(get_libdir)
+	local MAKEARGS
+	set_makeargs
 
-	if multilib_is_native_abi; then
+	emake "${MAKEARGS[@]}"
+
+	if multilib_build_binaries; then
 		emake -C "${S}"/docs -f Makefile.sphinx man
+		use clang && emake -C "${S}"/tools/clang/docs/tools \
+			BUILD_FOR_WEBSITE=1 DST_MAN_DIR="${T}"/ man
 		use doc && emake -C "${S}"/docs -f Makefile.sphinx html
 	fi
 
@@ -246,17 +314,21 @@ multilib_src_compile() {
 		pax-mark m Release/bin/llvm-rtdyld
 		pax-mark m Release/bin/lli
 	fi
-	if use test; then
-		pax-mark m unittests/ExecutionEngine/JIT/Release/JITTests
-		pax-mark m unittests/ExecutionEngine/MCJIT/Release/MCJITTests
-		pax-mark m unittests/Support/Release/SupportTests
-	fi
 }
 
 multilib_src_test() {
-	default
+	local MAKEARGS
+	set_makeargs
 
-	use clang && emake -C tools/clang test
+	# build the remaining tools & unittests
+	emake "${MAKEARGS[@]}"
+
+	pax-mark m unittests/ExecutionEngine/JIT/Release/JITTests
+	pax-mark m unittests/ExecutionEngine/MCJIT/Release/MCJITTests
+	pax-mark m unittests/Support/Release/SupportTests
+
+	emake "${MAKEARGS[@]}" check
+	use clang && emake "${MAKEARGS[@]}" -C tools/clang test
 }
 
 src_install() {
@@ -273,19 +345,29 @@ src_install() {
 }
 
 multilib_src_install() {
-	emake DESTDIR="${D}" GENTOO_LIBDIR=$(get_libdir) install
+	local MAKEARGS
+	set_makeargs
 
-	# Fix rpaths.
-	if use !kernel_Darwin ; then
-		chrpath -r "${EPREFIX}"/usr/$(get_libdir)/llvm \
-			"${ED}"/usr/bin/* || die
-	fi
+	emake "${MAKEARGS[@]}" DESTDIR="${D}" install
 
-	if multilib_is_native_abi; then
+	if multilib_build_binaries; then
 		# Move files back.
 		if path_exists -o "${ED}"/tmp/llvm-config.*; then
 			mv "${ED}"/tmp/llvm-config.* "${ED}"/usr/bin || die
 		fi
+
+		# Install docs.
+		doman "${S}"/docs/_build/man/*.1
+		use clang && doman "${T}"/clang.1
+		use doc && dohtml -r "${S}"/docs/_build/html/
+
+		# Symlink the gold plugin.
+		dodir /usr/${CHOST}/binutils-bin/lib/bfd-plugins
+		dosym ../../../../$(get_libdir)/LLVMgold.so \
+			/usr/${CHOST}/binutils-bin/lib/bfd-plugins/LLVMgold.so
+
+		# install cmake modules
+		emake -C "${S%/}"_cmake/cmake/modules DESTDIR="${D}" install
 	else
 		# Preserve ABI-variant of llvm-config,
 		# then drop all the executables since LLVM doesn't like to
@@ -301,30 +383,30 @@ multilib_src_install() {
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		eval $(grep PACKAGE_VERSION= configure)
 		[[ -n ${PACKAGE_VERSION} ]] && libpv=${PACKAGE_VERSION}
-		for lib in lib{EnhancedDisassembly,LLVM-${libpv},LTO,profile_rt,clang}.dylib {BugpointPasses,LLVMHello}.dylib ; do
+		for lib in lib{EnhancedDisassembly,LLVM-${libpv},LTO,profile_rt,clang}.dylib LLVMHello.dylib ; do
 			# libEnhancedDisassembly is Darwin10 only, so non-fatal
 			# + omit clang libs if not enabled
-			[[ -f ${ED}/usr/lib/${PN}/${lib} ]] || continue
+			[[ -f ${ED}/usr/lib/${lib} ]] || continue
 
 			ebegin "fixing install_name of $lib"
 			install_name_tool \
-				-id "${EPREFIX}"/usr/lib/${PN}/${lib} \
-				"${ED}"/usr/lib/${PN}/${lib}
+				-id "${EPREFIX}"/usr/lib/${lib} \
+				"${ED}"/usr/lib/${lib}
 			eend $?
 		done
-		for f in "${ED}"/usr/bin/* "${ED}"/usr/lib/${PN}/lib{LTO,clang}.dylib ; do
+		for f in "${ED}"/usr/bin/* "${ED}"/usr/lib/lib{LTO,clang}.dylib ; do
 			# omit clang libs if not enabled
-			[[ -f ${ED}/usr/lib/${PN}/${lib} ]] || continue
+			[[ -f ${ED}/usr/lib/${lib} ]] || continue
 
 			odylib=$(scanmacho -BF'%n#f' "${f}" | tr ',' '\n' | grep libLLVM-${libpv}.dylib)
 			ebegin "fixing install_name reference to ${odylib} of ${f##*/}"
 			install_name_tool \
 				-change "${odylib}" \
-					"${EPREFIX}"/usr/lib/${PN}/libLLVM-${libpv}.dylib \
+					"${EPREFIX}"/usr/lib/libLLVM-${libpv}.dylib \
 				-change "@rpath/libclang.dylib" \
-					"${EPREFIX}"/usr/lib/llvm/libclang.dylib \
+					"${EPREFIX}"/usr/lib/libclang.dylib \
 				-change "${S}"/Release/lib/libclang.dylib \
-					"${EPREFIX}"/usr/lib/llvm/libclang.dylib \
+					"${EPREFIX}"/usr/lib/libclang.dylib \
 				"${f}"
 			eend $?
 		done
@@ -332,9 +414,6 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
-	doman docs/_build/man/*.1
-	use doc && dohtml -r docs/_build/html/
-
 	insinto /usr/share/vim/vimfiles/syntax
 	doins utils/vim/*.vim
 

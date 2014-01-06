@@ -54,10 +54,10 @@ if ! has "${PYTHON_ECLASS_API}" ${_PYTHON_ECLASS_SUPPORTED_APIS[@]}; then
 	die "PYTHON_ECLASS_API=\"${PYTHON_ECLASS_API}\" not supported in EAPI=\"${EAPI}\""
 fi
 
-_CPYTHON2_GLOBALLY_SUPPORTED_ABIS=(2.5 2.6 2.7)
+_CPYTHON2_GLOBALLY_SUPPORTED_ABIS=(2.6 2.7)
 _CPYTHON3_GLOBALLY_SUPPORTED_ABIS=(3.1 3.2 3.3 3.4)
-_JYTHON_GLOBALLY_SUPPORTED_ABIS=(2.5-jython 2.7-jython)
-_PYPY_GLOBALLY_SUPPORTED_ABIS=(2.7-pypy-1.9 2.7-pypy-2.0)
+_JYTHON_GLOBALLY_SUPPORTED_ABIS=(2.7-jython)
+_PYPY_GLOBALLY_SUPPORTED_ABIS=(2.7-pypy-2.0)
 _PYTHON_GLOBALLY_SUPPORTED_ABIS=(${_CPYTHON2_GLOBALLY_SUPPORTED_ABIS[@]} ${_CPYTHON3_GLOBALLY_SUPPORTED_ABIS[@]} ${_JYTHON_GLOBALLY_SUPPORTED_ABIS[@]} ${_PYPY_GLOBALLY_SUPPORTED_ABIS[@]})
 
 # ================================================================================================
@@ -2978,11 +2978,7 @@ python_get_libdir() {
 	elif [[ "$(_python_get_implementation "${PYTHON_ABI}")" == "Jython" ]]; then
 		echo "${prefix}usr/share/jython-${PYTHON_ABI%-jython}/Lib"
 	elif [[ "$(_python_get_implementation "${PYTHON_ABI}")" == "PyPy" ]]; then
-		if [[ "${PYTHON_ABI#*-pypy-}" < "1.9" ]]; then
-			die "${FUNCNAME}(): PyPy has multiple standard library directories"
-		else
-			echo "${prefix}usr/${_PYTHON_MULTILIB_LIBDIR}/pypy${PYTHON_ABI#*-pypy-}/lib-python/${PYTHON_ABI%-pypy-*}"
-		fi
+		echo "${prefix}usr/${_PYTHON_MULTILIB_LIBDIR}/pypy${PYTHON_ABI#*-pypy-}/lib-python/${PYTHON_ABI%-pypy-*}"
 	fi
 }
 
@@ -3648,7 +3644,7 @@ _python_clean_compiled_modules() {
 					py_file="${compiled_file%[co]}"
 				fi
 				if [[ "${EBUILD_PHASE}" == "postinst" ]]; then
-					[[ -f "${py_file}" && "${compiled_file}" -nt "${py_file}" ]] && continue
+					[[ -f "${py_file}" && ! "${compiled_file}" -ot "${py_file}" ]] && continue
 				else
 					[[ -f "${py_file}" ]] && continue
 				fi
@@ -3663,7 +3659,7 @@ _python_clean_compiled_modules() {
 					py_file="${compiled_file%\$py.class}.py"
 				fi
 				if [[ "${EBUILD_PHASE}" == "postinst" ]]; then
-					[[ -f "${py_file}" && "${compiled_file}" -nt "${py_file}" ]] && continue
+					[[ -f "${py_file}" && ! "${compiled_file}" -ot "${py_file}" ]] && continue
 				else
 					[[ -f "${py_file}" ]] && continue
 				fi

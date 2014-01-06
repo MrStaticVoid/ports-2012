@@ -1,10 +1,11 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/telepathy-mission-control/telepathy-mission-control-5.14.1.ebuild,v 1.2 2013/09/05 18:59:51 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/telepathy-mission-control/telepathy-mission-control-5.14.1.ebuild,v 1.6 2013/12/08 19:21:12 pacho Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
+# Needed for tests and build #489466
 PYTHON_COMPAT=( python2_{6,7} )
 
 inherit gnome2 python-any-r1
@@ -15,7 +16,7 @@ SRC_URI="http://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~arm-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~arm-linux ~x86-linux"
 IUSE="connman debug gnome-keyring networkmanager +upower" # test
 REQUIRED_USE="?? ( connman networkmanager )"
 
@@ -30,6 +31,7 @@ RDEPEND="
 	upower? ( >=sys-power/upower-0.9.11 )
 "
 DEPEND="${RDEPEND}
+	${PYTHON_DEPS}
 	dev-libs/libxslt
 	>=dev-util/gtk-doc-am-1.17
 	virtual/pkgconfig

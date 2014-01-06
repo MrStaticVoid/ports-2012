@@ -5,6 +5,8 @@
 EAPI=5
 inherit autotools mate
 
+RESTRICT="test"
+
 DESCRIPTION="A dbus session bus service that is used to bring up authentication dialogs"
 HOMEPAGE="https://github.com/mate-desktop/mate-polkit"
 
@@ -30,8 +32,6 @@ DEPEND="${RDEPEND}
 # into the build chroots.
 ENTROPY_RDEPEND="!lxde-base/lxpolkit"
 
-DOCS=( AUTHORS HACKING NEWS README )
-
 src_prepare() {
 	gtkdocize
 	eautoreconf
@@ -39,6 +39,8 @@ src_prepare() {
 }
 
 src_configure() {
+	DOCS="AUTHORS HACKING NEWS README"
+
 	econf \
 		--disable-static \
 		$(use_enable introspection)

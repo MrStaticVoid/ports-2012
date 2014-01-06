@@ -3,6 +3,7 @@
 # $Header: $
 
 EAPI="5"
+inherit multilib
 
 DESCRIPTION="Meta ebuild for MATE, The traditional desktop environment"
 HOMEPAGE="http://mate-desktop.org"
@@ -12,9 +13,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64 ~arm"
 IUSE="bluetooth +extras"
 
-RDEPEND=">=mate-base/libmatekeyring-1.6.0
-	>=mate-base/mate-keyring-1.6.0
-	>=mate-base/libmatekbd-1.6.0
+RDEPEND=">=mate-base/libmatekbd-1.6.0
 	>=dev-libs/libmateweather-1.6.0
 	>=x11-themes/mate-icon-theme-1.6.0
 	>=mate-extra/mate-dialogs-1.6.0

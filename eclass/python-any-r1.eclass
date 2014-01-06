@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python-any-r1.eclass,v 1.14 2013/09/24 19:53:06 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python-any-r1.eclass,v 1.16 2013/10/22 15:16:56 mgorny Exp $
 
 # @ECLASS: python-any-r1
 # @MAINTAINER:
@@ -259,11 +259,13 @@ _python_EPYTHON_supported() {
 	return 1
 }
 
-# @FUNCTION: python-any-r1_pkg_setup
+# @FUNCTION: python_setup
 # @DESCRIPTION:
 # Determine what the best installed (and supported) Python
-# implementation is and set EPYTHON and PYTHON accordingly.
-python-any-r1_pkg_setup() {
+# implementation is, and set the Python build environment up for it.
+#
+# This function will call python_check_deps() if defined.
+python_setup() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	# first, try ${EPYTHON}... maybe it's good enough for us.
@@ -311,6 +313,18 @@ python-any-r1_pkg_setup() {
 	eerror "along with the build log."
 	echo
 	die "No supported Python implementation installed."
+}
+
+# @FUNCTION: python-any-r1_pkg_setup
+# @DESCRIPTION:
+# Runs python_setup during from-source installs.
+#
+# In a binary package installs is a no-op. If you need Python in pkg_*
+# phases of a binary package, call python_setup directly.
+python-any-r1_pkg_setup() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	[[ ${MERGE_TYPE} != binary ]] && python_setup
 }
 
 _PYTHON_ANY_R1=1

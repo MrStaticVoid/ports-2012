@@ -1,6 +1,6 @@
 DEFINED_PHASES=compile install postinst postrm prepare
 DEPEND=>=dev-db/metakit-2.4.9.2[python] =dev-lang/python-2*
-DESCRIPTION=Pyndex is a simple and fast full-text indexer (aka search engine) implemented in Python. It uses Metakit as its storage back-end.
+DESCRIPTION=Simple and fast Python full-text indexer (aka search engine) using Metakit as its back-end.
 EAPI=3
 HOMEPAGE=http://www.divmod.org/Pyndex/index.html
 KEYWORDS=~amd64 x86
@@ -8,5 +8,5 @@ LICENSE=LGPL-2.1
 RDEPEND=>=dev-db/metakit-2.4.9.2[python] =dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://sourceforge/pyndex/Pyndex-0.3.2a.tar.gz
-_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	python	9ffa83b7b864edd2fa5dd6ebe4a63738
-_md5_=ddbdb61f55727a8f6af80b2e49e4df18
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
+_md5_=3af8b6e1ab4d12fed240f9e99a956160

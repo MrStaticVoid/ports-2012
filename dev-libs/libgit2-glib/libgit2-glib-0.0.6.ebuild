@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgit2-glib/libgit2-glib-0.0.6.ebuild,v 1.2 2013/08/25 12:22:24 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgit2-glib/libgit2-glib-0.0.6.ebuild,v 1.6 2013/12/08 18:02:57 pacho Exp $
 
 EAPI=5
 GCONF_DEBUG="no"
-PYTHON_COMPAT=( python3_2 )
+PYTHON_COMPAT=( python{3_2,3_3} )
 
 inherit gnome2 python-r1
 
@@ -13,7 +13,7 @@ HOMEPAGE="https://live.gnome.org/Libgit2-glib"
 
 LICENSE="LGPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 
 IUSE="python"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
@@ -29,6 +29,9 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-util/gtk-doc-am
 "
+
+# Sometimes repository test gets stuck, check again on next major release
+RESTRICT="test"
 
 src_configure() {
 	gnome2_src_configure $(use_enable python)

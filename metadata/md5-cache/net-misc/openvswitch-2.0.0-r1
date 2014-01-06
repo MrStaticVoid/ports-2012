@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile config configure install postinst postrm preinst prepare setup
+DEPEND=>=sys-apps/openrc-0.12.1 ssl? ( dev-libs/openssl ) monitor? ( dev-python/twisted-core[python_abis_2.7] dev-python/twisted-conch[python_abis_2.7] dev-python/twisted-web[python_abis_2.7] ) pyside? ( dev-python/pyside[python_abis_2.7] ) !pyside? ( dev-python/PyQt4[python_abis_2.7] ) debug? ( dev-lang/perl ) virtual/pkgconfig kernel_linux? ( virtual/modutils ) sys-apps/sed kernel_linux? ( virtual/linux-sources ) app-arch/tar app-arch/gzip
+DESCRIPTION=Production quality, multilayer virtual switch.
+EAPI=5-progress
+HOMEPAGE=http://openvswitch.org
+IUSE=debug modules monitor +pyside +ssl kernel_linux
+KEYWORDS=~*
+LICENSE=Apache-2.0 GPL-2
+RDEPEND=>=sys-apps/openrc-0.12.1 ssl? ( dev-libs/openssl ) monitor? ( dev-python/twisted-core[python_abis_2.7] dev-python/twisted-conch[python_abis_2.7] dev-python/twisted-web[python_abis_2.7] ) pyside? ( dev-python/pyside[python_abis_2.7] ) !pyside? ( dev-python/PyQt4[python_abis_2.7] ) debug? ( dev-lang/perl ) kernel_linux? ( virtual/modutils )
+SLOT=0
+SRC_URI=http://openvswitch.org/releases/openvswitch-2.0.0.tar.gz
+_eclasses_=eutils	a82a329b538368791f5a6113c60e557e	linux-info	a9cbd6bbe2b28166e403321882f3c73c	linux-mod	c07f7857b242a2407527aa521905cfba	multilib	892e597faee02a5b94eb02ab512e7622	python	78a4afe9781c7107d0f91c07aae92026	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=f772e26b666b902169ad2533957a3a40

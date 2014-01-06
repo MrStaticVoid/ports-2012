@@ -1,3 +1,15 @@
+# FL-897
+# force upnp and video USE flag in media-libs/mediatreamer, required for clean net-voip/linphone emerge
+media-libs/mediastreamer upnp video
+ 
+# FL-792, enable xattr USE flag in rsync, required for vzmigrate
+net-misc/rsync xattr
+
+# FL-849 add ads flag to cifs-utils, required for clean samba or cifs-utils emerge.
+# acl flag causing crappy circular dependencies, disabled atm. 
+net-fs/cifs-utils ads
+net-fs/samba
+
 # FL-730 extent layman to support subversion, mercurial and git by default
 app-portage/layman git mercurial subversion
 

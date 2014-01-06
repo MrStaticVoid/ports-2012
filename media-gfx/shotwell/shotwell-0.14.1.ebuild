@@ -1,11 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/shotwell/shotwell-0.14.1.ebuild,v 1.5 2013/09/01 11:34:45 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/shotwell/shotwell-0.14.1.ebuild,v 1.8 2013/12/08 20:01:41 pacho Exp $
 
 EAPI=5
 
 GCONF_DEBUG="no"
 VALA_MIN_API_VERSION="0.18"
+VALA_MAX_API_VERSION="0.20"
 
 inherit eutils gnome2 multilib toolchain-funcs vala versionator
 
@@ -16,7 +17,7 @@ SRC_URI="http://www.yorba.org/download/${PN}/stable/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE=""
 
 LANGS="af ar as ast bg bn ca cs da de el en_GB es et eu fi fr gl gu he hi hr hu ia id it ja kk kn

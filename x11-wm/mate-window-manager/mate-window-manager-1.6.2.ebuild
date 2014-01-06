@@ -15,13 +15,12 @@ HOMEPAGE="http://mate-desktop.org"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
-IUSE="-gtk3 startup-notification test xinerama"
+IUSE="startup-notification test xinerama"
 
 # Building against gtk+3 is broken.
 # XXX: libgtop is automagic, hard-enabled instead
 RDEPEND=" >=x11-libs/pango-1.2[X]
-	gtk3? ( x11-libs/gtk+:3 )
-	!gtk3? ( x11-libs/gtk+:3 )
+	x11-libs/gtk+:2
 	>=dev-libs/glib-2.25.10:2
 	>=x11-libs/startup-notification-0.7
 	>=x11-libs/libXcomposite-0.2
@@ -49,14 +48,16 @@ DEPEND="${RDEPEND}
 	x11-proto/xextproto
 	x11-proto/xproto"
 
-pkg_setup() {
-	G2CONF="${G2CONF}
-		--enable-compositor
-		--enable-render
-		--enable-shape
-		--enable-sm
-		--enable-xsync
-		$(use_enable startup-notification)
-		$(use_enable xinerama)"
+src_configure() {
 	DOCS="AUTHORS ChangeLog HACKING NEWS README *.txt doc/*.txt"
+
+	mate_src_configure \
+		--enable-compositor \
+		--enable-render \
+		--enable-shape \
+		--enable-sm \
+		--enable-xsync \
+		--with-gtk=2.0 \
+		$(use_enable startup-notification) \
+		$(use_enable xinerama)
 }

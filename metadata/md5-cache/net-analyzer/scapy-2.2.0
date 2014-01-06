@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile install postinst postrm prepare setup
-DEPEND=|| ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
+DEPEND==dev-lang/python-2*
 DESCRIPTION=A Python interactive packet manipulation program for mastering the network
 EAPI=3
 HOMEPAGE=http://www.secdev.org/projects/scapy/
 IUSE=gnuplot pyx crypt graphviz imagemagick visual tcpreplay
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
-RDEPEND=net-analyzer/tcpdump gnuplot? ( dev-python/gnuplot-py ) pyx? ( dev-python/pyx ) crypt? ( dev-python/pycrypto ) graphviz? ( media-gfx/graphviz ) imagemagick? ( || ( media-gfx/imagemagick media-gfx/graphicsmagick[imagemagick] ) ) visual? ( dev-python/visual ) tcpreplay? ( net-analyzer/tcpreplay ) || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
+RDEPEND=net-analyzer/tcpdump gnuplot? ( dev-python/gnuplot-py ) pyx? ( dev-python/pyx ) crypt? ( dev-python/pycrypto ) graphviz? ( media-gfx/graphviz ) imagemagick? ( || ( media-gfx/imagemagick media-gfx/graphicsmagick[imagemagick] ) ) visual? ( dev-python/visual ) tcpreplay? ( net-analyzer/tcpreplay ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://www.secdev.org/projects/scapy/files/scapy-2.2.0.tar.gz
-_eclasses_=distutils	4d62465f6d5c8554c77b91c9d95dd315	python	9ffa83b7b864edd2fa5dd6ebe4a63738
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
 _md5_=ff1a25f9891f5d138c768cb012205c97

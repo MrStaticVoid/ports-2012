@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/quagga/quagga-0.99.22.4.ebuild,v 1.2 2013/09/24 14:32:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/quagga/quagga-0.99.22.4.ebuild,v 1.9 2013/10/31 07:41:25 pinkbyte Exp $
 
 EAPI="5"
 
@@ -16,7 +16,7 @@ SRC_URI="mirror://nongnu/${PN}/${P}.tar.xz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm hppa ~ppc ~s390 ~sparc ~x86"
+KEYWORDS="alpha amd64 arm hppa ppc ~s390 sparc x86"
 IUSE="bgpclassless caps doc elibc_glibc ipv6 multipath ospfapi pam +readline snmp tcp-zebra"
 
 COMMON_DEPEND="
@@ -33,6 +33,8 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	sys-apps/openrc
 	sys-apps/iproute2"
+
+PATCHES=( "${FILESDIR}/${P}-ipctl-forwarding.patch" )
 
 DISABLE_AUTOFORMATTING=1
 DOC_CONTENTS="Sample configuration files can be found in /usr/share/doc/${PF}/samples

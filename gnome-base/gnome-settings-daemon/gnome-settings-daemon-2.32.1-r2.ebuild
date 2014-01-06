@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.32.1-r2.ebuild,v 1.10 2013/01/22 07:37:37 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -19,7 +17,7 @@ SRC_URI="${SRC_URI} http://dev.gentoo.org/~pacho/gnome/gnome-settings-daemon-2.3
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sh sparc x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="*"
 IUSE="debug libnotify policykit pulseaudio smartcard"
 
 # libgnomekbd-2.91 breaks API/ABI

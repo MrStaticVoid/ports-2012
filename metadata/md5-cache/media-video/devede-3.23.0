@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=dev-python/dbus-python dev-python/pycairo dev-python/pygobject:2 >=dev-python/pygtk-2.16 media-video/dvdauthor mencoder? ( media-video/mplayer[mp3,encode] ) media-video/vcdimager virtual/cdrtools !mencoder? ( virtual/ffmpeg[mp3,encode] || ( media-video/mplayer2[symlink] media-video/mplayer ) ) =dev-lang/python-2.7*
 SLOT=0
 SRC_URI=http://www.rastersoft.com/descargas/devede-3.23.0.tar.bz2
-_eclasses_=multilib	892e597faee02a5b94eb02ab512e7622	python	9ffa83b7b864edd2fa5dd6ebe4a63738	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=multilib	892e597faee02a5b94eb02ab512e7622	python	78a4afe9781c7107d0f91c07aae92026	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=72e50563a870e224f20a2aa3717f20d0

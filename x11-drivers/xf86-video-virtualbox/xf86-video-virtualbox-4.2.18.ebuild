@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/xf86-video-virtualbox/xf86-video-virtualbox-4.2.18.ebuild,v 1.1 2013/09/08 12:38:36 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/xf86-video-virtualbox/xf86-video-virtualbox-4.2.18.ebuild,v 1.4 2013/12/07 14:30:19 pacho Exp $
 
 EAPI=5
 
@@ -16,7 +16,7 @@ SRC_URI="http://download.virtualbox.org/virtualbox/${MY_PV}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="dri"
 
 RDEPEND="<x11-base/xorg-server-1.14.99[-minimal]
@@ -109,7 +109,8 @@ src_compile() {
 		/src/VBox/Additions/x11/vboxvideo ; do
 			cd "${S}"${each}
 			MAKE="kmk" emake TOOL_YASM_AS=yasm \
-			KBUILD_PATH="${S}/kBuild"
+			KBUILD_PATH="${S}/kBuild" \
+			KBUILD_VERBOSE=2
 	done
 
 	if use dri; then

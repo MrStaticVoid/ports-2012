@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-9999.ebuild,v 1.5 2013/09/06 06:45:52 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-9999.ebuild,v 1.9 2013/12/16 09:57:57 radhermit Exp $
 
 EAPI=5
 VIM_VERSION="7.4"
@@ -20,12 +20,12 @@ else
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 fi
 
-DESCRIPTION="vim and gvim shared files"
+DESCRIPTION="Vim, an improved vi-style text editor"
 HOMEPAGE="http://www.vim.org/"
 
 SLOT="0"
 LICENSE="vim"
-IUSE="X acl cscope debug gpm lua luajit minimal nls perl python ruby vim-pager"
+IUSE="X acl cscope debug gpm lua luajit minimal nls perl python racket ruby selinux tcl vim-pager"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND=">=app-admin/eselect-vi-1.1
@@ -44,7 +44,10 @@ RDEPEND=">=app-admin/eselect-vi-1.1
 	)
 	perl? ( dev-lang/perl )
 	python? ( ${PYTHON_DEPS} )
+	racket? ( dev-scheme/racket )
 	ruby? ( || ( dev-lang/ruby:2.0 dev-lang/ruby:1.9 dev-lang/ruby:1.8 ) )
+	selinux? ( sys-libs/libselinux )
+	tcl? ( dev-lang/tcl )
 	X? ( x11-libs/libXt )"
 DEPEND="${RDEPEND}
 	>=app-admin/eselect-vi-1.1
@@ -77,9 +80,6 @@ src_prepare() {
 	# Fixup a script to use awk instead of nawk
 	sed -i '1s|.*|#!'"${EPREFIX}"'/usr/bin/awk -f|' "${S}"/runtime/tools/mve.awk \
 		|| die "mve.awk sed failed"
-
-	# Patch to build with ruby-1.8.0_pre5 and following
-	sed -i 's/defout/stdout/g' "${S}"/src/if_ruby.c
 
 	# Read vimrc and gvimrc from /etc/vim
 	echo '#define SYS_VIMRC_FILE "'${EPREFIX}'/etc/vim/vimrc"' >> "${S}"/src/feature.h
@@ -121,8 +121,7 @@ src_prepare() {
 
 	# Try to avoid sandbox problems. Bug #114475.
 	if [[ -d "${S}"/src/po ]] ; then
-		sed -i -e \
-			'/-S check.vim/s,..VIM.,ln -s $(VIM) testvim \; ./testvim -X,' \
+		sed -i '/-S check.vim/s,..VIM.,ln -s $(VIM) testvim \; ./testvim -X,' \
 			"${S}"/src/po/Makefile
 	fi
 
@@ -175,7 +174,10 @@ src_configure() {
 			--disable-luainterp \
 			--disable-perlinterp \
 			--disable-pythoninterp \
+			--disable-mzschemeinterp \
 			--disable-rubyinterp \
+			--disable-selinux \
+			--disable-tclinterp \
 			--disable-gpm"
 	else
 		use debug && append-flags "-DDEBUG"
@@ -184,8 +186,14 @@ src_configure() {
 		myconf+=" $(use_enable acl)"
 		myconf+=" $(use_enable cscope)"
 		myconf+=" $(use_enable gpm)"
+		myconf+=" $(use_enable lua luainterp)"
+		myconf+=" $(use_with luajit)"
 		myconf+=" $(use_enable nls)"
 		myconf+=" $(use_enable perl perlinterp)"
+		myconf+=" $(use_enable racket mzschemeinterp)"
+		myconf+=" $(use_enable ruby rubyinterp)"
+		myconf+=" $(use_enable selinux)"
+		myconf+=" $(use_enable tcl tclinterp)"
 
 		if use python ; then
 			if [[ ${EPYTHON} == python3* ]] ; then
@@ -199,20 +207,10 @@ src_configure() {
 			myconf+=" --disable-pythoninterp --disable-python3interp"
 		fi
 
-		myconf+=" $(use_enable lua luainterp)"
-		myconf+=" $(use_with luajit)"
-		myconf+=" $(use_enable ruby rubyinterp)"
-
-		# tclinterp is broken; when you --enable-tclinterp flag, then
-		# the following command never returns:
-		#   VIMINIT='let OS=system("uname -s")' vim
-		# mzscheme support is currently broken. bug #91970
-		#myconf+=" $(use_enable mzscheme mzschemeinterp)"
-
 		# --with-features=huge forces on cscope even if we --disable it. We need
 		# to sed this out to avoid screwiness. (1 Sep 2004 ciaranm)
 		if ! use cscope ; then
-			sed -i -e '/# define FEAT_CSCOPE/d' src/feature.h || \
+			sed -i '/# define FEAT_CSCOPE/d' src/feature.h || \
 				die "couldn't disable cscope"
 		fi
 
@@ -229,7 +227,6 @@ src_configure() {
 
 	econf \
 		--with-modified-by=Gentoo-${PVR} \
-		--disable-selinux \
 		${myconf}
 }
 
@@ -259,14 +256,13 @@ src_test() {
 
 	# Test 49 won't work inside a portage environment
 	einfo "Test 49 isn't sandbox-friendly, so it will be skipped."
-	sed -i -e 's~test49.out~~g' Makefile
+	sed -i 's~test49.out~~g' Makefile
 
 	# We don't want to rebuild vim before running the tests
-	sed -i -e 's,: \$(VIMPROG),: ,' Makefile
+	sed -i 's,: \$(VIMPROG),: ,' Makefile
 
 	# Don't try to do the additional GUI test
-	emake -j1 VIMPROG=../vim nongui \
-		|| die "At least one test failed"
+	emake -j1 VIMPROG=../vim nongui
 }
 
 # Make convenience symlinks, hopefully without stepping on toes.  Some
@@ -333,27 +329,25 @@ pkg_postinst() {
 	# Update documentation tags (from vim-doc.eclass)
 	update_vim_helptags
 
-	if use X ; then
+	if [[ -z ${REPLACING_VERSIONS} ]] ; then
+		if use X ; then
+			echo
+			elog "The 'X' USE flag enables vim <-> X communication, like"
+			elog "updating the xterm titlebar. It does not install a GUI."
+		fi
 		echo
-		elog "The 'X' USE flag enables vim <-> X communication, like"
-		elog "updating the xterm titlebar. It does not install a GUI."
+		elog "To install a GUI version of vim, use the app-editors/gvim"
+		elog "package."
+		echo
+		elog "Vim 7 includes an integrated spell checker. You need to install"
+		elog "word list files before you can use it. There are ebuilds for"
+		elog "some of these named app-vim/vim-spell-*. If your language of"
+		elog "choice is not included, please consult vim-spell.eclass for"
+		elog "instructions on how to make a package."
+		echo
+		ewarn "Note that the English word lists are no longer installed by"
+		ewarn "default."
 	fi
-	echo
-	elog "To install a GUI version of vim, use the app-editors/gvim"
-	elog "package."
-	echo
-	elog "Vim 7 includes an integrated spell checker. You need to install"
-	elog "word list files before you can use it. There are ebuilds for"
-	elog "some of these named app-vim/vim-spell-*. If your language of"
-	elog "choice is not included, please consult vim-spell.eclass for"
-	elog "instructions on how to make a package."
-	echo
-	ewarn "Note that the English word lists are no longer installed by"
-	ewarn "default."
-	echo
-
-	echo
-	elog "To see what's new in this release, use :help version${VIM_VERSION/.*/}.txt"
 
 	# Make convenience symlinks
 	update_vim_symlinks

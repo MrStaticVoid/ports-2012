@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/xf86-video-intel/xf86-video-intel-2.21.15.ebuild,v 1.1 2013/08/23 17:58:37 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/xf86-video-intel/xf86-video-intel-2.21.15.ebuild,v 1.4 2013/11/08 19:02:54 remi Exp $
 
 EAPI=5
 
@@ -9,7 +9,7 @@ inherit linux-info xorg-2
 
 DESCRIPTION="X.Org driver for Intel cards"
 
-KEYWORDS="~amd64 ~x86 ~amd64-fbsd -x86-fbsd"
+KEYWORDS="amd64 x86 ~amd64-fbsd -x86-fbsd"
 IUSE="glamor +sna +udev uxa xvmc"
 
 REQUIRED_USE="|| ( glamor sna uxa )"
@@ -36,6 +36,13 @@ RDEPEND="x11-libs/libXext
 DEPEND="${RDEPEND}
 	>=x11-proto/dri2proto-2.6
 	x11-proto/resourceproto"
+
+src_prepare() {
+	# wrong variable name, fix configure directly to avoid autoreconf
+	# see bug #490342
+	sed -e "s/DRI_CFLAGS/DRI1_CFLAGS/g" -i configure
+	xorg-2_src_prepare
+}
 
 src_configure() {
 	XORG_CONFIGURE_OPTIONS=(

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/neutron/neutron-9999.ebuild,v 1.6 2013/09/12 22:11:38 prometheanfire Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/neutron/neutron-9999.ebuild,v 1.8 2013/11/22 04:38:39 idella4 Exp $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -9,7 +9,7 @@ inherit distutils-r1 git-2
 
 #restricted due to packages missing and bad depends in the test ==webob-1.0.8   
 RESTRICT="test"
-DESCRIPTION="Quantum is a virtual network service for Openstack."
+DESCRIPTION="A virtual network service for Openstack."
 HOMEPAGE="https://launchpad.net/neutron"
 EGIT_REPO_URI="https://github.com/openstack/neutron.git"
 
@@ -60,7 +60,9 @@ RDEPEND=">=dev-python/pastedeploy-1.5.0-r1[${PYTHON_USEDEP}]
 	            <dev-python/sqlalchemy-0.7.10[postgres,${PYTHON_USEDEP}] )
 		>=dev-python/webob-1.2[${PYTHON_USEDEP}]
 		>=dev-python/oslo-config-1.1.0[${PYTHON_USEDEP}]
+		<dev-python/oslo-config-1.2.0[${PYTHON_USEDEP}]
 		virtual/python-argparse[${PYTHON_USEDEP}]
+		net-misc/bridge-utils
 		net-misc/openvswitch
 		dhcp? ( net-dns/dnsmasq[dhcp-tools] )"
 
@@ -80,10 +82,14 @@ python_install() {
 	use metadata && dosym /etc/init.d/neutron /etc/init.d/neutron-metadata-agent
 	use openvswitch && dosym /etc/init.d/neutron /etc/init.d/neutron-openvswitch-agent
 
-	dodir /var/log/neutron
+	diropts -m 750
+	dodir /var/log/neutron /var/log/quantum
 	fowners neutron:neutron /var/log/neutron
 	keepdir /etc/neutron
 	insinto /etc/neutron
+
+	#it's /bin/ip not /sbin/ip
+	sed -i 's/sbin\/ip\,/bin\/ip\,/g' "etc/quantum/rootwrap.d/*"
 
 	doins "etc/api-paste.ini"
 	doins "etc/dhcp_agent.ini"

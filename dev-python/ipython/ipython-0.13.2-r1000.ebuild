@@ -5,12 +5,12 @@
 EAPI="5-progress"
 PYTHON_DEPEND="<<[{*-cpython}readline?,{*-cpython}sqlite?]>>"
 PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="2.5 *-jython"
+PYTHON_RESTRICTED_ABIS="*-jython"
 
 inherit distutils elisp-common eutils virtualx
 
 DESCRIPTION="IPython: Productive Interactive Computing"
-HOMEPAGE="http://ipython.org/ https://pypi.python.org/pypi/ipython"
+HOMEPAGE="http://ipython.org/ https://github.com/ipython/ipython https://pypi.python.org/pypi/ipython"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="BSD"
@@ -20,7 +20,7 @@ IUSE="doc emacs examples matplotlib mongodb notebook octave qt4 readline +smp sq
 
 RDEPEND="$(python_abi_depend dev-python/decorator)
 	$(python_abi_depend -e "*-pypy-*" dev-python/numpy)
-	$(python_abi_depend -i "2.*" dev-python/pexpect)
+	$(python_abi_depend -e "*-pypy-*" dev-python/pexpect)
 	$(python_abi_depend dev-python/pyparsing)
 	$(python_abi_depend dev-python/setuptools)
 	$(python_abi_depend dev-python/simplegeneric)
@@ -36,7 +36,7 @@ RDEPEND="$(python_abi_depend dev-python/decorator)
 		$(python_abi_depend -e "3.1 *-pypy-*" ">=dev-python/pyzmq-2.1.4")
 		$(python_abi_depend -e "3.1 *-pypy-*" ">=www-servers/tornado-2.1")
 	)
-	octave? ( $(python_abi_depend -e "*-pypy-*" dev-python/oct2py) )
+	octave? ( $(python_abi_depend -e "2.6 *-pypy-*" dev-python/oct2py) )
 	qt4? (
 		$(python_abi_depend -e "*-pypy-*" dev-python/pygments)
 		$(python_abi_depend -e "*-pypy-*" ">=dev-python/pyzmq-2.1.4")

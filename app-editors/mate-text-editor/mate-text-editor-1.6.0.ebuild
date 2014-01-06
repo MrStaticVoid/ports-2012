@@ -1,13 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="5"
 GCONF_DEBUG="yes"
 MATE_LA_PUNT="yes"
-PYTHON_DEPEND="python? 2:2.5"
+PYTHON_COMPAT=( python2_{6,7} )
 
-inherit mate multilib python
+inherit mate multilib python-single-r1 virtualx
 
 DESCRIPTION="Pluma text editor for the MATE desktop"
 HOMEPAGE="http://mate-desktop.org"
@@ -16,6 +16,11 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
 IUSE="python spell"
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
+
+# Tests require gvfs sftp fs mounted and schema's installed. Disable tests.
+# https://github.com/mate-desktop/mate-text-editor/issues/33
+RESTRICT="test"
 
 RDEPEND=">=x11-libs/libSM-1.0
 	>=dev-libs/libxml2-2.5.0:2
@@ -27,8 +32,9 @@ RDEPEND=">=x11-libs/libSM-1.0
 		>=app-text/iso-codes-0.35
 	)
 	python? (
-		>=dev-python/pygobject-2.15.4:2
-		>=dev-python/pygtk-2.12:2
+		${PYTHON_DEPS}
+		>=dev-python/pygobject-2.15.4:2[${PYTHON_USEDEP}]
+		>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
 		>=dev-python/pygtksourceview-2.9.2:2
 	)"
 
@@ -41,29 +47,25 @@ DEPEND="${RDEPEND}
 	~app-text/docbook-xml-dtd-4.1.2
 	>=mate-base/mate-common-1.2.2"
 
-pkg_setup() {
-	DOCS="AUTHORS ChangeLog NEWS README"
-	G2CONF="${G2CONF}
-		--disable-updater
-		$(use_enable python)
-		$(use_enable spell)"
-	if use python; then
-		python_set_active_version 2
-		python_pkg_setup
-	fi
-}
-
 src_prepare() {
+	# Mate test run
+	epatch "${FILESDIR}/${PN}-1.6.0-fix-POTFILES.patch"
 	mate_src_prepare
-	use python && python_clean_py-compile_files
 }
 
-pkg_postinst() {
-	mate_pkg_postinst
-	use python && python_mod_optimize /usr/$(get_libdir)/pluma/plugins
+src_configure() {
+	DOCS="AUTHORS ChangeLog NEWS README"
+
+	mate_src_configure \
+		--disable-updater \
+		$(use_enable python) \
+		$(use_enable spell)
 }
 
-pkg_postrm() {
-	mate_pkg_postrm
-	use python && python_mod_cleanup /usr/$(get_libdir)/pluma/plugins
+src_test() {
+	# FIXME: this should be handled at eclass level
+	"${EROOT}${GLIB_COMPILE_SCHEMAS}" --allow-any-name "${S}/data" || die
+
+	unset DBUS_SESSION_BUS_ADDRESS
+	GSETTINGS_SCHEMA_DIR="${S}/data" Xemake check
 }

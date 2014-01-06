@@ -1,6 +1,5 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright owners: Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib-minimal.eclass,v 1.5 2013/06/28 12:42:48 mgorny Exp $
 
 # @ECLASS: multilib-minimal.eclass
 # @MAINTAINER:
@@ -25,12 +24,12 @@
 
 # EAPI=4 is required for meaningful MULTILIB_USEDEP.
 case ${EAPI:-0} in
-	4|5) ;;
+	4|4-python|5|5-progress) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
 
-inherit multilib-build
+inherit eutils multilib-build
 
 EXPORT_FUNCTIONS src_configure src_compile src_test src_install
 
@@ -104,18 +103,7 @@ multilib-minimal_src_install() {
 
 	if declare -f multilib_src_install_all >/dev/null ; then
 		multilib_src_install_all
-	fi
-
-	# this is synced with __eapi4_src_install
-	if ! declare -p DOCS &>/dev/null ; then
-		local d
-		for d in README* ChangeLog AUTHORS NEWS TODO CHANGES \
-				THANKS BUGS FAQ CREDITS CHANGELOG ; do
-			[[ -s "${d}" ]] && dodoc "${d}"
-		done
-	elif [[ $(declare -p DOCS) == "declare -a "* ]] ; then
-		dodoc "${DOCS[@]}"
 	else
-		dodoc ${DOCS}
+		einstalldocs
 	fi
 }

@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/x2goserver/x2goserver-4.0.1.6.ebuild,v 1.2 2013/09/12 12:55:03 voyageur Exp $
 
 EAPI=4
 inherit eutils multilib toolchain-funcs user
@@ -11,13 +9,12 @@ SRC_URI="http://code.x2go.org/releases/source/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~*"
 IUSE="+fuse postgres +sqlite"
 
 REQUIRED_USE="|| ( postgres sqlite )"
 
-# Requires man2html, only provided by sys-apps/man
-DEPEND="sys-apps/man"
+DEPEND="virtual/man"
 RDEPEND="dev-perl/Config-Simple
 	media-fonts/font-cursor-misc
 	media-fonts/font-misc-misc

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/spork/spork-0.9.2.ebuild,v 1.7 2013/01/15 05:22:14 zerochaos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/spork/spork-0.9.2.ebuild,v 1.9 2013/12/15 09:25:26 graaff Exp $
 
 EAPI=4
 

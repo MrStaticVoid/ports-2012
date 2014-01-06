@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/freerdp/freerdp-1.1.0_beta1_p20130710.ebuild,v 1.2 2013/08/14 19:59:45 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/freerdp/freerdp-1.1.0_beta1_p20130710.ebuild,v 1.7 2013/12/11 20:31:39 ago Exp $
 
 EAPI="5"
 
@@ -9,7 +9,7 @@ inherit cmake-utils vcs-snapshot
 if [[ ${PV} != 9999* ]]; then
 	COMMIT="780d451afad21a22d2af6bd030ee71311856f038"
 	SRC_URI="https://github.com/FreeRDP/FreeRDP/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+	KEYWORDS="~amd64 ~arm ppc ppc64 ~x86"
 else
 	inherit git-2
 	SRC_URI=""
@@ -32,7 +32,6 @@ RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	cups? ( net-print/cups )
 	client? (
-		directfb? ( dev-libs/DirectFB )
 		X? (
 			x11-libs/libXcursor
 			x11-libs/libXext
@@ -42,6 +41,7 @@ RDEPEND="
 			xv? ( x11-libs/libXv )
 		)
 	)
+	directfb? ( dev-libs/DirectFB )
 	ffmpeg? ( virtual/ffmpeg )
 	gstreamer? (
 		media-libs/gstreamer:0.10
@@ -73,6 +73,10 @@ DEPEND="${RDEPEND}
 "
 
 DOCS=( README )
+
+PATCHES=(
+	"${FILESDIR}/${P}-ffmpeg.patch"
+)
 
 src_configure() {
 	local mycmakeargs=(

@@ -6,7 +6,7 @@ EAPI="5-progress"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="2.5 *-jython *-pypy-*"
+PYTHON_RESTRICTED_ABIS="*-jython *-pypy-*"
 
 inherit autotools eutils gnome2 python virtualx
 
@@ -89,10 +89,11 @@ src_compile() {
 src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
 	export GIO_USE_VFS="local" # prevents odd issues with deleting ${T}/.gvfs
+	export GIO_USE_VOLUME_MONITOR="unix" # prevent udisks-related failures in chroots, bug #449484
 
 	testing() {
 		export XDG_CACHE_HOME="${T}/${PYTHON_ABI}"
-		Xemake check PYTHON=$(PYTHON -a)
+		Xemake check PYTHON="$(PYTHON -a)"
 		unset XDG_CACHE_HOME
 	}
 	python_execute_function -s testing

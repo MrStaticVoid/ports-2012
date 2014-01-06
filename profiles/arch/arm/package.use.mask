@@ -1,6 +1,26 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.172 2013/09/22 12:02:58 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.182 2013/12/06 17:08:21 maekke Exp $
+
+# Pacho Ramos <pacho@gentoo.org> (28 Nov 2013)
+# Missing keywords, bug #492820
+net-im/telepathy-connection-managers sipe     
+
+# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (10 Nov 2013)
+# <sys-devel/llvm-3.2 is not keyworded
+=media-libs/mesa-7.10* llvm
+
+# Pacho Ramos <pacho@gentoo.org> (31 Oct 2013)
+# Missing keywords, bug #478254
+gnome-base/gnome classic
+
+# Benda Xu <heroxbd@gentoo.org> (31 Oct 2013)
+# Missing keywords from dev-ml/lablgtk, bug #487722
+net-p2p/mldonkey gtk guionly
+
+# Tom Wijsman <TomWij@gentoo.org> (16 Oct 2013)
+# Mask luajit on ~media-video/mpv-0.2.0 because it only has amd64 x86 keywords. See bug #488318.
+>=media-video/mpv-0.2.0 luajit
 
 # Pacho Ramos <pacho@gentoo.org> (22 Sep 2013)
 # Missing keywords, bug #484734
@@ -117,8 +137,7 @@ dev-vcs/subversion java
 =media-libs/libcaca-0.99_beta17 java
 media-libs/libjpeg-turbo java
 net-dns/libidn java
-=net-misc/tigervnc-1.1.0-r7 java
-=net-misc/tigervnc-1.2.0 java
+net-misc/tigervnc java
 net-print/cups java
 =sys-devel/gettext-0.18.1.1-r1 java
 =sys-devel/gettext-0.18.1.1-r3 java
@@ -278,10 +297,6 @@ net-libs/libproxy kde
 # x11-libs/fltk is not keyworded for arm
 app-misc/nut X
 
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (28 Nov 2010)
-# sys-devel/llvm is keyworded on x86
->=media-libs/mesa-8 -llvm
-
 # Nirbheek Chauhan <nirbheek@gentoo.org> (26 Jun 2010)
 # Inter-process communication doesn't work on anything except x86/amd64/arm
 # due to lack of atomic ops, bug 325185
@@ -322,7 +337,7 @@ media-sound/sox ladspa
 media-plugins/gst-plugins-meta aac dts dv lame libvisual taglib vcd wavpack
 
 # projectm not keyworded, bug #314969
-media-video/vlc projectm
+media-video/vlc projectm chromaprint opencv
 
 # Ultrabug <ultrabug@gentoo.org) (05 Sept 2011)
 # missing keyword for net-libs/zeromq

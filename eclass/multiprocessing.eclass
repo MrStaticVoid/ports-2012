@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multiprocessing.eclass,v 1.2 2012/07/30 14:52:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multiprocessing.eclass,v 1.7 2013/12/07 09:14:15 vapier Exp $
 
 # @ECLASS: multiprocessing.eclass
 # @MAINTAINER:
@@ -55,6 +55,25 @@ makeopts_jobs() {
 	echo ${jobs:-1}
 }
 
+# @FUNCTION: makeopts_loadavg
+# @USAGE: [${MAKEOPTS}]
+# @DESCRIPTION:
+# Searches the arguments (defaults to ${MAKEOPTS}) and extracts the value set
+# for load-average. For make and ninja based builds this will mean new jobs are
+# not only limited by the jobs-value, but also by the current load - which might
+# get excessive due to I/O and not just due to CPU load.
+# Be aware that the returned number might be a floating-point number. Test
+# whether your software supports that.
+makeopts_loadavg() {
+	[[ $# -eq 0 ]] && set -- ${MAKEOPTS}
+	# This assumes the first .* will be more greedy than the second .*
+	# since POSIX doesn't specify a non-greedy match (i.e. ".*?").
+	local lavg=$(echo " $* " | sed -r -n \
+		-e 's:.*[[:space:]](-l|--load-average[=[:space:]])[[:space:]]*([0-9]+|[0-9]+\.[0-9]+)[^0-9.]*:\2:p' \
+		-e 's:.*[[:space:]](-l|--load-average)[[:space:]].*:999:p')
+	echo ${lavg:-1}
+}
+
 # @FUNCTION: multijob_init
 # @USAGE: [${MAKEOPTS}]
 # @DESCRIPTION:
@@ -66,9 +85,12 @@ multijob_init() {
 	has wait ${EBUILD_DEATH_HOOKS} || EBUILD_DEATH_HOOKS+=" wait "
 
 	# Setup a pipe for children to write their pids to when they finish.
+	# We have to allocate two fd's because POSIX has undefined behavior
+	# when you open a FIFO for simultaneous read/write. #487056
 	local pipe="${T}/multijob.pipe"
-	mkfifo "${pipe}"
-	redirect_alloc_fd mj_control_fd "${pipe}"
+	mkfifo -m 600 "${pipe}"
+	redirect_alloc_fd mj_write_fd "${pipe}"
+	redirect_alloc_fd mj_read_fd "${pipe}"
 	rm -f "${pipe}"
 
 	# See how many children we can fork based on the user's settings.
@@ -120,7 +142,7 @@ multijob_child_init() {
 	esac
 
 	if [[ $# -eq 0 ]] ; then
-		trap 'echo ${BASHPID} $? >&'${mj_control_fd} EXIT
+		trap 'echo ${BASHPID} $? >&'${mj_write_fd} EXIT
 		trap 'exit 1' INT TERM
 	else
 		local ret
@@ -169,7 +191,7 @@ multijob_finish_one() {
 	[[ $# -eq 0 ]] || die "${FUNCNAME} takes no arguments"
 
 	local pid ret
-	read -r -u ${mj_control_fd} pid ret || die
+	read -r -u ${mj_read_fd} pid ret || die
 	: $(( --mj_num_jobs ))
 	return ${ret}
 }
@@ -204,6 +226,13 @@ multijob_finish() {
 # about the exact fd #.
 redirect_alloc_fd() {
 	local var=$1 file=$2 redir=${3:-"<>"}
+
+	# Make sure /dev/fd is sane on Linux hosts. #479656
+	if [[ ! -L /dev/fd && ${CBUILD} == *linux* ]] ; then
+		eerror "You're missing a /dev/fd symlink to /proc/self/fd."
+		eerror "Please fix the symlink and check your boot scripts (udev/etc...)."
+		die "/dev/fd is broken"
+	fi
 
 	if [[ $(( (BASH_VERSINFO[0] << 8) + BASH_VERSINFO[1] )) -ge $(( (4 << 8) + 1 )) ]] ; then
 		# Newer bash provides this functionality.

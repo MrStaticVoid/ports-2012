@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox/virtualbox-4.2.18.ebuild,v 1.1 2013/09/08 12:37:59 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox/virtualbox-4.2.18.ebuild,v 1.6 2013/12/07 14:34:18 pacho Exp $
 
 EAPI=5
 
@@ -11,7 +11,7 @@ MY_PV="${PV/beta/BETA}"
 MY_PV="${MY_PV/rc/RC}"
 MY_P=VirtualBox-${MY_PV}
 SRC_URI="http://download.virtualbox.org/virtualbox/${MY_PV}/${MY_P}.tar.bz2
-	http://dev.gentoo.org/~polynomial-c/virtualbox/patchsets/virtualbox-4.2.2-patches-01.tar.xz"
+	http://dev.gentoo.org/~polynomial-c/${PN}/patchsets/${PN}-4.2.18-patches-01.tar.xz"
 S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Family of powerful x86 virtualization products for enterprise as well as home use"
@@ -19,7 +19,7 @@ HOMEPAGE="http://www.virtualbox.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="+additions alsa doc extensions headless java pam pulseaudio +opengl python +qt4 +sdk vboxwebsrv vnc"
 
 RDEPEND="!app-emulation/virtualbox-bin
@@ -29,6 +29,7 @@ RDEPEND="!app-emulation/virtualbox-bin
 	net-misc/curl
 	dev-libs/openssl
 	dev-libs/libxml2
+	media-libs/libpng
 	sys-libs/zlib
 	>=virtual/udev-171
 	!headless? (
@@ -53,7 +54,6 @@ DEPEND="${RDEPEND}
 	>=dev-lang/yasm-0.6.2
 	sys-devel/bin86
 	sys-power/iasl
-	media-libs/libpng
 	pam? ( sys-libs/pam )
 	sys-libs/libcap
 	doc? (
@@ -69,7 +69,7 @@ DEPEND="${RDEPEND}
 	alsa? ( >=media-libs/alsa-lib-1.0.13 )
 	!headless? ( x11-libs/libXinerama )
 	pulseaudio? ( media-sound/pulseaudio )
-	vboxwebsrv? ( >=net-libs/gsoap-2.7.13 )
+	vboxwebsrv? ( <net-libs/gsoap-2.8.13 )
 	${PYTHON_DEPS}"
 PDEPEND="additions? ( ~app-emulation/virtualbox-additions-${PV} )
 	extensions? ( ~app-emulation/virtualbox-extpack-oracle-${PV} )"
@@ -173,6 +173,8 @@ src_prepare() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}/patches"
 
+	epatch_user
+
 	# fix location of ifconfig binary (bug #455902)
 	local ifcfg="$(type -p ifconfig)"
 	if [ "${ifcfg}" != "/sbin/ifconfig" ] ; then
@@ -216,13 +218,14 @@ src_compile() {
 	# strip-flags
 
 	MAKE="kmk" emake \
-		VBOX_VERSION_STRING='$(VBOX_VERSION_MAJOR).$(VBOX_VERSION_MINOR).$(VBOX_VERSION_BUILD)'_Gentoo_ \
+		VBOX_BUILD_PUBLISHER=_Gentoo \
 		TOOL_GCC3_CC="$(tc-getCC)" TOOL_GCC3_CXX="$(tc-getCXX)" \
 		TOOL_GCC3_AS="$(tc-getCC)" TOOL_GCC3_AR="$(tc-getAR)" \
 		TOOL_GCC3_LD="$(tc-getCXX)" TOOL_GCC3_LD_SYSMOD="$(tc-getLD)" \
 		TOOL_GCC3_CFLAGS="${CFLAGS}" TOOL_GCC3_CXXFLAGS="${CXXFLAGS}" \
 		VBOX_GCC_OPT="${CXXFLAGS}" \
 		TOOL_YASM_AS=yasm KBUILD_PATH="${S}/kBuild" \
+		KBUILD_VERBOSE=2 \
 		all
 }
 

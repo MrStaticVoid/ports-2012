@@ -4,7 +4,7 @@
 
 EAPI="5-progress"
 
-inherit eutils flag-o-matic toolchain-funcs versionator
+inherit flag-o-matic toolchain-funcs versionator
 
 MAJOR_VERSION="$(get_version_component_range 1)"
 if [[ "${PV}" =~ ^[[:digit:]]+_rc[[:digit:]]*$ ]]; then
@@ -26,7 +26,7 @@ SRC_URI="${BASE_URI}/${SRC_ARCHIVE}
 LICENSE="BSD"
 # SLOT="0/${MAJOR_VERSION}"
 SLOT="0/51.2"
-KEYWORDS="~*"
+KEYWORDS="*"
 IUSE="c++11 debug doc examples static-libs"
 
 DEPEND=""
@@ -48,11 +48,9 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-4.8.1.1-fix_ltr.patch"
-
 	sed -e "s/#CXXFLAGS =/CXXFLAGS =/" -i config/icu.pc.in || die "sed failed"
 
-	# Do not hardcode flags in icu-config and icu-*.pc files.
+	# Hardcode not flags in icu-config and icu-*.pc files.
 	# https://ssl.icu-project.org/trac/ticket/6102
 	local variable
 	for variable in CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
