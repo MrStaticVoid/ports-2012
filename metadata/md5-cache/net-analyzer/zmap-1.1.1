@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst prepare test
+DEPEND=dev-libs/gmp net-libs/libpcap json? ( dev-libs/json-c ) redis? ( dev-libs/hiredis ) dev-util/gengetopt sys-devel/flex dev-util/byacc sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) filecaps? ( sys-libs/libcap )
+DESCRIPTION=Fast network scanner designed for Internet-wide network surveys
+EAPI=5
+HOMEPAGE=https://zmap.io/
+IUSE=json redis +filecaps
+KEYWORDS=~amd64 ~x86
+LICENSE=Apache-2.0
+RDEPEND=dev-libs/gmp net-libs/libpcap json? ( dev-libs/json-c ) redis? ( dev-libs/hiredis )
+SLOT=0
+SRC_URI=https://github.com/zmap/zmap/archive/v1.1.1.tar.gz -> zmap-1.1.1.tar.gz
+_eclasses_=cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fcaps	832d0c7d930e7df835c19b5d0a5f6f4b	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_md5_=6c5facdbe1abc33ab5b8cb315a6c386f

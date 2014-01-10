@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup
+DEPEND=|| ( >=dev-lang/python-2.7.5-r2:2.7 ) efi? ( >=sys-devel/binutils-2.22[multitarget] ) !efi? ( >=sys-devel/binutils-2.22[-multitarget] )
+DESCRIPTION=The Xen virtual machine monitor
+EAPI=5
+HOMEPAGE=http://xen.org/
+IUSE=custom-cflags debug efi flask xsm
+KEYWORDS=~amd64 -x86
+LICENSE=GPL-2
+PDEPEND=~app-emulation/xen-tools-4.3.1
+REQUIRED_USE=flask? ( xsm )
+RESTRICT=test
+SLOT=0
+SRC_URI=http://bits.xensource.com/oss-xen/release/4.3.1/xen-4.3.1.tar.gz
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	mount-boot	410bdaef41d2c8674e24edfa9d521177	multilib	892e597faee02a5b94eb02ab512e7622	python-any-r1	08d3455b23110d650f173ab0a090818b	python-utils-r1	49ee0ca5e1019d8f256a23692dad2642	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_md5_=0cb3ef2a7698ffe8169ea592c51e61b8

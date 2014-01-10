@@ -7,5 +7,5 @@ IUSE=10bit +interlaced opencl pic static-libs sse +threads abi_x86_32 abi_x86_64
 LICENSE=GPL-2
 RDEPEND=opencl? ( virtual/opencl ) abi_x86_32? ( !<=app-emulation/emul-linux-x86-medialibs-20130224-r7 !app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] )
 SLOT=0/138
-_eclasses_=eutils	a82a329b538368791f5a6113c60e557e	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	git-2	2027b81a576527fa16bece425941e094	git-r3	3d2603a6e66cd898e6b88e2135314bb8	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	892e597faee02a5b94eb02ab512e7622	multilib-build	fb26562acb603346bbadf9699b43ed68	multilib-minimal	130198900efb56a80d81781627c56d12	multiprocessing	326c654a30b9c5763247114fc680d5f8	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	git-2	2027b81a576527fa16bece425941e094	git-r3	3d2603a6e66cd898e6b88e2135314bb8	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	892e597faee02a5b94eb02ab512e7622	multilib-build	4441ed2f0103e470ce9626d1ccd55a34	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=34ff3f21b03b43bf01ddb59fa055a7a4

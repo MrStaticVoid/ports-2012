@@ -1,11 +1,11 @@
 DEFINED_PHASES=compile configure install prepare unpack
-DEPEND=app-text/libwpd:0.9 app-text/libwpg:0.2 dev-libs/icu:= dev-libs/libxml2 sys-libs/zlib >=dev-libs/boost-1.46 dev-util/gperf sys-devel/libtool virtual/pkgconfig doc? ( app-doc/doxygen ) || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool dev-vcs/git
+DEPEND=app-text/libwpd:0.9 dev-libs/boost:= dev-libs/libxml2 sys-libs/zlib >=dev-libs/boost-1.46 dev-util/gperf sys-devel/libtool virtual/pkgconfig doc? ( app-doc/doxygen ) test? ( dev-util/cppunit ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool dev-vcs/git
 DESCRIPTION=Library parsing Apple Keynote presentations
 EAPI=5
 HOMEPAGE=http://www.freedesktop.org/wiki/Software/libetonyek
-IUSE=doc static-libs
+IUSE=doc static-libs test
 LICENSE=|| ( GPL-2+ LGPL-2.1 MPL-1.1 )
-RDEPEND=app-text/libwpd:0.9 app-text/libwpg:0.2 dev-libs/icu:= dev-libs/libxml2 sys-libs/zlib
+RDEPEND=app-text/libwpd:0.9 dev-libs/boost:= dev-libs/libxml2 sys-libs/zlib
 SLOT=0
-_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	base	5f55566958e88506923ea360535053cc	eutils	a82a329b538368791f5a6113c60e557e	git-2	2027b81a576527fa16bece425941e094	git-r3	3d2603a6e66cd898e6b88e2135314bb8	libtool	60a86ca1cbe8068e3d9df0d3004dc520	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	326c654a30b9c5763247114fc680d5f8	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=bc7d9fcaa11f9b1d9a6e7bef71c31c5b
+_eclasses_=autotools	d76ee21296238133bd2df8dea7f33a05	base	5f55566958e88506923ea360535053cc	eutils	40081e8c7e7f7c4f9db349a1d6d52925	git-2	2027b81a576527fa16bece425941e094	git-r3	3d2603a6e66cd898e6b88e2135314bb8	libtool	bf5062d2ffe64907c251cb7636421070	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_md5_=31fb15781649bd349831ff51fc802443

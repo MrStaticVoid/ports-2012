@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst prepare test
+DEPEND=sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) virtual/pkgconfig
+DESCRIPTION=Utility for advanced configuration of Razer mice (DeathAdder, Krait, Lachesis)
+EAPI=5
+HOMEPAGE=http://bues.ch/cms/hacking/razercfg.html
+IUSE=+pm-utils qt4
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=pm-utils? ( sys-power/pm-utils ) qt4? ( dev-python/PyQt4 ) dev-lang/python
+SLOT=0
+SRC_URI=http://bues.ch/razercfg/razercfg-0.22.tar.bz2
+_eclasses_=cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	udev	a9a8d051efb42bfe884c1db82ce161de
+_md5_=a0fce52bf702617f52b66dc000cb6849

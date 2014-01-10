@@ -9,5 +9,5 @@ LICENSE=GPL-2 kicad-doc
 RDEPEND=x11-libs/wxGTK:2.8[gnome,opengl,X] dev-python/wxpython:2.8[opengl] sys-libs/zlib sci-electronics/electronics-menu
 SLOT=0
 SRC_URI=http://iut-tice.ujf-grenoble.fr/cao/kicad-sources-stable_2013-05-18_BZR4017.zip http://iut-tice.ujf-grenoble.fr/cao/kicad-2013-05-18-BZR4017-stable-UBUNTU_12.04_full_with_components_doc.tgz
-_eclasses_=cmake-utils	930116ef213eb319525fd8e27b0095ef	eutils	a82a329b538368791f5a6113c60e557e	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	gnome2-utils	eb320321b288cc6cce3638421d072825	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	unpacker	658a981a81fd7cb0767315a541bab01d	user	d0a4d0735a6c0183d707ca919bd72f28	wxwidgets	0125fdb7607a15e9047c01d27b5a6da9
+_eclasses_=cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	gnome2-utils	eb320321b288cc6cce3638421d072825	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	unpacker	04385b0f181c42fa9c18ec0e31729d1f	wxwidgets	755f4b28ecdf7c1213011108e566babc
 _md5_=7e61f9463b071a3155a1864432397cbb

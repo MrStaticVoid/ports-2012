@@ -1,5 +1,5 @@
-DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
-DEPEND=>=app-admin/system-tools-backends-2.10.1 >=dev-libs/liboobs-2.31.91 >=x11-libs/gtk+-2.19.7:2 >=dev-libs/glib-2.25.3:2 dev-libs/dbus-glib caja? ( mate-base/mate-file-manager ) sys-libs/cracklib nfs? ( net-fs/nfs-utils ) samba? ( >=net-fs/samba-3 ) policykit? ( >=sys-auth/polkit-0.92 mate-extra/mate-polkit ) app-text/docbook-xml-dtd:4.1.2 app-text/scrollkeeper app-text/mate-doc-utils virtual/pkgconfig >=dev-util/intltool-0.35.0 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 dev-util/gtk-doc dev-util/gtk-doc-am
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=app-admin/system-tools-backends-2.10.1 >=dev-libs/liboobs-2.31.91 >=x11-libs/gtk+-2.19.7:2 >=dev-libs/glib-2.25.3:2 dev-libs/dbus-glib caja? ( mate-base/mate-file-manager ) sys-libs/cracklib nfs? ( net-fs/nfs-utils ) samba? ( >=net-fs/samba-3 ) policykit? ( >=sys-auth/polkit-0.92 mate-extra/mate-polkit ) app-text/docbook-xml-dtd:4.1.2 app-text/scrollkeeper app-text/mate-doc-utils virtual/pkgconfig >=dev-util/intltool-0.35.0 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
 DESCRIPTION=Tools aimed to make easy the administration of UNIX systems
 EAPI=5
 HOMEPAGE=http://mate-desktop.org
@@ -7,8 +7,7 @@ IUSE=caja nfs policykit samba
 KEYWORDS=~amd64 ~arm ~x86
 LICENSE=GPL-2+
 RDEPEND=>=app-admin/system-tools-backends-2.10.1 >=dev-libs/liboobs-2.31.91 >=x11-libs/gtk+-2.19.7:2 >=dev-libs/glib-2.25.3:2 dev-libs/dbus-glib caja? ( mate-base/mate-file-manager ) sys-libs/cracklib nfs? ( net-fs/nfs-utils ) samba? ( >=net-fs/samba-3 ) policykit? ( >=sys-auth/polkit-0.92 mate-extra/mate-polkit )
-RESTRICT=primaryuri
 SLOT=0
 SRC_URI=http://pub.mate-desktop.org/releases/1.6/mate-system-tools-1.6.0.tar.xz
-_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	eutils	a82a329b538368791f5a6113c60e557e	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	libtool	60a86ca1cbe8068e3d9df0d3004dc520	mate	7815a2fa52f10bfff38630076b96a79b	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	mate-utils	1e95e18a611c8f19405ca1aba47f347d	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	326c654a30b9c5763247114fc680d5f8	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	a8a3963967d6140be9a14b08bb8f047f
-_md5_=04204e8842ebc3561185e7d624c74ed4
+_eclasses_=autotools	d76ee21296238133bd2df8dea7f33a05	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	1d7f799d629037ef68e456d1d33380f5	gnome2-utils	eb320321b288cc6cce3638421d072825	libtool	bf5062d2ffe64907c251cb7636421070	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=9948d71c923e4c19dd5a74f8eacb7e1a

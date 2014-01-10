@@ -8,5 +8,5 @@ LICENSE=BSD
 RDEPEND==dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://pypi/p/processing/processing-0.52.zip
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=92bd1676e0f7f4bbcec72bab0010f9d3

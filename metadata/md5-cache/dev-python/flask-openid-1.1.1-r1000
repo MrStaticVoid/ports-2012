@@ -10,5 +10,5 @@ RDEPEND=dev-python/flask[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jytho
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/F/Flask-OpenID/Flask-OpenID-1.1.1.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=b75030bb0339ca61e08fae7a13c7380f

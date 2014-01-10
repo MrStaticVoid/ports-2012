@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=dev-db/sqlite:3= dev-libs/libical:= >=mail-client/evolution-3.10.3:2.0[kerberos?] >=gnome-extra/evolution-data-server-3.10.3:=[kerberos?] >=dev-libs/glib-2.32:2 >=dev-libs/libxml2-2 >=net-libs/libsoup-2.38.1:2.4 >=x11-libs/gtk+-3:3 kerberos? ( virtual/krb5:= ) >=dev-util/gtk-doc-am-1.9 >=dev-util/intltool-0.35.5 virtual/pkgconfig app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=Evolution module for connecting to Microsoft Exchange Web Services
+EAPI=5
+HOMEPAGE=http://www.gnome.org/projects/evolution/
+IUSE=kerberos
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-2.1
+RDEPEND=dev-db/sqlite:3= dev-libs/libical:= >=mail-client/evolution-3.10.3:2.0[kerberos?] >=gnome-extra/evolution-data-server-3.10.3:=[kerberos?] >=dev-libs/glib-2.32:2 >=dev-libs/libxml2-2 >=net-libs/libsoup-2.38.1:2.4 >=x11-libs/gtk+-3:3 kerberos? ( virtual/krb5:= )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://gnome/sources/evolution-ews/3.10/evolution-ews-3.10.3.tar.xz
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	1d7f799d629037ef68e456d1d33380f5	gnome2-utils	eb320321b288cc6cce3638421d072825	libtool	bf5062d2ffe64907c251cb7636421070	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=027cf9eb7614c73516f97adf260e03cb
