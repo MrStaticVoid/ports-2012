@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install postinst setup
+DEPEND==dev-lang/python-2.7* virtual/pkgconfig
+DESCRIPTION=Proxy cache for Gentoo packages
+EAPI=4
+HOMEPAGE=http://sourceforge.net/projects/http-replicator
+KEYWORDS=~alpha ~amd64 ~hppa ~ppc ~sparc ~x86
+LICENSE=GPL-2
+RDEPEND==dev-lang/python-2.7*
+SLOT=0
+SRC_URI=mirror://sourceforge/http-replicator/http-replicator_3.0.tar.gz
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	892e597faee02a5b94eb02ab512e7622	python	66c3d00d12f20a8c0d932c1a9bebffe6	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_md5_=4fe27c9b365022afe4de60293a7dc15e

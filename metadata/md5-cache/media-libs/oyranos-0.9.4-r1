@@ -11,5 +11,5 @@ REQUIRED_USE=amd64? ( exif? ( !abi_x86_32 ) raw? ( !abi_x86_32 ) )
 RESTRICT=test
 SLOT=0
 SRC_URI=mirror://sourceforge/oyranos/Oyranos/Oyranos%200.4/oyranos-0.9.4.tar.bz2
-_eclasses_=cmake-multilib	8339f7796a9fe34e9c2e8d5288e183e8	cmake-utils	930116ef213eb319525fd8e27b0095ef	eutils	a82a329b538368791f5a6113c60e557e	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	892e597faee02a5b94eb02ab512e7622	multilib-build	fb26562acb603346bbadf9699b43ed68	multiprocessing	326c654a30b9c5763247114fc680d5f8	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=cmake-multilib	8339f7796a9fe34e9c2e8d5288e183e8	cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	892e597faee02a5b94eb02ab512e7622	multilib-build	4441ed2f0103e470ce9626d1ccd55a34	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=2a1be31d2ffad1d55e3bdee8ccd2031f

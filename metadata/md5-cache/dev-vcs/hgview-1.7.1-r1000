@@ -10,5 +10,5 @@ RDEPEND=dev-vcs/mercurial[python_abis_2.6?,python_abis_2.7?] qt4? ( dev-python/d
 REQUIRED_USE=|| ( qt4 urwid ) || ( python_abis_2.6 python_abis_2.7 )
 SLOT=0
 SRC_URI=http://download.logilab.org/pub/hgview/hgview-1.7.1.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=831b823e551852f68798241f6b008c4f

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare setup unpack
+DEPEND=>=sys-devel/clang-3.0 >=sys-devel/llvm-3.0 || ( >=dev-lang/python-2.7.5-r2:2.7 >=dev-lang/python-2.6.8-r3:2.6 ) sys-devel/bison sys-devel/flex
+DESCRIPTION=Intel SPMD Program Compiler
+EAPI=5
+HOMEPAGE=http://ispc.github.com/
+IUSE=examples
+KEYWORDS=~amd64 ~x86
+LICENSE=BSD BSD-2 UoI-NCSA
+RDEPEND=>=sys-devel/clang-3.0 >=sys-devel/llvm-3.0
+SLOT=0
+SRC_URI=https://github.com/ispc/ispc/archive/v1.6.0.tar.gz -> ispc-1.6.0.tar.gz
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	892e597faee02a5b94eb02ab512e7622	python-any-r1	08d3455b23110d650f173ab0a090818b	python-utils-r1	49ee0ca5e1019d8f256a23692dad2642	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_md5_=0689858bcb08ca30ed83c8a76de8874b

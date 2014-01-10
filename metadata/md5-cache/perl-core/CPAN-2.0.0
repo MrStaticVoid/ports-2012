@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm prepare test unpack
+DEPEND=dev-lang/perl:=[-build(-)]
+DESCRIPTION=query, download and build perl modules from CPAN sites
+EAPI=5
+HOMEPAGE=http://search.cpan.org/dist/CPAN/
+KEYWORDS=~amd64 ~x86
+LICENSE=|| ( Artistic GPL-1 GPL-2 GPL-3 )
+RDEPEND=dev-lang/perl:=[-build(-)]
+SLOT=0
+SRC_URI=mirror://cpan/authors/id/A/AN/ANDK/CPAN-2.00.tar.gz
+_eclasses_=alternatives	326031758c86cd08f5844f475f03ac01	base	5f55566958e88506923ea360535053cc	eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	perl-module	4473cd5e618d75995a1e90780cf6e3c7	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_md5_=729254cb49345e3be940df7630ab652a

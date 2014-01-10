@@ -10,5 +10,5 @@ RDEPEND=binary? ( || ( >=sys-fs/udev-160 >=virtual/udev-171 ) )
 RESTRICT=binchecks strip mirror
 SLOT=3.2.29
 SRC_URI=http://www.funtoo.org/distfiles/debian-sources/linux_3.2.29.orig.tar.xz http://www.funtoo.org/distfiles/debian-sources//linux_3.2.29-1.debian.tar.xz
-_eclasses_=eutils	a82a329b538368791f5a6113c60e557e	mount-boot	410bdaef41d2c8674e24edfa9d521177	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	mount-boot	410bdaef41d2c8674e24edfa9d521177	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=2be958ac762393e24cbd2cc11ea0ad75

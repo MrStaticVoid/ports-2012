@@ -1,19 +1,19 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/keystone/keystone-2013.2.1.ebuild,v 1.2 2013/12/19 10:04:11 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/keystone/keystone-2013.2.1.ebuild,v 1.5 2014/01/08 06:14:45 vapier Exp $
 
 EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1
+inherit distutils-r1 user
 
 DESCRIPTION="The Openstack authentication, authorization, and service catalog written in Python."
 HOMEPAGE="https://launchpad.net/keystone"
 SRC_URI="http://launchpad.net/${PN}/havana/${PV}/+download/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
-SLOT="grizzly"
+SLOT="havana"
 KEYWORDS="~amd64 ~x86"
 IUSE="+sqlite mysql postgres ldap test"
 REQUIRED_USE="|| ( mysql postgres sqlite )"
@@ -42,7 +42,7 @@ RDEPEND=">=dev-python/python-pam-0.1.4[${PYTHON_USEDEP}]
 	>=dev-python/oslo-config-1.2.0[${PYTHON_USEDEP}]
 	>=dev-python/Babel-1.3[${PYTHON_USEDEP}]
 	dev-python/oauth2[${PYTHON_USEDEP}]
-	>=dev-python/dogpile-cache-0.5.0[${PYTHON_USEDEP}]
+	>=dev-python/dogpile-cache-0.5.2[${PYTHON_USEDEP}]
 	dev-python/python-daemon[${PYTHON_USEDEP}]
 	virtual/python-argparse[${PYTHON_USEDEP}]
 	ldap? ( dev-python/python-ldap[${PYTHON_USEDEP}] )
@@ -88,10 +88,8 @@ python_prepare_all() {
 }
 
 python_test() {
-	# Ignore (naughty) test_.py files & 1 test that connect to the network
 	# https://bugs.launchpad.net/keystone/+bug/1262564
-	nosetests -I 'test_keystoneclient*' \
-		-e test_import || die "testsuite failed under python2.7"
+	nosetests || die "testsuite failed under python2.7"
 }
 
 python_install() {

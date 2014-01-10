@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
-DEPEND=app-text/ghostscript-gpl media-fonts/urw-fonts >=media-libs/freetype-2.0.1 >=media-libs/libpng-1.4 sys-libs/zlib x11-libs/gdk-pixbuf:2[X?] virtual/jpeg xml? ( expat? ( dev-libs/expat ) !expat? ( dev-libs/libxml2 ) ) X? ( x11-libs/libX11 ) virtual/pkgconfig X? ( x11-libs/libXt x11-libs/libXpm ) || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool >=sys-apps/sed-4
+DEPEND=app-text/ghostscript-gpl media-fonts/urw-fonts >=media-libs/freetype-2.0.1 >=media-libs/libpng-1.4 sys-libs/zlib x11-libs/gdk-pixbuf:2[X?] virtual/jpeg xml? ( expat? ( dev-libs/expat ) !expat? ( dev-libs/libxml2 ) ) X? ( x11-libs/libX11 ) virtual/pkgconfig X? ( x11-libs/libXt x11-libs/libXpm ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool >=sys-apps/sed-4
 DESCRIPTION=library for converting WMF files
 EAPI=5
 HOMEPAGE=http://wvware.sourceforge.net/
@@ -10,5 +10,5 @@ RDEPEND=app-text/ghostscript-gpl media-fonts/urw-fonts >=media-libs/freetype-2.0
 REQUIRED_USE=expat? ( xml )
 SLOT=0
 SRC_URI=mirror://sourceforge/wvware/libwmf-0.2.8.4.tar.gz
-_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	autotools-utils	f3015fe18e112728c1f9c46119503768	eutils	a82a329b538368791f5a6113c60e557e	gnome2-utils	eb320321b288cc6cce3638421d072825	libtool	60a86ca1cbe8068e3d9df0d3004dc520	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	326c654a30b9c5763247114fc680d5f8	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=autotools	d76ee21296238133bd2df8dea7f33a05	autotools-utils	f3015fe18e112728c1f9c46119503768	eutils	40081e8c7e7f7c4f9db349a1d6d52925	gnome2-utils	eb320321b288cc6cce3638421d072825	libtool	bf5062d2ffe64907c251cb7636421070	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
 _md5_=8bc7c7f014a4bf2bba28bce5d16631bd

@@ -10,5 +10,5 @@ RDEPEND=jack? ( media-sound/jack-audio-connection-kit ) alsa? ( >=media-libs/als
 REQUIRED_USE=|| ( alsa jack oss )
 SLOT=0
 SRC_URI=http://audicle.cs.princeton.edu/mini/release/files/miniAudicle-0.1.3.8.tgz
-_eclasses_=eutils	a82a329b538368791f5a6113c60e557e	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	wxwidgets	0125fdb7607a15e9047c01d27b5a6da9
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	wxwidgets	755f4b28ecdf7c1213011108e566babc
 _md5_=fc0d2605001e83dfef04ac50f03174ce

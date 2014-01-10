@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=zlib? ( >=sys-libs/zlib-1.2.2.3[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] ) bzip2? ( app-arch/bzip2[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] ) lzma? ( app-arch/xz-utils[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] ) !dev-libs/libelf abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r11 !app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] ) nls? ( sys-devel/gettext ) >=sys-devel/flex-2.5.4a sys-devel/m4 userland_GNU? ( >=sys-apps/coreutils-8.5 )
+DESCRIPTION=Libraries/utilities to handle ELF objects (drop in replacement for libelf)
+EAPI=4
+HOMEPAGE=https://fedorahosted.org/elfutils/
+IUSE=bzip2 lzma nls static-libs test +threads +utils zlib abi_x86_32 abi_x86_64 abi_x86_x32 abi_mips_n32 abi_mips_n64 abi_mips_o32
+KEYWORDS=~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~arm-linux ~x86-linux
+LICENSE=GPL-2-with-exceptions
+RDEPEND=zlib? ( >=sys-libs/zlib-1.2.2.3[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] ) bzip2? ( app-arch/bzip2[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] ) lzma? ( app-arch/xz-utils[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] ) !dev-libs/libelf abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r11 !app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] )
+SLOT=0
+SRC_URI=https://fedorahosted.org/releases/e/l/elfutils/0.158/elfutils-0.158.tar.bz2 https://fedorahosted.org/releases/e/l/elfutils/0.158/elfutils-portability.patch -> elfutils-0.158-portability.patch https://fedorahosted.org/releases/e/l/elfutils/0.158/elfutils-robustify.patch -> elfutils-0.158-robustify.patch
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	892e597faee02a5b94eb02ab512e7622	multilib-build	4441ed2f0103e470ce9626d1ccd55a34	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_md5_=b57e0604d64f5e4d74b539748ff896a4
