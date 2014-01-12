@@ -171,6 +171,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${PV}-0012-lvm-always-install-thin-utils-for-lvm.patch"
 	epatch "${FILESDIR}/${PV}-0013-usrmount-always-install.patch"
 	epatch "${FILESDIR}/${PV}-0014-udev-rules-add-eudev-rules.patch"
+	epatch "${FILESDIR}/${PV}-0015-crypt-fix-asking-for-password.patch"
 
 	local libdirs="/$(get_libdir) /usr/$(get_libdir)"
 	[[ $libdirs =~ /lib\  ]] || libdirs+=" /lib /usr/lib"
