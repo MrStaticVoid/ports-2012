@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=>=net-wireless/gnuradio-3.7_rc:0=[fcd?] hackrf? ( net-libs/libhackrf:= ) iqbalance? ( =net-wireless/gr-iqbal-0.37.1:= ) rtlsdr? ( net-wireless/rtl-sdr:= ) uhd? ( net-wireless/uhd:= ) python? ( =dev-lang/python-2* )
 SLOT=0/0.1.0
 SRC_URI=https://dev.gentoo.org/~zerochaos/distfiles/gr-osmosdr-0.1.0.tar.xz
-_eclasses_=cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	892e597faee02a5b94eb02ab512e7622	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=cmake-utils	237ad9142c92887acf21a7b868549e3f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	fac675dcccf94392371a6abee62d909f	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=5f78eb47d5eb42eae61adc9aa5a2ef54

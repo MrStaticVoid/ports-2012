@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/cups/cups-1.6.4.ebuild,v 1.8 2013/12/23 16:24:12 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/cups/cups-1.6.4.ebuild,v 1.11 2014/01/24 18:56:52 dilfridge Exp $
 
 EAPI=5
 
@@ -21,7 +21,7 @@ if [[ ${PV} == *9999 ]]; then
 	KEYWORDS=""
 else
 	SRC_URI="http://www.cups.org/software/${MY_PV}/${MY_P}-source.tar.bz2"
-	KEYWORDS="~alpha amd64 arm hppa ~ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd"
+	KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd"
 fi
 
 DESCRIPTION="The Common Unix Printing System"
@@ -76,8 +76,11 @@ PDEPEND="
 	filters? ( net-print/foomatic-filters )
 "
 
-REQUIRED_USE="gnutls? ( ssl )
-	python? ( ${PYTHON_REQUIRED_USE} )"
+REQUIRED_USE="
+	gnutls? ( ssl )
+	python? ( ${PYTHON_REQUIRED_USE} )
+	usb? ( threads )
+"
 
 # upstream includes an interactive test which is a nono for gentoo
 RESTRICT="test"

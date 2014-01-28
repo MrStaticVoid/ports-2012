@@ -1,4 +1,4 @@
-DEFINED_PHASES=compile configure install prepare unpack
+DEFINED_PHASES=install prepare unpack
 DEPEND=app-arch/unzip
 DESCRIPTION=Esperanto dictionaries for myspell/hunspell
 EAPI=4
@@ -7,5 +7,5 @@ KEYWORDS=alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x8
 LICENSE=GPL-2 LGPL-3 MPL-1.1
 SLOT=0
 SRC_URI=mirror://sourceforge/aoo-extensions/3377/1/1.0-dev.oxt
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	892e597faee02a5b94eb02ab512e7622	myspell-r2	003136484d2902411a2a4841efcda076	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=myspell-r2	16f301e982001f671a68d8c364cabbd0
 _md5_=e0558bc3ece7f59c6de866193d13e130

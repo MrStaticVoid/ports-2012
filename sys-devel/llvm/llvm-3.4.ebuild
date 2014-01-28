@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-3.4.ebuild,v 1.3 2014/01/08 21:42:23 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-3.4.ebuild,v 1.7 2014/01/23 13:05:27 voyageur Exp $
 
 EAPI=5
 
@@ -161,9 +161,15 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-3.2-nodoctargz.patch
 	epatch "${FILESDIR}"/${PN}-3.4-gentoo-install.patch
-	use clang && epatch "${FILESDIR}"/clang-3.4-gentoo-install.patch
 	# Hack cmake search path for Gentoo, bug #496480
 	epatch "${FILESDIR}"/${PN}-3.3-cmake-modulepath.patch
+
+	if use clang; then
+		# Automatically select active system GCC's libraries, bugs #406163 and #417913
+		epatch "${FILESDIR}"/clang-3.1-gentoo-runtime-gcc-detection-v3.patch
+
+		epatch "${FILESDIR}"/clang-3.4-gentoo-install.patch
+	fi
 
 	local sub_files=(
 		Makefile.config.in
@@ -300,7 +306,11 @@ set_makeargs() {
 				use gold && tools+=( gold )
 
 				# those require clang :)
-				use clang && tools+=( clang/tools/extra )
+				# we need to explicitly specify all its tools
+				# since we're passing BUILD_CLANG_ONLY
+				use clang && tools+=(
+					clang/tools/{clang-check,clang-format,extra}
+				)
 			fi
 		fi
 
@@ -351,6 +361,8 @@ multilib_src_test() {
 	pax-mark m unittests/ExecutionEngine/MCJIT/Release/MCJITTests
 	pax-mark m unittests/Support/Release/SupportTests
 
+	# respect TMPDIR!
+	local -x LIT_PRESERVES_TMP=1
 	emake "${MAKEARGS[@]}" check
 	use clang && emake "${MAKEARGS[@]}" -C tools/clang test
 }
@@ -368,7 +380,7 @@ src_install() {
 	multilib-minimal_src_install
 
 	# Remove unnecessary headers on FreeBSD, bug #417171
-	use kernel_FreeBSD && use clang && rm "${ED}"usr/lib/clang/${PV}/include/{arm_neon,std,float,iso,limits,tgmath,varargs}*.h
+	use kernel_FreeBSD && use clang && rm "${ED}"usr/lib/clang/${PV}/include/{std,float,iso,limits,tgmath,varargs}*.h
 }
 
 multilib_src_install() {
