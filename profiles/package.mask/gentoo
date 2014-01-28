@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15324 2014/01/10 07:26:47 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15367 2014/01/28 09:39:03 olemarkus Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,9 +30,124 @@
 
 #--- END OF EXAMPLES ---
 
-# Justin Lecher <jlec@gentoo.org> (10 Jan 2014)
-# aufs3 patches do not apply cleanly onto 3.12.7
-sys-kernel/aufs-sources:3.12.7
+# Ole Markus With <olemarkus@gentoo.org> (28 Jan 2014)
+# PHP 5.6 still in early development
+>=dev-lang/php-5.6
+
+# Dion Moult <moult@gentoo.org> (27 Jan 2014)
+# Mask for removal in 30 days. Used to be used by farsight1 but no longer. No
+# other reverse deps. (bug #489550)
+dev-libs/jrtplib
+dev-libs/jthread
+
+# Mike Gilbert <floppym@gentoo.org> (26 Jan 2014)
+# Python library that has no reverse deps. Removal in 30 days.
+dev-python/certifi
+
+# Samuli Suominen <ssuominen@gentoo.org> (24 Jan 2014)
+# Roll ~arch version back from .so.9 to .so.8 due to too many unresolved issues.
+# See http://bugs.gentoo.org/479818 for progress.
+>=media-libs/jpeg-9
+
+# Christian Ruppert <idl0r@gentoo.org> (19 Jan 2014)
+# Experimental, for now
+=dev-vcs/gitolite-gentoo-3*
+
+# Dion Moult <moult@gentoo.org> (19 Jan 2014)
+# Mask for removal in 30 days. Packages now depend on dev-lang/mono directly and
+# not on virtual/monodoc (bug #471180)
+virtual/monodoc
+
+# Dion Moult <moult@gentoo.org> (19 Jan 2014)
+# Mask for removal in 30 days. Flyte service discontinued so package is useless.
+# (bug #495138)
+app-misc/flyte-download-manager
+
+# Mike Gilbert <floppym@gentoo.org> (19 Jan 2014)
+# To prevent accidental switching of release channels (bug 498306),
+# google-chrome has been split into 3 packages:
+#
+# www-client/google-chrome
+# www-client/google-chrome-beta
+# www-client/google-chrome-unstable
+#
+# The stable channel remains as www-client/google-chrome, but has been
+# switched to SLOT="0".
+#
+# Please unmerge your currently installed version and remerge one of the new
+# packages.
+www-client/google-chrome:beta
+www-client/google-chrome:stable
+www-client/google-chrome:unstable
+
+# Eray Aslan <eras@gentoo.org> (18 Jan 2014)
+# Mask experimental software
+=mail-mta/postfix-2.12*
+
+# Alexis Ballier <aballier@gentoo.org> (18 Jan 2014)
+# Rev. deps fail to build
+>=media-libs/aubio-0.4
+
+# Pawel Hajdan jr <phajdan.jr@gentoo.org> (18 Jan 2014)
+# Dev channel releases are only for people who are developers or want more
+# experimental features and accept a more unstable release.
+>=www-client/chromium-34
+
+# Michael Sterrett <mr_bones_@gentoo.org> (16 Jan 2014)
+# testing mask for 3.5.x releases
+>=app-admin/syslog-ng-3.5
+
+# Lars Wendler <polynomial-c@gentoo.org>
+# Multilib ready ebuild (bug #496218). Collides with emul-linux-x86-baselibs
+=sys-devel/gettext-0.18.3.2
+=virtual/libintl-0-r1
+
+# Michał Górny <mgorny@gentoo.org> (15 Jan 2014)
+# Multilib conversion and Python support code seriously broken.
+# Has dependencies that are not converted to multilib yet.
+# Do not unmask without prior review from multilib@g.o.
+# https://bugs.gentoo.org/show_bug.cgi?id=474654#c5
+=media-gfx/exiv2-0.23-r2
+
+# Joerg Bornkessel <hd_brummy@gentoo.org (14 Jan 2014)
+# plugin fails on compile >=vdr-1.7.27
+# dead on upstream, dead on src-uri, wrt bug 414181
+# removal ~ 14/02/2014
+media-plugins/vdr-xxvautotimer
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (14 Jan 2014)
+# plugin fails on compile >=vdr-1.7.27
+# dead on upstream, wrt bug 414887
+# removal ~ 14/02/2014
+media-plugins/vdr-skinclassic
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (14 Jan 2014)
+# plugin fails on compile
+# dead on upstream, wrt bug 420869
+# removal ~ 14/02/2014
+media-plugins/vdr-sky
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (14 Jan 2014)
+# vdr-skinreel fails on compile >=vdr-1.7.27
+# see wrt bug 420873
+# removal ~ 14/02/2014
+media-plugins/vdr-skinreel
+
+# Tony Vroon <chainsaw@gentoo.org> (13 Jan 2014)
+# Asterisk 12 is a short term "standard" release 
+# containing significant architectural changes.
+# This is not for your production kit quite yet.
+=net-misc/asterisk-12*
+
+# Markus Meier <maekke@gentoo.org> (12 Jan 2014)
+# masked for testing
+>=media-libs/libpano13-2.9.19_beta1
+>=media-gfx/hugin-2014.0.0_beta1
+
+# Magnus Granberg <zorry@gentoo.org>
+# Gcc 4.8.2-r1 has default ssp and need testing,
+# See #484714
+=sys-devel/gcc-4.8.2-r1
 
 # Tom Wijsman <TomWij@gentoo.org> (09 Jan 2014)
 # Monolithic dev-dotnet/{gnome,gtk}-sharp introduction mask, see bug #382491.
@@ -103,16 +218,6 @@ media-plugins/vdr-dvdconvert
 # masked for removal ~08 Feb 2014, wrt bug 424257
 media-plugins/vdr-analogtv
 
-# Michał Górny <mgorny@gentoo.org> (06 Jan 2014)
-# Masked for testing.
-~sys-devel/clang-3.4
-~sys-devel/llvm-3.4
-~sys-devel/dragonegg-3.4
-
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (06 Jan 2014)
-# Needs >=llvm-3.4 which is currently only available as live ebuild
-=dev-libs/libclc-0.0.1_pre20140101
-
 # Pacho Ramos <pacho@gentoo.org> (02 Jan 2014)
 # Breaks reverse dependencies and upstream don't want us
 # to use it (#483562)
@@ -147,11 +252,6 @@ sys-kernel/module-rebuild
 # the faenza-icon-theme itself for a long time now.
 # Removal in 30 days.
 x11-themes/faenza-xfce-icon-theme
-
-# Hans de Graaff <graaff@gentoo.org> (25 Dec 2013)
-# Masked for removal in 30 days. Doesn't work with ruby19
-# and ruby20, dead upstream, no dependencies in the tree.
-dev-ruby/arrayfields
 
 # Gilles Dartiguelongue <eva@gentoo.org> (23 Dec 2013)
 # Gnome 3.10 mask
@@ -288,25 +388,13 @@ dev-ruby/arrayfields
 >=x11-themes/gnome-icon-theme-3.10
 >=x11-themes/gnome-icon-theme-symbolic-3.10
 >=x11-themes/gnome-themes-standard-3.10
+>=x11-themes/oxygen-gtk-1.3.3:3
 >=x11-wm/mutter-3.10
 
 # Sergey Popov <pinkbyte@gentoo.org> (23 Dec 2013)
 # Masked for removal, please migrate to dev-python/irc,
 # which is in fact just a newer version of this package.
 dev-python/python-irclib
-
-# Hans de Graaff <graaff@gentoo.org> (21 Dec 2013)
-# Masked for removal as part of the ruby18 deprecation.
-# These database bindings only work with ruby18 and are
-# no longer used by other packages in the tree.
-dev-ruby/dbi
-dev-ruby/dbd-mysql
-dev-ruby/dbd-odbc
-dev-ruby/dbd-pg
-dev-ruby/dbd-sqlite
-dev-ruby/dbd-sqlite3
-dev-ruby/sqlite-ruby
-
 
 # Luca Barbato <lu_zero@gentoo.org> (18 Dec 2013)
 # Alpha ebuild, unmask to test the tree.
@@ -315,7 +403,8 @@ dev-ruby/sqlite-ruby
 # Michał Górny <mgorny@gentoo.org> (15 Dec 2013)
 # Masked for testing due to almost complete redesign. It is now
 # completely split and no longer has an integrated GUI. Currently,
-# the only working GUI is the PyQt4 GUI.
+# the only working GUI is the PyQt4 GUI and it has license issues
+# (bug #494524).
 >=games-emulation/mupen64plus-2
 games-emulation/mupen64plus-core
 games-emulation/mupen64plus-audio-sdl
@@ -325,37 +414,6 @@ games-emulation/mupen64plus-ui-console
 games-emulation/mupen64plus-video-glide64mk2
 games-emulation/mupen64plus-video-rice
 games-emulation/m64py
-
-# Hans de Graaff <graaff@gentoo.org> (15 Dec 2013)
-# Masked for removal in a month due to ruby18 deprecation.
-# Rails 2.3 is only available for ruby18 in Gentoo, and it
-# is also officially no longer supported upstream.
-# This mask contains the Rails 2.3 packages and packages
-# directly related to it, or packages depending on it.
-# Rails 2.3 also has open security issues (bug #406547)
-dev-ruby/radiant
-dev-ruby/rails:2.3
-dev-ruby/actionpack:2.3
-dev-ruby/actionmailer:2.3
-dev-ruby/activerecord:2.3
-dev-ruby/activeresource:2.3
-dev-ruby/activesupport:2.3
-dev-ruby/actionwebservice:2.3
-dev-ruby/i18n:0.4
-dev-ruby/will_paginate:2.3
-dev-ruby/gettext_activerecord
-dev-ruby/gettext_rails
-
-
-# Johannes Huber <johu@gentoo.org> (14 Dec 2013)
-# Masked for removal in 30 days. Not packaged in current
-# stable KDE SC 4.11 and later.
-kde-base/kdegraphics-strigi-analyzer
-kde-base/kdesdk-misc
-kde-base/kdesdk-scripts
-kde-base/kstartperf
-kde-base/kuiviewer
-kde-base/solid
 
 # Ben de Groot <yngwin@gentoo.org> (08 Dec 2013)
 # New header location breaks compilation of reverse dependencies,
@@ -367,15 +425,6 @@ kde-base/solid
 <media-tv/mythtv-0.26
 <media-plugins/mythplugins-0.26
 <www-apps/mythweb-0.26
-
-# Hans de Graaff <graaff@gentoo.org> (30 Nov 2013)
-# Masked for removal in a month due to ruby18 deprecation.
-# Only available for ruby18 which is deprecated, bug 483600
-app-i18n/rskkserv
-# Only available for ruby18, maintainer needed
-app-office/rabbit
-# Only available for ruby18, no dependencies left
-dev-ruby/postgres
 
 # Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (10 Nov 2013)
 # Causes build failures, bug #492800
@@ -391,11 +440,6 @@ dev-ruby/postgres
 # Masked for testing
 ~dev-util/boost-build-1.55.0
 ~dev-libs/boost-1.55.0
-
-# Mike Gilbert <floppym@gentoo.org> (12 Nov 2013)
-# Dev channel releases are only for people who are developers or want more
-# experimental features and accept a more unstable release.
->=www-client/chromium-33
 
 # Ben de Groot <yngwin@gentoo.org> (11 Nov 2013)
 # Mask older roboto versions to give users a regular upgrade path
@@ -496,35 +540,6 @@ virtual/perl-B-Debug
 # Mask 5.1 series because the backport of the CVE-2012-5627
 # has not be done. bug #446240 comment 2
 =dev-db/mariadb-5.1.67
-
-# Tom Wijsman <TomWij@gentoo.org> (28 Aug 2013)
-# on behalf of Luca Barbato <lu_zero@gentoo.org>
-# Masked new bash-completion, because it breaks
-# starting bash for some users, has broken
-# bash completions (eg. git) and some people
-# manually need to source bash completions after
-# a lot of confusion what is really going on.
-#
-# These packages need one or more of: a news
-# article explaining what is going on and what
-# the new way of using bash completions is, bug
-# fixes such that a large share just works and
-# consider to bring back lost the lost eselect.
-#
-# References:
-#
-# - Bug #395091 Comment #17: Is there any plan?
-# - Bug #476992 Comment #5: This doesn't imply that I like ...
-# - Bug #477920: 'git-prompt' is not really a bash-completion file.
-# - Bug #477380: Tracker for changed install paths.
-# - Bug #482732: After upgrade, 'bash' hangs on startup.
-# - Bugs: https://bugs.gentoo.org/buglist.cgi?quicksearch=bash-completion
-# - Bugs: https://bugs.gentoo.org/buglist.cgi?quicksearch="bash%20completion"
-# - Forum: http://forums.gentoo.org/viewtopic-t-964768.html
-#
-# Masked for QA problems and regressions.
-=app-shells/bash-completion-2.1-r1
-=app-shells/gentoo-bashcomp-20130804
 
 # Sergey Popov <pinkbyte@gentoo.org> (27 Aug 2013)
 # Masked for testing
@@ -667,12 +682,6 @@ x11-misc/pcmanfm-qt
 # Masked to get 0.10 tested
 =net-libs/nodejs-0.11*
 
-# Mike Gilbert <floppym@gentoo.org> (04 Apr 2013)
-# Dev channel releases are only for people who are developers or want more
-# experimental features and accept a more unstable release.
-www-client/google-chrome:unstable
-www-plugins/chrome-binary-plugins:unstable
-
 # Sergey Popov <pinkbyte@gentoo.org> (02 Apr 2013)
 # Masking =media-libs/ffmpegsource-2.17.4_pre753
 # by maintainer's request.
@@ -713,10 +722,6 @@ media-gfx/yablex
 # Davide Pesavento <pesa@gentoo.org> (02 Mar 2013)
 # Depends on blender, which is masked.
 media-gfx/yafaray
-
-# Eray Aslan <eras@gentoo.org> (13 Feb 2013)
-# Mask experimental software
-=mail-mta/postfix-2.11*
 
 # Doug Goldstein <cardoe@gentoo.org> (22 Jan 2013)
 # Masked for development
@@ -767,11 +772,6 @@ app-benchmarks/ltp
 # Still requires ocaml-3, mask it until it is ported. If this does not happen in
 # the near future, we should consider removing it.
 dev-ml/ocamlduce
-
-# Diego Elio Pettenò <flameeyes@gentoo.org> (1 Nov 2012)
-# See tracker bug #440342. Will probably require GNOME 3.6 to be
-# unmasked first.
-=dev-libs/libtasn1-3*
 
 # Pacho Ramos <pacho@gentoo.org> (25 Oct 2012)
 # obexd changed its API without any warning, it's recommended to ship
@@ -1028,7 +1028,6 @@ sys-auth/pam_keystore
 # per QA team policy, all these need to be kept masked by default, if
 # available in the tree.
 ~app-doc/devmanual-9999
-~app-editors/emacs-vcs-24.3.9999
 =app-forensics/openscap-9999
 ~app-i18n/skk-jisyo-9999
 =app-misc/mc-9999

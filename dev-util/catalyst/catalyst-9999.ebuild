@@ -1,12 +1,13 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/catalyst/catalyst-9999.ebuild,v 1.30 2014/01/02 20:40:19 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/catalyst/catalyst-9999.ebuild,v 1.32 2014/01/18 11:38:05 vapier Exp $
 
 EAPI=5
 
 if [[ ${PV} == *9999* ]]; then
 	SRC_ECLASS="git-2"
-	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/catalyst.git"
+	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/catalyst.git
+		http://dev.gentoo.org/~dolsen/catalyst/"
 	EGIT_MASTER="master"
 	SRC_URI=""
 	KEYWORDS=""
@@ -15,7 +16,7 @@ else
 	SRC_URI="mirror://gentoo/${P}.tar.bz2
 		http://dev.gentoo.org/~jmbsvicetto/distfiles/${P}.tar.bz2
 		http://dev.gentoo.org/~zerochaos/distfiles/${P}.tar.bz2"
-	KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~x86-fbsd"
+	KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~x86-fbsd"
 fi
 
 PYTHON_COMPAT=( python{2_6,2_7} )

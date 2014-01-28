@@ -10,5 +10,5 @@ RDEPEND=~app-admin/system-config-printer-common-1.3.12 dev-python/notify-python 
 RESTRICT=test
 SLOT=0
 SRC_URI=http://cyberelk.net/tim/data/system-config-printer/1.3/system-config-printer-1.3.12.tar.xz
-_eclasses_=autotools	d76ee21296238133bd2df8dea7f33a05	eutils	40081e8c7e7f7c4f9db349a1d6d52925	libtool	bf5062d2ffe64907c251cb7636421070	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=autotools	d76ee21296238133bd2df8dea7f33a05	eutils	40081e8c7e7f7c4f9db349a1d6d52925	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=eabbb6898130d34cd49543850c8d2cb2

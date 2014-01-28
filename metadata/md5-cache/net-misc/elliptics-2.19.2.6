@@ -1,6 +1,6 @@
 DEFINED_PHASES=compile configure install prepare setup test
 DEPEND=app-arch/snappy dev-libs/openssl fastcgi? ( dev-libs/fcgi ) net-misc/elliptics-eblob dev-libs/boost[python] dev-libs/libevent dev-libs/leveldb dev-libs/smack dev-db/kyotocabinet net-misc/cocaine-core net-libs/zeromq =dev-lang/python-2* sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
-DESCRIPTION=Based on the toolchain-funcs eclass
+DESCRIPTION=Elliptics network is a fault tolerant key/value storage without dedicated metadata servers
 EAPI=4
 HOMEPAGE=http://www.ioremap.net/projects/elliptics
 IUSE=fastcgi python
@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=app-arch/snappy dev-libs/openssl fastcgi? ( dev-libs/fcgi ) net-misc/elliptics-eblob dev-libs/boost[python] dev-libs/libevent dev-libs/leveldb dev-libs/smack dev-db/kyotocabinet net-misc/cocaine-core net-libs/zeromq =dev-lang/python-2*
 SLOT=0
 SRC_URI=https://github.com/reverbrain/elliptics/archive/v2.19.2.6.tar.gz
-_eclasses_=cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	892e597faee02a5b94eb02ab512e7622	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=cmake-utils	237ad9142c92887acf21a7b868549e3f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	fac675dcccf94392371a6abee62d909f	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=bf76b50bd70924253fa88d5e416699a6

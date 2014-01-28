@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.8.3-r201.ebuild,v 1.13 2013/10/10 23:43:20 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.8.3-r201.ebuild,v 1.15 2014/01/24 19:06:31 vapier Exp $
 
 EAPI=5
 
@@ -36,7 +36,7 @@ RDEPEND="
 	>=x11-libs/pango-1.21
 	x11-libs/libXrender
 
-	geoloc? ( app-misc/geoclue )
+	geoloc? ( app-misc/geoclue:0 )
 
 	gstreamer? (
 		media-libs/gstreamer:0.10
@@ -137,6 +137,8 @@ src_prepare() {
 
 	# Bad utf8 data is being passed to enchant_dict_check, bug #447500
 	epatch "${FILESDIR}/${PN}-1.8.3-spellchecker.patch"
+
+	epatch "${FILESDIR}/${PN}-1.8.3-bison-3.patch" #485818
 
 	# Drop DEPRECATED flags
 	sed -i -e 's:-D[A-Z_]*DISABLE_DEPRECATED:$(NULL):g' GNUmakefile.am || die

@@ -1,4 +1,4 @@
-DEFINED_PHASES=compile install postinst preinst prepare setup unpack
+DEFINED_PHASES=compile install postinst postrm preinst prepare prerm setup unpack
 DEPEND=binary? ( >=sys-kernel/genkernel-3.4.12.6-r4 )
 DESCRIPTION=Ubuntu Server sources (and optional binary kernel)
 EAPI=2
@@ -10,5 +10,5 @@ RDEPEND=binary? ( >=sys-fs/udev-160 )
 RESTRICT=binchecks strip
 SLOT=3.2.0.23.36
 SRC_URI=http://archive.ubuntu.com/ubuntu/pool/main/l/linux/./linux_3.2.0.orig.tar.gz http://archive.ubuntu.com/ubuntu/pool/main/l/linux/linux_3.2.0-23.36.diff.gz http://kernel.ubuntu.com/~kernel-ppa/configs/precise/amd64-config.flavour.generic http://kernel.ubuntu.com/~kernel-ppa/configs/precise/i386-config.flavour.generic
-_eclasses_=mount-boot	410bdaef41d2c8674e24edfa9d521177
+_eclasses_=mount-boot	02dd3bb4c5f025fef0fc3ade0f27c217
 _md5_=40beac3ec7b0cf94ffd1547175ab0018

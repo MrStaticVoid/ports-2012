@@ -10,5 +10,5 @@ RDEPEND=>=media-libs/libpng-1.4 media-libs/libsdl[joystick] link? ( media-libs/l
 REQUIRED_USE=|| ( sdl gtk wxwidgets )
 SLOT=0
 SRC_URI=http://dev.gentoo.org/~radhermit/distfiles/vbam-1.8.0.1197.tar.xz
-_eclasses_=base	5f55566958e88506923ea360535053cc	cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	games	0fb7637597e0869f6c8be79b11d0135a	gnome2-utils	eb320321b288cc6cce3638421d072825	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	wxwidgets	755f4b28ecdf7c1213011108e566babc
+_eclasses_=base	5f55566958e88506923ea360535053cc	cmake-utils	237ad9142c92887acf21a7b868549e3f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	games	4ec77bd42c2d1f20bb686dd0d63b9fb9	gnome2-utils	eb320321b288cc6cce3638421d072825	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	user	d0a4d0735a6c0183d707ca919bd72f28	wxwidgets	755f4b28ecdf7c1213011108e566babc
 _md5_=e58b7bbe04fbb6379e1ec0600cfa10e7

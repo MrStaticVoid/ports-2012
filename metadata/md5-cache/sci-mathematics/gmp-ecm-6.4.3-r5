@@ -1,6 +1,6 @@
 DEFINED_PHASES=compile configure install test
 DEPEND=<dev-libs/gmp-5.1.0 blas? ( sci-libs/gsl ) gwnum? ( sci-mathematics/gwnum ) openmp? ( sys-devel/gcc[openmp] )
-DESCRIPTION=Based on the toolchain-funcs eclass
+DESCRIPTION=Elliptic Curve Method for Integer Factorization
 EAPI=4
 HOMEPAGE=http://ecm.gforge.inria.fr/
 IUSE=+blas +custom-tune gwnum -openmp test
@@ -10,5 +10,5 @@ RDEPEND=<dev-libs/gmp-5.1.0 blas? ( sci-libs/gsl ) gwnum? ( sci-mathematics/gwnu
 REQUIRED_USE=gwnum? ( !openmp )
 SLOT=0
 SRC_URI=https://gforge.inria.fr/frs/download.php/30965/gmp-ecm-6.4.3.tar.gz
-_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	892e597faee02a5b94eb02ab512e7622	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=452141826ab15e8eb356b0244148c3db

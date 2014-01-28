@@ -8,5 +8,5 @@ LICENSE=BSD-2
 RDEPEND=media-libs/lcms:2=[static-libs?] media-libs/libpng:0=[static-libs?] media-libs/tiff:0=[static-libs?] sys-libs/zlib:=[static-libs?]
 RESTRICT=test
 SLOT=2
-_eclasses_=cmake-utils	c1adf5cca3394be84cbc3fdd9ab18ce1	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	892e597faee02a5b94eb02ab512e7622	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142
+_eclasses_=cmake-utils	237ad9142c92887acf21a7b868549e3f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multilib	fac675dcccf94392371a6abee62d909f	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=085450a7931b66d185b3cc4c9a538bdd

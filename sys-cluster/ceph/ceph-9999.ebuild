@@ -1,11 +1,12 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/ceph/ceph-9999.ebuild,v 1.4 2013/04/12 10:21:14 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/ceph/ceph-9999.ebuild,v 1.8 2014/01/26 08:40:49 dlan Exp $
 
 EAPI=5
+PYTHON_COMPAT=( python{2_6,2_7} )
 
 if [[ $PV = *9999* ]]; then
-	scm_eclass=git-2
+	scm_eclass=git-r3
 	EGIT_REPO_URI="
 		git://github.com/ceph/ceph.git
 		https://github.com/ceph/ceph.git"
@@ -16,24 +17,27 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-inherit autotools eutils multilib udev ${scm_eclass}
+inherit autotools eutils multilib python-any-r1 udev ${scm_eclass}
 
 DESCRIPTION="Ceph distributed filesystem"
 HOMEPAGE="http://ceph.com/"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-IUSE="debug fuse gtk libatomic radosgw static-libs tcmalloc"
+IUSE="cryptopp debug fuse gtk libatomic +libaio +nss radosgw static-libs tcmalloc"
 
 CDEPEND="
 	app-arch/snappy
-	dev-libs/boost
+	dev-libs/boost:=[threads]
 	dev-libs/fcgi
 	dev-libs/libaio
 	dev-libs/libedit
-	dev-libs/leveldb
-	dev-libs/crypto++
+	dev-libs/leveldb[snappy]
+	nss? ( dev-libs/nss )
+	cryptopp? ( dev-libs/crypto++ )
 	sys-apps/keyutils
+	sys-apps/util-linux
+	dev-libs/libxml2
 	fuse? ( sys-fs/fuse )
 	libatomic? ( dev-libs/libatomic_ops )
 	gtk? (
@@ -47,25 +51,40 @@ CDEPEND="
 		net-misc/curl
 	)
 	tcmalloc? ( dev-util/google-perftools )
+	$(python_gen_any_dep '
+	virtual/python-argparse[${PYTHON_USEDEP}]
+	' )
+	${PYTHON_DEPS}
 	"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}
-	sys-fs/btrfs-progs"
+	sys-apps/hdparm
+	sys-block/parted
+	sys-fs/cryptsetup
+	sys-fs/btrfs-progs
+	$(python_gen_any_dep '
+	dev-python/flask[${PYTHON_USEDEP}]
+	dev-python/requests[${PYTHON_USEDEP}]
+	' )"
+REQUIRED_USE="
+	^^ ( nss cryptopp )
+	"
 
 STRIP_MASK="/usr/lib*/rados-classes/*"
+
+pkg_setup() {
+	python-any-r1_pkg_setup
+}
 
 src_prepare() {
 	if [ ! -z ${PATCHES[@]} ]; then
 		epatch ${PATCHES[@]}
 	fi
-	sed -e 's:invoke-rc\.d.*:/etc/init.d/ceph reload >/dev/null:' \
-		-i src/logrotate.conf || die
-	sed -i "/^docdir =/d" src/Makefile.am || die #fix doc path
-	# disable testsnaps
-	sed -e '/testsnaps/d' -i src/Makefile.am || die
 	sed -e "/bin=/ s:lib:$(get_libdir):" "${FILESDIR}"/${PN}.initd \
 		> "${T}"/${PN}.initd || die
+
+	epatch_user
 	eautoreconf
 }
 
@@ -76,7 +95,10 @@ src_configure() {
 		--includedir=/usr/include \
 		$(use_with debug) \
 		$(use_with fuse) \
+		$(use_with libaio) \
 		$(use_with libatomic libatomic-ops) \
+		$(use_with nss) \
+		$(use_with cryptopp) \
 		$(use_with radosgw) \
 		$(use_with gtk gtk2) \
 		$(use_enable static-libs static) \
@@ -87,8 +109,6 @@ src_install() {
 	default
 
 	prune_libtool_files --all
-
-	rmdir "${ED}/usr/sbin"
 
 	exeinto /usr/$(get_libdir)/ceph
 	newexe src/init-ceph ceph_init.sh
@@ -104,6 +124,10 @@ src_install() {
 
 	newinitd "${T}/${PN}.initd" ${PN}
 	newconfd "${FILESDIR}/${PN}.confd" ${PN}
+
+	_python_rewrite_shebang \
+		"${ED}"/usr/sbin/{ceph-disk,ceph-create-keys} \
+		"${ED}"/usr/bin/{ceph,ceph-rest-api}
 
 	#install udev rules
 	udev_dorules udev/50-rbd.rules

@@ -8,5 +8,5 @@ KEYWORDS=*
 LICENSE=BSD
 SLOT=0/52
 SRC_URI=http://download.icu-project.org/files/icu4c/52.1/icu4c-52_1-src.tgz doc? ( http://download.icu-project.org/files/icu4c/52.1/icu4c-52_1-docs.zip )
-_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	892e597faee02a5b94eb02ab512e7622	multilib-build	4441ed2f0103e470ce9626d1ccd55a34	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	versionator	a8a3963967d6140be9a14b08bb8f047f
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	16ef76b5d4e4752929dacf8c3a640539	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
 _md5_=e57a4ebdbdee7a300bcb80e41f09c369
