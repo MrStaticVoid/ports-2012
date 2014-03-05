@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/qtcurve/qtcurve-1.8.17-r1.ebuild,v 1.1 2013/11/04 14:26:10 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/qtcurve/qtcurve-1.8.17-r1.ebuild,v 1.4 2014/01/26 12:24:09 ago Exp $
 
 EAPI=5
 KDE_REQUIRED="optional"
@@ -16,7 +16,7 @@ if [[ ${PV} == *9999* ]]; then
 else
 	SRC_URI="https://github.com/QtCurve/${PN}/archive/${PV}.tar.gz  -> ${P}.tar.gz
 		https://github.com/QtCurve/${PN}/commit/69047935dd4a9549d238cbc457e9c3cfa37386ae.patch -> ${P}-old_config_file.patch"
-	KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+	KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 sparc ~x86"
 fi
 
 LICENSE="GPL-2"
@@ -27,13 +27,15 @@ REQUIRED_USE="gtk? ( X )
 	|| ( gtk qt4 qt5 )"
 
 RDEPEND="X? ( x11-libs/libxcb
-		x11-libs/libX11 )
+		x11-libs/libX11
+		x11-libs/xcb-util-image )
 	gtk? ( x11-libs/gtk+:2 )
 	qt4? ( dev-qt/qtdbus:4
 		dev-qt/qtgui:4
 		dev-qt/qtsvg:4
 	)
-	qt5? ( dev-qt/qtgui:5
+	qt5? ( dev-qt/qtdeclarative:5
+		dev-qt/qtgui:5
 		dev-qt/qtsvg:5
 		dev-qt/qtwidgets:5
 		X? ( dev-qt/qtdbus:5
@@ -48,7 +50,6 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 DOCS=( AUTHORS ChangeLog.md README.md TODO.md )
-
 PATCHES=( "${DISTDIR}/${P}-old_config_file.patch" )
 
 pkg_setup() {

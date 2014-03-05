@@ -7,5 +7,5 @@ LICENSE=GPL-2
 RDEPEND=dev-lang/python app-crypt/gnupg
 SLOT=0
 SRC_URI=http://download.gna.org/geekcredit/gc-0.019.tgz
-_eclasses_=python	78a4afe9781c7107d0f91c07aae92026
+_eclasses_=python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=d8fab898c83cec017c7e26a8d2b7927d

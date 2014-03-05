@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-9.2.5.ebuild,v 1.1 2013/12/16 22:06:52 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-9.2.5.ebuild,v 1.5 2014/01/26 20:28:12 chithanh Exp $
 
 EAPI=5
 
@@ -128,14 +128,16 @@ done
 
 DEPEND="${RDEPEND}
 	llvm? (
+		<sys-devel/llvm-3.4[${MULTILIB_USEDEP}]
 		>=sys-devel/llvm-2.9[${MULTILIB_USEDEP}]
 		r600-llvm-compiler? ( sys-devel/llvm[video_cards_radeon] )
 		video_cards_radeonsi? ( sys-devel/llvm[video_cards_radeon] )
 	)
 	opencl? (
-				>=sys-devel/llvm-3.3-r1[video_cards_radeon,${MULTILIB_USEDEP}]
-				>=sys-devel/clang-3.3[${MULTILIB_USEDEP}]
-				>=sys-devel/gcc-4.6
+		<sys-devel/llvm-3.4[video_cards_radeon,${MULTILIB_USEDEP}]
+		>=sys-devel/llvm-3.3-r1[video_cards_radeon,${MULTILIB_USEDEP}]
+		>=sys-devel/clang-3.3[${MULTILIB_USEDEP}]
+		>=sys-devel/gcc-4.6
 	)
 	sys-devel/bison
 	sys-devel/flex
@@ -149,7 +151,7 @@ DEPEND="${RDEPEND}
 "
 
 python_check_deps() {
-	has_version "dev-libs/libxml2[python,${PYTHON_USEDEP}]"
+	has_version --host-root "dev-libs/libxml2[python,${PYTHON_USEDEP}]"
 }
 
 S="${WORKDIR}/${MY_P}"

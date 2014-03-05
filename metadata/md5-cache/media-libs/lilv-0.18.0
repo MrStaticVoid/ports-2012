@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=media-libs/lv2 >=media-libs/sratom-0.4.0 >=dev-libs/serd-0.14.0 >=dev-libs/sord-0.12.0 doc? ( app-doc/doxygen ) virtual/pkgconfig dev-lang/python !dev-lang/python[-threads]
+DESCRIPTION=Library to make the use of LV2 plugins as simple as possible for applications
+EAPI=4
+HOMEPAGE=http://drobilla.net/software/lilv/
+IUSE=doc +dyn-manifest static-libs test
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=ISC
+RDEPEND=media-libs/lv2 >=media-libs/sratom-0.4.0 >=dev-libs/serd-0.14.0 >=dev-libs/sord-0.12.0
+SLOT=0
+SRC_URI=http://download.drobilla.net/lilv-0.18.0.tar.bz2
+_eclasses_=base	5f55566958e88506923ea360535053cc	bash-completion-r1	2ba44308a7ebbf2a3b15cd8169b94d21	eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	waf-utils	771bf8669de03cb9159c8f1566cda0e0
+_md5_=1906aa86e235fee29b0dfb7b17db513b

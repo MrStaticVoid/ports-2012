@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND==dev-lang/python-2*
 SLOT=0
 SRC_URI=http://www.pykota.com/software/pkipplib/download/tarballs/pkipplib-0.07.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	78a4afe9781c7107d0f91c07aae92026
+_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=1f78bc77a23032d580856deabc282190

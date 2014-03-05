@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/jabberd2/jabberd2-2.3.1-r1.ebuild,v 1.1 2013/12/15 12:48:59 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/jabberd2/jabberd2-2.3.1-r1.ebuild,v 1.7 2014/01/23 14:48:32 hasufell Exp $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ SRC_URI="https://github.com/jabberd2/jabberd2/releases/download/jabberd-${PV}/ja
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="amd64 ppc sparc x86 ~x86-fbsd"
 IUSE="berkdb debug ldap memdebug mysql pam postgres sqlite ssl test zlib"
 REQUIRED_USE="memdebug? ( debug )"
 
@@ -128,6 +128,9 @@ src_install() {
 	docinto tools
 	dodoc tools/db-setup{.mysql,.pgsql,.sqlite} \
 		tools/{migrate-jd14dir-2-sqlite.pl,pipe-auth.pl}
+
+	# remove useless upstart files wrt #498900
+	rm -rf "${ED%/}"/usr/etc
 }
 
 pkg_postinst() {

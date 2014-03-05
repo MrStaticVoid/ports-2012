@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare setup test
-DEPEND=python? ( python_single_target_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-lang/python-exec:=[python_targets_python2_7(-)?,python_single_target_python2_7(+)?] ) abi_x86_32? ( !<=app-emulation/emul-linux-x86-soundlibs-20130224-r1 !app-emulation/emul-linux-x86-soundlibs[-abi_x86_32(-)] ) doc? ( >=app-doc/doxygen-1.2.6 ) || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool userland_GNU? ( >=sys-apps/coreutils-8.5 )
+DEPEND=python? ( python_single_target_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-lang/python-exec:=[python_targets_python2_7(-)?,python_single_target_python2_7(+)?] ) abi_x86_32? ( !<=app-emulation/emul-linux-x86-soundlibs-20130224-r1 !app-emulation/emul-linux-x86-soundlibs[-abi_x86_32(-)] ) doc? ( >=app-doc/doxygen-1.2.6 ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool userland_GNU? ( >=sys-apps/coreutils-8.5 )
 DESCRIPTION=Advanced Linux Sound Architecture Library
 EAPI=5
 HOMEPAGE=http://www.alsa-project.org/
@@ -9,5 +9,5 @@ LICENSE=LGPL-2.1
 RDEPEND=python? ( python_single_target_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-lang/python-exec:=[python_targets_python2_7(-)?,python_single_target_python2_7(+)?] ) abi_x86_32? ( !<=app-emulation/emul-linux-x86-soundlibs-20130224-r1 !app-emulation/emul-linux-x86-soundlibs[-abi_x86_32(-)] )
 SLOT=0
 SRC_URI=mirror://alsaproject/lib/alsa-lib-1.0.27.1.tar.bz2
-_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	eutils	a82a329b538368791f5a6113c60e557e	libtool	60a86ca1cbe8068e3d9df0d3004dc520	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	892e597faee02a5b94eb02ab512e7622	multilib-build	fb26562acb603346bbadf9699b43ed68	multilib-minimal	130198900efb56a80d81781627c56d12	multiprocessing	326c654a30b9c5763247114fc680d5f8	python-single-r1	82a55861314bbcedaf1e08ed4dd651b3	python-utils-r1	49ee0ca5e1019d8f256a23692dad2642	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=82a85e9b5d466334717ee581e1cd9c1f
+_eclasses_=autotools	d76ee21296238133bd2df8dea7f33a05	eutils	40081e8c7e7f7c4f9db349a1d6d52925	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	16ef76b5d4e4752929dacf8c3a640539	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python-single-r1	82a55861314bbcedaf1e08ed4dd651b3	python-utils-r1	ceb3e4c3ba203e28bb02eeb182d88acf	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_md5_=2fa0311c6ba63142ef3fdf4747c32846

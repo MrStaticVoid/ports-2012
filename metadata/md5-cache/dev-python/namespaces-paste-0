@@ -9,5 +9,5 @@ LICENSE=public-domain
 RDEPEND=python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy-2.0? ( virtual/pypy:2.0 )
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_2.7-jython python_abis_2.7-pypy-2.0 )
 SLOT=0
-_eclasses_=python	78a4afe9781c7107d0f91c07aae92026	python-namespaces	f3a539ac017667aa9b76ede9224b6e3b
+_eclasses_=python	66c3d00d12f20a8c0d932c1a9bebffe6	python-namespaces	f3a539ac017667aa9b76ede9224b6e3b
 _md5_=6ff4a124ca78498c88fa8eaa690147ed

@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.3.9.ebuild,v 1.1 2013/12/20 12:31:02 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.3.9.ebuild,v 1.4 2014/01/18 03:51:39 vapier Exp $
 
 EAPI="4"
 
@@ -15,8 +15,8 @@ SRC_URI="http://pkgs.fedoraproject.org/repo/pkgs/${PN}-ng/${PN}-ng-${PV}.tar.xz/
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~ia64-linux ~x86-linux"
-IUSE="+ncurses nls static-libs unicode"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~ia64-linux ~x86-linux"
+IUSE="+ncurses nls static-libs test unicode"
 
 RDEPEND="ncurses? ( >=sys-libs/ncurses-5.7-r7[unicode?] )
 	!<sys-apps/sysvinit-2.88-r6"
@@ -44,7 +44,7 @@ src_install() {
 	default
 #	dodoc sysctl.conf
 
-	mv "${D}"/usr/bin/pidof "${D}"/bin/ || die
+	mv "${ED}"/usr/bin/pidof "${ED}"/bin/ || die
 
 	# The configure script is completely whacked in the head
 	mv "${ED}"/lib* "${ED}"/usr/ || die

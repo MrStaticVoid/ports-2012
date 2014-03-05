@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare test unpack
-DEPEND=>=x11-libs/libXrender-0.8.2 x11-libs/libX11 x11-libs/libXext media-libs/freetype media-libs/fontconfig x11-proto/xproto virtual/ttf-fonts || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool x86-interix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) ppc-aix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) x86-winnt? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) virtual/pkgconfig
+DEPEND=>=x11-libs/libXrender-0.8.2 x11-libs/libX11 x11-libs/libXext media-libs/freetype media-libs/fontconfig x11-proto/xproto virtual/ttf-fonts !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool x86-interix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) ppc-aix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) x86-winnt? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) virtual/pkgconfig
 DESCRIPTION=X.Org Xft library
 EAPI=4
 HOMEPAGE=http://xorg.freedesktop.org/
@@ -9,5 +9,5 @@ LICENSE=MIT
 RDEPEND=>=x11-libs/libXrender-0.8.2 x11-libs/libX11 x11-libs/libXext media-libs/freetype media-libs/fontconfig x11-proto/xproto virtual/ttf-fonts
 SLOT=0
 SRC_URI=http://xorg.freedesktop.org/releases/individual/lib/libXft-2.3.0.tar.bz2
-_eclasses_=autotools	d491cbee372fe390ce066f901abdaaaf	autotools-utils	f3015fe18e112728c1f9c46119503768	eutils	a82a329b538368791f5a6113c60e557e	flag-o-matic	65cef1287b9d62b1a0f180765d1e0c69	libtool	60a86ca1cbe8068e3d9df0d3004dc520	multilib	892e597faee02a5b94eb02ab512e7622	multiprocessing	326c654a30b9c5763247114fc680d5f8	toolchain-funcs	d3b5812eeab360bc41aa48b6cdbbc142	user	d0a4d0735a6c0183d707ca919bd72f28	xorg-2	cb91e0865dc1481833bb581b8ac8128a
+_eclasses_=autotools	d76ee21296238133bd2df8dea7f33a05	autotools-utils	f3015fe18e112728c1f9c46119503768	eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	62e05953761097ae84a70d6c7a3e2c9c	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	xorg-2	cb91e0865dc1481833bb581b8ac8128a
 _md5_=021cb477e36408168bd7b8b37578acde
