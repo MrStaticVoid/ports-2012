@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare setup test unpack
+DEPEND=>=sys-apps/dbus-1.0 >=gnome-base/gnome-keyring-3.1.92 introspection? ( >=dev-libs/gobject-introspection-1.30.0 ) dev-util/gtk-doc-am >=dev-util/intltool-0.35 sys-devel/gettext virtual/pkgconfig test? ( =dev-lang/python-2* ) vala? ( || ( dev-lang/vala:0.22[vapigen] dev-lang/vala:0.20[vapigen] dev-lang/vala:0.18[vapigen] dev-lang/vala:0.16[vapigen] ) ) app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=Compatibility library for accessing secrets
+EAPI=5
+HOMEPAGE=http://live.gnome.org/GnomeKeyring
+IUSE=debug +introspection test vala debug
+KEYWORDS=*
+LICENSE=LGPL-2+ GPL-2+
+RDEPEND=>=sys-apps/dbus-1.0 >=gnome-base/gnome-keyring-3.1.92 introspection? ( >=dev-libs/gobject-introspection-1.30.0 )
+REQUIRED_USE=vala? ( introspection )
+SLOT=0
+SRC_URI=mirror://gnome/sources/libgnome-keyring/3.6/libgnome-keyring-3.6.0.tar.xz
+_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multilib	fac675dcccf94392371a6abee62d909f	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	vala	b365480bc54c4e356dc1e953da9fe356	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=c4d3f19f243661f1a6f5cddebbd29df9

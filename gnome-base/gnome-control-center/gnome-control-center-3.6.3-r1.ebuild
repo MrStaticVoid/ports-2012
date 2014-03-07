@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2+"
 SLOT="2"
 IUSE="+bluetooth +colord +cups +gnome-online-accounts +i18n input_devices_wacom kerberos +networkmanager +socialweb systemd v4l"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 # XXX: NetworkManager-0.9 support is automagic, make hard-dep once it's released
 #

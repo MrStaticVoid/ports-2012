@@ -9,12 +9,10 @@ inherit gnome2 python-r1
 
 DESCRIPTION="The GNOME menu system, implementing the F.D.O cross-desktop spec"
 HOMEPAGE="http://www.gnome.org"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/gnome-menus-3.6.2.tar.xz"
-RESTRICT="mirror"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="3"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 # +python for gmenu-simple-editor
 IUSE="debug +introspection +python test"

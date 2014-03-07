@@ -51,12 +51,6 @@ esac
 # Path to glib-compile-schemas
 : ${GLIB_COMPILE_SCHEMAS:="/usr/bin/glib-compile-schemas"}
 
-# @ECLASS-VARIABLE: GDK_PIXBUF_UPDATE_BIN
-# @INTERNAL
-# @DESCRIPTION:
-# Path to gdk-pixbuf-query-loaders
-: ${GDK_PIXBUF_UPDATE_BIN:="/usr/bin/gdk-pixbuf-query-loaders"}
-
 # @ECLASS-VARIABLE: GNOME2_ECLASS_SCHEMAS
 # @INTERNAL
 # @DEFAULT_UNSET
@@ -408,7 +402,7 @@ gnome2_schemas_update() {
 gnome2_gdk_pixbuf_savelist() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && ED="${D}"
 	pushd "${ED}" 1>/dev/null
-	export GNOME2_ECLASS_GDK_PIXBUF_LOADERS=$(find "usr/$(get_libdir)/gdk-pixbuf-2.0" -type f 2>/dev/null)
+	export GNOME2_ECLASS_GDK_PIXBUF_LOADERS=$(find usr/lib*/gdk-pixbuf-2.0 -type f 2>/dev/null)
 	popd 1>/dev/null
 }
 
@@ -419,7 +413,11 @@ gnome2_gdk_pixbuf_savelist() {
 # This function should be called from pkg_postinst and pkg_postrm.
 gnome2_gdk_pixbuf_update() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && EROOT="${ROOT}"
-	local updater="${EROOT}${GDK_PIXBUF_UPDATE_BIN}"
+	local updater="${EROOT}/usr/bin/${CHOST}-gdk-pixbuf-query-loaders"
+
+	if [[ ! -x ${updater} ]]; then
+		updater="${EROOT}/usr/bin/gdk-pixbuf-query-loaders"
+	fi
 
 	if [[ ! -x ${updater} ]]; then
 		debug-print "${updater} is not executable"
@@ -435,7 +433,8 @@ gnome2_gdk_pixbuf_update() {
 	local tmp_file=$(mktemp -t tmp.XXXXXXXXXX_gdkpixbuf)
 	${updater} 1> "${tmp_file}" &&
 	chmod 0644 "${tmp_file}" &&
-	mv -f "${tmp_file}" "${EROOT}usr/$(get_libdir)/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+	cp -f "${tmp_file}" "${EROOT}usr/$(get_libdir)/gdk-pixbuf-2.0/2.10.0/loaders.cache" &&
+	rm "${tmp_file}" # don't replace this with mv, required for SELinux support
 	eend $?
 }
 
@@ -501,7 +500,7 @@ gnome2_disable_deprecation_warning() {
 
 		LC_ALL=C sed -r -i \
 			-e 's:-D[A-Z_]+_DISABLE_DEPRECATED:$(NULL):g' \
-			-e 's:-DGSEAL_ENABLE:$(NULL):g' \
+			-e 's:-DGSEAL_ENABLE+[A-Z_]:$(NULL):g' \
 			-i "${makefile}"
 
 		if [[ $? -ne 0 ]]; then

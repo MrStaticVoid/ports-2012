@@ -8,5 +8,5 @@ LICENSE=BEER-WARE
 RDEPEND=>=www-apps/trac-0.12 =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://trac-hacks.org/changeset/9766/accountmanagerplugin/trunk?old_path=/&filename=accountmanagerplugin/trunk&format=zip -> trac-accountmanager-0.3_p9766.zip
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	66c3d00d12f20a8c0d932c1a9bebffe6
+_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=b4939355bbdc546c57ab5cd406ee53cd

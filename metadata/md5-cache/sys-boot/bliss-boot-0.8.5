@@ -1,0 +1,12 @@
+DEFINED_PHASES=install
+DESCRIPTION=Automatically generates a working bootloader configuration file
+EAPI=4
+HOMEPAGE=https://github.com/fearedbliss/bliss-boot
+IUSE=grub2 extlinux lilo
+KEYWORDS=~amd64
+LICENSE=MPL-2.0
+RDEPEND=>=dev-lang/python-3.3 grub2? ( >=sys-boot/grub-2.00-r7 ) extlinux? ( sys-boot/syslinux ) lilo? ( sys-boot/lilo )
+RESTRICT=mirror strip
+SLOT=0
+SRC_URI=https://github.com/fearedbliss/bliss-boot/archive/0.8.5.tar.gz -> bliss-boot-0.8.5.tar.gz
+_md5_=f5c19dd21ed07c2b6d322a0dd69ff06f

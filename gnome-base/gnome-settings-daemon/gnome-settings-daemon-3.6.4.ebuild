@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnome.org"
 LICENSE="GPL-2+"
 SLOT="0"
 IUSE="+colord +cups debug +i18n input_devices_wacom packagekit policykit +short-touchpad-timeout smartcard systemd +udev"
-KEYWORDS="~*"
+KEYWORDS="*"
 REQUIRED_USE="
 	packagekit? ( udev )
 	smartcard? ( udev )

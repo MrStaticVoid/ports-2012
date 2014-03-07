@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=x11-libs/pango-1.2[X] gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] ) !gtk3? ( x11-libs/gtk+:2 media-libs/libcanberra[gtk] ) >=dev-libs/glib-2.25.10:2 >=x11-libs/startup-notification-0.7 >=x11-libs/libXcomposite-0.2 x11-libs/libXfixes x11-libs/libXrender x11-libs/libXdamage x11-libs/libXcursor x11-libs/libX11 x11-libs/libXext x11-libs/libXrandr x11-libs/libSM x11-libs/libICE gnome-base/libgtop >=mate-extra/mate-dialogs-1.2.0 xinerama? ( x11-libs/libXinerama ) !x11-misc/expocity !!x11-wm/mate-window-manager sys-devel/gettext >=dev-util/intltool-0.35 virtual/pkgconfig test? ( app-text/docbook-xml-dtd:4.5 ) xinerama? ( x11-proto/xineramaproto ) x11-proto/xextproto x11-proto/xproto !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
+DESCRIPTION=MATE default window manager
+EAPI=5
+HOMEPAGE=http://mate-desktop.org
+IUSE=gtk3 startup-notification test xinerama
+KEYWORDS=~amd64 ~arm ~x86
+LICENSE=GPL-2
+RDEPEND=>=x11-libs/pango-1.2[X] gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] ) !gtk3? ( x11-libs/gtk+:2 media-libs/libcanberra[gtk] ) >=dev-libs/glib-2.25.10:2 >=x11-libs/startup-notification-0.7 >=x11-libs/libXcomposite-0.2 x11-libs/libXfixes x11-libs/libXrender x11-libs/libXdamage x11-libs/libXcursor x11-libs/libX11 x11-libs/libXext x11-libs/libXrandr x11-libs/libSM x11-libs/libICE gnome-base/libgtop >=mate-extra/mate-dialogs-1.2.0 xinerama? ( x11-libs/libXinerama ) !x11-misc/expocity !!x11-wm/mate-window-manager
+SLOT=0
+SRC_URI=http://pub.mate-desktop.org/releases/1.7/marco-1.7.90.tar.xz
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=83889d1c263df0d319f972e9c65f2d4f

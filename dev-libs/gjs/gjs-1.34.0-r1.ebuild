@@ -15,7 +15,7 @@ HOMEPAGE="http://live.gnome.org/Gjs"
 LICENSE="MIT || ( MPL-1.1 LGPL-2+ GPL-2+ )"
 SLOT="0"
 IUSE="examples test"
-KEYWORDS=" arm"
+KEYWORDS="*"
 
 RDEPEND=">=dev-libs/glib-2.32:2
 	>=dev-libs/gobject-introspection-1.33.10
