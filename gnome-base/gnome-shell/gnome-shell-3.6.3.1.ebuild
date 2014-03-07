@@ -13,7 +13,7 @@ HOMEPAGE="http://live.gnome.org/GnomeShell"
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
 IUSE="+bluetooth +i18n +networkmanager systemd"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 # libXfixes-5.0 needed for pointer barriers
 # TODO: gstreamer support is currently automagical:
@@ -93,7 +93,8 @@ RDEPEND="${COMMON_DEPEND}
 	media-fonts/dejavu
 	x11-themes/gnome-icon-theme-symbolic
 
-	i18n? ( >=app-i18n/ibus-1.4.99[dconf(+),gtk3,introspection] )
+	i18n? ( || ( >=app-i18n/ibus-1.4.99[dconf,gtk3,introspection] 
+	             >=app-i18n/ibus-1.5.4-r1[gtk3,introspection] ) )
 	networkmanager? (
 		net-misc/mobile-broadband-provider-info
 		sys-libs/timezone-data )

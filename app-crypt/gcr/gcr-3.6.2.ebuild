@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0/1" # subslot = suffix of libgcr-3
 IUSE="debug +introspection"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 COMMON_DEPEND="
 	>=app-crypt/gnupg-2

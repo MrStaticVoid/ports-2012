@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/vlc-2.0.9.ebuild,v 1.5 2013/12/20 20:01:29 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/vlc-2.0.9.ebuild,v 1.7 2014/02/22 13:56:10 tomwij Exp $
 
 EAPI="5"
 
@@ -49,7 +49,7 @@ IUSE="a52 aalib alsa altivec atmo +audioqueue avahi +avcodec
 	+macosx-audio +macosx-dialog-provider +macosx-eyetv +macosx-quartztext
 	+macosx-qtkit +macosx-vout matroska media-library mmx modplug mp3 mpeg
 	mtp musepack ncurses neon ogg omxil opengl optimisememory opus oss
-	png portaudio +postproc projectm pulseaudio pvr qt4 rtsp run-as-root samba
+	png portaudio +postproc projectm pulseaudio pvr +qt4 rtsp run-as-root samba
 	schroedinger sdl sdl-image sftp shine shout sid skins speex sqlite sse svg
 	+swscale switcher taglib theora tremor truetype twolame udev upnp vaapi v4l
 	vcdx visual vlm vorbis waveout wingdi wma-fixed +X x264 +xcb xml xosd xv
@@ -58,8 +58,8 @@ IUSE="a52 aalib alsa altivec atmo +audioqueue avahi +avcodec
 RDEPEND="
 		dev-libs/libgpg-error:0
 		net-dns/libidn:0
-		>=sys-devel/gettext-0.18.1:0
 		>=sys-libs/zlib-1.2.5.1-r2:0[minizip]
+		virtual/libintl:0
 		a52? ( >=media-libs/a52dec-0.7.4-r3:0 )
 		aalib? ( media-libs/aalib:0 )
 		alsa? ( >=media-libs/alsa-lib-1.0.23:0 )
@@ -156,6 +156,7 @@ DEPEND="${RDEPEND}
 	kde? ( >=kde-base/kdelibs-4:4 )
 	xcb? ( x11-proto/xproto:0 )
 	app-arch/xz-utils:0
+	>=sys-devel/gettext-0.18.1:0
 	virtual/pkgconfig:0"
 
 REQUIRED_USE="

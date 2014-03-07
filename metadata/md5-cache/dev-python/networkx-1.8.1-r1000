@@ -10,5 +10,5 @@ RDEPEND=dev-python/decorator[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,
 REQUIRED_USE=examples? ( graphviz matplotlib numpy pyparsing scipy ) || ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/n/networkx/networkx-1.8.1.tar.gz
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	66c3d00d12f20a8c0d932c1a9bebffe6
+_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=7e406a1a993ee0376e6302c8f6bf07a9

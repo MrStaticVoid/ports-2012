@@ -1,6 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-3.6.0-r1.ebuild,v 1.2 2012/12/24 17:17:33 eva Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -15,7 +13,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 IUSE="gnome ipv6 networkmanager policykit"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 # 3.6 is tagged in upstream git, but the tarballs have not been uploaded :/
 SRC_URI="http://dev.gentoo.org/~tetromino/distfiles/${PN}/${P}-unofficial.tar.xz"
 

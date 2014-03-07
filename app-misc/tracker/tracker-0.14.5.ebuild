@@ -14,7 +14,7 @@ HOMEPAGE="http://projects.gnome.org/tracker/"
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="0/14"
 IUSE="applet cue eds elibc_glibc exif firefox-bookmarks flac flickr gif gnome-keyring gsf gstreamer gtk iptc +iso +jpeg laptop +miner-fs mp3 nautilus networkmanager pdf playlist rss test thunderbird +tiff upnp-av +vorbis xine +xml xmp xps" # qt4 strigi
-KEYWORDS="~*"
+KEYWORDS="*"
 
 REQUIRED_USE="
 	^^ ( gstreamer xine )

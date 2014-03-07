@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=mate-base/mate-panel-1.6.0 >=gnome-base/libgtop-2.14.2 virtual/pkgconfig >=dev-util/intltool-0.35.0 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
+DESCRIPTION=Applet showing network traffic for MATE
+EAPI=5
+HOMEPAGE=http://mate-desktop.org/
+KEYWORDS=~amd64 ~x86 ~arm
+LICENSE=GPL-2
+RDEPEND=>=mate-base/mate-panel-1.6.0 >=gnome-base/libgtop-2.14.2
+SLOT=0
+SRC_URI=http://pub.mate-desktop.org/releases/1.7/mate-netspeed-1.7.90.tar.xz
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=3c0596ee74678030fcd6916d62b141ba

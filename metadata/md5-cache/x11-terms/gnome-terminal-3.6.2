@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=dev-libs/glib-2.26.0:2 >=x11-libs/gtk+-3.3.17:3[X] >=x11-libs/vte-0.30.0:2.90 >=gnome-base/gconf-2.31.3 >=gnome-base/gsettings-desktop-schemas-0.1.0 x11-libs/libSM x11-libs/libICE || ( dev-util/gtk-builder-convert <=x11-libs/gtk+-2.24.10:2 ) app-text/yelp-tools >=dev-util/intltool-0.40 sys-devel/gettext virtual/pkgconfig gnome-base/gnome-common !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=The Gnome Terminal
+EAPI=5
+HOMEPAGE=http://www.gnome.org/
+KEYWORDS=*
+LICENSE=GPL-3+
+RDEPEND=>=dev-libs/glib-2.26.0:2 >=x11-libs/gtk+-3.3.17:3[X] >=x11-libs/vte-0.30.0:2.90 >=gnome-base/gconf-2.31.3 >=gnome-base/gsettings-desktop-schemas-0.1.0 x11-libs/libSM x11-libs/libICE
+SLOT=0
+SRC_URI=mirror://gnome/sources/gnome-terminal/3.6/gnome-terminal-3.6.2.tar.xz
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=3f230512089030f4669648cffb4b423d
