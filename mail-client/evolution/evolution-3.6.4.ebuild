@@ -15,7 +15,7 @@ HOMEPAGE="http://projects.gnome.org/evolution/"
 LICENSE="|| ( LGPL-2 LGPL-3 ) CC-BY-SA-3.0 FDL-1.3+ OPENLDAP"
 SLOT="2.0"
 IUSE="crypt +gnome-online-accounts gstreamer kerberos ldap map ssl +weather"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 # We need a graphical pinentry frontend to be able to ask for the GPG
 # password from inside evolution, bug 160302

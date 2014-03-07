@@ -10,5 +10,5 @@ RDEPEND=numpy? ( dev-python/numpy[python_abis_3.1?,python_abis_3.2?,python_abis_
 REQUIRED_USE=|| ( python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 )
 SLOT=3
 SRC_URI=mirror://github/jraedler/Polygon3/Polygon-3.0.5.zip
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	python	66c3d00d12f20a8c0d932c1a9bebffe6
+_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	python	66c3d00d12f20a8c0d932c1a9bebffe6
 _md5_=f5fac98674593a6b4e5b85f3d7de13a3

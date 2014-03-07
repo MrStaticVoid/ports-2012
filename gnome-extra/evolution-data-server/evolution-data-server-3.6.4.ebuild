@@ -18,7 +18,7 @@ SLOT="0/40" # subslot = libcamel-1.2 soname version
 IUSE="api-doc-extras +gnome-online-accounts +introspection ipv6 ldap kerberos vala +weather"
 REQUIRED_USE="vala? ( introspection )"
 
-KEYWORDS="~*"
+KEYWORDS="*"
 
 RDEPEND="
 	>=dev-libs/glib-2.32:2

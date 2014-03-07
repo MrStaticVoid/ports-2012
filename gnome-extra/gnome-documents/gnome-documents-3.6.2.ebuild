@@ -8,13 +8,11 @@ inherit gnome2
 
 DESCRIPTION="GNOME document manager"
 HOMEPAGE="https://live.gnome.org/Design/Apps/Documents"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/gnome-documents-3.6.2.tar.xz"
-RESTRICT="mirror"
 
 LICENSE="GPL-2+"
 SLOT="0"
 IUSE=""
-KEYWORDS="~*"
+KEYWORDS="*"
 
 # Need gdk-pixbuf-2.25 for gdk_pixbuf_get_pixels_with_length
 COMMON_DEPEND="

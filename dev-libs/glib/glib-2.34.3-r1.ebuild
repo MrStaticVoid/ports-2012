@@ -1,12 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.34.3-r1.ebuild,v 1.7 2014/01/18 04:39:44 vapier Exp $
 
 EAPI="5"
 PYTHON_COMPAT=( python2_{6,7} )
 # Avoid runtime dependency on python when USE=test
 
-inherit autotools bash-completion-r1 gnome.org libtool eutils flag-o-matic gnome2-utils multilib pax-utils python-r1 toolchain-funcs versionator virtualx linux-info
+inherit autotools bash-completion-r1 gnome.org libtool eutils flag-o-matic gnome2-utils multilib pax-utils python-r1 toolchain-funcs versionator virtualx linux-info multilib-minimal
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -16,22 +14,27 @@ SRC_URI="${SRC_URI}
 LICENSE="LGPL-2+"
 SLOT="2"
 IUSE="debug fam kernel_linux selinux static-libs systemtap test utils xattr"
-KEYWORDS="alpha ~amd64 arm hppa ~ia64 m68k ~mips ~ppc ~ppc64 s390 sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
+KEYWORDS="*"
 
-RDEPEND="virtual/libiconv
-	virtual/libffi
-	sys-libs/zlib
+# FIXME: want libselinux[${MULTILIB_USEDEP}] - bug #480960
+RDEPEND="
+	virtual/libiconv[${MULTILIB_USEDEP}]
+	virtual/libffi[${MULTILIB_USEDEP}]
+	sys-libs/zlib[${MULTILIB_USEDEP}]
 	|| (
 		>=dev-libs/elfutils-0.142
 		>=dev-libs/libelf-0.8.12
 		>=sys-freebsd/freebsd-lib-9.2_rc1
 		)
 	selinux? ( sys-libs/libselinux )
-	xattr? ( sys-apps/attr )
-	fam? ( virtual/fam )
+	xattr? ( sys-apps/attr[${MULTILIB_USEDEP}] )
+	fam? ( virtual/fam[${MULTILIB_USEDEP}] )
 	utils? (
 		${PYTHON_DEPS}
-		>=dev-util/gdbus-codegen-${PV}
+		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}] )
+	abi_x86_32? (
+		!<=app-emulation/emul-linux-x86-baselibs-20130224-r9
+		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
 	)
 "
 DEPEND="${RDEPEND}
@@ -43,7 +46,7 @@ DEPEND="${RDEPEND}
 	test? (
 		sys-devel/gdb
 		${PYTHON_DEPS}
-		>=dev-util/gdbus-codegen-${PV}
+		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 		>=sys-apps/dbus-1.2.14 )
 	!<dev-libs/gobject-introspection-1.$(get_version_component_range 2)
 	!<dev-util/gtk-doc-1.15-r2
@@ -55,6 +58,8 @@ PDEPEND="x11-misc/shared-mime-info
 	!<gnome-base/gvfs-1.6.4-r990"
 # shared-mime-info needed for gio/xdgmime, bug #409481
 # Earlier versions of gvfs do not work with glib
+
+DOCS="AUTHORS ChangeLog* NEWS* README"
 
 pkg_setup() {
 	if use kernel_linux ; then
@@ -132,7 +137,7 @@ src_prepare() {
 	epunt_cxx
 }
 
-src_configure() {
+multilib_src_configure() {
 	# Avoid circular depend with dev-util/pkgconfig and
 	# native builds (cross-compiles won't need pkg-config
 	# in the target ROOT to work here)
@@ -147,38 +152,42 @@ src_configure() {
 
 	local myconf
 
+	case "${CHOST}" in
+		*-mingw*)	myconf="${myconf} --with-threads=win32" ;;
+		*)		myconf="${myconf} --with-threads=posix" ;;
+	esac
+
 	# Building with --disable-debug highly unrecommended.  It will build glib in
 	# an unusable form as it disables some commonly used API.  Please do not
 	# convert this to the use_enable form, as it results in a broken build.
 	use debug && myconf="--enable-debug"
 
-	if use test; then
-		myconf="${myconf} --enable-modular-tests"
+	# Only used by the gresource bin
+	multilib_is_native_abi || myconf="${myconf} --disable-libelf"
+
+	# FIXME: change to "$(use_enable selinux)" when libselinux is multilibbed, bug #480960
+	if multilib_is_native_abi; then
+		myconf="${myconf} $(use_enable selinux)"
 	else
-		if [[ ${PV} = 9999 ]] && use doc; then
-			# need to build tests if USE=doc for bug #387385
-			myconf="${myconf} --enable-modular-tests"
-		else
-			myconf="${myconf} --disable-modular-tests"
-		fi
+		myconf="${myconf} --disable-selinux"
 	fi
 
 	# Always use internal libpcre, bug #254659
-	econf ${myconf} \
+	ECONF_SOURCE="${S}" econf ${myconf} \
 		$(use_enable xattr) \
 		$(use_enable fam) \
 		$(use_enable selinux) \
 		$(use_enable static-libs static) \
 		$(use_enable systemtap dtrace) \
 		$(use_enable systemtap systemtap) \
+		$(use_enable test modular-tests) \
 		--enable-man \
 		--with-pcre=internal \
-		--with-threads=posix \
 		--with-xml-catalog="${EPREFIX}/etc/xml/catalog"
 }
 
-src_install() {
-	default
+multilib_src_install_all() {
+	einstalldocs
 
 	if use utils ; then
 		python_replicate_script "${ED}"/usr/bin/gtester-report
@@ -193,14 +202,12 @@ src_install() {
 	# Don't install gdb python macros, bug 291328
 	rm -rf "${ED}/usr/share/gdb/" "${ED}/usr/share/glib-2.0/gdb/"
 
-	dodoc AUTHORS ChangeLog* NEWS* README
-
 	# Completely useless with or without USE static-libs, people need to use
 	# pkg-config
 	prune_libtool_files --modules
 }
 
-src_test() {
+multilib_src_test() {
 	gnome2_environment_reset
 
 	unset DBUS_SESSION_BUS_ADDRESS
@@ -217,7 +224,7 @@ src_test() {
 
 	# Hardened: gdb needs this, bug #338891
 	if host-is-pax ; then
-		pax-mark -mr "${S}"/tests/.libs/assert-msg-test \
+		pax-mark -mr "${BUILD_DIR}"/tests/.libs/assert-msg-test \
 			|| die "Hardened adjustment failed"
 	fi
 

@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=clock_debug? ( net-wireless/bluez ) specan? ( virtual/libusb:1 >=dev-qt/qtgui-4.7.2:4 >=dev-python/pyside-1.0.2 >=dev-python/numpy-1.3 >=dev-python/pyusb-1.0.0_alpha1 ) dfu? ( virtual/libusb:1 >=dev-python/pyusb-1.0.0_alpha1 ) =net-libs/libbtbb-9999 python? ( =dev-lang/python-2* )
 REQUIRED_USE=dfu? ( python ) specan? ( python ) ubertooth0-firmware? ( dfu ) ubertooth1-firmware? ( dfu ) python? ( || ( dfu specan ) )
 SLOT=0
-_eclasses_=distutils	00e4a86b194f4de1a4a18039fd3632b9	eutils	40081e8c7e7f7c4f9db349a1d6d52925	git-2	2027b81a576527fa16bece425941e094	git-r3	3d2603a6e66cd898e6b88e2135314bb8	multilib	fac675dcccf94392371a6abee62d909f	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	eutils	40081e8c7e7f7c4f9db349a1d6d52925	git-2	2027b81a576527fa16bece425941e094	git-r3	98dc3b55c2cb712d1e22b359c0522f55	multilib	fac675dcccf94392371a6abee62d909f	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=ff17f0f4478990f3a9fa9ce14cbd7ed9

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=dev-libs/glib-2.16:2 gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) >=dev-libs/dbus-glib-0.76 >=sys-power/upower-0.9.0 elibc_FreeBSD? ( dev-libs/libexecinfo ) x11-libs/libSM x11-libs/libICE x11-libs/libX11 x11-libs/libXext x11-libs/libXtst x11-apps/xdpyinfo x11-misc/xdg-user-dirs x11-misc/xdg-user-dirs-gtk >=dev-lang/perl-5 >=sys-devel/gettext-0.10.40 virtual/pkgconfig >=dev-util/intltool-0.40 >=mate-base/mate-common-1.2.2 !<gnome-base/gdm-2.20.4 systemd? ( sys-apps/systemd ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
+DESCRIPTION=MATE session manager
+EAPI=5
+HOMEPAGE=http://mate-desktop.org/
+IUSE=gtk3 ipv6 elibc_FreeBSD systemd debug
+KEYWORDS=~amd64 ~arm ~x86
+LICENSE=GPL-2 LGPL-2 FDL-1.1
+RDEPEND=>=dev-libs/glib-2.16:2 gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) >=dev-libs/dbus-glib-0.76 >=sys-power/upower-0.9.0 elibc_FreeBSD? ( dev-libs/libexecinfo ) x11-libs/libSM x11-libs/libICE x11-libs/libX11 x11-libs/libXext x11-libs/libXtst x11-apps/xdpyinfo x11-misc/xdg-user-dirs x11-misc/xdg-user-dirs-gtk
+SLOT=0
+SRC_URI=http://pub.mate-desktop.org/releases/1.7/mate-session-manager-1.7.90.tar.xz
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=b2cf9a2a44cb120f355adfda30884212

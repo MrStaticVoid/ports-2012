@@ -1,6 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/gnome-nettool/gnome-nettool-3.2.0.ebuild,v 1.3 2012/05/04 06:08:10 jdhore Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -13,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/projects/gnome-network/"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="debug"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="*"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.25.10
