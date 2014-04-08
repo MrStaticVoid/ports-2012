@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/oracle-jre-bin/oracle-jre-bin-1.7.0.51.ebuild,v 1.3 2014/01/25 12:21:27 ago Exp $
 
 EAPI="5"
 
@@ -12,8 +10,13 @@ S_PV="$(replace_version_separator 3 '_')"
 X86_AT="jre-${MY_PV}-linux-i586.tar.gz"
 AMD64_AT="jre-${MY_PV}-linux-x64.tar.gz"
 
-# This URIs need updating when bumping!
-JRE_URI="http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html"
+# Sources for simplified BundleID direct download links:
+# https://www.java.com/en/download/manual.jsp?locale=en
+
+# Sources for JRE, JDK, JCE downloads:
+#http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html"
+#http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html"
+
 JCE_URI="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html"
 
 JCE_DIR="UnlimitedJCEPolicy"
@@ -22,16 +25,16 @@ JCE_FILE="${JCE_DIR}JDK7.zip"
 DESCRIPTION="Oracle's Java SE Runtime Environment"
 HOMEPAGE="http://www.oracle.com/technetwork/java/javase/"
 SRC_URI="
-	x86? ( ${X86_AT} )
-	amd64? ( ${AMD64_AT} )
-	jce? ( ${JCE_FILE} )"
+	x86? ( http://javadl.sun.com/webapps/download/AutoDL?BundleId=83374 -> ${X86_AT} http://www.funtoo.org/distfiles/oracle-java/${X86_AT} )
+	amd64? ( http://javadl.sun.com/webapps/download/AutoDL?BundleId=83376 -> ${AMD64_AT} http://www.funtoo.org/distfiles/oracle-java/${AMD64_AT} )
+	jce? ( http://www.funtoo.org/distfiles/oracle-java/${JCE_FILE} )"
 
 LICENSE="Oracle-BCLA-JavaSE"
 SLOT="1.7"
 KEYWORDS="amd64 x86"
 IUSE="X alsa fontconfig jce nsplugin pax_kernel"
 
-RESTRICT="fetch strip"
+RESTRICT="strip"
 QA_PREBUILT="*"
 
 RDEPEND="
@@ -52,24 +55,6 @@ DEPEND="
 	pax_kernel? ( sys-apps/paxctl )"
 
 S="${WORKDIR}/jre${S_PV}"
-
-pkg_nofetch() {
-	if use x86; then
-		AT=${X86_AT}
-	elif use amd64; then
-		AT=${AMD64_AT}
-	fi
-
-	einfo "Please download '${AT}' from:"
-	einfo "'${JRE_URI}'"
-	einfo "and move it to '${DISTDIR}'"
-
-	if use jce; then
-		einfo "Also download '${JCE_FILE}' from:"
-		einfo "'${JCE_URI}'"
-		einfo "and move it to '${DISTDIR}'"
-	fi
-}
 
 src_prepare() {
 	if use jce; then

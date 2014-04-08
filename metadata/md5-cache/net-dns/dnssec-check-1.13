@@ -8,5 +8,5 @@ LICENSE=BSD
 RDEPEND=net-dns/dnssec-validator[threads] dev-qt/qtdeclarative:4
 SLOT=0
 SRC_URI=http://www.dnssec-tools.org/download/dnssec-check-1.13.tar.gz
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	fac675dcccf94392371a6abee62d909f	qmake-utils	6f4ff01a55830f6d86647dc56dfaf3a7	qt4-r2	003d836c85e4138fcb185326e041a8c2	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	af81d52c25ec93fbdff71e0efb0de7b7	multilib	fac675dcccf94392371a6abee62d909f	qmake-utils	6f4ff01a55830f6d86647dc56dfaf3a7	qt4-r2	003d836c85e4138fcb185326e041a8c2	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=86e6d569cc4a5bb3a4a761151de72bc2

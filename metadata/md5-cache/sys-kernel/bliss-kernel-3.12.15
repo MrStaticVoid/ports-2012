@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install postinst postrm preinst prerm
+DESCRIPTION=Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
+EAPI=4
+HOMEPAGE=http://fearedbliss.com/
+KEYWORDS=~amd64
+LICENSE=GPL-2
+RESTRICT=mirror strip
+SLOT=3.12.15-KS.01
+SRC_URI=http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/3.12.15-KS.01/kernel-3.12.15-KS.01.tar.xz
+_eclasses_=eutils	af81d52c25ec93fbdff71e0efb0de7b7	mount-boot	02dd3bb4c5f025fef0fc3ade0f27c217	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_md5_=cbb045efd0e5ce5ccfcb855e459889ad

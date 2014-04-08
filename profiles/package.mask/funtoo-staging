@@ -1,22 +1,24 @@
 # Keep the most recent masks in a reverse chrono order
 # newest on top
 
+# Oleg Vinichenko (3 Apr 2014)
+# add s-s-d patch by WilliamH, attempt to fix scripts on OpenVZ
+# masked ebuild, test required
+=sys-apps/openrc-0.12.3-r2
+
+# Daniel Robbins (16 Mar 2014)
+# FL-845 - masked for testing
+=app-misc/screen-4.0.3-r10
+
+# Daniel Robbins (16 Mar 2014)
+# FL-1167 - masked for testing
+=dev-php/xcache-3.1.0
 
 # Oleg Vinichenko (26 Feb 2014)
 # FL-971, version 6.3.1 added
 # FL-971, dhcpcd-6.3.0 with ipv6, wpa_supplicant fixes
 # masked for testing
 >=net-misc/dhcpcd-6.3.0
-
-# Oleg Vinichenko (4 March 2014)
-# IGB ebuild, latest stable driver and kernel module for INtel
-# 82576 chips, masked for testing
-=net-misc/igb-5.1.2 
- 
-# Oleg Vinichenko (1 March 2014)
-# quick mask for salt ebuilds, works but need tests
-=app-admin/salt-0.17.4
-=app-admin/salt-2014.1.0
 
 # Oleg Vinichenko (13 Dec 2014)
 # FL-969: lvm2 update, hard masked for testing. Ebuild needs some fixes with udev deps

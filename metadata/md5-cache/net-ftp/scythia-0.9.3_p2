@@ -8,5 +8,5 @@ LICENSE=GPL-3
 RDEPEND=dev-qt/qtgui:4
 SLOT=0
 SRC_URI=http://scythia.free.fr/wp-content/scythia_0.9.3-2-src.tar.gz
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	40081e8c7e7f7c4f9db349a1d6d52925	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	fac675dcccf94392371a6abee62d909f	qmake-utils	6f4ff01a55830f6d86647dc56dfaf3a7	qt4-r2	003d836c85e4138fcb185326e041a8c2	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	af81d52c25ec93fbdff71e0efb0de7b7	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	fac675dcccf94392371a6abee62d909f	qmake-utils	6f4ff01a55830f6d86647dc56dfaf3a7	qt4-r2	003d836c85e4138fcb185326e041a8c2	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=fd3f8e93d3f0d5dcea21812a16dbcb96

@@ -1,20 +1,12 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/oracle-jdk-bin/oracle-jdk-bin-1.7.0.51-r1.ebuild,v 1.3 2014/01/25 12:21:30 ago Exp $
 
 EAPI="5"
 
 inherit eutils java-vm-2 prefix versionator
 
-# This URIs need to be updated when bumping!
 JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html"
 JCE_URI="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html"
-# This is a list of archs supported by this update.
-# Currently arm comes and goes.
-AT_AVAILABLE=( amd64 arm x86 x64-solaris x86-solaris sparc-solaris sparc64-solaris x86-macos x64-macos )
-# Sometimes some or all of the demos are missing, this is to not have to rewrite half
-# the ebuild when it happens.
-DEMOS_AVAILABLE=( amd64 arm x86 x64-solaris x86-solaris sparc-solaris sparc64-solaris x86-macos x64-macos )
+
 FX_VERSION="2_2_51"
 
 MY_PV="$(get_version_component_range 2)u$(get_version_component_range 4)"
@@ -22,48 +14,32 @@ S_PV="$(replace_version_separator 3 '_')"
 
 AT_x86="jdk-${MY_PV}-linux-i586.tar.gz"
 AT_amd64="jdk-${MY_PV}-linux-x64.tar.gz"
-AT_arm="jdk-${MY_PV}-linux-arm-vfp-sflt.tar.gz jdk-${MY_PV}-linux-arm-vfp-hflt.tar.gz"
-AT_x86_solaris="jdk-${MY_PV}-solaris-i586.tar.gz"
-AT_x64_solaris="${AT_x86_solaris} jdk-${MY_PV}-solaris-x64.tar.gz"
-AT_sparc_solaris="jdk-${MY_PV}-solaris-sparc.tar.gz"
-AT_sparc64_solaris="${AT_sparc_solaris} jdk-${MY_PV}-solaris-sparcv9.tar.gz"
-AT_x86_macos="jdk-${MY_PV}-macosx-x64.dmg"
-AT_x64_macos="jdk-${MY_PV}-macosx-x64.dmg"
+AT_arm_hflt="jdk-${MY_PV}-linux-arm-vfp-hflt.tar.gz"
+AT_arm_sflt="jdk-${MY_PV}-linux-arm-vfp-sflt.tar.gz"
 
 FXDEMOS_linux="javafx_samples-${FX_VERSION}-linux.zip"
 
 DEMOS_x86="${FXDEMOS_linux} jdk-${MY_PV}-linux-i586-demos.tar.gz"
 DEMOS_amd64="${FXDEMOS_linux} jdk-${MY_PV}-linux-x64-demos.tar.gz"
 DEMOS_arm="${FXDEMOS_linux} jdk-${MY_PV}-linux-arm-vfp-sflt-demos.tar.gz jdk-${MY_PV}-linux-arm-vfp-hflt-demos.tar.gz"
-DEMOS_x86_solaris="jdk-${MY_PV}-solaris-i586-demos.tar.gz"
-DEMOS_x64_solaris="${DEMOS_x86_solaris} jdk-${MY_PV}-solaris-x64-demos.tar.gz"
-DEMOS_sparc_solaris="jdk-${MY_PV}-solaris-sparc-demos.tar.gz"
-DEMOS_sparc64_solaris="${DEMOS_sparc_solaris} jdk-${MY_PV}-solaris-sparcv9-demos.tar.gz"
-DEMOS_x86_macos="jdk-${MY_PV}-macosx-x86_64-demos.tar.gz"
-DEMOS_x64_macos="jdk-${MY_PV}-macosx-x86_64-demos.tar.gz"
 
 JCE_DIR="UnlimitedJCEPolicy"
 JCE_FILE="${JCE_DIR}JDK7.zip"
 
 DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="http://www.oracle.com/technetwork/java/javase/"
-for d in "${AT_AVAILABLE[@]}"; do
-	SRC_URI+=" ${d}? ("
-	SRC_URI+=" $(eval "echo \${$(echo AT_${d/-/_})}")"
-	if has ${d} "${DEMOS_AVAILABLE[@]}"; then
-		SRC_URI+=" examples? ( $(eval "echo \${$(echo DEMOS_${d/-/_})}") )"
-	fi
-	SRC_URI+=" )"
-done
-unset d
-SRC_URI+=" jce? ( ${JCE_FILE} )"
+MIR_URI="http://www.funtoo.org/distfiles/oracle-java"
+SRC_URI=" 
+	amd64? ( ${MIR_URI}/${AT_amd64} examples? ( ${FXDEMOS} ${MIR_URI}/${DEMOS_amd64} ) )
+	x86? ( ${MIR_URI}/${AT_x86} examples? ( ${FXDEMOS} ${MIR_URI}/${DEMOS_x86} ) )
+	jce? ( ${MIR_URI}/${JCE_FILE} )"
 
 LICENSE="Oracle-BCLA-JavaSE examples? ( BSD )"
 SLOT="1.7"
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="amd64 x86"
 IUSE="+X alsa aqua derby doc examples +fontconfig jce nsplugin pax_kernel source"
 
-RESTRICT="fetch strip"
+RESTRICT="strip"
 QA_PREBUILT="*"
 
 RDEPEND="
@@ -109,43 +85,6 @@ check_tarballs_available() {
 		einfo "at '${uri}'"
 		einfo "and move them to '${DISTDIR}'"
 		einfo
-	fi
-}
-
-pkg_nofetch() {
-	local distfiles=( $(eval "echo \${$(echo AT_${ARCH/-/_})}") )
-	if use examples && has ${ARCH} "${DEMOS_AVAILABLE[@]}"; then
-		distfiles+=( $(eval "echo \${$(echo DEMOS_${ARCH/-/_})}") )
-	fi
-	check_tarballs_available "${JDK_URI}" "${distfiles[@]}"
-
-	use jce && check_tarballs_available "${JCE_URI}" "${JCE_FILE}"
-}
-
-src_unpack() {
-	# Special case for ARM soft VS hard float.
-	if use arm ; then
-		if [[ ${CHOST} == *-hardfloat-* ]] ; then
-			unpack jdk-${MY_PV}-linux-arm-vfp-hflt.tar.gz
-			use examples && unpack jdk-${MY_PV}-linux-arm-vfp-hflt-demos.tar.gz
-		else
-			unpack jdk-${MY_PV}-linux-arm-vfp-sflt.tar.gz
-			use examples && unpack jdk-${MY_PV}-linux-arm-vfp-sflt-demos.tar.gz
-		fi
-		use examples && unpack javafx_samples-${FX_VERSION}-linux.zip
-		use jce && unpack ${JCE_FILE}
-	elif use x86-macos || use x64-macos ; then
-		pushd "${T}" > /dev/null
-		mkdir dmgmount
-		hdiutil attach "${DISTDIR}"/jdk-${MY_PV}-macosx-x64.dmg \
-			-mountpoint "${T}"/dmgmount
-		xar -xf dmgmount/JDK\ $(get_version_component_range 2)\ Update\ $(get_version_component_range 4).pkg
-		hdiutil detach "${T}"/dmgmount
-		zcat jdk1${MY_PV/u/0}.pkg/Payload | cpio -idv
-		mv Contents/Home "${S}"
-		popd > /dev/null
-	else
-		default
 	fi
 }
 
@@ -209,7 +148,7 @@ src_install() {
 		cp -pPR db "${ddest}" || die
 	fi
 
-	if use examples && has ${ARCH} "${DEMOS_AVAILABLE[@]}"; then
+	if use examples; then
 		cp -pPR demo sample "${ddest}" || die
 		if use kernel_linux; then
 			cp -pPR "${WORKDIR}"/javafx-samples-${FX_VERSION//_/.} \

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare unpack
+DEPEND=debug? ( x11-libs/wxGTK:2.9[debug] ) mysql? ( virtual/mysql ) postgres? ( dev-db/postgresql-base )
+DESCRIPTION=Cross platform IDE for the C/C++ programming languages
+EAPI=5
+HOMEPAGE=http://www.codelite.org/
+IUSE=debug mysql pch postgres
+KEYWORDS=-* ~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=x11-libs/wxGTK:2.9[X]
+SLOT=0
+SRC_URI=mirror://sourceforge/codelite/codelite-5.0.6213-gtk.src.tar.gz
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	af81d52c25ec93fbdff71e0efb0de7b7	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	wxwidgets	755f4b28ecdf7c1213011108e566babc
+_md5_=12a864a0782225eae7a2b42378164f44

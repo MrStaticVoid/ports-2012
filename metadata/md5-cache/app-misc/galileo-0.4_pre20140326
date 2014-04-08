@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare setup test unpack
+DEPEND=userland_GNU? ( >=sys-apps/coreutils-8.5 ) python_targets_python2_6? ( >=dev-lang/python-2.6.8-r3:2.6 ) python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-lang/python-exec:=[python_targets_python2_6(-)?,python_targets_python2_7(-)?,-python_single_target_python2_6(-),-python_single_target_python2_7(-)] virtual/pkgconfig virtual/pkgconfig
+DESCRIPTION=Synchronisation utility for Bluetooth LE-based Fitbit trackers
+EAPI=5
+HOMEPAGE=https://bitbucket.org/benallard/galileo
+IUSE=python_targets_python2_6 python_targets_python2_7
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-3+
+RDEPEND=>=dev-python/pyusb-1.0.0_alpha1 >=dev-python/requests-0.13.1[python_targets_python2_6(-)?,python_targets_python2_7(-)?,-python_single_target_python2_6(-),-python_single_target_python2_7(-)] >=dev-python/pyyaml-3.10[python_targets_python2_6(-)?,python_targets_python2_7(-)?,-python_single_target_python2_6(-),-python_single_target_python2_7(-)] >=virtual/udev-208 python_targets_python2_6? ( >=dev-lang/python-2.6.8-r3:2.6 ) python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-lang/python-exec:=[python_targets_python2_6(-)?,python_targets_python2_7(-)?,-python_single_target_python2_6(-),-python_single_target_python2_7(-)]
+REQUIRED_USE=|| ( python_targets_python2_6 python_targets_python2_7 )
+SLOT=0
+SRC_URI=https://bitbucket.org/benallard/galileo/get/aaec22d2697c8530194ba00d7dc6c086baff5899.tar.gz -> galileo-0.4_pre20140326.tar.gz
+_eclasses_=distutils-r1	364122897f9dc771167ee5ff362e54e1	eutils	af81d52c25ec93fbdff71e0efb0de7b7	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python-r1	53a3a670d39942b0879f95cb17ecb4a1	python-utils-r1	18d8279a3382bf4453e7ff35208ce907	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	udev	a9a8d051efb42bfe884c1db82ce161de	user	d0a4d0735a6c0183d707ca919bd72f28	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_md5_=95a3f4eb5cfae88b5bc1bfbc66f7d06f

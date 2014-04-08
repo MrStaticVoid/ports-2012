@@ -456,7 +456,7 @@ enable_cmake-utils_src_configure() {
 
 			ELSE ()
 
-			SET(CMAKE_PREFIX_PATH "${EPREFIX}${PREFIX}" CACHE STRING ""FORCE)
+			SET(CMAKE_PREFIX_PATH "${EPREFIX}${PREFIX}" CACHE STRING "" FORCE)
 			SET(CMAKE_SKIP_BUILD_RPATH OFF CACHE BOOL "" FORCE)
 			SET(CMAKE_SKIP_RPATH OFF CACHE BOOL "" FORCE)
 			SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE CACHE BOOL "")
@@ -591,7 +591,7 @@ cmake-utils_src_make() {
 	_check_build_dir
 	pushd "${BUILD_DIR}" >/dev/null
 
-	${CMAKE_MAKEFILE_GENERATOR}_src_make $@
+	${CMAKE_MAKEFILE_GENERATOR}_src_make "$@"
 
 	popd >/dev/null
 }

@@ -1,9 +1,9 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surf/surf-0.6.ebuild,v 1.3 2013/03/31 17:37:17 nimiux Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/surf/surf-0.6-r1.ebuild,v 1.7 2013/11/01 13:50:07 ago Exp $
 
-EAPI=4
-inherit savedconfig toolchain-funcs
+EAPI=5
+inherit eutils savedconfig toolchain-funcs
 
 DESCRIPTION="a simple web browser based on WebKit/GTK+"
 HOMEPAGE="http://surf.suckless.org/"
@@ -12,43 +12,53 @@ SRC_URI="http://dl.suckless.org/${PN}/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE=""
 
-DEPEND="
+COMMON_DEPEND="
 	dev-libs/glib
 	net-libs/libsoup
 	net-libs/webkit-gtk:2
 	x11-libs/gtk+:2
 	x11-libs/libX11
 "
+DEPEND="
+	${COMMON_DEPEND}
+	virtual/pkgconfig
+"
 RDEPEND="
 	!sci-chemistry/surf
+	${COMMON_DEPEND}
 	x11-apps/xprop
 	x11-misc/dmenu
-	${DEPEND}
 "
 
 pkg_setup() {
-	elog "You need external tool for downloading. By default surf uses"
-	elog "net-misc/curl and x11-terms/st. The download command can be"
-	elog "changed through the savedconfig mechanism."
+	if ! use savedconfig; then
+		elog "The default config.h assumes you have"
+		elog " net-misc/curl"
+		elog " x11-terms/st"
+		elog "installed to support the download function."
+		elog "Without those, downloads will fail (gracefully)."
+		elog "You can fix this by:"
+		elog "1) Installing these packages, or"
+		elog "2) Setting USE=savedconfig and changing config.h accordingly."
+	fi
 }
 
 src_prepare() {
-	sed -i \
-		-e 's|{|(|g;s|}|)|g' \
-		-e 's|\t@|\t|g;s|echo|@&|g' \
-		-e 's|^LIBS.*|LIBS = $(GTKLIB) -lgthread-2.0|g' \
-		-e 's|^LDFLAGS.*|LDFLAGS += $(LIBS)|g' \
-		-e 's|^CC.*|CC ?= gcc|g' \
-		-e 's|^CFLAGS.*|CFLAGS += -std=c99 -pedantic -Wall $(INCS) $(CPPFLAGS)|g' \
-		config.mk Makefile || die "sed failed"
-	restore_config config.h
-	tc-export CC
+	epatch "${FILESDIR}"/${P}-gentoo.patch
 	epatch_user
+	restore_config config.h
+	tc-export CC PKG_CONFIG
 }
 
 src_install() {
-	emake DESTDIR="${D}" PREFIX="/usr" install
+	default
 	save_config config.h
+}
+
+pkg_postinst() {
+	if [[ ${REPLACING_VERSIONS} ]] && [[ ${REPLACING_VERSIONS} < 0.4.1-r1 ]]; then
+		ewarn "Please correct the permissions of your \$HOME/.surf/ directory"
+		ewarn "and its contents to no longer be world readable (see bug #404983)"
+	fi
 }
