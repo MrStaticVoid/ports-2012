@@ -1,7 +1,5 @@
 #!/bin/bash
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/files/cpufrequtils-change.sh,v 1.3 2013/05/09 20:21:42 lxnay Exp $
 
 ret=0 opts= gov_opts= sep=
 for o in "${@}" ; do
@@ -21,7 +19,7 @@ for c in $(cpufreq-info -o | awk '$1 == "CPU" { print $2 }') ; do
 	: $(( ret += $? ))
 done
 
-if [ $# -gt 0 ] ; then
+ if [ -n "${gov_opts}" ]; then
 	c=1
 	if cd /sys/devices/system/cpu/cpufreq ; then
 		for o in ${gov_opts}; do

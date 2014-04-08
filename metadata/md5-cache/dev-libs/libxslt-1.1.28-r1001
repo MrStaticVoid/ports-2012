@@ -10,5 +10,5 @@ RDEPEND=>=dev-libs/libxml2-2.8.0:2[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?
 REQUIRED_USE=python? ( || ( python_abis_2.6 python_abis_2.7 ) )
 SLOT=0
 SRC_URI=ftp://xmlsoft.org/libxslt/libxslt-1.1.28.tar.gz
-_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	40081e8c7e7f7c4f9db349a1d6d52925	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	16ef76b5d4e4752929dacf8c3a640539	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	af81d52c25ec93fbdff71e0efb0de7b7	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	3bcfe951cb28af4b06588b623b7e4710	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python	46d9f0382a194b2c30ac61862799b58c	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=cd299fbac2a3d5fe16d66427698311c5

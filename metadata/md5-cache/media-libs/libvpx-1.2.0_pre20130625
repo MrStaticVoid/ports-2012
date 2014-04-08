@@ -10,5 +10,5 @@ RDEPEND=abi_x86_32? ( !app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] )
 REQUIRED_USE=sse2? ( mmx ) ssse3? ( sse2 )
 SLOT=0
 SRC_URI=mirror://gentoo/libvpx-1.2.0_pre20130625.tar.bz2 test? ( mirror://gentoo/libvpx-testdata-1.2.0.tar.bz2 )
-_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	16ef76b5d4e4752929dacf8c3a640539	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=eutils	af81d52c25ec93fbdff71e0efb0de7b7	multibuild	f43414256d67e04ca5f4d4b3611dd134	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	3bcfe951cb28af4b06588b623b7e4710	multilib-minimal	5d77d70b80ea6e86a58d332de2abb1cc	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=771c4f05951ac474b68e0c8f49acf1f7

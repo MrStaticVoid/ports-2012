@@ -8,5 +8,5 @@ LICENSE=GPL-3
 RDEPEND=dev-vcs/subversion dev-qt/qtcore:4 dev-vcs/git
 SLOT=0
 SRC_URI=http://gitorious.org/svn2git/svn2git/archive-tarball/1.0.3 -> svn2git-1.0.3.tar.gz
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	fac675dcccf94392371a6abee62d909f	qmake-utils	6f4ff01a55830f6d86647dc56dfaf3a7	qt4-r2	003d836c85e4138fcb185326e041a8c2	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	af81d52c25ec93fbdff71e0efb0de7b7	multilib	fac675dcccf94392371a6abee62d909f	qmake-utils	6f4ff01a55830f6d86647dc56dfaf3a7	qt4-r2	003d836c85e4138fcb185326e041a8c2	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
 _md5_=0e7c9fdcfbba0997b1df21e1ce402d73

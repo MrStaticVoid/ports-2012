@@ -1,3 +1,25 @@
+# FL-1206: mask newest python-3.4.0, some incompatibilites, need Arfrever
+# to look.
+>=dev-lang/python-3.4.0-r1000
+ 
+# FL-1202 - cautionary mask libnm-qt-0.9.8.1 until networkmanager update
+>net-libs/libnm-qt-0.9.8.0
+
+# FL-1174 - this is an experimental, slotted lua, so putting in cautionary.
+# Daniel Robbins, (22 Mar 2014)
+=dev-lang/lua-5.1.5-r1
+
+# Non bug commit. New gentoo-functions ebuild pulled into update list because of newer python-updater.
+# gentoo-funtions ebuild is a replacement of base shell functions, provided by OpenRC's /etc/init.d/functions.sh
+# this is core package changes, that require at least news item and shouldn't be done via dependency of other package. Masking
+# latest python-updater to avoid mess.
+>app-admin/python-updater-0.11
+
+# Oleg Vinichenko (15 March)
+# maks latest sys-devel/flex, due to several problems
+# FL-1165; http://comments.gmane.org/gmane.linux.lfs.devel/14740 https://bugs.gentoo.org/show_bug.cgi?id=503522
+>sys-devel/flex-2.5.37
+
 #  mask newer version of cryptsetup, breakage expected
 >sys-fs/cryptsetup-1.6.3
 
@@ -9,7 +31,7 @@
 >=sys-libs/readline-6.3
 
 #  cautionary mask to freetype-2.5.1, broken
-=media-libs/freetype-2.5.1
+>=media-libs/freetype-2.5.1
 
 #  Oleg Vinichenko (3 Dec 2013)
 #  mask latest version of autogen, broken
@@ -34,11 +56,6 @@
 >=gnome-base/gnome-shell-3.8.3
 >=gnome-base/gnome-settings-daemon-3.8.3
 >=gnome-base/gnome-control-center-3.8
-
-# Oleg Vinichenko (24 Jul 2013)
-# mask >media-player-info-18, we are not yet ready for udev-200
-# FL-641
->=app-misc/media-player-info-19
 
 # Ryan Harris (23 Jul 2013)
 # Mask phoronix-test-suite due to security concerns

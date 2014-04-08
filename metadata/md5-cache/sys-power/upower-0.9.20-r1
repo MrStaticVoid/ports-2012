@@ -10,5 +10,5 @@ RDEPEND=>=dev-libs/dbus-glib-0.100 >=dev-libs/glib-2.22 sys-apps/dbus >=sys-auth
 REQUIRED_USE=kernel_linux? ( !deprecated? ( systemd ) )
 SLOT=0
 SRC_URI=http://upower.freedesktop.org/releases/upower-0.9.20.tar.xz
-_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	multilib	fac675dcccf94392371a6abee62d909f	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	udev	a9a8d051efb42bfe884c1db82ce161de
+_eclasses_=eutils	af81d52c25ec93fbdff71e0efb0de7b7	multilib	fac675dcccf94392371a6abee62d909f	systemd	8ae6ba0dfb5d62f4895a7316b6ab8ca3	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	udev	a9a8d051efb42bfe884c1db82ce161de
 _md5_=bbf38154f3db9b241ce398661632c11e

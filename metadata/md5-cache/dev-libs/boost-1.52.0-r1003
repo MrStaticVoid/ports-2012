@@ -1,15 +1,15 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare pretend setup
-DEPEND=icu? ( >=dev-libs/icu-3.6:0=::gentoo[c++11(-)=] ) !icu? ( virtual/libiconv ) mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) ) app-arch/bzip2:0= sys-libs/zlib:0= !app-admin/eselect-boost >=dev-util/boost-build-1.52.0 python? ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) ) app-arch/tar app-arch/bzip2
+DEPEND=icu? ( >=dev-libs/icu-3.6:0=::gentoo[c++11(-)=] ) !icu? ( virtual/libiconv ) mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) ) app-arch/bzip2:0= sys-libs/zlib:0= !app-admin/eselect-boost >=dev-util/boost-build-1.52.0 python? ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) ) app-arch/tar app-arch/bzip2
 DESCRIPTION=Boost Libraries for C++
 EAPI=5-progress
 HOMEPAGE=http://www.boost.org/
-IUSE=c++11 context debug doc icu mpi +nls python static-libs +threads tools python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4
+IUSE=c++11 context debug doc icu mpi +nls python static-libs +threads tools python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5
 KEYWORDS=*
 LICENSE=Boost-1.0
-RDEPEND=icu? ( >=dev-libs/icu-3.6:0=::gentoo[c++11(-)=] ) !icu? ( virtual/libiconv ) mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) ) app-arch/bzip2:0= sys-libs/zlib:0= !app-admin/eselect-boost python? ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) )
-REQUIRED_USE=python? ( || ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 ) )
+RDEPEND=icu? ( >=dev-libs/icu-3.6:0=::gentoo[c++11(-)=] ) !icu? ( virtual/libiconv ) mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) ) app-arch/bzip2:0= sys-libs/zlib:0= !app-admin/eselect-boost python? ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) )
+REQUIRED_USE=python? ( || ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 ) )
 RESTRICT=test
 SLOT=0/1.52.0
 SRC_URI=mirror://sourceforge/boost/boost_1_52_0.tar.bz2
-_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	flag-o-matic	9a539029fe1d390c1828ff633baf26b5	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python	66c3d00d12f20a8c0d932c1a9bebffe6	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=eutils	af81d52c25ec93fbdff71e0efb0de7b7	flag-o-matic	9a539029fe1d390c1828ff633baf26b5	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	python	46d9f0382a194b2c30ac61862799b58c	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=0461b5b5e2d930cc7f857f772860140f

@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup
+DEPEND=python_abis_2.6? ( dev-lang/python:2.6[threads] ) python_abis_2.7? ( dev-lang/python:2.7[threads] ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy-2.0? ( virtual/pypy:2.0 ) app-arch/tar app-arch/gzip
+DESCRIPTION=Extensible Python-based build utility
+EAPI=5-progress
+HOMEPAGE=http://www.scons.org/
+IUSE=doc python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy-2.0
+KEYWORDS=*
+LICENSE=MIT
+RDEPEND=python_abis_2.6? ( dev-lang/python:2.6[threads] ) python_abis_2.7? ( dev-lang/python:2.7[threads] ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy-2.0? ( virtual/pypy:2.0 )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy-2.0 )
+SLOT=0
+SRC_URI=mirror://sourceforge/scons/scons-2.3.1.tar.gz doc? ( http://www.scons.org/doc/2.3.1/HTML/scons-user.html -> scons-2.3.1-user.html http://www.scons.org/doc/2.3.1/PDF/scons-user.pdf -> scons-2.3.1-user.pdf )
+_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	eutils	af81d52c25ec93fbdff71e0efb0de7b7	multilib	fac675dcccf94392371a6abee62d909f	python	46d9f0382a194b2c30ac61862799b58c	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_md5_=e139744c04d0e1d6263c66eb7dc30d26

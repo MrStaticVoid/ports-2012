@@ -9,5 +9,5 @@ LICENSE=MIT
 RDEPEND=dev-python/django =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://dev.gentoo.org/~tampakrap/tarballs/django-ldapdb-0.1.0_p20120424.tar.bz2
-_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	python	66c3d00d12f20a8c0d932c1a9bebffe6
+_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	python	46d9f0382a194b2c30ac61862799b58c
 _md5_=1de31d84b860ce6faac53bbcb9db1916

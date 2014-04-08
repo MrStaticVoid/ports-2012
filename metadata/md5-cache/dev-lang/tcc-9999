@@ -7,5 +7,5 @@ IUSE=test
 LICENSE=LGPL-2.1
 RDEPEND=!dev-lang/tendra
 SLOT=0
-_eclasses_=eutils	40081e8c7e7f7c4f9db349a1d6d52925	git-r3	98dc3b55c2cb712d1e22b359c0522f55	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
-_md5_=62d21d545bdfbf270ce5ae978fb96040
+_eclasses_=eutils	af81d52c25ec93fbdff71e0efb0de7b7	git-r3	201f4605655217c47be695ea2fdb1a67	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_md5_=8a685a13ed4b92dac9af77059b0727a5

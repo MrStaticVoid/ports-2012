@@ -1,7 +1,10 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/boost-utils.eclass,v 1.4 2014/03/18 10:35:39 mgorny Exp $
 
 if [[ ! ${_BOOST_ECLASS} ]]; then
+
+# @DEAD
 
 # @ECLASS: boost-utils.eclass
 # @MAINTAINER:
@@ -23,7 +26,7 @@ if [[ ! ${_BOOST_ECLASS} ]]; then
 # and -L$(boost-utils_get_libdir) to LDFLAGS.
 
 case ${EAPI:-0} in
-	0|1|2|3|4|4-python|5|5-progress) ;;
+	0|1|2|3|4|5) ;;
 	*) die "${ECLASS}.eclass API in EAPI ${EAPI} not yet established."
 esac
 
