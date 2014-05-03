@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-init-scripts/files/mysql-5.1.53-conf.d,v 1.2 2011/01/15 17:54:31 robbat2 Exp $
+# $Header$
 
 # If you want a non-stock location for the config file, uncomment or update
 # either of these as needed. If you do use it, you must make sure that none of
@@ -33,7 +33,7 @@ STOP_TIMEOUT=120
 
 # integer [-20 .. 19 ] default 0
 # change the priority of the server -20 (high) to 19 (low)
-# see nice(1) for description
+# see "man nice 1" for description
 #NICE=0
 
 # See start-stop-daemon(8) for possible settings
@@ -72,8 +72,7 @@ STOP_TIMEOUT=120
 # But uncomment this next instead if you think it should.
 #rc_provide="mysql"
 
-# The conditional above has a false-positive "failure" return value as a
-# side-effect, and since it's the last statement, without the next line, this
-# script returns failure.
-return 0
+# Tell OpenRC about our config file
+[ -n "${MY_CNF}" ] && rc_config="${MY_CNF}"
+
 # vim: ft=gentoo-conf-d et ts=4 sw=4:

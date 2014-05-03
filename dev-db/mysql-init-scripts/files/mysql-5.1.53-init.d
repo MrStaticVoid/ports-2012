@@ -1,7 +1,7 @@
 #!/sbin/runscript
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-init-scripts/files/mysql-5.1.53-init.d,v 1.1 2011/01/13 20:06:06 robbat2 Exp $
+# $Header$
 
 depend() {
 	use net.lo
@@ -62,17 +62,6 @@ start() {
 		eerror "You don't appear to have the mysql database installed yet."
 		eerror "Please run /usr/bin/mysql_install_db to have this done..."
 		return 1
-	fi
-
-	local piddir="${pidfile%/*}"
-	if [ ! -d "$piddir" ] ; then
-		mkdir "$piddir" && \
-		chown mysql "$piddir"
-		rc=$?
-		if [ $rc -ne 0 ]; then
-			eerror "Directory $piddir for pidfile does not exist and cannot be created"
-			return 1
-		fi
 	fi
 
 	local startup_timeout=${STARTUP_TIMEOUT:-900}

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.178 2014/01/08 06:20:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.177 2013/03/16 19:20:34 robbat2 Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -19,7 +19,7 @@
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit eutils flag-o-matic gnuconfig autotools multilib mysql_fx versionator toolchain-funcs user
+inherit eutils flag-o-matic gnuconfig autotools multilib mysql_fx versionator toolchain-funcs
 
 # Shorten the path because the socket path length must be shorter than 107 chars
 # and we will run a mysql server during test phase
@@ -497,17 +497,6 @@ configure_common() {
 	if use embedded ; then
 		myconf="${myconf} --with-embedded-privilege-control"
 		myconf="${myconf} --with-embedded-server"
-
-		# This fix is from Caleb Cushing - Dec 11 2008 - not sure if we still
-		# need it. (drobbins - 9/23/2010)
-		
-		# fix for amarok 2
-
-		if mysql_version_is_at_least "5.1" ; then
-			CFLAGS="${CFLAGS} -DPIC -fPIC"
-			CXXFLAGS="${CXXFLAGS} -DPIC -fPIC"
-		fi
-
 	else
 		myconf="${myconf} --without-embedded-privilege-control"
 		myconf="${myconf} --without-embedded-server"
@@ -889,7 +878,7 @@ mysql_src_unpack() {
 
 	unpack ${A}
 	# Grab the patches
-	[[ "${MY_EXTRAS_VER}" == "live" ]] && S="${WORKDIR}/mysql-extras" git_src_unpack
+	[[ "${MY_EXTRAS_VER}" == "live" ]] && S="${WORKDIR}/mysql-extras" git-2_src_unpack
 
 	mv -f "${WORKDIR}/${MY_SOURCEDIR}" "${S}"
 

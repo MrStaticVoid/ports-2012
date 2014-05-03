@@ -1,10 +1,8 @@
 #!/sbin/runscript
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-init-scripts/files/mysql-5.1.67-init.d,v 1.1 2013/01/18 01:51:47 robbat2 Exp $
 
 depend() {
-	use net.lo
+	use netif.lo
 	# localmount needed for $basedir
 	need localmount
 }
@@ -114,5 +112,4 @@ stop() {
 		--retry ${stop_timeout}
 	eend $?
 }
-# vim: filetype=gentoo-init-d sw=2 ts=2 sts=2 noet:
 

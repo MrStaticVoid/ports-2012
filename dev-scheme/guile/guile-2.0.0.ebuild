@@ -1,6 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-2.0.0.ebuild,v 1.4 2012/05/02 21:59:03 jdhore Exp $
 
 EAPI=3
 inherit eutils flag-o-matic elisp-common
@@ -10,7 +8,7 @@ HOMEPAGE="http://www.gnu.org/software/guile/"
 SRC_URI="mirror://gnu/guile/${P}.tar.gz"
 
 LICENSE="LGPL-3"
-KEYWORDS="~amd64"
+KEYWORDS="~*"
 IUSE="networking +regex +deprecated emacs nls debug-freelist debug-malloc debug +threads"
 
 DEPEND="

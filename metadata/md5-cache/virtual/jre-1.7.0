@@ -1,6 +1,6 @@
 DEFINED_PHASES=-
 DESCRIPTION=Virtual for Java Runtime Environment (JRE)
 KEYWORDS=*
-RDEPEND==dev-java/oracle-jre-bin-1.7.0*
+RDEPEND=|| ( =virtual/jdk-1.7.0* =dev-java/oracle-jre-bin-1.7.0* )
 SLOT=1.7
-_md5_=7a4bd2b0693daef8e8f789a8a1c1c8f8
+_md5_=4bd1fb7cb1271af458fda8d1b0121252

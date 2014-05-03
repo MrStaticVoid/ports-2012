@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/zvbi/zvbi-0.2.35-r1.ebuild,v 1.1 2014/03/28 06:44:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/zvbi/zvbi-0.2.35-r1.ebuild,v 1.3 2014/04/28 17:53:44 mgorny Exp $
 
 EAPI=5
 inherit eutils libtool multilib-minimal
@@ -35,7 +35,7 @@ multilib_src_configure() {
 		$(use_enable dvb) \
 		$(use_enable nls) \
 		$(use_with X x) \
-		$(multilib_is_native_abi && use_with doc doxygen || echo "--without-doxygen")
+		$(multilib_native_use_with doc doxygen)
 }
 
 multilib_src_install() {

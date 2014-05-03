@@ -97,7 +97,10 @@ src_prepare() {
 		"${FILESDIR}/${PN}-1.48.0-no_strict_aliasing_python2.patch" \
 		"${FILESDIR}/${PN}-1.48.0-disable_libboost_python3.patch" \
 		"${FILESDIR}/${PN}-1.48.0-python_linking.patch" \
-		"${FILESDIR}/${PN}-1.48.0-disable_icu_rpath.patch"
+		"${FILESDIR}/${PN}-1.48.0-disable_icu_rpath.patch" \
+		"${FILESDIR}/${PN}-1.55.0-compiler_status_c++98.patch"
+
+	epatch_user
 }
 
 ejam() {
@@ -106,6 +109,7 @@ ejam() {
 }
 
 src_configure() {
+	[[ "$(makeopts_jobs)" -gt 64 ]] && MAKEOPTS+=" -j64"
 	OPTIONS=($(usex debug gentoodebug gentoorelease) -j$(makeopts_jobs) -q -d+2 --user-config="${S}/user-config.jam")
 
 	c++11_checks
