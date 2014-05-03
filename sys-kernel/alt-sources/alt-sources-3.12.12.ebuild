@@ -1,4 +1,4 @@
-# Copyright (C) 2013 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2013-2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
@@ -19,7 +19,7 @@ SRC_URI="http://www.kernel.org/pub/linux/kernel/v3.x/${KERNEL_FILE}"
 RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="${PV}"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 S="${WORKDIR}/${KERNEL}"
 

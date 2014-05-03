@@ -1,0 +1,12 @@
+DEFINED_PHASES=install
+DESCRIPTION=Bootloader Configuration and Installation Utility
+EAPI=5
+HOMEPAGE=https://github.com/fearedbliss/bliss-boot
+IUSE=grub2 extlinux gpt
+KEYWORDS=~amd64
+LICENSE=MPL-2.0
+RDEPEND=>=dev-lang/python-3.3 grub2? ( >=sys-boot/grub-2.00_p5107-r2 ) extlinux? ( sys-boot/syslinux ) gpt? ( sys-apps/gptfdisk )
+RESTRICT=mirror strip
+SLOT=0
+SRC_URI=https://github.com/fearedbliss/bliss-boot/archive/1.0.0.tar.gz -> bliss-boot-1.0.0.tar.gz
+_md5_=3b1d3429acd4f96fa759e657a1f3beb2
