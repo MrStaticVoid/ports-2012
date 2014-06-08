@@ -1,19 +1,16 @@
 # Keep the most recent masks in a reverse chrono order
 # newest on top
-# Oleg Vinichenko (27 Apr 2014)
-# new debian-sources-3.13.10, masked for testing
-=sys-kernel/debian-sources-3.13.10 
 
-# Daniel Robbins (16 Apr 2014)
-# masked for testing
-=dev-java/oracle-jdk-bin-1.7.0.55
+# Oleg Vinichenko (2 June 2014), add beta and unstable versions of google-chrome as requested in FL-1258 and FL-1254
+# ebuilds are masked
+=www-client/google-chrome-unstable-37.0.2017.2_p1
+=www-client/google-chrome-beta-36.0.1985.32_p1
 
-# Oleg Vinichenko (3 Apr 2014)
-# add s-s-d patch by WilliamH, attempt to fix scripts on OpenVZ
-# masked ebuild, test required
-=sys-apps/openrc-0.12.3-r2
+# Oleg Vinichenko (28 May 2014)
+# stable release update for google-chrome, masked for testing
+=www-client/google-chrome-35.0.1916.114_p1 
 
-# Daniel Robbins (16 Mar 2014)
+## Daniel Robbins (16 Mar 2014)
 # FL-1167 - masked for testing
 =dev-php/xcache-3.1.0
 
@@ -22,10 +19,6 @@
 # FL-971, dhcpcd-6.3.0 with ipv6, wpa_supplicant fixes
 # masked for testing
 >=net-misc/dhcpcd-6.3.0
-
-# Oleg Vinichenko (13 Dec 2014)
-# FL-969: lvm2 update, hard masked for testing. Ebuild needs some fixes with udev deps
-=sys-fs/lvm2-2.02.103 
 
 # Oleg Vinichenko (24 Oct)
 # debian-sources-3.11.5, masked for testing, XFS issue FL-823

@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-9999.ebuild,v 1.42 2014/05/02 21:51:12 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-9999.ebuild,v 1.44 2014/05/08 02:31:30 tetromino Exp $
 
 EAPI=5
 
@@ -20,7 +20,7 @@ DESCRIPTION="A vector graphics library with cross-device output support"
 HOMEPAGE="http://cairographics.org/"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-IUSE="X aqua debug directfb drm gallium gles2 +glib legacy-drivers +lto opengl openvg qt4 static-libs +svg valgrind xcb xlib-xcb"
+IUSE="X aqua debug directfb drm gallium gles2 +glib legacy-drivers lto opengl openvg qt4 static-libs +svg valgrind xcb xlib-xcb"
 # gtk-doc regeneration doesn't seem to work with out-of-source builds
 #[[ ${PV} == *9999* ]] && IUSE="${IUSE} doc" # API docs are provided in tarball, no need to regenerate
 
@@ -105,9 +105,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.8.8-interix.patch
 	use legacy-drivers && epatch "${FILESDIR}"/${PN}-1.10.0-buggy_gradients.patch
 	epatch "${FILESDIR}"/${PN}-respect-fontconfig.patch
-
-	# bug #507478, https://bugs.freedesktop.org/show_bug.cgi?id=77931
-	epatch "${FILESDIR}"/${PN}-1.12.16-all-clipped-3.patch
 
 	# allow the automagically injected -flto flag to be not injected
 	epatch "${FILESDIR}"/${PN}-1.12.16-lto-optional.patch

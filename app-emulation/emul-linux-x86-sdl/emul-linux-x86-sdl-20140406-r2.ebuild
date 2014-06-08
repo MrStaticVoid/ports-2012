@@ -1,12 +1,12 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-sdl/emul-linux-x86-sdl-20140406-r2.ebuild,v 1.1 2014/05/03 10:49:38 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-sdl/emul-linux-x86-sdl-20140406-r2.ebuild,v 1.3 2014/05/30 17:26:08 mgorny Exp $
 
 EAPI=5
 inherit emul-linux-x86
 
-LICENSE="LGPL-2 LGPL-2.1 ZLIB"
-KEYWORDS="-* ~amd64"
+LICENSE="!abi_x86_32? ( LGPL-2 LGPL-2.1 ZLIB ) abi_x86_32? ( metapackage )"
+KEYWORDS="-* amd64"
 IUSE="abi_x86_32"
 
 DEPEND=""

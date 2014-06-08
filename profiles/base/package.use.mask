@@ -1,10 +1,43 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.568 2014/05/02 18:27:14 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.577 2014/06/06 04:20:17 zmedico Exp $
 
 # This file requires >=portage-2.1.1
 # New entries go on top.
 #
+
+# Zac Medico <zmedico@gentoo.org> (06 Jun 2014)
+# Needs hardmasked lua-5.2
+www-servers/mongoose lua
+
+# Sergey Popov <pinkbyte@gentoo.org> (05 Jun 2014)
+# Mask multislot USE flag for packages, where it breaks
+# metadata cache consistency.
+# See bugs #507808, #507810 and #507814
+sys-devel/autoconf	multislot
+sys-devel/gcc		multislot
+
+# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (05 Jun 2014)
+# Needs libepoxy keywording, bug #510940
+x11-base/xorg-server glamor
+
+# Manuel Rüger <mrueg@gentoo.org> (05 Jun 2014)
+# Fails to build with net-libs/libotr-4.0.0
+net-im/climm otr
+
+
+# Pacho Ramos <pacho@gentoo.org> (01 Jun 2014)
+# Needs hardmasked lua-5.2
+>=media-plugins/grilo-plugins-0.2.12 lua
+
+# Rick Farina <zerochaos@gentoo.org> (22 May 2014)
+# mask test use flag for metasploit since tests do not pass
+net-analyzer/metasploit test
+
+# Tom Wijsman <TomWij@gentoo.org> (14 May 2014)
+# Documentation generation needs APIviz which is not in the Portage tree yet.
+# Tracked in Gentoo bug #509602.
+dev-java/jboss-logging doc
 
 # Tom Wijsman <TomWij@gentoo.org> (02 May 2014)
 # Bluetooth support in MATE has incompatibilities with recent BlueZ versions.
@@ -188,7 +221,7 @@ app-editors/gvim luajit racket
 # Alexis Ballier <aballier@gentoo.org> (11 Aug 2013)
 # Multilib migrated version for binary compatibility.
 # Those useflags have deps that are not migrated yet.
-=media-video/ffmpeg-0.10* libass frei0r gnutls rtmp sdl openssl
+=media-video/ffmpeg-0.10* frei0r gnutls rtmp
 
 # Kacper Kowalik <xarthisius@gentoo.org> (09 Aug 2013)
 # Doesn't work on most profiles. Easier to mask here and

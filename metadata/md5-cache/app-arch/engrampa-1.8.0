@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
-DEPEND=>=dev-libs/glib-2.25.5:2 !gtk3? ( x11-libs/gtk+:2 ) gtk3? ( x11-libs/gtk+:3 ) caja? ( >=mate-base/caja-1.7.0 ) sys-devel/gettext >=dev-util/intltool-0.35 virtual/pkgconfig >=mate-base/mate-common-1.7.0 >=dev-libs/json-glib-0.14.0 !!app-arch/mate-file-archiver !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
+DEPEND=>=dev-libs/glib-2.25.5:2 !gtk3? ( x11-libs/gtk+:2 ) gtk3? ( x11-libs/gtk+:3 ) caja? ( || ( >=mate-base/caja-1.7.0 >=mate-base/mate-file-manager-1.6.0 ) ) sys-devel/gettext >=dev-util/intltool-0.35 virtual/pkgconfig >=mate-base/mate-common-1.7.0 >=dev-libs/json-glib-0.14.0 !!app-arch/mate-file-archiver !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
 DESCRIPTION=Engrampa archive manager for MATE
 EAPI=5
 HOMEPAGE=http://mate-desktop.org
 IUSE=gtk3 caja debug
 KEYWORDS=~amd64 ~arm ~x86
 LICENSE=GPL-2
-RDEPEND=>=dev-libs/glib-2.25.5:2 !gtk3? ( x11-libs/gtk+:2 ) gtk3? ( x11-libs/gtk+:3 ) caja? ( >=mate-base/caja-1.7.0 )
+RDEPEND=>=dev-libs/glib-2.25.5:2 !gtk3? ( x11-libs/gtk+:2 ) gtk3? ( x11-libs/gtk+:3 ) caja? ( || ( >=mate-base/caja-1.7.0 >=mate-base/mate-file-manager-1.6.0 ) )
 SLOT=0
 SRC_URI=http://pub.mate-desktop.org/releases/1.8/engrampa-1.8.0.tar.xz
 _eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	025442f2eecab39ad0b4e541b6e142af	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
-_md5_=bbc8a342a0573ecc5a1924cfab47411c
+_md5_=d97a41544f94dd147afcc6d11b15c6d4

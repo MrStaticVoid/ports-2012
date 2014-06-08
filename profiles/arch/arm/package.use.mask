@@ -1,6 +1,22 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.202 2014/04/20 12:37:42 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.207 2014/06/08 11:38:20 mrueg Exp $
+
+# Jauhien Piatlicki <jauhien@gentoo.org> (29 May 2014)
+# Unkeyworded deps
+lxqt-base/lxqt-meta lximage
+
+# Markus Meier <maekke@gentoo.org> (04 May 2014)
+# Unkeyworded deps, bug #509082
+mail-filter/opendkim opendbx
+
+# Markus Meier <maekke@gentoo.org> (04 May 2014)
+# Unkeyworded deps, bug #507896
+dev-qt/qt-mobility messaging
+
+# Andreas K. Huettel <dilfridge@gentoo.org> (3 May 2014)
+# Missing keywords, should only be a transitionary problem
+kde-base/baloo alternatekcm
 
 # Julian Ospald <hasufell@gentoo.org> (20 Apr 2014)
 # Missing keywords, bug #508226

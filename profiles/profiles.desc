@@ -172,9 +172,11 @@ amd64		hardened/linux/amd64/no-multilib			stable
 amd64		hardened/linux/amd64/no-multilib/selinux		stable
 amd64		hardened/linux/amd64/x32				dev
 amd64		hardened/linux/uclibc/amd64				dev
+amd64		hardened/linux/musl/amd64				exp
 arm		hardened/linux/arm/armv7a				dev
 arm		hardened/linux/arm/armv6j				dev
 arm		hardened/linux/uclibc/arm/armv7a			dev
+arm		hardened/linux/musl/arm/armv7a				exp
 ia64		hardened/linux/ia64					dev
 mips		hardened/linux/uclibc/mips				exp
 mips		hardened/linux/uclibc/mips/mipsel			exp
@@ -184,6 +186,7 @@ ppc64		hardened/linux/powerpc/ppc64/64bit-userland		dev
 x86		hardened/linux/x86					stable
 x86		hardened/linux/x86/selinux				stable
 x86		hardened/linux/uclibc/x86				dev
+x86		hardened/linux/musl/x86					exp
 
 # uclibc/embedded multiarch profiles
 #amd64		uclibc/amd64					dev
