@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-12.3.ebuild,v 1.2 2013/12/31 19:18:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-12.3.ebuild,v 1.4 2014/05/31 20:53:36 ssuominen Exp $
 
 EAPI="5"
 
@@ -80,7 +80,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	media-libs/libpng
 	projectm? ( media-libs/libprojectm )
 	media-libs/libsamplerate
-	sdl? ( media-libs/libsdl[audio,opengl,video,X] )
+	sdl? ( media-libs/libsdl[sound,opengl,video,X] )
 	alsa? ( media-libs/libsdl[alsa] )
 	>=media-libs/taglib-1.8
 	media-libs/libvorbis
@@ -127,7 +127,10 @@ COMMON_DEPEND="${PYTHON_DEPS}
 		x11-libs/libXrender
 	)"
 RDEPEND="${COMMON_DEPEND}
-	udev? (	sys-fs/udisks:0 sys-power/upower )"
+	udev? (
+		sys-fs/udisks:0
+		|| ( sys-power/upower sys-power/upower-pm-utils )
+	)"
 DEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils
 	dev-lang/swig

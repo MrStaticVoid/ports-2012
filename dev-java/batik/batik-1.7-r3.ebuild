@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.7-r3.ebuild,v 1.5 2013/03/27 09:31:08 ago Exp $
 
 EAPI=4
 JAVA_PKG_IUSE="doc"
@@ -12,13 +10,13 @@ SRC_URI="mirror://apache/xmlgraphics/${PN}/${PN}-src-${PV}.zip"
 
 LICENSE="Apache-2.0"
 SLOT="1.7"
-KEYWORDS="amd64 ppc ppc64 x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="*"
 IUSE="doc python tcl"
 
 CDEPEND="dev-java/xalan:0
 	dev-java/rhino:1.6
 	dev-java/xml-commons-external:1.3
-	python? ( dev-java/jython:0 )
+	python? ( dev-java/jython:2.2 )
 	tcl? ( dev-java/jacl:0 )
 	dev-java/ant-core"
 DEPEND=">=virtual/jdk-1.4
@@ -42,7 +40,7 @@ java_prepare() {
 	java-pkg_jar-from xalan
 	java-pkg_jar-from rhino-1.6
 
-	use python && java-pkg_jar-from jython
+	use python && java-pkg_jar-from jython-2.2
 	use tcl && java-pkg_jar-from jacl
 }
 

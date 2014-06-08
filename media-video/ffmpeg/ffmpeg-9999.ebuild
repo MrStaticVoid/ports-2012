@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999.ebuild,v 1.152 2014/03/16 22:34:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999.ebuild,v 1.154 2014/06/03 06:20:53 aballier Exp $
 
 EAPI="5"
 
@@ -118,7 +118,7 @@ RDEPEND="
 	pulseaudio? ( media-sound/pulseaudio )
 	quvi? ( media-libs/libquvi:0.4 )
 	rtmp? ( >=media-video/rtmpdump-2.2f )
-	sdl? ( >=media-libs/libsdl-1.2.13-r1[audio,video] )
+	sdl? ( >=media-libs/libsdl-1.2.13-r1[sound,video] )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
 	ssh? ( net-libs/libssh )
@@ -320,7 +320,7 @@ src_install() {
 	done
 
 	cd "${S}"
-	dodoc Changelog README CREDITS doc/*.txt doc/APIchanges doc/RELEASE_NOTES
+	dodoc Changelog README.md CREDITS doc/*.txt doc/APIchanges doc/RELEASE_NOTES
 	use doc && dohtml -r doc/*
 	if use examples ; then
 		dodoc -r doc/examples

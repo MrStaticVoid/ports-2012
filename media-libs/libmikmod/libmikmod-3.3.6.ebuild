@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/libmikmod-3.3.6.ebuild,v 1.1 2014/03/21 21:48:11 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/libmikmod-3.3.6.ebuild,v 1.3 2014/05/22 13:59:06 mgorny Exp $
 
 EAPI=5
 inherit eutils multilib-minimal
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="+alsa altivec coreaudio debug nas openal oss pulseaudio sse2 static-libs +threads"
 
-REQUIRED_USE="|| ( alsa oss coreaudio )"
+REQUIRED_USE="|| ( alsa coreaudio nas openal oss pulseaudio )"
 
 RDEPEND="alsa? ( media-libs/alsa-lib:=[${MULTILIB_USEDEP}] )
 	nas? ( media-libs/nas:=[${MULTILIB_USEDEP}] )
@@ -26,6 +26,10 @@ RDEPEND="alsa? ( media-libs/alsa-lib:=[${MULTILIB_USEDEP}] )
 DEPEND="${RDEPEND}
 	oss? ( virtual/os-headers )"
 
+MULTILIB_CHOST_TOOLS=(
+	/usr/bin/libmikmod-config
+)
+
 multilib_src_configure() {
 	local mysimd="--disable-simd"
 	if use ppc || use ppc64 || use ppc-macos; then
@@ -35,7 +39,7 @@ multilib_src_configure() {
 		mysimd="$(use_enable sse2 simd)"
 	fi
 
-	# sdl, sdl2: missing multilib supported ebuilds, temporarily disabled
+	# sdl, sdl2: missing multilib supported ebuilds, temporarily disabled, remember to update REQUIRED_USE
 	ECONF_SOURCE=${S} \
 	econf \
 		$(use_enable alsa) \

@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-4.12.5.ebuild,v 1.1 2014/04/29 18:34:58 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-4.12.5.ebuild,v 1.6 2014/05/31 20:29:05 ssuominen Exp $
 
 EAPI=5
 
@@ -14,7 +14,7 @@ EGIT_BRANCH="KDE/4.12"
 
 DESCRIPTION="KDE libraries needed by all KDE programs."
 
-KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ~arm ppc ppc64 x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 LICENSE="LGPL-2.1"
 IUSE="3dnow acl alsa altivec +bzip2 debug doc fam jpeg2k kerberos lzma
 mmx nls openexr +policykit semantic-desktop spell sse sse2 ssl +udev +udisks
@@ -104,7 +104,7 @@ RDEPEND="${COMMONDEPEND}
 		x11-apps/iceauth
 		x11-apps/rgb
 		>=x11-misc/xdg-utils-1.0.2-r3
-		upower? ( sys-power/upower )
+		upower? ( || ( >=sys-power/upower-0.9.23 sys-power/upower-pm-utils ) )
 	)
 	udev? ( app-misc/media-player-info )
 "

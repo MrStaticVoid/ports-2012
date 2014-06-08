@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.106 2014/05/02 09:23:38 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.113 2014/06/03 00:46:36 floppym Exp $
 
 EAPI=5
 
@@ -29,7 +29,7 @@ IUSE="acl audit cryptsetup doc +firmware-loader gcrypt gudev http introspection
 	kdbus +kmod lzma pam policykit python qrcode +seccomp selinux ssl
 	test vanilla xattr"
 
-MINKV="3.0"
+MINKV="3.10"
 
 COMMON_DEPEND=">=sys-apps/util-linux-2.20:0=
 	sys-libs/libcap:0=
@@ -164,6 +164,15 @@ pkg_setup() {
 	use python && python-single-r1_pkg_setup
 }
 
+src_configure() {
+	# Keep using the one where the rules were installed.
+	MY_UDEVDIR=$(get_udevdir)
+	# Fix systems broken by bug #509454.
+	[[ ${MY_UDEVDIR} ]] || MY_UDEVDIR=/lib/udev
+
+	multilib-minimal_src_configure
+}
+
 multilib_src_configure() {
 	local myeconfargs=(
 		# disable -flto since it is an optimization flag
@@ -218,10 +227,9 @@ multilib_src_configure() {
 		--with-dbussessionservicedir="${EPREFIX}/usr/share/dbus-1/services"
 		--with-dbussystemservicedir="${EPREFIX}/usr/share/dbus-1/system-services"
 		--with-dbusinterfacedir="${EPREFIX}/usr/share/dbus-1/interfaces"
-	)
 
-	# Keep using the one where the rules were installed.
-	MY_UDEVDIR=$(get_udevdir)
+		--with-ntp-servers="0.gentoo.pool.ntp.org 1.gentoo.pool.ntp.org 2.gentoo.pool.ntp.org 3.gentoo.pool.ntp.org"
+	)
 
 	if use firmware-loader; then
 		myeconfargs+=(
@@ -259,6 +267,7 @@ multilib_src_configure() {
 			--disable-qrencode
 			--disable-seccomp
 			--disable-selinux
+			--disable-timesyncd
 			--disable-tests
 			--disable-xattr
 			--disable-xz
@@ -425,6 +434,10 @@ migrate_net_name_slot() {
 
 pkg_postinst() {
 	enewgroup systemd-journal
+	enewgroup systemd-network
+	enewuser systemd-network -1 -1 -1 systemd-network
+	enewgroup systemd-timesync
+	enewuser systemd-timesync -1 -1 -1 systemd-timesync
 	if use http; then
 		enewgroup systemd-journal-gateway
 		enewuser systemd-journal-gateway -1 -1 -1 systemd-journal-gateway

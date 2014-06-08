@@ -156,3 +156,7 @@ games-puzzle/gnome-sudoku
 >dev-libs/glib-2.36.4-r1
 >dev-libs/gobject-introspection-1.36.0-r1
 >dev-libs/gobject-introspection-common-1.36.0
+>sys-apps/accountsservice-0.6.35
+>dev-libs/libical-0.48-r2
+>sys-devel/bison-2.7.1
+>sys-libs/tdb-1.2.13

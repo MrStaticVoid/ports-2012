@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst preinst prepare test
-DEPEND=!<app-arch/lzma-4.63 !app-arch/lzma-utils !<app-arch/p7zip-4.57 userland_GNU? ( >=sys-apps/coreutils-8.5 )
+DEPEND=!<app-arch/lzma-4.63 !app-arch/lzma-utils !<app-arch/p7zip-4.57
 DESCRIPTION=utils for managing LZMA compressed files
 EAPI=4
 HOMEPAGE=http://tukaani.org/xz/
@@ -9,5 +9,5 @@ LICENSE=public-domain LGPL-2.1+ GPL-2+
 RDEPEND=!<app-arch/lzma-4.63 !app-arch/lzma-utils !<app-arch/p7zip-4.57
 SLOT=0
 SRC_URI=http://tukaani.org/xz/xz-5.0.5.tar.gz
-_eclasses_=eutils	025442f2eecab39ad0b4e541b6e142af	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multibuild	d3794110bf67450fe5ea134a46a77ec9	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	92d3f7bb60a5e50125ab33fdacf7fb0a	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=eutils	025442f2eecab39ad0b4e541b6e142af	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multibuild	56961ac06660a16c3f807c0c39247e4c	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	191952b2906b6dbc0f589c1666674353	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=ea8d44fa19fd4fa2902da36fc4ec9030

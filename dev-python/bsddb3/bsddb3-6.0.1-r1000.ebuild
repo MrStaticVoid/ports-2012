@@ -32,14 +32,20 @@ src_configure() {
 		fi
 	done
 
-	sed -e "s/dblib = 'db'/dblib = '$(db_libname ${DB_VER})'/" -i setup2.py setup3.py || die "sed failed"
+	DISTUTILS_GLOBAL_OPTIONS=(
+		"* --berkeley-db=${EPREFIX}/usr"
+		"* --berkeley-db-incdir=${EPREFIX}$(db_includedir ${DB_VER})"
+		"* --berkeley-db-libdir=${EPREFIX}/usr/$(get_libdir)"
+	)
+
+	sed \
+		-e "s/db_ver = None/db_ver = (${DB_VER%.*}, ${DB_VER#*.})/" \
+		-e "s/dblib = 'db'/dblib = '$(db_libname ${DB_VER})'/" \
+		-i setup2.py setup3.py || die "sed failed"
 }
 
 src_compile() {
-	YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION="1" distutils_src_compile \
-		--berkeley-db="${EPREFIX}/usr" \
-		--berkeley-db-incdir="${EPREFIX}$(db_includedir ${DB_VER})" \
-		--berkeley-db-libdir="${EPREFIX}/usr/$(get_libdir)"
+	YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION="1" distutils_src_compile
 }
 
 src_test() {

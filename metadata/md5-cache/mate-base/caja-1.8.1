@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
+DEPEND=>=dev-libs/glib-2.28.0:2 gtk3? ( x11-libs/gtk+:3 dev-libs/libunique:3 ) !gtk3? ( x11-libs/gtk+:2 dev-libs/libunique:1 ) >=mate-base/mate-desktop-1.7.1[gtk3?] >=x11-libs/pango-1.1.2 x11-libs/gtk+:2[introspection?] >=gnome-base/gvfs-1.10.1 >=dev-libs/libxml2-2.4.7:2 >=media-libs/libexif-0.5.12 x11-libs/libXext x11-libs/libXrender introspection? ( >=dev-libs/gobject-introspection-0.6.4 ) xmp? ( media-libs/exempi:2 ) !!mate-base/mate-file-manager >=dev-lang/perl-5 sys-devel/gettext virtual/pkgconfig dev-util/gdbus-codegen >=dev-util/intltool-0.40.1 >=mate-base/mate-common-1.2.2 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am test? ( !prefix? ( x11-base/xorg-server[xvfb] ) x11-apps/xhost )
+DESCRIPTION=Caja file manager for the MATE desktop
+EAPI=5
+HOMEPAGE=http://mate-desktop.org
+IUSE=gtk3 mate +introspection xmp debug test
+KEYWORDS=~amd64 ~arm ~x86
+LICENSE=GPL-2 LGPL-2 FDL-1.1
+PDEPEND=mate? ( >=x11-themes/mate-icon-theme-1.2.0 )
+RDEPEND=>=dev-libs/glib-2.28.0:2 gtk3? ( x11-libs/gtk+:3 dev-libs/libunique:3 ) !gtk3? ( x11-libs/gtk+:2 dev-libs/libunique:1 ) >=mate-base/mate-desktop-1.7.1[gtk3?] >=x11-libs/pango-1.1.2 x11-libs/gtk+:2[introspection?] >=gnome-base/gvfs-1.10.1 >=dev-libs/libxml2-2.4.7:2 >=media-libs/libexif-0.5.12 x11-libs/libXext x11-libs/libXrender introspection? ( >=dev-libs/gobject-introspection-0.6.4 ) xmp? ( media-libs/exempi:2 )
+SLOT=0
+SRC_URI=http://pub.mate-desktop.org/releases/1.8/caja-1.8.1.tar.xz
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	025442f2eecab39ad0b4e541b6e142af	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f	virtualx	73cfc129b4b9ba23aed1abb10c825d86
+_md5_=fc225d77cdeba80aa1edc5c028203654

@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=app-arch/xz-utils >=sys-apps/sed-4 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 >=sys-apps/sed-4 dev-vcs/git app-text/gnome-doc-utils app-text/yelp-tools dev-util/gtk-doc dev-util/intltool mate-base/mate-common sys-devel/gettext
+DESCRIPTION=Faenza icon theme, that was adapted for MATE desktop
+EAPI=5
+HOMEPAGE=http://mate-desktop.org
+IUSE=minimal debug debug
+LICENSE=GPL-3
+RDEPEND=!minimal? ( x11-themes/mate-icon-theme-1.6:0 ) x11-themes/hicolor-icon-theme:0
+RESTRICT=binchecks strip
+SLOT=0
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	025442f2eecab39ad0b4e541b6e142af	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	git-2	2027b81a576527fa16bece425941e094	git-r3	1832330dbb193ea5884e9a0703961fc3	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-live	19ec4b86ea65aba1b9fdebc98465834b	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=1e2bc5d4db20a225a943d55f374ed697

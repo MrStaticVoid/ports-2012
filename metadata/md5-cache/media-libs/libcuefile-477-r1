@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare test
-DEPEND=sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) userland_GNU? ( >=sys-apps/coreutils-8.5 )
+DEPEND=sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
 DESCRIPTION=Cue File library from Musepack
 EAPI=5
 HOMEPAGE=http://www.musepack.net/
@@ -9,5 +9,5 @@ LICENSE=LGPL-2.1
 RDEPEND=abi_x86_32? ( !<=app-emulation/emul-linux-x86-medialibs-20130224-r2 !app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] )
 SLOT=0
 SRC_URI=http://dev.gentoo.org/~ssuominen/libcuefile-477.tar.xz
-_eclasses_=cmake-multilib	08126500411a2fc0fb106455d60e0c60	cmake-utils	78f778163242acffc7a1c2f1bc571159	eutils	025442f2eecab39ad0b4e541b6e142af	flag-o-matic	9a539029fe1d390c1828ff633baf26b5	multibuild	d3794110bf67450fe5ea134a46a77ec9	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	92d3f7bb60a5e50125ab33fdacf7fb0a	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=cmake-multilib	ca4c6ecda3062bf851d951987568fdae	cmake-utils	50a0f8ec01542e7e35e36a41264aeb9a	eutils	025442f2eecab39ad0b4e541b6e142af	flag-o-matic	9a539029fe1d390c1828ff633baf26b5	multibuild	56961ac06660a16c3f807c0c39247e4c	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	191952b2906b6dbc0f589c1666674353	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
 _md5_=8fe349159b01674adb76994723ab3e45

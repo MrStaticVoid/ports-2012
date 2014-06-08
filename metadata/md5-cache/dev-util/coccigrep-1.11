@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=dev-util/coccinelle[python] virtual/python-argparse emacs? ( virtual/emacs ) vim? ( || ( app-editors/vim app-editors/gvim ) ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=https://github.com/regit/coccigrep/tarball/v1.11 -> coccigrep-1.11.tar.gz
-_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	elisp-common	cec01e54df1bfd2fcca76a13ce2b2d27	python	46d9f0382a194b2c30ac61862799b58c	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	elisp-common	82c1a9cbf52051a9ac4894d151fac235	python	46d9f0382a194b2c30ac61862799b58c	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
 _md5_=eb2d63316a1e2f8afafd05ce2d584bfb

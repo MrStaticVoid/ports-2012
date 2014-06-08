@@ -6,8 +6,8 @@ HOMEPAGE=http://code.google.com/p/batti-gtk/
 IUSE=libnotify
 KEYWORDS=amd64 x86
 LICENSE=GPL-2
-RDEPEND=dev-python/pygtk dev-python/dbus-python sys-power/upower x11-themes/gnome-icon-theme libnotify? ( x11-libs/libnotify ) =dev-lang/python-2*
+RDEPEND=dev-python/pygtk dev-python/dbus-python || ( <sys-power/upower-0.99 sys-power/upower-pm-utils ) x11-themes/gnome-icon-theme libnotify? ( x11-libs/libnotify ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://batti-gtk.googlecode.com/files/batti-0.3.8.tar.gz
 _eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	fac675dcccf94392371a6abee62d909f	python	46d9f0382a194b2c30ac61862799b58c	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
-_md5_=a144b56e07591ea4ede1c41b6becc794
+_md5_=8da11ce25eda19a39d2502c557e90cf0

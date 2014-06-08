@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare test unpack
-DEPEND=x11-proto/xproto[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool userland_GNU? ( >=sys-apps/coreutils-8.5 ) x86-interix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) ppc-aix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) x86-winnt? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) virtual/pkgconfig
+DEPEND=x11-proto/xproto[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?] !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool x86-interix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) ppc-aix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) x86-winnt? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.17 >=media-fonts/font-util-1.2.0 ) virtual/pkgconfig
 DESCRIPTION=Shared memory fences using futexes
 EAPI=5
 HOMEPAGE=http://xorg.freedesktop.org/
 IUSE=abi_x86_32 abi_x86_64 abi_x86_x32 abi_mips_n32 abi_mips_n64 abi_mips_o32 static-libs
-KEYWORDS=alpha amd64 ~arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris
+KEYWORDS=alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris
 LICENSE=MIT
 RDEPEND=abi_x86_32? ( !app-emulation/emul-linux-x86-xlibs[-abi_x86_32(-)] )
 SLOT=0
 SRC_URI=http://xorg.freedesktop.org/releases/individual/lib/libxshmfence-1.1.tar.bz2
-_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	autotools-multilib	15114f618321da5204b24de04515cd10	autotools-utils	d18eee04c558ed362d40360fa9e790ce	eutils	025442f2eecab39ad0b4e541b6e142af	flag-o-matic	9a539029fe1d390c1828ff633baf26b5	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multibuild	d3794110bf67450fe5ea134a46a77ec9	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	92d3f7bb60a5e50125ab33fdacf7fb0a	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	xorg-2	ecef6fc55e009db42820b111099a7bc6
-_md5_=6aadd6feffe53f4d997376ff01053d76
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	autotools-multilib	8a02e1db7a3b627ea674b3fe5377fbcf	autotools-utils	d18eee04c558ed362d40360fa9e790ce	eutils	025442f2eecab39ad0b4e541b6e142af	flag-o-matic	9a539029fe1d390c1828ff633baf26b5	libtool	b9b3340e3a19510f0d9f05cfccbf209f	multibuild	56961ac06660a16c3f807c0c39247e4c	multilib	fac675dcccf94392371a6abee62d909f	multilib-build	191952b2906b6dbc0f589c1666674353	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	xorg-2	ecef6fc55e009db42820b111099a7bc6
+_md5_=e70c7f85d95348a822576041f6bdee83
