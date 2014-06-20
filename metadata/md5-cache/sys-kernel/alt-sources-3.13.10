@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install prepare unpack
+DESCRIPTION=Kernel Sources and Patches for the System Rescue CD Alternate Kernel
+EAPI=5
+HOMEPAGE=http://kernel.sysresccd.org/
+KEYWORDS=~amd64
+LICENSE=GPL-2
+RESTRICT=mirror
+SLOT=3.13.10
+SRC_URI=mirror://kernel/linux/kernel/v3.x/linux-3.13.tar.xz
+_eclasses_=eutils	025442f2eecab39ad0b4e541b6e142af	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_md5_=0b631cf3f6217d39b9f7427b220889ce

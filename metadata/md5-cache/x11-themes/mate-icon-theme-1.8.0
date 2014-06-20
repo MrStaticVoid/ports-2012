@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
-DEPEND=>=x11-themes/hicolor-icon-theme-0.10 >=x11-misc/icon-naming-utils-0.8.7 virtual/pkgconfig >=dev-util/intltool-0.40 sys-devel/gettext !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
+DEPEND=>=x11-themes/hicolor-icon-theme-0.10 >=dev-util/intltool-0.40:* >=x11-misc/icon-naming-utils-0.8.7:0 sys-devel/gettext:* virtual/pkgconfig:* app-arch/xz-utils >=sys-apps/sed-4
 DESCRIPTION=MATE default icon themes
 EAPI=5
 HOMEPAGE=http://mate-desktop.org
-KEYWORDS=~amd64 ~arm ~x86
+KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
 RDEPEND=>=x11-themes/hicolor-icon-theme-0.10
 RESTRICT=binchecks strip
 SLOT=0
 SRC_URI=http://pub.mate-desktop.org/releases/1.8/mate-icon-theme-1.8.0.tar.xz
-_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	025442f2eecab39ad0b4e541b6e142af	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
-_md5_=b67ff5ac94aa786a9d4147c648c311e9
+_eclasses_=eutils	025442f2eecab39ad0b4e541b6e142af	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	2964b38e7ad7f6998406386ad1c6dbcf	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=a6d2b7439303373fd44440375ca948fb

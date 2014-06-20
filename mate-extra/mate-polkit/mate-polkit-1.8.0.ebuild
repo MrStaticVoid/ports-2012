@@ -1,51 +1,48 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-polkit/mate-polkit-1.8.0.ebuild,v 1.2 2014/06/07 16:39:45 ago Exp $
 
-EAPI=5
+EAPI="5"
+
 GCONF_DEBUG="no"
 
-inherit autotools mate
+inherit gnome2 versionator
 
-DESCRIPTION="A dbus session bus service that is used to bring up authentication dialogs"
+MATE_BRANCH="$(get_version_component_range 1-2)"
+
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
+DESCRIPTION="A MATE specific DBUS session bus service that is used to bring up authentication dialogs"
 HOMEPAGE="https://github.com/mate-desktop/mate-polkit"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
-IUSE="+introspection gtk3"
+KEYWORDS="~amd64 ~x86"
 
-RDEPEND=">=dev-libs/glib-2.28
-	gtk3? ( >=x11-libs/gtk+-2.24:2[introspection?] )
-	!gtk3? ( x11-libs/gtk+:3 )
-	>=sys-auth/polkit-0.102[introspection?]
-	introspection? ( >=dev-libs/gobject-introspection-0.6.2 )"
+IUSE="+introspection"
 
+RDEPEND=">=dev-libs/glib-2.28:2
+	>=sys-auth/polkit-0.102:0[introspection?]
+	>=x11-libs/gtk+-2.24:2[introspection?]
+	x11-libs/gdk-pixbuf:2[introspection?]
+	virtual/libintl:0
+	introspection? ( >=dev-libs/gobject-introspection-0.6.2:0 )"
+
+# We call gtkdocize so we need to depend on gtk-doc.
 DEPEND="${RDEPEND}
-	dev-util/intltool
-	!<gnome-extra/polkit-gnome-0.102
-	mate-base/mate-common
-	sys-devel/gettext
-	virtual/pkgconfig"
+	>=dev-util/gtk-doc-1.3:0
+	>=dev-util/intltool-0.35:*
+	mate-base/mate-common:0
+	sys-devel/gettext:*
+	virtual/pkgconfig:*
+	!<gnome-extra/polkit-gnome-0.102:0"
 
-# Entropy PMS specific. This way we can install the pkg
-# into the build chroots.
+# Entropy PMS specific. This way we can install the pkg into the build chroots.
 ENTROPY_RDEPEND="!lxde-base/lxpolkit"
 
-src_prepare() {
-	eautoreconf
-	gnome2_src_prepare
-}
-
 src_configure() {
-	DOCS="AUTHORS HACKING NEWS README"
-
-	G2CONF="${G2CONF}
-		--disable-static
-		$(use_enable introspection)"
-
-	use gtk3 && G2CONF="${G2CONF} --with-gtk=3.0"
-	use !gtk3 && G2CONF="${G2CONF} --with-gtk=2.0"
-
-	gnome2_src_configure
+	gnome2_src_configure \
+		--disable-static \
+		$(use_enable introspection)
 }
+
+DOCS="AUTHORS HACKING NEWS README"

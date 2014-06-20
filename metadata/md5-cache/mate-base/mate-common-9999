@@ -1,9 +1,0 @@
-DEFINED_PHASES=install prepare unpack
-DEPEND=>=dev-vcs/git-1.8.2.1
-DESCRIPTION=Common files for development of MATE packages
-EAPI=5
-HOMEPAGE=http://mate-desktop.org
-LICENSE=GPL-3
-SLOT=0
-_eclasses_=eutils	025442f2eecab39ad0b4e541b6e142af	git-r3	1832330dbb193ea5884e9a0703961fc3	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
-_md5_=557c4bfac63acbf8acf877a0816c0c26

@@ -1,66 +1,86 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-utils/mate-utils-1.8.0.ebuild,v 1.3 2014/06/07 16:39:57 ago Exp $
 
 EAPI="5"
+
 GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 
-inherit mate
+inherit gnome2 versionator
 
+MATE_BRANCH="$(get_version_component_range 1-2)"
+
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="Utilities for the MATE desktop"
 HOMEPAGE="http://mate-desktop.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
-IUSE="applet gtk3 ipv6 test"
+KEYWORDS="~amd64 ~x86"
 
-RDEPEND=">=dev-libs/glib-2.20:2
-	gtk3? ( x11-libs/gtk+:3
-			media-libs/libcanberra[gtk3] )
-	!gtk3? ( >=x11-libs/gtk+-2.20:2
-			media-libs/libcanberra[gtk] )
-	>=gnome-base/libgtop-2.12
-	x11-libs/libXext
-	x11-libs/libX11
-	applet? ( >=mate-base/mate-panel-1.7.0 )"
+IUSE="X applet ipv6 test"
+
+RDEPEND="app-text/rarian:0
+	dev-libs/atk:0
+	>=dev-libs/glib-2.20:2
+	>=gnome-base/libgtop-2.12:2=
+	>=media-libs/libcanberra-0.4:0[gtk]
+	sys-libs/zlib:0
+	>=x11-libs/gtk+-2.24:2
+	x11-libs/cairo:0
+	x11-libs/gdk-pixbuf:2
+	x11-libs/libICE:0
+	x11-libs/libSM:0
+	x11-libs/libX11:0
+	x11-libs/libXext:0
+	x11-libs/pango:0
+	applet? ( >=mate-base/mate-panel-1.8:0 )"
 
 DEPEND="${RDEPEND}
-	x11-proto/xextproto
-	app-text/scrollkeeper
-	>=dev-util/intltool-0.40
-	virtual/pkgconfig
-	>=mate-base/mate-common-1.5.0"
+	>=app-text/scrollkeeper-dtd-1:1.0
+	app-text/yelp-tools:0
+	>=dev-util/intltool-0.40:*
+	>=mate-base/mate-common-1.6:0
+	x11-proto/xextproto:0
+	sys-devel/gettext:*
+	virtual/pkgconfig:*"
+
 src_prepare() {
 	gnome2_src_prepare
 
-	# Remove idiotic -D.*DISABLE_DEPRECATED cflags
+	# Remove -D.*DISABLE_DEPRECATED cflagss
 	# This method is kinda prone to breakage. Recheck carefully with next bump.
 	# bug 339074
 	LC_ALL=C find . -iname 'Makefile.am' -exec \
-		sed -e '/-D[A-Z_]*DISABLE_DEPRECATED/d' -i {} + || die "sed 1 failed"
+		sed -e '/-D[A-Z_]*DISABLE_DEPRECATED/d' -i {} + || die
+
 	# Do Makefile.in after Makefile.am to avoid automake maintainer-mode
 	LC_ALL=C find . -iname 'Makefile.in' -exec \
-		sed -e '/-D[A-Z_]*DISABLE_DEPRECATED/d' -i {} + || die "sed 2 failed"
+		sed -e '/-D[A-Z_]*DISABLE_DEPRECATED/d' -i {} + || die
 
 	if ! use test; then
-		sed -e 's/ tests//' -i logview/Makefile.{am,in} || die "sed 3 failed"
+		sed -e 's/ tests//' -i logview/Makefile.{am,in} || die
 	fi
+
+	# Fix up desktop files.
+	LC_ALL=C find . -iname '*.desktop.in*' -exec \
+		sed -e 's/Categories\(.*\)MATE/Categories\1X-MATE/' -i {} + || die
 }
 
 src_configure() {
-	DOCS="AUTHORS ChangeLog NEWS README THANKS"
+	local myconf
+	if ! use debug; then
+		myconf="${myconf} --enable-debug=minimum"
+	fi
 
-	G2CONF="${G2CONF}
-		$(use_enable ipv6)
-		$(use_enable applet gdict-applet)
-		--disable-maintainer-flags
-		--enable-zlib"
-
-	use !debug && G2CONF="${G2CONF} --enable-debug-minimum"
-	use gtk3 && G2CONF="${G2CONF} --with-gtk=3.0"
-	use !gtk3 && G2CONF="${G2CONF} --with-gtk=2.0"
-
-	gnome2_src_configure
+	gnome2_src_configure \
+		$(use_enable applet gdict-applet) \
+		$(use_enable ipv6) \
+		$(use_with X x) \
+		--disable-maintainer-flags \
+		--enable-zlib \
+		${myconf}
 }
+
+DOCS="AUTHORS ChangeLog NEWS README THANKS"

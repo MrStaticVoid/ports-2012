@@ -1,78 +1,82 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/mate-base/mate-menus/mate-menus-1.8.0.ebuild,v 1.2 2014/06/07 16:39:29 ago Exp $
 
 EAPI="5"
+
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
-
 PYTHON_COMPAT=( python2_{6,7} )
 
-inherit mate python-r1
+inherit gnome2 python-r1
 
-DESCRIPTION="The MATE menu system, implementing the F.D.O cross-desktop spec"
+MATE_BRANCH="$(get_version_component_range 1-2)"
+
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
+DESCRIPTION="MATE menu system, implementing the F.D.O cross-desktop spec"
 HOMEPAGE="http://mate-desktop.org"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="~amd64 ~x86"
+
 IUSE="debug +introspection python"
+
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND=">=dev-libs/glib-2.18
-	python? ( dev-python/pygtk[${PYTHON_USEDEP}] )
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7 )"
+RDEPEND=">=dev-libs/glib-2.15.2:2
+	virtual/libintl:0
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )
+	python? (
+		dev-python/pygtk:2[${PYTHON_USEDEP}]
+		${PYTHON_DEPS}
+	)"
+
 DEPEND="${RDEPEND}
-	sys-devel/gettext
-	virtual/pkgconfig
-	>=mate-base/mate-common-1.5.0
-	>=dev-util/intltool-0.40"
+	>=dev-util/intltool-0.40:*
+	>=mate-base/mate-common-1.6:0
+	sys-devel/gettext:*
+	virtual/pkgconfig:*"
+
+my_command() {
+	if use python ; then
+		python_foreach_impl run_in_build_dir $@
+	else
+		$@
+	fi
+}
 
 src_configure() {
-	DOCS="AUTHORS ChangeLog NEWS README"
-
-	# Do NOT compile with --disable-debug/--enable-debug=no
-	# It disables api usage checks
 	G2CONF="${G2CONF} \
 		$(use_enable python) \
 		$(use_enable introspection)"
 
+	# Do NOT compile with --disable-debug/--enable-debug=no as it disables API 
+	# usage checks.
 	if ! use debug ; then
 		G2CONF="${G2CONF} --enable-debug=minimum"
 	fi
 
-	if use python; then
+	if use python ; then
 		python_copy_sources
-		python_foreach_impl run_in_build_dir gnome2_src_configure
-	else
-		gnome2_src_configure
 	fi
+
+	my_command gnome2_src_configure
 }
 
 src_compile() {
-	if use python; then
-		python_foreach_impl run_in_build_dir gnome2_src_compile
-	else
-		gnome2_src_compile
-	fi
+	my_command gnome2_src_compile
 }
 
 src_test() {
-	if use python; then
-		python_foreach_impl run_in_build_dir emake check
-	else
-		emake check
-	fi
+	my_command emake check
 }
 
+DOCS="AUTHORS ChangeLog NEWS README"
+
 src_install() {
-	if use python; then
-		python_foreach_impl run_in_build_dir gnome2_src_install
-	else
-		gnome2_src_install
-	fi
+	my_command gnome2_src_install
 
 	exeinto /etc/X11/xinit/xinitrc.d/
-	# TODO: check xdg
 	doexe "${FILESDIR}/10-xdg-menu-mate"
 }

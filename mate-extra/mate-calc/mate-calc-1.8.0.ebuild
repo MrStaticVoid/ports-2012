@@ -1,36 +1,36 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-calc/mate-calc-1.8.0.ebuild,v 1.2 2014/06/07 16:39:39 ago Exp $
 
 EAPI="5"
+
 GCONF_DEBUG="no"
 
-inherit mate eutils
+inherit gnome2 versionator
 
+MATE_BRANCH="$(get_version_component_range 1-2)"
+
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="A calculator application for MATE"
 HOMEPAGE="http://mate-desktop.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
-IUSE="gtk3"
+KEYWORDS="~amd64 ~x86"
 
-RDEPEND="!gtk3? ( x11-libs/gtk+:2 )
-	gtk3? ( x11-libs/gtk+:3 )
+RDEPEND="app-text/rarian:0
 	>=dev-libs/glib-2.30:2
-	dev-libs/libxml2:2"
+	dev-libs/atk:0
+	dev-libs/libxml2:2
+	>=x11-libs/gtk+-2.18:2
+	x11-libs/pango:0
+	virtual/libintl:0"
 
 DEPEND="${RDEPEND}
-	sys-devel/gettext
-	virtual/pkgconfig
-	app-text/scrollkeeper
-	>=dev-util/intltool-0.35"
+	>=app-text/scrollkeeper-dtd-1:1.0
+	app-text/yelp-tools:0
+	>=dev-util/intltool-0.35:*
+	sys-devel/gettext:*
+	virtual/pkgconfig:*"
 
-src_configure() {
-	DOCS="AUTHORS ChangeLog NEWS README"
-
-	use gtk3 && G2CONF="${G2CONF} --with-gtk=3.0"
-	use !gtk3 && G2CONF="${G2CONF} --with-gtk=2.0"
-
-	gnome2_src_configure
-}
+DOCS="AUTHORS ChangeLog NEWS README"

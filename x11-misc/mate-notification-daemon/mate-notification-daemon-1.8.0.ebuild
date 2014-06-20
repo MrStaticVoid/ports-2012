@@ -1,39 +1,46 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/mate-notification-daemon/mate-notification-daemon-1.8.0.ebuild,v 1.2 2014/06/07 16:40:03 ago Exp $
 
 EAPI="5"
+
 GNOME2_LA_PUNT="yes"
 
-inherit mate
+inherit gnome2 versionator
 
+MATE_BRANCH="$(get_version_component_range 1-2)"
+
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="MATE Notification daemon"
 HOMEPAGE="http://mate-dekstop.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
-IUSE="gtk3"
+KEYWORDS="~amd64 ~x86"
 
-RDEPEND=">=dev-libs/glib-2.4:2
-	!gtk3? ( x11-libs/gtk+:2 
-			x11-libs/libwnck:1 )
-	gtk3? ( x11-libs/gtk+:3
-			x11-libs/libwnck:3 )
-	>=dev-libs/dbus-glib-0.78
-	>=sys-apps/dbus-1
-	>=media-libs/libcanberra-0.4[gtk]
-	>=x11-libs/libnotify-0.7.0
-	x11-libs/libX11
-	!x11-misc/notify-osd
-	!x11-misc/qtnotifydaemon
-	!x11-misc/notification-daemon"
+RDEPEND="
+	dev-libs/atk:0
+	>=dev-libs/dbus-glib-0.78:0
+	>=dev-libs/glib-2.18:2
+	>=media-libs/libcanberra-0.4:0[gtk]
+	>=sys-apps/dbus-1:0
+	x11-libs/cairo:0
+	x11-libs/gdk-pixbuf:2
+	>=x11-libs/gtk+-2.18:2
+	>=x11-libs/libnotify-0.7:0
+	x11-libs/libX11:0
+	>=x11-libs/libwnck-1:1
+	virtual/libintl:0
+	!x11-misc/notify-osd:*
+	!x11-misc/qtnotifydaemon:*
+	!x11-misc/notification-daemon:*"
 
 DEPEND="${RDEPEND}
-	app-arch/xz-utils
-	>=dev-util/intltool-0.40
-	virtual/pkgconfig
-	sys-devel/gettext"
+	app-arch/xz-utils:0
+	>=dev-util/intltool-0.40:*
+	sys-devel/gettext:*
+	>=sys-devel/libtool-2.2.6:2
+	virtual/pkgconfig:*"
 
 DOCS=( AUTHORS ChangeLog NEWS )
 
