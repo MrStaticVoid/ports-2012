@@ -203,7 +203,6 @@ multilib_src_install_all()
 	rm -rf "${ED}"/usr/share/doc/${PF}/LICENSE.*
 
 	use rule-generator && use openrc && doinitd "${FILESDIR}"/udev-postmount
-
 	# drop distributed hwdb files, they override sys-apps/hwids
 	rm -f "${ED}"/etc/udev/hwdb.d/*.hwdb
 

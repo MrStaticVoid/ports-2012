@@ -1,6 +1,9 @@
-# Oleg Vinichenko (29 May 2014)
+# Oleg Vinichenko (10 June 2014)
+# mask back python-3.4, this one not really fine to have installed. Also it become a default python version in stages.
+# Next time, allow to unmask only stable version of python with a consequent change of default PYTHON_ABIS. THis is 
+# FL-1274, FL-1265
+>dev-lang/python-3.3.5-r1000
 
- 
 # Oleg Vinichenko (6 June 2014)_
 # maks latest gettext-0.19, breaks lot of packages
 >sys-devel/gettext-0.18.3.2
@@ -26,16 +29,8 @@
 # latest python-updater to avoid mess.
 >app-admin/python-updater-0.11
 
-# Oleg Vinichenko (15 March)
-# maks latest sys-devel/flex, due to several problems
-# FL-1165; http://comments.gmane.org/gmane.linux.lfs.devel/14740 https://bugs.gentoo.org/show_bug.cgi?id=503522
->sys-devel/flex-2.5.37
-
 #  mask newer version of cryptsetup, breakage expected
 >sys-fs/cryptsetup-1.6.3
-
-#  cautionary mask libvoribs due to ogg breakage
->media-libs/libvorbis-1.3.3
 
 #  Cautionary mask latest bash and readline, until it's time to update
 >=app-shells/bash-4.3
@@ -74,10 +69,6 @@
 # Users who understand the risks can unmask locally
 # Ref FL-454 and b.g.o # 477798
 app-benchmarks/phoronix-test-suite
-
-# Ryan Harris (21 Jul 2013)
-# Mask consolekit >=0.4.6 as it depends on >=udev-200
->=sys-auth/consolekit-0.4.6
 
 # Ryan Harris (30 Jun 2013)
 # Mask app-emulation/xen-tools-4.2.2-r1

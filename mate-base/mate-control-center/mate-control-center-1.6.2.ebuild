@@ -1,82 +1,91 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/mate-base/mate-control-center/mate-control-center-1.6.2.ebuild,v 1.5 2014/05/04 14:53:43 ago Exp $
 
 EAPI="5"
+
 GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 
-inherit mate
+inherit autotools eutils gnome2 versionator
 
+MATE_BRANCH="$(get_version_component_range 1-2)"
+
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="The MATE Desktop configuration tool"
 HOMEPAGE="http://mate-desktop.org"
 
 LICENSE="GPL-2"
-SLOT="2"
-KEYWORDS="~amd64 ~arm ~x86"
-IUSE=""
+SLOT="0"
+KEYWORDS="amd64"
 
-# TODO: appindicator
-# libgnomekbd-2.91 breaks API/ABI
-RDEPEND="x11-libs/libXft
-	>=x11-libs/libXi-1.2
-	x11-libs/gtk+:2
+RDEPEND="app-text/rarian:0
+	dev-libs/atk:0
+	>=dev-libs/dbus-glib-0.73:0
 	>=dev-libs/glib-2.28:2
-	>=gnome-base/librsvg-2.0:2
-	>=mate-base/mate-file-manager-1.2.2
-	>=media-libs/fontconfig-1
-	>=dev-libs/dbus-glib-0.73
-	>=x11-libs/libxklavier-4.0
-	>=x11-wm/mate-window-manager-1.5.0
-	>=mate-base/libmatekbd-1.2.0
-	>=mate-base/mate-desktop-1.5.2
-	>=mate-base/mate-menus-1.2.0
-	>=mate-base/mate-settings-daemon-1.5.2
-	>=gnome-base/dconf-0.10.0
-
 	dev-libs/libunique:1
-	x11-libs/pango
-	dev-libs/libxml2
-	media-libs/freetype
-	media-libs/libcanberra[gtk]
-
-	x11-apps/xmodmap
-	x11-libs/libXScrnSaver
-	x11-libs/libXext
-	x11-libs/libX11
-	x11-libs/libXxf86misc
-	x11-libs/libXrandr
-	x11-libs/libXrender
-	x11-libs/libXcursor"
+	dev-libs/libxml2:2
+	>=gnome-base/dconf-0.13.4:0
+	>=gnome-base/librsvg-2.0:2
+	>=mate-base/libmatekbd-1.6:0
+	>=mate-base/mate-desktop-1.6:0 <mate-base/mate-desktop-1.7:0
+	>=mate-base/mate-file-manager-1.6:0
+	>=mate-base/mate-menus-1.6:0
+	>=mate-base/mate-settings-daemon-1.6:0
+	>=media-libs/fontconfig-1:1.0
+	media-libs/freetype:2
+	media-libs/libcanberra:0[gtk]
+	>=sys-apps/dbus-1:0
+	x11-apps/xmodmap:0
+	x11-libs/cairo:0
+	x11-libs/gdk-pixbuf:2
+	x11-libs/gtk+:2
+	x11-libs/libX11:0
+	x11-libs/libXScrnSaver:0
+	x11-libs/libXcursor:0
+	x11-libs/libXext:0
+	x11-libs/libXft:0
+	>=x11-libs/libXi-1.2:0
+	x11-libs/libXrandr:0
+	x11-libs/libXrender:0
+	x11-libs/libXxf86misc:0
+	>=x11-libs/libxklavier-4:0
+	x11-libs/pango:0
+	>=x11-wm/mate-window-manager-1.6:0
+	virtual/libintl:0"
 
 DEPEND="${RDEPEND}
-	x11-proto/scrnsaverproto
-	x11-proto/xextproto
-	x11-proto/xproto
-	x11-proto/xf86miscproto
-	x11-proto/kbproto
-	x11-proto/randrproto
-	x11-proto/renderproto
-
-	sys-devel/gettext
-	>=dev-util/intltool-0.40
-	virtual/pkgconfig
-	dev-util/desktop-file-utils
-
-	app-text/scrollkeeper
-	>=app-text/mate-doc-utils-1.2.1
-	>=mate-base/mate-common-1.2.2"
+	>=app-text/mate-doc-utils-1.6:0
+	>=app-text/scrollkeeper-dtd-1:1.0
+	dev-util/desktop-file-utils:0
+	>=dev-util/intltool-0.37.1:*
+	>=mate-base/mate-common-1.6:0
+	sys-devel/gettext:*
+	x11-proto/kbproto:0
+	x11-proto/randrproto:0
+	x11-proto/renderproto:0
+	x11-proto/scrnsaverproto:0
+	x11-proto/xextproto:0
+	x11-proto/xf86miscproto:0
+	x11-proto/xproto:0
+	virtual/pkgconfig:*"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.6-libsecret.patch"
+	epatch "${FILESDIR}"/${P}-libsecret.patch
+
 	eautoreconf
+
 	gnome2_src_prepare
 }
 
 src_configure() {
-	DOCS="AUTHORS ChangeLog NEWS README TODO"
-
 	gnome2_src_configure \
 		--disable-update-mimedb \
 		--disable-appindicator
 }
+
+src_compile() {
+	emake -j1
+}
+
+DOCS="AUTHORS ChangeLog NEWS README TODO"

@@ -1,12 +1,12 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
-DEPEND=>=mate-base/mate-panel-1.6.0 >=gnome-base/libgtop-2.14.2 virtual/pkgconfig >=app-text/gnome-doc-utils-0.3.2 >=dev-util/intltool-0.35.0 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4 app-arch/xz-utils dev-util/gtk-doc dev-util/gtk-doc-am
+DEPEND=dev-libs/glib:2 >=gnome-base/libgtop-2.14.2:2 >=mate-base/mate-panel-1.6:0 >=net-wireless/wireless-tools-28_pre9:0 x11-libs/gdk-pixbuf:2 x11-libs/gtk+:2 x11-libs/pango:0 virtual/libintl:0 >=app-text/gnome-doc-utils-0.3.2:0 >=dev-util/intltool-0.35:* sys-devel/gettext:* virtual/pkgconfig:* !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.68 sys-devel/libtool app-arch/xz-utils >=sys-apps/sed-4
 DESCRIPTION=Applet showing network traffic for MATE
 EAPI=5
 HOMEPAGE=http://mate-desktop.org/
-KEYWORDS=~amd64 ~x86 ~arm
+KEYWORDS=amd64
 LICENSE=GPL-2
-RDEPEND=>=mate-base/mate-panel-1.6.0 >=gnome-base/libgtop-2.14.2
+RDEPEND=dev-libs/glib:2 >=gnome-base/libgtop-2.14.2:2 >=mate-base/mate-panel-1.6:0 >=net-wireless/wireless-tools-28_pre9:0 x11-libs/gdk-pixbuf:2 x11-libs/gtk+:2 x11-libs/pango:0 virtual/libintl:0
 SLOT=0
 SRC_URI=http://pub.mate-desktop.org/releases/1.6/mate-netspeed-1.6.1.tar.xz
-_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	025442f2eecab39ad0b4e541b6e142af	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	b9b3340e3a19510f0d9f05cfccbf209f	mate	914657b3fac73432774f7fcd20c61e35	mate-desktop.org	03a7e7ade2df0707fff08cba57525d12	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
-_md5_=7e1c9df12474f0f9be3fe03beb35e11c
+_eclasses_=autotools	5256b4f4c1798109f39f308f9f7eaf5f	eutils	025442f2eecab39ad0b4e541b6e142af	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	2964b38e7ad7f6998406386ad1c6dbcf	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f
+_md5_=996a43c2d8557cd2e3a6b5f82ba70636

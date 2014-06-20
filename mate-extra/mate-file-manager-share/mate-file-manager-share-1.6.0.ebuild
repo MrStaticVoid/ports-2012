@@ -1,36 +1,43 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-file-manager-share/mate-file-manager-share-1.6.0.ebuild,v 1.2 2014/05/04 14:54:43 ago Exp $
 
-EAPI=5
+EAPI="5"
 
 GNOME2_LA_PUNT="yes"
 GCONF_DEBUG="no"
 
-inherit mate eutils user
+inherit autotools gnome2 eutils user versionator
 
-DESCRIPTION="A caja plugin to easily share folders over the SMB protocol"
+MATE_BRANCH="$(get_version_component_range 1-2)"
+
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
+DESCRIPTION="A Caja plugin to easily share folders over the SMB protocol"
 HOMEPAGE="http://mate-desktop.org"
 
-IUSE=""
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 
 COMMON_DEPEND=">=dev-libs/glib-2.4:2
-	>=mate-base/mate-file-manager-1.6.0"
+	>=mate-base/mate-file-manager-1.6:0
+	x11-libs/gtk+:2
+	virtual/libintl:0"
+
 RDEPEND="${COMMON_DEPEND}
-	net-fs/samba"
+	net-fs/samba:0"
+
 DEPEND="${COMMON_DEPEND}
-	sys-devel/gettext
-	virtual/pkgconfig"
+	sys-devel/gettext:*
+	>=dev-util/intltool-0.29:*
+	virtual/pkgconfig:*"
 
 USERSHARES_DIR="/var/lib/samba/usershare"
 USERSHARES_GROUP="samba"
 
 src_prepare() {
 	# Tarball has no proper build system, should be fixed on next release.
-	mate_gen_build_system
+	eautoreconf
 
 	# Remove obsolete files to make test run
 	rm src/caja-share.c src/caja-share.h || die
@@ -38,13 +45,14 @@ src_prepare() {
 }
 
 src_configure() {
-	DOCS="AUTHORS ChangeLog NEWS README TODO"
-
 	gnome2_src_configure --disable-static
 }
 
+DOCS="AUTHORS ChangeLog NEWS README TODO"
+
 src_install() {
 	gnome2_src_install
+
 	keepdir ${USERSHARES_DIR}
 }
 
