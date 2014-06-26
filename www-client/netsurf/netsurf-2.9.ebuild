@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/netsurf/netsurf-2.9.ebuild,v 1.6 2013/04/21 07:48:27 xmw Exp $
 
 EAPI=5
 
@@ -13,7 +11,7 @@ SRC_URI="http://download.netsurf-browser.org/${PN}/releases/source-full/${P}-ful
 
 LICENSE="GPL-2 MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~arm"
+KEYWORDS="*"
 IUSE="bmp fbcon truetype gif gstreamer gtk javascript jpeg mng pdf-writer png rosprite svg svgtiny webp"
 
 RDEPEND="dev-libs/libcss

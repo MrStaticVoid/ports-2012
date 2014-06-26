@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/atk-2.10.0-r1.ebuild,v 1.2 2014/06/18 19:07:25 mgorny Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -12,11 +10,11 @@ HOMEPAGE="http://projects.gnome.org/accessibility/"
 
 LICENSE="LGPL-2+"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="*"
 IUSE="+introspection nls test"
 
 RDEPEND="
-	>=dev-libs/glib-2.38.2-r1:2[${MULTILIB_USEDEP}]
+	dev-libs/glib:2[${MULTILIB_USEDEP}]
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7 )
 	abi_x86_32? (
 		!<=app-emulation/emul-linux-x86-gtklibs-20140508

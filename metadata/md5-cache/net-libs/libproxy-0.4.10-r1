@@ -4,11 +4,11 @@ DESCRIPTION=Library for automatic proxy configuration management
 EAPI=4
 HOMEPAGE=http://code.google.com/p/libproxy/
 IUSE=gnome kde mono networkmanager perl python spidermonkey test webkit
-KEYWORDS=alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd ~arm-linux ~x86-linux
+KEYWORDS=*
 LICENSE=LGPL-2.1+
 PDEPEND=networkmanager? ( net-misc/networkmanager )
 RDEPEND=gnome? ( >=dev-libs/glib-2.26:2 ) kde? ( >=kde-base/kdelibs-4.4.5 ) mono? ( dev-lang/mono ) networkmanager? ( sys-apps/dbus ) perl? ( dev-lang/perl ) spidermonkey? ( >=dev-lang/spidermonkey-1.8.5:0 ) webkit? ( >=net-libs/webkit-gtk-1.6:3 ) python? ( =dev-lang/python-2* )
 SLOT=0
 SRC_URI=http://libproxy.googlecode.com/files/libproxy-0.4.10.tar.gz
 _eclasses_=cmake-utils	50a0f8ec01542e7e35e36a41264aeb9a	eutils	025442f2eecab39ad0b4e541b6e142af	flag-o-matic	32bd61b45c2f57e468b4ee7311fec8f5	mono	203a4295c06155d318bdff9c6b2d5e1c	multilib	fac675dcccf94392371a6abee62d909f	python	46d9f0382a194b2c30ac61862799b58c	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
-_md5_=929b459e6bafb83eed2a58757c1846b4
+_md5_=ea757c3e85ef32f3c8b976a6caba2e08
