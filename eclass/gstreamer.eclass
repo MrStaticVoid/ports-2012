@@ -90,7 +90,7 @@ esac
 S="${WORKDIR}/${GST_ORG_MODULE}-${PV}"
 
 RDEPEND="
-	>=dev-libs/glib-2.38.2-r1:2[${MULTILIB_USEDEP}]
+	dev-libs/glib:2[${MULTILIB_USEDEP}]
 	>=media-libs/gstreamer-${GST_MIN_PV}:${SLOT}[${MULTILIB_USEDEP}]
 "
 DEPEND="

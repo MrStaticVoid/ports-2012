@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libquvi/libquvi-0.9.4-r1.ebuild,v 1.2 2014/06/18 19:46:45 mgorny Exp $
 
 EAPI=5
 AUTOTOOLS_AUTORECONF=1
@@ -13,11 +11,11 @@ SRC_URI="mirror://sourceforge/quvi/${PV:0:3}/${P}.tar.xz"
 
 LICENSE="AGPL-3"
 SLOT="0/8" # subslot = libquvi soname version
-KEYWORDS="~amd64 ~arm ~hppa ~x86"
+KEYWORDS="*"
 IUSE="examples nls static-libs"
 
 RDEPEND="!<media-libs/quvi-0.4.0
-	>=dev-libs/glib-2.38.2-r1:2[${MULTILIB_USEDEP}]
+	dev-libs/glib:2[${MULTILIB_USEDEP}]
 	>=dev-libs/libgcrypt-1.5.3:0=[${MULTILIB_USEDEP}]
 	>=media-libs/libquvi-scripts-0.9.20130903[${MULTILIB_USEDEP}]
 	>=net-libs/libproxy-0.4.11-r1[${MULTILIB_USEDEP}]

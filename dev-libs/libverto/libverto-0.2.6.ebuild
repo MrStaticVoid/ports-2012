@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libverto/libverto-0.2.6.ebuild,v 1.2 2014/06/18 19:16:05 mgorny Exp $
 
 EAPI=5
 
@@ -12,14 +10,14 @@ SRC_URI="https://fedorahosted.org/releases/l/i/libverto/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd"
+KEYWORDS="*"
 IUSE="glib +libev libevent tevent +threads static-libs"
 
 # file collisions
 DEPEND="!=app-crypt/mit-krb5-1.10.1-r0
 	!=app-crypt/mit-krb5-1.10.1-r1
 	!=app-crypt/mit-krb5-1.10.1-r2
-	glib? ( >=dev-libs/glib-2.38.2-r1[${MULTILIB_USEDEP}] )
+	glib? ( dev-libs/glib:2[${MULTILIB_USEDEP}] )
 	libev? ( >=dev-libs/libev-4.15[${MULTILIB_USEDEP}] )
 	libevent? ( >=dev-libs/libevent-2.0.21[${MULTILIB_USEDEP}] )
 	tevent? ( >=sys-libs/tevent-0.9.19[${MULTILIB_USEDEP}] )"

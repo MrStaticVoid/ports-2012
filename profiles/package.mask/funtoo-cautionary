@@ -7,14 +7,6 @@
 # Oleg Vinichenko (6 June 2014)_
 # maks latest gettext-0.19, breaks lot of packages
 >sys-devel/gettext-0.18.3.2
-
-# FL-1229: mask libSM-1.2.2-r1 as it required masked util-linux, ported to newer multilib eclass.
-# Oleg Vinichenko (13 May 2014)
->x11-libs/libSM-1.2.2
-
-#mask openvz-rhel6 kernel higher than 084.25, build issues:
-
->sys-kernel/openvz-rhel6-stable-2.6.32.042.084.25
  
 # FL-1202 - cautionary mask libnm-qt-0.9.8.1 until networkmanager update
 >net-libs/libnm-qt-0.9.8.0
@@ -88,11 +80,6 @@ app-benchmarks/phoronix-test-suite
 # on >=virtual/udev-172, until FL-34 is resolved.
 >=app-admin/system-config-printer-common-1.3.12
 >=app-admin/system-config-printer-gnome-1.3.12
-
-# Oleg Vinichenko (23 Apr 2013)
-# mask xorg-server-1.14, driver incompatibility, FL-449, FL-522,
-# security update for xorg-server
->x11-base/xorg-server-1.14.3-r2
 
 # Oleg Vinichenko (19 Apr 2013)
 # mask back mpc-1.0.1, ebuild itself is fine and usable

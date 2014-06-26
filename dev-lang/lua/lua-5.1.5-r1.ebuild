@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.5-r1.ebuild,v 1.1 2014/03/28 05:38:36 vapier Exp $
 
-EAPI=5
+EAPI=4
 
 inherit eutils multilib portability toolchain-funcs versionator
 
@@ -9,18 +11,19 @@ HOMEPAGE="http://www.lua.org/"
 SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
-SLOT="5.1"
-KEYWORDS="*"
+SLOT="0"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 IUSE="+deprecated emacs readline static"
 
 RDEPEND="readline? ( sys-libs/readline )"
-DEPEND="${RDEPEND} sys-devel/libtool"
+DEPEND="${RDEPEND}
+	sys-devel/libtool"
 PDEPEND="emacs? ( app-emacs/lua-mode )"
 
 src_prepare() {
 	local PATCH_PV=$(get_version_component_range 1-2)
 
-	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r2.patch
+	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r1.patch
 	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-module_paths.patch
 
 	#EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="upstream.patch" epatch
@@ -53,7 +56,7 @@ src_prepare() {
 	# We want packages to find our things...
 	sed -i \
 		-e 's:/usr/local:'${EPREFIX}'/usr:' \
-		-e "s:/\<lib\>:/$(get_libdir):g" \
+		-e "s:\([/\"]\)\<lib\>:\1$(get_libdir):g" \
 		etc/lua.pc src/luaconf.h || die
 }
 
@@ -86,7 +89,7 @@ src_compile() {
 
 src_install() {
 	emake INSTALL_TOP="${ED}/usr" INSTALL_LIB="${ED}/usr/$(get_libdir)" \
-			V=${SLOT} gentoo_install \
+			V=${PV} gentoo_install \
 	|| die "emake install gentoo_install failed"
 
 	dodoc HISTORY README
@@ -94,15 +97,9 @@ src_install() {
 
 	doicon etc/lua.ico
 	insinto /usr/$(get_libdir)/pkgconfig
-	newins ${FILESDIR}/lua.pc-${PV} lua-5.1.pc
-	# libtool does not do what we want -- we want liblua.so.5.1 not liblua.so.5 (due to upstream lua ABI stuff):
-	mv ${ED}/usr/$(get_libdir)/liblua.so.${SLOT%%.*} ${ED}/usr/$(get_libdir)/liblua.so.${SLOT} || die
-	if [ -e "${ED}/usr/$(get_libdir)/liblua.a" ]; then
-		mv ${ED}/usr/$(get_libdir)/liblua.a ${ED}/usr/$(get_libdir)/liblua-5.1.a || die
-	fi
-	rm ${ED}/usr/$(get_libdir)/liblua.so || die
-	newman doc/lua.1 lua-5.1.1
-	newman doc/luac.1 luac-5.1.1
+	doins etc/lua.pc
+
+	doman doc/lua.1 doc/luac.1
 }
 
 src_test() {

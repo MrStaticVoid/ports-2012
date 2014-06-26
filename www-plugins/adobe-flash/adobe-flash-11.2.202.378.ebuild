@@ -89,7 +89,7 @@ RDEPEND="
 			)
 			|| (
 				(
-					>=dev-libs/glib-2.38.2-r1:2[abi_x86_32(-)]
+					dev-libs/glib:2[abi_x86_32(-)]
 					>=dev-libs/nspr-4.10.4[abi_x86_32(-)]
 					>=dev-libs/nss-3.15.4[abi_x86_32(-)]
 				)

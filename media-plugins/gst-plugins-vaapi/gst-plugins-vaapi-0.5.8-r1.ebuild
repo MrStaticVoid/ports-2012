@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-vaapi/gst-plugins-vaapi-0.5.8-r1.ebuild,v 1.2 2014/06/18 20:21:55 mgorny Exp $
 
 EAPI="5"
 inherit eutils multilib-minimal
@@ -12,11 +10,11 @@ SRC_URI="http://www.freedesktop.org/software/vaapi/releases/${MY_PN}/${MY_PN}-${
 
 LICENSE="LGPL-2.1"
 SLOT="1.0"
-KEYWORDS="~amd64"
+KEYWORDS="*"
 IUSE="+X opengl wayland"
 
 RDEPEND="
-	>=dev-libs/glib-2.38.2-r1:2[${MULTILIB_USEDEP}]
+	dev-libs/glib:2[${MULTILIB_USEDEP}]
 	>=media-libs/gstreamer-1.2.3:1.0[${MULTILIB_USEDEP}]
 	>=media-libs/gst-plugins-base-1.2.3:1.0[${MULTILIB_USEDEP}]
 	>=media-libs/gst-plugins-bad-1.2.3:1.0[${MULTILIB_USEDEP}]

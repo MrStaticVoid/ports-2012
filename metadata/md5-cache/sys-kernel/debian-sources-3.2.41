@@ -6,9 +6,9 @@ HOMEPAGE=http://www.debian.org
 IUSE=binary rt
 KEYWORDS=*
 LICENSE=GPL-2
-RDEPEND=binary? ( || ( >=sys-fs/udev-160 >=virtual/udev-171 ) )
+RDEPEND=binary? ( >=sys-kernel/genkernel-3.4.40-r2 )
 RESTRICT=binchecks strip mirror
 SLOT=3.2.41
 SRC_URI=http://www.funtoo.org/distfiles/linux_3.2.41.orig.tar.xz http://www.funtoo.org/distfiles/linux_3.2.41-2+deb7u2.debian.tar.xz
 _eclasses_=eutils	025442f2eecab39ad0b4e541b6e142af	mount-boot	02dd3bb4c5f025fef0fc3ade0f27c217	multilib	fac675dcccf94392371a6abee62d909f	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
-_md5_=277cbb5d1ef674c6671edef42569dda9
+_md5_=a8b3e964826ee3e029bcf84d39ad2254

@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.40.2-r1.ebuild,v 1.3 2014/06/18 19:24:10 mgorny Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -15,21 +13,21 @@ HOMEPAGE="https://wiki.gnome.org/Projects/LibRsvg"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="*"
 IUSE="+introspection vala tools"
 REQUIRED_USE="
 	vala? ( introspection )
 "
 
 RDEPEND="
-	>=dev-libs/glib-2.38.2-r1:2[${MULTILIB_USEDEP}]
-	>=x11-libs/cairo-1.12.14-r4[${MULTILIB_USEDEP}]
-	>=x11-libs/pango-1.36.3[${MULTILIB_USEDEP}]
-	>=dev-libs/libxml2-2.9.1-r4:2[${MULTILIB_USEDEP}]
-	>=dev-libs/libcroco-0.6.8-r1[${MULTILIB_USEDEP}]
-	>=x11-libs/gdk-pixbuf-2.30.7:2[introspection?,${MULTILIB_USEDEP}]
+	dev-libs/glib:2[${MULTILIB_USEDEP}]
+	x11-libs/cairo[${MULTILIB_USEDEP}]
+	x11-libs/pango[${MULTILIB_USEDEP}]
+	dev-libs/libxml2[${MULTILIB_USEDEP}]
+	>=dev-libs/libcroco-0.6[${MULTILIB_USEDEP}]
+	x11-libs/gdk-pixbuf:2[introspection?,${MULTILIB_USEDEP}]
 	introspection? ( >=dev-libs/gobject-introspection-0.10.8 )
-	tools? ( >=x11-libs/gtk+-3.2.0:3 )
+	tools? ( x11-libs/gtk+:3 )
 "
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
