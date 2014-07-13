@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=>=www-apps/trac-0.12 dev-vcs/git =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://trac-hacks.org/changeset/8215/gitplugin?old_path=/&format=zip -> trac-git-8215.zip
-_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	python	46d9f0382a194b2c30ac61862799b58c
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	6563129cb0e0e4c5a9fbd51c83506748
 _md5_=c8b655df703099d8166748b771bc896f

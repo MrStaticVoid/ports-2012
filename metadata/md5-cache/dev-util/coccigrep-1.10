@@ -6,8 +6,8 @@ HOMEPAGE=http://home.regit.org/software/coccigrep/
 IUSE=doc emacs vim
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-3
-RDEPEND=dev-util/coccinelle[python] virtual/python-argparse emacs? ( virtual/emacs ) vim? ( || ( app-editors/vim app-editors/gvim ) ) =dev-lang/python-2*
+RDEPEND=dev-util/coccinelle[python] emacs? ( virtual/emacs ) vim? ( || ( app-editors/vim app-editors/gvim ) ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=https://github.com/regit/coccigrep/tarball/v1.10 -> coccigrep-1.10.tar.gz
-_eclasses_=distutils	cbbc1b446ecf8bec39c0ad32a3904452	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	python	46d9f0382a194b2c30ac61862799b58c	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
-_md5_=4833088662b8d8d6688179007b6b8a82
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	python	6563129cb0e0e4c5a9fbd51c83506748	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_md5_=b0f8ac03e9e1c06092ca995385be2b85
