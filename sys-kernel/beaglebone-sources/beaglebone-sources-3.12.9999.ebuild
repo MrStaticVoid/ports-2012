@@ -13,7 +13,7 @@ detect_version
 detect_arch
 
 inherit git-2 versionator
-EGIT_REPO_URI=https://github.com/MrStaticVoid/kernel.git
+EGIT_REPO_URI=https://github.com/beagleboard/kernel.git
 EGIT_PROJECT="beagleboard-kernel.git"
 EGIT_BRANCH="$(get_version_component_range 1-2)"
 
