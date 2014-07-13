@@ -13,14 +13,14 @@ detect_version
 detect_arch
 
 inherit git-2 versionator
-EGIT_REPO_URI=https://github.com/MrStaticVoid/kernel.git
+EGIT_REPO_URI=https://github.com/beagleboard/kernel.git
 EGIT_PROJECT="beagleboard-kernel.git"
 EGIT_BRANCH="$(get_version_component_range 1-2)"
 
 DESCRIPTION="BeagleBone kernel sources"
 HOMEPAGE="https://github.com/beagleboard/kernel"
 
-KEYWORDS="~arm ~amd64"
+KEYWORDS="~arm"
 
 src_unpack() {
 	OLD_S="${S}"
@@ -34,7 +34,7 @@ src_prepare() {
 	git config --global user.name "Portage"
 
 	# Downloads and applies BeagleBone patches
-	./patch.sh
+	./patch.sh || die "Failed to download and apply BeagleBone patches."
 	cp configs/beaglebone kernel/arch/arm/configs/beaglebone_defconfig
 
 	# Move patched kernel sources to proper directory
