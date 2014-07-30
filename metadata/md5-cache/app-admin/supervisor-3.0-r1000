@@ -10,5 +10,5 @@ RDEPEND=dev-python/meld3[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-pypy-
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/s/supervisor/supervisor-3.0.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	6563129cb0e0e4c5a9fbd51c83506748	python-namespaces	f3a539ac017667aa9b76ede9224b6e3b
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	98d2432956e2e80dc689fe2c52466233	python-namespaces	f3a539ac017667aa9b76ede9224b6e3b
 _md5_=8d943d97629c04ab502c98af96682372

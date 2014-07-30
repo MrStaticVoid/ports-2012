@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmimic/libmimic-1.0.4-r2.ebuild,v 1.8 2014/07/28 13:45:55 ago Exp $
 
 EAPI="5"
 
@@ -10,10 +12,10 @@ SRC_URI="mirror://sourceforge/farsight/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 arm hppa ~ia64 ppc ~ppc64 ~sparc x86 ~x86-fbsd"
 IUSE="doc static-libs"
 
-RDEPEND="dev-libs/glib:2[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	abi_x86_32? ( !<=app-emulation/emul-linux-x86-medialibs-20130224-r8
 		!app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] )"
 DEPEND="${RDEPEND}

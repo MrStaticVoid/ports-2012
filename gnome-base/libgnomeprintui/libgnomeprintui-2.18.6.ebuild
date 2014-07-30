@@ -1,4 +1,6 @@
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprintui/libgnomeprintui-2.18.6.ebuild,v 1.10 2012/05/29 14:25:37 aballier Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"

@@ -1,4 +1,6 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.32.4-r1.ebuild,v 1.1 2013/05/10 10:36:24 eva Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -12,7 +14,7 @@ HOMEPAGE="http://projects.gnome.org/gconf/"
 
 LICENSE="LGPL-2+"
 SLOT="2"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd"
 IUSE="debug gtk +introspection ldap policykit"
 
 RDEPEND="

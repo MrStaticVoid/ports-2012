@@ -9,5 +9,5 @@ LICENSE=AGPL-3
 RDEPEND=emacs? ( virtual/emacs ) fuse? ( >=sys-fs/fuse-2.7.0 ) infiniband? ( sys-infiniband/libibverbs ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://download.gluster.org/pub/gluster/glusterfs/3.3/3.3.1/glusterfs-3.3.1.tar.gz
-_eclasses_=autotools	82621aada74cb2a492bd8e73d49e9f54	autotools-utils	d18eee04c558ed362d40360fa9e790ce	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	eutils	06133990e861be0fe60c2b428fd025d9	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	6563129cb0e0e4c5a9fbd51c83506748	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=autotools	82621aada74cb2a492bd8e73d49e9f54	autotools-utils	d18eee04c558ed362d40360fa9e790ce	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	eutils	06133990e861be0fe60c2b428fd025d9	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=e67f6681a2d87d6439e460b8987d2d33

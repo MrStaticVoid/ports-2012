@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libosinfo/libosinfo-0.2.10.ebuild,v 1.1 2014/04/27 21:47:29 eva Exp $
 
 EAPI=5
 VALA_MIN_API_VERSION="0.16"
@@ -16,7 +14,7 @@ LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 IUSE="+introspection +vala test"
 REQUIRED_USE="vala? ( introspection )"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 
 RDEPEND="
 	>=dev-libs/glib-2:2

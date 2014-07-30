@@ -9,5 +9,5 @@ LICENSE=MIT
 RDEPEND=media-libs/alsa-lib java? ( >=virtual/jre-1.6 ) python? ( =dev-lang/python-2* ) java? ( >=dev-java/java-config-2.1.9-r1 )
 SLOT=0
 SRC_URI=mirror://sourceforge/portmedia/portmidi-src-217.zip
-_eclasses_=cmake-utils	50a0f8ec01542e7e35e36a41264aeb9a	distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	java-pkg-opt-2	f9bbbe5092225a2059aa9e6a3a2b52f1	java-utils-2	f02d3e4777b404c719a5a6479c37c6e3	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	6563129cb0e0e4c5a9fbd51c83506748	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=cmake-utils	3253cdb5d21cbdd07927f74a71aaf177	distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	java-pkg-opt-2	f9bbbe5092225a2059aa9e6a3a2b52f1	java-utils-2	f02d3e4777b404c719a5a6479c37c6e3	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=3a51090f57b505a2746543c20329179c

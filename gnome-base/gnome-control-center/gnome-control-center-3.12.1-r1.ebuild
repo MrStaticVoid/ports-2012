@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-3.12.1-r1.ebuild,v 1.1 2014/06/26 02:45:21 tetromino Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -13,8 +11,8 @@ HOMEPAGE="https://git.gnome.org/browse/gnome-control-center/"
 
 LICENSE="GPL-2+"
 SLOT="2"
-IUSE="+bluetooth +colord +cups +gnome-online-accounts +i18n input_devices_wacom kerberos v4l"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+IUSE="+bluetooth +colord +cups deprecated +gnome-online-accounts +i18n input_devices_wacom kerberos v4l"
+KEYWORDS="*"
 
 # False positives caused by nested configure scripts
 QA_CONFIGURE_OPTIONS=".*"
@@ -47,7 +45,6 @@ COMMON_DEPEND="
 	>=sys-power/upower-0.99
 	>=x11-libs/libnotify-0.7.3:0=
 
-	>=gnome-extra/nm-applet-0.9.7.995
 	>=net-misc/networkmanager-0.9.8[modemmanager]
 	>=net-misc/modemmanager-0.7.990
 
@@ -83,6 +80,7 @@ COMMON_DEPEND="
 # <gnome-color-manager-3.1.2 has file collisions with g-c-c-3.1.x
 # libgnomekbd needed only for gkbd-keyboard-display tool
 RDEPEND="${COMMON_DEPEND}
+	>=gnome-extra/nm-applet-0.9.7.995
 	|| ( ( app-admin/openrc-settingsd sys-auth/consolekit ) >=sys-apps/systemd-31 )
 	>=sys-apps/accountsservice-0.6.30
 	x11-themes/gnome-icon-theme-symbolic
@@ -98,6 +96,7 @@ RDEPEND="${COMMON_DEPEND}
 	!gnome-extra/gnome-media[pulseaudio]
 	!<gnome-extra/gnome-media-2.32.0-r300
 	!<net-wireless/gnome-bluetooth-3.3.2
+	deprecated? ( sys-power/upower[deprecated] )
 "
 # PDEPEND to avoid circular dependency
 PDEPEND=">=gnome-base/gnome-session-2.91.6-r1"
@@ -121,13 +120,25 @@ DEPEND="${COMMON_DEPEND}
 #	gnome-base/gnome-common
 
 src_prepare() {
+	if use deprecated; then
+		# From Funtoo:
+		# 	https://bugs.funtoo.org/browse/FL-1329
+		epatch "${FILESDIR}"/${P}-restore-deprecated-code.patch
+	fi
+
 	# Gentoo handles completions in a different directory, bugs #465094 and #477390
 	sed -i "s|^completiondir =.*|completiondir = $(get_bashcompdir)|" \
 		shell/Makefile.am || die "sed completiondir failed"
 
 	# Make some panels and dependencies optional; requires eautoreconf
 	# https://bugzilla.gnome.org/686840, 697478, 700145
-	epatch "${FILESDIR}"/${PN}-3.12.1-optional-r1.patch
+	if use deprecated; then
+		# From Funtoo:
+		# 	https://bugs.funtoo.org/browse/FL-1329
+		epatch "${FILESDIR}"/${PN}-3.12.1-optional-r1-rebased.patch
+	else
+		epatch "${FILESDIR}"/${PN}-3.12.1-optional-r1.patch
+	fi
 
 	# Fix some absolute paths to be appropriate for Gentoo
 	epatch "${FILESDIR}"/${PN}-3.10.2-gentoo-paths.patch
@@ -155,6 +166,7 @@ src_configure() {
 		$(use_enable bluetooth) \
 		$(use_enable colord color) \
 		$(use_enable cups) \
+		$(use_enable deprecated) \
 		$(use_enable gnome-online-accounts goa) \
 		$(use_enable i18n ibus) \
 		$(use_enable kerberos) \

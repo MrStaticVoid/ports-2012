@@ -1,6 +1,14 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/package.use.mask,v 1.153 2014/07/09 16:20:48 maksbotan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/package.use.mask,v 1.160 2014/07/29 23:15:28 robbat2 Exp $
+
+# Christoph Junghans <ottxor@gentoo.org> (21 Jul 2014)
+# Missing keywords on sci-libs/libcerf (bug 517726)
+sci-visualization/gnuplot libcerf
+
+# Tobias Klausmann <klausman@gentoo.org (16 Jul 2014)
+# neither dietlibc nor klibc will likely ever build/work on alpha, bug #487672
+>=sys-fs/dmraid-1.0.0_rc16-r3 dietlibc klibc
 
 # Maxim Koltsov <maksbotan@gentoo.org> (9 Jul 2014)
 # Missing keywords on dev-python/rst2pdf, bug #515222
@@ -9,10 +17,6 @@ media-video/mpv doc-pdf
 # Julian Ospald <hasufell@gentoo.org> (20 Apr 2014)
 # Missing keywords, bug #508226
 media-video/mpv sdl
-
-# Pacho Ramos <pacho@gentoo.org> (12 Apr 2014)
-# Missing keywords, bug #507490
-net-misc/modemmanager mbim
 
 # Pacho Ramos <pacho@gentoo.org> (15 Mar 2014)
 # Missing keywords, bug #504672
@@ -24,11 +28,6 @@ net-misc/modemmanager mbim
 
 # Pacho Ramos <pacho@gentoo.org> (11 Jan 2014)
 sys-kernel/dracut -dracut_modules_systemd
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2014)
-# systemd[pam] cannot be provided for alpha, bug #438368
-gnome-base/gdm systemd
-sys-auth/pambase systemd
 
 # Pacho Ramos <pacho@gentoo.org> (02 Dec 2013)
 # Missing keywords, bug #493156
@@ -49,12 +48,6 @@ dev-haskell/dataenc test
 # Tom Wijsman <TomWij@gentoo.org> (16 Oct 2013)
 # Mask luajit on ~media-video/mpv-0.2.0 because it only has amd64 x86 keywords. See bug #488318.
 >=media-video/mpv-0.2.0 luajit
-
-# Pacho Ramos <pacho@gentoo.org> (01 Sep 2013)
-# CONFIG_AUDITSYSCALL=y is not implemented, bug #438368
-sys-apps/systemd pam
-sys-auth/consolekit pam
-sys-auth/pambase consolekit
 
 # Pacho Ramos <pacho@gentoo.org> (20 Jul 2013)
 # Keywords pending, bug #476710
@@ -117,6 +110,7 @@ gnome-extra/libgda reports
 # MySQL 5.5 wants systemtap, tcmalloc & jemalloc
 >=dev-db/mysql-5.5 tcmalloc
 >=dev-db/mariadb-5.5 tcmalloc
+>=dev-db/percona-server-5.5 tcmalloc
 
 # Raúl Porcel <armin76@gentoo.org> (25 Jun 2012)
 # dev-qt/qtwebkit doesn't seem to work
@@ -135,12 +129,6 @@ x11-misc/xscreensaver new-login
 # Remove mask entry when app-accessibility/at-spi2-core
 # is keyworded here, bug #411761
 net-libs/webkit-gtk webkit2
-
-# Samuli Suominen <ssuominen@gentoo.org> (20 May 2012)
-# This is masked because of this entry:
-# arch/alpha/package.mask:>=sys-fs/udev-167
-# Soon as that mask entry is gone, this can be removed too.
-sys-auth/consolekit acl
 
 # Alexey Shvetsov <alexxy@gentoo.org> (17 Dec 2011)
 # mask use numa for openmpi

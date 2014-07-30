@@ -12,10 +12,10 @@ DESCRIPTION="An account manager and channel dispatcher for the Telepathy framewo
 HOMEPAGE="http://cgit.freedesktop.org/telepathy/telepathy-mission-control/"
 SRC_URI="http://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
-LICENSE="LGPL-2.1+"
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="*"
-IUSE="debug networkmanager systemd" # test
+IUSE="debug deprecated networkmanager"
 
 RDEPEND="
 	>=dev-libs/dbus-glib-0.82
@@ -23,7 +23,7 @@ RDEPEND="
 	>=sys-apps/dbus-0.95
 	>=net-libs/telepathy-glib-0.20
 	networkmanager? ( >=net-misc/networkmanager-0.7 )
-	|| ( sys-power/upower sys-power/upower-pm-utils )
+	deprecated? ( >=sys-power/upower-0.99.0[deprecated] )
 "
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
@@ -31,17 +31,28 @@ DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.17
 	virtual/pkgconfig
 "
-#	test? ( dev-python/twisted-words )"
 
 # Tests are broken, see upstream bug #29334 and #64212
 # upstream doesn't want it enabled everywhere (#29334#c12)
 RESTRICT="test"
 
+src_prepare() {
+	if use deprecated; then
+		# From Funtoo:
+		# 	https://bugs.funtoo.org/browse/FL-1329
+		epatch "${FILESDIR}"/${P}-restore-deprecated-code.patch
+	fi
+
+	epatch_user
+
+	eautoreconf
+	gnome2_src_prepare
+}
+
 src_configure() {
-	# creds is not available
 	gnome2_src_configure \
 		 --disable-static \
 		$(use_enable debug) \
-		$(use_with networkmanager connectivity nm) \
-		$(usex systemd --disable-upower --enable-upower)
+		$(use_enable deprecated) \
+		$(use_with networkmanager connectivity nm)
 }

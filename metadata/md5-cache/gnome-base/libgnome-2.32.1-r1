@@ -11,4 +11,4 @@ RDEPEND=>=gnome-base/gconf-2 >=dev-libs/glib-2.16:2 >=gnome-base/gnome-vfs-2.5.3
 SLOT=0
 SRC_URI=mirror://gnome/sources/libgnome/2.32/libgnome-2.32.1.tar.bz2 branding? ( mirror://gentoo/gentoo-gdm-theme-r3.tar.bz2 )
 _eclasses_=eutils	06133990e861be0fe60c2b428fd025d9	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
-_md5_=9e832a2fd4ce0d9def40a73da4be3ca1
+_md5_=4ba182eae980639b6e6bcd7cbd881e7e
