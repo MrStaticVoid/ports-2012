@@ -1,33 +1,17 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.14.ebuild,v 1.1 2014/07/05 13:27:16 aballier Exp $
 
 EAPI="5"
 
-SCM=""
-if [ "${PV#9999}" != "${PV}" ] ; then
-	SCM="git-2"
-	EGIT_REPO_URI="git://git.videolan.org/ffmpeg.git"
-fi
-
-inherit eutils flag-o-matic multilib toolchain-funcs ${SCM} multilib-minimal
+inherit eutils flag-o-matic multilib toolchain-funcs multilib-minimal
 
 DESCRIPTION="Complete solution to record, convert and stream audio and video. Includes libavcodec."
 HOMEPAGE="http://ffmpeg.org/"
-if [ "${PV#9999}" != "${PV}" ] ; then
-	SRC_URI=""
-elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
-	SRC_URI="mirror://gentoo/${P}.tar.bz2"
-else # Release
-	SRC_URI="http://ffmpeg.org/releases/${P/_/-}.tar.bz2"
-fi
+SRC_URI="http://ffmpeg.org/releases/${P/_/-}.tar.bz2"
 FFMPEG_REVISION="${PV#*_p}"
 
 LICENSE="GPL-2 amr? ( GPL-3 ) encode? ( aac? ( GPL-3 ) )"
-SLOT="0.10"
-if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
-fi
+SLOT="0"
+KEYWORDS="*"
 IUSE="
 	aac aacplus alsa amr bindist +bzip2 cdio celt cpudetection debug
 	dirac doc +encode faac frei0r gnutls gsm +hardcoded-tables ieee1394 jack
@@ -112,12 +96,6 @@ REQUIRED_USE="bindist? ( encode? ( !faac !aacplus ) !openssl )
 	test? ( encode zlib )"
 
 S=${WORKDIR}/${P/_/-}
-
-pkg_setup() {
-	ewarn "This version is _terribly_ outdated with known security issues and"
-	ewarn "bugs. It is provided only for binary compatibility."
-	ewarn "Use at your own risks."
-}
 
 src_prepare() {
 	if [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot

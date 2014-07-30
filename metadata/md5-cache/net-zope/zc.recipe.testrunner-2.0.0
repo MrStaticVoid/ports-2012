@@ -10,5 +10,5 @@ RDEPEND=net-zope/namespaces-zc[zc,zc.recipe,python_abis_2.6?,python_abis_2.7?,py
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/z/zc.recipe.testrunner/zc.recipe.testrunner-2.0.0.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	6563129cb0e0e4c5a9fbd51c83506748
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	98d2432956e2e80dc689fe2c52466233
 _md5_=c1dfd7de5261a1840a8cd88f0222856e

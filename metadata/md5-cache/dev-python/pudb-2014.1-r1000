@@ -10,5 +10,5 @@ RDEPEND=dev-python/pygments[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,p
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/p/pudb/pudb-2014.1.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	6563129cb0e0e4c5a9fbd51c83506748
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	98d2432956e2e80dc689fe2c52466233
 _md5_=c56893fc7958cb4bc76ebf34de78b524

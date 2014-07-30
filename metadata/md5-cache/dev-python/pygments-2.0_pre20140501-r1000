@@ -10,5 +10,5 @@ RDEPEND=dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=https://bitbucket.org/birkenfeld/pygments-main/get/80ce5e90f9a894e0d94803ecdde7de61445ebfe6.tar.bz2 -> pygments-2.0_pre20140501.tar.bz2
-_eclasses_=bash-completion-r1	2ba44308a7ebbf2a3b15cd8169b94d21	distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	6563129cb0e0e4c5a9fbd51c83506748	toolchain-funcs	0f1760274637a138b99bb649202ea402	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_eclasses_=bash-completion-r1	2ba44308a7ebbf2a3b15cd8169b94d21	distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
 _md5_=f943c3d65d22f7dd81ef7bbe177c436e

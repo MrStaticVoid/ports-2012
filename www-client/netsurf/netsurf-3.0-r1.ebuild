@@ -1,4 +1,6 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/netsurf/netsurf-3.0-r1.ebuild,v 1.1 2013/08/22 16:50:07 xmw Exp $
 
 EAPI=5
 NETSURF_COMPONENT_TYPE=binary
@@ -13,7 +15,7 @@ SRC_URI="http://download.netsurf-browser.org/netsurf/releases/source/${P}-src.ta
 
 LICENSE="GPL-2 MIT"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~arm"
 IUSE="+bmp fbcon truetype +gif gstreamer gtk javascript +jpeg +mng pdf-writer
 	+png +rosprite +svg +svgtiny +webp fbcon_frontend_able fbcon_frontend_linux
 	fbcon_frontend_sdl fbcon_frontend_vnc fbcon_frontend_x"

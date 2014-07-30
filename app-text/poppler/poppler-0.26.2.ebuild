@@ -1,21 +1,12 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.26.2.ebuild,v 1.1 2014/06/22 18:57:56 dilfridge Exp $
 
 EAPI=5
 
 inherit cmake-utils toolchain-funcs
 
-if [[ "${PV}" == "9999" ]] ; then
-	inherit git-r3
-	EGIT_REPO_URI="git://git.freedesktop.org/git/${PN}/${PN}"
-	KEYWORDS=""
-	SLOT="0/9999"
-else
-	SRC_URI="http://poppler.freedesktop.org/${P}.tar.xz"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-	SLOT="0/46"
-fi
+SRC_URI="http://poppler.freedesktop.org/${P}.tar.xz"
+KEYWORDS="*"
+SLOT="0/46"
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="http://poppler.freedesktop.org/"
@@ -63,14 +54,7 @@ DOCS=(AUTHORS NEWS README README-XPDF TODO)
 PATCHES=( "${FILESDIR}/${PN}-0.26.0-qt5-dependencies.patch" )
 
 src_configure() {
-	# this is needed for multilib, see bug 459394
-	local ft_libdir ft_includedir
-	ft_libdir="$($(tc-getPKG_CONFIG) freetype2 --variable=libdir)"
-	ft_includedir="$($(tc-getPKG_CONFIG) freetype2 --variable=includedir)"
-	export FREETYPE_DIR="${ft_libdir}:${ft_includedir%/include}"
-	einfo "Detected FreeType at ${FREETYPE_DIR}"
-
-	mycmakeargs=(
+	local mycmakeargs=(
 		-DBUILD_GTK_TESTS=OFF
 		-DBUILD_QT4_TESTS=OFF
 		-DBUILD_QT5_TESTS=OFF

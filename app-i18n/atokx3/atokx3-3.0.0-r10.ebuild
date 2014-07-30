@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/atokx3/atokx3-3.0.0-r10.ebuild,v 1.4 2014/06/25 06:34:14 mgorny Exp $
 
 EAPI="3"
 
@@ -17,7 +19,7 @@ SRC_URI="http://www3.justsystem.co.jp/download/atok/up/lin/${MY_UPDATE_P}.tar.gz
 LICENSE="ATOK MIT"
 
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86"
 IUSE="multilib"
 
 RESTRICT="strip mirror"
@@ -55,7 +57,7 @@ RDEPEND="!app-i18n/atokx2
 		|| (
 			app-emulation/emul-linux-x86-baselibs
 			(
-				dev-libs/glib:2[abi_x86_32]
+				>=dev-libs/glib-2.34.3:2[abi_x86_32]
 				>=dev-libs/libxml2-2.9.1-r4:2[abi_x86_32]
 				>=media-libs/libpng-1.2.51[abi_x86_32]
 				>=sys-apps/tcp-wrappers-7.6.22-r1[abi_x86_32]

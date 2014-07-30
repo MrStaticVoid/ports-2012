@@ -1,6 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5-r1.ebuild,v 1.9 2008/07/06 11:03:59 hkbst Exp $
 
 inherit versionator eutils
 
@@ -17,12 +15,13 @@ HOMEPAGE="http://swiss.csail.mit.edu/~jaffer/SLIB"
 
 SLOT="0"
 LICENSE="public-domain BSD"
-KEYWORDS="alpha amd64 ia64 ppc sparc x86"
+KEYWORDS="*"
 IUSE="" #test"
 
 #unzip for unpacking
-RDEPEND=""
-DEPEND="app-arch/unzip"
+RDEPEND="<sys-apps/texinfo-5.0"
+DEPEND="${RDEPEND}
+	app-arch/unzip"
 #		test? ( dev-scheme/scm )"
 
 INSTALL_DIR="/usr/share/slib/"

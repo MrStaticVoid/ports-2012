@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-puzzle/gnome-tetravex/gnome-tetravex-3.12.3.ebuild,v 1.1 2014/05/31 09:30:22 pacho Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -13,7 +11,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Tetravex"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="

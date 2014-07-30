@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/fribidi-0.19.6.ebuild,v 1.5 2014/07/29 19:33:22 maekke Exp $
 
 EAPI=5
 
@@ -12,12 +14,12 @@ SRC_URI="http://fribidi.org/download/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="static-libs"
 
 RESTRICT="test" #397347
 
-RDEPEND="dev-libs/glib:2[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	abi_x86_32? ( !<=app-emulation/emul-linux-x86-medialibs-20130224-r10
 		!app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] )"
 DEPEND="${RDEPEND}

@@ -1,19 +1,17 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-3.12.1.ebuild,v 1.1 2014/04/27 16:53:14 eva Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes"
 
-inherit eutils gnome2
+inherit eutils gnome2 autotools
 
 DESCRIPTION="Gnome session manager"
 HOMEPAGE="https://git.gnome.org/browse/gnome-session"
 
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="doc elibc_FreeBSD gconf ipv6 systemd"
+KEYWORDS="*"
+IUSE="deprecated doc elibc_FreeBSD gconf ipv6 systemd"
 
 # x11-misc/xdg-user-dirs{,-gtk} are needed to create the various XDG_*_DIRs, and
 # create .config/user-dirs.dirs which is read by glib to get G_USER_DIRECTORY_*
@@ -54,6 +52,7 @@ RDEPEND="${COMMON_DEPEND}
 	>=x11-themes/gnome-themes-standard-2.91.92
 	sys-apps/dbus[X]
 	!systemd? ( sys-auth/consolekit )
+	deprecated? ( sys-power/upower[deprecated] )
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5
@@ -69,22 +68,30 @@ DEPEND="${COMMON_DEPEND}
 # gnome-common needed for eautoreconf
 # gnome-base/gdm does not provide gnome.desktop anymore
 
+src_prepare() {
+	if use deprecated; then
+		# From Funtoo:
+		# 	https://bugs.funtoo.org/browse/FL-1329
+		epatch "${FILESDIR}"/${P}-restore-deprecated-code.patch
+	fi
+
+	epatch_user
+
+	eautoreconf
+	gnome2_src_prepare
+}
+
 src_configure() {
-	# 1. Avoid automagic on old upower releases
-	# 2. xsltproc is always checked due to man configure
+	# 1. xsltproc is always checked due to man configure
 	#    switch, even if USE=-doc
 	gnome2_src_configure \
-		--disable-deprecation-flags \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--enable-session-selector \
+		$(use_enable deprecated) \
 		$(use_enable doc docbook-docs) \
 		$(use_enable gconf) \
 		$(use_enable ipv6) \
-		$(use_enable systemd) \
-		UPOWER_CFLAGS="" \
-		UPOWER_LIBS=""
-		# gnome-session-selector pre-generated man page is missing
-		#$(usex !doc XSLTPROC=$(type -P true))
+		$(use_enable systemd)
 }
 
 src_install() {

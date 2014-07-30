@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/fluidsynth/fluidsynth-1.1.6-r1.ebuild,v 1.3 2014/06/24 22:16:06 mgorny Exp $
 
 EAPI=5
 inherit cmake-multilib flag-o-matic
@@ -9,10 +11,10 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="alsa dbus debug examples jack ladspa lash portaudio pulseaudio readline sndfile"
 
-RDEPEND="dev-libs/glib:2[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	alsa? ( >=media-libs/alsa-lib-1.0.27.2[${MULTILIB_USEDEP}]
 		lash? ( >=media-sound/lash-0.5.4-r2[${MULTILIB_USEDEP}] ) )
 	dbus? ( >=sys-apps/dbus-1.6.18-r1[${MULTILIB_USEDEP}] )

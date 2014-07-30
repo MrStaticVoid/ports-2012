@@ -9,5 +9,5 @@ LICENSE=GPL-3 CC-BY-SA-4.0
 RDEPEND=>=dev-cpp/yaml-cpp-0.5.1 media-libs/libsdl[opengl,video] media-libs/sdl-gfx media-libs/sdl-image[png] media-libs/sdl-mixer games-misc/games-envd
 SLOT=0
 SRC_URI=https://github.com/SupSuper/OpenXcom/archive/v1.0.tar.gz -> openxcom-1.0.0.tar.gz
-_eclasses_=base	5f55566958e88506923ea360535053cc	cmake-utils	50a0f8ec01542e7e35e36a41264aeb9a	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	games	e221fed675714bd5545b7488aed9f822	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402	user	f54e098dd38ba1c0847a13e685b87747
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	cmake-utils	3253cdb5d21cbdd07927f74a71aaf177	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	games	e221fed675714bd5545b7488aed9f822	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402	user	f54e098dd38ba1c0847a13e685b87747
 _md5_=63fac05fbcbb10dd6a30187dcc581da1

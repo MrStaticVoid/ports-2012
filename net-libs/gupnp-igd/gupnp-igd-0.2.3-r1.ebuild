@@ -16,7 +16,7 @@ KEYWORDS="*"
 IUSE="+introspection python"
 
 RDEPEND="
-	dev-libs/glib:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	>=net-libs/gssdp-0.14.7[${MULTILIB_USEDEP}]
 	>=net-libs/gupnp-0.20.10[${MULTILIB_USEDEP}]
 	introspection? ( >=dev-libs/gobject-introspection-0.10 )
@@ -36,13 +36,6 @@ RESTRICT="test"
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.1.11-disable_static_modules.patch
 )
-
-src_prepare() {
-	# Python bindings are built/installed manually.
-	if use python; then
-		sed -e "/PYTHON_SUBDIR =/s/ python//" -i Makefile.am Makefile.in || die
-	fi
-}
 
 multilib_src_configure() {
 	local myconf=(
@@ -68,7 +61,7 @@ multilib_src_configure() {
 				--enable-python
 		}
 
-		python_parallel_foreach_impl python_configure
+		use python && python_parallel_foreach_impl python_configure
 	fi
 }
 

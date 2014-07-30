@@ -10,5 +10,5 @@ RDEPEND=>=dev-libs/libcdio-0.90 =dev-lang/python-2*
 RESTRICT=test
 SLOT=0
 SRC_URI=mirror://pypi/p/pycdio/pycdio-0.19.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	6563129cb0e0e4c5a9fbd51c83506748
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	98d2432956e2e80dc689fe2c52466233
 _md5_=3ee4301eee61904e658a68f1e83d332a

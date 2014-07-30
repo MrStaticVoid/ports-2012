@@ -8,5 +8,5 @@ LICENSE=GPL-3
 RDEPEND=virtual/libusb:1 dev-libs/boost =dev-lang/python-2*
 SLOT=0
 SRC_URI=https://github.com/EttusResearch/UHD-Mirror/tarball/release_003_004_003 -> EttusResearch-UHD-Mirror-3.4.3.tar.gz http://files.ettus.com/binaries/maint_images/archive/uhd-images_003.004.002-12-geb083300.tar.gz
-_eclasses_=cmake-utils	50a0f8ec01542e7e35e36a41264aeb9a	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	6563129cb0e0e4c5a9fbd51c83506748	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=cmake-utils	3253cdb5d21cbdd07927f74a71aaf177	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=92b4f6e64f8ae6c06a79730cc4322cf3

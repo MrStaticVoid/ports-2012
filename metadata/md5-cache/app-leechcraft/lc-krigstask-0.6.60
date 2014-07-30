@@ -9,5 +9,5 @@ LICENSE=Boost-1.0
 RDEPEND=~app-leechcraft/lc-core-0.6.60 dev-qt/qtdeclarative:4 x11-libs/libXcomposite ~virtual/leechcraft-quark-sideprovider-0.6.60
 SLOT=0
 SRC_URI=mirror://sourceforge/leechcraft/leechcraft-0.6.60.tar.xz http://dist.leechcraft.org/LeechCraft/0.6.60/leechcraft-0.6.60.tar.xz
-_eclasses_=cmake-utils	50a0f8ec01542e7e35e36a41264aeb9a	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	leechcraft	e0ec4b74ef98adeb1a9696617a379c7f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=cmake-utils	3253cdb5d21cbdd07927f74a71aaf177	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	leechcraft	e0ec4b74ef98adeb1a9696617a379c7f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=dfc784428f610be76630498ce8d2fe16
