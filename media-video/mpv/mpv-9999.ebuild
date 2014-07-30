@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-9999.ebuild,v 1.52 2014/06/20 09:48:36 maksbotan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-9999.ebuild,v 1.54 2014/07/10 08:57:47 maksbotan Exp $
 
 EAPI=5
 
@@ -21,15 +21,14 @@ LICENSE="GPL-2"
 SLOT="0"
 [[ ${PV} == *9999* ]] || \
 KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux"
-IUSE="+alsa bluray bs2b cdio -doc-pdf dvb +dvd dvdnav +enca encode examples +iconv jack -joystick
-jpeg ladspa lcms +libass libcaca libguess lirc lua luajit +mpg123 -openal +opengl
+IUSE="+alsa bluray bs2b cdio -doc-pdf dvb +dvd dvdnav +enca encode +iconv jack -joystick
+jpeg ladspa lcms +libass libcaca libguess libmpv lirc lua luajit +mpg123 -openal +opengl
 oss portaudio postproc pulseaudio pvr +quvi samba sdl selinux +shm v4l vaapi vdpau
 vf-dlopen wayland +X xinerama +xscreensaver +xv"
 
 REQUIRED_USE="
 	dvdnav? ( dvd )
 	enca? ( iconv )
-	examples? ( lua )
 	lcms? ( opengl )
 	libguess? ( iconv )
 	luajit? ( lua )
@@ -170,8 +169,6 @@ src_configure() {
 		$(use_enable sdl sdl2) \
 		--disable-rsound \
 		--disable-vapoursynth \
-		$(use_enable examples libmpv-shared) \
-		$(use_enable examples client-api-examples) \
 		$(use_enable encode encoding) \
 		$(use_enable joystick) \
 		$(use_enable bluray libbluray) \
@@ -189,6 +186,7 @@ src_configure() {
 		$(use_enable iconv) \
 		$(use_enable libass) \
 		$(use_enable libguess) \
+		$(use_enable libmpv libmpv-shared) \
 		$(use_enable dvb) \
 		$(use_enable pvr) \
 		$(use_enable v4l libv4l2) \

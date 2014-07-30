@@ -9,5 +9,5 @@ LICENSE=GPL-2 LGPL-2.1
 RDEPEND=>=app-i18n/ibus-1.2 nls? ( virtual/libintl ) =dev-lang/python-2* =dev-lang/python-2*[sqlite]
 SLOT=0
 SRC_URI=http://ibus.googlecode.com/files/ibus-table-1.3.9.20110827.tar.gz
-_eclasses_=python	46d9f0382a194b2c30ac61862799b58c
+_eclasses_=python	6563129cb0e0e4c5a9fbd51c83506748
 _md5_=3889bd9003648239e47fb9726fd41ea7

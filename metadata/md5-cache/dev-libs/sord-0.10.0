@@ -9,5 +9,5 @@ LICENSE=ISC
 RDEPEND=>=dev-libs/serd-0.14.0
 SLOT=0
 SRC_URI=http://download.drobilla.net/sord-0.10.0.tar.bz2
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	025442f2eecab39ad0b4e541b6e142af	multilib	fac675dcccf94392371a6abee62d909f	multiprocessing	c2d96fb38f2596209e98fceda58ba1ed	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	waf-utils	c83d65d895bcdfc6152948bbafd25453
+_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402	waf-utils	c83d65d895bcdfc6152948bbafd25453
 _md5_=ba64b184eeee6dd46c49e5f5a771ea67

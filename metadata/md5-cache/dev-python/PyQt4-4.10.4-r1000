@@ -10,5 +10,5 @@ RDEPEND=>=dev-python/sip-4.15.5:0=[python_abis_2.6?,python_abis_2.7?,python_abis
 REQUIRED_USE=declarative? ( X ) designer? ( X ) help? ( X ) multimedia? ( X ) opengl? ( X ) phonon? ( X ) scripttools? ( X script ) sql? ( X ) svg? ( X ) webkit? ( X ) || ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 )
 SLOT=0/QtCore-1
 SRC_URI=mirror://sourceforge/pyqt/PyQt-x11-gpl-4.10.4.tar.gz
-_eclasses_=eutils	025442f2eecab39ad0b4e541b6e142af	multilib	fac675dcccf94392371a6abee62d909f	python	46d9f0382a194b2c30ac61862799b58c	qmake-utils	6f4ff01a55830f6d86647dc56dfaf3a7	toolchain-funcs	48b38a216afb92db6314d6c3187abea3
+_eclasses_=eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	6563129cb0e0e4c5a9fbd51c83506748	qmake-utils	dd0375da11f79aa416ff97913c59d01c	toolchain-funcs	0f1760274637a138b99bb649202ea402
 _md5_=1fca0e2f2bdeb7cd51cee71fdf810014

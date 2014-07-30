@@ -3,5 +3,5 @@
 ACCEPT_KEYWORDS="~${ARCH} ${ARCH}"
 
 # Use experimental tree
-SYNC="git://github.com/funtoo/experimental-mini-2011.git"
+SYNC="git://github.com/funtoo/experimental-2014.git"
 

@@ -110,10 +110,10 @@ fi
 
 _distutils_execute() {
 	if [[ "$(python_get_implementation)" == "PyPy" ]]; then
-		CFLAGS="${CFLAGS}${CFLAGS:+ }-Werror=implicit-function-declaration" python_execute CPP="${_PYTHON_TOOLCHAIN_FUNCS_CPP}" CC="${_PYTHON_TOOLCHAIN_FUNCS_CC}" CXX="${_PYTHON_TOOLCHAIN_FUNCS_CXX}" LDSHARED="${_PYTHON_TOOLCHAIN_FUNCS_CC} -shared" LDCXXSHARED="${_PYTHON_TOOLCHAIN_FUNCS_CXX} -shared" "$@"
-	else
-		python_execute "$@"
+		local -x CFLAGS="${CFLAGS}${CFLAGS:+ }-Werror=implicit-function-declaration"
 	fi
+
+	_python_execute_with_build_environment python_execute "$@"
 }
 
 _distutils_get_build_dir() {
@@ -411,6 +411,10 @@ distutils_src_install() {
 
 			_distutils_restore_current_working_directory "${setup_file}"
 		done
+	fi
+
+	if ! has "${EAPI:-0}" 2 3; then
+		python_generate_cffi_modules
 	fi
 
 	while read -d $'\0' -r nspkg_pth_file; do
