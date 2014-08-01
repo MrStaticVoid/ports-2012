@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/spidermonkey/spidermonkey-24.2.0-r2.ebuild,v 1.7 2014/06/23 15:11:36 pacho Exp $
 
 EAPI="5"
 WANT_AUTOCONF="2.1"
@@ -56,6 +54,9 @@ src_prepare() {
 }
 
 src_configure() {
+	# Fix failure on checking Python environment is Mozilla virtualenv
+	export SHELL="/bin/sh"
+
 	cd "${BUILDDIR}" || die
 
 	local myopts=""

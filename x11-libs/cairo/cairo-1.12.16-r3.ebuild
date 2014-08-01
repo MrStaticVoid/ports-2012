@@ -4,14 +4,8 @@ EAPI=5
 
 inherit check-reqs eutils flag-o-matic autotools multilib-minimal
 
-if [[ ${PV} == *9999* ]]; then
-	inherit git-2
-	EGIT_REPO_URI="git://anongit.freedesktop.org/git/cairo"
-	SRC_URI=""
-else
-	SRC_URI="http://cairographics.org/releases/${P}.tar.xz"
-	KEYWORDS="*"
-fi
+SRC_URI="http://cairographics.org/releases/${P}.tar.xz"
+KEYWORDS="*"
 
 DESCRIPTION="A vector graphics library with cross-device output support"
 HOMEPAGE="http://cairographics.org/"
@@ -32,7 +26,7 @@ RDEPEND=">=dev-libs/lzo-2.06-r1[${MULTILIB_USEDEP}]
 	>=x11-libs/pixman-0.32.4[${MULTILIB_USEDEP}]
 	directfb? ( dev-libs/DirectFB )
 	gles2? ( >=media-libs/mesa-9.1.6[gles2,${MULTILIB_USEDEP}] )
-	glib? ( dev-libs/glib:2[${MULTILIB_USEDEP}] )
+	glib? ( >=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}] )
 	opengl? ( || ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] media-libs/opengl-apple ) )
 	openvg? ( >=media-libs/mesa-9.1.6[openvg,${MULTILIB_USEDEP}] )
 	qt4? ( >=dev-qt/qtgui-4.8:4 )
@@ -117,13 +111,6 @@ src_prepare() {
 	fi
 
 	epatch_user
-
-	# Slightly messed build system YAY
-	if [[ ${PV} == *9999* ]]; then
-		touch boilerplate/Makefile.am.features
-		touch src/Makefile.am.features
-		touch ChangeLog
-	fi
 
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
 	# upgraded to an eautoreconf for the above interix patch.

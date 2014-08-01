@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/netsurf/netsurf-3.0-r2.ebuild,v 1.3 2014/06/24 22:17:10 mgorny Exp $
 
 EAPI=5
 NETSURF_COMPONENT_TYPE=binary
@@ -13,7 +15,7 @@ SRC_URI="http://download.netsurf-browser.org/netsurf/releases/source/${P}-src.ta
 
 LICENSE="GPL-2 MIT"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~arm"
 IUSE="+bmp fbcon truetype +gif gstreamer gtk javascript +jpeg +mng pdf-writer
 	+png +rosprite +svg +svgtiny +webp fbcon_frontend_able fbcon_frontend_linux
 	fbcon_frontend_sdl fbcon_frontend_vnc fbcon_frontend_x"
@@ -34,7 +36,7 @@ RDEPEND="dev-libs/libxml2
 			>=media-libs/freetype-2.5.0.1[${MULTILIB_USEDEP}] )
 	)
 	gif? ( >=media-libs/libnsgif-0.1.0[${MULTILIB_USEDEP}] )
-	gtk? ( dev-libs/glib:2[${MULTILIB_USEDEP}]
+	gtk? ( >=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 		gnome-base/libglade:2.0
 		>=media-libs/lcms-1.19-r1:0[${MULTILIB_USEDEP}]
 		>=x11-libs/gtk+-2.24.23:2[${MULTILIB_USEDEP}] )

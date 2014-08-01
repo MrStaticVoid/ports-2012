@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=abi_x86_32? ( !<=app-emulation/emul-linux-x86-medialibs-20130224-r9 !app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] ) python? ( =dev-lang/python-2* )
 SLOT=0
 SRC_URI=mirror://sourceforge/libieee1284/libieee1284-0.2.11.tar.bz2
-_eclasses_=eutils	06133990e861be0fe60c2b428fd025d9	multibuild	56961ac06660a16c3f807c0c39247e4c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multilib-build	16b0091fadb86115afcf437f3465a91f	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	6563129cb0e0e4c5a9fbd51c83506748	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=eutils	06133990e861be0fe60c2b428fd025d9	multibuild	56961ac06660a16c3f807c0c39247e4c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multilib-build	16b0091fadb86115afcf437f3465a91f	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
 _md5_=eab66c8ac7abfe03ed39ca8be406b3ec

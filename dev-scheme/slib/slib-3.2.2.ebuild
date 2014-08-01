@@ -1,6 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.2.2.ebuild,v 1.3 2010/11/14 16:11:56 jlec Exp $
 
 EAPI="3"
 
@@ -19,12 +17,13 @@ HOMEPAGE="http://swiss.csail.mit.edu/~jaffer/SLIB"
 
 SLOT="0"
 LICENSE="public-domain BSD"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="*"
 IUSE="" #test"
 
 #unzip for unpacking
-RDEPEND=""
-DEPEND="app-arch/unzip"
+RDEPEND="<sys-apps/texinfo-5.0"
+DEPEND="${RDEPEND}
+	app-arch/unzip"
 #		test? ( dev-scheme/scm )"
 
 INSTALL_DIR="/usr/share/slib/"

@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-bad/gst-plugins-bad-0.10.23-r2.ebuild,v 1.7 2014/07/28 13:45:17 ago Exp $
 
 EAPI="5"
 
@@ -10,11 +12,11 @@ HOMEPAGE="http://gstreamer.freedesktop.org/"
 SRC_URI+=" http://dev.gentoo.org/~tetromino/distfiles/${PN}/${P}-h264-patches.tar.xz"
 
 LICENSE="LGPL-2"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="+orc"
 
 RDEPEND="
-	dev-libs/glib:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	>=media-libs/gst-plugins-base-0.10.36:${SLOT}[${MULTILIB_USEDEP}]
 	>=media-libs/gstreamer-0.10.36:${SLOT}[${MULTILIB_USEDEP}]
 	orc? ( >=dev-lang/orc-0.4.17[${MULTILIB_USEDEP}] )
@@ -40,7 +42,8 @@ multilib_src_configure() {
 	gstreamer_multilib_src_configure \
 		$(use_enable orc) \
 		--disable-examples \
-		--disable-debug
+		--disable-debug \
+		--disable-static
 }
 
 multilib_src_install_all() {

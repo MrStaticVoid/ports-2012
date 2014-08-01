@@ -9,5 +9,5 @@ LICENSE=GPL-2 LGPL-2.1
 RDEPEND=>=dev-libs/glib-2 dev-python/pygobject:2 dev-python/pygtk:2 x11-libs/gtk+:2 gconf? ( gnome-base/gconf:2 ) glade? ( gnome-base/libglade:2.0 ) gnome? ( gnome-base/gnome-desktop:2 ) =dev-lang/python-2.7*
 SLOT=0
 SRC_URI=http://launchpad.net/libdesktop-agnostic/0.4/0.3.92/+download/libdesktop-agnostic-0.3.92.tar.gz
-_eclasses_=base	5f55566958e88506923ea360535053cc	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	6563129cb0e0e4c5a9fbd51c83506748	toolchain-funcs	0f1760274637a138b99bb649202ea402	vala	d8f392783fdc2395fc64af046f2ca961	waf-utils	c83d65d895bcdfc6152948bbafd25453
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	vala	d8f392783fdc2395fc64af046f2ca961	waf-utils	c83d65d895bcdfc6152948bbafd25453
 _md5_=86a2864e8853d3797d81bcf7db432cfb

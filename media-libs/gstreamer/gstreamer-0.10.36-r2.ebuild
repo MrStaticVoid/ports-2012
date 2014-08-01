@@ -13,7 +13,7 @@ SLOT="0.10"
 KEYWORDS="*"
 IUSE="+introspection nls +orc test"
 
-RDEPEND="dev-libs/glib:2[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	>=dev-libs/libxml2-2.9.1-r4[${MULTILIB_USEDEP}]
 	introspection? ( >=dev-libs/gobject-introspection-0.6.8 )"
 DEPEND="${RDEPEND}
@@ -69,7 +69,7 @@ multilib_src_configure() {
 	# Disable debug, as it only affects -g passing (debugging symbols), this must done through make.conf in gentoo
 	ECONF_SOURCE=${S} \
 	econf \
-		--libexecdir=/usr/$(get_libdir) \
+		--libexecdir="${EPREFIX}"/usr/$(get_libdir) \
 		--disable-static \
 		$(use_enable nls) \
 		--disable-valgrind \

@@ -1,11 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-system-monitor/gnome-system-monitor-3.12.2.ebuild,v 1.2 2014/05/31 10:27:08 pacho Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
 
-inherit gnome2
+inherit autotools eutils gnome2
 
 DESCRIPTION="The Gnome System Monitor"
 HOMEPAGE="https://help.gnome.org/users/gnome-system-monitor/"
@@ -13,7 +11,7 @@ HOMEPAGE="https://help.gnome.org/users/gnome-system-monitor/"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="systemd +X"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="*"
 
 RDEPEND="
 	>=dev-libs/glib-2.37.3:2
@@ -35,6 +33,13 @@ DEPEND="${RDEPEND}
 
 	systemd? ( !=sys-apps/systemd-43* )
 "
+
+src_prepare() {
+	# From 'master', bug #516716
+	epatch "${FILESDIR}/${PN}-3.12.2-configure-wnck.patch"
+	eautoreconf
+	gnome2_src_prepare
+}
 
 src_configure() {
 	gnome2_src_configure \

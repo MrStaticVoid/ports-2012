@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-1.2.4-r1.ebuild,v 1.6 2014/07/28 13:45:19 ago Exp $
 
 EAPI="5"
 
@@ -9,7 +11,7 @@ DESCRIPTION="Basepack of plugins for gstreamer"
 HOMEPAGE="http://gstreamer.freedesktop.org/"
 
 LICENSE="GPL-2+ LGPL-2+"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ~mips ppc ~ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="alsa +introspection ivorbis +ogg +orc +pango theora +vorbis X"
 REQUIRED_USE="
 	ivorbis? ( ogg )
@@ -19,7 +21,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	app-text/iso-codes
-	dev-libs/glib:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	>=media-libs/gstreamer-1.2.3:1.0[introspection?,${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
 	alsa? ( >=media-libs/alsa-lib-1.0.27.2[${MULTILIB_USEDEP}] )

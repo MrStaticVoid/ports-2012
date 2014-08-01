@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/epiphany/epiphany-3.12.1.ebuild,v 1.1 2014/05/30 19:03:53 pacho Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -15,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Web"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="+jit +nss test"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 
 COMMON_DEPEND="
 	>=app-crypt/gcr-3.5.5
@@ -48,6 +46,7 @@ RDEPEND="${COMMON_DEPEND}
 # paxctl needed for bug #407085
 # eautoreconf requires gnome-common-3.5.5
 DEPEND="${COMMON_DEPEND}
+	gnome-base/gnome-common
 	>=dev-util/intltool-0.50
 	sys-apps/paxctl
 	sys-devel/gettext

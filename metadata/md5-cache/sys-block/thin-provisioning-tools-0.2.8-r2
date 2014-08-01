@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=dev-libs/expat
 SLOT=0
 SRC_URI=http://github.com/jthornber/thin-provisioning-tools/archive/v0.2.8.tar.gz -> thin-provisioning-tools-0.2.8.tar.gz https://github.com/denys-duchier/thin-provisioning-tools/commit/3a4c06b772bc8ca27bcf7c2d82abc46c65c23795.diff -> thin-provisioning-tools-0.2.8-boost.patch
-_eclasses_=autotools	82621aada74cb2a492bd8e73d49e9f54	base	5f55566958e88506923ea360535053cc	eutils	06133990e861be0fe60c2b428fd025d9	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=autotools	82621aada74cb2a492bd8e73d49e9f54	base	b04101a46711cfa66c7484a27d64d5ef	eutils	06133990e861be0fe60c2b428fd025d9	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402
 _md5_=c7d3a7b1f5ee424c71aee81237a1c8ac

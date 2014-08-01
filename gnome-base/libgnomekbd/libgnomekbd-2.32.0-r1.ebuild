@@ -1,4 +1,6 @@
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.32.0-r1.ebuild,v 1.4 2012/05/21 18:57:27 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
