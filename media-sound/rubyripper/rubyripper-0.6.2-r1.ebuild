@@ -1,10 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/rubyripper/rubyripper-0.6.2-r1.ebuild,v 1.4 2013/03/04 19:16:40 billie Exp $
 
-EAPI=5
+EAPI="5"
 
-VIRTUALX_REQUIRED=always
+VIRTUALX_REQUIRED=gtk
 VIRTUALX_COMMAND=./configure
 USE_RUBY="ruby18 ruby19"
 
@@ -16,7 +14,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE="cli cdrdao flac +gtk +mp3 normalize +vorbis wav"
 
 ILINGUAS="bg de es fr hu it nl ru se"

@@ -1,8 +1,7 @@
-# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/brlcad/brlcad-7.18.4.ebuild,v 1.3 2012/06/08 02:11:41 zmedico Exp $
 
-EAPI=3
+EAPI=5
+
 inherit eutils java-pkg-opt-2 multilib
 
 DESCRIPTION="Constructive solid geometry modeling system"
@@ -11,7 +10,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2 BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="*"
 IUSE="benchmarks debug doc examples java opengl smp"
 
 RDEPEND="media-libs/libpng
@@ -96,5 +95,10 @@ src_install() {
 	echo "MANPATH=\"${BRLCAD_DIR}/man\"" >> 99brlcad
 	doenvd 99brlcad || die
 	newicon misc/macosx/Resources/ReadMe.rtfd/brlcad_logo_tiny.png brlcad.png
-	make_desktop_entry mged "BRL-CAD" brlcad "Graphics;Engineering"
+
+	insinto /usr/share/applications
+	doins ${FILESDIR}/${PN}.desktop
+
+	dosym /usr/brlcad/bin/mged /usr/bin/brlcad
+	dosym /usr/brlcad/bin/mged /usr/bin/mged
 }

@@ -61,9 +61,10 @@ LICENSE="BSD
 
 SLOT="0"
 
-IUSE="aac adplug alac alsa psf cdda converter cover cover-imlib2 cover-network curl dts dumb equalizer ffmpeg flac gme gtk2
-	gtk3 hotkeys lastfm mac m3u midi mms mono2stereo mp3 musepack nls lastfm libnotify libsamplerate nullout
-	oss psf pulseaudio pltbrowser shellexec shellexecui shn sid sndfile tta unity vorbis vtx wavpack wma zip"
+IUSE="+alsa +gtk2 +hotkeys +m3u +mp3 +sndfile +vorbis +flac
+	aac adplug alac psf cdda converter cover cover-imlib2 cover-network curl dts dumb equalizer ffmpeg
+	filebrowser gme gtk3 infobar lastfm mac midi mms mono2stereo musepack nls lastfm libnotify libsamplerate
+	nullout oss psf pulseaudio pltbrowser shellexec shellexecui shn sid tta unity vk vtx wavpack wma zip"
 
 REQUIRED_USE="cover-imlib2? ( cover )
 	cover-network? ( cover curl )
@@ -80,6 +81,10 @@ LANGS="be bg bn ca cs da de el en_GB es et eu fa fi fr gl he hr hu id it ja kk k
 for lang in ${LANGS} ; do
 	IUSE+=" linguas_${lang}"
 done
+
+PDEPEND="filebrowser? ( media-plugins/deadbeef-fb )
+	infobar? ( media-plugins/deadbeef-infobar )
+	vk? ( media-plugins/deadbeef-vk )"
 
 RDEPEND="aac? ( media-libs/faad2 )
 	adplug? ( media-libs/adplug )
@@ -129,7 +134,6 @@ src_prepare() {
 
 src_configure() {
 	econf --disable-coreaudio \
-		--disable-dependency-tracking \
 		--disable-portable \
 		--disable-static \
 		--docdir=/usr/share/${PN} \
@@ -182,24 +186,31 @@ src_configure() {
 }
 
 pkg_preinst() {
-	gnome2_icon_savelist
-	gnome2_schemas_savelist
+	if use gtk2 || use gtk3 ; then
+		gnome2_icon_savelist
+		gnome2_schemas_savelist
+	fi
 }
 
 pkg_postinst() {
 	if use midi ; then
-		einfo "enable manually freepats support for timidity via"
+		einfo "enable the freepats support for wildmidi manually, using the following command:"
 		einfo "eselect timidity set --global freepats"
 	fi
-	fdo-mime_desktop_database_update
-	fdo-mime_mime_database_update
-	gnome2_icon_cache_update
-	gnome2_schemas_update
+
+	if use gtk2 || use gtk3 ; then
+		fdo-mime_desktop_database_update
+		fdo-mime_mime_database_update
+		gnome2_icon_cache_update
+		gnome2_schemas_update
+	fi
 }
 
 pkg_postrm() {
-	fdo-mime_desktop_database_update
-	fdo-mime_mime_database_update
-	gnome2_icon_cache_update
-	gnome2_schemas_update
+	if use gtk2 || use gtk3 ; then
+		fdo-mime_desktop_database_update
+		fdo-mime_mime_database_update
+		gnome2_icon_cache_update
+		gnome2_schemas_update
+	fi
 }

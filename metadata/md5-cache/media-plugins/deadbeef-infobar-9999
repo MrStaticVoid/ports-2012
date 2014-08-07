@@ -1,4 +1,4 @@
-DEFINED_PHASES=compile install unpack
+DEFINED_PHASES=compile install prepare unpack
 DEPEND=dev-libs/libxml2 media-sound/deadbeef[curl] gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] ) dev-vcs/mercurial
 DESCRIPTION=Infobar plugin for DeadBeeF audio player. Shows lyrics and artist's biography for the current track.
 EAPI=5
@@ -9,4 +9,4 @@ RDEPEND=dev-libs/libxml2 media-sound/deadbeef[curl] gtk2? ( media-sound/deadbeef
 REQUIRED_USE=|| ( gtk2 gtk3 )
 SLOT=0
 _eclasses_=eutils	06133990e861be0fe60c2b428fd025d9	mercurial	2fbda5894dda6392b71334ee9a92de0b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=8b6b19cca119598f47dda3de02207428
+_md5_=a0b795e5131ac05ded3f52aa5da898c8
