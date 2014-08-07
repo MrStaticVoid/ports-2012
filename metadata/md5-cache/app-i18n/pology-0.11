@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare setup test
-DEPEND=dev-libs/libxslt dev-libs/libxml2 dev-python/dbus-python sys-devel/gettext app-text/docbook-xsl-stylesheets app-text/docbook-xml-dtd:4.5 dev-python/epydoc =dev-lang/python-2.7* sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DEPEND=dev-libs/libxslt dev-libs/libxml2 dev-python/dbus-python sys-devel/gettext app-text/docbook-xsl-stylesheets app-text/docbook-xml-dtd:4.5 dev-python/epydoc =dev-lang/python-2.7* sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
 DESCRIPTION=A framework for custom processing of PO files.
 EAPI=4
 HOMEPAGE=http://pology.nedohodnik.net
@@ -8,5 +8,5 @@ LICENSE=GPL-3
 RDEPEND=dev-libs/libxslt dev-libs/libxml2 dev-python/dbus-python sys-devel/gettext =dev-lang/python-2.7*
 SLOT=0
 SRC_URI=http://pology.nedohodnik.net//release/pology-0.11.tar.bz2
-_eclasses_=bash-completion-r1	2ba44308a7ebbf2a3b15cd8169b94d21	cmake-utils	3253cdb5d21cbdd07927f74a71aaf177	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=bash-completion-r1	2ba44308a7ebbf2a3b15cd8169b94d21	cmake-utils	ef33c5c8f3eadd19e03afec9069f2c4a	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
 _md5_=7294695e72f73afec323f3cf6a4f895a

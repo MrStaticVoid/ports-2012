@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdepimlibs/kdepimlibs-4.13.3.ebuild,v 1.1 2014/07/16 17:40:23 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdepimlibs/kdepimlibs-4.13.3.ebuild,v 1.3 2014/08/06 17:36:12 johu Exp $
 
 EAPI=5
 
@@ -8,7 +8,7 @@ KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
 inherit kde4-base
 
-DESCRIPTION="Common library for KDE PIM apps."
+DESCRIPTION="Common library for KDE PIM apps"
 KEYWORDS=" ~amd64 ~arm ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 LICENSE="LGPL-2.1"
 IUSE="debug ldap prison"
@@ -19,7 +19,7 @@ RESTRICT="test"
 DEPEND="
 	!kde-misc/akonadi-social-utils
 	>=app-crypt/gpgme-1.1.6
-	>=app-office/akonadi-server-1.12.1
+	>=app-office/akonadi-server-1.12.1[qt4]
 	>=dev-libs/boost-1.35.0-r5:=
 	dev-libs/libgpg-error
 	>=dev-libs/libical-0.48-r2:=

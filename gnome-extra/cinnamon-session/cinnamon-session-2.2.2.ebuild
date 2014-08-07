@@ -36,7 +36,7 @@ COMMON_DEPEND="
 	virtual/opengl
 	gconf? ( gnome-base/gconf:2 )
 	systemd? ( >=sys-apps/systemd-183 )
-	!systemd? ( || ( <sys-power/upower-0.99 sys-power/upower-pm-utils ) )
+	!systemd? ( || ( sys-power/upower sys-power/upower-pm-utils ) )
 "
 RDEPEND="${COMMON_DEPEND}
 	!systemd? ( sys-auth/consolekit )

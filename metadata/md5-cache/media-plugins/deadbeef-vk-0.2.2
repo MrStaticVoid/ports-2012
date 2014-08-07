@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-libs/json-glib media-sound/deadbeef[curl] gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=DeadBeef plugin for listening music from vkontakte.com
+EAPI=5
+HOMEPAGE=https://github.com/scorpp/db-vk
+IUSE=gtk2 gtk3
+KEYWORDS=~*
+LICENSE=GPL-2
+RDEPEND=dev-libs/json-glib media-sound/deadbeef[curl] gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] )
+REQUIRED_USE=|| ( gtk2 gtk3 )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/scorpp/db-vk/archive/v0.2.2.tar.gz
+_eclasses_=cmake-utils	ef33c5c8f3eadd19e03afec9069f2c4a	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_md5_=5d0e7c5fa248eb6bb5f8e047724e009d

@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare setup test unpack
-DEPEND=bluez? ( net-wireless/bluez:= ) >=net-libs/libbtbb-9999:= pcap? ( net-libs/libpcap:= ) python? ( =dev-lang/python-2* ) sys-devel/make >=dev-util/cmake-2.8.9 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/git-1.8.2.1
+DEPEND=bluez? ( net-wireless/bluez:= ) >=net-libs/libbtbb-9999:= pcap? ( net-libs/libpcap:= ) python? ( =dev-lang/python-2* ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/git-1.8.2.1
 DESCRIPTION=An open source wireless development platform suitable for Bluetooth experimentation
 EAPI=5
 HOMEPAGE=http://ubertooth.sourceforge.net/
@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=bluez? ( net-wireless/bluez:= ) >=net-libs/libbtbb-9999:= pcap? ( net-libs/libpcap:= ) specan? ( virtual/libusb:1 >=dev-qt/qtgui-4.7.2:4 >=dev-python/pyside-1.0.2 >=dev-python/numpy-1.3 >=dev-python/pyusb-1.0.0_alpha1 ) dfu? ( virtual/libusb:1 >=dev-python/pyusb-1.0.0_alpha1 ) udev? ( virtual/udev ) python? ( =dev-lang/python-2* )
 REQUIRED_USE=dfu? ( python ) specan? ( python ) ubertooth1-firmware? ( dfu ) python? ( || ( dfu specan ) )
 SLOT=0
-_eclasses_=cmake-utils	3253cdb5d21cbdd07927f74a71aaf177	distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=cmake-utils	ef33c5c8f3eadd19e03afec9069f2c4a	distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	flag-o-matic	9836bc51856bcaffac53c9cd4b59a8be	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
 _md5_=8488c29ba9841443187e1190c8a266c5
