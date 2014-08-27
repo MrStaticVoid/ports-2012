@@ -13,8 +13,7 @@ inherit bash-completion-r1 flag-o-matic linux-info linux-mod toolchain-funcs aut
 if [ ${PV} == "9999" ] ; then
 	inherit git-2
 	MY_PV=9999
-	EGIT_REPO_URI="https://github.com/MrStaticVoid/zfs.git"
-	EGIT_BRANCH="zvol"
+	EGIT_REPO_URI="https://github.com/zfsonlinux/zfs.git"
 else
 	inherit eutils versionator
 	MY_PV=$(replace_version_separator 3 '-')
