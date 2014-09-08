@@ -1,6 +1,28 @@
-#  Dantrell B. (2 Aug 2014)
-#  Selectively mask versions of net-irc/hexchat
-#  Ref FL-584 and FL-1435
+# Dantrell B. (22 Aug 2014)
+# Masked for testing
+# Ref FL-1483
+>=net-libs/rb_libtorrent-1.0.1
+
+# Dantrell B. (17 Aug 2014)
+# Selectively mask versions of sys-devel/gettext
+# Ref FL-1470
+=sys-devel/gettext-0.19.1
+=sys-devel/gettext-0.19
+
+# Dantrell B. (14 Aug 2014)
+# Masked for testing
+# Ref FL-1106
+>=sys-apps/openrc-0.12.4
+
+# Dantrell B. (10 Aug 2014)
+# Depends on sys-devel/gcc[gcj] which newer versions of gcc in Funtoo do not have
+#  Build against a version of gcc that does or use app-text/mcpdf instead
+# Ref FL-970, FL-1351 and FL-1424
+app-text/pdftk
+
+# Dantrell B. (2 Aug 2014)
+# Selectively mask versions of net-irc/hexchat
+# Ref FL-584 and FL-1435
 =net-irc/hexchat-2.10.0*
 =net-irc/hexchat-2.9.6*
 
@@ -8,19 +30,11 @@
 # FL-738: can break building of multiple packages (erlang, nginx, glibc, possibly guile (FL-919)
 app-admin/eselect-sh
 
-# Oleg Vinichenko (26 June 2014) mask latest versions of libnl, sitck with stable version only:
-# FL-1310
->dev-libs/libnl-3.2.23
-
 # Oleg Vinichenko (10 June 2014)
 # mask back python-3.4, this one not really fine to have installed. Also it become a default python version in stages.
 # Next time, allow to unmask only stable version of python with a consequent change of default PYTHON_ABIS. THis is 
 # FL-1274, FL-1265
 >dev-lang/python-3.3.5-r1000
-
-# Oleg Vinichenko (6 June 2014)_
-# maks latest gettext-0.19, breaks lot of packages
->sys-devel/gettext-0.18.3.2
 
 # Non bug commit. New gentoo-functions ebuild pulled into update list because of newer python-updater.
 # gentoo-funtions ebuild is a replacement of base shell functions, provided by OpenRC's /etc/init.d/functions.sh
@@ -28,20 +42,12 @@ app-admin/eselect-sh
 # latest python-updater to avoid mess.
 >app-admin/python-updater-0.11
 
-#  mask newer version of cryptsetup, breakage expected
->sys-fs/cryptsetup-1.6.3
-
 #  Cautionary mask latest bash and readline, until it's time to update
 >=app-shells/bash-4.3
 >=sys-libs/readline-6.3
 #  Oleg Vinichenko (3 Dec 2013)
 #  mask latest version of autogen, broken
 >=sys-devel/autogen-5.18
-  
-#  Oleg Vinichenko (26 Aug 2013)
-#  mask latest icedtea-bin ebuild, multiple failures with dev-java/* packages.
-#  see bug #477972 at b.g.o, this doesn't allow clean emerge of jython, forked in Funtoo
->dev-java/icedtea-bin-7.2.3.9
 
 # Ryan Harris (23 Jul 2013)
 # Mask phoronix-test-suite due to security concerns

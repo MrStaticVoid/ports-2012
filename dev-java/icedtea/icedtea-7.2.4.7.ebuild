@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea/icedtea-7.2.4.7.ebuild,v 1.2 2014/05/17 15:22:54 swift Exp $
+
 # Build written by Andrew John Hughes (gnu_andrew@member.fsf.org)
 
 # *********************************************************
@@ -58,7 +57,7 @@ SRC_URI="
 
 LICENSE="Apache-1.1 Apache-2.0 GPL-1 GPL-2 GPL-2-with-linking-exception LGPL-2 MPL-1.0 MPL-1.1 public-domain W3C"
 SLOT="7"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~*"
 
 IUSE="+X +alsa cacao cjk +cups debug doc examples jamvm javascript +jbootstrap kerberos +nsplugin
 	+nss pax_kernel pulseaudio selinux +source test zero +webstart"
@@ -128,7 +127,6 @@ RDEPEND="${COMMON_DEP}
 # autoconf - as long as we use eautoreconf, version restrictions for bug #294918
 DEPEND="${COMMON_DEP} ${ALSA_COMMON_DEP} ${CUPS_COMMON_DEP} ${X_COMMON_DEP}
 	|| (
-		>=dev-java/gcj-jdk-4.3
 		dev-java/icedtea-bin:7
 		dev-java/icedtea-bin:6
 		dev-java/icedtea:7

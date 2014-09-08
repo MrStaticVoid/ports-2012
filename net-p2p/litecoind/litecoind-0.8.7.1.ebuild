@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/litecoind/litecoind-0.8.7.1.ebuild,v 1.1 2014/05/26 21:28:48 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/litecoind/litecoind-0.8.7.1.ebuild,v 1.3 2014/08/28 22:34:06 blueness Exp $
 
 EAPI=5
 
@@ -12,14 +12,14 @@ MyPV="${PV/_/-}"
 MyPN="litecoin"
 MyP="${MyPN}-${MyPV}"
 
-DESCRIPTION="P2P Internet currency based on Bitcoin but easier to mine."
+DESCRIPTION="P2P Internet currency based on Bitcoin but easier to mine"
 HOMEPAGE="https://litecoin.org/"
 SRC_URI="https://github.com/${MyPN}-project/${MyPN}/archive/v${MyPV}.tar.gz -> ${MyP}.tar.gz"
 
 LICENSE="MIT ISC GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="bash-completion examples ipv6 logrotate upnp"
+IUSE="examples ipv6 logrotate upnp"
 
 RDEPEND="
 	dev-libs/boost[threads(+)]
@@ -108,9 +108,8 @@ src_install() {
 	newman contrib/debian/manpages/bitcoind.1 litecoind.1
 	newman contrib/debian/manpages/bitcoin.conf.5 litecoin.conf.5
 
-	if use bash-completion; then
-		newbashcomp contrib/bitcoind.bash-completion ${PN}.bash-completion
-	fi
+	sed -i -e 's/bitcoin/litecoin/g' contrib/bitcoind.bash-completion
+	newbashcomp contrib/bitcoind.bash-completion ${PN}.bash-completion
 
 	if use examples; then
 		docinto examples

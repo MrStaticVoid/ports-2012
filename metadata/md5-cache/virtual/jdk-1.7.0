@@ -1,6 +1,0 @@
-DEFINED_PHASES=-
-DESCRIPTION=Virtual for Java Development Kit (JDK)
-KEYWORDS=*
-RDEPEND==dev-java/oracle-jdk-bin-1.7.0*
-SLOT=1.7
-_md5_=13cb54197eb7fb7a3be948c04f6584d9
