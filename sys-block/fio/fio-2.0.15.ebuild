@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-block/fio/fio-2.0.15.ebuild,v 1.2 2014/08/05 01:16:05 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-block/fio/fio-2.0.15.ebuild,v 1.4 2014/09/07 17:42:56 robbat2 Exp $
 
 EAPI="4"
 
@@ -9,7 +9,7 @@ inherit toolchain-funcs flag-o-matic eutils
 MY_PV="${PV/_rc/-rc}"
 MY_P="${PN}-${MY_PV}"
 
-DESCRIPTION="Write job files matching the I/O load one wants to simulate."
+DESCRIPTION="Write job files matching the I/O load one wants to simulate"
 HOMEPAGE="http://brick.kernel.dk/snaps/"
 SRC_URI="http://brick.kernel.dk/snaps/${MY_P}.tar.bz2"
 
@@ -24,7 +24,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	chmod g-w "${T}"
 	sed -i \
 		-e '/filter /s:-o:$(LDFLAGS) -o:' \
 		-e '/: depend$/d' \
@@ -34,6 +33,7 @@ src_prepare() {
 }
 
 src_configure() {
+	chmod g-w "${T}"
 	: # not a real configure script
 	./configure --extra-cflags="${CFLAGS}" --cc="$(tc-getCC)"
 }

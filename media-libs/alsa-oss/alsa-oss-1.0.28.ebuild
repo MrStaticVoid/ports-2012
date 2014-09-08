@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-oss/alsa-oss-1.0.28.ebuild,v 1.1 2014/06/23 22:22:13 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-oss/alsa-oss-1.0.28.ebuild,v 1.3 2014/09/04 18:44:50 jer Exp $
 
 EAPI=5
 
@@ -9,13 +9,13 @@ inherit autotools eutils multilib multilib-minimal
 MY_P="${P/_rc/rc}"
 S="${WORKDIR}/${MY_P}"
 
-DESCRIPTION="Advanced Linux Sound Architecture OSS compatibility layer."
+DESCRIPTION="Advanced Linux Sound Architecture OSS compatibility layer"
 HOMEPAGE="http://www.alsa-project.org/"
 SRC_URI="mirror://alsaproject/oss-lib/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="static-libs"
 
 RDEPEND=">=media-libs/alsa-lib-${PV}[${MULTILIB_USEDEP}]

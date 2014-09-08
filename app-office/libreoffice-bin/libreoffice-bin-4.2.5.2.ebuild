@@ -1,22 +1,20 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-bin/libreoffice-bin-4.2.5.2.ebuild,v 1.5 2014/08/01 05:21:15 ssuominen Exp $
 
-EAPI=5
+EAPI="5"
 
 KDE_REQUIRED="optional"
 CMAKE_REQUIRED="never"
 
 BASE_PACKAGENAME="bin"
-BASE_AMD64_URI="http://packages.gentooexperimental.org/packages/amd64-libreoffice/amd64-${BASE_PACKAGENAME}-"
-BASE_X86_URI="http://packages.gentooexperimental.org/packages/x86-libreoffice/x86-${BASE_PACKAGENAME}-"
+BASE_AMD64_URI="http://www.funtoo.org/distfiles/libreoffice/amd64-${BASE_PACKAGENAME}-"
+BASE_X86_URI="http://www.funtoo.org/distfiles/libreoffice/x86-${BASE_PACKAGENAME}-"
 
 PYTHON_COMPAT=( python2_7 python3_3 python3_4 )
 PYTHON_REQ_USE="threads,xml"
 
 inherit kde4-base java-pkg-opt-2 python-single-r1 pax-utils prefix versionator
 
-DESCRIPTION="LibreOffice, a full office productivity suite. Binary package."
+DESCRIPTION="LibreOffice, a full office productivity suite. Binary package"
 HOMEPAGE="http://www.libreoffice.org"
 SRC_URI_AMD64="
 	${BASE_AMD64_URI}libreoffice-${PVR}.tar.xz
@@ -60,13 +58,13 @@ KEYWORDS="-* amd64 x86"
 BIN_COMMON_DEPEND="
 	=app-text/libexttextcat-3.4*
 	=app-text/libmwaw-0.2*
-	app-text/poppler:0/44
-	dev-libs/boost:0/1.52
-	dev-libs/icu:0/52
+	app-text/poppler:0/46
+	dev-libs/boost:0/1.55.0
+	dev-libs/icu:0/53
 	=media-gfx/graphite2-1.2*
 	media-libs/harfbuzz:0/0.9.18[icu]
 	media-libs/libpng:0/16
-	>=sys-libs/glibc-2.17
+	>=sys-libs/glibc-2.18
 	virtual/jpeg:62
 	kde? ( >=kde-base/kdelibs-4.12.5-r1:4 >=dev-qt/qtcore-4.8.5-r1:4 )
 "
@@ -146,6 +144,7 @@ RDEPEND="${COMMON_DEPEND}
 	media-fonts/libertine-ttf
 	media-fonts/liberation-fonts
 	media-fonts/urw-fonts
+	media-video/vlc
 	java? ( >=virtual/jre-1.6 )
 "
 
@@ -158,7 +157,7 @@ DEPEND="dev-util/xdelta:3"
 # only one flavor at a time
 REQUIRED_USE="kde? ( !gnome ) gnome? ( !kde )"
 
-RESTRICT="test strip"
+RESTRICT="mirror test strip"
 
 S="${WORKDIR}"
 
@@ -176,7 +175,7 @@ pkg_setup() {
 
 src_unpack() {
 	einfo "Uncompressing distfile ${ARCH}-${BASE_PACKAGENAME}-libreoffice-${PVR}.tar.xz"
-	xz -cd "${DISTDIR}/${ARCH}-${BASE_PACKAGENAME}-libreoffice-${PVR}.tar.xz" > "${WORKDIR}/${ARCH}-${BASE_PACKAGENAME}-libreoffice-${PVR}.tar" || die
+	tar -xf "${DISTDIR}/${ARCH}-${BASE_PACKAGENAME}-libreoffice-${PVR}.tar.xz" -C "${WORKDIR}" || die
 
 	local patchname
 	use kde && patchname="-kde"

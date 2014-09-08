@@ -1,8 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer2/mplayer2-2.0_p20131009.ebuild,v 1.3 2014/07/13 19:56:14 tomwij Exp $
 
-EAPI=5
+EAPI="5"
 
 # https://bugs.gentoo.org/show_bug.cgi?id=434356#c4
 PYTHON_COMPAT=( python{2_7,3_2,3_3} )
@@ -21,7 +19,7 @@ SRC_URI="http://dev.gentoo.org/~maksbotan/${P}.tar.xz"
 LICENSE="GPL-3"
 SLOT="0"
 [[ ${PV} == *9999* ]] || \
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux"
+KEYWORDS="*"
 IUSE="+alsa aqua bluray bs2b cddb +cdio cpudetection debug directfb doc dvb +dvd
 +dvdnav +enca ftp gif +iconv ipv6 jack joystick jpeg ladspa lcms +libass libcaca
 lirc md5sum mng +mp3 +network +opengl oss png pnm portaudio +postproc pulseaudio

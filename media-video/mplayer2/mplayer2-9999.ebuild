@@ -1,8 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer2/mplayer2-9999.ebuild,v 1.67 2014/06/09 19:27:56 maksbotan Exp $
 
-EAPI=5
+EAPI="5"
 
 # https://bugs.gentoo.org/show_bug.cgi?id=434356#c4
 PYTHON_COMPAT=( python{2_7,3_2,3_3} )

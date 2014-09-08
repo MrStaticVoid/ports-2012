@@ -1,6 +1,6 @@
 DEFINED_PHASES=compile install postinst postrm prepare
 DEPEND=>=dev-python/kaa-base-0.3.0 dev-libs/libxml2[python] media-libs/imlib2 =dev-lang/python-2*
-DESCRIPTION=Imlib2 wrapper for Python.
+DESCRIPTION=Imlib2 wrapper for Python
 EAPI=3
 HOMEPAGE=http://freevo.sourceforge.net/kaa/
 KEYWORDS=amd64 ppc x86
@@ -9,4 +9,4 @@ RDEPEND=>=dev-python/kaa-base-0.3.0 dev-libs/libxml2[python] media-libs/imlib2 =
 SLOT=0
 SRC_URI=mirror://sourceforge/freevo/kaa-imlib2-0.2.3.tar.gz
 _eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=428f5dcc2f845346a87d8a22fa99c3f2
+_md5_=b0fba4fb949ef31058a94a4d9ecd3c45
