@@ -11,17 +11,17 @@ EGIT_BOOTSTRAP="autogen.sh"
 KEYWORDS=""
 
 DESCRIPTION="foobar2k-like music player"
-HOMEPAGE="http://deadbeef.sourceforge.net/"
+HOMEPAGE="http://deadbeef.sourceforge.net"
 
 LICENSE="BSD
 	UNICODE
 	ZLIB
 	aac? ( GPL GPL-2 )
 	adplug? ( LGPL-2.1 ZLIB )
-	alsa? ( GPL-2 )
 	alac? ( MIT GPL-2 )
-	cover? ( ZLIB )
+	alsa? ( GPL-2 )
 	cdda? ( GPL-2 LGPL-2 GPL-3 )
+	cover? ( ZLIB )
 	converter? ( GPL-2 )
 	curl? ( curl ZLIB )
 	dts? ( GPL-2 )
@@ -61,10 +61,14 @@ LICENSE="BSD
 
 SLOT="0"
 
-IUSE="+alsa +gtk2 +hotkeys +m3u +mp3 +sndfile +vorbis +flac
-	aac adplug alac psf cdda converter cover cover-imlib2 cover-network curl dts dumb equalizer ffmpeg
-	filebrowser gme gtk3 infobar lastfm mac midi mms mono2stereo musepack nls lastfm libnotify libsamplerate
-	nullout oss psf pulseaudio pltbrowser shellexec shellexecui shn sid tta unity vk vtx wavpack wma zip"
+IUSE="+alsa +flac +gtk2 +hotkeys +m3u +mp3 +sndfile +vorbis
+	aac adplug alac cdda converter cover cover-imlib2 cover-network curl dts dumb equalizer
+	ffmpeg gme gtk3 lastfm libnotify libsamplerate mac midi mms mono2stereo musepack nls nullout
+	oss psf pulseaudio pltbrowser shellexec shellexecui shn sid tta unity vtx wavpack wma zip"
+
+# deadbeef third party plugins
+IUSE+=" archive bookmark-manager bs2b filebrowser gnome-mmkeys infobar jack mpris musical-spectrum
+	opus replaygain-control spectrogram stereo-widener vk waveform-seekbar"
 
 REQUIRED_USE="cover-imlib2? ( cover )
 	cover-network? ( cover curl )
@@ -82,9 +86,20 @@ for lang in ${LANGS} ; do
 	IUSE+=" linguas_${lang}"
 done
 
-PDEPEND="filebrowser? ( media-plugins/deadbeef-fb )
+PDEPEND="archive? ( media-plugins/deadbeef-archive-reader )
+	bookmark-manager? ( media-plugins/deadbeef-bookmark-manager )
+	bs2b? ( media-plugins/deadbeef-bs2b )
+	filebrowser? ( media-plugins/deadbeef-fb )
+	gnome-mmkeys? ( media-plugins/deadbeef-gnome-mmkeys )
 	infobar? ( media-plugins/deadbeef-infobar )
-	vk? ( media-plugins/deadbeef-vk )"
+	jack? ( media-plugins/deadbeef-jack )
+	mpris? ( media-plugins/deadbeef-mpris )
+	musical-spectrum? ( media-plugins/deadbeef-musical-spectrum )
+	replaygain-control? ( media-plugins/deadbeef-replaygain-control )
+	spectrogram? ( media-plugins/deadbeef-spectrogram )
+	stereo-widener? ( media-plugins/deadbeef-stereo-widener )
+	vk? ( media-plugins/deadbeef-vk )
+	waveform-seekbar? ( media-plugins/deadbeef-waveform-seekbar )"
 
 RDEPEND="aac? ( media-libs/faad2 )
 	adplug? ( media-libs/adplug )
@@ -93,7 +108,8 @@ RDEPEND="aac? ( media-libs/faad2 )
 	cdda? ( dev-libs/libcdio media-libs/libcddb )
 	cover? ( cover-imlib2? ( media-libs/imlib2 )
 		media-libs/libpng
-		virtual/jpeg )
+		virtual/jpeg
+		x11-libs/gdk-pixbuf[jpeg] )
 	curl? ( net-misc/curl )
 	ffmpeg? ( virtual/ffmpeg )
 	flac? ( media-libs/flac )
@@ -123,7 +139,7 @@ src_prepare() {
 	if use midi ; then
 		# set default gentoo path
 		sed -e 's;/etc/timidity++/timidity-freepats.cfg;/usr/share/timidity/freepats/timidity.cfg;g' \
-		-i "${S}/plugins/wildmidi/wildmidiplug.c" || die
+			-i "${S}/plugins/wildmidi/wildmidiplug.c" || die
 	fi
 
 	if ! use unity ; then
@@ -193,11 +209,6 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	if use midi ; then
-		einfo "enable the freepats support for wildmidi manually, using the following command:"
-		einfo "eselect timidity set --global freepats"
-	fi
-
 	if use gtk2 || use gtk3 ; then
 		fdo-mime_desktop_database_update
 		fdo-mime_mime_database_update

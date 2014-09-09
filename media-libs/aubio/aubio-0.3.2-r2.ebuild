@@ -1,20 +1,18 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aubio/aubio-0.3.2-r2.ebuild,v 1.9 2014/03/14 10:04:20 ago Exp $
 
-EAPI=3
+EAPI="5"
 
 PYTHON_DEPEND="2:2.6"
 
 inherit autotools eutils python
 
 DESCRIPTION="Library for audio labelling"
-HOMEPAGE="http://aubio.piem.org"
-SRC_URI="http://aubio.piem.org/pub/${P}.tar.gz"
+HOMEPAGE="http://aubio.org/"
+SRC_URI="http://aubio.org/pub/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ppc ppc64 sparc x86"
+KEYWORDS="*"
 IUSE="alsa doc examples jack lash static-libs"
 
 RDEPEND="sci-libs/fftw:3.0
@@ -41,9 +39,8 @@ src_prepare() {
 
 	epatch \
 		"${FILESDIR}"/${P}-multilib.patch \
-		"${FILESDIR}"/${P}-numarray-gnuplot.patch
-
-	eautoreconf
+		"${FILESDIR}"/${P}-numarray-gnuplot.patch \
+		"${FILESDIR}"/${P}-ldflags.patch
 }
 
 src_configure() {

@@ -10,5 +10,5 @@ RDEPEND=>=media-video/ffmpeg-1.2.4:0=[encode?,threads,vaapi?,vdpau?] sys-libs/nc
 REQUIRED_USE=dvdnav? ( dvd ) enca? ( iconv ) lcms? ( opengl ) libguess? ( iconv ) luajit? ( lua ) opengl? ( || ( wayland X ) ) pvr? ( v4l ) radio? ( v4l || ( alsa oss ) ) vaapi? ( X ) vdpau? ( X ) wayland? ( opengl ) xinerama? ( X ) xscreensaver? ( X ) xv? ( X )
 SLOT=0
 SRC_URI=https://waf.googlecode.com/files/waf-1.7.15 https://github.com/mpv-player/mpv/archive/v0.3.11.tar.gz -> mpv-0.3.11.tar.gz
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	06133990e861be0fe60c2b428fd025d9	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	pax-utils	51ad5130f4a69b1a118ca5296de276ae	toolchain-funcs	0f1760274637a138b99bb649202ea402	waf-utils	c83d65d895bcdfc6152948bbafd25453
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	06133990e861be0fe60c2b428fd025d9	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	pax-utils	8257582809714b788173511f975d767d	toolchain-funcs	0f1760274637a138b99bb649202ea402	waf-utils	c83d65d895bcdfc6152948bbafd25453
 _md5_=5c42e8690e4b9af65960bddad2c2475d

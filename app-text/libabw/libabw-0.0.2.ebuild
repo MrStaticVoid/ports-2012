@@ -1,18 +1,16 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libabw/libabw-0.0.2.ebuild,v 1.3 2014/06/29 16:43:34 ago Exp $
 
-EAPI=5
+EAPI="5"
 
 inherit base eutils
 
 DESCRIPTION="Library parsing abiword documents"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/libabw/"
-SRC_URI="http://dev-www.libreoffice.org/src//${P}.tar.xz"
+SRC_URI="http://dev-www.libreoffice.org/src/${PN}/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~ppc x86"
+KEYWORDS="*"
 IUSE="doc static-libs"
 
 RDEPEND="

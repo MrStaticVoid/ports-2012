@@ -9,4 +9,4 @@ PDEPEND=sys-apps/openrc
 SLOT=0
 SRC_URI=https://www.github.com/funtoo/baselayout/tarball/baselayout-2.2.0-r6 -> baselayout-2.2.0-r6.tar.gz http://ftp.osuosl.org/pub/funtoo/distfiles/realdev/realdev-1.0.tar.bz2
 _eclasses_=multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=9973259bb41835b007f5b21999078c80
+_md5_=62cca7eff0ba46222133e2e215dc7ccf

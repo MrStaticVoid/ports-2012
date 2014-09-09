@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare unpack
+DEPEND=dev-db/sqlite:3 media-sound/deadbeef dev-vcs/git
+DESCRIPTION=DeaDBeeF waveform seekbar plugin
+EAPI=5
+HOMEPAGE=https://github.com/cboxdoerfer/ddb_waveform_seekbar
+IUSE=+gtk2 gtk3
+LICENSE=GPL-2
+RDEPEND=dev-db/sqlite:3 media-sound/deadbeef gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] )
+REQUIRED_USE=|| ( gtk2 gtk3 )
+RESTRICT=mirror
+SLOT=0
+_eclasses_=deadbeef-plugins	a4f14217c2c8d438701bd10667edd47d	eutils	06133990e861be0fe60c2b428fd025d9	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_md5_=0b04cbcdc2debe1deb0167e9152f29fa

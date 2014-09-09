@@ -1,23 +1,16 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liborcus/liborcus-0.5.1.ebuild,v 1.9 2014/03/26 08:44:23 patrick Exp $
 
-EAPI=5
+EAPI="5"
 
-EGIT_REPO_URI="git://gitorious.org/orcus/orcus.git"
-
-[[ ${PV} == 9999 ]] && GITECLASS="git-2 autotools"
-inherit eutils autotools ${GITECLASS}
-unset GITECLASS
+inherit eutils
 
 DESCRIPTION="Standalone file import filter library for spreadsheet documents"
 HOMEPAGE="http://gitorious.org/orcus/pages/Home"
-[[ ${PV} == 9999 ]] || SRC_URI="http://kohei.us/files/orcus/src/${P}.tar.bz2"
+SRC_URI="http://kohei.us/files/orcus/src/${P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0/0.5"
-[[ ${PV} == 9999 ]] || \
-KEYWORDS="amd64 ~arm ~ppc x86"
+KEYWORDS="*"
 IUSE="static-libs"
 
 RDEPEND="

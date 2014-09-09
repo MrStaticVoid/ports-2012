@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/btrfs-progs/btrfs-progs-9999.ebuild,v 1.34 2014/06/19 21:05:24 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/btrfs-progs/btrfs-progs-9999.ebuild,v 1.36 2014/09/03 20:19:37 slyfox Exp $
 
 EAPI=5
 
@@ -26,13 +26,15 @@ LICENSE="GPL-2"
 SLOT="0/${libbtrfs_soname}"
 IUSE=""
 
+RESTRICT=test # tries to mount repared filesystems
+
 RDEPEND="
-	dev-libs/lzo
-	sys-libs/zlib
-	sys-apps/acl
-	sys-fs/e2fsprogs
+	dev-libs/lzo:2=
+	sys-libs/zlib:0=
+	sys-fs/e2fsprogs:0=
 "
 DEPEND="${RDEPEND}
+	sys-apps/acl
 	app-text/asciidoc
 	app-text/docbook-xml-dtd:4.5
 	app-text/xmlto
