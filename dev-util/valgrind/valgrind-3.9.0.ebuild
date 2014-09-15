@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.9.0.ebuild,v 1.5 2014/09/10 11:56:23 blueness Exp $
 
 EAPI="4"
 inherit autotools eutils flag-o-matic toolchain-funcs multilib pax-utils
@@ -9,8 +11,8 @@ SRC_URI="http://www.valgrind.org/downloads/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
-IUSE="mpi ssp"
+KEYWORDS="-* amd64 arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
+IUSE="mpi"
 
 DEPEND="mpi? ( virtual/mpi )"
 RDEPEND="${DEPEND}"
@@ -25,10 +27,8 @@ src_prepare() {
 	# Respect CFLAGS, LDFLAGS
 	epatch "${FILESDIR}"/${PN}-3.7.0-respect-flags.patch
 
-	if ! use ssp ; then 
-		# Changing Makefile.all.am to disable SSP
-		epatch "${FILESDIR}"/${PN}-3.7.0-fno-stack-protector.patch
-	fi
+	# Changing Makefile.all.am to disable SSP
+	epatch "${FILESDIR}"/${PN}-3.7.0-fno-stack-protector.patch
 
 	# Yet more local labels, this time for ppc32 & ppc64
 	epatch "${FILESDIR}"/${PN}-3.6.0-local-labels.patch

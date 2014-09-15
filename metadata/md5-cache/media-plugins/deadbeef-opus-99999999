@@ -7,5 +7,5 @@ LICENSE=GPL-2
 RDEPEND=>=media-libs/opusfile-0.5[float,http] media-libs/libogg media-sound/deadbeef
 RESTRICT=strip
 SLOT=0
-_eclasses_=deadbeef-plugins	a4f14217c2c8d438701bd10667edd47d	eutils	06133990e861be0fe60c2b428fd025d9	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=deadbeef-plugins	38a9e42c4a626be1294f835d39ca81b3	eutils	06133990e861be0fe60c2b428fd025d9	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
 _md5_=4e64973962b4450c8ed8d905626a6367
