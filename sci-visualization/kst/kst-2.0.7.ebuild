@@ -1,8 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/kst/kst-2.0.7.ebuild,v 1.1 2013/08/01 18:28:16 kensington Exp $
 
-EAPI=4
+EAPI=5
 
 CMAKE_USE_DIR=${S}/cmake
 MY_PN="Kst"
@@ -14,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2 FDL-1.2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~*"
 IUSE="debug +qt4 qt5 test"
 
 REQUIRED_USE="^^ ( qt4 qt5 )"
@@ -42,7 +40,7 @@ RDEPEND="
 	sci-libs/cfitsio
 	sci-libs/getdata
 	sci-libs/gsl
-	sci-libs/netcdf[cxx]
+	sci-libs/netcdf-cxx
 "
 DEPEND="${RDEPEND}
 	test? ( dev-qt/qttest:4 )

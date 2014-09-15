@@ -2041,6 +2041,7 @@ dev-qt/designer:phonon - Build the phononwidgets plugin
 dev-qt/designer:qt3support - Build the qt3supportwidgets plugin
 dev-qt/designer:webkit - Build the qwebview plugin
 dev-qt/linguist:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
+dev-qt/linguist-tools:qml - Enable QML support in lupdate
 dev-qt/pixeltool:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qdbusviewer:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qt-creator:android - Build plugin for Android devices
@@ -2086,12 +2087,14 @@ dev-qt/qtbearer:exceptions - Add support for exceptions - like catching them ins
 dev-qt/qtcore:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtcore:glib - Enable dev-libs/glib eventloop support
 dev-qt/qtcore:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
-dev-qt/qtdbus:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by Nokia)
+dev-qt/qtdbus:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtdeclarative:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
+dev-qt/qtdeclarative:gles2 - Use OpenGL ES instead of desktop OpenGL
 dev-qt/qtdeclarative:localstorage - Build the LocalStorage import for QtQuick (requires QtSql)
 dev-qt/qtdeclarative:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
 dev-qt/qtdeclarative:webkit - Build the WebView QML component
 dev-qt/qtdeclarative:widgets - Enable QtWidgets support
+dev-qt/qtdeclarative:xml - Build the XmlListModel import for QtQuick (requires QtXmlPatterns)
 dev-qt/qtdemo:dbus - Build QtDBus examples and demos
 dev-qt/qtdemo:declarative - Build QtDeclarative examples and demos
 dev-qt/qtdemo:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
@@ -2102,15 +2105,25 @@ dev-qt/qtdemo:phonon - Build Phonon examples and demos
 dev-qt/qtdemo:qt3support - Build Qt3Support examples and demos
 dev-qt/qtdemo:webkit - Build QtWebKit examples and demos
 dev-qt/qtdemo:xmlpatterns - Build QtXmlPatterns examples and demos
-dev-qt/qtgui:egl - Use EGL instead of default GLX to manage OpenGL contexts on the desktop
+dev-qt/qtgui:egl - Use EGL instead of default GLX to manage OpenGL contexts
+dev-qt/qtgui:eglfs - Compile EGL Full Screen/Single Surface support
+dev-qt/qtgui:evdev - Enable evdev input support
 dev-qt/qtgui:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
+dev-qt/qtgui:gles2 - Use OpenGL ES 2.0 instead of desktop OpenGL
 dev-qt/qtgui:glib - Enable dev-libs/glib eventloop support
 dev-qt/qtgui:gtkstyle - Build a Qt style called GTK+ that mimics the active GTK+ theme
+dev-qt/qtgui:harfbuzz - Use media-libs/harfbuzz for text shaping (experimental in Qt 5.3.x, default in Qt 5.4.0 and later). If enabled, it can still be disabled at runtime by setting QT_HARFBUZZ environment variable to "old".
+dev-qt/qtgui:ibus - Build the IBus input method plugin
+dev-qt/qtgui:kms - Build the KMS platform plugin
 dev-qt/qtgui:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
-dev-qt/qtgui:trace - Build the 'trace' graphicssystem engine which allows to record all drawing operations into a trace buffer. Later it can be replayed with the qttracereplay utility
+dev-qt/qtgui:trace - Build the 'trace' graphicssystem engine which allows to record all drawing operations into a trace buffer. The trace can be replayed later with the qttracereplay tool.
 dev-qt/qthelp:compat - Build the extra compatibility layer required by a few packages, see http://blog.qt.digia.com/blog/2010/06/22/qt-assistant-compat-version-available-as-extra-source-package/
 dev-qt/qthelp:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtmultimedia:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
+dev-qt/qtmultimedia:qml - Build QML/QtQuick bindings and imports
+dev-qt/qtmultimedia:widgets - Build the QtMultimediaWidgets module
+dev-qt/qtnetwork:connman - Enable ConnMan-based bearer plugin
+dev-qt/qtnetwork:networkmanager - Enable NetworkManager-based bearer plugin
 dev-qt/qtopengl:egl - Use EGL instead of default GLX to manage OpenGL contexts on the desktop
 dev-qt/qtopengl:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtopengl:qt3support - Enable the Qt3Support libraries for Qt4
@@ -2118,6 +2131,10 @@ dev-qt/qtopenvg:exceptions - Build with support for exceptions
 dev-qt/qtopenvg:qt3support - Enable the Qt3Support libraries for Qt4
 dev-qt/qtphonon:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtphonon:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
+dev-qt/qtquick1:designer - Build plugin for dev-qt/designer
+dev-qt/qtquick1:webkit - Build the WebView import for QtQuick1 (requires QtWebKit)
+dev-qt/qtquick1:xml - Build the XmlListModel import for QtQuick1 (requires QtXmlPatterns)
+dev-qt/qtquickcontrols:widgets - Enable QtWidgets support
 dev-qt/qtscript:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtscript:scripttools - Build the QtScriptTools module (requires QtWidgets)
 dev-qt/qtsql:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
@@ -2128,10 +2145,13 @@ dev-qt/qtwebkit:exceptions - Add support for exceptions - like catching them ins
 dev-qt/qtwebkit:gstreamer - Enable HTML5 audio/video support via media-libs/gstreamer
 dev-qt/qtwebkit:libxml2 - Use dev-libs/libxml2 for XML parsing
 dev-qt/qtwebkit:multimedia - Enable HTML5 audio/video support via dev-qt/qtmultimedia
+dev-qt/qtwebkit:printsupport - Enable printing via dev-qt/qtprintsupport
 dev-qt/qtwebkit:qml - Build QML/QtQuick bindings
 dev-qt/qtwebkit:webp - Add support for WebP image format
 dev-qt/qtwebkit:widgets - Build various things that depend on dev-qt/qtwidgets, e.g. the WebKitWidgets library
 dev-qt/qtwebkit:xslt - Enable XSLT support
+dev-qt/qtwebsockets:qml - Build QML bindings
+dev-qt/qtwidgets:gles2 - Use OpenGL ES 2.0 instead of desktop OpenGL
 dev-ruby/barby:cairo - Add support for writing images (PNG, PS, EPS and, if supported, PDF and SVG) using dev-ruby/rcairo. Not available on JRuby.
 dev-ruby/barby:png - Add support for writing PNG images using dev-ruby/chunky_png.
 dev-ruby/barby:prawn - Add support for writing PDF documents using dev-ruby/prawn.
@@ -3429,7 +3449,7 @@ media-libs/x264:10bit - Set output bit depth to 10, this may not be compatible w
 media-libs/x264:interlaced - enable interlaced encoding support, this can decrease encoding speed by up to 2%
 media-libs/x264:opencl - Add support for OpenCL.
 media-libs/x264:pic - disable optimized assembly code that is not PIC friendly
-media-libs/x265:10bit - Set output bit depth to 10.
+media-libs/x265:10bit - Set output bit depth to 10
 media-libs/xine-lib:bluray - Enable playback of Blu-ray filesystems using media-libs/libbluray
 media-libs/xine-lib:dxr3 - Enable support for DXR3 mpeg acceleration cards.
 media-libs/xine-lib:flac - Build the media-libs/flac based FLAC demuxer and decoder. This flag is not needed for playing FLAC content, neither standalone nor in Ogg container (OggFLAC), but might have better support for exotic features like 24-bit samples or 96kHz sample rates.
@@ -3494,6 +3514,7 @@ media-plugins/mediastreamer-ilbc:20ms-frames - enable 20ms frame size (default i
 media-plugins/mythplugins:cdr - Allows MythMusic to burn CD-Rs
 media-plugins/mythplugins:exif - Allows MythGallery to read EXIF data from photos
 media-plugins/mythplugins:fftw - Adds visual effects to MythMusic when playing back music
+media-plugins/mythplugins:hls - HTTP Live Streaming support
 media-plugins/mythplugins:mytharchive - Allows you to archive recorded content to CD or DVD
 media-plugins/mythplugins:mythbrowser - Adds a web browser within MythTV
 media-plugins/mythplugins:mythgallery - Adds a picture viewing gallery within MythTV
@@ -3960,7 +3981,6 @@ media-video/libav:avx - Adds support for Advanced Vector Extensions instructions
 media-video/libav:bindist - Build binary redistributable version without including nonfree decoders and encoders.
 media-video/libav:cdio - Enable audio CD grabbing with dev-libs/libcdio.
 media-video/libav:cpudetection - Enables runtime CPU detection (useful for bindist, compatibility on other CPUs).
-media-video/libav:dirac - Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.
 media-video/libav:faac - Use external faac library for AAC encoding
 media-video/libav:fdk - Use external fdk-aac library for AAC encoding
 media-video/libav:frei0r - Enable frei0r wrapping in libavfilter
@@ -3972,7 +3992,6 @@ media-video/libav:openssl - Prefer dev-libs/openssl over net-libs/gnutls to prov
 media-video/libav:opus - Use the external opus library for encoding and decoding.
 media-video/libav:pic - Force shared libraries to be built as PIC (this is slower).
 media-video/libav:pulseaudio - Enable pulseaudio input support.
-media-video/libav:qt-faststart - Build and install qt-faststart application.
 media-video/libav:rtmp - Enable Real Time Messaging Protocol using librtmp instead the native implementation.
 media-video/libav:schroedinger - Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).
 media-video/libav:ssl - Enable SSL/TLS support using dev-libs/openssl or dev-libs/gnutls.
@@ -4066,80 +4085,6 @@ media-video/vdr:ttxtsubs - support for ttxtsubs plugin
 media-video/vdr:vasarajanauloja - replacement for the liemikuutio patch, adds some nice must haves features
 media-video/vdr:wareagleicon - Replace original icon set in menu
 media-video/vdr:yaepg - Enables support for the plugin vdr-yaepg
-media-video/vlc:X - Enables support for, e.g., fullscreen mode via the X Window System. By itself, this flag does not build a graphical interface.
-media-video/vlc:atmo - Enables support for AtmoLight (homebrew Ambient Lighting Technology)
-media-video/vlc:audioqueue - Enables AudioQueue audio module for Mac OS X.
-media-video/vlc:avcodec - Enables libavcodec support for video/audio encoding/decoding. libavcodec is part of FFmpeg.
-media-video/vlc:avformat - Enables libformat support for reading and writing various media containers. libavformat is part of FFmpeg.
-media-video/vlc:bluray - Enables libbluray for Blu-ray disc support.
-media-video/vlc:chromaprint - Enables libchromaprint for Chromaprint based audio fingerprinter support.
-media-video/vlc:dc1394 - Enables IIDC cameras support.
-media-video/vlc:dirac - Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.
-media-video/vlc:direct2d - Enable Win7/VistaPU Direct2D support.
-media-video/vlc:directx - Enable Win32 DirectX support.
-media-video/vlc:dshow - Enables Win32 DirectShow support.
-media-video/vlc:dvbpsi - Enables support for Mpeg-TS files (.ts, .m2ts, .mts) via media-libs/libdvbpsi.
-media-video/vlc:dxva2 - Enables Win32 DxVA2 support.
-media-video/vlc:egl - Enables EGL video output module.
-media-video/vlc:faad - Enable AAC audio decoding library support via media-libs/faad2.
-media-video/vlc:fbosd - Enables the framebuffer overlay plugin.
-media-video/vlc:fdk - Enables the Fraunhofer AAC codec library.
-media-video/vlc:fluidsynth - Enables Fluidsynth MIDI software synthesis (with external sound fonts).
-media-video/vlc:gcrypt - Enables cryptography support via libgcrypt.
-media-video/vlc:gme - Enables support for media-libs/game-music-emu for playing various video game music formats.
-media-video/vlc:gnome - Adds support for GNOME's filesystem abstraction layer, gnome-base/gnome-vfs. This flag is not GUI-related.
-media-video/vlc:growl - Enables growl notification support (over UDP for remote access and native on OSX)
-media-video/vlc:httpd - Enables a web based interface for vlc.
-media-video/vlc:ios-vout - Enables iPhone OS video output.
-media-video/vlc:kate - Adds support for Ogg Kate subtitles via libkate.
-media-video/vlc:libproxy - Enables support for proxy settings in the HTTP access module.
-media-video/vlc:libtar - Uses libtar instead of the built-in tar reader for reading custom skins.
-media-video/vlc:libtiger - Enables Ogg Kate subtitles rendering using libtiger.
-media-video/vlc:linsys - Enables support for Linux Linear Systems Ltd. SDI and HD-SDI input cards.
-media-video/vlc:live - Enables live555 streaming media support (client support for rtsp).
-media-video/vlc:lua - Enable Lua scripting support, needed for including support for Jamendo (online music platform) and similar things.
-media-video/vlc:macosx - Enables Mac OS X gui support.
-media-video/vlc:macosx-audio - Enables Mac OS X audio module.
-media-video/vlc:macosx-dialog-provider - Enables Mac OS X dialog module.
-media-video/vlc:macosx-eyetv - Enables Mac OS X EyeTV (TNT Tuner) module.
-media-video/vlc:macosx-qtkit - Enables Mac OS X qtkit module: qtcapture (video) and qtsound (audio) module.
-media-video/vlc:macosx-quartztext - Enables Mac OS X quartz text module.
-media-video/vlc:macosx-vout - Enables Mac OS X video output module.
-media-video/vlc:matroska - Enables matroska support using reference libraries (fallback on other existing matroska support if disabled, i.e., matroska enabled FFmpeg)
-media-video/vlc:media-library - Build the (sqlite based) media library.
-media-video/vlc:omxil - Enables OpenMAX Integration Layer codec module.
-media-video/vlc:opencv - Enabled OpenCV (computer vision) filter module.
-media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
-media-video/vlc:opus - Support opus decoding via libopus.
-media-video/vlc:postproc - Enables image post-processing via libpostproc (part of FFmpeg).
-media-video/vlc:projectm - Enables the projectM visualization plugin.
-media-video/vlc:pvr - Enables PVR cards access module.
-media-video/vlc:qt4 - Builds a x11-libs/qt based frontend, a graphical interface.
-media-video/vlc:rdp - Enables freerdp for RDP/Remote Desktop client support
-media-video/vlc:rtsp - Enables real audio and RTSP modules.
-media-video/vlc:run-as-root - Allows vlc to start for root. Don't enable this unless you have a very specific (e.g. embedded) need for it!
-media-video/vlc:schroedinger - Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).
-media-video/vlc:sdl-image - Enables sdl image video decoder (depends on sdl)
-media-video/vlc:sftp - Enables libssh2 to support SFTP file transfer.
-media-video/vlc:shine - Enables shine fixed point mp3 encoder.
-media-video/vlc:shout - Enables libshout output.
-media-video/vlc:sid - Adds support for playing C64 SID files through media-libs/libsidplay-2.
-media-video/vlc:skins - Enables support for the skins2 interface.
-media-video/vlc:switcher - Enables MPEG2 video switcher stream output module.
-media-video/vlc:swscale - Enables image scaling and conversion via libswscale (part of FFmpeg).
-media-video/vlc:tremor - Enables tremor, a fixed-point version of the Ogg Vorbis decoder.
-media-video/vlc:twolame - Enables twolame support (MPEG Audio Layer 2 encoder).
-media-video/vlc:upnp - Enables support for the Intel SDK stack based UPnP discovery module instead of CyberLink.
-media-video/vlc:vaapi - Enables VAAPI (Video Acceleration API) for hardware decoding
-media-video/vlc:vcdx - Enables VCD with navigation via libvcdinfo (depends on cdio)
-media-video/vlc:visual - Enables a libvisual based visualization plugin.
-media-video/vlc:vlm - New videolan (media) manager (vlm), a little manager designed to launch and manage multiple streams from within one instance of VLC.
-media-video/vlc:vpx - Enables the decoder(s) from the WebM VP8 / VP9 Codec SDK.
-media-video/vlc:waveout - Enable win32 waveOut plugin.
-media-video/vlc:wingdi - Enable Win32 GDI module.
-media-video/vlc:wma-fixed - Enables fixed point WMA decoder.
-media-video/vlc:xcb - Support the X C-language Binding, a replacement for Xlib; !!! you will need this option to be able to integrate video in the Qt interface, see bug #500678.
-media-video/vlc:zvbi - Enables support for teletext subtitles via the zvbi library.
 media-video/winki:mjpeg - Enables mjpegtools support
 media-video/x264-encoder:10bit - Set output bit depth to 10
 media-video/x264-encoder:avs - enable AvxSynth support in the AviSynth input module
@@ -4844,6 +4789,7 @@ net-libs/opal:wav - Enable WAVFILE support
 net-libs/opal:x264-static - Install x264 plugin statically linked with x264
 net-libs/ortp:ntp-timestamp - Turn on NTP timestamping on received packet
 net-libs/ortp:srtp - Add support for Secure RTP
+net-libs/ortp:zrtp - Add support for ZRTP key negotiation
 net-libs/phodav:spice - Install the spice-webdavd guest agent
 net-libs/pjsip:cli - Installs pjsua, a simple command-line SIP client
 net-libs/pjsip:epoll - epoll system call support
@@ -5133,6 +5079,7 @@ net-misc/mediatomb:magic - Use libmagic to determine file types
 net-misc/mediatomb:mysql - Use dev-db/mysql as backend rather than SQLite3
 net-misc/mediatomb:taglib - Use media-libs/taglib for reading files' metadata rather than id3lib
 net-misc/mediatomb:thumbnail - Enables video thumbnails generation throughmedia-video/ffmpegthumbnailer
+net-misc/megatools:fuse - Enables support for the filesystem in userspace plugin through sys-fs/fuse.
 net-misc/memcached:slabs-reassign - Allow manual reassignment of memory slabs at the cost of slab optimizations.
 net-misc/minidlna:netgear - Enable netgear branding
 net-misc/minidlna:readynas - Enable readynas branding
@@ -5284,6 +5231,23 @@ net-misc/strongswan:farp - Enable faking of ARP responses for virtual IP address
 net-misc/strongswan:gcrypt - Enable dev-libs/libgcrypt plugin which provides 3DES, AES, Blowfish, Camellia, CAST, DES, Serpent and Twofish ciphers along with MD4, MD5 and SHA1/2 hash algorithms, RSA and DH groups 1,2,5,14-18 and 22-24(4.4+). Also includes a software random number generator.
 net-misc/strongswan:non-root - Force IKEv1/IKEv2 daemons to normal user privileges. This might impose some restrictions mainly to the IKEv1 daemon. Disable only if you really require superuser privileges.
 net-misc/strongswan:openssl - Enable dev-libs/openssl plugin which is required for Elliptic Curve Cryptography (DH groups 19-21,25,26) and ECDSA. Also provides 3DES, AES, Blowfish, Camellia, CAST, DES, IDEA and RC5 ciphers along with MD2, MD4, MD5 and SHA1/2 hash algorithms, RSA and DH groups 1,2,5,14-18 and 22-24(4.4+) dev-libs/openssl has to be compiled with USE="-bindist".
+net-misc/strongswan:pkcs11 - Enable pkcs11 support.
+net-misc/strongswan:strongswan_plugins_blowfish - Enable support for the blowfish plugin.
+net-misc/strongswan:strongswan_plugins_ccm - Enable support for the ccm plugin.
+net-misc/strongswan:strongswan_plugins_ctr - Enable support for the ctr plugin.
+net-misc/strongswan:strongswan_plugins_gcm - Enable support for the gcm plugin.
+net-misc/strongswan:strongswan_plugins_ha - Enable support for the ha plugin.
+net-misc/strongswan:strongswan_plugins_ipseckey - Enable support for the ipseckey plugin.
+net-misc/strongswan:strongswan_plugins_led - Enable support for the led plugin.
+net-misc/strongswan:strongswan_plugins_lookip - Enable support for the lookip plugin.
+net-misc/strongswan:strongswan_plugins_ntru - Enable support for the ntru plugin.
+net-misc/strongswan:strongswan_plugins_padlock - Enable support for the padlock plugin.
+net-misc/strongswan:strongswan_plugins_rdrand - Enable support for the rdrand plugin.
+net-misc/strongswan:strongswan_plugins_systime-fix - Enable support for the systime-fix plugin.
+net-misc/strongswan:strongswan_plugins_unbound - Enable support for the unbound plugin.
+net-misc/strongswan:strongswan_plugins_unity - Enable support for the unity plugin.
+net-misc/strongswan:strongswan_plugins_vici - Enable support for the vici plugin.
+net-misc/strongswan:strongswan_plugins_whitelist - Enable support for the whitelist plugin.
 net-misc/teamviewer:system-wine - Use app-emulation/wine instead of bundled one.
 net-misc/termpkg:uucp - Adds support for uucp style device locking
 net-misc/tigervnc:internal-fltk - Build+link internal and enhanced fltk library
@@ -6175,6 +6139,7 @@ sys-auth/sssd:autofs - Build helper to let net-fs/autofs use sssd provided infor
 sys-auth/sssd:locator - Install sssd's Kerberos plugin
 sys-auth/sssd:manpages - Build man pages with dev-libs/libxslt
 sys-auth/sssd:netlink - Add support for netlink protocol via dev-libs/libnl
+sys-auth/sssd:nfsv4 - Add support for the nfsv4 idmapd plugin provided by net-libs/libnfsidmap
 sys-auth/sssd:ssh - Build helper to let net-misc/openssh use sssd provided information
 sys-auth/sssd:sudo - Build helper to let app-admin/sudo use sssd provided information
 sys-auth/ykpers:consolekit - Use sys-auth/consolekit and virtual/udev to allow access to the YubiKey HID device to the console user.
@@ -6707,8 +6672,6 @@ www-client/netsurf:svgtiny - SVG image support via media-libs/svgatiny instead o
 www-client/netsurf:webp - WebP image support (media-libs/libwebp)
 www-client/opera:gtk - Install support libraries and runtime dependencies to support GTK+/GNOME desktop integration
 www-client/opera:kde - Install support libraries and runtime dependencies to support KDE desktop integration
-www-client/opera-next:gtk - Install support libraries and runtime dependencies to support GTK+/GNOME desktop integration
-www-client/opera-next:kde - Install support libraries and runtime dependencies to support KDE desktop integration
 www-client/qupzilla:nonblockdialogs - Enable fancy non-blocking JavaScript dialogs shown inside the page, not blocking the application window. When closing browser windows with open dialogs, this can crash the application.
 www-client/rekonq:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
 www-client/rekonq:opera - Support for Opera sync handler
