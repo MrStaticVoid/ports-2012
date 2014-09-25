@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libebook/libebook-0.1.1.ebuild,v 1.1 2014/09/07 12:36:36 scarabeus Exp $
 
-EAPI="5"
+EAPI=5
 
 MY_PN="libe-book"
 MY_P="${MY_PN}-${PV}"
@@ -11,13 +13,12 @@ DESCRIPTION="Library parsing various ebook formats"
 HOMEPAGE="http://www.sourceforge.net/projects/libebook/"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 
-LICENSE="|| ( LGPL-2.1 MPL-2.0 )"
+LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86"
 IUSE="doc test"
 
 RDEPEND="
-	>=app-text/libwpd-0.9.5:0.9
 	dev-libs/icu:=
 	dev-libs/librevenge
 	dev-libs/libxml2
@@ -31,8 +32,6 @@ DEPEND="${RDEPEND}
 	test? ( dev-util/cppunit )
 "
 RDEPEND="${RDEPEND}"
-
-RESTRICT="mirror"
 
 S="${WORKDIR}/${MY_P}"
 

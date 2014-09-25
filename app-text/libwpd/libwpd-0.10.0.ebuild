@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/libwpd-0.10.0.ebuild,v 1.4 2014/08/28 09:32:14 kumba Exp $
 
-EAPI="5"
+EAPI=5
 
 inherit alternatives eutils
 
@@ -9,21 +11,18 @@ HOMEPAGE="http://libwpd.sf.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
 LICENSE="|| ( LGPL-2.1 MPL-2.0 )"
-SLOT="0.9"
-KEYWORDS="~*"
+SLOT="0.10"
+KEYWORDS="~amd64 ~hppa ~mips ~x86 ~x86-fbsd"
 IUSE="doc test +tools"
 
-RDEPEND=""
+RDEPEND="dev-libs/librevenge"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen )
 	test? ( dev-util/cppunit )
 "
 RDEPEND="${RDEPEND}
-	!<app-text/libwpd-0.8.14-r1
-	dev-libs/librevenge"
-
-RESTRICT="mirror"
+	!<app-text/libwpd-0.8.14-r1"
 
 src_configure() {
 	econf \
@@ -42,16 +41,16 @@ src_install() {
 
 pkg_postinst() {
 	if use tools; then
-		alternatives_auto_makesym /usr/bin/wpd2html "/usr/bin/wpd2html-[0-9].[0-9]"
-		alternatives_auto_makesym /usr/bin/wpd2raw "/usr/bin/wpd2raw-[0-9].[0-9]"
-		alternatives_auto_makesym /usr/bin/wpd2text "/usr/bin/wpd2text-[0-9].[0-9]"
+		alternatives_auto_makesym /usr/bin/wpd2html "/usr/bin/wpd2html-[0-9].[0-10]"
+		alternatives_auto_makesym /usr/bin/wpd2raw "/usr/bin/wpd2raw-[0-9].[0-10]"
+		alternatives_auto_makesym /usr/bin/wpd2text "/usr/bin/wpd2text-[0-9].[0-10]"
 	fi
 }
 
 pkg_postrm() {
 	if use tools; then
-		alternatives_auto_makesym /usr/bin/wpd2html "/usr/bin/wpd2html-[0-9].[0-9]"
-		alternatives_auto_makesym /usr/bin/wpd2raw "/usr/bin/wpd2raw-[0-9].[0-9]"
-		alternatives_auto_makesym /usr/bin/wpd2text "/usr/bin/wpd2text-[0-9].[0-9]"
+		alternatives_auto_makesym /usr/bin/wpd2html "/usr/bin/wpd2html-[0-9].[0-10]"
+		alternatives_auto_makesym /usr/bin/wpd2raw "/usr/bin/wpd2raw-[0-9].[0-10]"
+		alternatives_auto_makesym /usr/bin/wpd2text "/usr/bin/wpd2text-[0-9].[0-10]"
 	fi
 }

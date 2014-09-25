@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libmwaw/libmwaw-0.3.1.ebuild,v 1.1 2014/09/13 20:13:19 dilfridge Exp $
 
-EAPI="5"
+EAPI=5
 
 inherit base eutils
 
@@ -10,24 +12,20 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86"
 IUSE="doc static-libs"
 
 RDEPEND="
-	app-text/libwpd:0.9
-	>=app-text/libwpg-0.2.2:0.2
 	dev-libs/librevenge
 	dev-libs/libxml2
 	sys-libs/zlib
 "
 DEPEND="${RDEPEND}
-	>=dev-libs/boost-1.46
+	>=dev-libs/boost-1.46:=
 	sys-devel/libtool
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen )
 "
-
-RESTRICT="mirror"
 
 src_configure() {
 	# zip is hard enabled as the zlib is dep on the rdeps anyway
