@@ -2,7 +2,7 @@
 
 EAPI="5"
 
-inherit deadbeef-plugins git-2
+inherit deadbeef-plugins git-r3
 
 BITBUCKET_USERNAME="Lithopsian"
 
@@ -19,5 +19,3 @@ RDEPEND=">=media-libs/opusfile-0.5[float,http]
 	media-libs/libogg"
 
 DEPEND="${RDEPEND}"
-
-S="${WORKDIR}/opus-${PV}"

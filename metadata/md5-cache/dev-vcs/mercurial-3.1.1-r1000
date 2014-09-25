@@ -10,5 +10,5 @@ RDEPEND=app-misc/ca-certificates bugzilla? ( dev-python/mysql-python[python_abis
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 )
 SLOT=0
 SRC_URI=http://mercurial.selenic.com/release/mercurial-3.1.1.tar.gz
-_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	distutils	555d63fd11e255896d25c40490fc0f07	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	distutils	555d63fd11e255896d25c40490fc0f07	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
 _md5_=ba5b7b5109e7399bbd99179139807f2d

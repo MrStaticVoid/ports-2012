@@ -53,7 +53,7 @@ LICENSE="BSD
 	playlist-browser? ( ZLIB )
 	psf? ( BSD GPL MAME ZLIB )
 	pulseaudio? ( GPL-2 )
-	shellexec? ( GPL-2 )
+	shell-exec? ( GPL-2 )
 	shn? ( shorten ZLIB )
 	sid? ( GPL-2 )
 	sndfile? ( GPL-2 LGPL-2 )
@@ -69,7 +69,7 @@ SLOT="0"
 IUSE="+alsa +flac +gtk2 +hotkeys +m3u +mp3 +sndfile +vorbis
 	aac adplug alac cdda converter cover cover-imlib2 cover-network curl dts dumb equalizer
 	ffmpeg gme gtk3 lastfm libnotify libsamplerate mac midi mms mono2stereo musepack nls nullout
-	oss playlist-browser psf pulseaudio shellexec shellexecui shn sid tta unity vtx wavpack wma zip"
+	oss playlist-browser psf pulseaudio shell-exec shn sid tta unity vtx wavpack wma zip"
 
 # deadbeef third party plugins
 IUSE+=" archive bookmark-manager bs2b filebrowser gnome-mmkeys infobar jack mpris musical-spectrum
@@ -81,7 +81,6 @@ REQUIRED_USE="converter? ( || ( gtk2 gtk3 ) )
 	cover? ( || ( gtk2 gtk3 ) )
 	lastfm? ( curl )
 	playlist-browser? ( || ( gtk2 gtk3 ) )
-	shellexecui? ( || ( gtk2 gtk3 ) shellexec )
 	|| ( alsa oss pulseaudio nullout )"
 
 PDEPEND="archive? ( media-plugins/deadbeef-archive-reader )
@@ -162,14 +161,24 @@ src_prepare() {
 		epatch "${FILESDIR}/${PN}-0.6.2-or-higher-remove-unity-trash.patch"
 	fi
 
+	config_rpath_update "${S}/config.rpath" || die
 	eautoreconf
 }
 
 src_configure() {
+	if use shell-exec ; then
+		if use gtk2 || use gtk3 ; then
+			shell-exec-ui="--enable-shellexec-ui"
+		else
+			shell-exec-ui="--disable-shellexec-ui"
+		fi
+	fi
+
 	econf --disable-coreaudio \
 		--disable-portable \
 		--disable-static \
 		--docdir=/usr/share/${PN} \
+		${shell-exec-ui} \
 		$(use_enable aac) \
 		$(use_enable adplug) \
 		$(use_enable alac) \
@@ -205,8 +214,7 @@ src_configure() {
 		$(use_enable playlist-browser pltbrowser) \
 		$(use_enable psf) \
 		$(use_enable pulseaudio pulse) \
-		$(use_enable shellexec shellexec) \
-		$(use_enable shellexecui shellexecui) \
+		$(use_enable shell-exec shellexec) \
 		$(use_enable shn) \
 		$(use_enable sid) \
 		$(use_enable sndfile) \

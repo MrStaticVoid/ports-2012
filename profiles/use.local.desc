@@ -282,6 +282,7 @@ app-backup/bacula:bacula-nosd - Disable building of storage daemon
 app-backup/bacula:logwatch - Install support files for logwatch
 app-backup/bareos:clientonly - Only install file-daemon (client)
 app-backup/bareos:director - Install director
+app-backup/bareos:fastlz - Enable support vor lz4, lz4hc and lzfast using dev-libs/bareos-fastlzlib
 app-backup/bareos:logwatch - Install support files for logwatch
 app-backup/bareos:ndmp - Enable support for NDMP (Network Data Management Protocol)
 app-backup/bareos:scsi-crypto - Enable low level SCSI crypto support
@@ -293,6 +294,9 @@ app-backup/dar:dar64 - Enables --enable-mode=64 option, which replace infinite b
 app-backup/dar:gcrypt - Enables strong encryption support
 app-backup/deja-dup:nautilus - Build gnome-base/nautilus extension
 app-backup/duplicity:s3 - Support for backing up to the Amazon S3 system
+app-backup/holland-backup-mysql-meta:lvm - Install Holland LVM Plugin
+app-backup/holland-backup-mysql-meta:mysqldump - Install Holland mysqldump Plugin
+app-backup/holland-backup-mysql-meta:mysqlhotcopy - Install Holland mysqlhotcopy Plugin
 app-backup/rear:udev - Have ReaR start backup when attaching your USB drive.
 app-backup/snapper:btrfs - Include Btrfs support sys-fs/btrfs-progs
 app-backup/snapper:ext4 - Include Ext4 support sys-fs/e2fsprogs
@@ -328,6 +332,7 @@ app-crypt/ekeyd:munin - Install a plugin for net-analyzer/munin to graph statist
 app-crypt/ekeyd:usb - Build the libusb-based userland daemon for accessing the EntropyKey (alternative to the CDC USB driver). It is suggested to use this option by default, as the CDC driver in the kernel often seems to be fragile (or the gadget implementation on the EntropyKey is too buggy), and can cause various problems.
 app-crypt/gnupg:mta - Build mta support using virtual/mta.
 app-crypt/gnupg:smartcard - Build scdaemon software. Enables usage of OpenPGP cards. For other type of smartcards, try app-crypt/gnupg-pkcs11-scd.
+app-crypt/gnupg:tools - Install extra tools.
 app-crypt/gnupg:usb - Build direct CCID access for scdaemon; requires dev-libs/libusb.
 app-crypt/gpgme:common-lisp - Install common-lisp files
 app-crypt/hashcat-gui:cuda - Install oclhashcat-{plus,lite}-bin to take advantage of hardware cuda support.
@@ -474,6 +479,9 @@ app-emulation/dosemu:fluidsynth - use media-sound/fluidsynth for MIDI emulation
 app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
 app-emulation/emul-linux-x86-baselibs:development - Install pkgconfig files
+app-emulation/emul-linux-x86-baselibs:kerberos - Pull in virtual/krb5 if using USE=abi_x86_32. Disabling it is unsupported, use on your own responsibility. Irrelevant when using USE=-abi_x86_32.
+app-emulation/emul-linux-x86-baselibs:ldap - Pull in net-nds/openldap if using USE=abi_x86_32. Disabling it is unsupported, use on your own responsibility. Irrelevant when using USE=-abi_x86_32.
+app-emulation/emul-linux-x86-baselibs:pam - Pull in virtual/pam if using USE=abi_x86_32. Disabling it is unsupported, use on your own responsibility. Irrelevant when using USE=-abi_x86_32.
 app-emulation/emul-linux-x86-compat:development - Install pkgconfig files
 app-emulation/emul-linux-x86-cpplibs:development - Install pkgconfig files
 app-emulation/emul-linux-x86-db:development - Install pkgconfig files
@@ -489,7 +497,7 @@ app-emulation/emul-linux-x86-qtlibs:development - Install pkgconfig files
 app-emulation/emul-linux-x86-qtlibs:gtkstyle - Build a Qt style called GTK+ that mimics the active GTK+ theme
 app-emulation/emul-linux-x86-sdl:development - Install pkgconfig files
 app-emulation/emul-linux-x86-soundlibs:development - Install pkgconfig files
-app-emulation/emul-linux-x86-soundlibs:pulseaudio - Pull in pulseaudio if using USE=abi_x86_32
+app-emulation/emul-linux-x86-soundlibs:pulseaudio - Pull in media-sound/pulseaudio if using USE=abi_x86_32. Disabling it is unsupported, use on your own responsibility. Irrelevant when using USE=-abi_x86_32.
 app-emulation/emul-linux-x86-xlibs:development - Install pkgconfig files
 app-emulation/free42:alsa - Adds support for Advanced Linux Sound Architecture
 app-emulation/fuse-utils:gcrypt - Use dev-libs/libgcrypt for low-level crypto of some features, including logfiles.
@@ -933,6 +941,9 @@ app-office/gnumeric:python - Enable python plugin loader.
 app-office/imposter:iksemel - Enable external dev-libs/iksemel parsing support
 app-office/kmymoney:hbci - Enable HBCI support using net-libs/aqbanking
 app-office/kmymoney:quotes - Enable Online Stock Quote retrieval
+app-office/libreoffice:coinmp - Use sci-libs/coinor-mp as alternative solver
+app-office/libreoffice:collada - Enable Collada for rendering 3D models stored in *.dae and *.kmz format
+app-office/libreoffice:gltf - Use media-libs/libgltf for inserting 3D models in the glTF format into presentations
 app-office/libreoffice:gtk3 - Enable highly experimental gtk3 frontend
 app-office/libreoffice:jemalloc - Use dev-libs/jemalloc for allocations
 app-office/libreoffice:odk - Build the Office Development Kit
@@ -1056,6 +1067,7 @@ app-text/pdf2djvu:graphicsmagick - Enable media-gfx/graphicsmagick support
 app-text/pdfgrep:unac - Removing accents and ligatures before search
 app-text/pelican:markdown - Markdown support
 app-text/podofo:boost - Add support for boost
+app-text/qpdfview:fitz - Use experimental fitz rendering instead of poppler
 app-text/qpdfview:synctex - Add support for searching TeX sources
 app-text/sgmltools-lite:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 app-text/stardict:espeak - Enable text to speech synthesizer using espeak engine
@@ -1723,6 +1735,7 @@ dev-libs/keybinder:introspection - Use dev-libs/gobject-introspection for intros
 dev-libs/leveldb:snappy - support the snappy compression library
 dev-libs/libRocket:samples - Build samples
 dev-libs/libappindicator:introspection - Use dev-libs/gobject-introspection for introspection
+dev-libs/libbase58:tools - Build command line base58 tool
 dev-libs/libburn:cdio - Enable EXPERIMENTAL use of libcdio as system adapter
 dev-libs/libburn:track-src-odirect - Read track input with O_DIRECT (see man 2 open), this may deliver a better write performance in some situations
 dev-libs/libcdio:minimal - Only build the libcdio library and little more, just to be used to link against from multimedia players. With this USE flag enabled, none of the command-line utilities are built, nor is the CDDA library.
@@ -2517,6 +2530,7 @@ games-fps/turtlearena:mumble - Adds player-location (positional audio) support t
 games-fps/turtlearena:server - Build server target
 games-fps/turtlearena:voice - Adds VoIP support
 games-fps/unreal-tournament-goty:S3TC - Add the extra fancy textures to UT ... only works on certain cards (nvidia/ati/s3)
+games-fps/urbanterror:altgamma - Clearskies - X11-based gamma for Linux
 games-fps/urbanterror:server - Build server target
 games-fps/warsow:angelscript - Enable AngelScript support
 games-fps/warsow:irc - Enable IRC support
@@ -2661,7 +2675,6 @@ gnome-extra/gnome-dvb-daemon:totem - Build a plugin for media-video/totem
 gnome-extra/gnome-dvb-daemon:vala - Add support for dev-lang/vala
 gnome-extra/gnome-games:artworkextra - Installs extra artwork for various games
 gnome-extra/gnome-media:twolame - Allow encoding MPEG Audio Layer 2 (MP2) files using twolame
-gnome-extra/gnome-packagekit:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for rebooting
 gnome-extra/gnome-screensaver:systemd - Support sys-apps/systemd's logind
 gnome-extra/gnome-utils:bonobo - Enable applets (gdict one) still not ported to DBUS, requiring deprecated bonobo support in gnome-panel.
 gnome-extra/libgda:bindist - Disable support for dev-db/firebird database which is not GPL compatible.
@@ -3290,6 +3303,7 @@ media-libs/leptonica:utils - Install command-line utilities
 media-libs/leptonica:webp - Adds support for the WebP image format
 media-libs/libass:enca - Enables support for charset discovery and conversion.
 media-libs/libass:harfbuzz - Enables OpenType shaping via media-libs/harfbuzz.
+media-libs/libbdplus:aacs - Add support for decryption of AACS
 media-libs/libbluray:aacs - Add support for decryption of AACS
 media-libs/libbluray:java - Add support for BD-J
 media-libs/libbluray:utils - Install command-line utilities and examples
@@ -3647,6 +3661,64 @@ media-sound/csound:utils - Build stand-alone executables for utilities that can 
 media-sound/darkice:aacplus - AAC+ encoding via media-libs/libaacplus
 media-sound/darkice:opus - Enable Opus audio codec support
 media-sound/darkice:twolame - Build with twolame support
+media-sound/deadbeef:aac - Advanced Audio Coding (AAC) plugin
+media-sound/deadbeef:adplug - Adplug plugin
+media-sound/deadbeef:alac - Apple Lossless Audio Codec (ALAC) plugin
+media-sound/deadbeef:archive - Reading media files from archived files
+media-sound/deadbeef:bookmark-manager - Resume playing files (after closing player) from the last timestamp
+media-sound/deadbeef:bs2b - bs2b dsp support. Useful for headphones
+media-sound/deadbeef:cdda - Compact Disc Digital Audio (CDDA) plugin
+media-sound/deadbeef:converter - Support for converting media files
+media-sound/deadbeef:cover - Album artwork plugin
+media-sound/deadbeef:cover-imlib2 - Album artwork (with support for imlib2) plugin
+media-sound/deadbeef:cover-network - Plugin for downloading album artwork from internet
+media-sound/deadbeef:curl - cURL plugin
+media-sound/deadbeef:dts - Digital Theater System (DTS) plugin
+media-sound/deadbeef:dumb - Tracker music (MOD, S3M, XM, IT, STM, 669, PTM, PSM, MTM, DSM, ASYLUM AMF, UMX, J2B) plugin
+media-sound/deadbeef:equalizer - Equalizer plugin
+media-sound/deadbeef:ffmpeg - FFmpeg plugin
+media-sound/deadbeef:flac - Free Lossless Audio Codec (FLAC) plugin
+media-sound/deadbeef:gme - Game Music Emu (NSF, AY and other formats) plugin
+media-sound/deadbeef:gnome-mmkeys - Gnome multimedia keys support
+media-sound/deadbeef:gtk2 - GTK2 based user interface
+media-sound/deadbeef:gtk3 - GTK3 based user interface
+media-sound/deadbeef:hotkeys - Hotkeys support plugin
+media-sound/deadbeef:infobar - Download and show lyrics
+media-sound/deadbeef:jack - Jack audio support
+media-sound/deadbeef:lastfm - Last.fm scrobbling plugin
+media-sound/deadbeef:libnotify - Notification daemon support plugin
+media-sound/deadbeef:libsamplerate - Sample rate conversion plugin
+media-sound/deadbeef:m3u - m3u playlist plugin
+media-sound/deadbeef:mac - Monkey's Audio plugin
+media-sound/deadbeef:midi - midi support (via timidity) plugin
+media-sound/deadbeef:mms - Microsoft Media Server (MMS) plugin
+media-sound/deadbeef:mono2stereo - mono2stereo plugin
+media-sound/deadbeef:mp3 - MPEG-1/2/2.5 Layer 3 (MP3) plugin
+media-sound/deadbeef:mpris - MPRIS support
+media-sound/deadbeef:musical-spectrum - Draws musical spectrum for current track
+media-sound/deadbeef:nls - Native Language Support (NLS)
+media-sound/deadbeef:nullout - NULL output plugin
+media-sound/deadbeef:oss - Open Sound System (OSS) output plugin
+media-sound/deadbeef:playlist-browser - Playlist browser user interface plugin
+media-sound/deadbeef:psf - AOSDK-based PSF(QSF,SSF,DSF) plugin
+media-sound/deadbeef:pulseaudio - PulseAudio output plugin
+media-sound/deadbeef:replaygain-control - Advanced control of replaygain
+media-sound/deadbeef:shell-exec - Support for running shell commands
+media-sound/deadbeef:shn - Shorten (SHN) plugin
+media-sound/deadbeef:sid - Commodore64 SID music player plugin
+media-sound/deadbeef:sndfile - PCM wave support (via libsndfile) plugin
+media-sound/deadbeef:spectrogram - Draws spectrogram for current track
+media-sound/deadbeef:stereo-widener - Widens stereo
+media-sound/deadbeef:tta - True Audio TTA plugin
+media-sound/deadbeef:unity - Gnome Unity support
+media-sound/deadbeef:vk - Play music from vk.com social network
+media-sound/deadbeef:vorbis - Ogg Vorbis plugin
+media-sound/deadbeef:vtx - Libayemy VTX ZX-Spectrum music player plugin
+media-sound/deadbeef:vu-meter - Draws vu meter for current track
+media-sound/deadbeef:waveform-seekbar - Draws waveform seekbar for current track
+media-sound/deadbeef:wavpack - WavPack plugin
+media-sound/deadbeef:wma - Windows media audio plugin
+media-sound/deadbeef:zip - vfs_zip plugin
 media-sound/denemo:fluidsynth - Enable Fluidsynth MIDI software synthesis
 media-sound/denemo:portmidi - Enable support for the portmidi backend
 media-sound/dir2ogg:mac - Add support for decoding Monkey's Audio files
@@ -3739,6 +3811,8 @@ media-sound/ncmpcpp:outputs - Enable outputs screen
 media-sound/ncmpcpp:visualizer - Enable visualizer screen with sound wave/frequency spectrum modes
 media-sound/pianobooster:fluidsynth - Enable Fluidsynth MIDI software synthesis
 media-sound/picard:acoustid - Use media-libs/chromaprint for acoustic fingerprinting
+media-sound/pithos:appindicator - Enable usage of appindicator to export menu options in to unity
+media-sound/pithos:keybinder - Use keybinder to enable global key bindings
 media-sound/pms:regex - Enable regular expression searches using dev-libs/boost
 media-sound/podcatcher:bittorrent - Enable support for bittorrent downloads
 media-sound/pragha:glyr - Enable music metadata searchengine support using media-libs/glyr
@@ -4952,6 +5026,7 @@ net-misc/bfgminer:bifury - Enable support for mining with Bi*fury USB sticks
 net-misc/bfgminer:bigpic - Enable support for mining with Big Picture Mining USB sticks (Red/BlueFury, BF1, etc)
 net-misc/bfgminer:bitforce - Enable support for mining with ButterFly Labs BitFORCE ASICs and/or FPGAs
 net-misc/bfgminer:bitfury - Enable support for mining with 55nm Bitfury-based devices
+net-misc/bfgminer:cointerra - Enable support for mining with CoinTerra TerraMiner.
 net-misc/bfgminer:cpumining - Enable support for mining with CPUs
 net-misc/bfgminer:drillbit - Enable support for mining with Drillbit boards
 net-misc/bfgminer:dualminer - Enable support for mining with DualMiner USB sticks
@@ -5065,7 +5140,9 @@ net-misc/lldpd:dot3 - Enable Dot3 extension (PHY stuff)
 net-misc/lldpd:edp - Enable Extreme Discovery Protocol
 net-misc/lldpd:fdp - Enable Foundry Discovery Protocol
 net-misc/lldpd:graph - Create dot graphs in documentations
+net-misc/lldpd:jansson - Enable JSON output via Jansson
 net-misc/lldpd:json - Enable JSON output via Jansson
+net-misc/lldpd:json-c - Enable JSON output via json-c
 net-misc/lldpd:lldpmed - Enable LLDP-MED extension
 net-misc/lldpd:seccomp - Enable use of libseccomp for system call filtering
 net-misc/lldpd:snmp - Enable the use of SNMP
@@ -5253,7 +5330,7 @@ net-misc/termpkg:uucp - Adds support for uucp style device locking
 net-misc/tigervnc:internal-fltk - Build+link internal and enhanced fltk library
 net-misc/tigervnc:server - Build TigerVNC server
 net-misc/tigervnc:xorgmodule - Build the Xorg module
-net-misc/tightvnc:server - Build vncserver. Allows us to only build server on one machine if set, build only viewer otherwise.
+net-misc/tightvnc:server - Build TightVNC server
 net-misc/tinc:gcrypt - Add support for encrypted log files using dev-libs/libgcrypt
 net-misc/tinc:gui - Add GUI support, using dev-python/wxpython
 net-misc/tinc:openssl - Using dev-libs/openssl for cryptography-related functions
@@ -5826,6 +5903,7 @@ sci-libs/silo:silex - Build silex data browser
 sci-libs/spqr:metis - Use sci-libs/metis or sci-libs/parmetis for partitioning
 sci-libs/spqr:tbb - Enable multithreading with the Intel Threads Building Block dev-cpp/tbb
 sci-libs/spr:root - Add sci-physics/root graphics and i/o support
+sci-libs/ssm:ccp4 - Link superpose with libccp4
 sci-libs/suitesparse:cuda - Enable nvidia cuda toolkit for speeding up computations
 sci-libs/suitesparse:metis - Enable the Partition module to cholmod using sci-libs/metis
 sci-libs/suitesparse:tbb - Enable multithreading with the Intel Threads Building Block dev-cpp/tbb
@@ -6560,6 +6638,7 @@ sys-process/fcron:debug - Enable debug code and output. Since version 3.0.5 this
 sys-process/fcron:mta - Enable mta support for sending emails from fcron
 sys-process/fcron:pam - Enable PAM support for fcron. This means that fcron will pass through the "fcron" stack before executing the jobs, and fcrontab will use the "fcrontab" stack to authenticate the user before editing its crontab file.
 sys-process/fcron:system-crontab - Set up fcron to respect /etc/crontab and /etc/cron.d. If this flag is disabled, /etc/cron.d and /etc/crontab will be ignored, but /etc/cron.{hourly,daily,weekly,monthly} will still be respected.
+sys-process/glances:chart - Enables support of graph charts via matplotlib
 sys-process/glances:hddtemp - Enables hard drive temperature monitoring
 sys-process/glances:snmp - Enables SNMP support
 sys-process/glances:web - Enables the web server mode
@@ -6567,6 +6646,7 @@ sys-process/htop:oom - Add column to track the OOM-killer score of processes
 sys-process/htop:openvz - Enable openvz support
 sys-process/htop:vserver - Enable vserver support
 sys-process/lsof:rpc - support looking up RPC service info
+sys-process/procps:modern-top - Enables new startup defaults of top. Keeps old defaults if disabled
 sys-process/procps:ncurses - Build programs that use ncurses: top, slabtop, watch
 virtual/mpi:romio - Enable romio, a high-performance portable MPI-IO
 virtual/mysql:embedded - Build embedded server (libmysqld)
@@ -6683,6 +6763,7 @@ www-client/seamonkey:system-cairo - Use the system-wide x11-libs/cairo Use syste
 www-client/seamonkey:system-icu - Use the sytem-wide dev-libs/icu Use system icu indead of bundled.
 www-client/seamonkey:system-jpeg - Use the system-wide media-libs/libjpeg-turbo Use system jpeg instead of bundled.
 www-client/seamonkey:system-sqlite - Use the system-wide dev-db/sqlite installation with secure-delete enabled
+www-client/surf:savedconfig - Without a saved config.h, this package depends on net-misc/curl and x11-terms/st for a default download mechanism
 www-client/uget:aria2 - Enable support for net-misc/aria2 through xmlrpc. You'll find the plugin in the app's settings.
 www-client/uget:gtk3 - Use x11-libs/gtk+:3 instead of x11-libs/gtk+:2
 www-client/uget:hide-temp-files - Make temporary files that are used while downloading hidden.
@@ -6813,6 +6894,7 @@ x11-apps/xdm:consolekit - Enable native sys-auth/consolekit support
 x11-apps/xdm:xdm-auth - Enable XDM-AUTHENTICATION-1 support
 x11-apps/xdpyinfo:dmx - Builds support for Distributed Multiheaded X x11-base/xorg-server
 x11-apps/xinit:minimal - Control dependencies on legacy apps (xterm, twm, ...). Safe to enable if you use a modern desktop environment.
+x11-apps/xkbset:tk - Install the dev-perl/perl-tk based xkbset-gui utility
 x11-apps/xsm:rsh - This allows the use of rsh (remote shell) and rcp (remote copy).
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:glamor - Enable Glamor OpenGL 2D acceleration
@@ -6895,8 +6977,8 @@ x11-misc/lightdm:gtk - Pull in the gtk+ greeter
 x11-misc/lightdm:introspection - Use dev-libs/gobject-introspection for introspection
 x11-misc/lightdm:kde - Pull in the kde greeter
 x11-misc/lightdm:razor - Pull in the razorqt greeter
-x11-misc/openbox-menu:icons - Turn on to let icons appear in menus
-x11-misc/openbox-menu:svg - Support svg icons (needs icons enabled)
+x11-misc/openbox-menu:icons - Enable support for icons in menus
+x11-misc/openbox-menu:svg - Support SVG icons
 x11-misc/rednotebook:libyaml - enable libyaml support
 x11-misc/rednotebook:spell - enable gtk-spell support
 x11-misc/redshift:geoclue - Control dependency on app-misc/geoclue
@@ -6908,9 +6990,10 @@ x11-misc/shutter:drawing - Enables drawing tool
 x11-misc/shutter:webphoto - Enables screenshots of websites
 x11-misc/slim:consolekit - Enable native consolekit support
 x11-misc/stalonetray:graceful-exit - use non-portable hack to exit gracefuly on signal
-x11-misc/tint2:battery - Enable battery status plugin
-x11-misc/tint2:examples - Install tint2rc examples
-x11-misc/tint2:tint2conf - Build/Install tint2conf as well
+x11-misc/tint2:battery - Battery status plugin
+x11-misc/tint2:examples - tint2rc examples
+x11-misc/tint2:startup-notification - Startup notification support
+x11-misc/tint2:tint2conf - tint2conf support
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/wbar:gtk - Enables the gtk-based wbar-config GUI
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
@@ -7106,7 +7189,6 @@ xfce-extra/xfce4-mpc-plugin:libmpd - Build using media-libs/libmpd backend, inst
 xfce-extra/xfce4-playercontrol-plugin:audacious - Enable Audacious support
 xfce-extra/xfce4-playercontrol-plugin:mpd - Enable Music Player Daemon support
 xfce-extra/xfce4-power-manager:lxpanel - Build the applet for lxde-base/lxpanel, you can set XFCE_PLUGINS="" if you don't want the Xfce dependencies.
-xfce-extra/xfce4-power-manager:udisks - Pull in sys-fs/udisks:0 for spindown support (DEPRECATED)
 xfce-extra/xfce4-soundmenu-plugin:glyr - Enable music metadata searchengine support using media-libs/glyr
 xfce-extra/xfce4-soundmenu-plugin:keybinder - Enable shortcut support using dev-libs/keybinder
 xfce-extra/xfce4-soundmenu-plugin:lastfm - Enable last.fm support using media-libs/libclastfm
