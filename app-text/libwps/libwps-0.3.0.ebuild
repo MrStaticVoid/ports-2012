@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libwps/libwps-0.3.0.ebuild,v 1.2 2014/09/12 15:27:44 johu Exp $
 
-EAPI="5"
+EAPI=5
 
 inherit base eutils
 
@@ -10,20 +12,18 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
 LICENSE="|| ( LGPL-2.1 MPL-2.0 )"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86"
 IUSE="doc debug static-libs"
 
 RDEPEND="
-	app-text/libwpd:0.9
-	dev-libs/boost
+	app-text/libwpd:0.10
+	dev-libs/boost:=
 	dev-libs/librevenge
 "
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen )
 "
-
-RESTRICT="mirror"
 
 src_configure() {
 	econf \

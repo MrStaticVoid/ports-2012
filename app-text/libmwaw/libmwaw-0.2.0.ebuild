@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libmwaw/libmwaw-0.2.0.ebuild,v 1.4 2014/06/29 16:43:43 ago Exp $
 
-EAPI="5"
+EAPI=5
 
 inherit base eutils
 
@@ -10,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 ~arm ~ppc x86"
 IUSE="doc static-libs"
 
 RDEPEND="

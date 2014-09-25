@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libwpg/libwpg-0.3.0.ebuild,v 1.2 2014/09/07 13:41:26 scarabeus Exp $
 
-EAPI="5"
+EAPI=5
 
 inherit alternatives eutils
 
@@ -9,19 +11,17 @@ HOMEPAGE="http://libwpg.sourceforge.net/libwpg.htm"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
 LICENSE="|| ( LGPL-2.1 MPL-2.0 )"
-SLOT="0.2"
-KEYWORDS="~*"
+SLOT="0.3"
+KEYWORDS="~amd64 ~hppa ~mips ~x86"
 IUSE="doc static-libs"
 
-RDEPEND="app-text/libwpd:0.9[tools]
-	dev-libs/librevenge"
+RDEPEND="
+	app-text/libwpd:0.10[tools]
+	dev-libs/librevenge
+"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen )"
-RDEPEND="${RDEPEND}
-	!<app-text/libwpd-0.1.3-r1"
-
-RESTRICT="mirror"
 
 src_configure() {
 	econf \
@@ -40,7 +40,7 @@ src_install() {
 pkg_postinst() {
 	alternatives_auto_makesym /usr/bin/wpg2svgbatch.pl "/usr/bin/wpg2svgbatch.pl-[0-9].[0-9]"
 	alternatives_auto_makesym /usr/bin/wpg2svg "/usr/bin/wpg2svg-[0-9].[0-9]"
-	alternatives_auto_makesym /usr/bin/wpg2raw "/usr/bin/wpg2raw-[0-9].[0-9]"	fi
+	alternatives_auto_makesym /usr/bin/wpg2raw "/usr/bin/wpg2raw-[0-9].[0-9]"
 }
 
 pkg_postrm() {

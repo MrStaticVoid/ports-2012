@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare unpack
-DEPEND=sci-libs/fftw:3.0 media-sound/deadbeef dev-vcs/git
+DEPEND=sci-libs/fftw:3.0 media-sound/deadbeef >=dev-vcs/git-1.8.2.1
 DESCRIPTION=DeaDBeeF musical spectrum plugin
 EAPI=5
 HOMEPAGE=https://github.com/cboxdoerfer/ddb_musical_spectrum
@@ -9,5 +9,5 @@ RDEPEND=sci-libs/fftw:3.0 media-sound/deadbeef gtk2? ( media-sound/deadbeef[gtk2
 REQUIRED_USE=|| ( gtk2 gtk3 )
 RESTRICT=mirror
 SLOT=0
-_eclasses_=deadbeef-plugins	a4f14217c2c8d438701bd10667edd47d	eutils	06133990e861be0fe60c2b428fd025d9	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=f490793f3d182490b1f65cba457c5a62
+_eclasses_=deadbeef-plugins	4642fd447e9d157b4a8683f052cfa6b3	eutils	32548a82e42dc26e3312581476d2f20c	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_md5_=f715d71728d3bf9d8b3d4e140345533f

@@ -10,5 +10,5 @@ RDEPEND=( python_abis_2.6? ( dev-python/imaging[python_abis_2.6] ) python_abis_2
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy-2.0 ) test? ( || ( python_abis_2.6 python_abis_2.7 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy-2.0 ) )
 SLOT=0
 SRC_URI=https://www.djangoproject.com/m/releases/1.6/Django-1.6.7.tar.gz
-_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	distutils	555d63fd11e255896d25c40490fc0f07	eutils	06133990e861be0fe60c2b428fd025d9	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f	webapp	25b9b1696f5e698711f47d45c3d45e3e
+_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	distutils	555d63fd11e255896d25c40490fc0f07	eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f	webapp	25b9b1696f5e698711f47d45c3d45e3e
 _md5_=ecbb35cc5f75304530ecc9c68ac1f0a1

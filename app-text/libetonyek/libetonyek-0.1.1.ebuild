@@ -1,20 +1,24 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libetonyek/libetonyek-0.1.1.ebuild,v 1.1 2014/09/13 08:57:12 dilfridge Exp $
 
-EAPI="5"
+EAPI=5
 
+EGIT_REPO_URI="git://anongit.freedesktop.org/git/libreoffice/libetonyek"
 inherit base eutils
+[[ ${PV} == 9999 ]] && inherit autotools git-2
 
 DESCRIPTION="Library parsing Apple Keynote presentations"
 HOMEPAGE="https://wiki.documentfoundation.org/DLP/Libraries/libetonyek"
-SRC_URI="http://dev-www.libreoffice.org/src/${PN}/${P}.tar.xz"
+[[ ${PV} == 9999 ]] || SRC_URI="http://dev-www.libreoffice.org/src/${PN}/${P}.tar.xz"
 
 LICENSE="|| ( GPL-2+ LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~*"
+[[ ${PV} == 9999 ]] || \
+KEYWORDS="~amd64 ~x86"
 IUSE="doc static-libs test"
 
 RDEPEND="
-	app-text/libwpd:0.9
 	dev-libs/boost:=
 	dev-libs/librevenge
 	dev-libs/libxml2
@@ -29,11 +33,10 @@ DEPEND="${RDEPEND}
 	test? ( dev-util/cppunit )
 "
 
-RESTRICT="mirror"
-
 src_prepare() {
 	[[ -d m4 ]] || mkdir "m4"
 	base_src_prepare
+	[[ ${PV} == 9999 ]] && eautoreconf
 }
 
 src_configure() {

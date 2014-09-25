@@ -12,7 +12,7 @@ detect_version
 detect_arch
 
 KV_CLASSIC="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
-KV_RHEL="123.6.3.el7"
+KV_RHEL="${PV/3.10.0.}.el7"
 KV_COMPLETE="linux-${KV_CLASSIC}-${KV_RHEL}"
 
 KV_FULL="${KV_FULL/linux/rhel7}"
@@ -21,7 +21,7 @@ EXTRAVERSION="${EXTRAVERSION/linux/rhel7}"
 DESCRIPTION="Red Hat Enterprise Linux kernel sources"
 HOMEPAGE="http://www.redhat.com/"
 
-SRC_URI="http://vault.centos.org/7.0.1406/updates/Source/SPackages/kernel-${KV_CLASSIC}-${KV_RHEL}.src.rpm"
+SRC_URI="http://vault.centos.org/7.0.1406/updates/Source/SPackages/kernel-${KV_CLASSIC}-${KV_RHEL}.src.rpm -> ${P}.src.rpm"
 
 RESTRICT="mirror"
 
