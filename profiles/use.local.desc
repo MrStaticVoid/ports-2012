@@ -188,6 +188,7 @@ app-admin/rsyslog:dbi - Build the general database output module (requires dev-d
 app-admin/rsyslog:elasticsearch - Build the Elasticsearch output module (requires net-misc/curl)
 app-admin/rsyslog:extras - Add support for the UDP spoofing module (omudpspoof) using net-libs/libnet
 app-admin/rsyslog:gcrypt - Add support for encrypted log files using dev-libs/libgcrypt
+app-admin/rsyslog:jemalloc - Use dev-libs/jemalloc for allocations.
 app-admin/rsyslog:kerberos - Build the GSSAPI input and output module (requires virtual/krb5)
 app-admin/rsyslog:mongodb - Build the MongoDB output module (requires dev-libs/libmongo-client)
 app-admin/rsyslog:mysql - Build the MySQL databse output module (requires virtual/mysql)
@@ -1436,6 +1437,7 @@ dev-haskell/texmath:cgi - Build texmath-cgi executable.
 dev-haskell/text:developer - operate in developer mode
 dev-haskell/tls:compat - Accept SSLv2 compatible handshake
 dev-haskell/transformers-base:orphaninstances - Build instances for orphan datatypes.
+dev-haskell/transformers-compat:three - Use transformers-0.3
 dev-haskell/unix-compat:old-time - build against old-time package
 dev-haskell/vector:boundschecks - Enable bounds checking
 dev-haskell/vector:internalchecks - Enable internal consistency checks at the cost of a significant performance penalty
@@ -2011,6 +2013,8 @@ dev-python/psycopg:mxdatetime - Enable support for MX DateTime and use it instea
 dev-python/py-amqp:extras - Install extra tools to generate initial Python mod from an AMQP XML file
 dev-python/pylons:genshi - Add optional genshi support
 dev-python/pylons:jinja - Add optional jinja support
+dev-python/pyocr:cuneiform - Enable support for the app-text/cuneiform OCR engine
+dev-python/pyocr:tesseract - Enable support for the app-text/tesseract OCR engine
 dev-python/pypax:ptpax - Enable PT_PAX_FLAGS support.
 dev-python/pypax:xtpax - Enable XATTR_PAX_FLAGS support.
 dev-python/pyplusplus:indexing - Install indexing_suite_v2 to enhance boost python
@@ -2073,7 +2077,6 @@ dev-qt/qt-creator:python - Enable Python source code editor
 dev-qt/qt-creator:qnx - Build plugin for QNX/Blackberry devices
 dev-qt/qt-creator:valgrind - Add support for memory debugging using dev-util/valgrind
 dev-qt/qt-meta:kde - Select media-libs/phonon as Phonon variant (needed for KDE)
-dev-qt/qt-meta:opengl - Enable the QtOpenGL module
 dev-qt/qt-meta:openvg - Enable the QtOpenVG module
 dev-qt/qt-meta:qt3support - Enable the Qt3Support library for Qt4
 dev-qt/qt-mobility:bearer - Build the QtBearer module
@@ -2144,24 +2147,27 @@ dev-qt/qtopenvg:exceptions - Build with support for exceptions
 dev-qt/qtopenvg:qt3support - Enable the Qt3Support libraries for Qt4
 dev-qt/qtphonon:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtphonon:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
+dev-qt/qtpositioning:geoclue - Use enhanced location information from app-misc/geoclue
+dev-qt/qtpositioning:qml - Build QML bindings
 dev-qt/qtquick1:designer - Build plugin for dev-qt/designer
 dev-qt/qtquick1:webkit - Build the WebView import for QtQuick1 (requires QtWebKit)
 dev-qt/qtquick1:xml - Build the XmlListModel import for QtQuick1 (requires QtXmlPatterns)
 dev-qt/qtquickcontrols:widgets - Enable QtWidgets support
 dev-qt/qtscript:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtscript:scripttools - Build the QtScriptTools module (requires QtWidgets)
+dev-qt/qtsensors:qml - Build QML bindings
 dev-qt/qtsql:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtsql:qt3support - Enable the Qt3Support libraries for Qt4
 dev-qt/qtsvg:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qttest:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtwebkit:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtwebkit:gstreamer - Enable HTML5 audio/video support via media-libs/gstreamer
+dev-qt/qtwebkit:gstreamer010 - Enable HTML5 audio/video support via media-libs/gstreamer:0.10 instead of :1.0
 dev-qt/qtwebkit:libxml2 - Use dev-libs/libxml2 for XML parsing
 dev-qt/qtwebkit:multimedia - Enable HTML5 audio/video support via dev-qt/qtmultimedia
 dev-qt/qtwebkit:printsupport - Enable printing via dev-qt/qtprintsupport
 dev-qt/qtwebkit:qml - Build QML/QtQuick bindings
 dev-qt/qtwebkit:webp - Add support for WebP image format
-dev-qt/qtwebkit:widgets - Build various things that depend on dev-qt/qtwidgets, e.g. the WebKitWidgets library
 dev-qt/qtwebkit:xslt - Enable XSLT support
 dev-qt/qtwebsockets:qml - Build QML bindings
 dev-qt/qtwidgets:gles2 - Use OpenGL ES 2.0 instead of desktop OpenGL
@@ -3494,6 +3500,20 @@ media-plugins/banshee-community-extensions:lyrics - Enable support for automatic
 media-plugins/banshee-community-extensions:mirage - Enable the Mirage plugin which automatically, and intelligently generates playlists for you
 media-plugins/banshee-community-extensions:telepathy - Enables the Telepathy plugin which lets you to share and stream music with IM buddies
 media-plugins/banshee-community-extensions:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
+media-plugins/deadbeef-plugins-meta:archive - Reading media files from archived files
+media-plugins/deadbeef-plugins-meta:bookmark-manager - Resume playing files (after closing player) from the last timestamp
+media-plugins/deadbeef-plugins-meta:bs2b - bs2b dsp support. Useful for headphones
+media-plugins/deadbeef-plugins-meta:gnome-mmkeys - Gnome multimedia keys support
+media-plugins/deadbeef-plugins-meta:infobar - Download and show lyrics
+media-plugins/deadbeef-plugins-meta:jack - Jack audio support
+media-plugins/deadbeef-plugins-meta:mpris - MPRIS support
+media-plugins/deadbeef-plugins-meta:musical-spectrum - Draws musical spectrum for current track
+media-plugins/deadbeef-plugins-meta:replaygain-control - Advanced control of replaygain
+media-plugins/deadbeef-plugins-meta:spectrogram - Draws spectrogram for current track
+media-plugins/deadbeef-plugins-meta:stereo-widener - Widens stereo
+media-plugins/deadbeef-plugins-meta:vk - Play music from vk.com social network
+media-plugins/deadbeef-plugins-meta:vu-meter - Draws vu meter for current track
+media-plugins/deadbeef-plugins-meta:waveform-seekbar - Draws waveform seekbar for current track
 media-plugins/frei0r-plugins:facedetect - Enables building of facedetect plugin, which depends on media-libs/opencv
 media-plugins/frei0r-plugins:scale0tilt - Enables building of scale0tilt and vectorscope plugins, which depend on media-libs/gavl
 media-plugins/gkrellmpc:threads - Use separate thread to init connection (unsafe)
@@ -3664,9 +3684,6 @@ media-sound/darkice:twolame - Build with twolame support
 media-sound/deadbeef:aac - Advanced Audio Coding (AAC) plugin
 media-sound/deadbeef:adplug - Adplug plugin
 media-sound/deadbeef:alac - Apple Lossless Audio Codec (ALAC) plugin
-media-sound/deadbeef:archive - Reading media files from archived files
-media-sound/deadbeef:bookmark-manager - Resume playing files (after closing player) from the last timestamp
-media-sound/deadbeef:bs2b - bs2b dsp support. Useful for headphones
 media-sound/deadbeef:cdda - Compact Disc Digital Audio (CDDA) plugin
 media-sound/deadbeef:converter - Support for converting media files
 media-sound/deadbeef:cover - Album artwork plugin
@@ -3679,12 +3696,9 @@ media-sound/deadbeef:equalizer - Equalizer plugin
 media-sound/deadbeef:ffmpeg - FFmpeg plugin
 media-sound/deadbeef:flac - Free Lossless Audio Codec (FLAC) plugin
 media-sound/deadbeef:gme - Game Music Emu (NSF, AY and other formats) plugin
-media-sound/deadbeef:gnome-mmkeys - Gnome multimedia keys support
 media-sound/deadbeef:gtk2 - GTK2 based user interface
 media-sound/deadbeef:gtk3 - GTK3 based user interface
 media-sound/deadbeef:hotkeys - Hotkeys support plugin
-media-sound/deadbeef:infobar - Download and show lyrics
-media-sound/deadbeef:jack - Jack audio support
 media-sound/deadbeef:lastfm - Last.fm scrobbling plugin
 media-sound/deadbeef:libnotify - Notification daemon support plugin
 media-sound/deadbeef:libsamplerate - Sample rate conversion plugin
@@ -3694,28 +3708,20 @@ media-sound/deadbeef:midi - midi support (via timidity) plugin
 media-sound/deadbeef:mms - Microsoft Media Server (MMS) plugin
 media-sound/deadbeef:mono2stereo - mono2stereo plugin
 media-sound/deadbeef:mp3 - MPEG-1/2/2.5 Layer 3 (MP3) plugin
-media-sound/deadbeef:mpris - MPRIS support
-media-sound/deadbeef:musical-spectrum - Draws musical spectrum for current track
 media-sound/deadbeef:nls - Native Language Support (NLS)
 media-sound/deadbeef:nullout - NULL output plugin
 media-sound/deadbeef:oss - Open Sound System (OSS) output plugin
 media-sound/deadbeef:playlist-browser - Playlist browser user interface plugin
 media-sound/deadbeef:psf - AOSDK-based PSF(QSF,SSF,DSF) plugin
 media-sound/deadbeef:pulseaudio - PulseAudio output plugin
-media-sound/deadbeef:replaygain-control - Advanced control of replaygain
 media-sound/deadbeef:shell-exec - Support for running shell commands
 media-sound/deadbeef:shn - Shorten (SHN) plugin
 media-sound/deadbeef:sid - Commodore64 SID music player plugin
 media-sound/deadbeef:sndfile - PCM wave support (via libsndfile) plugin
-media-sound/deadbeef:spectrogram - Draws spectrogram for current track
-media-sound/deadbeef:stereo-widener - Widens stereo
 media-sound/deadbeef:tta - True Audio TTA plugin
 media-sound/deadbeef:unity - Gnome Unity support
-media-sound/deadbeef:vk - Play music from vk.com social network
 media-sound/deadbeef:vorbis - Ogg Vorbis plugin
 media-sound/deadbeef:vtx - Libayemy VTX ZX-Spectrum music player plugin
-media-sound/deadbeef:vu-meter - Draws vu meter for current track
-media-sound/deadbeef:waveform-seekbar - Draws waveform seekbar for current track
 media-sound/deadbeef:wavpack - WavPack plugin
 media-sound/deadbeef:wma - Windows media audio plugin
 media-sound/deadbeef:zip - vfs_zip plugin
@@ -3977,13 +3983,10 @@ media-tv/xbmc:vaapi - Enables VAAPI (Video Acceleration API) for hardware decodi
 media-tv/xbmc:webserver - Enable internal webserver
 media-tv/xbmc:xrandr - Support X randr extension
 media-tv/xmltv:ar - Argentina tv listing grabber
-media-tv/xmltv:be - Belgium and Luxemburg tv listing grabber
-media-tv/xmltv:brnet - Brazil cable tv listing grabber
 media-tv/xmltv:ch - Switzerland bluewin tv listing grabber
 media-tv/xmltv:dk - Denmark tv listing grabber
 media-tv/xmltv:dtvla - Latin America digital tv listing grabber
 media-tv/xmltv:ee - Estonia tv listing grabber
-media-tv/xmltv:es - Spain tv listing grabber
 media-tv/xmltv:es_laguiatv - Spain alternative grabber
 media-tv/xmltv:es_miguiatv - Spain alternative grabber
 media-tv/xmltv:eu_epg - EPG grabber for some European countries.
@@ -3995,14 +3998,10 @@ media-tv/xmltv:il - Israel tv listing grabber
 media-tv/xmltv:in - India tv listing grabber
 media-tv/xmltv:is - Iceland tv listing grabber
 media-tv/xmltv:it - Italy tv listing grabber
-media-tv/xmltv:jp - Japan tv listing grabber
 media-tv/xmltv:na_dd - North America tv listing grabber
 media-tv/xmltv:na_dtv - North America Direct TV grabber
 media-tv/xmltv:na_icons - option for na_dd to download icons
-media-tv/xmltv:nc - Caledonie Island tv listing grabber
 media-tv/xmltv:nl - Netherlands tv listing grabber
-media-tv/xmltv:nl_wolf - Netherlands alternative tv listing grabber
-media-tv/xmltv:no - Norway tv listing grabber
 media-tv/xmltv:no_gf - Norway Gfeed tv listing grabber
 media-tv/xmltv:pt - Portugal tv listing grabber
 media-tv/xmltv:re - Reunion Island (France) tv listing grabber
@@ -4152,6 +4151,7 @@ media-video/vdr:mainmenuhooks - Allows to replace main menu entries by some spec
 media-video/vdr:menuorg - Enables support for the menuorg-plugin
 media-video/vdr:naludump - Removes NALU fill data from h.264-Streams of TS files
 media-video/vdr:permashift - permanent timeshift by recording live TV on hard disk, need plugin vdr-permashift
+media-video/vdr:permashift_v1 - permanent timeshift by recording live TV on RAM, need plugin >=vdr-permashift-1
 media-video/vdr:pinplugin - Support for pin plugin
 media-video/vdr:rotor - Enable support for plugin vdr-rotor for dish-positioner.
 media-video/vdr:setup - Enable support for the plugin vdr-setup
@@ -4274,6 +4274,7 @@ net-analyzer/nrpe:command-args - Build support for specifying the command-line a
 net-analyzer/nrpe:minimal - Only build the check plugins for Nagios/Icinga, and not the daemon.
 net-analyzer/nsca:crypt - Build support for crypted communication with nsca, through dev-libs/mcrypt. It's recommended not to disable this flag unless all the communication will be handled in an absolutely safe environment.
 net-analyzer/nsca:minimal - Only build and install the send_nsca command and not the daemon. This allows a very minimal install with no overhead when setting up a node.
+net-analyzer/openvas:pdf - Enable pdf report creation
 net-analyzer/pchar:pcap - Use the net-libs/libpcap library
 net-analyzer/pmacct:64bit - Use 64bit counters instead of 32bit ones
 net-analyzer/pmacct:mongodb - Add support for mongodb backend
@@ -4306,7 +4307,6 @@ net-analyzer/tcpreplay:tcpdump - Use net-analyzer/tcpdump for packet decoding fe
 net-analyzer/wireshark:adns - Use the GNU net-dns/c-ares library to resolve DNS names
 net-analyzer/wireshark:crypt - Use dev-libs/libgcrypt to decrypt traffic
 net-analyzer/wireshark:doc-pdf - Build documentation in pdf format (US and a4 paper sizes)
-net-analyzer/wireshark:gtk2 - Build the wireshark executable with a GTK+ UI version 2.
 net-analyzer/wireshark:gtk3 - Build the wireshark executable with a GTK+ UI version 3.
 net-analyzer/wireshark:netlink - Use dev-libs/libnl
 net-analyzer/wireshark:pcap - Use net-libs/libpcap for network packet capturing (build dumpcap, rawshark)
@@ -4364,6 +4364,7 @@ net-dns/bind:nslint - Build and install the nslint util
 net-dns/bind:rpz - Enable response policy rewriting (rpz)
 net-dns/bind:rrl - Response Rate Limiting (RRL) - Experimental
 net-dns/bind:sdb-ldap - Enables ldap-sdb backend
+net-dns/bind:seccomp - Enable use of sys-libs/libseccomp for system call filtering
 net-dns/bind:urandom - Use /dev/urandom instead of /dev/random
 net-dns/bind-tools:gost - Enables gost OpenSSL engine support
 net-dns/bind-tools:gssapi - Enable gssapi support
@@ -6776,6 +6777,8 @@ www-client/vimb:gtk3 - Link against x11-libs/gtk+:3 instead of x11-libs/gtk+:2
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
 www-client/weboob:fast-libs - Enable fast libs
 www-client/weboob:secure-updates - Enable secure updates
+www-misc/gurlchecker:json - Enable support for parsing Google Chrome and derivatives bookmarks.
+www-misc/gurlchecker:sqlite - Enable support for parsing Firefox and derivatives bookmarks.
 www-misc/litmus:libproxy - Support for automatic proxy configuratino management through net-libs/libproxy.
 www-misc/litmus:libxml2 - Use dev-libs/libxml2 to parse XML
 www-misc/litmus:pkcs11 - Support for PKCS #11 through PaKChoiS (dev-libs/pakchois).

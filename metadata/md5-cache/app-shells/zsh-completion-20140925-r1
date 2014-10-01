@@ -1,0 +1,10 @@
+DEFINED_PHASES=install postinst prepare
+DESCRIPTION=Programmable Completion for Z Shell (include eselect, gcc, binutils, genlop, gentoolkit, layman, openrc and portage with portage-utils completion)
+EAPI=5
+KEYWORDS=*
+LICENSE=ZSH
+RDEPEND=app-shells/zsh
+SLOT=0
+SRC_URI=http://build.funtoo.org/distfiles/zsh-completion-20140925.tar.xz http://ftp.osuosl.org/pub/funtoo/distfiles/zsh-completion-20140925.tar.xz http://ftp.heanet.ie/mirrors/funtoo/distfiles/zsh-completion-20140925.tar.xz
+_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_md5_=74f479d6e0a945dc0c3a4d8db344954f

@@ -72,10 +72,6 @@ IUSE="+alsa +flac +gtk2 +hotkeys +m3u +mp3 +sndfile +vorbis
 	ffmpeg gme gtk3 lastfm libnotify libsamplerate mac midi mms mono2stereo musepack nls nullout
 	oss playlist-browser psf pulseaudio shell-exec shn sid tta unity vtx wavpack wma zip"
 
-# deadbeef third party plugins
-IUSE+=" archive bookmark-manager bs2b filebrowser gnome-mmkeys infobar jack mpris musical-spectrum
-	opus replaygain-control spectrogram stereo-widener vk vu-meter waveform-seekbar"
-
 REQUIRED_USE="converter? ( || ( gtk2 gtk3 ) )
 	cover-imlib2? ( cover )
 	cover-network? ( cover curl )
@@ -84,23 +80,10 @@ REQUIRED_USE="converter? ( || ( gtk2 gtk3 ) )
 	playlist-browser? ( || ( gtk2 gtk3 ) )
 	|| ( alsa oss pulseaudio nullout )"
 
-PDEPEND="archive? ( media-plugins/deadbeef-archive-reader )
-	bookmark-manager? ( media-plugins/deadbeef-bookmark-manager )
-	bs2b? ( media-plugins/deadbeef-bs2b )
-	filebrowser? ( media-plugins/deadbeef-fb )
-	gnome-mmkeys? ( media-plugins/deadbeef-gnome-mmkeys )
-	infobar? ( media-plugins/deadbeef-infobar )
-	jack? ( media-plugins/deadbeef-jack )
-	mpris? ( media-plugins/deadbeef-mpris )
-	musical-spectrum? ( media-plugins/deadbeef-musical-spectrum )
-	replaygain-control? ( media-plugins/deadbeef-replaygain-control )
-	spectrogram? ( media-plugins/deadbeef-spectrogram )
-	stereo-widener? ( media-plugins/deadbeef-stereo-widener )
-	vk? ( media-plugins/deadbeef-vk )
-	vu-meter? ( media-plugins/deadbeef-vu-meter )
-	waveform-seekbar? ( media-plugins/deadbeef-waveform-seekbar )"
+PDEPEND="media-plugins/deadbeef-plugins-meta"
 
-RDEPEND="aac? ( media-libs/faad2 )
+RDEPEND="dev-libs/glib
+	aac? ( media-libs/faad2 )
 	adplug? ( media-libs/adplug )
 	alsa? ( media-libs/alsa-lib )
 	alac? ( media-libs/faad2 )
@@ -113,7 +96,10 @@ RDEPEND="aac? ( media-libs/faad2 )
 	ffmpeg? ( virtual/ffmpeg )
 	flac? ( media-libs/flac )
 	gme? ( sys-libs/zlib )
-	gtk2? ( x11-libs/gtk+:2 )
+	gtk2? ( dev-libs/atk
+		x11-libs/cairo
+		x11-libs/gtk+:2
+		x11-libs/pango )
 	gtk3? ( x11-libs/gtk+:3 )
 	hotkeys? ( x11-libs/libX11 )
 	libnotify? ( sys-apps/dbus )
