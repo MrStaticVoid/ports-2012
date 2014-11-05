@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/shotwell/shotwell-0.18.1.ebuild,v 1.2 2014/07/24 18:29:22 ssuominen Exp $
 
 EAPI=5
 
@@ -17,13 +15,13 @@ SRC_URI="mirror://gnome/sources/${PN}/$(get_version_component_range 1-2)/${P}.ta
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 IUSE=""
 
 CORE_SUPPORTED_LANGUAGES="
-	af ar as ast bg bn bn_IN ca cs da de el en_GB eo es et eu fi fr gl gu he hi
-	hr hu ia id it ja kk km kn ko ky lt lv mk ml mr nb nl nn or pa pl pt pt_BR
-	ro ru sk sl sr sv ta te th tr uk vi zh_CN zh_HK zh_TW"
+	af ar as ast bg bn bn_IN ca cs da de el en_GB eo es et eu fi fr gd gl gu he
+	hi hr hu ia id it ja kk km kn ko ky lt lv mk ml mr nb nl nn or pa pl pt
+	pt_BR ro ru sk sl sr sv ta te th tr uk vi zh_CN zh_HK zh_TW"
 
 for x in ${CORE_SUPPORTED_LANGUAGES}; do
 	IUSE+="linguas_${x} "

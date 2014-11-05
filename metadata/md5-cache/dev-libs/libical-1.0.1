@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=introspection? ( dev-libs/gobject-introspection ) dev-lang/perl sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=An implementation of basic iCAL protocols from citadel, previously known as aurore
+EAPI=5
+HOMEPAGE=http://freeassociation.sourceforge.net
+IUSE=doc examples introspection static-libs
+KEYWORDS=*
+LICENSE=|| ( MPL-1.1 LGPL-2 )
+RDEPEND=introspection? ( dev-libs/gobject-introspection )
+SLOT=0/1
+SRC_URI=https://github.com/libical/libical/archive/v1.0.1.tar.gz
+_eclasses_=cmake-utils	45538b73614586305b3fdd978a3d11fa	eutils	c91a1ac3fefc6b077094fb2e82c65af4	flag-o-matic	eda1c0b5ba85b3eeb555a071d69eb819	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_md5_=61b2478b80813a92e8f7cb3077974c21

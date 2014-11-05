@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile
+DEPEND=dev-libs/popt
+DESCRIPTION=Tools and library to manipulate EFI variables
+EAPI=5
+HOMEPAGE=https://github.com/vathpela/efivar
+KEYWORDS=~*
+LICENSE=LGPL-2.1
+RDEPEND=dev-libs/popt
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/vathpela/efivar/archive/0.15.tar.gz
+_md5_=4f687f06ccff2489189de9e348075ebf

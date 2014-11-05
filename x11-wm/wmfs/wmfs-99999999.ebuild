@@ -2,10 +2,10 @@
 
 EAPI="5"
 
-inherit git-2
+inherit git-r3
 
 EGIT_REPO_URI="https://github.com/xorg62/wmfs.git"
-EGIT_MASTER="wmfs1"
+EGIT_BRANCH="wmfs1"
 
 DESCRIPTION="Windows Manager From Scratch"
 HOMEPAGE="http://wmfs.info"

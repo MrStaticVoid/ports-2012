@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/protobuf/protobuf-2.6.0.ebuild,v 1.3 2014/09/30 17:31:23 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/protobuf/protobuf-2.6.0.ebuild,v 1.5 2014/10/10 20:17:24 maekke Exp $
 
 EAPI=5
 JAVA_PKG_IUSE="source"
@@ -10,12 +10,12 @@ DISTUTILS_OPTIONAL=1
 inherit autotools eutils flag-o-matic distutils-r1 java-pkg-opt-2 elisp-common
 
 DESCRIPTION="Google's Protocol Buffers -- an efficient method of encoding structured data"
-HOMEPAGE="http://code.google.com/p/protobuf/"
+HOMEPAGE="http://code.google.com/p/protobuf/ https://github.com/google/protobuf/"
 SRC_URI="https://protobuf.googlecode.com/svn/rc/${P}.tar.bz2"
 
 LICENSE="Apache-2.0"
 SLOT="0/9" # subslot = soname major version
-KEYWORDS="~amd64 -hppa ~mips -ppc -ppc64 ~x86 ~amd64-linux ~arm-linux ~x86-linux ~x64-macos ~x86-macos"
+KEYWORDS="~amd64 ~arm -hppa ~mips -ppc -ppc64 ~x86 ~amd64-linux ~arm-linux ~x86-linux ~x64-macos ~x86-macos"
 IUSE="emacs examples java python static-libs vim-syntax"
 
 CDEPEND="emacs? ( virtual/emacs )

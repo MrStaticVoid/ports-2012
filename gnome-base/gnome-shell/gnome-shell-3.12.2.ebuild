@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="+bluetooth deprecated +i18n +networkmanager systemd"
+IUSE="+bluetooth +deprecated +i18n +networkmanager systemd"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 KEYWORDS="*"
 
@@ -127,7 +127,7 @@ src_prepare() {
 	fi
 
 	# Change favorites defaults, bug #479918
-	epatch "${FILESDIR}/${PN}-defaults.patch"
+	epatch "${FILESDIR}/${PN}-3.12.2-defaults.patch"
 
 	# Fix automagic gnome-bluetooth dep, bug #398145
 	epatch "${FILESDIR}/${PN}-3.12-bluetooth-flag.patch"

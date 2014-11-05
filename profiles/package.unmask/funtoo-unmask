@@ -1,9 +1,9 @@
 # Override Gentoo masks
 app-backup/rdiff-backup
+dev-libs/libgit2-glib
 dev-scheme/guile
 games-board/aisleriot
 media-libs/aubio
+media-libs/libmediaart
 media-video/mpv
-
-# CVE-2014-3616
->=www-servers/nginx-1.7.5
+x11-wm/metacity

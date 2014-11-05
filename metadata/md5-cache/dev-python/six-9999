@@ -8,5 +8,5 @@ LICENSE=MIT
 RDEPEND=python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy-2.0? ( virtual/pypy:2.0 )
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy-2.0 )
 SLOT=0
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	eutils	32548a82e42dc26e3312581476d2f20c	mercurial	2fbda5894dda6392b71334ee9a92de0b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	eutils	c91a1ac3fefc6b077094fb2e82c65af4	mercurial	2fbda5894dda6392b71334ee9a92de0b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=1069ad9d0e0f8b89320ebbbcdb8d34db

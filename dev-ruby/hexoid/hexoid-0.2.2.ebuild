@@ -1,11 +1,11 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hexoid/hexoid-0.2.2.ebuild,v 1.6 2014/04/24 16:41:26 mrueg Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hexoid/hexoid-0.2.2.ebuild,v 1.8 2014/11/03 20:03:35 mrueg Exp $
 
 EAPI=5
 
 # None of the three actually has working tests, but they should all work
-USE_RUBY="ruby19 jruby"
+USE_RUBY="ruby19"
 
 RUBY_FAKEGEM_TASK_TEST=""
 
@@ -31,6 +31,12 @@ RESTRICT=test
 
 #SRC_URI="http://github.com/delano/${PN}/tarball/v${PV} -> ${PN}-git-${PV}.tgz"
 #S="${WORKDIR}/delano-${PN}-*"
+
+all_ruby_prepare() {
+	sed -i -e 's:rake/rdoctask:rdoc/task:' \
+		-e '/gempackagetask/ s:^:#:' \
+		-e '/GemPackageTask/,/end/ s:^:#:' Rakefile || die
+}
 
 each_ruby_test() {
 	${RUBY} -S sergeant || die "tests failed"

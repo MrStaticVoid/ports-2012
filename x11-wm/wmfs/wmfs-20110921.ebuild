@@ -2,19 +2,18 @@
 
 EAPI="5"
 
-inherit git-2
-
-EGIT_REPO_URI="https://github.com/xorg62/wmfs.git"
-EGIT_MASTER="wmfs1"
-EGIT_COMMIT="b9e67982f8bf1c4992755c3bde6085a7f0a0e093"
+GITHUB_COMMIT="b9e67982f8bf1c4992755c3bde6085a7f0a0e093"
 
 DESCRIPTION="Windows Manager From Scratch"
 HOMEPAGE="http://wmfs.info"
+SRC_URI="https://github.com/xorg62/wmfs/archive/wmfs1/${GITHUB_COMMIT}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~*"
 IUSE="imlib2 xinerama xrandr"
+
+S="${WORKDIR}/${PN}-wmfs1"
 
 RDEPEND="!x11-wm/wmfs2
 	x11-libs/libSM

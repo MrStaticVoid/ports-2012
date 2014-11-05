@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=!!sys-fs/device-mapper readline? ( sys-libs/readline ) clvm? ( =sys-cluster/dlm-2* cman? ( =sys-cluster/cman-2* ) ) udev? ( || ( >=sys-fs/udev-151-r4 >virtual/udev-0 ) ) !<sys-apps/openrc-0.4 !!sys-fs/lvm-user !!sys-fs/clvm >=sys-apps/util-linux-2.16 !<sys-fs/cryptsetup-1.1.2
 SLOT=0
 SRC_URI=ftp://sources.redhat.com/pub/lvm2/LVM2.2.02.95.tgz ftp://sources.redhat.com/pub/lvm2/old/LVM2.2.02.95.tgz
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	eutils	32548a82e42dc26e3312581476d2f20c	libtool	52d0e17251d04645ffaa61bfdd858944	linux-info	2b8c53f6065bdee2d757472215a3088f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	eutils	c91a1ac3fefc6b077094fb2e82c65af4	libtool	52d0e17251d04645ffaa61bfdd858944	linux-info	2b8c53f6065bdee2d757472215a3088f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=4bb5ae98a132f0d9a2944dc981563962

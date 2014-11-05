@@ -1,5 +1,4 @@
 # @GENTOO_PORTAGE_EPREFIX@/etc/mysql/my.cnf: The global mysql configuration file.
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/files/my.cnf-5.5,v 1.2 2013/01/20 02:40:02 robbat2 Exp $
 
 # The following options will be passed to all MySQL clients
 [client]
@@ -122,7 +121,7 @@ innodb_file_per_table
 
 # Uncomment this to get FEDERATED engine support
 #plugin-load=federated=ha_federated.so
-loose-federated
+#loose-federated
 
 [mysqldump]
 quick

@@ -1,8 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgit2/libgit2-0.21.1.ebuild,v 1.1 2014/08/08 16:49:02 radhermit Exp $
 
-EAPI=5
+EAPI="5"
 
 inherit cmake-utils multilib
 
@@ -12,7 +10,7 @@ SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2-with-linking-exception"
 SLOT="0/21"
-KEYWORDS="~amd64 ~x86 ~ppc-macos"
+KEYWORDS="*"
 IUSE="examples ssh test threads trace"
 
 RDEPEND="

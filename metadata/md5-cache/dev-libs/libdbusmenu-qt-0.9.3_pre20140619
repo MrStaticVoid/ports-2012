@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile configure install prepare setup test
+DEPEND=qt4? ( dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-qt/qtgui:4 ) qt5? ( dev-qt/qtcore:5 dev-qt/qtdbus:5 dev-qt/qtgui:5 dev-qt/qtwidgets:5 ) doc? ( app-doc/doxygen ) test? ( dev-libs/qjson qt4? ( dev-qt/qttest:4 ) qt5? ( dev-qt/qttest:5 ) ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) test? ( !prefix? ( x11-base/xorg-server[xvfb] ) x11-apps/xhost )
+DESCRIPTION=A library providing Qt implementation of DBusMenu specification
+EAPI=5
+HOMEPAGE=https://launchpad.net/libdbusmenu-qt/
+IUSE=debug doc +qt4 qt5 test
+KEYWORDS=~amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux
+LICENSE=LGPL-2
+RDEPEND=qt4? ( dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-qt/qtgui:4 ) qt5? ( dev-qt/qtcore:5 dev-qt/qtdbus:5 dev-qt/qtgui:5 dev-qt/qtwidgets:5 )
+REQUIRED_USE=|| ( qt4 qt5 )
+RESTRICT=test
+SLOT=0
+SRC_URI=http://launchpad.net/ubuntu/+archive/primary/+files/libdbusmenu-qt_0.9.3+14.10.20140619.orig.tar.gz
+_eclasses_=cmake-utils	45538b73614586305b3fdd978a3d11fa	eutils	c91a1ac3fefc6b077094fb2e82c65af4	flag-o-matic	eda1c0b5ba85b3eeb555a071d69eb819	multibuild	757b75042dff1b26ecd28d67a6021b3f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	virtualx	73cfc129b4b9ba23aed1abb10c825d86
+_md5_=5c45191f19c17f05857462bcfde8058b

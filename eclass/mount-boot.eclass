@@ -1,6 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.18 2011/01/09 03:18:38 vapier Exp $
 #
 # This eclass is really only useful for bootloaders.
 #
@@ -8,7 +6,10 @@
 # function tries to ensure that it's mounted in rw mode, exiting with an
 # error if it cant. It does nothing if /boot isn't a separate partition.
 #
-# MAINTAINER: base-system@gentoo.org
+# Funtoo changes: actually see if we are chrooted, rather than looking for
+# /dev/BOOT in /etc/fstab, because we don't have that in Funtoo.
+#
+# MAINTAINER: drobbins@funtoo.org
 
 EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_prerm pkg_postrm
 
@@ -23,6 +24,10 @@ mount-boot_mount_boot_partition() {
 	fi
 
 	# note that /dev/BOOT is in the Gentoo default /etc/fstab file
+	if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
+		einfo "You are chrooted. Not touching /boot -- assuming you have it mounted if you have one."
+		return
+	fi
 	local fstabstate=$(awk '!/^#|^[[:blank:]]+#|^\/dev\/BOOT/ {print $2}' /etc/fstab | egrep "^/boot$" )
 	local procstate=$(awk '$2 ~ /^\/boot$/ {print $2}' /proc/mounts)
 	local proc_ro=$(awk '{ print $2 " ," $4 "," }' /proc/mounts | sed -n '/\/boot .*,ro,/p')

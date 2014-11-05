@@ -1,8 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-4.2.6.3.ebuild,v 1.12 2014/09/19 08:35:12 ago Exp $
 
-EAPI=5
+EAPI="5"
 
 KDE_REQUIRED="optional"
 QT_MINIMAL="4.7.4"
@@ -71,7 +69,7 @@ unset ADDONS_URI
 unset EXT_URI
 unset ADDONS_SRC
 
-IUSE="bluetooth +branding +cups dbus debug eds firebird gnome gstreamer +gtk
+IUSE="bluetooth branding +cups dbus debug eds firebird gnome gstreamer +gtk
 gtk3 jemalloc kde mysql odk opengl postgres telepathy test +vba vlc +webdav"
 
 LO_EXTS="nlpsolver scripting-beanshell scripting-javascript wiki-publisher"
@@ -89,7 +87,7 @@ unset lo_xt
 LICENSE="|| ( LGPL-3 MPL-1.1 )"
 SLOT="0"
 [[ ${PV} == *9999* ]] || \
-KEYWORDS="amd64 ~arm ~ppc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 
 COMMON_DEPEND="
 	${PYTHON_DEPS}
@@ -469,7 +467,6 @@ src_configure() {
 		--disable-online-update \
 		--disable-systray \
 		--with-alloc=$(use jemalloc && echo "jemalloc" || echo "system") \
-		--with-build-version="Gentoo official package" \
 		--enable-extension-integration \
 		--with-external-dict-dir="${EPREFIX}/usr/share/myspell" \
 		--with-external-hyph-dir="${EPREFIX}/usr/share/myspell" \
@@ -478,7 +475,7 @@ src_configure() {
 		--with-lang="" \
 		--with-parallelism=${jbs} \
 		--with-system-ucpp \
-		--with-vendor="Gentoo Foundation" \
+		--with-vendor="Funtoo Linux" \
 		--with-x \
 		--without-afms \
 		--without-fonts \

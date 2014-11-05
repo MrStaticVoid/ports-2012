@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/dwm/dwm-6.0.ebuild,v 1.12 2013/02/06 15:19:31 jer Exp $
+# $Header: $
 
-EAPI="4"
+EAPI=5
 
 inherit eutils savedconfig toolchain-funcs
 
@@ -15,11 +15,13 @@ SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
 IUSE="xinerama"
 
-DEPEND="x11-libs/libX11
+DEPEND="
+	x11-libs/libX11
 	xinerama? (
 		x11-proto/xineramaproto
 		x11-libs/libXinerama
-		)"
+	)
+"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
@@ -52,12 +54,6 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" install
 
-	exeinto /etc/X11/Sessions
-	newexe "${FILESDIR}"/dwm-session2 dwm
-
-	insinto /usr/share/xsessions
-	doins "${FILESDIR}"/dwm.desktop
-
 	dodoc README
 
 	save_config config.h
@@ -71,8 +67,6 @@ pkg_postinst() {
 		elog "Installing ${PN} without x11-misc/dmenu"
 		einfo "To have a menu you can install x11-misc/dmenu"
 	fi
-	einfo "You can custom status bar with a script in HOME/.dwm/dwmrc"
-	einfo "the ouput is redirected to the standard input of dwm"
-	einfo "Since dwm-5.4, status info in the bar must be set like this:"
+	einfo "You can custom status bar by usimg xsetroot:"
 	einfo "xsetroot -name \"\`date\` \`uptime | sed 's/.*,//'\`\""
 }
