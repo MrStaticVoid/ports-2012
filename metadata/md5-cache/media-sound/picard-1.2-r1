@@ -10,5 +10,5 @@ RDEPEND=dev-python/PyQt4[X] media-libs/mutagen acoustid? ( >=media-libs/chromapr
 RESTRICT=test
 SLOT=0
 SRC_URI=http://ftp.musicbrainz.org/pub/musicbrainz/picard/picard-1.2.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	eutils	c91a1ac3fefc6b077094fb2e82c65af4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=daefbf9e64c9e916f0e8179be843181f

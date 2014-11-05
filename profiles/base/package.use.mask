@@ -1,10 +1,27 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.610 2014/10/01 14:12:37 pinkbyte Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.621 2014/11/05 14:28:21 titanofold Exp $
 
 # This file requires >=portage-2.1.1
 # New entries go on top.
-#
+
+# Mike Frysinger <vapier@gentoo.org> (21 Oct 2014)
+# Most targets do not support ASAN/etc... #504200.
+sys-devel/gcc sanitize
+
+# Pacho Ramos <pacho@gentoo.org> (19 Oct 2014)
+# swfdec is masked for removal, bug #525834
+dev-libs/DirectFB swfdec
+
+# Tim Harder <radhermit@gentoo.org> (10 Oct 2014)
+# Masked since skype isn't stable
+net-im/bitlbee skype
+
+# Jauhien Piatlicki <jauhien@gentoo.org> (5 Oct 2014)
+# Masked because of bug 524390: privilege escalation
+# until upstream fixes this security issue.
+# Use at your own risk
+lxqt-base/lxqt-meta sddm
 
 # Sergey Popov <pinkbyte@gentoo.org> (01 Oct 2014)
 # Mask multislot USE flag for packages, where it breaks
@@ -59,10 +76,6 @@ dev-db/percona-server embedded
 # Pacho Ramos <pacho@gentoo.org> (27 Jul 2014)
 # Mask due bug #414903
 media-video/mplayer dxr3
-
-# Rick Farina <zerochaos@gentoo.org> (11 July 2014)
-# Mask ogdi use flag for sci-libs/gdal due to broken visibility rules
-sci-libs/gdal ogdi
 
 # Thomas Sachau <tommy@gentoo.org> (30 Jun 2014)
 # Mask pixman USE flag of dev-libs/efl for future removal, bug 501074
@@ -142,10 +155,6 @@ sys-infiniband/ofed ofed_drivers_ehca
 # broken wrt #501582
 <net-misc/openvpn-9999 polarssl
 
-# Mike Gilbert <floppym@gentoo.org> (27 Mar 2014)
-# sys-libs/libseccomp is not keyworded on many archs.
-sys-apps/systemd seccomp
-
 # Ben de Groot <yngwin@gentoo.org> (21 Mar 2014)
 # harfbuzz multilib ebuild is still masked
 media-libs/freetype harfbuzz
@@ -196,11 +205,6 @@ dev-libs/boost context
 # Since this is new and unused yet, keep it masked for now and check
 # with upstream if there is something that can be done to fix the issue.
 media-libs/cogl gstreamer
-
-# Johannes Huber <johu@gentoo.org> (18 Dec 2013)
-# net-libs/libotr-4.0.0 is masked. Please remove the use mask if package mask
-# is lifted.
->=kde-base/kopete-4.12.0 otr
 
 # Alexandre Rostovtsev <tetromino@gentoo.org> (15 Dec 2013)
 # pulseaudio patchset breaks too often on live wine ebuild
@@ -361,10 +365,6 @@ www-client/chromium system-sqlite
 sci-libs/cholmod cuda
 sci-libs/flann cuda
 
-# Agostino Sarubbo <ago@gentoo.org< (21 Feb 2013)
-# Mask vpx because requires new libvpx and is not ready to go to stable
->=media-plugins/gst-plugins-meta-1.0 vpx
-
 # Julian Ospald <hasufell@gentoo.org> (20 Feb 2013)
 # Unsupported and experimental.
 net-misc/teamviewer system-wine
@@ -505,10 +505,6 @@ media-sound/pulseaudio webrtc-aec xen
 # Requires libxkbcommon from the x11 overlay
 <dev-cpp/gtkmm-3.7 wayland
 <x11-libs/gtk+-3.7 egl wayland
-
-# Tim Harder <radhermit@gentoo.org> (22 Mar 2012)
-# Masked since skype isn't stable
-net-im/bitlbee skype
 
 # Samuli Suominen <ssuominen@gentoo.org> (20 Mar 2012)
 # This is for udev-acl. Unmasked in default/linux/package.use.mask.

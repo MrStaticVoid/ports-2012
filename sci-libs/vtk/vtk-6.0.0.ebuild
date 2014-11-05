@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/vtk/vtk-6.0.0.ebuild,v 1.6 2014/02/03 12:30:03 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/vtk/vtk-6.0.0.ebuild,v 1.8 2014/11/03 13:58:24 titanofold Exp $
 
 EAPI=5
 
@@ -19,7 +19,7 @@ SRC_URI="
 	doc? ( http://www.${PN}.org/files/release/${SPV}/${PN}DocHtml-${PV}.tar.gz )"
 
 LICENSE="BSD LGPL-2"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
 SLOT="0"
 IUSE="
 	aqua boost cg doc examples imaging ffmpeg java mpi mysql odbc
@@ -65,7 +65,7 @@ RDEPEND="
 	mysql? ( virtual/mysql )
 	odbc? ( dev-db/unixODBC )
 	offscreen? ( media-libs/mesa[osmesa] )
-	postgres? ( dev-db/postgresql-base )
+	postgres? ( virtual/postgresql )
 	python? (
 		${PYTHON_DEPS}
 		dev-python/sip[${PYTHON_USEDEP}]

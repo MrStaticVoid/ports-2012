@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure
+DEPEND=>=dev-libs/efl-1.12.0_alpha1 vlc? ( >=media-video/vlc-2.0 )
+DESCRIPTION=Provides external applications as generic loaders for Evas
+EAPI=5
+HOMEPAGE=http://www.enlightenment.org/
+IUSE=debug +vlc
+KEYWORDS=~amd64 ~x86
+LICENSE=BSD-2
+RDEPEND=>=dev-libs/efl-1.12.0_alpha1 vlc? ( >=media-video/vlc-2.0 )
+SLOT=0
+SRC_URI=http://download.enlightenment.org/rel/libs/emotion_generic_players/emotion_generic_players-1.12.0-beta2.tar.bz2
+_md5_=2a2d0e6344cb31fbbb0fd30482b107cb

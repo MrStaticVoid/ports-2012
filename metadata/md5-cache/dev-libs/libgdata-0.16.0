@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
+DEPEND=>=net-misc/uhttpmock-0.3.1[vala?] >=dev-libs/glib-2.42.0:2 >=dev-libs/libxml2-2:2 >=net-libs/liboauth-0.9.4 >=net-libs/libsoup-2.48.0:2.4[introspection?] >=x11-libs/gdk-pixbuf-2.14:2 gnome? ( app-crypt/gcr:= >=net-libs/gnome-online-accounts-3.14.0 ) introspection? ( >=dev-libs/gobject-introspection-1.42.0 ) >=dev-util/gtk-doc-am-1.14 >=dev-util/intltool-0.40 >=gnome-base/gnome-common-3.6 virtual/pkgconfig vala? ( || ( dev-lang/vala:0.26[vapigen] dev-lang/vala:0.24[vapigen] dev-lang/vala:0.22[vapigen] dev-lang/vala:0.20[vapigen] ) ) app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=GLib-based library for accessing online service APIs using the GData protocol
+EAPI=5
+HOMEPAGE=https://wiki.gnome.org/Projects/libgdata
+IUSE=gnome +introspection static-libs vala debug
+KEYWORDS=*
+LICENSE=LGPL-2.1+
+RDEPEND=>=net-misc/uhttpmock-0.3.1[vala?] >=dev-libs/glib-2.42.0:2 >=dev-libs/libxml2-2:2 >=net-libs/liboauth-0.9.4 >=net-libs/libsoup-2.48.0:2.4[introspection?] >=x11-libs/gdk-pixbuf-2.14:2 gnome? ( app-crypt/gcr:= >=net-libs/gnome-online-accounts-3.14.0 ) introspection? ( >=dev-libs/gobject-introspection-1.42.0 )
+SLOT=0/13
+SRC_URI=mirror://gnome/sources/libgdata/0.16/libgdata-0.16.0.tar.xz
+_eclasses_=eutils	c91a1ac3fefc6b077094fb2e82c65af4	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	d6a3125760ce1a56efda628043f4acec	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	vala	2bf1ec3b2f1a106f663a481518fee7ab	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=ffef5cd436d8a621029fa189ef6d66ff

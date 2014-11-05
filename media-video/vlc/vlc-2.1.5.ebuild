@@ -41,7 +41,7 @@ fi
 IUSE="a52 aalib alsa altivec atmo +audioqueue avahi +avcodec
 	+avformat bidi bluray cdda cddb chromaprint dbus dc1394 debug dirac
 	directfb directx dts dvb +dvbpsi dvd dxva2 elibc_glibc egl +encode faad fdk
-	fluidsynth +ffmpeg flac fontconfig +gcrypt gme gnome gnutls
+	fluidsynth +ffmpeg flac fontconfig +gcrypt gles1 gles2 gme gnome gnutls
 	growl httpd ieee1394 ios-vout jack kate kde libass libcaca libnotify
 	libsamplerate libtiger linsys libtar lirc live lua +macosx
 	+macosx-audio +macosx-dialog-provider +macosx-eyetv +macosx-quartztext
@@ -86,6 +86,8 @@ RDEPEND="
 		gme? ( media-libs/game-music-emu:0 )
 		gnome? ( gnome-base/gnome-vfs:2 dev-libs/glib:2 )
 		gnutls? ( >=net-libs/gnutls-3.0.20:0 )
+		gles1? ( media-libs/mesa[gles1] )
+		gles2? ( media-libs/mesa[gles2] )
 		ieee1394? ( >=sys-libs/libraw1394-2.0.1:0 >=sys-libs/libavc1394-0.5.3:0 )
 		ios-vout? ( virtual/opengl:0 )
 		jack? ( >=media-sound/jack-audio-connection-kit-0.99.0-r1:0 )
@@ -240,8 +242,8 @@ src_prepare() {
 	# Fix up broken audio when skipping using a fixed reversed bisected commit.
 	epatch "${FILESDIR}"/${PN}-2.1.0-TomWij-bisected-PA-broken-underflow.patch
 
-	# vlc 2.2.x oss support backport
-	epatch "${FILESDIR}"/${PN}-2.1.5-oss_fix.patch
+	# VLC 2.2.x OSS Backport
+	epatch "${FILESDIR}/${PN}-2.1.5-oss-backport.patch"
 
 	# Disable avcodec checks when avcodec is not used.
 	sed -i 's/^#if LIBAVCODEC_VERSION_CHECK(.*)$/#if 0/' modules/codec/avcodec/fourcc.c || die
@@ -315,6 +317,8 @@ src_configure() {
 		$(use_enable faad) \
 		$(use_enable fdk fdkaac) \
 		$(use_enable flac) \
+		$(use_enable gles1) \
+		$(use_enable gles2) \
 		$(use_enable fluidsynth) \
 		$(use_enable fontconfig) \
 		$(use_enable gcrypt libgcrypt) \
@@ -407,8 +411,6 @@ src_configure() {
 		--disable-cprof \
 		--disable-crystalhd \
 		--disable-decklink \
-		--disable-gles1 \
-		--disable-gles2 \
 		--disable-goom \
 		--disable-ios-audio \
 		--disable-kai \

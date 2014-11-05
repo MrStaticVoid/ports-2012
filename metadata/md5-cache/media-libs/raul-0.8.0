@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=dev-libs/boost >=dev-libs/glib-2.14.0
 SLOT=0
 SRC_URI=http://download.drobilla.net/raul-0.8.0.tar.bz2
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402	waf-utils	c83d65d895bcdfc6152948bbafd25453
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	c91a1ac3fefc6b077094fb2e82c65af4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	waf-utils	c83d65d895bcdfc6152948bbafd25453
 _md5_=9137b03c6b950e92b2bcb7fd4eace4d0

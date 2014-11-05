@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure install
+DEPEND=>=dev-libs/efl-1.12.0_alpha1[X?,fbcon?,png,sdl?,wayland?] nls? ( sys-devel/gettext ) doc? ( app-doc/doxygen ) test? ( >=dev-libs/check-0.9.5 )
+DESCRIPTION=Basic widget set, based on EFL for mobile touch-screen devices
+EAPI=5
+HOMEPAGE=http://trac.enlightenment.org/e/wiki/Elementary
+IUSE=X debug doc examples fbcon nls quicklaunch sdl static-libs test wayland
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-2.1
+RDEPEND=>=dev-libs/efl-1.12.0_alpha1[X?,fbcon?,png,sdl?,wayland?] nls? ( sys-devel/gettext )
+RESTRICT=test
+SLOT=0
+SRC_URI=http://download.enlightenment.org/rel/libs/elementary/elementary-1.12.0-beta2.tar.bz2
+_eclasses_=eutils	c91a1ac3fefc6b077094fb2e82c65af4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_md5_=91d5787848343e8f8301bd3d336b8a8f

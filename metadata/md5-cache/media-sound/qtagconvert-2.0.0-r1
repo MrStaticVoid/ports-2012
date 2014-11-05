@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=dev-qt/qtgui:4
 SLOT=0
 SRC_URI=mirror://sourceforge/qtagconvert/qtagconvert-2.0.0.tar.gz
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	40136c5fe0002a0d3937e869ae4ee0e2	qt4-r2	118737d78407d7d0a6cdf4147b668ec3	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	c91a1ac3fefc6b077094fb2e82c65af4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	ff7bbc3348bb77814b5e2c227f9e4366	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=109a443539417002580c2ff5cb6baa69

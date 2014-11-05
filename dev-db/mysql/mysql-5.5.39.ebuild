@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.5.39.ebuild,v 1.10 2014/08/13 15:26:18 maekke Exp $
 
 EAPI="5"
 
@@ -19,7 +17,7 @@ IUSE="$IUSE"
 EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/mysql-extras.git"
 
 # REMEMBER: also update eclass/mysql*.eclass before committing!
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 ~s390 ~sh sparc x86 ~sparc-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
 # When MY_EXTRAS is bumped, the index should be revised to exclude these.
 EPATCH_EXCLUDE=''
@@ -65,7 +63,7 @@ src_test() {
 		export MTR_BUILD_THREAD="$((${RANDOM} % 100))"
 
 		# create directories because mysqladmin might right out of order
-		mkdir -p "${S}"/mysql-test/var-tests{,/log}
+		mkdir -p "${T}"/var-tests{,/log}
 
 		# create symlink for the tests to find mysql_tzinfo_to_sql
 		ln -s "${CMAKE_BUILD_DIR}/sql/mysql_tzinfo_to_sql" "${S}/sql/"
@@ -108,7 +106,7 @@ src_test() {
 		pushd "${TESTDIR}"
 
 		# run mysql-test tests
-		perl mysql-test-run.pl --force --vardir="${S}/mysql-test/var-tests" \
+		perl mysql-test-run.pl --force --vardir="${T}/var-tests" \
 			--testcase-timeout=30
 		retstatus_tests=$?
 		[[ $retstatus_tests -eq 0 ]] || eerror "tests failed"

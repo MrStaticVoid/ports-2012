@@ -8,5 +8,5 @@ LICENSE=BZIP2
 RDEPEND=abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224 !app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] )
 SLOT=0
 SRC_URI=http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
-_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	multibuild	56961ac06660a16c3f807c0c39247e4c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multilib-build	33cf1bd962e0f2dab1024a0f337be511	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=eutils	c91a1ac3fefc6b077094fb2e82c65af4	multibuild	757b75042dff1b26ecd28d67a6021b3f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multilib-build	33cf1bd962e0f2dab1024a0f337be511	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=28d9e0efc76f089d36fea9c97d4f9ff7

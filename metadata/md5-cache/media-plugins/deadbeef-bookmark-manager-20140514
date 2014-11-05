@@ -1,5 +1,5 @@
-DEFINED_PHASES=compile configure install unpack
-DEPEND=media-sound/deadbeef >=dev-vcs/git-1.8.2.1
+DEFINED_PHASES=compile configure install
+DEPEND=media-sound/deadbeef
 DESCRIPTION=DeaDBeeF bookmark manager plugin
 EAPI=5
 HOMEPAGE=https://github.com/cboxdoerfer/ddb_bookmark_manager
@@ -8,5 +8,6 @@ LICENSE=GPL-2
 RDEPEND=media-sound/deadbeef
 RESTRICT=mirror
 SLOT=0
-_eclasses_=deadbeef-plugins	4642fd447e9d157b4a8683f052cfa6b3	eutils	32548a82e42dc26e3312581476d2f20c	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=dac41d151a826909972cfcafc47156bf
+SRC_URI=https://github.com/cboxdoerfer/ddb_bookmark_manager/archive/ff827d577941481b1e6e360f87a254f50c524628.tar.gz -> deadbeef-bookmark-manager-20140514.tar.gz
+_eclasses_=deadbeef-plugins	7c8fe03766edd0d6acdc92e6fc07974d	eutils	c91a1ac3fefc6b077094fb2e82c65af4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_md5_=bc4b4a619e53dfdda739d80709b599fb

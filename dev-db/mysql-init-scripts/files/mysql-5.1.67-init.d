@@ -57,9 +57,15 @@ start() {
 	fi
 
 	if [ ! -d "${datadir}"/mysql ] ; then
-		eerror "You don't appear to have the mysql database installed yet."
-		eerror "Please configure mysql instance and install mysql database, using the following command:"
-		eerror "emerge --config dev-db/mysql"
+		# find which package is installed to report an error
+		local EROOT=$(portageq envvar EROOT)
+		local DBPKG_P=$(portageq match ${EROOT} $(portageq expand_virtual ${EROOT} virtual/mysql))
+		if [ -z ${DBPKG_P} ] ; then
+			eerror "You don't appear to have a server package installed yet."
+		else
+			eerror "You don't appear to have the mysql database installed yet."
+			eerror "Please run \`emerge --config =${DBPKG_P}\` to have this done..."
+		fi
 		return 1
 	fi
 
@@ -78,7 +84,7 @@ start() {
 	start-stop-daemon \
 		${DEBUG:+"--verbose"} \
 		--start \
-		--exec "${basedir}"/bin/mysqld_safe \
+		--exec "${basedir}"/sbin/mysqld \
 		--pidfile "${pidfile}" \
 		--background \
 		--wait ${startup_early_timeout} \
@@ -108,9 +114,8 @@ stop() {
 	start-stop-daemon \
 		${DEBUG:+"--verbose"} \
 		--stop \
-		--exec "${basedir}"/bin/mysqld_safe \
+		--exec "${basedir}"/sbin/mysqld \
 		--pidfile "${pidfile}" \
 		--retry ${stop_timeout}
 	eend $?
 }
-
