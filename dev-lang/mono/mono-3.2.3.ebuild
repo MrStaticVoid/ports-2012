@@ -1,8 +1,7 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.2.3.ebuild,v 1.2 2013/09/26 14:02:55 tomwij Exp $
 
 EAPI="5"
+
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 
 inherit eutils linux-info mono-env flag-o-matic pax-utils autotools-utils
@@ -14,7 +13,7 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
 
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
+KEYWORDS="~*"
 
 IUSE="nls minimal pax_kernel xen doc debug"
 
@@ -37,7 +36,7 @@ pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
 	# See http://bugs.gentoo.org/261869 for more info."
 	CONFIG_CHECK="SYSVIPC"
-	use kernel_linux && check_extra_config
+	use kernel_linux && nonfatal check_extra_config
 }
 
 pkg_setup() {

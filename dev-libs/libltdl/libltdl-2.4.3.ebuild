@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libltdl/libltdl-2.4.3.ebuild,v 1.1 2014/11/03 05:31:48 vapier Exp $
 
 EAPI="4"
 
@@ -14,12 +12,12 @@ SRC_URI="mirror://gnu/libtool/${MY_P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="*"
 IUSE="static-libs"
 # libltdl doesn't have a testsuite.
 RESTRICT="test"
 
-RDEPEND="!<sys-devel/libtool-2.4.3-r2:2
+RDEPEND="!<sys-devel/libtool-2.4.3-r2
 	abi_x86_32? (
 		!<=app-emulation/emul-linux-x86-baselibs-20140406-r2
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]

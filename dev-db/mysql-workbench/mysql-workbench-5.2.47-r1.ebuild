@@ -1,6 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-workbench/mysql-workbench-5.2.47-r1.ebuild,v 1.2 2013/09/01 13:10:15 ago Exp $
 
 EAPI=5
 GCONF_DEBUG="no"

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.16138 2014/11/05 09:30:38 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.16156 2014/11/11 09:53:51 eras Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,54 @@
 
 #--- END OF EXAMPLES ---
 
+# Eray Aslan <eras@gentoo.org> (11 Nov 2014)
+# Mask beta releases
+=net-proxy/squid-3.5*
+
+# Andreas K. Huettel <dilfridge@gentoo.org> (11 Nov 2014)
+# Mask for an initial testing period
+=app-text/poppler-0.28*
+
+# Ben de Groot <yngwin@gentoo.org> (7 Nov 2014)
+# Unmaintained, no longer supported, and starting to throw compilation
+# errors (bug #513906, bug #528372). Masked for removal in 30 days.
+# Update to lxqt-base/* packages.
+razorqt-base/razorqt-appswitcher
+razorqt-base/razorqt-autosuspend
+razorqt-base/razorqt-config
+razorqt-base/razorqt-data
+razorqt-base/razorqt-desktop
+razorqt-base/razorqt-kbshortcuts
+razorqt-base/razorqt-libs
+razorqt-base/razorqt-lightdm-greeter
+razorqt-base/razorqt-meta
+razorqt-base/razorqt-notifications
+razorqt-base/razorqt-openssh-askpass
+razorqt-base/razorqt-panel
+razorqt-base/razorqt-policykit
+razorqt-base/razorqt-power
+razorqt-base/razorqt-runner
+razorqt-base/razorqt-session
+
+# Manuel Rüger <mrueg@gentoo.org> (6 Nov 2014)
+# Unmaintained slot, move on to dev-ruby/prawn:1
+# Masked for removal in 30 days
+dev-ruby/prawn:0
+dev-ruby/prawn-security
+dev-ruby/prawn-layout
+dev-ruby/prawn-core
+
+# Manuel Rüger <mrueg@gentoo.org> (6 Nov 2014)
+# Use kde-base/oxygen-fonts instead
+# Masked for removal in 30 days
+media-fonts/oxygen-fonts
+
+# Ulrich Müller <ulm@gentoo.org> (5 Nov 2014)
+# Does not build with Emacs 24.4.
+# Last visible upstream activity in 2011.
+# Masked for removal in 30 days, bug #528374.
+app-emacs/csharp-mode
+
 # Samuli Suominen <ssuominen@gentoo.org> (05 Nov 2014)
 # ConsoleKit2 from github by Eric Koegel, auth of xfce4-power-manager
 # The ConsoleKit in freedesktop.org git won't be continued anymore,
@@ -57,9 +105,10 @@ dev-embedded/msp430mcu
 # Mask LXQt-0.8.0 release for testing
 # and until Qt5 is unmasked (bug #525410).
 =app-admin/lxqt-admin-0.8.0*
+=dev-libs/libqtxdg-1.0.0*
 =lxqt-base/liblxqt-0.8.0*
 =lxqt-base/liblxqt-mount-0.8.0*
-=lxqt-base/libsysstat-0.8.0*
+=lxqt-base/libsysstat-0.2.0*
 =lxqt-base/lxqt-about-0.8.0*
 =lxqt-base/lxqt-common-0.8.0*
 =lxqt-base/lxqt-config-0.8.0*
@@ -74,7 +123,6 @@ dev-embedded/msp430mcu
 =lxqt-base/lxqt-session-0.8.0*
 =media-gfx/lximage-qt-0.3.0*
 =net-misc/lxqt-openssh-askpass-0.8.0*
-=razorqt-base/libqtxdg-1.0.0*
 =x11-misc/obconf-qt-0.1.0_p20141029
 =x11-misc/pcmanfm-qt-0.8.0*
 
@@ -124,11 +172,6 @@ dev-perl/DateTime-Format-DateManip
 # Masked for removal in 30 days
 dev-perl/SVN-Mirror
 
-# Davide Pesavento <pesa@gentoo.org> (20 Oct 2014)
-# Does not build with any in-tree version of cmake since 20140713 (bug 506614).
-# Jabber plugin is broken (bug 464690). Masked for removal in 30 days.
-net-im/qutim
-
 # Rick Farina <zerochaos@gentoo.org> (19 Oct 2014)
 # Masked for removal on 19 Nov 2014, use sys-apps/hwids instead.
 net-misc/ieee-oui
@@ -155,11 +198,6 @@ net-misc/ieee-oui
 # No longer compatible with online service it depends on.
 # Dead upstream. Masked for removal in 30 days. Bug #451868.
 app-dicts/gnuvd
-
-# Andreas K. Huettel <dilfridge@gentoo.org> (13 Oct 2014)
-# Does not build with current CLucene (bug 420195); dead upstream.
-# No consumers in the tree. Masked for removal in 30 days.
-dev-perl/Lucene
 
 # Pacho Ramos <pacho@gentoo.org> (11 Oct 2014)
 # Masked for removal in a month.
@@ -353,27 +391,6 @@ rox-base/rox-media
 # Manuel Rüger <mrueg@gentoo.org> (11 Oct 2014)
 # Dead upstream use kde-misc/kcm-touchpad instead
 kde-misc/kcm_touchpad
-
-# Andreas K. Huettel <dilfridge@gentoo.org> (9 Oct 2014)
-# The sys-devel/libperl ebuild is only a dummy and will be removed
-# in 30 days; libperl is provided by dev-lang/perl.
-sys-devel/libperl
-
-# Andreas K. Huettel <dilfridge@gentoo.org> (9 Oct 2014)
-# Masked for removal in 30 days; see e.g. bug 446376
-# Please upgrade to stable Perl 5.18
-=dev-lang/perl-5.16.3
-=virtual/perl-ExtUtils-Install-1.580.0-r1
-=virtual/perl-File-Temp-0.220.0-r3
-=virtual/perl-I18N-LangTags-0.380.0
-=virtual/perl-Math-BigInt-1.998.0
-=virtual/perl-Math-BigRat-0.260.300
-=virtual/perl-Net-Ping-2.38
-=virtual/perl-Text-ParseWords-3.270.0-r1
-=virtual/perl-Thread-Queue-2.120.0-r3
-=virtual/perl-Version-Requirements-0.101.22
-=virtual/perl-threads-shared-1.400.0-r2
-perl-core/Version-Requirements
 
 # Brian Evans <grknight@gentoo.org> (8 Oct 2014)
 # Mask all versions of suhosin until upstream revival is sustained and tested
@@ -791,7 +808,7 @@ sys-fs/rdiff-backup-fs
 
 # Markos Chandras <hwoarang@gentoo.org> (08 Apr 2014)
 # Masked for futher testing with various pam setups
-=x11-misc/lightdm-1.11*
+=x11-misc/lightdm-1.12*
 
 # Gilles Dartiguelongue <eva@gentoo.org> (06 Apr 2014)
 # Old release, never stable, not working anymore
@@ -892,10 +909,6 @@ www-client/google-chrome:unstable
 # Monolithic dev-dotnet/{gnome,gtk}-sharp introduction mask, see bug #382491.
 >=dev-dotnet/gnome-sharp-2.24.2-r1
 >=dev-dotnet/gtk-sharp-2.12.21
-
-# Julian Ospald <hasufell@gentoo.org> (30 Dec 2013)
-# breaks every consumer
-=dev-games/ogre-1.9.0
 
 # Michał Górny <mgorny@gentoo.org> (15 Dec 2013)
 # Masked for testing due to almost complete redesign. It is now
@@ -1156,10 +1169,6 @@ games-simulation/stoned-bin
 games-sports/racer-bin
 games-strategy/dark-oberon
 games-strategy/savage-bin
-
-# MATSUU Takuto <matsuu@gentoo.org> (27 Oct 2011)
-# Mask for testing
->=sys-devel/distcc-3.2_rc1
 
 # Justin Bronder <jsbronder@gentoo.org> (27 Sep 2011)
 # Masking the torque 2.3 series due to bug #372959.  This allows

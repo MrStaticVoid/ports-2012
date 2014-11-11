@@ -103,6 +103,8 @@ _python_check_python_abi_matching() {
 			[[ "${PYTHON_ABI}" =~ ^[[:digit:]]+\.[[:digit:]]+$ && "${PYTHON_ABI}" == ${pattern%-cpython} ]]
 		elif [[ "${pattern}" == *"-jython" ]]; then
 			[[ "${PYTHON_ABI}" == ${pattern} ]]
+		elif [[ "${pattern}" == *"-pypy" ]]; then
+			[[ "${PYTHON_ABI}" == ${pattern}-* ]]
 		elif [[ "${pattern}" == *"-pypy-"* ]]; then
 			[[ "${PYTHON_ABI}" == ${pattern} ]]
 		else
@@ -141,15 +143,22 @@ _python_implementation() {
 	fi
 }
 
+# @ECLASS-VARIABLE: PYTHON_ABI_TYPE
+# @DESCRIPTION:
+# Specification of type of Python ABIs.
+#
+# Valid values:
+#   multiple
+
 _python_package_supporting_installation_for_multiple_python_abis() {
 	if has "${EAPI:-0}" 0 1 2 3 || { has "${EAPI:-0}" 4 5 && has "${PYTHON_ECLASS_API}" 0; }; then
-		if [[ -n "${PYTHON_MULTIPLE_ABIS}" || -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		if [[ "${PYTHON_ABI_TYPE}" == "multiple" || -n "${PYTHON_MULTIPLE_ABIS}" || -n "${SUPPORT_PYTHON_ABIS}" ]]; then
 			return 0
 		else
 			return 1
 		fi
 	else
-		if [[ -n "${PYTHON_MULTIPLE_ABIS}" ]]; then
+		if [[ "${PYTHON_ABI_TYPE}" == "multiple" || -n "${PYTHON_MULTIPLE_ABIS}" ]]; then
 			return 0
 		else
 			return 1
@@ -1410,7 +1419,7 @@ python_clean_installation_image() {
 
 if ! { has "${EAPI:-0}" 0 1 2 3 || { has "${EAPI:-0}" 4 5 && has "${PYTHON_ECLASS_API}" 0; }; }; then
 	if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-		eerror "Use PYTHON_MULTIPLE_ABIS variable instead of SUPPORT_PYTHON_ABIS variable."
+		eerror "Use PYTHON_ABI_TYPE=\"multiple\" variable instead of SUPPORT_PYTHON_ABIS variable."
 		die "SUPPORT_PYTHON_ABIS variable is banned"
 	fi
 	if [[ -n "${RESTRICT_PYTHON_ABIS}" ]]; then
@@ -1422,6 +1431,7 @@ fi
 # @ECLASS-VARIABLE: PYTHON_MULTIPLE_ABIS
 # @DESCRIPTION:
 # Set this to indicate that current package supports installation for multiple Python ABIs.
+# Deprecated in favor of PYTHON_ABI_TYPE="multiple".
 
 # @ECLASS-VARIABLE: PYTHON_RESTRICTED_ABIS
 # @DESCRIPTION:
@@ -1524,7 +1534,7 @@ _python_calculate_PYTHON_ABIS() {
 		fi
 	else
 		if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-			eerror "Use PYTHON_MULTIPLE_ABIS variable instead of SUPPORT_PYTHON_ABIS variable."
+			eerror "Use PYTHON_ABI_TYPE=\"multiple\" variable instead of SUPPORT_PYTHON_ABIS variable."
 			die "SUPPORT_PYTHON_ABIS variable is banned"
 		fi
 		if [[ -n "${RESTRICT_PYTHON_ABIS}" ]]; then

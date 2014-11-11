@@ -48,7 +48,7 @@ src_prepare() {
 		# 	http://pkgs.fedoraproject.org/cgit/gnome-terminal.git/tree/restore-transparency.patch?h=f20-gnome-3-12
 		epatch "${FILESDIR}"/${P}-restore-background-transparency-support.patch
 	fi
-	
+
 	epatch \
 		"${FILESDIR}"/${PN}-3.12.0-remove-set-title-feature-0.patch \
 		"${FILESDIR}"/${PN}-3.12.0-remove-set-title-feature-1.patch \
