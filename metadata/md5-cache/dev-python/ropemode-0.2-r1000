@@ -10,5 +10,5 @@ RDEPEND=>=dev-python/rope-0.9.4[python_abis_2.6?,python_abis_2.7?,python_abis_2.
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-pypy-2.0 )
 SLOT=0
 SRC_URI=mirror://pypi/r/ropemode/ropemode-0.2.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	98d2432956e2e80dc689fe2c52466233
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	30c4c4a44a6d54f73c9321f2d82a5056
 _md5_=6f5eca00c4551a5c4a5b1041db579c3b

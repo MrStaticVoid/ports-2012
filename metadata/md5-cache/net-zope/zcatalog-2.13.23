@@ -11,5 +11,5 @@ RDEPEND=net-zope/namespaces-zope[Products,python_abis_2.6?,python_abis_2.7?] dev
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 )
 SLOT=0
 SRC_URI=mirror://pypi/P/Products.ZCatalog/Products.ZCatalog-2.13.23.zip
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	98d2432956e2e80dc689fe2c52466233
+_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	30c4c4a44a6d54f73c9321f2d82a5056
 _md5_=a1f479d7ae7a935cdf73b2954a7e8c23
