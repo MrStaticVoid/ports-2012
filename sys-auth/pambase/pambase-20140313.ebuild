@@ -27,7 +27,7 @@ RDEPEND="
 	mktemp? ( sys-auth/pam_mktemp )
 	pam_krb5? (
 		|| ( >=sys-libs/pam-${MIN_PAM_REQ} sys-auth/openpam )
-		>=sys-auth/pam_krb5-4.3
+		sys-auth/pam_krb5
 		)
 	pam_ssh? ( sys-auth/pam_ssh )
 	passwdqc? ( >=sys-auth/pam_passwdqc-1.0.4 )
