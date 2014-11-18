@@ -19,7 +19,7 @@ HOMEPAGE="http://beets.radbox.org/ http://pypi.python.org/pypi/beets"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
 LICENSE="MIT"
-IUSE="beatport bpd chroma convert doc discogs echonest echonest_tempo lastgenre mpdstats replaygain test web"
+IUSE="beatport bpd chroma convert doc discogs echonest echonest_tempo fetchart lastgenre mpdstats replaygain test web"
 
 RDEPEND="
     dev-python/enum34[${PYTHON_USEDEP}]
@@ -36,6 +36,7 @@ RDEPEND="
 	doc? ( dev-python/sphinx )
 	echonest? ( dev-python/pyechonest[${PYTHON_USEDEP}] )
 	echonest_tempo? ( dev-python/pyechonest[${PYTHON_USEDEP}] )
+	fetchart? ( dev-python/requests[${PYTHON_USEDEP}] )
 	mpdstats? ( dev-python/python-mpd[${PYTHON_USEDEP}] )
 	lastgenre? ( dev-python/pylast[${PYTHON_USEDEP}] )
 	replaygain? ( || ( media-sound/mp3gain media-sound/aacgain ) media-libs/gstreamer:1.0 dev-python/pygobject:3[${PYTHON_USEDEP}] )
@@ -49,8 +50,8 @@ S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	# remove plugins that do not have appropriate dependencies installed
-	for flag in beatport bpd chroma convert discogs echonest echonest_tempo lastgenre \
-				mpdstats replaygain web;do
+	for flag in beatport bpd chroma convert discogs echonest echonest_tempo fetchart \
+				lastgenre mpdstats replaygain web;do
 		if ! use $flag ; then
 			rm -r beetsplug/${flag}.py || \
 			rm -r beetsplug/${flag}/ ||
