@@ -17,7 +17,7 @@ SRC_URI="mirror://mysql/Downloads/MySQLGUITools/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~*"
 IUSE="debug doc gnome-keyring nls static-libs"
 
 # Build system bundles an unreleased copy of dev-libs/antlr-c 3.4 so we

@@ -18,7 +18,7 @@ SRC_URI="mirror://mysql/Downloads/MySQLGUITools/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~*"
 IUSE="debug doc gnome-keyring"
 
 # glibc: deprecated mutex functions, removed in 2.36.0
@@ -69,6 +69,7 @@ src_prepare() {
 	## Patch CMakeLists.txt
 	epatch "${FILESDIR}/${PN}-6.2.3-CMakeLists.patch" \
 		"${FILESDIR}/${PN}-6.1.7-wbcopytables.patch" \
+                "${FILESDIR}/${PN}-6.1.7-glibfix.patch" \
 		"${FILESDIR}/${PN}-6.1.7-mysql_options4.patch"
 
 	## remove hardcoded CXXFLAGS

@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="Enlightenment DR19 window manager"
 HOMEPAGE="http://www.enlightenment.org/"
@@ -34,8 +34,8 @@ IUSE_E_MODULES=(
 IUSE="doc +eeze egl nls pam pm-utils static-libs systemd ukit wayland ${IUSE_E_MODULES[@]}"
 
 RDEPEND="
-	>=dev-libs/efl-1.10.0[X,egl?,wayland?]
-	>=media-libs/elementary-1.10.0
+	>=dev-libs/efl-1.11.0[X,egl?,wayland?]
+	>=media-libs/elementary-1.11.0
 	virtual/udev
 	x11-libs/libxcb
 	x11-libs/xcb-util-keysyms
@@ -53,6 +53,11 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
 S="${WORKDIR}/${P/_/-}"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-wayland-cflags.patch
+	eautoreconf
+}
 
 src_configure() {
 	local config=(
@@ -84,7 +89,7 @@ src_configure() {
 	done
 
 	if use wayland; then
-		config+=( --enable-enlightenment_modules_wl-desktop-shell )
+		config+=( --enable-wl-desktop-shell )
 	fi
 
 	econf "${config[@]}"

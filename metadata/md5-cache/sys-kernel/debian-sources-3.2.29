@@ -9,5 +9,5 @@ RDEPEND=binary? ( >=sys-kernel/genkernel-3.4.12.6-r4 )
 RESTRICT=binchecks strip mirror
 SLOT=3.2.29
 SRC_URI=http://build.funtoo.org/distfiles/debian-sources/linux_3.2.29.orig.tar.xz http://build.funtoo.org/distfiles/debian-sources//linux_3.2.29-1.debian.tar.xz
-_eclasses_=eutils	c91a1ac3fefc6b077094fb2e82c65af4	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=eutils	6faef4c127028ccbba3a11400d24ae34	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=bcff9fd18cadc745c2f36debc0d5f0c9

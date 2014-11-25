@@ -1,5 +1,5 @@
 DEFINED_PHASES=configure install prepare unpack
-DEPEND=>=dev-libs/dbus-glib-0.100 >=dev-libs/glib-2.40 dev-util/gdbus-codegen sys-apps/dbus:= >=sys-auth/polkit-0.110 introspection? ( dev-libs/gobject-introspection ) kernel_linux? ( virtual/libusb:1 virtual/libgudev:= virtual/udev ios? ( >=app-pda/libimobiledevice-1:= >=app-pda/libplist-1:= ) ) deprecated? ( >=sys-power/pm-utils-1.4.1-r2 ) doc? ( dev-util/gtk-doc ) dev-libs/gobject-introspection-common dev-libs/libxslt app-text/docbook-xsl-stylesheets dev-util/intltool virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.69 sys-devel/libtool dev-vcs/git virtual/pkgconfig
+DEPEND=>=dev-libs/dbus-glib-0.100 >=dev-libs/glib-2.40 dev-util/gdbus-codegen sys-apps/dbus:= >=sys-auth/polkit-0.110 introspection? ( dev-libs/gobject-introspection ) kernel_linux? ( virtual/libusb:1 virtual/libgudev:= virtual/udev ios? ( >=app-pda/libimobiledevice-1:= >=app-pda/libplist-1:= ) ) deprecated? ( >=sys-power/pm-utils-1.4.1-r2 ) doc? ( dev-util/gtk-doc ) dev-libs/gobject-introspection-common dev-libs/libxslt app-text/docbook-xsl-stylesheets dev-util/intltool virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 dev-vcs/git virtual/pkgconfig
 DESCRIPTION=D-Bus abstraction for enumerating power devices and querying history and statistics
 EAPI=5
 HOMEPAGE=http://upower.freedesktop.org/
@@ -8,5 +8,5 @@ KEYWORDS=-*
 LICENSE=GPL-2
 RDEPEND=>=dev-libs/dbus-glib-0.100 >=dev-libs/glib-2.40 dev-util/gdbus-codegen sys-apps/dbus:= >=sys-auth/polkit-0.110 introspection? ( dev-libs/gobject-introspection ) kernel_linux? ( virtual/libusb:1 virtual/libgudev:= virtual/udev ios? ( >=app-pda/libimobiledevice-1:= >=app-pda/libplist-1:= ) ) deprecated? ( >=sys-power/pm-utils-1.4.1-r2 ) doc? ( dev-util/gtk-doc )
 SLOT=0/3
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	eutils	c91a1ac3fefc6b077094fb2e82c65af4	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	systemd	b0daeef4b75b0130d34c62aa1930d21e	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=autotools	c118b9a8e93bfef124f2d7a2fe56a95e	eutils	6faef4c127028ccbba3a11400d24ae34	git-2	e28f0d8a9b321431b1e699782851b827	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	systemd	b0daeef4b75b0130d34c62aa1930d21e	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=f77e69d3725407f8f2fa1aa731398657

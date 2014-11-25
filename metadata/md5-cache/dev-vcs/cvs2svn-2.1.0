@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=>=dev-vcs/subversion-1.0.9 dev-vcs/rcs =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://cvs2svn.tigris.org/files/documents/1462/41596/cvs2svn-2.1.0.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	30c4c4a44a6d54f73c9321f2d82a5056
+_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	python	bcb91668438bbbf0e1b85e2db4e27ee9
 _md5_=17a30e21fa1a089ec1bb47a565037e17

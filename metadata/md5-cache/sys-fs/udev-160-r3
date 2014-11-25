@@ -10,5 +10,5 @@ PROVIDE=virtual/dev-manager
 RDEPEND=selinux? ( sys-libs/libselinux ) extras? ( sys-apps/acl >=sys-apps/usbutils-0.82 virtual/libusb:0 sys-apps/pciutils dev-libs/glib:2 >=dev-libs/gobject-introspection-0.6.9 ) introspection? ( >=dev-libs/gobject-introspection-0.6.9 ) !sys-apps/coldplug !<sys-fs/lvm2-2.02.45 !sys-fs/device-mapper >=sys-apps/baselayout-2.1.6
 SLOT=0
 SRC_URI=http://build.funtoo.org/distfiles/udev-160.tar.bz2
-_eclasses_=eutils	c91a1ac3fefc6b077094fb2e82c65af4	flag-o-matic	eda1c0b5ba85b3eeb555a071d69eb819	linux-info	2b8c53f6065bdee2d757472215a3088f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=eutils	6faef4c127028ccbba3a11400d24ae34	flag-o-matic	eda1c0b5ba85b3eeb555a071d69eb819	linux-info	2b8c53f6065bdee2d757472215a3088f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=4cac54d90d2290007cfc2d93396c5f80

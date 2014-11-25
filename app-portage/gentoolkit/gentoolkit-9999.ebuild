@@ -4,16 +4,14 @@
 
 EAPI="5-progress"
 PYTHON_DEPEND="<<[xml]>>"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="*-jython *-pypy-*"
+PYTHON_ABI_TYPE="multiple"
+PYTHON_RESTRICTED_ABIS="*-jython"
 PYTHON_NONVERSIONED_EXECUTABLES=(".*")
 
-EGIT_MASTER="gentoolkit"
-EGIT_BRANCH="gentoolkit"
-
-inherit distutils git-2
+inherit distutils git-r3
 
 EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/gentoolkit.git"
+EGIT_BRANCH="gentoolkit"
 
 DESCRIPTION="Collection of administration scripts for Gentoo"
 HOMEPAGE="http://www.gentoo.org/proj/en/portage/tools/index.xml"
@@ -31,7 +29,7 @@ RDEPEND="${DEPEND}
 	!<=app-portage/gentoolkit-dev-0.2.7
 	|| ( >=sys-apps/coreutils-8.15 sys-freebsd/freebsd-bin )
 	sys-apps/gawk
-	sys-apps/gentoo-functions
+	!prefix? ( sys-apps/gentoo-functions )
 	sys-apps/grep
 	$(python_abi_depend virtual/python-argparse)"
 

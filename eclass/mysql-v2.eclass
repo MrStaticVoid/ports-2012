@@ -332,7 +332,6 @@ fi
 
 # prefix: first need to implement something for #196294
 RDEPEND="${DEPEND}
-	!minimal? ( !prefix? ( dev-db/mysql-init-scripts ) )
 	selinux? ( sec-policy/selinux-mysql )
 "
 

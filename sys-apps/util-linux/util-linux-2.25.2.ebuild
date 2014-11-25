@@ -123,10 +123,10 @@ multilib_src_configure() {
 
 multilib_src_compile() {
 	if multilib_is_native_abi; then
-		default
+		emake -j1	
 	else
 		# build libraries only
-		emake -f Makefile -f - mylibs \
+		emake -j1 -f Makefile -f - mylibs \
 			<<< 'mylibs: $(usrlib_exec_LTLIBRARIES) $(pkgconfig_DATA)'
 	fi
 }
@@ -137,9 +137,9 @@ multilib_src_test() {
 
 multilib_src_install() {
 	if multilib_is_native_abi; then
-		default
+		emake -j1 DESTDIR="${D}" install
 	else
-		emake DESTDIR="${D}" install-usrlib_execLTLIBRARIES \
+		emake -j1 DESTDIR="${D}" install-usrlib_execLTLIBRARIES \
 			install-pkgconfigDATA install-uuidincHEADERS \
 			install-nodist_blkidincHEADERS install-nodist_mountincHEADERS \
 			install-nodist_smartcolsincHEADERS

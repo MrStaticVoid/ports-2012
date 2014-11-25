@@ -5,6 +5,6 @@ HOMEPAGE=http://www.xfce.org/
 IUSE=minimal +svg
 KEYWORDS=*
 LICENSE=metapackage
-RDEPEND=>=x11-themes/gtk-engines-xfce-3:0 x11-themes/hicolor-icon-theme >=xfce-base/xfce4-appfinder-4.10 >=xfce-base/xfce4-panel-4.10 >=xfce-base/xfce4-session-4.10 >=xfce-base/xfce4-settings-4.10 >=xfce-base/xfdesktop-4.10 >=xfce-base/xfwm4-4.10 >=xfce-base/thunar-1.6.3 >=xfce-extra/thunar-volman-0.8.0 >=x11-terms/xfce4-terminal-0.6.3 xfce-extra/xfce4-mixer app-cdr/xfburn !minimal? ( media-fonts/dejavu virtual/freedesktop-icon-theme ) svg? ( gnome-base/librsvg )
+RDEPEND=>=x11-themes/gtk-engines-xfce-3:0 x11-themes/hicolor-icon-theme >=xfce-base/xfce4-appfinder-4.10 >=xfce-base/xfce4-panel-4.10 >=xfce-base/xfce4-session-4.10 >=xfce-base/xfce4-settings-4.10 >=xfce-base/xfdesktop-4.10 >=xfce-base/xfwm4-4.10 >=xfce-base/thunar-1.6.3 >=xfce-extra/thunar-volman-0.8.0 >=x11-terms/xfce4-terminal-0.6.3 media-gfx/ristretto xfce-extra/xfce4-mixer app-cdr/xfburn !minimal? ( media-fonts/dejavu virtual/freedesktop-icon-theme ) svg? ( gnome-base/librsvg )
 SLOT=0
-_md5_=e70956cead8068f694a07d85d8df53ef
+_md5_=a84218ac69e8267f7b50c2d4a4f61860
