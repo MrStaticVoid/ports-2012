@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RESTRICT=binchecks strip mirror
 SLOT=3.14.15
 SRC_URI=http://build.funtoo.org/distfiles/linux_3.14.15.orig.tar.xz http://build.funtoo.org/distfiles/linux_3.14.15-2.debian.tar.xz
-_eclasses_=check-reqs	dae17c899997c54a71304df80f276c1b	eutils	c91a1ac3fefc6b077094fb2e82c65af4	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=check-reqs	dae17c899997c54a71304df80f276c1b	eutils	6faef4c127028ccbba3a11400d24ae34	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=b73adf8e72a7299c9f401574b5192fa0

@@ -9,5 +9,5 @@ LICENSE=LGPL-2.1
 RDEPEND=dev-python/numpy dev-lang/python
 SLOT=0
 SRC_URI=mirror://sourceforge/pyml/PyML-0.7.11.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	30c4c4a44a6d54f73c9321f2d82a5056
+_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	python	bcb91668438bbbf0e1b85e2db4e27ee9
 _md5_=4ed5b967e846bc975f1f782d62123719

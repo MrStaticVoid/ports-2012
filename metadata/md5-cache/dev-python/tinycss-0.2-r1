@@ -9,5 +9,5 @@ LICENSE=BSD
 RDEPEND=dev-python/lxml || ( =dev-lang/python-3.5* =dev-lang/python-3.4* =dev-lang/python-3.3* =dev-lang/python-3.2* =dev-lang/python-2.7* )
 SLOT=0
 SRC_URI=mirror://pypi/t/tinycss/tinycss-0.2.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	30c4c4a44a6d54f73c9321f2d82a5056
+_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	python	bcb91668438bbbf0e1b85e2db4e27ee9
 _md5_=1c40481a19e995e2b1135b9d0e65002c

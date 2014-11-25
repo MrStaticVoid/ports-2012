@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=dev-libs/glib-2.42.0:2 >=x11-libs/gtk+-3.14.0:3[X] x11-libs/vte:2.91 >=gnome-base/dconf-0.14 >=gnome-base/gconf-2.31.3 >=gnome-base/gsettings-desktop-schemas-3.14.0 sys-apps/util-linux x11-libs/libSM x11-libs/libICE gnome-shell? ( >=gnome-base/gnome-shell-3.14.0 ) nautilus? ( >=gnome-base/nautilus-3.14.0 ) app-text/yelp-tools dev-util/appdata-tools || ( dev-util/gtk-builder-convert <=x11-libs/gtk+-2.24.10:2 ) >=dev-util/intltool-0.50 sys-devel/gettext virtual/pkgconfig app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=The Gnome Terminal
+EAPI=5
+HOMEPAGE=https://wiki.gnome.org/Apps/Terminal/
+IUSE=debug +deprecated +gnome-shell +nautilus
+KEYWORDS=*
+LICENSE=GPL-3+
+RDEPEND=>=dev-libs/glib-2.42.0:2 >=x11-libs/gtk+-3.14.0:3[X] x11-libs/vte:2.91 >=gnome-base/dconf-0.14 >=gnome-base/gconf-2.31.3 >=gnome-base/gsettings-desktop-schemas-3.14.0 sys-apps/util-linux x11-libs/libSM x11-libs/libICE gnome-shell? ( >=gnome-base/gnome-shell-3.14.0 ) nautilus? ( >=gnome-base/nautilus-3.14.0 )
+SLOT=0
+SRC_URI=mirror://gnome/sources/gnome-terminal/3.14/gnome-terminal-3.14.1.tar.xz
+_eclasses_=eutils	6faef4c127028ccbba3a11400d24ae34	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	dc23ca03ca3a2955fc278238c1a0f4b1	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	readme.gentoo	106edea5533517715013de909a333abd	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=363be263492084de0e20e6d8159e8750

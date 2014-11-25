@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND==dev-lang/python-2*
 SLOT=0
 SRC_URI=http://download.gna.org/slune/Py2Play-0.1.10.tar.gz
-_eclasses_=distutils	555d63fd11e255896d25c40490fc0f07	python	30c4c4a44a6d54f73c9321f2d82a5056
+_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	python	bcb91668438bbbf0e1b85e2db4e27ee9
 _md5_=e3d893d83dc71eb43fe0464a7e3eadd9

@@ -82,7 +82,7 @@ KEYWORDS="*"
 
 RDEPEND="sys-libs/zlib nls? ( sys-devel/gettext ) virtual/libiconv"
 DEPEND="${RDEPEND} >=sys-devel/bison-1.875 >=sys-devel/flex-2.5.4 elibc_glibc? ( >=sys-libs/glibc-2.8 ) >=sys-devel/binutils-2.18"
-PDEPEND=">=sys-devel/gcc-config-1.5 elibc_glibc? ( >=sys-libs/glibc-2.8 )"
+PDEPEND=">=sys-devel/gcc-config-1.5 >=sys-devel/libtool-2.4.3 elibc_glibc? ( >=sys-libs/glibc-2.8 )"
 
 pkg_setup() {
 	unset GCC_SPECS # we don't want to use the installed compiler's specs to build gcc!

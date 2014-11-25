@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ming/ming-0.4.4-r1.ebuild,v 1.1 2014/11/09 17:58:40 zlogene Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ming/ming-0.4.4-r1.ebuild,v 1.4 2014/11/22 18:33:30 dilfridge Exp $
 
 EAPI=5
 
@@ -93,7 +93,7 @@ src_compile() {
 src_install() {
 	autotools-utils_src_install INSTALLDIRS="vendor"
 
-	fixlocalpod
+	perl_delete_localpod
 
 	use python && python_clean_installation_image
 
@@ -109,10 +109,9 @@ pkg_postinst() {
 }
 
 pkg_prerm() {
-	use perl && perl-module_pkg_prerm
+	:
 }
 
 pkg_postrm() {
-	use perl && perl-module_pkg_postrm
 	use python && python_mod_cleanup ming.py mingc.py
 }

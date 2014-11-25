@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.10.9-r2.ebuild,v 1.6 2014/11/18 02:45:27 zerochaos Exp $
 
-EAPI="5"
+EAPI="4"
 
 inherit linux-info mono eutils flag-o-matic multilib go-mono pax-utils
 
@@ -9,7 +11,7 @@ HOMEPAGE="http://www.mono-project.com/Main_Page"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 ppc ~ppc64 x86"
 
 IUSE="minimal pax_kernel xen"
 
@@ -42,7 +44,7 @@ pkg_setup() {
 			else
 				eerror "If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling."
 				eerror "See http://bugs.gentoo.org/261869 for more info."
-				die "Please set CONFIG_SYSVIPC in your kernel .config"
+				eerror "Please set CONFIG_SYSVIPC in your kernel .config if build fails."
 			fi
 		else
 			ewarn "Was unable to determine your kernel .config"

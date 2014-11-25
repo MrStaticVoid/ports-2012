@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=virtual/python-imaging || ( >=media-gfx/imagemagick-5.4.9 media-gfx/graphicsmagick[imagemagick] ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://gentoo/curator-3.0_pf078f1686a78.tar.xz
-_eclasses_=python	30c4c4a44a6d54f73c9321f2d82a5056
+_eclasses_=python	bcb91668438bbbf0e1b85e2db4e27ee9
 _md5_=81195f3ea83ccf7a10c387ea9e2082ef
