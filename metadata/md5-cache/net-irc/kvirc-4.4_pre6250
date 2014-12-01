@@ -10,5 +10,5 @@ RDEPEND=>=dev-qt/qtcore-4.6:4 >=dev-qt/qtgui-4.6:4 >=dev-qt/qtsql-4.6:4 sys-libs
 REQUIRED_USE=audiofile? ( oss ) theora? ( dcc_video )
 SLOT=4
 SRC_URI=http://people.apache.org/~Arfrever/gentoo/kvirc-4.4_pre6250.tar.xz
-_eclasses_=cmake-utils	45538b73614586305b3fdd978a3d11fa	eutils	6faef4c127028ccbba3a11400d24ae34	flag-o-matic	eda1c0b5ba85b3eeb555a071d69eb819	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	bcb91668438bbbf0e1b85e2db4e27ee9	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=cmake-utils	45538b73614586305b3fdd978a3d11fa	eutils	6faef4c127028ccbba3a11400d24ae34	flag-o-matic	eda1c0b5ba85b3eeb555a071d69eb819	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	28bc323c495f2a2710d389a73ab85893	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=867289d1543e4e4ed880ccb6b8a0e876

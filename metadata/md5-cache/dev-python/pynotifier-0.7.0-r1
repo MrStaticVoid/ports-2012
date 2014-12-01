@@ -9,5 +9,5 @@ LICENSE=LGPL-2
 RDEPEND=dev-python/twisted-core gtk? ( dev-python/pygobject:2 ) qt4? ( dev-python/PyQt4[X] ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://www.bitkipper.net/bytes/debian/dists/unstable/source/pynotifier_0.7.0.orig.tar.gz
-_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	python	bcb91668438bbbf0e1b85e2db4e27ee9
+_eclasses_=distutils	1d4421a318fd0c6baeb5c4ab29d35eb1	python	28bc323c495f2a2710d389a73ab85893
 _md5_=638ab8a75ea951a9fe8da76c12b1e54f
