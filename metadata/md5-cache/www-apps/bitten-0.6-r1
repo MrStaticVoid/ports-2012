@@ -9,5 +9,5 @@ LICENSE=BSD Apache-2.0
 RDEPEND=dev-python/setuptools server? ( www-apps/trac ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://ftp.edgewall.com/pub/bitten/Bitten-0.6.tar.gz
-_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	python	bcb91668438bbbf0e1b85e2db4e27ee9	user	f54e098dd38ba1c0847a13e685b87747
+_eclasses_=distutils	1d4421a318fd0c6baeb5c4ab29d35eb1	python	28bc323c495f2a2710d389a73ab85893	user	f54e098dd38ba1c0847a13e685b87747
 _md5_=b3a5e63a4ddb96ee03c9689ec80980c6

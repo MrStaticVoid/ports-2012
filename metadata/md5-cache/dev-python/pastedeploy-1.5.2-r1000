@@ -10,5 +10,5 @@ RDEPEND=dev-python/namespaces-paste[python_abis_2.6?,python_abis_2.7?,python_abi
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy python_abis_3.2-pypy )
 SLOT=0
 SRC_URI=mirror://pypi/P/PasteDeploy/PasteDeploy-1.5.2.tar.gz
-_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	python	bcb91668438bbbf0e1b85e2db4e27ee9
+_eclasses_=distutils	1d4421a318fd0c6baeb5c4ab29d35eb1	python	28bc323c495f2a2710d389a73ab85893
 _md5_=294d4c6166352fb05a2ca58a95daf53d

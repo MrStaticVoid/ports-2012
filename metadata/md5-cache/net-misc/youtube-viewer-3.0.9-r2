@@ -10,4 +10,4 @@ RDEPEND=>=dev-lang/perl-5.16.0 dev-perl/Data-Dump dev-perl/libwww-perl || ( medi
 SLOT=0
 SRC_URI=https://github.com/trizen/youtube-viewer/tarball/3.0.9 -> youtube-viewer-3.0.9.tar.gz
 _eclasses_=eutils	6faef4c127028ccbba3a11400d24ae34	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	perl-module	1efcef811fe61f2498568dac792b02ff	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	unpacker	f300a7ca9131b1024a79762e8edd3c52	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
-_md5_=93844d3db167dc552b6cd33b4027dc96
+_md5_=6eb94c7cb17755275a51e9f672a86b91

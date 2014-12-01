@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.20.10-r1.ebuild,v 1.15 2014/09/07 13:36:14 pacho Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -13,7 +11,7 @@ HOMEPAGE="http://live.gnome.org/GnomeDocUtils"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="*"
 
 IUSE=""
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -57,7 +55,7 @@ src_configure() {
 }
 
 src_compile() {
-	python_foreach_impl run_in_build_dir gnome2_src_compile
+	python_foreach_impl run_in_build_dir gnome2_src_compile -j1;
 }
 
 src_test() {
@@ -66,6 +64,6 @@ src_test() {
 
 src_install() {
 	dodoc AUTHORS ChangeLog NEWS README
-	python_foreach_impl run_in_build_dir gnome2_src_install
+	python_foreach_impl run_in_build_dir gnome2_src_install -j1;
 	python_replicate_script "${ED}"/usr/bin/xml2po
 }

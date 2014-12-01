@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=dev-python/lxml || ( www-apache/mod_wsgi www-servers/uwsgi ) sql? ( dev-python/sqlalchemy ) tools? ( net-dns/bind-tools ) tools? ( net-misc/wget ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://www.automx.org/download/automx-0.8.tar.gz
-_eclasses_=python	bcb91668438bbbf0e1b85e2db4e27ee9
+_eclasses_=python	28bc323c495f2a2710d389a73ab85893
 _md5_=0430349c7a30be038636eba09e70aa4b

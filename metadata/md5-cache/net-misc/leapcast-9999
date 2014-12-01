@@ -6,5 +6,5 @@ HOMEPAGE=https://github.com/dz0ny/leapcast
 LICENSE=MIT
 RDEPEND=dev-python/requests www-servers/tornado dev-lang/python
 SLOT=0
-_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	git-2	e28f0d8a9b321431b1e699782851b827	python	bcb91668438bbbf0e1b85e2db4e27ee9
+_eclasses_=distutils	1d4421a318fd0c6baeb5c4ab29d35eb1	git-2	e28f0d8a9b321431b1e699782851b827	python	28bc323c495f2a2710d389a73ab85893
 _md5_=132ae1f85c6a3f767c77cd45556823b1

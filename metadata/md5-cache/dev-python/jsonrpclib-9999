@@ -6,5 +6,5 @@ HOMEPAGE=https://github.com/joshmarshall/jsonrpclib
 LICENSE=Apache-2.0
 RDEPEND=dev-python/simplejson dev-lang/python
 SLOT=0
-_eclasses_=distutils	9a09d1a6e9bc858ef3314b04e22d1e0e	git-2	e28f0d8a9b321431b1e699782851b827	python	bcb91668438bbbf0e1b85e2db4e27ee9
+_eclasses_=distutils	1d4421a318fd0c6baeb5c4ab29d35eb1	git-2	e28f0d8a9b321431b1e699782851b827	python	28bc323c495f2a2710d389a73ab85893
 _md5_=adca6f850807fa3fb286f7f41aaa8f27

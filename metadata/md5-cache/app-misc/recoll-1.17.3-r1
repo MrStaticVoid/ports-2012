@@ -10,5 +10,5 @@ RDEPEND=virtual/libiconv >=dev-libs/xapian-1.0.12 sys-libs/zlib spell? ( app-tex
 REQUIRED_USE=^^ ( fam inotify ) session? ( || ( fam inotify ) )
 SLOT=0
 SRC_URI=http://www.lesbonscomptes.com/recoll/recoll-1.17.3.tar.gz
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	6faef4c127028ccbba3a11400d24ae34	linux-info	2b8c53f6065bdee2d757472215a3088f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	bcb91668438bbbf0e1b85e2db4e27ee9	qmake-utils	9e0174de733aecba0a7e66b2b01841d2	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	6faef4c127028ccbba3a11400d24ae34	linux-info	2b8c53f6065bdee2d757472215a3088f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	28bc323c495f2a2710d389a73ab85893	qmake-utils	9e0174de733aecba0a7e66b2b01841d2	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=7e596c5dd67fb81b922803368b594b9f
