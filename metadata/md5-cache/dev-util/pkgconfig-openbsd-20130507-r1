@@ -9,5 +9,5 @@ LICENSE=ISC
 RDEPEND=virtual/perl-Getopt-Long pkg-config? ( !dev-util/pkgconfig !dev-util/pkgconf[pkg-config] ) dev-lang/perl:=[-build(-)]
 SLOT=0
 SRC_URI=http://dev.gentoo.org/~ssuominen/pkgconfig-openbsd-20130507.tar.xz pkg-config? ( http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz )
-_eclasses_=eutils	6faef4c127028ccbba3a11400d24ae34	multibuild	757b75042dff1b26ecd28d67a6021b3f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multilib-build	33cf1bd962e0f2dab1024a0f337be511	multilib-minimal	fdbed344148ac0f8d4ba701ff95f99d8	multiprocessing	d7f2985a2c76c365ee20269db5261414	perl-module	1efcef811fe61f2498568dac792b02ff	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	unpacker	f300a7ca9131b1024a79762e8edd3c52
+_eclasses_=eutils	6faef4c127028ccbba3a11400d24ae34	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multilib-build	7342c532e8e2ced20e60fdb60ce8ff0d	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	multiprocessing	d7f2985a2c76c365ee20269db5261414	perl-module	fb242c520373682b7e3f8b6a5ba580cd	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac	unpacker	f300a7ca9131b1024a79762e8edd3c52
 _md5_=9999ef2896583da78bc9df80939ed881
