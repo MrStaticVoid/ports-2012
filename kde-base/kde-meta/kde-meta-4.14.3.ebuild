@@ -1,16 +1,16 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kde-meta/kde-meta-4.14.3.ebuild,v 1.1 2014/11/16 12:21:29 alexxy Exp $
 
 EAPI=5
 inherit kde4-meta-pkg
 
 DESCRIPTION="KDE - merge this to pull in all split kde-base/* packages"
-KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 IUSE="accessibility kdepim minimal nls sdk"
 
 RDEPEND="
 	$(add_kdebase_dep kate)
+	$(add_kdebase_dep kmail)
+	$(add_kdebase_dep kmix)
 	$(add_kdebase_dep kdeadmin-meta)
 	$(add_kdebase_dep kdeartwork-meta)
 	$(add_kdebase_dep kdebase-meta)
