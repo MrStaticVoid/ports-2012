@@ -1,7 +1,7 @@
 # Copyright 2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI=5
 
 GITHUB_USER="fearedbliss"
 GITHUB_REPO="bliss-boot"
@@ -26,7 +26,7 @@ RDEPEND="
 src_install() {
 	# Copy the main executable
 	exeinto "/opt/${PN}"
-	doexe bliss-boot
+	doexe "${PN}"
 
 	# Copy the libraries required by this executable
 	cp -r "${S}/libs" "${D}/opt/${PN}"
@@ -37,8 +37,8 @@ src_install() {
 	# Install default configuration file
 	local config="/etc/${PN}"
 
-	keepdir ${config}
-	insinto ${config}
+	keepdir "${config}"
+	insinto "${config}"
 	doins "${S}/defaults/config.py"
 
 	# Make a symbolic link: /sbin/bliss-boot

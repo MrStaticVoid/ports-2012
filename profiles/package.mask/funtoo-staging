@@ -1,17 +1,29 @@
-#FL-1874: xbmc with Debian patch set, masked for testing:
-=media-tv/xbmc-13.2-r1
+# FL-1956: debian kernel 3.16.7, masked for testing
+=sys-kernel/debian-sources-3.16.7
 
-# FL-696: FL-1314: FL-1310":
+# FL-1924 add ati-drivers-14.12 masked for testing
+=x11-drivers/ati-drivers-14.12-r2
+
+#FL-1767: add bluez-5.27, masked for testing
+=net-wireless/bluez-5.27
+
+#FL-1783: sync gentoo eclasses and add mariadb-10.0.15-r1 test need to move it to stable. This should fix FL-1664 aswell
+=dev-db/mariadb-10.0.15-r1
+
+# FL-1761: new rebased Portage, needs a lot of testing
+>=sys-apps/portage-2.3.7
+
+# FL-696: FL-1314: FL-1310: FL-1920:
 # masked xorg for new-design opengl
->xorg-base/xorg-server-1.16.1-r1
-
+>app-admin/eselect-opengl-1.2.7
+>app-emulation/emul-linux-x86-opengl-20140508
+>media-libs/mesa-10.3.5
+>x11-base/xorg-server-1.16.1-r2
+>x11-proto/glproto-1.4.17
 
 # FL-1729: eudev update, this ebuild masked, kernel older 2.6.39 version unsupported
 # openvz require older version of eudev and kmod
 =sys-fs/eudev-2.1.1
-
-# FL-1376: thrift ebuild, masked for testing
-=dev-libs/thrift-0.9.1
 
 # grass-6.4.4 with wxpython GUI, masked for testing:
 =sci-geosciences/grass-6.4.4
@@ -25,12 +37,6 @@
 # masked for testing:
 =sys-fs/lvm2-2.02.111
 
-# dhcpcd update, masked for testing
->=net-misc/dhcpcd-6.6.0
-
-# masked for testing
-=net-dns/openresolv-3.6.1
-
 # FL-1716 kmod update
 =sys-apps/kmod-19
 
@@ -38,10 +44,3 @@
 # Masked for testing
 # Ref FL-1483
 >=net-libs/rb_libtorrent-1.0.1
-
-# Dantrell B. (14 Aug 2014)
-# Masked for testing
-# Ref FL-1106
->=sys-apps/openrc-0.12.4
-
-

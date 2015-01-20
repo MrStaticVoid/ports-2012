@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-99999999.ebuild,v 1.4 2014/11/13 01:09:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-99999999.ebuild,v 1.7 2015/01/20 08:17:42 jer Exp $
 
 EAPI=5
 inherit autotools eutils fcaps git-r3 multilib qt4-r2 user
@@ -14,7 +14,7 @@ SLOT="0/${PV}"
 KEYWORDS=""
 IUSE="
 	adns +caps crypt doc doc-pdf geoip +gtk3 ipv6 kerberos lua +netlink +pcap
-	portaudio +qt4 qt5 selinux smi sse4_2 ssl zlib
+	portaudio +qt4 qt5 sbc selinux smi sse4_2 ssl zlib
 "
 REQUIRED_USE="
 	ssl? ( crypt )
@@ -25,7 +25,6 @@ GTK_COMMON_DEPEND="
 	x11-libs/gdk-pixbuf
 	x11-libs/pango
 	x11-misc/xdg-utils
-	virtual/freedesktop-icon-theme
 "
 CDEPEND="
 	>=dev-libs/glib-2.14:2
@@ -54,6 +53,7 @@ CDEPEND="
 		dev-qt/qtwidgets:5
 		x11-misc/xdg-utils
 	)
+	sbc? ( media-libs/sbc )
 	smi? ( net-libs/libsmi )
 	ssl? ( net-libs/gnutls )
 	zlib? ( sys-libs/zlib !=sys-libs/zlib-1.2.4 )
@@ -79,6 +79,9 @@ DEPEND="
 "
 RDEPEND="
 	${CDEPEND}
+	gtk3? ( virtual/freedesktop-icon-theme )
+	qt4? ( virtual/freedesktop-icon-theme )
+	qt5? ( virtual/freedesktop-icon-theme )
 	selinux? ( sec-policy/selinux-wireshark )
 "
 
@@ -152,6 +155,7 @@ src_configure() {
 		$(use_with qt5) \
 		$(usex qt5 MOC=/usr/$(get_libdir)/qt5/bin/moc '') \
 		$(usex qt5 UIC=/usr/$(get_libdir)/qt5/bin/uic '') \
+		$(use_with sbc) \
 		$(use_with smi libsmi) \
 		$(use_with ssl gnutls) \
 		$(use_with zlib) \

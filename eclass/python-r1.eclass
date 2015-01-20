@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python-r1.eclass,v 1.80 2014/12/07 19:15:19 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python-r1.eclass,v 1.84 2015/01/13 21:35:29 mgorny Exp $
 
 # @ECLASS: python-r1
 # @MAINTAINER:
@@ -247,8 +247,8 @@ _python_validate_useflags() {
 # are both in PYTHON_COMPAT and match any of the patterns passed
 # as parameters to the function.
 #
-# Remember to escape or quote the patterns to premature evaluation as a file
-# name glob.
+# Remember to escape or quote the patterns to prevent shell filename
+# expansion.
 #
 # When all implementations are requested, please use ${PYTHON_USEDEP}
 # instead. Please also remember to set an appropriate REQUIRED_USE
@@ -724,23 +724,69 @@ python_foreach_impl() {
 python_parallel_foreach_impl() {
 	debug-print-function ${FUNCNAME} "${@}"
 
+	if [[ ! ${_PYTHON_PARALLEL_WARNED} ]]; then
+		eqawarn "python_parallel_foreach_impl() is no longer meaningful. All runs"
+		eqawarn "are non-parallel now. Please replace the call with python_foreach_impl."
+
+		_PYTHON_PARALLEL_WARNED=1
+	fi
+
 	local MULTIBUILD_VARIANTS
 	_python_obtain_impls
 	multibuild_foreach_variant _python_multibuild_wrapper "${@}"
 }
 
 # @FUNCTION: python_setup
+# @USAGE: [<impl-pattern>...]
 # @DESCRIPTION:
-# Find the best (most preferred) Python implementation enabled
-# and set the Python build environment up for it.
+# Find the best (most preferred) Python implementation that is enabled
+# and matches at least one of the patterns passed (or '*' if no patterns
+# passed). Set the Python build environment up for that implementation.
 #
 # This function needs to be used when Python is being called outside
 # of python_foreach_impl calls (e.g. for shared processes like doc
 # building). python_foreach_impl sets up the build environment itself.
+#
+# If the specific commands support only a subset of Python
+# implementations, patterns need to be passed to restrict the allowed
+# implementations.
+#
+# Example:
+# @CODE
+# DEPEND="doc? ( dev-python/epydoc[$(python_gen_usedep 'python2*')] )"
+#
+# src_compile() {
+#   #...
+#   if use doc; then
+#     python_setup 'python2*'
+#     make doc
+#   fi
+# }
+# @CODE
 python_setup() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	python_export_best
+	local best_impl patterns=( "${@-*}" )
+	_python_try_impl() {
+		local pattern
+		for pattern in "${patterns[@]}"; do
+			if [[ ${EPYTHON} == ${pattern} ]]; then
+				best_impl=${EPYTHON}
+			fi
+		done
+	}
+	python_foreach_impl _python_try_impl
+
+	if [[ ! ${best_impl} ]]; then
+		eerror "${FUNCNAME}: none of the enabled implementation matched the patterns."
+		eerror "  patterns: ${@-'(*)'}"
+		eerror "Likely a REQUIRED_USE constraint (possibly USE-conditional) is missing."
+		eerror "  suggested: || ( \$(python_gen_useflags ${@}) )"
+		eerror "(remember to quote all the patterns with '')"
+		die "${FUNCNAME}: no enabled implementation satisfy requirements"
+	fi
+
+	python_export "${best_impl}" EPYTHON PYTHON
 	python_wrapper_setup
 }
 
@@ -752,6 +798,9 @@ python_setup() {
 # EPYTHON & PYTHON will be exported.
 python_export_best() {
 	debug-print-function ${FUNCNAME} "${@}"
+
+	eqawarn "python_export_best() is deprecated. Please use python_setup instead,"
+	eqawarn "combined with python_export if necessary."
 
 	[[ ${#} -gt 0 ]] || set -- EPYTHON PYTHON
 

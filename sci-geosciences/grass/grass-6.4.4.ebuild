@@ -1,6 +1,7 @@
-EAPI=4
-
-PYTHON_DEPEND="python? 2"
+EAPI="5-progress"
+PYTHON_ABI_TYPE="single"
+PYTHON_DEPEND="python? ( <<>> )"
+PYTHON_RESTRICTED_ABIS="3.* *-jython *-pypy"
 WANT_AUTOCONF="2.1"
 
 inherit eutils gnome2 multilib python versionator wxwidgets autotools
@@ -39,12 +40,12 @@ RDEPEND="
 		virtual/opengl
 	)
 	png? ( media-libs/libpng )
-	postgres? ( >=dev-db/postgresql-base-8.4 )
+	postgres? ( >=dev-db/postgresql-8.4 )
 	readline? ( sys-libs/readline )
 	sqlite? ( dev-db/sqlite:3 )
 	tiff? ( media-libs/tiff )
 	truetype? ( media-libs/freetype:2 )
-	wxwidgets? ( >=dev-python/wxpython-2.8.10.1[cairo,opengl?] )
+	wxwidgets? ( $(python_abi_depend "=dev-python/numpy-1.8.2-r1000" ">=dev-python/wxpython-2.8.10.1[cairo,opengl?]") )
 	X? (
 		x11-libs/libICE
 		x11-libs/libSM
@@ -112,10 +113,7 @@ pkg_setup() {
 		fi
 	fi
 
-	if use python; then
-		# only py2 is supported
-		python_set_active_version 2
-	fi
+	python_pkg_setup
 }
 
 src_prepare() {
@@ -126,19 +124,14 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf TCL_LIBDIR
+	local myconf 
 
 	if use X; then
-		. /usr/lib/tclConfig.sh
-		TCL_LIBDIR="/usr/$(get_libdir)/tcl$TCL_VERSION"
 		myconf+="
-			--with-tcltk-libs=${TCL_LIBDIR}
 			$(use_with motif)
 			$(use_with opengl)
 			--with-x
 			"
-
-		use opengl && myconf+=" --with-tcltk"
 		use motif && use opengl && myconf+=" --with-glw"
 		use motif || myconf+=" --without-glw"
 
@@ -149,13 +142,6 @@ src_configure() {
 			myconf+="
 				--without-tcltk
 				--with-wxwidgets=${WX_CONFIG}
-			"
-		else
-			WX_BUILD=no
-			# use tcl gui if wxwidgets are disabled
-			myconf+="
-				--with-tcltk
-				--without-wxwidgets
 			"
 		fi
 	else
@@ -208,11 +194,11 @@ src_configure() {
 src_compile() {
 	# we don't want to link against embeded mysql lib
 	# working around the fucked up build system
-	emake MYSQLDLIB="" || true
+	emake -j1 MYSQLDLIB="" || true
 }
 
 src_install() {
-	emake DESTDIR="${D}" \
+	emake -j1 DESTDIR="${D}" \
 		INST_DIR="${D}"/usr/${MY_PM} \
 		prefix="${D}"/usr BINDIR="${D}"/usr/bin \
 		PREFIX="${D}"/usr/ \
@@ -260,6 +246,8 @@ src_install() {
 			-e "1,\$s:^DEFAULT_GUI.*:DEFAULT_GUI=\"wxpython\":" \
 			"${ED}"/usr/$(get_libdir)/${MY_PM}/etc/Init.sh || die
 	fi
+	# set a correct python version
+	sed -e "s:GRASS_PYTHON=python:GRASS_PYTHON=$(PYTHON -a):" -i "${ED}usr/$(get_libdir)/${MY_PM}/etc/Init.sh" || die "sed failed"
 
 	# get proper folder for grass path in script
 	sed -i \
@@ -283,6 +271,7 @@ src_install() {
 
 	# fix weird +x on tcl scripts
 	find "${D}" -name "*.tcl" -exec chmod +r-x '{}' \;
+	python_convert_shebangs -r "${PYTHON_ABI}" "${ED}"
 }
 
 pkg_postinst() {

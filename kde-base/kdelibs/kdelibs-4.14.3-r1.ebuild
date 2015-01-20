@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-4.14.3-r1.ebuild,v 1.2 2014/12/11 12:19:57 zlogene Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-4.14.3-r1.ebuild,v 1.4 2014/12/31 12:37:06 kensington Exp $
 
 EAPI=5
 
@@ -33,7 +33,7 @@ COMMONDEPEND="
 	app-text/docbook-xml-dtd:4.2
 	app-text/docbook-xsl-stylesheets
 	>=dev-libs/libattica-0.4.2
-	>=dev-libs/libdbusmenu-qt-0.3.2
+	>=dev-libs/libdbusmenu-qt-0.3.2[qt4(+)]
 	dev-libs/libpcre[unicode]
 	dev-libs/libxml2
 	dev-libs/libxslt
@@ -117,7 +117,7 @@ PDEPEND="
 	handbook? (
 		|| (
 			$(add_kdebase_dep khelpcenter)
-			kde-base/khelpcenter:5[compat(+)]
+			kde-plasma/khelpcenter:5[compat(+)]
 		)
 	)
 	nepomuk? (

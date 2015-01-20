@@ -4,8 +4,8 @@ EAPI="5"
 
 inherit autotools deadbeef-plugins git-r3
 
-GITHUB_USERNAME="Jerry-Ma"
-GITHUB_REPOSITORY="DeaDBeeF-MPRIS-plugin"
+GITHUB_USERNAME="Serranya"
+GITHUB_REPOSITORY="deadbeef-mpris2-plugin"
 
 DESCRIPTION="DeaDBeeF MPRIS plugin"
 HOMEPAGE="https://github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY}"
@@ -15,8 +15,8 @@ LICENSE="GPL-3"
 KEYWORDS=""
 IUSE=""
 
-src_prepare(){
-	epatch "${FILESDIR}/${PN}-makefile.patch"
+S="${WORKDIR}/${P}"
 
+src_prepare() {
 	eautoreconf
 }

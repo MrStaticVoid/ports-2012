@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999.ebuild,v 1.176 2014/11/04 09:48:43 aballier Exp $
 
 EAPI="5"
 
@@ -35,7 +37,7 @@ FFMPEG_REVISION="${PV#*_p}"
 LICENSE="GPL-2 amr? ( GPL-3 ) encode? ( aac? ( GPL-3 ) ) samba? ( GPL-3 )"
 SLOT="0/${FFMPEG_SUBSLOT}"
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~*"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 fi
 IUSE="
 	aac aacplus alsa amr amrenc bindist bluray bs2b +bzip2 cdio celt
@@ -43,8 +45,8 @@ IUSE="
 	fribidi gme	gnutls gsm +hardcoded-tables +iconv iec61883 ieee1394 jack
 	jpeg2k ladspa libass libcaca libsoxr libv4l lzma modplug mp3 +network
 	openal opengl openssl opus oss pic pulseaudio quvi rtmp samba schroedinger
-	sdl speex ssh static-libs test theora +threads truetype twolame v4l vaapi
-	vdpau vorbis vpx wavpack webp X x264 x265 xvid +zlib zvbi
+	sdl speex ssh static-libs test theora threads truetype twolame v4l vaapi
+	vdpau vorbis vpx wavpack webp X x264 x265 xcb xvid +zlib zvbi
 	"
 
 ARM_CPU_FEATURES="armv5te armv6 armv6t2 neon armvfp:vfp"
@@ -148,6 +150,7 @@ RDEPEND="
 		>=x11-libs/libXfixes-5.0.1[${MULTILIB_USEDEP}]
 		>=x11-libs/libXv-1.0.10[${MULTILIB_USEDEP}]
 	)
+	xcb? ( x11-libs/libxcb[${MULTILIB_USEDEP}] )
 	zlib? ( >=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}] )
 	zvbi? ( >=media-libs/zvbi-0.2.35[${MULTILIB_USEDEP}] )
 	!media-video/qt-faststart
@@ -165,7 +168,7 @@ DEPEND="${RDEPEND}
 	mmx? ( >=dev-lang/yasm-1.2 )
 	rtmp? ( >=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}] )
 	schroedinger? ( >=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}] )
-	test? ( net-misc/wget )
+	test? ( net-misc/wget sys-devel/bc )
 	truetype? ( >=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}] )
 	v4l? ( sys-kernel/linux-headers )
 "
@@ -202,7 +205,7 @@ multilib_src_configure() {
 	local ffuse=(
 		bzip2:bzlib cpudetection:runtime-cpudetect debug doc
 		gnutls hardcoded-tables iconv lzma network openssl samba:libsmbclient
-		sdl:ffplay vaapi vdpau X:xlib zlib
+		sdl:ffplay vaapi vdpau X:xlib xcb:libxcb xcb:libxcb-shm xcb:libxcb-xfixes zlib
 	)
 	use openssl && myconf+=( --enable-nonfree )
 	use samba && myconf+=( --enable-version3 )
@@ -286,7 +289,7 @@ multilib_src_configure() {
 	# We need to do this so that features of that CPU will be better used
 	# If they contain an unknown CPU it will not hurt since ffmpeg's configure
 	# will just ignore it.
-	for i in $(get-flag march) $(get-flag mcpu) $(get-flag mtune) ; do
+	for i in $(get-flag mcpu) $(get-flag mtune) $(get-flag march) ; do
 		[[ ${i} = native ]] && i="host" # bug #273421
 		myconf+=( --cpu=${i} )
 		break
