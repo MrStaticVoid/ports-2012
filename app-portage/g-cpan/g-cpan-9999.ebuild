@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/g-cpan-9999.ebuild,v 1.1 2014/12/14 00:33:42 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/g-cpan-9999.ebuild,v 1.4 2014/12/20 17:48:51 dilfridge Exp $
 
 EAPI=5
 
@@ -10,8 +10,7 @@ if [[ ${PV} == "9999" ]] ; then
 	inherit git-r3
 	SRC_URI=""
 else
-	SRC_URI="mirror://gentoo/${P}.tar.gz
-			 http://dev.gentoo.org/~chainsaw/distfiles/${P}.tar.gz"
+	SRC_URI="http://dev.gentoo.org/~dilfridge/distfiles/${P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
 
@@ -22,11 +21,14 @@ LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
 IUSE=""
 
-DEPEND="dev-lang/perl
-		>=dev-perl/yaml-0.60
-		dev-perl/Shell-EnvImporter
-		dev-perl/Log-Agent"
-RDEPEND="${DEPEND}"
+DEPEND="
+	>=dev-perl/yaml-0.60
+	>=dev-perl/Shell-EnvImporter-1.70.0-r2
+	dev-perl/Log-Agent
+"
+RDEPEND="${DEPEND}
+	>=sys-apps/portage-2.0.0
+"
 
 src_install() {
 		perl-module_src_install

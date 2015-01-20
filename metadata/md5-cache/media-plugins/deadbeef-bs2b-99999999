@@ -7,5 +7,5 @@ LICENSE=MIT
 RDEPEND=media-libs/libbs2b media-sound/deadbeef
 RESTRICT=mirror
 SLOT=0
-_eclasses_=deadbeef-plugins	7c8fe03766edd0d6acdc92e6fc07974d	eutils	6faef4c127028ccbba3a11400d24ae34	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=deadbeef-plugins	fcf86464a6498f22afc89f782815b911	eutils	998e5931fb95b10a6a11ec796ada2759	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=459dd4f890e2d98e425bacff6105ee22

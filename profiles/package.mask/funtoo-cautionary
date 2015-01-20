@@ -1,3 +1,31 @@
+# FL-2020, FL-2015, mask very latest libevent, breaks packages.
+>dev-libs/libevent-2.0.22
+
+# FL-1937
+# Cautionary mask dev-lang/swig-3.0.3, failures reported.
+>dev-lang/swig-3.0.2
+
+# Protect newest automake and autoconf
+>sys-devel/automake-1.14.1
+>sys-devel/autoconf-2.69
+
+
+# Protect against beta OpenRC
+>=sys-apps/openrc-0.12.4
+
+# mask latest nfs-utils, there is major change in netmount/nfsmount in latest openrc. nfs-utils using new scripts and has higher openrc dependency. This can be removed with openrc update
+
+>net-fs/nfs-utils-1.3.0-r1
+
+# FL-1884: mask oracle java-1.8, brings incompatibility:
+>dev-java/oracle-jdk-bin-1.7.0.72
+>dev-java/oracle-jre-bin-1.7.0.72
+>virtual/jdk-1.7.0-r1
+>virtual/jre-1.7.0-r1
+
+# FL-1880: mask handbrake, higher than 0.9.9
+>media-video/handbrake-0.9.9-r1
+
 # FL-1855, mask usbutils-008, until we sort udev failure.
 
 >sys-apps/usbutils-007
@@ -37,14 +65,6 @@ app-benchmarks/phoronix-test-suite
 # Not currently maintained, last commit near 1 yr ago
 # ZFSOnLinux is a muche more viable and mature replacement 
 sys-fs/zfs-fuse
-
-# Ryan Harris (20 June 2012)
-# mask automake-1.12.1 due to multiple failures 
-# Ref b.g.o.# 421465
-# Oleg Vinichenko (16 Apr 2013)
-# 1.12 now pretty safe to use, we will keep 1.13 masked FL-499
-# Oleg Vinichenko (8 Sep 2013) FL-710, stabilize automake-1.13.4
->sys-devel/automake-1.13.4
 
 # Oleg Vinichenko (4 Nov 2012)
 # mask dangerous baselayout-2.2.0-r2

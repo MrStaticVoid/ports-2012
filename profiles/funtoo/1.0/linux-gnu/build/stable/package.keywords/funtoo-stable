@@ -1,3 +1,34 @@
+# stabilize, xdebug-2.2.5. Ebuild now merged from gentoo-x86
+=dev-php/xdebug-2.2.5 amd64 x86
+
+# FL-1952: stabilize lbfm-1.2.3, pcmanfm-1.2.3:
+=x11-libs/libfm-1.2.3 amd64 86
+=x11-misc/pcmanfm-1.2.3 amd64 x86
+=lxde-base/lxde-meta-0.5.5-r4 amd64 x86
+
+# Stabilize ffmpeg-2.2* until it is stable in gentoo-x86.
+=media-video/ffmpeg-2.2* amd64 x86
+
+# stabilize youtube-dl. Very often this package beome outdated, because of frequent changes on different sites
+=net-misc/youtube-dl-2015* amd64 x86
+
+# Stabilize gnutls-3.3.10-r2 until https://bugs.gentoo.org/show_bug.cgi?id=492522 is fixed.
+=net-libs/gnutls-3.3.10-r2 amd64 x86
+
+# Stabilize shorewall-4.6* until it is stable in gentoo-x86.
+=net-firewall/shorewall-4.6* amd64 x86
+
+# FL-1673: unfork hexchat, perl checks now fixed upstream. set stable keywords.
+
+=net-irc/hexchat-2.10.2 amd64 x86
+
+# FL-1863: make arm stable. This keywording entry can be deleted after https://bugs.gentoo.org/show_bug.cgi?id=531970 fixed
+
+=net-misc/arm-1.4.5.0-r2 amd64 x86
+
+# FL-318, unfork genlop, Funtoo changes now merged upstream, set kaywords to make stable users happy aswell
+=app-portage/genlop-0.30.10 amd64 x86
+
 # FL-1875: stablize mediastreamer, which correctly builds with ffmpeg-2.2. Require ortp keywording aswell
 
 =media-libs/mediastreamer-2.9.0 amd64 x86
@@ -19,15 +50,6 @@
 # stabilize libpipeline to make recently added man-db-2.7.0.2 build
 =dev-libs/libpipeline-1.4.0 amd64 x86
 
-#FL-1327, stabilize packages to fix stable metro builds. There're more packages in list. These 3 supposed to fix a stage builds only, latter can be expan#ded
-=sys-devel/flex-2.5.39-r1 amd64 x86
-=sys-libs/db-4.8.30-r1 amd64 x86 
-=virtual/libintl-0-r1 amd64 x86 
-=net-misc/curl-7.37.0 amd64 x86 arm
-
-# stabilize pkgconf
-=dev-util/pkgconf-0.9.3-r1 amd64 x86 
-
 # FL-1083:
 # unfork and stabilize tcp-wrappers
 =sys-apps/tcp-wrappers-7.6.22-r1 amd64 x86 
@@ -35,14 +57,9 @@
 # FL-1074: stabilize libxcb-1.9.3-r1
 =x11-libs/libxcb-1.10 amd64 x86
 
-# FL-942, mark procps-3.3.9 stable
-=sys-process/procps-3.3.9 amd64 x86
-
 # FL-895: stabilize libxcb-1.9.3
 =x11-libs/libxcb-1.9.3 amd64 x86
 
-# FL-776, stabilize systemtap-2.2 with unfork
-=dev-util/systemtap-2.2 amd64 x86
 
 ## FL-408, an attempt to stabilize blender, this require certain packages
 ## keywording
@@ -54,18 +71,6 @@ dev-cpp/gflags amd64 x86
 =media-gfx/blender-2.66-r1 amd64 x86
 
 ########################################
-=dev-python/setuptools-0.6.25* amd64 x86
 =dev-libs/expat-2.1.0* amd64 x86
-=sys-apps/file-5.11 amd64 x86
-=dev-libs/gmp-5* amd64 x86
 =dev-libs/mpfr-3* amd64 x86
-=sys-apps/coreutils-8.16* amd64 x86
 ~sys-fs/device-mapper-1.02.28 amd64 x86
-=sys-apps/pciutils-3.1.9-r2 amd64 x86
-=sys-apps/hwids-201* amd64 x86
-=sys-apps/usbutils-005-r1 amd64 x86
-=sys-apps/usbutils-006 amd64 x86
-=sys-fs/cryptsetup-1.4.3 amd64 x86
-=media-libs/freetype-2.4.1* amd64 x86
-=media-libs/fontconfig-infinality-20120619 amd64 x86
-=dev-libs/libpipeline-1.2* amd64 x86

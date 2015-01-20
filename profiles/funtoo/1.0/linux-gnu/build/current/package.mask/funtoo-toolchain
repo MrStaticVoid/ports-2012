@@ -6,6 +6,7 @@
 
 >sys-libs/glibc-2.19
 >sys-kernel/linux-headers-3.17-r1
->sys-devel/gcc-4.8.3
+>sys-devel/gcc-4.8.4
 >sys-devel/binutils-2.24-r3
->sys-devel/make-3.82-r4
+# make diverges based on KEYWORDS, with ARM using a 4.x version.
+# So no mask here. Use KEYWORDS in the ebuilds.
