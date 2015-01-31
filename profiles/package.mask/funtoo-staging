@@ -1,8 +1,9 @@
-# FL-1956: debian kernel 3.16.7, masked for testing
-=sys-kernel/debian-sources-3.16.7
+# Fl-2033, nginx-1.7.8, masked for testing
+=www-servers/nginx-1.7.8
 
-# FL-1924 add ati-drivers-14.12 masked for testing
-=x11-drivers/ati-drivers-14.12-r2
+# FL-1956: debian kernel 3.16.7, masked for testing
+=sys-kernel/debian-sources-3.18.3
+=sys-kernel/debian-sources-3.16.7
 
 #FL-1767: add bluez-5.27, masked for testing
 =net-wireless/bluez-5.27
@@ -18,7 +19,7 @@
 >app-admin/eselect-opengl-1.2.7
 >app-emulation/emul-linux-x86-opengl-20140508
 >media-libs/mesa-10.3.5
->x11-base/xorg-server-1.16.1-r2
+>x11-base/xorg-server-1.16.1-r3
 >x11-proto/glproto-1.4.17
 
 # FL-1729: eudev update, this ebuild masked, kernel older 2.6.39 version unsupported
@@ -30,12 +31,6 @@
 
 # Keep the most recent masks in a reverse chrono order
 # newest on top
-
-# util-linux update FL-1737, masked for testing
-=sys-apps/util-linux-2.25.2
-
-# masked for testing:
-=sys-fs/lvm2-2.02.111
 
 # FL-1716 kmod update
 =sys-apps/kmod-19

@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-workbench/mysql-workbench-6.2.3.ebuild,v 1.3 2014/12/28 20:37:20 graaff Exp $
 
 EAPI=5
 GCONF_DEBUG="no"
@@ -18,7 +20,7 @@ SRC_URI="mirror://mysql/Downloads/MySQLGUITools/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="debug doc gnome-keyring"
 
 # glibc: deprecated mutex functions, removed in 2.36.0
@@ -40,7 +42,7 @@ CDEPEND="${PYTHON_DEPS}
 		dev-libs/libzip
 		>=virtual/mysql-5.1
 		dev-libs/libpcre
-		>=sci-libs/gdal-1.11.1-r1
+		>=sci-libs/gdal-1.11.1-r1[-mdb]
 		virtual/opengl
 		>=dev-lang/lua-5.1[deprecated]
 		|| ( sys-libs/e2fsprogs-libs dev-libs/ossp-uuid )
@@ -69,8 +71,8 @@ src_prepare() {
 	## Patch CMakeLists.txt
 	epatch "${FILESDIR}/${PN}-6.2.3-CMakeLists.patch" \
 		"${FILESDIR}/${PN}-6.1.7-wbcopytables.patch" \
-                "${FILESDIR}/${PN}-6.1.7-glibfix.patch" \
-		"${FILESDIR}/${PN}-6.1.7-mysql_options4.patch"
+		"${FILESDIR}/${PN}-6.1.7-mysql_options4.patch" \
+		"${FILESDIR}/${PN}-6.2.3-ctemplate.patch"
 
 	## remove hardcoded CXXFLAGS
 	sed -i -e 's/-O0 -g3//' ext/scintilla/gtk/CMakeLists.txt || die
