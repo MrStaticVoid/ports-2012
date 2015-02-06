@@ -259,19 +259,9 @@ app-arch/libarchive:nettle - Use dev-libs/nettle as crypto backend
 app-arch/libarchive:zlib - Allow accessing gzip-compressed archives through sys-libs/zlib. This only affects libarchive's native support: bsdtar will keep using gunzip as a filter if that's not built-in. It's also needed for supporting extraction of ZIP files.
 app-arch/libzpaq:jit - Enable just-in-time compilation for faster compression (requires SSE2)
 app-arch/lz4:valgrind - Enable usage of dev-util/valgrind in tests
-app-arch/mate-file-archiver:caja - Enable engrampa to integrate with mate-base/mate-file-manager by providing entries in its context menu
 app-arch/p7zip:rar - Enable support for non-free rar decoder
 app-arch/pbzip2:symlink - Install symlinks which override app-arch/bzip2 implementation
 app-arch/rar:all_sfx - Install all SFX (Self-Extracting) files rather than just the native format (allows creation of Windows EXEs on Linux ELF systems)
-app-arch/rpm5:augeas - Add support for configuration files changing (app-admin/augeas)
-app-arch/rpm5:keyutils - Enable for the keyring ccache using keyutils.
-app-arch/rpm5:magic - Add magic file support (sys-apps/file)
-app-arch/rpm5:nss - Build support for ssl/crypto handling using dev-libs/nss
-app-arch/rpm5:openssl - Build support for ssl/crypto handling using dev-libs/openssl
-app-arch/rpm5:pkcs11 - Build token data management utilities based on OpenCryptoki's (dev-libs/opencryptoki) PKCS#11 implementation.
-app-arch/rpm5:uuid - Enable server side UUID generation (via dev-libs/ossp-uuid)
-app-arch/rpm5:webdav-neon - Include support for net-libs/neon
-app-arch/rpm5:xar - Build support for xar archives using app-arch/xar
 app-arch/tar:minimal - just install `tar`
 app-arch/unzip:natspec - Use dev-libs/libnatspec to correctly decode non-ascii file names archived in Windows.
 app-arch/zip:natspec - Use dev-libs/libnatspec to correctly decode non-ascii file names archived in Windows.
@@ -477,7 +467,8 @@ app-emacs/wikipedia-mode:outline-magic - Enable support for outline-mode extensi
 app-emulation/aranym:fullmmu - Enable full 68040 MMU emulation
 app-emulation/aranym:lilo - Enable Linux-m68k loader
 app-emulation/aranym:usbhost - Enable NatFeat USB
-app-emulation/bochs:avx - Enable support for Advanced Vector Extensions (AVX)
+app-emulation/bochs:3dnow - Enable support for emulating 3DNow! instructions (incomplete)
+app-emulation/bochs:avx - Enable support for emulating Advanced Vector Extensions (AVX)
 app-emulation/bochs:debugger - Enable debugger (slows down emulation)
 app-emulation/bochs:gdb - Enable support for the remote GDB stub
 app-emulation/bochs:x86-64 - Enable support for emulation of 64-bit CPUs
@@ -700,6 +691,7 @@ app-i18n/fcitx:qt4 - Install Qt4 IM module
 app-i18n/fcitx:snooper - Enable Key Snooper for GTK app
 app-i18n/fcitx:table - Enable Table IM
 app-i18n/fcitx-configtool:gtk3 - Use GTK+3 instead of 2
+app-i18n/fcitx-libpinyin:dictmanager - Enable dictionary manager. Requires dev-qt/qtwebkit.
 app-i18n/ibus:deprecated - install the deprecated ibus python library
 app-i18n/ibus:gconf - Enable support for gnome-base/gconf
 app-i18n/ibus:gtk3 - Enable support for gtk+3
@@ -970,7 +962,6 @@ app-office/gnucash:quotes - Enable Online Stock Quote retrieval
 app-office/gnumeric:libgda - Enable database support through gnome-extra/libgda.
 app-office/gnumeric:perl - Enable perl plugin loader.
 app-office/gnumeric:python - Enable python plugin loader.
-app-office/imposter:iksemel - Enable external dev-libs/iksemel parsing support
 app-office/kmymoney:hbci - Enable HBCI support using net-libs/aqbanking
 app-office/kmymoney:quotes - Enable Online Stock Quote retrieval
 app-office/libreoffice:coinmp - Use sci-libs/coinor-mp as alternative solver
@@ -1097,11 +1088,6 @@ app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search libra
 app-text/liblangtag:introspection - Use dev-libs/gobject-introspection for introspection
 app-text/libwpd:tools - Build miscellaneous tools
 app-text/lodgeit:vim - Install a vim plugin allowing to paste and download from within vim
-app-text/mate-document-viewer:caja - Enable property page extension in mate-base/mate-file-manager
-app-text/mate-document-viewer:dvi - Enable build-in DVI viewer
-app-text/mate-document-viewer:ps - Enable build-in postscript viewer
-app-text/mate-document-viewer:t1lib - Enable the Type-1 fonts for the build-in DVI viewer (media-libs/t1lib)
-app-text/mate-document-viewer:xps - Enable XPS viewer using app-text/libxps
 app-text/mathtex:png - Generate png images by default instead of gif
 app-text/mupdf:openssl - Use dev-libs/openssl crypto backend
 app-text/pandoc:embed_data_files - Embed data files in binary for relocatable executable.
@@ -1151,7 +1137,6 @@ app-text/texlive:texi2html - Add support for app-text/texi2html which converts t
 app-text/texlive:xetex - Add support for XeTeX macros (dev-texlive/texlive-xetex)
 app-text/texlive:xindy - Add support for app-text/xindy, a flexible indexing system
 app-text/texlive-core:xetex - Add support for XeTeX: a TeX system with Unicode and modern font technologies.
-app-text/u2ps:fonts - Install a more complete set of unicode fonts
 app-text/wdiff:experimental - Build experimental utilities (mdiff, unify, wdiff2)
 app-text/webgen:builder - Enable programmatic HTML/XML generation
 app-text/webgen:highlight - Enable syntax highlighting for certain plugins
@@ -1617,6 +1602,7 @@ dev-lang/erlang:hipe - HIgh Performance Erlang extension
 dev-lang/erlang:kpoll - Enable kernel polling support
 dev-lang/erlang:sctp - Support for Stream Control Transmission Protocol
 dev-lang/fpc:ide - Build and install the Free Pascal Compiler IDE
+dev-lang/gdl:eigen - Build matrix manipulation with dev-cpp/eigen
 dev-lang/gdl:grib - Add support for the meteorological GRIB format with sci-libs/grib_api
 dev-lang/gdl:gshhs - Add support for projection adn continent maps with sci-geosciences/gshhs-data
 dev-lang/gdl:hdf - Add support for the Hierarchical Data Format v.4
@@ -1871,11 +1857,6 @@ dev-libs/m17n-lib:athena - Enable the MIT Athena widget set (x11-libs/libXaw)
 dev-libs/m17n-lib:gd - Build API and utilities based on media-libs/gd. This flag is only meaningful if the X USE flag is also enabled.
 dev-libs/m17n-lib:libotf - Use dev-libs/libotf to handle OpenType fonts
 dev-libs/m17n-lib:libxml2 - Use dev-libs/libxml2 to parse XML
-dev-libs/marisa:popcnt - Enable popcnt instruction support
-dev-libs/marisa:sse4 - Enable sse4 instruction support
-dev-libs/marisa:sse4.1 - Enable sse4.1 instruction support
-dev-libs/marisa:sse4.2 - Enable sse4.2 instruction support
-dev-libs/marisa:sse4a - Enable sse4a instruction support
 dev-libs/nss:cacert - Include root certs from CAcert (http://http://www.cacert.org/) and Software in the Public Interest (http://www.spi-inc.org/)
 dev-libs/nss:nss-pem - Add support for libnsspem
 dev-libs/nss:utils - Install utilities included with the library
@@ -2119,6 +2100,7 @@ dev-python/pypy3-bin:shadowstack - Use a shadow stack for finding GC roots
 dev-python/pyrax:keyring - adds support for the keyring auth backend
 dev-python/pytables:contrib - Install user-contributed files
 dev-python/python-stdnum:vies - Enable VIES
+dev-python/pyzor:gevent - Enable support for the gevent based handler
 dev-python/pyzor:mysql - Enables mysql support
 dev-python/pyzor:pyzord - enable support for pyzord
 dev-python/pyzor:redis - Enables redis support
@@ -2790,7 +2772,6 @@ gnome-extra/libgda:mdb - Enable support for Microsoft Access database using app-
 gnome-extra/libgda:reports - Install tools for generating graphical reports
 gnome-extra/libgda:sourceview - Enable support for x11-libs/gtksourceview
 gnome-extra/libgsf:gtk - Enable use of gdk in thumbnailer
-gnome-extra/libgsf:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-extra/nemo:l10n - Pull in gnome-extra/cinnamon-translations for localization support
 gnome-extra/nemo:packagekit - Use packagekit to search for programs to open unknown file types
 gnome-extra/nemo:tracker - Add support for app-misc/tracker search
@@ -3170,19 +3151,12 @@ mate-base/caja:unique - Enable single instance support using dev-libs/libunique.
 mate-base/mate:base - Install base MATE Desktop applications that are recommended for the most common usage; for example, this installs the file manager. Disable this and other USE flags if you want a more minimal MATE Desktop.
 mate-base/mate:extras - Install additional MATE Desktop applications that are recommended for extended usage of the MATE Desktop as upstream sees it; for example, this installs MATE Desktop's office related applications. Disable this if you plan to use your own non-MATE Desktop alternatives or a custom mixture of MATE and non-MATE packages.
 mate-base/mate:themes - Install MATE Desktop's themes; if you use other themes, you can disable this to spare some space and time.
-mate-base/mate-file-manager:mate - Install x11-themes/mate-icon-theme which is needed when this package is used in the MATE desktop environment.
-mate-base/mate-file-manager:unique - Enable single instance support using dev-libs/libunique.
-mate-base/mate-keyring:gpg-agent - Include GPG agent in mate-keyring.
-mate-base/mate-keyring:ssh-agent - Include SSH agent in mate-keyring.
 mate-extra/caja-extensions:gajim - Add an extension to support net-im/gajim.
 mate-extra/caja-extensions:image-converter - Add image conversion support.
 mate-extra/caja-extensions:mail - Add an extension to support e-mail functionality.
 mate-extra/caja-extensions:open-terminal - Add an extension to support an open terminal.
 mate-extra/caja-extensions:pidgin - Add an extension to support net-im/pidgin
 mate-extra/caja-extensions:share - Add an extension to support sharing files.
-mate-extra/mate-file-manager-sendto:gajim - Enables support for net-im/gajim
-mate-extra/mate-file-manager-sendto:mail - Enables support for mailto using gnome-extra/evolution-data-server
-mate-extra/mate-file-manager-sendto:pidgin - Enables support for net-im/pidgin
 mate-extra/mate-media:twolame - Bring in twolame gstreamer support
 mate-extra/mate-power-manager:applet - Enable building of the MATE applet.
 mate-extra/mate-power-manager:man - Build power manager's man page.
@@ -3394,6 +3368,7 @@ media-libs/grilo:network - Enable network access for media discovery using net-l
 media-libs/grilo:playlist - Enable support for playlists through dev-libs/totem-pl-parser
 media-libs/grilo:vala - Generate bindings for dev-lang/vala
 media-libs/gst-plugins-bad:egl - Enable EGL support
+media-libs/gst-plugins-bad:gles2 - Enable GLES2 support
 media-libs/gst-plugins-base:ivorbis - Enable integer based vorbis decoder.
 media-libs/gst-plugins-base:pango - Enable pango GStreamer plugin
 media-libs/gstreamer:orc - Disable some PaX memory protections to allow plugins that use dev-lang/orc for runtime optimization to be used on hardened PaX systems
@@ -3587,6 +3562,7 @@ media-plugins/banshee-community-extensions:zeitgeist - Build the plugin to injec
 media-plugins/deadbeef-plugins-meta:archive - Reading media files from archived files
 media-plugins/deadbeef-plugins-meta:bookmark-manager - Resume playing files (after closing player) from the last timestamp
 media-plugins/deadbeef-plugins-meta:bs2b - bs2b dsp support. Useful for headphones
+media-plugins/deadbeef-plugins-meta:decast - Subscription for the podcasts
 media-plugins/deadbeef-plugins-meta:gnome-mmkeys - Gnome multimedia keys support
 media-plugins/deadbeef-plugins-meta:infobar - Download and show lyrics
 media-plugins/deadbeef-plugins-meta:jack - Jack audio support
@@ -3611,7 +3587,6 @@ media-plugins/grilo-plugins:thetvdb - Build support for thetvdb.com
 media-plugins/grilo-plugins:tracker - Build support for content discovery using the app-misc/tracker indexer
 media-plugins/grilo-plugins:vimeo - Build support for Vimeo content discovery using net-libs/libsoup and dev-libs/libgcrypt
 media-plugins/grilo-plugins:youtube - Build support for YouTube content discovery using dev-libs/libgdata
-media-plugins/gst-plugins-a52dec:orc - Use dev-lang/orc for runtime detection of CPU MMX/MMXEXT/3dNow! capabilities to pass down to a52dec library.
 media-plugins/gst-plugins-gl:libvisual - Enable visualization effects via media-libs/libvisual
 media-plugins/gst-plugins-meta:http - Enable http streaming via net-libs/libsoup
 media-plugins/gst-plugins-meta:libvisual - Enable visualization effects via media-libs/libvisual
@@ -3790,10 +3765,12 @@ media-sound/deadbeef:libnotify - Notification daemon support plugin
 media-sound/deadbeef:libsamplerate - Sample rate conversion plugin
 media-sound/deadbeef:m3u - m3u playlist plugin
 media-sound/deadbeef:mac - Monkey's Audio plugin
+media-sound/deadbeef:mad - MPEG-1/2/2.5 Layer 3 (MP3) support through mad/libmad
 media-sound/deadbeef:midi - midi support (via timidity) plugin
 media-sound/deadbeef:mms - Microsoft Media Server (MMS) plugin
 media-sound/deadbeef:mono2stereo - mono2stereo plugin
-media-sound/deadbeef:mp3 - MPEG-1/2/2.5 Layer 3 (MP3) plugin
+media-sound/deadbeef:mp3 - MPEG-1/2/2.5 Layer 3 (MP3) support plugin. It is a virtual use for mad/libmad or mpg123/libmpg123 since deadbeef 0.6.3
+media-sound/deadbeef:mpg123 - MPEG-1/2/2.5 Layer 3 (MP3) support through mpg123/libmpg123
 media-sound/deadbeef:nls - Native Language Support (NLS)
 media-sound/deadbeef:nullout - NULL output plugin
 media-sound/deadbeef:oss - Open Sound System (OSS) output plugin
@@ -4164,7 +4141,6 @@ media-video/ffmpeg:vis - Adds support for SIMD optimizations for UltraSPARC proc
 media-video/ffmpeg:vpx - Enables vp8 codec support using libvpx: Decoding vp8 does not require this to be enabled but libvpx can also be used for decoding; encoding vp8 requires this useflag to be enabled though.
 media-video/ffmpeg:webp - Enables WebP encoding with media-libs/libwebp.
 media-video/ffmpeg:x265 - Enables HEVC encoding with media-libs/x265.
-media-video/ffmpeg:xop - Enables XOP (eXtended Operations) optimizations: AMD processors starting with Bulldozer architecture.
 media-video/ffmpeg:zvbi - Enables media-libs/zvbi based teletext decoder.
 media-video/ffmpeg2theora:kate - Adds support for Ogg Kate subtitles via libkate.
 media-video/gnome-mplayer:dconf - Enable support for gnome-base/dconf
@@ -5017,14 +4993,6 @@ net-libs/ortp:ntp-timestamp - Turn on NTP timestamping on received packet
 net-libs/ortp:srtp - Add support for Secure RTP
 net-libs/ortp:zrtp - Add support for ZRTP key negotiation
 net-libs/phodav:spice - Install the spice-webdavd guest agent
-net-libs/pjsip:cli - Installs pjsua, a simple command-line SIP client
-net-libs/pjsip:epoll - epoll system call support
-net-libs/pjsip:ext-sound - External sound device support
-net-libs/pjsip:g711 - Builds the G711 codec
-net-libs/pjsip:g722 - Builds the G722 codec
-net-libs/pjsip:g7221 - Builds the G7221 codec
-net-libs/pjsip:ilbc - Builds the ilbc codec
-net-libs/pjsip:l16 - Builds the L16 codec
 net-libs/polarssl:havege - Enable the HAVEGE random generator. Warning: the HAVEGE random generator is not suitable for virtualized environments
 net-libs/polarssl:programs - Build PolarSSL programs
 net-libs/ptlib:asn - Enable ASN decoding/encoding support
@@ -5198,7 +5166,6 @@ net-misc/bfgminer:minion - Enable support for mining on minion chips via SPI (Bl
 net-misc/bfgminer:modminer - Enable support for mining with ModMiner FPGAs
 net-misc/bfgminer:nanofury - Enable support for mining with NanoFury USB sticks
 net-misc/bfgminer:opencl - Enable support for mining with OpenCL-capable devices (GPUs)
-net-misc/bfgminer:padlock - Enable support for mining with VIA Padlock CPUs
 net-misc/bfgminer:proxy - Enable support for virtual proxy device
 net-misc/bfgminer:proxy_getwork - Enable proxy support for getwork protocol (often used with Block Erupter Blades)
 net-misc/bfgminer:proxy_stratum - Enable proxy support for stratum protocol
@@ -5206,8 +5173,6 @@ net-misc/bfgminer:rockminer - Enable support for mining with RockMiner devices
 net-misc/bfgminer:screen - Provide start-bfgminer.sh script to launch BFGMiner in app-misc/screen
 net-misc/bfgminer:scrypt - Enable support for scrypt mining algorithm
 net-misc/bfgminer:sha256d - Enable support for SHA256d mining algorithm
-net-misc/bfgminer:sse2_4way - Enable support for CPU SSE2 4way mining algorithm
-net-misc/bfgminer:sse4 - Enable support for CPU SSE4 mining algorithm
 net-misc/bfgminer:twinfury - Enable support for mining with Twinfury USB sticks
 net-misc/bfgminer:udev-broad-rules - Enable broader udev rules that may match non-mining devices
 net-misc/bfgminer:x6500 - Enable support for mining with X6500 FPGAs
@@ -5282,7 +5247,6 @@ net-misc/hylafaxplus:html - Convert faxes into html email
 net-misc/hylafaxplus:jbig - JBIG Fax Compression Support
 net-misc/hylafaxplus:mgetty - Receive faxes via serial port connections
 net-misc/hylafaxplus:pam - hfaxd authentication via PAM
-net-misc/i2pd:aesni - Enable support for the AES-NI instruction set
 net-misc/i2pd:i2p-hardening - Compile with hardening on vanilla compilers/linkers
 net-misc/i2pd:library - Build the libi2pd library
 net-misc/icecast:kate - Add karaoke and text encapsulation support for Ogg files
@@ -5712,7 +5676,6 @@ net-voip/linphone:gsm-nonstandard - Support non-standard GSM frequencies
 net-voip/linphone:sqlite - Turn on compilation of message storage
 net-voip/linphone:tools - Compile tools
 net-voip/linphone:video - Enable video support (display/capture)
-net-voip/sflphone:doxygen - Support for building documentation with doxygen
 net-voip/telepathy-gabble:plugins - Enable plugin loader
 net-voip/yate:amrnb - use AMR-NB
 net-voip/yate:dahdi - Enable Dahdi driver
@@ -6291,13 +6254,6 @@ sys-apps/irqbalance:numa - Support balancing IRQs across NUMA nodes
 sys-apps/kexec-tools:booke - Include support for Book-E memory management
 sys-apps/kexec-tools:lzma - Enables support for LZMA compressed kernel images
 sys-apps/kexec-tools:xen - Enable extended xen support
-sys-apps/kmscon:drm - Enable Linux DRM for backend
-sys-apps/kmscon:fbdev - Enable Linux FBDev for backend
-sys-apps/kmscon:gles2 - Enable GLES2 for backend
-sys-apps/kmscon:multiseat - Enable multiseat support via systemd
-sys-apps/kmscon:optimizations - Enable optimizations
-sys-apps/kmscon:pango - Enable pango font rendering
-sys-apps/kmscon:pixman - Enable pixman font rendering
 sys-apps/memtest86:serial - Compile with serial console support
 sys-apps/memtest86+:floppy - Install a script to create floppy disks containing memtest86+ binaries.
 sys-apps/memtest86+:serial - Compile with serial console support

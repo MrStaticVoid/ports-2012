@@ -1,21 +1,24 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvisio/libvisio-0.1.0.ebuild,v 1.3 2015/02/02 14:46:18 jer Exp $
 
-EAPI="5"
+EAPI=5
 
+EGIT_REPO_URI="git://anongit.freedesktop.org/git/libreoffice/libvisio/"
 inherit base eutils
+[[ ${PV} == 9999 ]] && inherit autotools git-2
 
 DESCRIPTION="Library parsing the visio documents"
-HOMEPAGE="http://www.freedesktop.org/wiki/Software/libvisio"
-SRC_URI="http://dev-www.libreoffice.org/src/${PN}/${P}.tar.xz"
+HOMEPAGE="https://wiki.documentfoundation.org/DLP/Libraries/libvisio"
+[[ ${PV} == 9999 ]] || SRC_URI="http://dev-www.libreoffice.org/src/${PN}/${P}.tar.xz"
 
 LICENSE="|| ( GPL-2+ LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~*"
+[[ ${PV} == 9999 ]] || \
+KEYWORDS="~amd64 ~arm ~hppa ~x86"
 IUSE="doc static-libs"
 
 RDEPEND="
-	app-text/libwpd:0.9
-	app-text/libwpg:0.2
 	dev-libs/icu:=
 	dev-libs/librevenge
 	dev-libs/libxml2
@@ -29,11 +32,10 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 "
 
-RESTRICT="mirror"
-
 src_prepare() {
 	[[ -d m4 ]] || mkdir "m4"
 	base_src_prepare
+	[[ ${PV} == 9999 ]] && eautoreconf
 }
 
 src_configure() {

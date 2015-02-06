@@ -1,16 +1,21 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libfreehand/libfreehand-0.0.0.ebuild,v 1.4 2014/06/29 16:43:25 ago Exp $
 
-EAPI="5"
+EAPI=5
 
+EGIT_REPO_URI="git://anongit.freedesktop.org/git/libreoffice/libfreehand/"
 inherit base eutils
+[[ ${PV} == 9999 ]] && inherit autotools git-2
 
 DESCRIPTION="Library for import of FreeHand drawings"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/libfreehand/"
-SRC_URI="http://dev-www.libreoffice.org/src/${PN}/${P}.tar.xz"
+[[ ${PV} == 9999 ]] || SRC_URI="http://dev-www.libreoffice.org/src/${P}.tar.xz"
 
 LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="*"
+[[ ${PV} == 9999 ]] || \
+KEYWORDS="amd64 ~arm ~ppc x86"
 IUSE="doc static-libs"
 
 RDEPEND="
@@ -28,6 +33,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	[[ -d m4 ]] || mkdir "m4"
 	base_src_prepare
+	[[ ${PV} == 9999 ]] && eautoreconf
 }
 
 src_configure() {

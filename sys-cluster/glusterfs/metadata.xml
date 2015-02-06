@@ -3,7 +3,7 @@
 <pkgmetadata>
   <herd>cluster</herd>
   <longdescription lang="en">
-		GlusterFS is a cluster file-system capable of scaling to several peta-bytes. It aggregates various storage bricks over Infiniband RDMA or TCP/IP interconnect into one large parallel network file system. GlusterFS is based on a stackable user space design without compromising performance.
+		GlusterFS is a cluster filesystem capable of scaling to several petabytes. It aggregates various storage bricks over Infiniband RDMA or TCP/IP interconnect into one large parallel network file system. GlusterFS is based on a stackable user space design without compromising performance.
 	</longdescription>
   <use>
     <flag name="bd-xlator">Enable the blockdevice translator (requires <pkg>sys-fs/lvm2</pkg>)</flag>

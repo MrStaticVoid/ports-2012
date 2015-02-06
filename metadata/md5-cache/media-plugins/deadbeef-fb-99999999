@@ -1,13 +1,13 @@
-DEFINED_PHASES=compile configure install prepare unpack
+DEFINED_PHASES=configure install prepare unpack
 DEPEND=!<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 media-sound/deadbeef gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] ) >=dev-vcs/git-1.8.2.1
 DESCRIPTION=DeaDBeeF filebrowser plugin
 EAPI=5
 HOMEPAGE=http://sourceforge.net/projects/deadbeef-fb
-IUSE=+gtk2 gtk3
+IUSE=debug +gtk2 gtk3
 LICENSE=GPL-2
 RDEPEND=media-sound/deadbeef gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] )
 REQUIRED_USE=|| ( gtk2 gtk3 )
 RESTRICT=mirror
 SLOT=0
-_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	deadbeef-plugins	fcf86464a6498f22afc89f782815b911	eutils	998e5931fb95b10a6a11ec796ada2759	git-r3	f908736fc2f2912c118910333ea303f4	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
-_md5_=a18878d630ab62cc90167d521bc65ae1
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	deadbeef-plugins	ed44a7e084ca428cebe913aa55707fa2	eutils	998e5931fb95b10a6a11ec796ada2759	git-r3	a00948a17a774db5e36bc0247c598097	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_md5_=0cc8db3887951be6e9eded005fc36daa

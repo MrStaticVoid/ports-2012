@@ -15,15 +15,19 @@ HOMEPAGE="http://sourceforge.net/projects/${PN}"
 LICENSE="GPL-2"
 KEYWORDS=""
 
-S="${WORKDIR}/deadbeef-devel"
+IUSE+=" debug"
+
+S="${WORKDIR}/deadbeef-fb-devel"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-avoid-version.patch"
 
-	if use gtk3 ; then
-		epatch "${FILESDIR}/${PN}-gtk3-version.patch"
-		epatch "${FILESDIR}/${PN}-stop-treating-warnings-as-errors.patch"
-	fi
-
 	eautoreconf
+}
+
+src_configure() {
+	econf --disable-static \
+		$(use_enable debug) \
+		$(use_enable gtk2) \
+		$(use_enable gtk3)
 }

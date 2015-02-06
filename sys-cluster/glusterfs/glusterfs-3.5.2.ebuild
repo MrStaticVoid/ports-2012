@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/glusterfs/glusterfs-3.5.2.ebuild,v 1.1 2014/10/08 09:10:21 ultrabug Exp $
 
 EAPI=5
 
@@ -15,7 +13,7 @@ SRC_URI="http://download.gluster.org/pub/gluster/${PN}/$(get_version_component_r
 
 LICENSE="|| ( GPL-2 LGPL-3+ )"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="*"
 IUSE="bd-xlator crypt-xlator debug emacs +fuse +georeplication glupy infiniband qemu-block rsyslog static-libs +syslog systemtap vim-syntax +xml"
 
 REQUIRED_USE="georeplication? ( ${PYTHON_REQUIRED_USE} )
