@@ -7,5 +7,5 @@ IUSE=debug
 LICENSE=GPL-2
 RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/designer:4 dev-qt/qtscript:4
 SLOT=0
-_eclasses_=cmake-utils	396338f483cf8c05d1ce3e0e3a90ca5b	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=cmake-utils	396338f483cf8c05d1ce3e0e3a90ca5b	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	git-r3	a00948a17a774db5e36bc0247c598097	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
 _md5_=b283dd4fdf526119e73f0787136ec60c

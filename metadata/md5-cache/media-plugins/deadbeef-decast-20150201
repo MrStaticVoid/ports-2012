@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile install
+DEPEND=dev-libs/libxml2 media-sound/deadbeef gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] )
+DESCRIPTION=DeaDBeeF podcast subscription plugin
+EAPI=5
+HOMEPAGE=https://bitbucket.org/thesame/decast/overview
+IUSE=+gtk2 gtk3
+KEYWORDS=~*
+LICENSE=ZLIB
+RDEPEND=dev-libs/libxml2 media-sound/deadbeef gtk2? ( media-sound/deadbeef[gtk2] ) gtk3? ( media-sound/deadbeef[gtk3] )
+REQUIRED_USE=|| ( gtk2 gtk3 )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://bitbucket.org/thesame/decast/get/9ffd6d6dfb14.tar.gz -> deadbeef-decast-20150201.tar.gz
+_eclasses_=deadbeef-plugins	ed44a7e084ca428cebe913aa55707fa2	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_md5_=0c2e2e8b390d654cf3f50917213b6945

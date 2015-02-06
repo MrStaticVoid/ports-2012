@@ -1,8 +1,14 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libixion/libixion-0.5.0.ebuild,v 1.6 2013/10/27 12:05:23 ago Exp $
 
-EAPI="5"
+EAPI=5
 
-inherit eutils
+EGIT_REPO_URI="git://gitorious.org/ixion/ixion.git"
+
+[[ ${PV} == 9999 ]] && GITECLASS="git-2 autotools"
+inherit eutils ${GITECLASS}
+unset GITECLASS
 
 DESCRIPTION="General purpose formula parser & interpreter"
 HOMEPAGE="http://gitorious.org/ixion/pages/Home"
@@ -10,13 +16,18 @@ HOMEPAGE="http://gitorious.org/ixion/pages/Home"
 
 LICENSE="MIT"
 SLOT="0/0.5"
-KEYWORDS="*"
+[[ ${PV} == 9999 ]] || \
+KEYWORDS="amd64 ~arm ~ppc x86"
 IUSE="static-libs"
 
 RDEPEND="dev-libs/boost:="
 DEPEND="${RDEPEND}
 	>=dev-util/mdds-0.7.1:=
 "
+
+src_prepare() {
+	[[ ${PV} == 9999 ]] && eautoreconf
+}
 
 src_configure() {
 	econf \

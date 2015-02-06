@@ -1,5 +1,5 @@
-DEFINED_PHASES=compile configure install prepare unpack
-DEPEND=media-sound/jack-audio-connection-kit media-sound/deadbeef >=dev-vcs/git-1.8.2.1
+DEFINED_PHASES=install prepare
+DEPEND=media-sound/jack-audio-connection-kit media-sound/deadbeef
 DESCRIPTION=DeaDBeeF jack output plugin
 EAPI=5
 HOMEPAGE=https://gitorious.org/deadbeef-sm-plugins/jack
@@ -8,5 +8,6 @@ LICENSE=MIT
 RDEPEND=media-sound/jack-audio-connection-kit media-sound/deadbeef
 RESTRICT=mirror
 SLOT=0
-_eclasses_=deadbeef-plugins	fcf86464a6498f22afc89f782815b911	eutils	998e5931fb95b10a6a11ec796ada2759	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
-_md5_=2331a355516010878b141cb4f3a5a252
+SRC_URI=https://gitorious.org/deadbeef-sm-plugins/jack/archive/62d1e6ac0452b7baa92fcc75b59bcb960df06da8.tar.gz -> deadbeef-jack-20110321.tar.gz
+_eclasses_=deadbeef-plugins	ed44a7e084ca428cebe913aa55707fa2	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_md5_=e5facb55c58d7602617c16987012a82a
