@@ -10,14 +10,16 @@ EGIT_REPO_URI="git://git.code.sf.net/p/${PN}/code"
 EGIT_BRANCH="master"
 
 DESCRIPTION="DeaDBeeF filebrowser plugin"
-HOMEPAGE="http://sourceforge.net/projects/${PN}"
+HOMEPAGE="http://sourceforge.net/projects/deadbeef-fb"
 
 LICENSE="GPL-2"
 KEYWORDS=""
 
 IUSE+=" debug"
 
-S="${WORKDIR}/deadbeef-fb-devel"
+RDEPEND+=" !media-plugins/deadbeef-librarybrowser:0"
+
+DEPEND="${RDEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-avoid-version.patch"

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/firefox/firefox-31.3.0.ebuild,v 1.8 2015/01/09 20:53:11 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox/firefox-31.3.0.ebuild,v 1.10 2015/02/26 21:54:23 axs Exp $
 
 EAPI="5"
 VIRTUALX_REQUIRED="pgo"
@@ -39,10 +39,11 @@ inherit check-reqs flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v5
 DESCRIPTION="Firefox Web Browser"
 HOMEPAGE="http://www.mozilla.com/firefox"
 
-KEYWORDS="alpha amd64 ~arm hppa ~ia64 ppc ppc64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="alpha amd64 ~arm hppa ia64 ppc ppc64 x86 ~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 IUSE="bindist hardened +minimal pgo selinux test"
+RESTRICT="!bindist? ( bindist )"
 
 # More URIs appended below...
 SRC_URI="${SRC_URI}

@@ -1,11 +1,18 @@
-# FL-2075: pulseaudio 5.99.3, masked for testing
-=media-sound/pulseaudio-5.99.3
+# FL-2134 -- needs some testing re: rootfstype with real_root (working here)
+>=sys-boot/boot-update-1.7.3
 
-# FL-2076: oss 4.2.2011, masked for testing
-=media-sound/oss-4.2.2011
+# libtool and libltdl bump, masked for testing
+=sys-devel/libtool-2.4.6
+=dev-libs/libltdl-2.4.6
+
+# FL-971: dhcpcd-6.7.1, masked for testing
+=net-misc/dhcpcd-6.7.1
+
+# FL-2136, FL-1943, eselect bump masked for testing
+=app-admin/eselect-1.4.4
 
 # Fl-2033, nginx-1.7.8, masked for testing
-=www-servers/nginx-1.7.8
+=www-servers/nginx-1.7.8-r1
 
 # FL-1956: debian kernel 3.16.7, masked for testing
 =sys-kernel/debian-sources-3.18.3
@@ -13,9 +20,6 @@
 
 #FL-1767: add bluez-5.27, masked for testing
 =net-wireless/bluez-5.27
-
-#FL-1783: sync gentoo eclasses and add mariadb-10.0.15-r1 test need to move it to stable. This should fix FL-1664 aswell
-=dev-db/mariadb-10.0.15-r1
 
 # FL-1761: new rebased Portage, needs a lot of testing
 >=sys-apps/portage-2.3.7
@@ -25,7 +29,7 @@
 >app-admin/eselect-opengl-1.2.7
 >app-emulation/emul-linux-x86-opengl-20140508
 >media-libs/mesa-10.3.5
->x11-base/xorg-server-1.16.1-r3
+>x11-base/xorg-server-1.16.1-r4
 >x11-proto/glproto-1.4.17
 
 # FL-1729: eudev update, this ebuild masked, kernel older 2.6.39 version unsupported

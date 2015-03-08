@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/musl/musl-9999.ebuild,v 1.12 2014/11/18 18:26:22 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/musl/musl-9999.ebuild,v 1.14 2015/03/07 21:08:24 blueness Exp $
 
 EAPI=5
 
@@ -13,8 +13,8 @@ fi
 export CBUILD=${CBUILD:-${CHOST}}
 export CTARGET=${CTARGET:-${CHOST}}
 if [[ ${CTARGET} == ${CHOST} ]] ; then
-	if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
-		export CTARGET=${CATEGORY/cross-}
+	if [[ ${CATEGORY} == cross-* ]] ; then
+		export CTARGET=${CATEGORY#cross-}
 	fi
 fi
 
@@ -84,6 +84,10 @@ src_install() {
 	if is_crosscompile ; then
 		dosym usr/include /usr/${CTARGET}/sys-include
 	fi
+
+	# musl provides ldd via a sym link to its ld.so
+	local ldso=$(basename ${D}/lib/ld-musl-*)
+	dosym /lib/${ldso} /usr/bin/ldd
 }
 
 pkg_postinst() {

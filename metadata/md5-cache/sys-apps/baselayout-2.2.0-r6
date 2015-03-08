@@ -8,5 +8,5 @@ LICENSE=GPL-2 BSD-2
 PDEPEND=sys-apps/openrc
 SLOT=0
 SRC_URI=https://www.github.com/funtoo/baselayout/tarball/baselayout-2.2.0-r6 -> baselayout-2.2.0-r6.tar.gz http://build.funtoo.org/distfiles/realdev/realdev-1.0.tar.bz2
-_eclasses_=multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	a3db8057ea0903a9ebea4e46aab28ff9
 _md5_=aa9ff6a49d4f1a7c23bf6c3a9c1afd92

@@ -4,19 +4,17 @@ EAPI="5"
 
 inherit deadbeef-plugins
 
-BITBUCKET_USERNAME="Lithopsian"
-
 DESCRIPTION="DeaDBeeF ogg opus decoder plugin"
-HOMEPAGE="https://bitbucket.org/${BITBUCKET_USERNAME}/${PN}/overview"
-SRC_URI="https://bitbucket.org/${BITBUCKET_USERNAME}/${PN}/downloads/opus-${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://bitbucket.org/Lithopsian/deadbeef-opus"
+SRC_URI="https://bitbucket.org/Lithopsian/${PN}/downloads/opus-${PV}.tar.gz -> ${P}.tar.gz"
 
-RESTRICT="${RESTRICT} strip"
+RESTRICT+=" strip"
 
 LICENSE="GPL-2"
 KEYWORDS="~*"
 
-RDEPEND+=" >=media-libs/opusfile-0.5[float,http]
-	media-libs/libogg"
+RDEPEND+=" >=media-libs/opusfile-0.5[float,http]:0
+	media-libs/libogg:0"
 
 DEPEND="${RDEPEND}"
 

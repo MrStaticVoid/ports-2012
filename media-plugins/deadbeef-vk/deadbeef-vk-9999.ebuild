@@ -6,22 +6,19 @@ DEADBEEF_GUI="yes"
 
 inherit cmake-utils deadbeef-plugins git-r3
 
-GITHUB_USERNAME="scorpp"
-GITHUB_REPOSITORY="db-vk"
-
 DESCRIPTION="DeaDBeeF plugin for listening music from vkontakte.com"
-HOMEPAGE="https://github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY}"
-EGIT_REPO_URI="git://github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY}.git"
+HOMEPAGE="https://github.com/scorpp/db-vk"
+EGIT_REPO_URI="https://github.com/scorpp/db-vk.git"
 
 LICENSE="GPL-2"
 KEYWORDS=""
 
-RDEPEND+=" dev-libs/json-glib
-	media-sound/deadbeef[curl]"
+RDEPEND+=" dev-libs/json-glib:0
+	media-sound/deadbeef[curl]:0"
 
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${GITHUB_REPOSITORY}-${PV}"
+S="${WORKDIR}/db-vk-${PV}"
 
 src_configure() {
 	local mycmakeargs="

@@ -1,17 +1,25 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.12.16-r4.ebuild,v 1.5 2015/01/31 14:12:14 ago Exp $
 
-EAPI="5"
+EAPI=5
 
-inherit check-reqs eutils flag-o-matic autotools multilib-minimal
+inherit eutils flag-o-matic autotools multilib-minimal
 
-SRC_URI="http://cairographics.org/releases/${P}.tar.xz"
-KEYWORDS="*"
+if [[ ${PV} == *9999* ]]; then
+	inherit git-2
+	EGIT_REPO_URI="git://anongit.freedesktop.org/git/cairo"
+	SRC_URI=""
+else
+	SRC_URI="http://cairographics.org/releases/${P}.tar.xz"
+	KEYWORDS="~alpha amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+fi
 
 DESCRIPTION="A vector graphics library with cross-device output support"
 HOMEPAGE="http://cairographics.org/"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-IUSE="X aqua debug directfb drm gallium gles2 +glib legacy-drivers lto opengl openvg qt4 static-libs +svg valgrind xcb xlib-xcb"
+IUSE="X aqua debug directfb drm gallium gles2 +glib legacy-drivers opengl openvg qt4 static-libs +svg valgrind xcb xlib-xcb"
 # gtk-doc regeneration doesn't seem to work with out-of-source builds
 #[[ ${PV} == *9999* ]] && IUSE="${IUSE} doc" # API docs are provided in tarball, no need to regenerate
 
@@ -29,13 +37,13 @@ RDEPEND=">=dev-libs/lzo-2.06-r1[${MULTILIB_USEDEP}]
 	glib? ( >=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}] )
 	opengl? ( || ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] media-libs/opengl-apple ) )
 	openvg? ( >=media-libs/mesa-9.1.6[openvg,${MULTILIB_USEDEP}] )
-	qt4? ( >=dev-qt/qtgui-4.8:4 )
+	qt4? ( >=dev-qt/qtgui-4.8:4[${MULTILIB_USEDEP}] )
 	X? (
 		>=x11-libs/libXrender-0.9.8[${MULTILIB_USEDEP}]
 		>=x11-libs/libXext-1.3.2[${MULTILIB_USEDEP}]
 		>=x11-libs/libX11-1.6.2[${MULTILIB_USEDEP}]
 		drm? (
-			>=virtual/udev-208-r2[${MULTILIB_USEDEP}]
+			>=virtual/libudev-208:=[${MULTILIB_USEDEP}]
 			gallium? ( >=media-libs/mesa-9.1.6[gallium,${MULTILIB_USEDEP}] )
 		)
 	)
@@ -73,24 +81,8 @@ REQUIRED_USE="
 "
 
 MULTILIB_WRAPPED_HEADERS=(
-	/usr/include/cairo/cairo-features.h
 	/usr/include/cairo/cairo-directfb.h
 )
-
-CHECKREQS_MEMORY="768M"
-
-pkg_pretend() {
-	if [[ ${MERGE_TYPE} != "binary" ]] && use lto; then
-		einfo "Checking for sufficient memory to build $PN with USE=lto"
-		check-reqs_pkg_pretend
-	fi
-}
-
-pkg_setup() {
-	if [[ ${MERGE_TYPE} != "binary" ]] && use lto; then
-		check-reqs_pkg_setup
-	fi
-}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.8.8-interix.patch
@@ -105,16 +97,19 @@ src_prepare() {
 	# allow the automagically injected -flto flag to be not injected
 	epatch "${FILESDIR}"/${PN}-1.12.16-lto-optional.patch
 
-	# From Funtoo
-	# 	https://bugs.funtoo.org/browse/FL-1720
-	epatch "${FILESDIR}"/"${P}"-webkit.patch
-
 	# tests and perf tools require X, bug #483574
 	if ! use X; then
 		sed -e '/^SUBDIRS/ s#boilerplate test perf# #' -i Makefile.am || die
 	fi
 
 	epatch_user
+
+	# Slightly messed build system YAY
+	if [[ ${PV} == *9999* ]]; then
+		touch boilerplate/Makefile.am.features
+		touch src/Makefile.am.features
+		touch ChangeLog
+	fi
 
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
 	# upgraded to an eautoreconf for the above interix patch.
@@ -156,7 +151,6 @@ multilib_src_configure() {
 		$(use_enable gallium) \
 		$(use_enable gles2 glesv2) \
 		$(use_enable glib gobject) \
-		$(use_enable lto) \
 		$(use_enable openvg vg) \
 		$(use_enable opengl gl) \
 		$(use_enable qt4 qt) \
@@ -170,6 +164,7 @@ multilib_src_configure() {
 		--enable-pdf \
 		--enable-png \
 		--enable-ps \
+		--disable-lto \
 		${myopts}
 }
 

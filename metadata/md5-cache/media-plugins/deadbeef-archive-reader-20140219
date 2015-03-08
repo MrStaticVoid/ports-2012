@@ -1,12 +1,12 @@
 DEFINED_PHASES=install preinst prepare unpack
-DEPEND=media-sound/deadbeef || ( dev-vcs/subversion[http] dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+DEPEND=media-sound/deadbeef:0 || ( dev-vcs/subversion[http] dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
 DESCRIPTION=DeaDBeeF vfs archive reader plugin with gzip, 7z and rar support
 EAPI=5
-HOMEPAGE=http://subversion.assembla.com/svn/deadbeef_vfs_archive_reader
+HOMEPAGE=https://www.assembla.com/spaces/deadbeef_vfs_archive_reader
 KEYWORDS=~*
 LICENSE=LGPL-2.1
-RDEPEND=media-sound/deadbeef
+RDEPEND=media-sound/deadbeef:0
 RESTRICT=mirror
 SLOT=0
-_eclasses_=deadbeef-plugins	ed44a7e084ca428cebe913aa55707fa2	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
-_md5_=fe6e544af69cde948cd258feca473d48
+_eclasses_=deadbeef-plugins	5d39fe3abf34494c0746c87d91c454e4	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	a3db8057ea0903a9ebea4e46aab28ff9
+_md5_=25db9bdceeb637f1c02545b952ccd0fe

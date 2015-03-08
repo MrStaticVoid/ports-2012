@@ -7,15 +7,15 @@ DEADBEEF_GUI="yes"
 inherit deadbeef-plugins mercurial
 
 DESCRIPTION="DeaDBeeF infobar plugin that shows lyrics and artist's biography for the current track"
-HOMEPAGE="https://bitbucket.org/dsimbiriatin/${PN}/wiki/Home"
+HOMEPAGE="https://bitbucket.org/dsimbiriatin/deadbeef-infobar"
 EHG_REPO_URI="https://bitbucket.org/dsimbiriatin/${PN}"
 
 LICENSE="GPL-2"
 KEYWORDS=""
 
-RDEPEND+=" dev-libs/libxml2
-	x11-libs/gdk-pixbuf[jpeg]
-	media-sound/deadbeef[curl]"
+RDEPEND+=" dev-libs/libxml2:2
+	x11-libs/gdk-pixbuf[jpeg]:2
+	media-sound/deadbeef[curl]:0"
 
 DEPEND="${RDEPEND}"
 

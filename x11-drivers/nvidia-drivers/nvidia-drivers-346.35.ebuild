@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-346.35.ebuild,v 1.3 2015/01/31 11:32:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-346.35.ebuild,v 1.5 2015/03/04 10:19:40 jer Exp $
 
 EAPI=5
 
@@ -50,7 +50,7 @@ RDEPEND="
 	acpi? ( sys-power/acpid )
 	tools? (
 		dev-libs/atk
-		dev-libs/glib
+		dev-libs/glib:2
 		x11-libs/gdk-pixbuf
 		gtk2? ( >=x11-libs/gtk+-2.4:2 )
 		gtk3? ( x11-libs/gtk+:3 )
@@ -59,7 +59,7 @@ RDEPEND="
 		x11-libs/pango[X]
 	)
 	X? (
-		<x11-base/xorg-server-1.16.99:=
+		<x11-base/xorg-server-1.17.99:=
 		>=x11-libs/libvdpau-0.3-r1
 		multilib? (
 			|| (

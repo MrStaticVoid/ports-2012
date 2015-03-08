@@ -7,5 +7,5 @@ IUSE=imlib2 xinerama xrandr
 LICENSE=BSD
 RDEPEND=!x11-wm/wmfs2 x11-libs/libSM x11-libs/libX11 x11-libs/libXft imlib2? ( media-libs/imlib2 ) xinerama? ( x11-libs/libXinerama ) xrandr? ( x11-libs/libXrandr )
 SLOT=0
-_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	git-r3	a00948a17a774db5e36bc0247c598097	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	git-r3	a00948a17a774db5e36bc0247c598097	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	a3db8057ea0903a9ebea4e46aab28ff9
 _md5_=8751e634981904a3ade743fdd38e8beb
