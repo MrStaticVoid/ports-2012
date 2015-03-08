@@ -16,16 +16,16 @@ inherit eutils
 
 : ${SLOT:=0}
 
-RDEPEND+=" media-sound/deadbeef"
-DEPEND+=" media-sound/deadbeef"
+RDEPEND+=" media-sound/deadbeef:0"
+DEPEND+=" media-sound/deadbeef:0"
 
-RESTRICT="mirror"
+RESTRICT+=" mirror"
 
 if [[ "${DEADBEEF_GUI}" == "yes" ]] ; then
 	IUSE+=" +gtk2 gtk3"
 	REQUIRED_USE="|| ( gtk2 gtk3 )"
-	GUI_DEPEND="gtk2? ( media-sound/deadbeef[gtk2] )
-		gtk3? ( media-sound/deadbeef[gtk3] )"
+	GUI_DEPEND="gtk2? ( media-sound/deadbeef[gtk2]:0 )
+		gtk3? ( media-sound/deadbeef[gtk3]:0 )"
 	RDEPEND+=" ${GUI_DEPEND}"
 	DEPEND+=" ${GUI_DEPEND}"
 fi
@@ -37,9 +37,8 @@ EXPORT_FUNCTIONS "src_install"
 # Looking for a *.so deadbeef plugins and installs found plugins to corresponding deadbeef directory.
 deadbeef-plugins_src_install() {
 	local plugins=`find "${WORKDIR}" -name "*.so" -type f`
-	for plugin in ${plugins}
-		do
-			insinto "/usr/$(get_libdir)/deadbeef"
-			doins "${plugin}"
-		done
+	for plugin in ${plugins} ; do
+		insinto "/usr/$(get_libdir)/deadbeef"
+		doins "${plugin}"
+	done
 }

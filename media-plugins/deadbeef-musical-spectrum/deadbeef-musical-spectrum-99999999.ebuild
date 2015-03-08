@@ -6,17 +6,14 @@ DEADBEEF_GUI="yes"
 
 inherit deadbeef-plugins git-r3
 
-GITHUB_USERNAME="cboxdoerfer"
-GITHUB_REPOSITORY="ddb_musical_spectrum"
-
 DESCRIPTION="DeaDBeeF musical spectrum plugin"
-HOMEPAGE="https://github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY}"
-EGIT_REPO_URI="https://github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY}.git"
+HOMEPAGE="https://github.com/cboxdoerfer/ddb_musical_spectrum"
+EGIT_REPO_URI="https://github.com/cboxdoerfer/ddb_musical_spectrum.git"
 
 LICENSE="GPL-2"
 KEYWORDS=""
 
-RDEPEND+=" sci-libs/fftw:3.0"
+RDEPEND+=" sci-libs/fftw:3.0="
 
 DEPEND="${RDEPEND}"
 

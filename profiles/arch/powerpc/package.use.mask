@@ -1,11 +1,28 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/package.use.mask,v 1.229 2015/01/26 19:14:24 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/package.use.mask,v 1.237 2015/03/05 10:57:57 jlec Exp $
 
-# Gilles Dartiguelongue <eva@gentoo.org> (23 Dec 2014)
-# New dependencies for wayland support in Gnome 3.14
-# See bug #533420.
-media-libs/clutter egl
+# Michał Górny <mgorny@gentoo.org> (21 Feb 2015)
+# The external QCA plugins are not keyworded on this arch. Since
+# this is only a temporary measure and nothing depends on them,
+# just masking them until the new version goes stable.
+<app-crypt/qca-2.1 logger pkcs11 sasl
+
+# Andreas K. Huettel <dilfridge@gentoo.org> (15 Feb 2015)
+# There's no keyworded office implementation anymore.
+gnome-extra/sushi office
+
+# Alexis Ballier <aballier@gentoo.org> (11 Feb 2015)
+# Missing ffmpeg deps, bug #510340
+media-video/ffmpeg x265
+
+# Patrick Lauer <patrick@gentoo.org> (10 Feb 2015)
+# Missing keywords for media-libs/x265
+media-video/libav x265
+
+# Markos Chandras <hwoarang@gentoo.org> (07 Feb 2015)
+# app-admin/cgmanager misses PPC/PPC64 keywords. Bug #539208
+app-emulation/lxc cgmanager
 
 # Mark Wright <gienah@gentoo.org> (14-24 Dec 2014)
 # test dependencies need keywording
@@ -113,7 +130,7 @@ net-im/telepathy-connection-managers sipe
 
 # Pacho Ramos <pacho@gentoo.org> (31 Oct 2013)
 # Missing keywords, bug #478254
-gnome-base/gnome classic
+gnome-base/gnome classic extras
 
 # Mark Wright <gienah@gentoo.org> (26 Oct 2013)
 # template-haskell not yet available
@@ -296,10 +313,6 @@ sci-chemistry/vmd msms
 # MKL not available on this arch
 media-gfx/povray mkl
 
-# Steve Arnold <nerdboy@gentoo.org> (12 Jun 2010)
-# masking for gdal (see bug 315659)
-sci-libs/gdal ecwj2k
-
 # Bernard Cafarelli <voyageur@gentoo.org> (26 Apr 2010)
 # This is for x86/amd64 only
 sys-devel/llvm udis86
@@ -335,7 +348,3 @@ net-im/pidgin zephyr
 # Masked Parallel LCD devices for bug #180683
 # app-misc/lcd4linux
 app-misc/lcd4linux lcd_devices_hd44780
-
-# Tobias Scherbaum <dertobi123@gentoo.org> (1 Feb 2008)
-# Mask mono flag for gnome as tomboy is segfaulting.
-gnome-base/gnome mono
