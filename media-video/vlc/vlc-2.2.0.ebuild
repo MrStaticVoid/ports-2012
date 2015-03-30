@@ -193,7 +193,7 @@ REQUIRED_USE="
 	cddb? ( cdda )
 	dvb? ( dvbpsi )
 	dxva2? ( avcodec )
-	ffmpeg? ( avcodec avformat swscale !libav? ( postproc ) )
+	ffmpeg? ( avcodec avformat swscale )
 	fontconfig? ( truetype )
 	gnutls? ( gcrypt )
 	httpd? ( lua )
@@ -259,6 +259,17 @@ src_prepare() {
 	# Fix up broken audio when skipping using a fixed reversed bisected commit.
 	epatch "${FILESDIR}"/${PN}-2.1.0-TomWij-bisected-PA-broken-underflow.patch
 
+	# Support for <ffmpeg-2.5.
+	epatch "${FILESDIR}"/${PN}-2.2.x-ffmpeg-lower-then-2.5.patch
+
+	# Remove Werror flag(s)
+	sed -e "s;-Werror;;" \
+		-i "${S}/aclocal.m4" \
+		-i "${S}/configure.ac" \
+		-i "${S}/configure" \
+		-i "${S}/m4/visibility.m4" \
+		-i "${S}/doc/libvlc/vlc-thumb.c" || die
+
 	# Don't use --started-from-file when not using dbus.
 	if ! use dbus ; then
 		sed -i 's/ --started-from-file//' share/vlc.desktop.in || die
@@ -310,6 +321,7 @@ src_configure() {
 		--enable-vlc \
 		--docdir=/usr/share/doc/${PF} \
 		--disable-dependency-tracking \
+		--disable-freerdp \
 		--disable-optimizations \
 		--disable-update-check \
 		--enable-fast-install \
@@ -390,7 +402,6 @@ src_configure() {
 		$(use_enable projectm) \
 		$(use_enable pulseaudio pulse) \
 		${qt_flag} \
-		$(use_enable rdp freerdp) \
 		$(use_enable rtsp realrtsp) \
 		$(use_enable run-as-root) \
 		$(use_enable samba smbclient) \

@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-1.12.4.ebuild,v 1.4 2015/03/06 09:55:37 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-1.12.4.ebuild,v 1.10 2015/03/30 10:02:48 ago Exp $
 
 EAPI=5
-inherit autotools eutils fcaps multilib qt4-r2 user
+inherit autotools eutils fcaps multilib qmake-utils qt4-r2 user
 
 DESCRIPTION="A network protocol analyzer formerly known as ethereal"
 HOMEPAGE="http://www.wireshark.org/"
@@ -11,7 +11,7 @@ SRC_URI="${HOMEPAGE}download/src/all-versions/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0/${PV}"
-KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 ~arm hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="
 	adns +caps crypt doc doc-pdf geoip +gtk3 ipv6 kerberos lua +netlink +pcap
 	portaudio +qt4 qt5 sbc selinux smi ssl zlib
@@ -148,8 +148,10 @@ src_configure() {
 		$(use_with portaudio) \
 		$(use_with qt4) \
 		$(use_with qt5) \
-		$(usex qt5 MOC=/usr/$(get_libdir)/qt5/bin/moc '') \
-		$(usex qt5 UIC=/usr/$(get_libdir)/qt5/bin/uic '') \
+		$(usex qt4 MOC=$(qt4_get_bindir)/moc '') \
+		$(usex qt4 UIC=$(qt4_get_bindir)/uic '') \
+		$(usex qt5 MOC=$(qt5_get_bindir)/moc '') \
+		$(usex qt5 UIC=$(qt5_get_bindir)/uic '') \
 		$(use_with sbc) \
 		$(use_with smi libsmi) \
 		$(use_with ssl gnutls) \

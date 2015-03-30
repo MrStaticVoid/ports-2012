@@ -9,4 +9,4 @@ RDEPEND=>=dev-python/pep8-1.5.7[python_abis_2.6?,python_abis_2.7?,python_abis_3.
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy python_abis_3.2-pypy )
 SLOT=0
 _eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	git-2	e28f0d8a9b321431b1e699782851b827	python	3f6d74b5384dbeef63d932c2b6f9b61a
-_md5_=4e2a90b953bf78ea41c3513650b3d214
+_md5_=ebd3df543301cc431122f3589041381b

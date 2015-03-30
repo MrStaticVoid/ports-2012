@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install postinst postrm preinst prerm
+DESCRIPTION=Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
+EAPI=5
+HOMEPAGE=http://xyinn.org/
+LICENSE=GPL-2
+RESTRICT=mirror strip
+SLOT=3.18.10-FC.02
+SRC_URI=http://xyinn.org/gentoo/kernels/3.18.10-FC.02/kernel-3.18.10-FC.02.tar.xz
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=2068ab9acbf5665be86fee1e4af321a7

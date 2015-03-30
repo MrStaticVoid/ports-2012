@@ -1,16 +1,16 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jnr-ffi/jnr-ffi-1.0.10.ebuild,v 1.1 2014/01/12 03:10:32 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jnr-ffi/jnr-ffi-1.0.10.ebuild,v 1.3 2015/03/29 00:27:57 monsieurp Exp $
 
 EAPI="5"
 
 JAVA_PKG_IUSE="doc source test"
 
-inherit java-pkg-2 java-ant-2 vcs-snapshot
+inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="An abstracted interface to invoking native functions from java"
 HOMEPAGE="https://github.com/jnr/jnr-ffi"
-SRC_URI="https://github.com/jnr/${PN}/tarball/${PV} -> ${P}.tar.gz"
+SRC_URI="https://github.com/jnr/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="|| ( Apache-2.0 LGPL-3 )"
 SLOT="1"
@@ -31,6 +31,9 @@ DEPEND="${COMMON_DEP}
 		>=dev-java/junit-4.8:4
 	)"
 
+# Yeah, well.. don't ask me why.
+S="${WORKDIR}/jnr-${PN}-c0b5ebf"
+
 java_prepare() {
 	cp "${FILESDIR}"/${PN}_maven-build.xml build.xml || die
 
@@ -47,9 +50,6 @@ EANT_EXTRA_ARGS="-Dmaven.build.finalName=${PN}"
 EANT_TEST_GENTOO_CLASSPATH="${EANT_GENTOO_CLASSPATH},junit-4"
 
 src_test() {
-	# Fails, upstream pom has ignore test failures enabled.
-	rm -v src/test/java/jnr/ffi/StringArrayTest.java || die
-
 	# build native test library
 	emake BUILD_DIR=build -f libtest/GNUmakefile
 
