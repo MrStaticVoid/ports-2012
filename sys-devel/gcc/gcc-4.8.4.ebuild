@@ -65,6 +65,7 @@ pkg_setup() {
 	unset LANGUAGES #265283
 	PREFIX=/usr
 	CTARGET=$CHOST
+	[[ ${CATEGORY} == cross-* ]] && CTARGET=${CATEGORY/cross-}
 	GCC_BRANCH_VER=${SLOT}
 	GCC_CONFIG_VER=${PV}
 	DATAPATH=${PREFIX}/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}
@@ -163,7 +164,7 @@ src_configure() {
 	use libssp || export gcc_cv_libc_provides_ssp=yes
 
 	# ARM
-	if use arm ; then
+	if [[ ${CTARGET} == arm* ]]; then
 		local a arm_arch=${CTARGET%%-*}
 		# Remove trailing endian variations first: eb el be bl b l
 		for a in e{b,l} {b,l}e b l ; do
@@ -282,6 +283,10 @@ create_gcc_env_entry() {
 	STDCXX_INCDIR="${STDCXX_INCDIR##*/}"
 	GCC_SPECS="${gcc_specs_file}"
 	EOF
+
+	if is_crosscompile; then
+		echo "CTARGET=\"${CTARGET}\"" >> ${gcc_envd_file}
+	fi
 }
 
 linkify_compiler_binaries() {

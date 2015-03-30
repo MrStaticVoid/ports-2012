@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.92 2014/12/11 14:17:09 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.95 2015/03/28 04:15:37 vapier Exp $
 
 EAPI=5
 
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="ncurses,readline"
 
 inherit eutils flag-o-matic linux-info toolchain-funcs multilib python-r1 \
@@ -43,15 +43,13 @@ x86_64"
 IUSE_SOFTMMU_TARGETS="${COMMON_TARGETS} lm32 moxie ppcemb xtensa xtensaeb"
 IUSE_USER_TARGETS="${COMMON_TARGETS} armeb mipsn32 mipsn32el ppc64abi32 sparc32plus"
 
-use_targets="
-	$(printf ' qemu_softmmu_targets_%s' ${IUSE_SOFTMMU_TARGETS})
-	$(printf ' qemu_user_targets_%s' ${IUSE_USER_TARGETS})
-"
-IUSE+=" ${use_targets}"
+use_softmmu_targets=$(printf ' qemu_softmmu_targets_%s' ${IUSE_SOFTMMU_TARGETS})
+use_user_targets=$(printf ' qemu_user_targets_%s' ${IUSE_USER_TARGETS})
+IUSE+=" ${use_softmmu_targets} ${use_user_targets}"
 
 # Require at least one softmmu or user target.
 # Block USE flag configurations known to not work.
-REQUIRED_USE="|| ( ${use_targets} )
+REQUIRED_USE="|| ( ${use_softmmu_targets} ${use_user_targets} )
 	${PYTHON_REQUIRED_USE}
 	qemu_softmmu_targets_arm? ( fdt )
 	qemu_softmmu_targets_microblaze? ( fdt )
@@ -77,12 +75,12 @@ SOFTMMU_LIB_DEPEND="${COMMON_LIB_DEPEND}
 	fdt? ( >=sys-apps/dtc-1.4.0[static-libs(+)] )
 	glusterfs? ( >=sys-cluster/glusterfs-3.4.0[static-libs(+)] )
 	infiniband? ( sys-infiniband/librdmacm[static-libs(+)] )
-	jpeg? ( virtual/jpeg[static-libs(+)] )
+	jpeg? ( virtual/jpeg:=[static-libs(+)] )
 	lzo? ( dev-libs/lzo:2[static-libs(+)] )
 	ncurses? ( sys-libs/ncurses[static-libs(+)] )
 	nfs? ( >=net-fs/libnfs-1.9.3[static-libs(+)] )
 	numa? ( sys-process/numactl[static-libs(+)] )
-	png? ( media-libs/libpng[static-libs(+)] )
+	png? ( media-libs/libpng:0=[static-libs(+)] )
 	rbd? ( sys-cluster/ceph[static-libs(+)] )
 	sasl? ( dev-libs/cyrus-sasl[static-libs(+)] )
 	sdl? ( >=media-libs/libsdl-1.2.11[static-libs(+)] )
@@ -108,8 +106,9 @@ X86_FIRMWARE_DEPEND="
 		sys-firmware/sgabios
 		sys-firmware/vgabios
 	)"
-CDEPEND="!static-softmmu? ( ${SOFTMMU_LIB_DEPEND//\[static-libs(+)]} )
-	!static-user? ( ${USER_LIB_DEPEND//\[static-libs(+)]} )
+CDEPEND="
+	!static-softmmu? ( $(printf "%s? ( ${SOFTMMU_LIB_DEPEND//\[static-libs(+)]} ) " ${use_softmmu_targets}) )
+	!static-user? ( $(printf "%s? ( ${USER_LIB_DEPEND//\[static-libs(+)]} ) " ${use_user_targets}) )
 	qemu_softmmu_targets_i386? ( ${X86_FIRMWARE_DEPEND} )
 	qemu_softmmu_targets_x86_64? ( ${X86_FIRMWARE_DEPEND} )
 	accessibility? ( app-accessibility/brltty )
@@ -137,8 +136,8 @@ DEPEND="${CDEPEND}
 	virtual/pkgconfig
 	kernel_linux? ( >=sys-kernel/linux-headers-2.6.35 )
 	gtk? ( nls? ( sys-devel/gettext ) )
-	static-softmmu? ( ${SOFTMMU_LIB_DEPEND} )
-	static-user? ( ${USER_LIB_DEPEND} )
+	static-softmmu? ( $(printf "%s? ( ${SOFTMMU_LIB_DEPEND} ) " ${use_softmmu_targets}) )
+	static-user? ( $(printf "%s? ( ${USER_LIB_DEPEND} ) " ${use_user_targets}) )
 	test? (
 		dev-libs/glib[utils]
 		sys-devel/bc
@@ -245,6 +244,7 @@ pkg_pretend() {
 
 pkg_setup() {
 	enewgroup kvm 78
+	python_setup
 }
 
 src_prepare() {
@@ -333,7 +333,7 @@ qemu_src_configure() {
 		$(conf_softmmu ncurses curses)
 		$(conf_softmmu nfs libnfs)
 		$(conf_softmmu numa)
-		$(conf_softmmu opengl glx)
+		$(conf_softmmu opengl)
 		$(conf_softmmu png vnc-png)
 		$(conf_softmmu rbd)
 		$(conf_softmmu sasl vnc-sasl)
@@ -392,7 +392,7 @@ qemu_src_configure() {
 		gcc-specs-pie && conf_opts+=( --enable-pie )
 	fi
 
-	einfo "./configure ${conf_opts[*]}"
+	einfo "../configure ${conf_opts[*]}"
 	cd "${builddir}"
 	../configure "${conf_opts[@]}" || die "configure failed"
 

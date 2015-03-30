@@ -4,7 +4,6 @@ app-antivirus
 app-arch
 app-backup
 app-benchmarks
-app-bin
 app-cdr
 app-crypt
 app-dicts
@@ -115,8 +114,6 @@ net-voip
 net-wireless
 net-zope
 perl-core
-rox-base
-rox-extra
 sci-astronomy
 sci-biology
 sci-calculators

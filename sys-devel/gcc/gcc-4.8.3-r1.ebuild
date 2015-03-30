@@ -98,6 +98,7 @@ pkg_setup() {
 	unset LANGUAGES #265283
 	PREFIX=/usr
 	CTARGET=${CTARGET:-${CHOST}}
+	[[ ${CATEGORY} == cross-* ]] && CTARGET=${CATEGORY/cross-}
 	GCC_BRANCH_VER=${SLOT}
 	GCC_CONFIG_VER=${PV}
 	DATAPATH=${PREFIX}/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}
@@ -109,7 +110,6 @@ pkg_setup() {
 		CXXFLAGS="$CFLAGS"
 	else
 		BINPATH=${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}
-		[[ ${CATEGORY} == cross-* ]] && CTARGET=${CATEGORY/cross-}
 	fi
 	LIBPATH=${PREFIX}/lib/gcc/${CTARGET}/${GCC_CONFIG_VER}
 	STDCXX_INCDIR=${LIBPATH}/include/g++-v${GCC_BRANCH_VER}
@@ -254,7 +254,7 @@ src_configure() {
 	use libssp || export gcc_cv_libc_provides_ssp=yes
 
 	# ARM
-	if use arm ; then
+	if [[ ${CTARGET} == arm* ]] ; then
 		local a arm_arch=${CTARGET%%-*}
 		# Remove trailing endian variations first: eb el be bl b l
 		for a in e{b,l} {b,l}e b l ; do
@@ -282,7 +282,7 @@ src_configure() {
 		elif [[ ${CTARGET_TMP//_/-} == *-softfp-* ]] ; then
 			float="softfp"
 		else
-			if [[ ${CARGET} == armv[67]* ]]; then
+			if [[ ${CTARGET} == armv[67]* ]]; then
 				case ${CTARGET} in
 					armv6*) confgcc+=" --with-fpu=vfp" ;;
 					armv7*) confgcc+=" --with-fpu=vfpv3-d16" ;;
@@ -375,6 +375,10 @@ create_gcc_env_entry() {
 	STDCXX_INCDIR="${STDCXX_INCDIR##*/}"
 	GCC_SPECS="${gcc_specs_file}"
 	EOF
+
+	if is_crosscompile; then
+		echo "CTARGET=\"${CTARGET}\"" >> ${gcc_envd_file}
+	fi
 }
 
 linkify_compiler_binaries() {

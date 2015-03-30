@@ -23,7 +23,7 @@ SRC_URI="http://oligarchy.co.uk/xapian/${PV}/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~* amd64"
 IUSE="java lua mono perl php python ruby tcl"
 REQUIRED_USE="|| ( java lua mono perl php python ruby tcl )"
 
@@ -32,7 +32,7 @@ RDEPEND="=dev-libs/xapian-${PV}*
 	mono? ( dev-lang/mono )
 	perl? ( dev-lang/perl:= )
 	ruby? ( dev-lang/ruby )
-	tcl? ( >=dev-lang/tcl-8.1:= )"
+	tcl? ( >=dev-lang/tcl-8.1:0= )"
 DEPEND="${RDEPEND}
 	java? ( >=virtual/jdk-1.3 )"
 RDEPEND+="
@@ -211,12 +211,12 @@ src_install () {
 
 pkg_postinst() {
 	if use python; then
-		python_mod_optimize xapian
+		python_byte-compile_modules xapian
 	fi
 }
 
 pkg_postrm() {
 	if use python; then
-		python_mod_cleanup xapian
+		python_clean_byte-compiled_modules xapian
 	fi
 }
