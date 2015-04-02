@@ -1,34 +1,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
+# See README.txt for usage notes.
+
 EAPI=5
 
 inherit multilib eutils pax-utils
-
-# Ebuild notes:
-#
-# This is a simplified Funtoo gcc ebuild. It has been designed to have a reduced dependency
-# footprint, so that libgmp, mpfr and mpc are built as part of the gcc build process and
-# are not external dependencies. This makes upgrading these dependencies easier and
-# improves upgradability of Funtoo Linux systems, and solves various thorny build issues.
-#
-# Also, this gcc ebuild no longer uses toolchain.eclass which improves the maintainability
-# of the ebuild itself as it is less complex.
-#
-# -- Daniel Robbins, Apr 19, 2013.
-#
-# Other important notes on this ebuild:
-#
-# x86/amd64 architecture support only (for now).
-# mudflap is enabled by default.
-# test is not currently supported.
-# objc-gc is enabled by default when objc is enabled.
-# gcj is not currently supported by this ebuild.
-# multislot is a good USE flag to set when testing this ebuild;
-#  (It allows this gcc to co-exist along identical x.y versions.)
-# hardened is now supported, but we have deprecated the nopie and
-#  nossp USE flags from gentoo.
-
-# Note: multi-stage bootstrapping is currently not being performed.
 
 RESTRICT="strip"
 FEATURES=${FEATURES/multilib-strict/}
@@ -92,15 +68,32 @@ RDEPEND="sys-libs/zlib nls? ( sys-devel/gettext ) virtual/libiconv"
 DEPEND="${RDEPEND} >=sys-devel/bison-1.875 >=sys-devel/flex-2.5.4 elibc_glibc? ( >=sys-libs/glibc-2.8 ) >=sys-devel/binutils-2.18"
 PDEPEND=">=sys-devel/gcc-config-1.5 >=sys-devel/libtool-2.4.3 elibc_glibc? ( >=sys-libs/glibc-2.8 )"
 
+tc-is-cross-compiler() {
+	[[ ${CBUILD}:-${CHOST}} != ${CHOST} ]]
+}
+
+is_crosscompile() {
+	[[ ${CHOST} != ${CTARGET} ]]
+}
+
 pkg_setup() {
 	unset GCC_SPECS # we don't want to use the installed compiler's specs to build gcc!
 	unset LANGUAGES #265283
 	PREFIX=/usr
 	CTARGET=$CHOST
+	CTARGET=${CTARGET:-${CHOST}}
 	GCC_BRANCH_VER=${SLOT}
 	GCC_CONFIG_VER=${PV}
 	DATAPATH=${PREFIX}/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}
-	BINPATH=${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}
+	if is_crosscompile; then
+		BINPATH=${PREFIX}/${CHOST}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}
+		CFLAGS="-O2 -pipe"
+		FFLAGS="$CFLAGS"
+		FCFLAGS="$CFLAGS"
+		CXXFLAGS="$CFLAGS"
+	else
+		BINPATH=${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}
+	fi
 	LIBPATH=${PREFIX}/lib/gcc/${CTARGET}/${GCC_CONFIG_VER}
 	STDCXX_INCDIR=${LIBPATH}/include/g++-v${GCC_BRANCH_VER}
 }
@@ -127,6 +120,11 @@ src_unpack() {
 	mkdir ${WORKDIR}/objdir
 }
 
+p_apply() {
+	einfo "Applying ${1##*/}..."
+	patch -p1 < $1 > /dev/null || die "Failed applying $1"
+}
+
 src_prepare() {
 	( use vanilla && use hardened ) \
 		&& die "vanilla and hardened USE flags are incompatible. Disable one of them"
@@ -140,8 +138,7 @@ src_prepare() {
 	if ! use vanilla; then
 		# The following patch allows pie/ssp specs to be changed via environment
 		# variable, which is needed for gcc-config to allow switching of compilers:
-
-		[[ ${CHOST} == ${CTARGET} ]] && cat "${FILESDIR}"/gcc-spec-env-r1.patch | patch -p1 || die "patch fail"
+		! is_crosscompile && p_apply "${FILESDIR}"/gcc-spec-env-r1.patch
 
 		# Prevent libffi from being installed
 		sed -i -e 's/\(install.*:\) install-.*recursive/\1/' "${S}"/libffi/Makefile.in || die
@@ -199,8 +196,38 @@ src_prepare() {
 }
 
 src_configure() {
-	# Determine language support:
 	local confgcc
+	if is_crosscompile || tc-is-cross-compiler; then
+		confgcc+=" --target=${CTARGET}"
+	fi
+	if is_crosscompile; then
+		case ${CTARGET} in
+			*-linux)			needed_libc=no-idea;;
+			*-dietlibc)			needed_libc=dietlibc;;
+			*-elf|*-eabi)		needed_libc=newlib;;
+			*-freebsd*)			needed_libc=freebsd-lib;;
+			*-gnu*)				needed_libc=glibc;;
+			*-klibc)			needed_libc=klibc;;
+			*-musl*)			needed_libc=musl;;
+			*-uclibc*)			needed_libc=uclibc;;
+		esac
+		confgcc+=" --disable-bootstrap --enable-poision-system-directories"
+		if ! has_version ${CATEGORY}/${needed_libc}; then
+			# we are building with libc that is not installed:
+			confgcc+=" --disable-shared --disable-libatomic --disable-threads --without-headers"
+		elif built_with_use --hidden --missing false ${CATEGORY}/${needed_libc} crosscompile_opts_headers-only; then
+			# libc installed, but has USE="crosscompile_opts_headers-only" to only install headers:
+			confgcc+=" --disable-shared --disable-libatomic --with-sysroot=${PREFIX}/${CTARGET}"
+		else
+			# libc is installed:
+			confgcc+=" --with-sysroot=${PREFIX}/${CTARGET}"
+		fi
+		confgcc+=" --disable-libgomp"
+	else
+		confgcc+=" $(use_enable openmp libgomp)"
+	fi
+	[[ -n ${CBUILD} ]] && confgcc+=" --build=${CBUILD}"
+	# Determine language support:
 	local GCC_LANG="c,c++"
 	if use objc; then
 		GCC_LANG+=",objc"
@@ -218,7 +245,7 @@ src_configure() {
 	use libssp || export gcc_cv_libc_provides_ssp=yes
 
 	# ARM
-	if use arm ; then
+	if [[ ${CTARGET} == arm* ]] ; then
 		local a arm_arch=${CTARGET%%-*}
 		# Remove trailing endian variations first: eb el be bl b l
 		for a in e{b,l} {b,l}e b l ; do
@@ -239,23 +266,22 @@ src_configure() {
 		fi
 
 		# Enable hardvfp
-		tc-is-softfloat="no"
+		local float
 		local CTARGET_TMP=${CTARGET:-${CHOST}}
 		if [[ ${CTARGET_TMP//_/-} == *-softfloat-* ]] ; then
-			tc-is-softfloat="yes"
+			float="soft"
 		elif [[ ${CTARGET_TMP//_/-} == *-softfp-* ]] ; then
-			tc-is-softfloat="softfp"
+			float="softfp"
+		else
+			if [[ ${CTARGET} == armv[67]* ]]; then
+				case ${CTARGET} in
+					armv6*) confgcc+=" --with-fpu=vfp" ;;
+					armv7*) confgcc+=" --with-fpu=vfpv3-d16" ;;
+				esac
+			fi
+			float="hard"
 		fi
-
-		if [[ $(tc-is-softfloat) == "no" ]] && [[ ${CTARGET} == armv[67]* ]]
-		then
-			# Follow the new arm hardfp distro standard by default
-			confgcc+=" --with-float=hard"
-			case ${CTARGET} in
-				armv6*) confgcc+=" --with-fpu=vfp" ;;
-				armv7*) confgcc+=" --with-fpu=vfpv3-d16" ;;
-			esac
-		fi
+		confgcc+=" --with-float=$float"
 	fi
 
 	local branding="Funtoo"
@@ -315,7 +341,11 @@ src_compile() {
 	cd $WORKDIR/objdir
 	unset ABI
 
-	emake LIBPATH="${LIBPATH}" bootstrap-lean || die "compile fail"
+	if is_crosscompile || tc-is-cross-compiler; then
+		emake LIBPATH="${LIBPATH}" all || die "compile fail"
+	else
+		emake LIBPATH="${LIBPATH}" bootstrap-lean || die "compile fail"
+	fi
 }
 
 create_gcc_env_entry() {
@@ -336,6 +366,10 @@ create_gcc_env_entry() {
 	STDCXX_INCDIR="${STDCXX_INCDIR##*/}"
 	GCC_SPECS="${gcc_specs_file}"
 	EOF
+
+	if is_crosscompile; then
+		echo "CTARGET=\"${CTARGET}\"" >> ${gcc_envd_file}
+	fi
 }
 
 linkify_compiler_binaries() {
@@ -353,8 +387,10 @@ linkify_compiler_binaries() {
 		[[ -f ${x} ]] && mv ${x} ${CTARGET}-${x}
 
 		if [[ -f ${CTARGET}-${x} ]] ; then
-			ln -sf ${CTARGET}-${x} ${x}
-			dosym ${BINPATH}/${CTARGET}-${x} /usr/bin/${x}-${GCC_CONFIG_VER}
+			if ! is_crosscompile; then
+				ln -sf ${CTARGET}-${x} ${x}
+				dosym ${BINPATH}/${CTARGET}-${x} /usr/bin/${x}-${GCC_CONFIG_VER}
+			fi
 			# Create version-ed symlinks
 			dosym ${BINPATH}/${CTARGET}-${x} /usr/bin/${CTARGET}-${x}-${GCC_CONFIG_VER}
 		fi
@@ -414,9 +450,11 @@ src_install() {
 # POST MAKE INSTALL SECTION:
 
 	# Basic sanity check
-	local EXEEXT
-	eval $(grep ^EXEEXT= "${WORKDIR}"/objdir/gcc/config.log)
-	[[ -r ${D}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${D}"
+	if ! is_crosscompile; then
+		local EXEEXT
+		eval $(grep ^EXEEXT= "${WORKDIR}"/objdir/gcc/config.log)
+		[[ -r ${D}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${D}"
+	fi
 
 # GENTOO ENV SETUP
 
@@ -442,14 +480,19 @@ src_install() {
 	find "${D}" -depth -type d -delete 2>/dev/null
 	# ownership fix:
 	chown -R root:0 "${D}"${LIBPATH} 2>/dev/null
-	find "${D}/${LIBPATH}" -name libstdc++.la -type f -exec rm "{}" \;
-	find "${D}/${LIBPATH}" -name "*.py" -type f -exec rm "{}" \;
 
 	linkify_compiler_binaries
 	tasteful_stripping
-	doc_cleanups
-	exeinto "${DATAPATH}"
-	doexe "${FILESDIR}"/c{89,99} || die
+	if is_crosscompile; then
+		rm -rf "${D}"/usr/share/{man,info}
+		rm -rf "${D}"${DATAPATH}/{man,info}
+	else
+		find "${D}/${LIBPATH}" -name libstdc++.la -type f -exec rm "{}" \;
+		find "${D}/${LIBPATH}" -name "*.py" -type f -exec rm "{}" \;
+		doc_cleanups
+		exeinto "${DATAPATH}"
+		doexe "${FILESDIR}"/c{89,99} || die
+	fi
 
 	# Don't scan .gox files for executable stacks - false positives
 	if use go; then
@@ -460,6 +503,18 @@ src_install() {
 	# Disable RANDMMAP so PCH works.
 	pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1"
 	pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1plus"
+}
+
+pkg_postrm() {
+	# clean up the cruft left behind by cross-compilers
+	if is_crosscompile ; then
+		if [[ -z $(ls "${ROOT}"/etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
+			rm -f "${ROOT}"/etc/env.d/gcc/config-${CTARGET}
+			rm -f "${ROOT}"/etc/env.d/??gcc-${CTARGET}
+			rm -f "${ROOT}"/usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
+		fi
+		return 0
+	fi
 }
 
 pkg_postinst() {
