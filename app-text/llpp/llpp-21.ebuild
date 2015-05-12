@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/llpp/llpp-21.ebuild,v 1.3 2015/03/17 07:46:15 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/llpp/llpp-21.ebuild,v 1.5 2015/04/17 14:51:10 xmw Exp $
 
 EAPI=5
 
@@ -17,6 +17,7 @@ IUSE="+ocamlopt static"
 #IUSE="egl +ocamlopt static"
 
 LIB_DEPEND=">=app-text/mupdf-1.5:0=[static-libs]
+	<app-text/mupdf-1.7:0=[static-libs]
 	media-libs/openjpeg:2[static-libs]
 	media-libs/fontconfig:1.0[static-libs]
 	media-libs/freetype:2[static-libs]
@@ -51,7 +52,7 @@ src_compile() {
 	#if use egl ; then
 	#	ccopt+=" -DUSE_EGL $(pkg-config --cflags egl)"
 	#	local egl="egl"
-	#fi 
+	#fi
 	if use static ; then
 		local cclib=""
 		local slib=""

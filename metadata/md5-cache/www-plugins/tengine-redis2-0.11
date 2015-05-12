@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install
+DEPEND=www-servers/tengine[dso]
+DESCRIPTION=Upstream module for the Redis 2.0 protocol
+EAPI=5
+HOMEPAGE=https://github.com/openresty/redis2-nginx-module
+KEYWORDS=*
+LICENSE=BSD-2
+RDEPEND=www-servers/tengine[dso]
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/openresty/redis2-nginx-module/archive/v0.11.tar.gz -> tengine-redis2-0.11.tar.gz
+_md5_=a26d04190197ec3e494908b82fda3043

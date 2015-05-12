@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/cinder/cinder-2014.2.9999.ebuild,v 1.4 2015/02/08 02:15:29 prometheanfire Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/cinder/cinder-2014.2.9999.ebuild,v 1.6 2015/04/13 03:13:37 prometheanfire Exp $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -71,7 +71,7 @@ RDEPEND="
 	>=dev-python/python-glanceclient-0.14.0[${PYTHON_USEDEP}]
 	>=dev-python/python-novaclient-2.18.0[${PYTHON_USEDEP}]
 	>=dev-python/python-swiftclient-2.2.0[${PYTHON_USEDEP}]
-	>=dev-python/requests-1.2.1[${PYTHON_USEDEP}]
+	>=dev-python/requests-2.1.0[${PYTHON_USEDEP}]
 	!~dev-python/requests-2.4.0[${PYTHON_USEDEP}]
 	>=dev-python/routes-1.12.3[${PYTHON_USEDEP}]
 	!~dev-python/routes-2.0[${PYTHON_USEDEP}]
@@ -123,7 +123,7 @@ pkg_setup() {
 #}
 
 python_test() {
-	# Let's track progress of this # https://bugs.launchpad.net/swift/+bug/1249727	
+	# Let's track progress of this # https://bugs.launchpad.net/swift/+bug/1249727
 	nosetests -I test_wsgi.py cinder/tests/ || die "tests failed under python2.7"
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmaker/texmaker-4.3.ebuild,v 1.4 2015/03/27 16:30:41 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmaker/texmaker-4.3.ebuild,v 1.6 2015/05/10 13:01:04 pesa Exp $
 
 EAPI=5
 
@@ -25,7 +25,7 @@ SRC_URI="http://www.xm1math.net/texmaker/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ~ppc ~ppc64 x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE=""
 
 S="${WORKDIR}/${MY_P}"
@@ -39,7 +39,7 @@ COMMON_DEPEND="
 	dev-qt/qtgui:4
 	dev-qt/qtcore:4
 	dev-qt/qtscript:4
-	dev-qt/qtsingleapplication[X]
+	dev-qt/qtsingleapplication[X,qt4(+)]
 	dev-qt/qtwebkit:4
 "
 RDEPEND="${COMMON_DEPEND}

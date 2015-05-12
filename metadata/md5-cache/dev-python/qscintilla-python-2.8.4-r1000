@@ -10,5 +10,5 @@ RDEPEND=>=dev-python/sip-4.16:0=[python_abis_2.6?,python_abis_2.7?,python_abis_3
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 )
 SLOT=0
 SRC_URI=mirror://sourceforge/pyqt/QScintilla-gpl-2.8.4.tar.gz
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	bd2efc5baa5cbe6861c6b75670d38171	qmake-utils	ea709b525d28e3087eddedb2f884dbbe	toolchain-funcs	79b635d29abf0572d6a1b0dc8e63c0e4
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	bd2efc5baa5cbe6861c6b75670d38171	qmake-utils	b9c5231d68391b53f154f7643e94605c	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92
 _md5_=692d55ad18a103ce3589e7665c9b9a00

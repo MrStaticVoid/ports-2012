@@ -48,7 +48,7 @@ GENTOO_PATCH_VER_A="gcc-${PV}-patches-${GENTOO_PATCH_VER}.tar.bz2"
 
 GCC_A="gcc-${PV}.tar.bz2"
 SRC_URI="mirror://gnu/gcc/gcc-${PV}/${GCC_A}"
-SRC_URI="$SRC_URI http://build.funtoo.org/distfiles/gcc/${GENTOO_PATCH_VER_A}"
+SRC_URI="$SRC_URI mirror://funtoo/gcc/${GENTOO_PATCH_VER_A}"
 SRC_URI="$SRC_URI http://www.multiprecision.org/mpc/download/mpc-${MPC_VER}.tar.gz"
 SRC_URI="$SRC_URI http://www.mpfr.org/mpfr-${MPFR_VER}/mpfr-${MPFR_VER}.tar.xz"
 SRC_URI="$SRC_URI mirror://gnu/gmp/gmp-${GMP_VER}${GMP_EXTRAVER}.tar.xz"
@@ -62,7 +62,7 @@ SRC_URI="$SRC_URI graphite? ( mirror://gnu/cloog-${CLOOG_VER}.tar.gz mirror://gn
 DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.3+"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 RDEPEND="sys-libs/zlib nls? ( sys-devel/gettext ) virtual/libiconv"
 DEPEND="${RDEPEND} >=sys-devel/bison-1.875 >=sys-devel/flex-2.5.4 elibc_glibc? ( >=sys-libs/glibc-2.8 ) >=sys-devel/binutils-2.18"

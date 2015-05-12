@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/nx/nx-3.5.0.30.ebuild,v 1.2 2015/03/27 14:47:37 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/nx/nx-3.5.0.30.ebuild,v 1.5 2015/04/24 13:55:21 voyageur Exp $
 
 EAPI=5
 inherit autotools eutils multilib readme.gentoo
@@ -12,7 +12,7 @@ SRC_URI="http://code.x2go.org/releases/source/nx-libs/nx-libs-${PV}-full.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ~ppc x86"
 IUSE="elibc_glibc"
 
 RDEPEND="media-libs/freetype:2
@@ -39,9 +39,12 @@ src_prepare() {
 	cd "${S}"
 	# -fPIC
 	epatch "${FILESDIR}"/1.5.0/nxcomp-1.5.0-pic.patch
-	# Drop force -O3, set AR/RANLIB and
-	# run autoreconf in all neeed folders
+	# Drop force -O3, set AR/RANLIB
 	epatch "${FILESDIR}"/${PN}-3.5.0.17-cflags_ar_ranlib.patch
+	# Fix libX11 underlinking, #546868
+	epatch "${FILESDIR}"/${P}-fix_X11_underlinking.patch
+
+	# run autoreconf in all neeed folders
 	for i in nxcomp nxcompext nxcompshad nxproxy; do
 		cd "${S}"/${i}
 		eautoreconf ${i}

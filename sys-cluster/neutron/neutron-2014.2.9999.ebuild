@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/neutron/neutron-2014.2.9999.ebuild,v 1.11 2015/03/24 04:13:56 prometheanfire Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/neutron/neutron-2014.2.9999.ebuild,v 1.13 2015/04/13 03:27:20 prometheanfire Exp $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -56,7 +56,7 @@ RDEPEND="
 	<dev-python/eventlet-0.16.0[${PYTHON_USEDEP}]
 	>=dev-python/greenlet-0.3.2[${PYTHON_USEDEP}]
 	>=dev-python/httplib2-0.7.5[${PYTHON_USEDEP}]
-	>=dev-python/requests-1.2.1[${PYTHON_USEDEP}]
+	>=dev-python/requests-2.1.0[${PYTHON_USEDEP}]
 	!~dev-python/requests-2.4.0[${PYTHON_USEDEP}]
 	>=dev-python/iso8601-0.1.9[${PYTHON_USEDEP}]
 	dev-python/jsonrpclib[${PYTHON_USEDEP}]
@@ -201,7 +201,7 @@ python_install() {
 	insopts -m 0440 -o root -g root
 	newins "${FILESDIR}/neutron.sudoersd" neutron
 
-	#remove superfluous stuff 
+	#remove superfluous stuff
 	rm -R "${D}/usr/etc/"
 }
 

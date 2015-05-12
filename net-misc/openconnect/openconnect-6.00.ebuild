@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openconnect/openconnect-6.00.ebuild,v 1.2 2014/12/20 03:07:11 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openconnect/openconnect-6.00.ebuild,v 1.4 2015/04/27 19:01:33 floppym Exp $
 
 EAPI="5"
 
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="xml"
 
 inherit eutils linux-info python-any-r1
@@ -34,7 +34,7 @@ DEPEND="dev-libs/libxml2
 		>=net-libs/gnutls-3[static-libs?] dev-libs/nettle
 		app-misc/ca-certificates
 	)
-	gssapi? ( app-crypt/mit-krb5 )
+	gssapi? ( virtual/krb5 )
 	libproxy? ( net-libs/libproxy )
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}

@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/ekg2/ekg2-9999.ebuild,v 1.9 2014/08/05 18:34:16 mrueg Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/ekg2/ekg2-9999.ebuild,v 1.11 2015/05/08 04:26:44 mgorny Exp $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ EGIT_REPO_URI="git://github.com/leafnode/${PN}.git
 inherit git-r3
 #endif
 
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 inherit autotools-utils python-single-r1
 
 DESCRIPTION="Text-based, multi-protocol instant messenger"
@@ -26,7 +26,7 @@ IUSE="gadu gpm gpg gtk minimal ncurses nls nntp openssl
 	perl python readline rss spell sqlite sqlite2 ssl xmpp unicode zlib"
 
 RDEPEND="dev-libs/glib:2=
-	gadu? ( net-libs/libgadu:0= )
+	gadu? ( <net-libs/libgadu-1.12:0= )
 	gpg? ( app-crypt/gpgme:1= )
 	gtk? ( x11-libs/gtk+:2= )
 	nls? ( virtual/libintl:0= )

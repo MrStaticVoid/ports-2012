@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/fleet/fleet-9999.ebuild,v 1.4 2014/12/07 20:30:55 alunduil Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/fleet/fleet-9999.ebuild,v 1.6 2015/05/02 15:56:46 alunduil Exp $
 
 EAPI=5
 
@@ -33,7 +33,8 @@ src_install() {
 	dobin "${S}"/bin/fleetd
 	dobin "${S}"/bin/fleetctl
 
-	systemd_dounit "${FILESDIR}"/fleetd.service
+	systemd_dounit "${FILESDIR}"/fleet.service
+	systemd_dounit "${FILESDIR}"/fleet.socket
 
 	dodoc README.md
 	use doc && dodoc -r Documentation
@@ -45,8 +46,11 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "If you're upgrading from a version less than 0.8.0, please read the messages!"
-	elog "The fleet binary name changed to fleetd."
-	elog "If you're using systemd, update your configuration:"
-	elog "  systemctl disable fleet; systemctl enable fleetd"
+	ewarn "Please read this if you are upgrading from a version <0.10.0-r1."
+	ewarn ""
+	ewarn "Starting with fleet 0.10 the fleetctl utility has"
+	ewarn "'--endpoint=unix:///var/run/fleet.sock' as default argument, which is"
+	ewarn "why we have introduced the fleet.socket unit and renamed the service"
+	ewarn "from fleetd.service to fleet.service. If you run fleet on system"
+	ewarn "startup, please re-enable it via 'systemctl enable fleet'."
 }
