@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/glfw/glfw-3.1.1.ebuild,v 1.1 2015/03/22 21:10:59 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/glfw/glfw-3.1.1.ebuild,v 1.3 2015/05/12 08:41:56 ago Exp $
 
 EAPI=5
 inherit cmake-utils
@@ -11,13 +11,14 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE="egl examples"
 
 RDEPEND="x11-libs/libXrandr
 	x11-libs/libX11
 	x11-libs/libXi
 	x11-libs/libXxf86vm
+	x11-libs/libXinerama
 	virtual/opengl"
 DEPEND="${RDEPEND}
 	virtual/glu"

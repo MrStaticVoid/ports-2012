@@ -11,4 +11,4 @@ REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.
 SLOT=0
 SRC_URI=mirror://imagemagick/python/PythonMagick-0.9.11.tar.xz
 _eclasses_=python	bd2efc5baa5cbe6861c6b75670d38171
-_md5_=c670993c1514edb282f86a8fe73659e6
+_md5_=232bcb36ce5c6ccc80f00069f4d11283

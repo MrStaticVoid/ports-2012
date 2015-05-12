@@ -8,10 +8,10 @@ GITHUB_COMMIT="2aad6d8f703f9d899b023d31d6714eea004fc61b"
 
 DESCRIPTION="Raspberry PI binary kernel, modules, dtb and firmware"
 HOMEPAGE="https://github.com/raspberrypi/firmware"
-SRC_URI="https://github.com/${PN/-image//firmware}/archive/${GITHUB_COMMIT}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/${PN/-image//firmware}/archive/${GITHUB_COMMIT}.tar.gz -> ${PN}-${PVR}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="${PVR}"
+SLOT="0"
 KEYWORDS="~arm -*"
 IUSE="+rpi2 +firmware
 	dtb doc rpi1 rpi1b rpi1bplus"

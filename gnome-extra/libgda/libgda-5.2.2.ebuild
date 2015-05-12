@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgda/libgda-5.2.2.ebuild,v 1.6 2015/03/07 03:18:51 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgda/libgda-5.2.2.ebuild,v 1.8 2015/04/18 08:08:07 pacho Exp $
 
 EAPI="5"
 GNOME2_LA_PUNT="yes"
 GCONF_DEBUG="yes"
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 #VALA_MIN_API_VERSION="0.18"
 #VALA_MAX_API_VERSION="0.18" # configure explicitly checks for 0.18
 #VALA_USE_DEPEND="vapigen"
@@ -61,6 +61,7 @@ RDEPEND="
 #	vala? ( dev-libs/libgee:0.8 )
 DEPEND="${RDEPEND}
 	>=app-text/gnome-doc-utils-0.9
+	app-text/yelp-tools
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.40.6
 	virtual/pkgconfig

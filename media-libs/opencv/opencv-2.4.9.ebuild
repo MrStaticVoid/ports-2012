@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/opencv-2.4.9.ebuild,v 1.10 2015/03/05 12:11:57 amynka Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/opencv-2.4.9.ebuild,v 1.13 2015/05/05 08:28:32 jer Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit base toolchain-funcs cmake-utils python-single-r1 java-pkg-opt-2 java-ant-2
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/opencvlibrary/opencv-unix/${PV}/${P}.zip"
 
 LICENSE="BSD"
 SLOT="0/2.4"
-KEYWORDS="amd64 ~arm ppc x86 ~amd64-linux"
+KEYWORDS="amd64 ~arm ppc ~ppc64 x86 ~amd64-linux"
 IUSE="cuda doc +eigen examples ffmpeg gstreamer gtk ieee1394 ipp jpeg jpeg2k libav opencl openexr opengl openmp pch png +python qt4 testprograms threads tiff v4l vtk xine"
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
@@ -43,8 +43,8 @@ RDEPEND="
 		x11-libs/gtk+:2
 		opengl? ( x11-libs/gtkglext )
 	)
-	java? ( >=virtual/jre-1.6 )
-	jpeg? ( virtual/jpeg )
+	java? ( >=virtual/jre-1.6:* )
+	jpeg? ( virtual/jpeg:0 )
 	jpeg2k? ( media-libs/jasper )
 	ieee1394? (
 		media-libs/libdc1394
@@ -62,7 +62,7 @@ RDEPEND="
 		opengl? ( dev-qt/qtopengl:4 )
 	)
 	threads? ( dev-cpp/tbb )
-	tiff? ( media-libs/tiff )
+	tiff? ( media-libs/tiff:0 )
 	v4l? ( >=media-libs/libv4l-0.8.3 )
 	vtk? ( sci-libs/vtk[rendering] )
 	xine? ( media-libs/xine-lib )

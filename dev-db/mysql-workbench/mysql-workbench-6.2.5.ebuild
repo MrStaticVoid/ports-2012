@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-workbench/mysql-workbench-6.2.5.ebuild,v 1.3 2015/03/18 19:22:56 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-workbench/mysql-workbench-6.2.5.ebuild,v 1.6 2015/04/26 17:21:13 pacho Exp $
 
 EAPI=5
 GCONF_DEBUG="no"
 
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="sqlite"
 
 CMAKE_MIN_VERSION="2.8.11.1"
@@ -20,7 +20,7 @@ SRC_URI="mirror://mysql/Downloads/MySQLGUITools/${MY_P}.tar.gz https://github.co
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ppc x86 ~amd64-linux ~x86-linux"
 IUSE="debug doc gnome-keyring"
 
 # glibc: deprecated mutex functions, removed in 2.36.0

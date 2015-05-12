@@ -43,7 +43,7 @@ GENTOO_PATCH_VER_A="gcc-${PV}-patches-${GENTOO_PATCH_VER}.tar.bz2"
 
 GCC_A="gcc-${PV}.tar.bz2"
 SRC_URI="mirror://gnu/gcc/gcc-${PV}/${GCC_A}"
-SRC_URI="$SRC_URI http://build.funtoo.org/distfiles/gcc/${GENTOO_PATCH_VER_A}"
+SRC_URI="$SRC_URI mirror://funtoo/gcc/${GENTOO_PATCH_VER_A}"
 SRC_URI="$SRC_URI http://www.multiprecision.org/mpc/download/mpc-${MPC_VER}.tar.gz"
 SRC_URI="$SRC_URI http://www.mpfr.org/mpfr-${MPFR_VER}/mpfr-${MPFR_VER}.tar.xz"
 SRC_URI="$SRC_URI mirror://gnu/gmp/gmp-${GMP_VER}.tar.xz"

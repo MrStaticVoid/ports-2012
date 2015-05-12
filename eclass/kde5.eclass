@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde5.eclass,v 1.4 2015/03/18 13:04:35 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde5.eclass,v 1.8 2015/05/09 15:33:21 mrueg Exp $
 
 # @ECLASS: kde5.eclass
 # @MAINTAINER:
@@ -11,8 +11,6 @@
 
 if [[ -z ${_KDE5_ECLASS} ]]; then
 _KDE5_ECLASS=1
-
-CMAKE_MIN_VERSION="2.8.12"
 
 # @ECLASS-VARIABLE: VIRTUALX_REQUIRED
 # @DESCRIPTION:
@@ -30,7 +28,7 @@ if [[ ${KDE_BUILD_TYPE} = live ]]; then
 	esac
 fi
 
-EXPORT_FUNCTIONS pkg_pretend pkg_setup src_unpack src_prepare src_configure src_compile src_test src_install pkg_preinst pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS pkg_pretend pkg_setup pkg_nofetch src_unpack src_prepare src_configure src_compile src_test src_install pkg_preinst pkg_postinst pkg_postrm
 
 # @ECLASS-VARIABLE: QT_MINIMAL
 # @DESCRIPTION:
@@ -40,7 +38,7 @@ EXPORT_FUNCTIONS pkg_pretend pkg_setup src_unpack src_prepare src_configure src_
 # @ECLASS-VARIABLE: KDE_AUTODEPS
 # @DESCRIPTION:
 # If set to "false", do nothing.
-# For any other value, add a dependency on dev-libs/extra-cmake-modules and dev-qt/qtcore:5.
+# For any other value, add a dependency on dev-qt/qtcore:5 and kde-frameworks/extra-cmake-modules:5.
 : ${KDE_AUTODEPS:=true}
 
 # @ECLASS-VARIABLE: KDE_DEBUG
@@ -83,12 +81,27 @@ else
 	: ${KDE_TEST:=false}
 fi
 
+# @ECLASS-VARIABLE: KDE_PUNT_BOGUS_DEPS
+# @DESCRIPTION:
+# If set to "false", do nothing.
+# For any other value, do black magic to make hardcoded-but-optional dependencies
+# optional again. An upstream solution is preferable and this is a last resort.
+: ${KDE_PUNT_BOGUS_DEPS:=false}
+
 # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
 # @DESCRIPTION:
 # If set to "none", do nothing.
 # For any other value, add selinux to IUSE, and depending on that useflag
-# add a dependency on sec-policy/selinux-${KDE_SELINUX_MODULE} to (R)DEPEND
+# add a dependency on sec-policy/selinux-${KDE_SELINUX_MODULE} to (R)DEPEND.
 : ${KDE_SELINUX_MODULE:=none}
+
+# @ECLASS-VARIABLE: KDE_RELEASE_DATE
+# @DESCRIPTION:
+# Used to display a fetch restriction for packages that have not been published yet.
+# If set to "none", use internal schedule.
+# Otherwise set it to a date formatted as YYMMDD.
+# Internal schedule is adjusted in _get_release_date().
+: ${KDE_RELEASE_DATE:=none}
 
 if [[ ${KDEBASE} = kdevelop ]]; then
 	HOMEPAGE="http://www.kdevelop.org/"
@@ -107,32 +120,26 @@ fi
 case ${KDE_AUTODEPS} in
 	false)	;;
 	*)
-		if [[ ${CATEGORY} = kde-frameworks ]]; then
-			ECM_MINIMAL=1.$(get_version_component_range 2).0
-		fi
-
 		if [[ ${KDE_BUILD_TYPE} = live ]]; then
 			case ${CATEGORY} in
 				kde-frameworks)
-					ECM_MINIMAL=9999
 					FRAMEWORKS_MINIMAL=9999
 				;;
 				kde-plasma)
-					ECM_MINIMAL=9999
 					FRAMEWORKS_MINIMAL=9999
 				;;
 				*) ;;
 			esac
 		fi
 
-		DEPEND+=" >=dev-libs/extra-cmake-modules-${ECM_MINIMAL}"
+		DEPEND+=" $(add_frameworks_dep extra-cmake-modules)"
 		RDEPEND+=" >=kde-frameworks/kf-env-3"
 		COMMONDEPEND+="	>=dev-qt/qtcore-${QT_MINIMAL}:5"
 
 		if [[ ${CATEGORY} = kde-plasma ]]; then
 			RDEPEND+="
 				!kde-apps/kde-l10n[-minimal]
-				!kde-base/kde-l10n:4
+				!kde-base/kde-l10n:4[-minimal(-)]
 			"
 		fi
 
@@ -142,8 +149,6 @@ case ${KDE_AUTODEPS} in
 				!kde-base/${PN}
 			"
 		fi
-
-		unset ecm_version
 		;;
 esac
 
@@ -311,9 +316,59 @@ _calculate_live_repo() {
 	esac
 }
 
+
+_get_release_date() {
+	debug-print-function ${FUNCNAME} "$@"
+	case ${CATEGORY} in
+		kde-frameworks)
+			case ${PV} in
+				5.10.0) echo "20150507" ;;
+				5.11.0) echo "20150611" ;;
+				5.12.0) echo "20150709" ;;
+				5.13.0) echo "20150806" ;;
+				*) echo "none" ;;
+			esac
+			;;
+		kde-plasma)
+			case ${PV} in
+				5.3.0) echo "20150428" ;;
+				5.3.1) echo "20150526" ;;
+				5.3.2) echo "20150630" ;;
+				5.3.95) echo "20150811" ;;
+				5.4.0) echo "20150825" ;;
+				*) echo "none" ;;
+			esac
+			;;
+		kde-apps)
+			case ${PV} in
+				15.04.1) echo "20150512" ;;
+				15.04.2) echo "20150602" ;;
+				15.04.3) echo "20150630" ;;
+				15.07.90) echo "20150805" ;;
+				15.08.0) echo "20150819" ;;
+				*) echo "none" ;;
+			esac
+			;;
+		*) echo "none" ;;
+	esac
+}
+
+_check_fetch_restriction() {
+	debug-print-function ${FUNCNAME} "$@"
+	if [[ ${KDE_RELEASE_DATE} == "none" ]]; then
+		KDE_RELEASE_DATE=$(_get_release_date)
+	fi
+	if [[ ${KDE_RELEASE_DATE} != "none" ]]; then
+		if [[ $(date -u +"%Y%m%d") <  ${KDE_RELEASE_DATE} ]]; then
+			RESTRICT+=" fetch"
+		fi
+	fi
+}
+
 case ${KDE_BUILD_TYPE} in
 	live) _calculate_live_repo ;;
-	*) _calculate_src_uri ;;
+	*) _calculate_src_uri
+	   _check_fetch_restriction ;;
 esac
 
 debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: SRC_URI is ${SRC_URI}"
@@ -332,6 +387,17 @@ kde5_pkg_pretend() {
 kde5_pkg_setup() {
 	debug-print-function ${FUNCNAME} "$@"
 	_check_gcc_version
+}
+
+# @FUNCTION: kde5_pkg_nofetch
+# @DESCRIPTION:
+# Display package publication status
+kde5_pkg_nofetch() {
+		einfo "${CATEGORY}/${P} has not been released to the public yet"
+		einfo "and is only available to packagers right now."
+		einfo ""
+		einfo "Further information:"
+		einfo "https://techbase.kde.org/Schedules"
 }
 
 # @FUNCTION: kde5_src_unpack
@@ -373,11 +439,21 @@ kde5_src_prepare() {
 	# enable only the requested translations
 	# when required
 	if [[ ${KDE_BUILD_TYPE} = release ]] ; then
-		for lang in $(ls po) ; do
+		for lang in $(ls po 2> /dev/null) ; do
 			if ! has ${lang} ${LINGUAS} ; then
 				rm -rf po/${lang}
 			fi
 		done
+
+		if [[ ${KDE_HANDBOOK} = true ]] ; then
+			pushd doc > /dev/null
+			for lang in $(ls) ; do
+				if ! has ${lang} ${LINGUAS} ; then
+					comment_add_subdirectory ${lang}
+				fi
+			done
+			popd > /dev/null
+		fi
 	else
 		rm -rf po
 	fi
@@ -388,15 +464,25 @@ kde5_src_prepare() {
 		comment_add_subdirectory tests
 	fi
 
-	# only build unit tests when required
-	if ! use_if_iuse test ; then
-		comment_add_subdirectory autotests
-		comment_add_subdirectory tests
+	if [[ ${CATEGORY} = kde-frameworks || ${CATEGORY} = kde-plasma || ${CATEGORY} = kde-apps ]] ; then
+		# only build unit tests when required
+		if ! use_if_iuse test ; then
+			comment_add_subdirectory autotests
+			comment_add_subdirectory tests
+		fi
 	fi
 
-	if [[ ${CATEGORY} = kde-plasma ]]; then
-		punt_bogus_deps
-	fi
+	case ${KDE_PUNT_BOGUS_DEPS} in
+		false)	;;
+		*)
+			if ! use_if_iuse test ; then
+				punt_bogus_dep Qt5 Test
+			fi
+			if ! use_if_iuse handbook ; then
+				punt_bogus_dep KF5 DocTools
+			fi
+			;;
+	esac
 
 	cmake-utils_src_prepare
 }
@@ -453,7 +539,7 @@ kde5_src_test() {
 		fi
 
 		cmake-utils_src_test
-	}		
+	}
 
 	# When run as normal user during ebuild development with the ebuild command, the
 	# kde tests tend to access the session DBUS. This however is not possible in a real

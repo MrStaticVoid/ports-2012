@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/qbittorrent/qbittorrent-3.1.12.ebuild,v 1.2 2015/03/01 15:49:39 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/qbittorrent/qbittorrent-3.1.12.ebuild,v 1.6 2015/05/10 13:12:13 pesa Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit eutils python-r1 qt4-r2
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="~amd64 ~arm ~ppc64 ~x86"
 
 IUSE="dbus debug geoip +X"
 
@@ -22,8 +22,9 @@ IUSE="dbus debug geoip +X"
 CDEPEND="
 	dev-libs/boost:=
 	dev-qt/qtcore:4
-	>=dev-qt/qtsingleapplication-2.6.1_p20130904-r1[X?]
+	>=dev-qt/qtsingleapplication-2.6.1_p20130904-r1[qt4(+),X?]
 	>=net-libs/rb_libtorrent-0.16.17
+	<net-libs/rb_libtorrent-1.0.0
 	dbus? ( dev-qt/qtdbus:4 )
 	X? ( dev-qt/qtgui:4 )
 "

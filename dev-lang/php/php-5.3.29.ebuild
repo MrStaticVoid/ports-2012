@@ -1,12 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.29.ebuild,v 1.14 2015/03/31 19:03:23 ulm Exp $
 
 EAPI=5
 
 inherit eutils autotools flag-o-matic versionator depend.apache apache-module db-use libtool systemd
 
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd"
+KEYWORDS="*"
 
 function php_get_uri ()
 {
@@ -772,7 +770,7 @@ pkg_postinst() {
 	# Output some general info to the user
 	if use apache2 ; then
 		APACHE2_MOD_DEFINE="PHP5"
-		APACHE2_MOD_CONF="70_mod_php5"
+		APACHE2_MOD_CONF="70_mod_php5"  # actually provided by app-eselect/eselect-php
 		apache-module_pkg_postinst
 	fi
 

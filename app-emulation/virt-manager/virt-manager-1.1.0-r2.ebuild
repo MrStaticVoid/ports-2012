@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/virt-manager/virt-manager-1.1.0-r2.ebuild,v 1.1 2015/01/19 17:49:39 tamiko Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/virt-manager/virt-manager-1.1.0-r2.ebuild,v 1.4 2015/05/10 09:37:39 tamiko Exp $
 
 EAPI=5
 
@@ -19,7 +19,7 @@ if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://git.fedorahosted.org/virt-manager.git"
 else
 	SRC_URI="http://virt-manager.org/download/sources/${PN}/${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 fi
 
 LICENSE="GPL-2"
@@ -69,7 +69,7 @@ distutils-r1_python_compile() {
 python_install_all() {
 	distutils-r1_python_install_all
 	python_fix_shebang \
-		"${ED}"/usr/share/virt-manager/virt-{clone,convert,image,install,manager}
+		"${ED}"/usr/share/virt-manager/virt-{clone,convert,install,manager}
 }
 
 pkg_preinst() {

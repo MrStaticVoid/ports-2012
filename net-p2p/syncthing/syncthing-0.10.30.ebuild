@@ -18,7 +18,7 @@ SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/v${GITHUB_TAG}
 RESTRICT="mirror"
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~x86 amd64"
 
 DEPEND=">=dev-lang/go-1.3.0"
 
@@ -58,15 +58,6 @@ pkg_postinst() {
 	elog "edit your ${config} and change the 127.0.0.1:8080 to 0.0.0.0:8080 in"
 	elog "the 'address' section. This file will only be generated once you start syncthing."
 	elog ""
-	elog "Instructions for OpenRC:"
-	elog "------------------------"
 	elog "Modify the /etc/conf.d/${PN} file and set the user/group/ and syncthing home directory"
-	elog "before launching."
-	elog ""
-	elog "Instructions for systemd:"
-	elog "-------------------------"
-	elog "After checking your config, run 'systemctl start ${PN}@<user>' to start the application."
-	elog "This will start the syncthing daemon under that user."
-	elog ""
-	elog "Then point your browser to the address above to access the Web UI."
+	elog "before launching. Afterwards, you can start ${PN} by doing a: rc-config start ${PN}"
 }

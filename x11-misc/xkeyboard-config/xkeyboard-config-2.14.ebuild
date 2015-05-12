@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-2.14.ebuild,v 1.10 2015/03/14 14:29:06 maekke Exp $
 
 EAPI=5
 
@@ -13,8 +11,8 @@ DESCRIPTION="X keyboard configuration database"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"
 [[ ${PV} == *9999* ]] || SRC_URI="${XORG_BASE_INDIVIDUAL_URI}/data/${PN}/${P}.tar.bz2"
 
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE=""
+KEYWORDS="*"
+IUSE="+nls"
 
 LICENSE="MIT"
 SLOT="0"
@@ -22,6 +20,8 @@ SLOT="0"
 RDEPEND=">=x11-apps/xkbcomp-1.2.3
 	>=x11-libs/libX11-1.4.3"
 DEPEND="${RDEPEND}
+	nls? ( sys-devel/gettext )
+	dev-libs/libxslt
 	dev-util/intltool
 	>=x11-proto/xproto-7.0.20"
 
@@ -31,6 +31,7 @@ XORG_CONFIGURE_OPTIONS=(
 	# do not check for runtime deps
 	--disable-runtime-deps
 	--with-xkb-rules-symlink=xorg
+	$(use_enable nls)
 )
 
 src_prepare() {

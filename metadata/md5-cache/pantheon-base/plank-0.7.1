@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
+DEPEND=dev-libs/libgee:0.8 dev-libs/libunique:1 x11-libs/libX11 x11-libs/libwnck:1 >=x11-libs/bamf-0.2.58 >=dev-libs/glib-2.26.0:2 >=x11-libs/gtk+-2.22.0:2 || ( dev-lang/vala:0.26[vapigen(+)] dev-lang/vala:0.24[vapigen(+)] dev-lang/vala:0.22[vapigen(+)] dev-lang/vala:0.20[vapigen(+)] ) dev-util/intltool virtual/pkgconfig gnome-base/gnome-common nls? ( sys-devel/gettext ) >=sys-apps/sed-4
+DESCRIPTION=The dock for elementary Pantheon, stupidly simple
+EAPI=5
+HOMEPAGE=https://launchpad.net/plank https://launchpad.net/pantheon-dock
+IUSE=debug nls static-libs
+KEYWORDS=amd64 x86
+LICENSE=GPL-3
+RDEPEND=dev-libs/libgee:0.8 dev-libs/libunique:1 x11-libs/libX11 x11-libs/libwnck:1 >=x11-libs/bamf-0.2.58 >=dev-libs/glib-2.26.0:2 >=x11-libs/gtk+-2.22.0:2 x11-themes/plank-theme-pantheon
+SLOT=0
+SRC_URI=https://launchpad.net/plank/1.0/0.7.1/+download/plank-0.7.1.tar.xz
+_eclasses_=autotools	999c8f6cf5d91495cb0779588f20716c	autotools-utils	6f381431305797b69527d7fba3b6495f	eutils	9fb270e417e0e83d64ca52586c4a79de	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92	vala	a41415fe361172827ed11b6a32ee38fb
+_md5_=faac1df1d9696ec5de2055c6a32bd10c

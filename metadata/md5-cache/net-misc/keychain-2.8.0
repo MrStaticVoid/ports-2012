@@ -6,5 +6,5 @@ KEYWORDS=*
 LICENSE=GPL-2
 RDEPEND=app-shells/bash || ( net-misc/openssh net-misc/ssh )
 SLOT=0
-SRC_URI=http://build.funtoo.org/distfiles/keychain/keychain-2.8.0.tar.bz2
-_md5_=2d1ad14353c5d864c0002438e334cc42
+SRC_URI=mirror://funtoo/keychain/keychain-2.8.0.tar.bz2
+_md5_=06fb5490f68fecd5b663f5a62b48ce62
