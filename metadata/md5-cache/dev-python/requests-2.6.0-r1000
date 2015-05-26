@@ -10,5 +10,5 @@ RDEPEND=dev-python/certifi[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,py
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy python_abis_3.2-pypy )
 SLOT=0
 SRC_URI=mirror://pypi/r/requests/requests-2.6.0.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	bd2efc5baa5cbe6861c6b75670d38171
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
 _md5_=0c5f0ab57bb90ed459bf98a06a5bf42e

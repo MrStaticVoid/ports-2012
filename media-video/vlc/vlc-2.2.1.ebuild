@@ -246,6 +246,8 @@ src_prepare() {
 	# Bug #541678
 	epatch "${FILESDIR}"/qt4-select.patch
 
+	use oss && epatch "${FILESDIR}"/${PN}-2.2.x-oss-support.patch
+
 	# Don't use --started-from-file when not using dbus.
 	if ! use dbus ; then
 		sed -i 's/ --started-from-file//' share/vlc.desktop.in || die
@@ -434,7 +436,6 @@ src_configure() {
 		--disable-mmal-codec \
 		--disable-mmal-vout \
 		--disable-opensles \
-		--disable-oss \
 		--disable-quicktime \
 		--disable-rpi-omxil \
 		--disable-shine \

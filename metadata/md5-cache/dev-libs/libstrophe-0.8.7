@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare
-DEPEND=!xml? ( dev-libs/expat ) xml? ( dev-libs/libxml2 ) dev-libs/openssl doc? ( app-doc/doxygen ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=!xml? ( dev-libs/expat ) xml? ( dev-libs/libxml2 ) dev-libs/openssl doc? ( app-doc/doxygen ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=A simple, lightweight C library for writing XMPP clients
 EAPI=5
 HOMEPAGE=http://strophe.im/libstrophe
@@ -9,5 +9,5 @@ LICENSE=MIT GPL-3
 RDEPEND=!xml? ( dev-libs/expat ) xml? ( dev-libs/libxml2 ) dev-libs/openssl
 SLOT=0
 SRC_URI=https://github.com/strophe/libstrophe/archive/0.8.7.tar.gz -> libstrophe-0.8.7.tar.gz
-_eclasses_=autotools	999c8f6cf5d91495cb0779588f20716c	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92
+_eclasses_=autotools	b49fe68f65ef8b751164926d42b30e60	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92
 _md5_=5b9b314218ffbf0024be5715a048dc60

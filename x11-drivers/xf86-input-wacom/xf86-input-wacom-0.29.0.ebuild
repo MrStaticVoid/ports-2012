@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/xf86-input-wacom/xf86-input-wacom-0.29.0.ebuild,v 1.1 2015/03/27 01:11:35 chithanh Exp $
 
 EAPI=5
 
@@ -13,7 +11,7 @@ EGIT_REPO_URI="git://linuxwacom.git.sourceforge.net/gitroot/linuxwacom/${PN}"
 [[ ${PV} != 9999* ]] && \
 	SRC_URI="mirror://sourceforge/linuxwacom/${PN}/${P}.tar.bz2"
 
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 IUSE="debug"
 
 # depend on libwacom for its udev rules, bug #389633
@@ -42,7 +40,7 @@ src_install() {
 	rm -rf "${ED}"/usr/share/hal
 }
 
-pkg_pretend() {
+pre_src_compile() {
 	linux-info_pkg_setup
 
 	if ! linux_config_exists \

@@ -37,6 +37,8 @@ eblit-glibc-src_prepare() {
 		fi
 	fi
 
+ 	epatch "${FILESDIR}"/CVE-2015-1781-dns-host.c-buffer-overflow.patch
+
 	epatch_user
 
 	gnuconfig_update

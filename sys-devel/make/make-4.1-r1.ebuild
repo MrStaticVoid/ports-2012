@@ -10,7 +10,7 @@ SRC_URI="mirror://gnu//make/${P}.tar.bz2"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="arm32 arm64"
+KEYWORDS="*"
 IUSE="guile nls static"
 
 CDEPEND="guile? ( >=dev-scheme/guile-1.8 )"

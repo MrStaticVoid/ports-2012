@@ -6,5 +6,5 @@ HOMEPAGE=https://launchpad.net/plank-theme-pantheon
 LICENSE=GPL-3
 RDEPEND=pantheon-base/plank
 SLOT=0
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	bzr	87fd9041fcbe23dbc8f0e65ce0df6c28	eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	bzr	87fd9041fcbe23dbc8f0e65ce0df6c28	eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92
 _md5_=c1997a5eb2b89a66e54b3fa2f8619dd3

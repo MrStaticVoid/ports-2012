@@ -1,6 +1,14 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/package.use.mask,v 1.243 2015/05/11 01:37:50 pesa Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/package.use.mask,v 1.245 2015/05/18 06:30:12 jlec Exp $
+
+# Justin Lecher <jlec@gentoo> (18 May 2015)
+# missing keywords
+dev-python/matplotlib qt5
+
+# Pacho Ramos <pacho@gentoo.org> (15 May 2015)
+# Missing keywords
+net-dns/unbound dnstap
 
 # Markos Chandras <hwoarang@gentoo.org> (18 Apr 2015)
 # samba-4 not keyworded on ppc/ppc64

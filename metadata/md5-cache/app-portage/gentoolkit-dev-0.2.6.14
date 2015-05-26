@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=!>=app-portage/gentoolkit-0.3.0_rc11 sys-apps/portage dev-lang/perl dev-lang/python dev-lang/python[xml]
 SLOT=0
 SRC_URI=mirror://gentoo/gentoolkit-dev-0.2.6.14.tar.gz
-_eclasses_=python	bd2efc5baa5cbe6861c6b75670d38171
+_eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357
 _md5_=7d9e7befa50257e68bbb374427ac5fe3

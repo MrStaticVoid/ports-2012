@@ -10,5 +10,5 @@ RDEPEND=dev-vcs/mercurial[python_abis_2.6?,python_abis_2.7?] ncurses? ( dev-pyth
 REQUIRED_USE=|| ( ncurses qt4 ) || ( python_abis_2.6 python_abis_2.7 )
 SLOT=0
 SRC_URI=mirror://pypi/h/hgview/hgview-1.8.2.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	bd2efc5baa5cbe6861c6b75670d38171
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
 _md5_=22fd31f0f00ff5c02992cd6d82fb37e8

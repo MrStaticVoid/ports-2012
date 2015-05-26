@@ -9,5 +9,5 @@ LICENSE=LGPL-3
 RDEPEND=dev-libs/glib:2 dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.11.6:3[introspection]
 SLOT=0
 SRC_URI=https://launchpad.net/~elementary-os/+archive/ubuntu/stable/+files/granite_0.3.0%2Br850%2Bpkg80%7Eubuntu0.3.1.tar.gz
-_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	5d5921a298e95441da2f85be419894c0	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92	vala	a41415fe361172827ed11b6a32ee38fb	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92	vala	a41415fe361172827ed11b6a32ee38fb	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=2c8e641a6272dbe82332fc3b15d9411f

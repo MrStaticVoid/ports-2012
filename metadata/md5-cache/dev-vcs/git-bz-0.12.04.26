@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=dev-vcs/git =dev-lang/python-2*
 SLOT=0
 SRC_URI=https://www.bitbucket.org/mgorny/git-bz/downloads/git-bz-0.12.04.26.tar.bz2
-_eclasses_=python	bd2efc5baa5cbe6861c6b75670d38171
+_eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357
 _md5_=f41528d92ef5535111290500e16e988d
