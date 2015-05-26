@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.4.712.ebuild,v 1.1 2015/05/03 07:05:05 radhermit Exp $
 
 EAPI=5
 VIM_VERSION="7.4"
@@ -16,8 +14,9 @@ else
 	VIM_ORG_PATCH="vim-${PV}.patch.xz"
 	SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 		http://dev.gentoo.org/~radhermit/vim/${VIM_ORG_PATCH}
-		http://dev.gentoo.org/~radhermit/vim/vim-7.4.542-gentoo-patches.tar.bz2"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+		http://dev.gentoo.org/~radhermit/vim/vim-7.4.542-gentoo-patches.tar.bz2
+		http://dev.gentoo.org/~pacho/gvim/gvim.svg"
+	KEYWORDS="*"
 fi
 
 DESCRIPTION="GUI version of the Vim text editor"
@@ -375,6 +374,7 @@ src_install() {
 
 	newmenu "${FILESDIR}"/gvim.desktop-r2 gvim.desktop
 	doicon "${FILESDIR}"/gvim.xpm
+	doicon -s scalable "${DISTDIR}"/gvim.svg
 
 	# bash completion script, bug #79018.
 	newbashcomp "${FILESDIR}"/${PN}-completion ${PN}

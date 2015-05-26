@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-opengl/emul-linux-x86-opengl-20131008.ebuild,v 1.4 2015/03/31 17:52:01 ulm Exp $
 
 EAPI=5
 inherit emul-linux-x86

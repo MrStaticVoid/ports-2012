@@ -10,5 +10,5 @@ RDEPEND=!dev-python/pydns:0 !dev-python/pydns:python-2 ( python_abis_2.6? ( dev-
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy )
 SLOT=2
 SRC_URI=mirror://pypi/p/pydns/pydns-2.3.6.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	bd2efc5baa5cbe6861c6b75670d38171
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
 _md5_=44d364d238fa2100c1e00c9bc3385f83

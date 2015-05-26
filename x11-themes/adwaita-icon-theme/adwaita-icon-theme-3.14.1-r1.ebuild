@@ -21,7 +21,6 @@ COMMON_DEPEND="
 	>=x11-themes/hicolor-icon-theme-0.10
 "
 RDEPEND="${COMMON_DEPEND}
-	gnome-base/librsvg:2
 	!<x11-themes/gnome-themes-standard-3.14
 "
 DEPEND="${COMMON_DEPEND}
@@ -29,6 +28,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
 	sys-devel/gettext
 	virtual/pkgconfig
+	gnome-base/librsvg:2
 "
 # This ebuild does not install any binaries
 RESTRICT="binchecks strip"

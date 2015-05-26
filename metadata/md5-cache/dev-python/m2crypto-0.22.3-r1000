@@ -10,5 +10,5 @@ RDEPEND=dev-libs/openssl:0= ( python_abis_2.6? ( dev-lang/python:2.6[threads] ) 
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 )
 SLOT=0
 SRC_URI=mirror://pypi/M/M2Crypto/M2Crypto-0.22.3.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	bd2efc5baa5cbe6861c6b75670d38171
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
 _md5_=9dc12d013c837418ff1e7e02ca5434d3

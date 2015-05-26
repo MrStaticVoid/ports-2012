@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.16524 2015/05/10 14:33:06 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.16534 2015/05/25 08:55:09 graaff Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -22,13 +22,76 @@
 #
 ## Example:
 ##
-## # Dev E. Loper <developer@gentoo.org> (25 Jul 2014)
+## # Dev E. Loper <developer@gentoo.org> (23 May 2015)
 ## # Masked for removal in 30 days.  Doesn't work
 ## # with new libfoo. Upstream dead, gtk-1, smells
 ## # funny. (bug #987654)
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Hans de Graaff <graaff@gentoo.org> (25 May 2015)
+# With the wwwold services going offline gorg no longer plays a role
+# in Gentoo's web environment. The wwwold services went offline due to
+# issues with gorg and instead of trying to fix them it was decided to
+# move the offline date forward. Consequently gorg will now also be
+# masked for removal in 30 days.
+www-servers/gorg
+
+# Patrice Clement <monsieurp@gentoo.org> (25 May 2015)
+# Upstream dead. Project no longer supported by the ASF 
+# who moved it into the Attic in 2010.
+# See #550326. Masked for removal in 30 days.
+dev-java/excalibur-logger
+
+# Pacho Ramos <pacho@gentoo.org> (23 May 2015)
+# Unmaintained for ages and no longer useful, also multiple
+# opened and unresolved bugs for them (#535844). Removal in a month.
+gpe-base/gpe-calculator
+gpe-base/gpe-contacts
+gpe-base/gpe-dm
+gpe-base/gpe-gallery
+gpe-base/gpe-icons
+gpe-base/gpe-login
+gpe-base/gpe
+gpe-base/libcontactsdb
+gpe-base/libdisplaymigration
+gpe-base/libeventdb
+gpe-base/libgpelaunch
+gpe-base/libgpepimc
+gpe-base/libgpevtype
+gpe-base/libgpewidget
+gpe-base/libgtkstylus
+gpe-base/libhandoff
+gpe-base/libmimedir
+gpe-base/libschedule
+gpe-base/libtododb
+gpe-utils/gpe-clock
+gpe-utils/gpe-edit
+gpe-utils/gpe-filemanager
+gpe-utils/gpe-ownerinfo
+gpe-utils/gpe-plucker
+gpe-utils/gpe-taskmanager
+gpe-utils/gpe-what
+games-puzzle/gpe-lights
+games-misc/gpe-julia
+
+# Anthony G. Basile <blueness@gentoo.org> (14 May 2015)
+# No longer required by any packages in the tree.
+# Masked for removal in 30 days.
+sys-apps/getent
+
+# Patrice Clement <monsieurp@gentoo.org) (13 May 2015)
+# Unused package, homepage dead, no revdeps. 
+# Fails to compile with recent JVMs, see bug #549090.
+# Last release dates back to 2010.
+# Masked for removal in 30 days.
+dev-java/xt
+
+# Ian Delaney <idella4@gentoo.org> (13 May 2015)
+# package unused, no revdeps, obsolete.
+# masked for removal in 30 days
+dev-python/gevent-zeromq
 
 # Mike Gilbert <floppym@gentoo.org> (06 May 2015)
 # Obsolete development snapshots.
@@ -104,43 +167,10 @@ dev-ruby/ipaddress
 # Masked for removal in 30 days
 net-libs/libcapsinetwork
 
-# Michael Sterrett <mr_bones_@gentoo.org> (21 Apr 2015)
-# Upstream has discontinued the project; doesn't build on modern systems.
-# Bug #510262
-# masked for removal on 20150521
-games-util/searchtool
-
-# Michael Sterrett <mr_bones_@gentoo.org> (21 Apr 2015)
-# Upstream is dead; doesn't build on modern systems.
-# masked for removal on 20150521
-games-strategy/freecnc
-
-# Hans de Graaff <graaff@gentoo.org> (19 Apr 2015)
-# Pure-ruby implementation of dev-ruby/json for uses where a compiled
-# version is not possible. This implementation is not needed on Gentoo
-# and slower than the compiled version, so all packages should depend
-# on dev-ruby/json instead. Nothing depends on this package.
-# Removal in 30 days.
-dev-ruby/json_pure
-
-# James Le Cuirot <chewi@gentoo.org> (18 Apr 2015)
-# Old, unmaintained, not used by anything, and superseded by
-# plexus-classworlds. There is a newer version in java-overlay that
-# can't go yet but will go eventually. Removal in 30 days.
-dev-java/classworlds
-
 # Pawel Hajdan, Jr. <phajdan.jr@gentoo.org> (17 Apr 2015)
 # Dev channel releases are only for people who are developers or want more
 # experimental features and accept a more unstable release.
 >=www-client/chromium-44
-
-# James Le Cuirot <chewi@gentoo.org> (14 Apr 2015)
-# Not updated beyond Java 6, no longer supported upstream, full of
-# holes, and probably doesn't work. This is the last VM currently
-# available to FreeBSD until we try icedtea but BSD team are cool with
-# this. Removal in 30 days.
-dev-java/diablo-jdk
-dev-java/diablo-jre-bin
 
 # Patrice Clement <monsieurp@gentoo.org> (14 Apr 2014)
 # Upstream seems to be dead. No updates since 12 March 2007.
@@ -455,23 +485,6 @@ sys-block/afacli
 app-emulation/openstack-guest-agents-unix
 app-emulation/xe-guest-utilities
 
-# Mike Gilbert <floppym@gentoo.org> (10 Jun 2014)
-# Masked due to pending dev-python/imaging removal, bug 471488.
-media-sound/decibel-audio-player
-=net-im/pymsn-t-0.11.3-r3
-
-# Tom Wijsman <TomWij@gentoo.org> (8 Jun 2014)
-# Mask VLC ebuilds that are affected with security bug CVE-2013-6934:
-#
-#     A vulnerability has been discovered in VLC Media Player, which can be
-#     exploited by malicious people to compromise a user's system.
-#
-# Some ebuilds also have other buffer and integer overflow security bugs like
-# CVE-2013-1954, CVE-2013-3245, CVE-2013-4388 and CVE-2013-6283.
-#
-# Users should consider to upgrade VLC Media Player to at least version 2.1.2.
-<media-video/vlc-2.1.2
-
 # Tom Wijsman <TomWij@gentoo.org> (6 Jun 2014)
 # Mask gentoo-sources ebuilds that are affected with security bug CVE-2014-3153.
 #
@@ -614,10 +627,6 @@ games-emulation/mupen64plus-ui-console
 games-emulation/mupen64plus-video-glide64mk2
 games-emulation/mupen64plus-video-rice
 games-emulation/m64py
-
-# Tiziano Müller <dev-zero@gentoo.org> (24 Oct 2013)
-# Mask mainline version branch
-=www-servers/nginx-1.5*
 
 # Justin Lecher <jlec@gentoo.org> (14 Oct 2013)
 # Seems to break all deps - API change?

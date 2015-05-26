@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/klibc/klibc-2.0.4.ebuild,v 1.1 2014/11/24 02:23:25 radhermit Exp $
 
 # Robin H. Johnson <robbat2@gentoo.org>, 12 Nov 2007:
 # This still needs major work.
@@ -53,7 +51,7 @@ SRC_URI="
 LICENSE="|| ( GPL-2 LGPL-2 )"
 KEYWORDS="~alpha ~amd64 ~arm ~ia64 -mips ~ppc ~ppc64 ~sparc ~x86"
 SLOT="0"
-IUSE="debug test custom-cflags"
+IUSE="debug test"
 
 DEPEND="dev-lang/perl"
 RDEPEND="${DEPEND}"
@@ -155,7 +153,7 @@ src_compile() {
 	unset KBUILD_OUTPUT # we are using a private copy
 
 	cd "${KS}"
-	emake ${defconfig} CC="${CC}" HOSTCC="${HOSTCC}" ARCH="${KLIBCASMARCH}" || die "No defconfig"
+	emake -j1 ${defconfig} CC="${CC}" HOSTCC="${HOSTCC}" ARCH="${KLIBCASMARCH}" || die "No defconfig"
 	if [[ "${KLIBCARCH/arm}" != "${KLIBCARCH}" ]] && \
 	   [[ "${CHOST/eabi}" != "${CHOST}" ]]; then
 		# The delete and insert are seperate statements
@@ -168,7 +166,7 @@ src_compile() {
 		"${KS}"/.config \
 		"${S}"/defconfig
 	fi
-	emake prepare CC="${CC}" HOSTCC="${HOSTCC}" ARCH="${KLIBCASMARCH}" || die "Failed to prepare kernel sources for header usage"
+	emake -j1 prepare CC="${CC}" HOSTCC="${HOSTCC}" ARCH="${KLIBCASMARCH}" || die "Failed to prepare kernel sources for header usage"
 
 	cd "${S}"
 
@@ -177,7 +175,7 @@ src_compile() {
 	append-ldflags -z noexecstack
 	append-flags -nostdlib
 
-	emake \
+	emake -j1 \
 		EXTRA_KLIBCAFLAGS="-Wa,--noexecstack" \
 		EXTRA_KLIBCLDFLAGS="-z noexecstack" \
 		HOSTLDFLAGS="-z noexecstack" \
@@ -191,11 +189,7 @@ src_compile() {
 		libdir="/usr/${libdir}" \
 		mandir="/usr/share/man" \
 		T="${T}" \
-		$(use custom-cflags || echo SKIP_)HOSTCFLAGS="${CFLAGS}" \
-		$(use custom-cflags || echo SKIP_)HOSTLDFLAGS="${LDFLAGS}" \
-		$(use custom-cflags || echo SKIP_)KLIBCOPTFLAGS="${CFLAGS}" \
 		${myargs} || die "Compile failed!"
-
 		#SHLIBDIR="/${libdir}" \
 
 	ARCH="${myARCH}" ABI="${myABI}"
@@ -227,7 +221,7 @@ src_install() {
 	unset ABI ARCH # Unset these, because they interfere
 	unset KBUILD_OUTPUT # we are using a private copy
 
-	emake \
+	emake -j1 \
 		EXTRA_KLIBCAFLAGS="-Wa,--noexecstack" \
 		EXTRA_KLIBCLDFLAGS="-z noexecstack" \
 		HOSTLDFLAGS="-z noexecstack" \
@@ -242,9 +236,6 @@ src_install() {
 		libdir="/usr/${libdir}" \
 		mandir="/usr/share/man" \
 		T="${T}" \
-		$(use custom-cflags || echo SKIP_)HOSTCFLAGS="${CFLAGS}" \
-		$(use custom-cflags || echo SKIP_)HOSTLDFLAGS="${LDFLAGS}" \
-		$(use custom-cflags || echo SKIP_)KLIBCOPTFLAGS="${CFLAGS}" \
 		${myargs} \
 		install || die "Install failed!"
 
