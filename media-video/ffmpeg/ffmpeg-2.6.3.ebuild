@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-2.6.3.ebuild,v 1.1 2015/05/18 13:45:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-2.6.3.ebuild,v 1.3 2015/06/05 16:33:53 pacho Exp $
 
 EAPI="5"
 
@@ -55,7 +55,7 @@ LICENSE="
 	samba? ( GPL-3 )
 "
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
+	KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 fi
 
 # Options to use as use_enable in the foo[:bar] form.
@@ -403,9 +403,7 @@ multilib_src_configure() {
 		--cc="$(tc-getCC)" \
 		--cxx="$(tc-getCXX)" \
 		--ar="$(tc-getAR)" \
-		--optflags="${CFLAGS}" \
-		--extra-cflags="${CFLAGS}" \
-		--extra-cxxflags="${CXXFLAGS}" \
+		--optflags=" " \
 		$(use_enable static-libs static) \
 		"${myconf[@]}"
 	echo "${@}"

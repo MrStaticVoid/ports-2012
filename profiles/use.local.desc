@@ -156,6 +156,7 @@ app-admin/diamond:mongo - Enable MongoDB support
 app-admin/diamond:redis - Enable Redis support
 app-admin/diradm:automount - Support for automount data in LDAP
 app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
+app-admin/ego:zsh-completion - Enable ZSH completion
 app-admin/elektra:gcov - Enable coverage support
 app-admin/elektra:simpleini - Enable simpleini support
 app-admin/elektra:uname - Enable uname information for the key database
@@ -262,11 +263,12 @@ app-admin/tripwire:tools - Installs app-admin/mktwpol, providing scripts for the
 app-admin/ulogd:json - Build JSON output plugin to save packets in JSON file format.
 app-admin/ulogd:mysql - Build MySQL output plugin to save packets in a mysql database.
 app-admin/ulogd:nfacct - Build NFACCT input plugin to support traffic accounting via nfnetlink_acct.
-app-admin/ulogd:nfct - Build NFCT input plugin to support stateful flow-based via nf_conntrack_netlink.
+app-admin/ulogd:nfct - Build NFCT input plugin to support stateful flow-based logging via nf_conntrack_netlink.
 app-admin/ulogd:nflog - Build NFLOG input plugin to support stateless packet-based logging via nfnetlink_queue.
 app-admin/ulogd:pcap - Build PCAP output plugin to save packets in libpcap file format.
 app-admin/ulogd:postgres - Build PGSQL output plugin to save packets in a postgres database.
 app-admin/ulogd:sqlite - Build SQLITE3 output plugin to save packets in a sqlite database.
+app-admin/ulogd:ulog - Build ULOG input plugin to support deprecated packet-based logging via ULOG target.
 app-admin/webalizer:xtended - Include the 404 extension
 app-admin/webapp-config:portage - Propagete python_targets dependencies to sys-apps/portage
 app-admin/yaala:storable - Support for persistence of Perl data structures.
@@ -626,8 +628,10 @@ app-emulation/spice-vdagent:consolekit - Use sys-auth/consolekit to determine th
 app-emulation/uae:scsi - Enable the uaescsi.device
 app-emulation/vice:ethernet - Enable ethernet emulation
 app-emulation/vice:fullscreen - Enable the ability to run fullscreen
-app-emulation/vice:gtk3 - Use GTK+3 instead of GTK+2
+app-emulation/vice:gtk2 - Use GTK+2 for GUI instead of GTK+3
+app-emulation/vice:gtk3 - Use GTK+3for GUI instead of GTK+2
 app-emulation/vice:memmap - Enable extra monitor features
+app-emulation/vice:sdlsound - Use media-libs/libsdl for sound support
 app-emulation/vice:vte - Enable support for x11-libs/vte in the GTK+ interface
 app-emulation/vice:xrandr - Enable support for the X xrandr extension
 app-emulation/virt-manager:policykit - Enables sys-auth/polkit authentication support, required when using app-emulation/libvirt with PolicyKit authentication
@@ -980,11 +984,11 @@ app-office/calligra:glew - Enable media-libs/glew opengl extension library suppo
 app-office/calligra:glib - Enable support for C library routines from dev-libs/glib
 app-office/calligra:gsf - Enable support for ODT structures extraction via gnome-extra/libgsf
 app-office/calligra:import-filter - Enable support for various import filter file formats like WordPerfect, Visio and Apple Keynote
-app-office/calligra:kdcraw - Enable support for KDE image manipulating interface via kde-base/libkdcraw
+app-office/calligra:kdcraw - Enable support for KDE image manipulating interface via kde-apps/libkdcraw
 app-office/calligra:kdepim - Enable support for KDEPIM resources integration
 app-office/calligra:marble - Enable displaying of maps using Marble
 app-office/calligra:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
-app-office/calligra:okular - Enable bindings for kde-base/okular
+app-office/calligra:okular - Enable bindings for kde-apps/okular
 app-office/calligra:spacenav - Enable support for the 3Dconnexion spacenav input device via dev-libs/libspnav
 app-office/calligra:vc - Enable support for dev-libs/vc, could be a significant speed boost on krita
 app-office/calligra:xbase - Enable support for xbase compatible database formats
@@ -1005,11 +1009,6 @@ app-office/libreoffice:jemalloc - Use dev-libs/jemalloc for allocations
 app-office/libreoffice:odk - Build the Office Development Kit
 app-office/libreoffice:telepathy - Enable document colaboration features using telepathy communication framework.
 app-office/libreoffice:vlc - Use media-video/vlc for video embedding
-app-office/libreoffice-l10n:linguas_ca_valencia - Catalan locale (Valencia)
-app-office/libreoffice-l10n:linguas_kmr_Latn - kmr_Latn localization
-app-office/libreoffice-l10n:linguas_sid - sid localization
-app-office/libreoffice-l10n:linguas_sr_Latn - Serbian (Latin) locale
-app-office/libreoffice-l10n:offlinehelp - Install help files locally instead of using the LibreOffice Wiki
 app-office/lyx:aspell - Add support for aspell spellchecking
 app-office/lyx:dia - Add support for diagrams (app-office/dia)
 app-office/lyx:docbook - Add support for docbook export
@@ -1488,6 +1487,8 @@ dev-haskell/persistent-sqlite:systemlib - Use the system-wide sqlite library.
 dev-haskell/quickcheck:template_haskell - Enable additional test modules requiring Template Haskell support.
 dev-haskell/recaptcha:network-uri - Get Network.URI from the network-uri package.
 dev-haskell/reflection:th - Enable template haskell.
+dev-haskell/regex-compat-tdfa:newbase - Use base-4.0 or newer.
+dev-haskell/regex-compat-tdfa:splitbase - Use the new smaller, split-up base package.
 dev-haskell/rfc5051:mkunicodedata - build codes generator itself
 dev-haskell/scientific:bytestring-builder - Provide the Data.ByteString.Builder.Scientific module (requires bytestring >= 0.10).
 dev-haskell/semigroupoids:comonad - You can disable the use of the `comonad` package using `-f-comonad`. Disabling this is an unsupported configuration, but it may be useful for accelerating builds in sandboxes for expert users. If disabled we will not supply instances of `Comonad`
@@ -1728,7 +1729,6 @@ dev-lang/ruby:yaml - Use the dev-libs/libyaml library to build the psych extensi
 dev-lang/rust:clang - Use sys-devel/clang for building
 dev-lang/rust:libcxx - Use sys-libs/libcxx as standard library when building with sys-devel/clang
 dev-lang/rust:system-llvm - Use system sys-devel/llvm in place of the bundled one
-dev-lang/rust-bin:cargo-bundled - Use the bundled cargo instead of dev-rust/cargo
 dev-lang/scala:binary - Install from (Gentoo-compiled) binary instead of building from sources. Set this when you run out of memory during build.
 dev-lang/spidermonkey:debug - Enable assertions to allow for easier debugging of programs that link to spidermonkey -- note this will often crash software on regular end-user systems
 dev-lang/spidermonkey:system-icu - Use the system-wide dev-libs/icu instead of bundled -- note, only takes effect when icu flag is enabled
@@ -1854,7 +1854,6 @@ dev-libs/libflatarray:cuda - Enables plugins for NVIDIA GPUs (e.g. CUDAAllocator
 dev-libs/libgit2:ssh - Enable SSH transport support
 dev-libs/libgit2:trace - Enable tracing support
 dev-libs/libgpg-error:common-lisp - Install common-lisp files
-dev-libs/libgusb:vala - Enable bindings for dev-lang/vala
 dev-libs/libindicate:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/libisoburn:cdio - Enable EXPERIMENTAL use of libcdio as system adapter
 dev-libs/libisoburn:external-filters - Allow the use of external processes as file content filters (Note: this is a potential security risk)
@@ -2430,7 +2429,7 @@ dev-util/kdevelop:okteta - Enable hex editor plugin
 dev-util/kdevelop:qthelp - Enable support for QtHelp documentation browsing
 dev-util/kdevelop:reviewboard - Enable reviewboard support
 dev-util/kdevplatform:classbrowser - Enable the class browser plugin
-dev-util/kdevplatform:konsole - Enable kde-base/konsole integration
+dev-util/kdevplatform:konsole - Enable kde-apps/konsole integration
 dev-util/kdevplatform:reviewboard - Enable reviewboard support
 dev-util/ltrace:unwind - Use sys-libs/libunwind for frame unwinding support
 dev-util/lttng-tools:ust - Support LTTng-UST (Userspace Tracing)
@@ -2868,33 +2867,86 @@ gnustep-base/gnustep-make:libobjc2 - Enables use of the GNUstep Objective-C runt
 gnustep-base/gnustep-make:native-exceptions - Enables use of the native Objective-C exception support (@try/@catch/@finally) built-in objective-c exceptions with compilers that support it
 gnustep-base/libobjc2:boehm-gc - Enable Hans Boehm's garbage collector (dev-libs/boehm-gc). Not recommended by upstream
 gpe-base/gpe:games - Builds and installs GPE games.
-kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
-kde-base/cantor:R - Enable dev-lang/R backend support
-kde-base/cantor:analitza - Enable kde-base/analitza backend support
-kde-base/cantor:qalculate - Enable sci-libs/libqalculate backend support
-kde-base/dolphin:thumbnail - Enables video thumbnails generation for kde-base/dolphin file manager.
-kde-base/dolphin-plugins:bazaar - Enable support for the bazaar VCS
-kde-base/dolphin-plugins:mercurial - Enable support for the mercurial VCS
-kde-base/gwenview:kipi - Support for the KDE Image Plugin Interface.
-kde-base/kaccessible:speechd - Enable support for the speech-dispatcher speech synthesizer
+kde-apps/ark:archive - Enable support for a variety of archive formats through libarchive
+kde-apps/cantor:R - Enable dev-lang/R backend support
+kde-apps/cantor:analitza - Enable kde-base/analitza backend support
+kde-apps/cantor:qalculate - Enable sci-libs/libqalculate backend support
+kde-apps/dolphin:thumbnail - Enables video thumbnail generation
+kde-apps/dolphin-plugins:bazaar - Enable support for the bazaar VCS
+kde-apps/dolphin-plugins:mercurial - Enable support for the mercurial VCS
+kde-apps/gwenview:kipi - Support for the KDE Image Plugin Interface.
+kde-apps/kaccessible:speechd - Enable support for the speech-dispatcher speech synthesizer
+kde-apps/kalzium:editor - Enable the embedded molecule editor/viewer
+kde-apps/kalzium:solver - Enable the equation solver
+kde-apps/kdeartwork-kscreensaver:eigen - Enable various arithmetic screensavers which use Eigen2 for computations.
+kde-apps/kdeartwork-kscreensaver:kexiv2 - Enable image rotation based on exif tags with libkexiv2.
+kde-apps/kdebase-data:wallpapers - Install the KDE wallpapers
+kde-apps/kdebase-kioslaves:sftp - Enable SFTP protocol support using net-libs/libssh
+kde-apps/kdebase-meta:display-manager - Pull in a graphical display manager
+kde-apps/kdebase-meta:wallpapers - Install the KDE wallpapers
+kde-apps/kdebase-runtime-meta:crash-reporter - Builds a gui tool to submit crash information to the upstream backtracker
+kde-apps/kdebase-runtime-meta:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
+kde-apps/kdenetwork-meta:ppp - Enable support for net-dialup/ppp.
+kde-apps/kdeutils-meta:floppy - Install kde-base/kfloppy to format and create DOS or ext2fs filesystems in a floppy.
+kde-apps/kget:bittorrent - Enable bittorrent transfer plugin through net-libs/libktorrent
+kde-apps/kget:gpg - Support for signature verificatopm by QGpgME via kde-base/kdepimlibs
+kde-apps/kget:mms - Enable MMS (Microsoft Media Server) plugin through media-libs/libmms
+kde-apps/kget:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
+kde-apps/kget:webkit - Enable KdeWebkit browser plugin using kde-misc/kwebkitpart
+kde-apps/kig:scripting - Support Python scripting
+kde-apps/kmix:canberra - Enable sound event support using media-libs/libcanberra
+kde-apps/konqueror:bookmarks - Add dependency on bookmark package.
+kde-apps/kopete:addbookmarks - Automatically add incoming urls to bookmarks.
+kde-apps/kopete:autoreplace - Automatically replace selected text
+kde-apps/kopete:contactnotes - Enables writing personal notes for contacts.
+kde-apps/kopete:gadu - Enable the Gadu protocol handler.
+kde-apps/kopete:groupwise - Enable the Groupwise protocol handler.
+kde-apps/kopete:highlight - Allows you to specify highlights on specific events.
+kde-apps/kopete:history - Enables saving chat history.
+kde-apps/kopete:latex - Embed latex formatted text into messages.
+kde-apps/kopete:meanwhile - Enable the Sametime protocol handler.
+kde-apps/kopete:nowlistening - Shows song you currently listen to in your status/etc. Bindings for many players.
+kde-apps/kopete:otr - Allows crypting your chat (drugs and talking nonsense are considered as good alternatives ;]).
+kde-apps/kopete:pipes - Send messages to external pipe.
+kde-apps/kopete:privacy - Filter for incoming messages
+kde-apps/kopete:skype - Enable Skype protocol handler (not fully functional yet).
+kde-apps/kopete:sms - Enable SMS sendinge functionality.
+kde-apps/kopete:statistics - Everybody loves statistic graphs, especially cake ones. ;]
+kde-apps/kopete:testbed - Enable the testbed protocol.
+kde-apps/kopete:texteffect - Various fancy text effects for your messages (don't ever consider writing us with this enabled ;]).
+kde-apps/kopete:translator - Translate incoming and outgoing messages.
+kde-apps/kopete:urlpicpreview - Enables in conversation pictures preview.
+kde-apps/kopete:webpresence - Show your status and some more information on web.
+kde-apps/kopete:winpopup - Enable pop-up messages sending on windows. (same as good old "net send" messages ;])
+kde-apps/kopete:yahoo - Enable yahoo protocol support.
+kde-apps/kopete:zeroconf - Enable Link-Local Messaging via the bonjour protocol.
+kde-apps/krdc:rdesktop - Enable runtime dependency for net-misc/rdesktop
+kde-apps/krdc:telepathy - Enable desktop sharing through a telepathy client
+kde-apps/krfb:ktp - Enable displaying of KDE Telepathy contacts
+kde-apps/krfb:telepathy - Enable desktop sharing through a telepathy client
+kde-apps/ksnapshot:kipi - Support for the KDE Image Plugin Interface.
+kde-apps/kstars:fits - Enable support for the FITS image format through cfitsio
+kde-apps/kstars:indi - Enable support for Astronomical control library using libindi
+kde-apps/kwalletd:gpg - Support wallets with GnuPG encryption additionally to default blowfish-encrypted file
+kde-apps/lokalize:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
+kde-apps/marble:designer-plugin - Enable designer plugin
+kde-apps/marble:phonon - Enable sound support via media-libs/phonon
+kde-apps/marble:shapefile - Enable support for ESRI shapefiles
+kde-apps/marble:zip - Enable support for reading and displaying .kmz files
+kde-apps/okular:chm - Enable support for Microsoft Compiled HTML Help files
+kde-apps/okular:dpi - DPI detection support for PDF rendering via x11-libs/libkscreen
+kde-apps/okular:ebook - Add E-Book support
+kde-apps/okular:mobi - Add mobipocket support
+kde-apps/oxygen-icons:sources - Additionally install the svg sources of the bitmap icons (needed for redistribution)
+kde-apps/poxml:extras - Build po2xml and swappo tools
+kde-apps/step:qalculate - Enable the libqalculate library for unit conversion
 kde-base/kactivities:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
-kde-base/kalzium:editor - Enable the embedded molecule editor/viewer
-kde-base/kalzium:solver - Enable the equation solver
 kde-base/kde-meta:kdepim - Pull in KDE PIM
 kde-base/kde-meta:sdk - Pull in developer-specific meta-packages
-kde-base/kdeartwork-kscreensaver:eigen - Enable various arithmetic screensavers which use Eigen2 for computations.
-kde-base/kdeartwork-kscreensaver:kexiv2 - Enable image rotation based on exif tags with libkexiv2.
-kde-base/kdebase-data:wallpapers - Install the KDE wallpapers
-kde-base/kdebase-kioslaves:sftp - Enable SFTP protocol support using net-libs/libssh
-kde-base/kdebase-meta:display-manager - Pull in a graphical display manager
-kde-base/kdebase-meta:wallpapers - Install the KDE wallpapers
-kde-base/kdebase-runtime-meta:crash-reporter - Builds a gui tool to submit crash information to the upstream backtracker
-kde-base/kdebase-runtime-meta:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
 kde-base/kdebase-startkde:wallpapers - Install the KDE wallpapers
 kde-base/kdebindings-meta:csharp - Enable C# language bindings for KDE and Qt
 kde-base/kdelibs:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
 kde-base/kdelibs:opengl - Enable OpenGL support for Plasma (GLApplet)
-kde-base/kdenetwork-meta:ppp - Enable support for net-dialup/ppp.
 kde-base/kdepim-meta:akonadi - Enables support for kde-base/akonadi
 kde-base/kdepim-runtime:facebook - Facebook service integration via net-libs/libkfbapi
 kde-base/kdepim-runtime:google - Google service integration via net-libs/libkgapi
@@ -2910,72 +2962,21 @@ kde-base/kdeplasma-addons:oauth - Enable OAuth support via dev-libs/qoauth
 kde-base/kdeplasma-addons:qalculate - Enable Qalculate runner using sci-libs/libqalculate
 kde-base/kdeplasma-addons:qwt - Enable applets that use x11-libs/qwt:5
 kde-base/kdeplasma-addons:scim - Enable applets that use app-i18n/scim
-kde-base/kdeutils-meta:floppy - Install kde-base/kfloppy to format and create DOS or ext2fs filesystems in a floppy.
 kde-base/kdm:consolekit - Enables support for authorization using consolekit
 kde-base/kfilemetadata:epub - Adds support for reading EPUB ebook metadata
 kde-base/kfilemetadata:mobi - Adds support for reading MOBI ebook metadata
-kde-base/kget:bittorrent - Enable bittorrent transfer plugin through net-libs/libktorrent
-kde-base/kget:gpg - Support for signature verificatopm by QGpgME via kde-base/kdepimlibs
-kde-base/kget:mms - Enable MMS (Microsoft Media Server) plugin through media-libs/libmms
-kde-base/kget:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
-kde-base/kget:webkit - Enable KdeWebkit browser plugin using kde-misc/kwebkitpart
-kde-base/kig:scripting - Support Python scripting
 kde-base/kimono:akonadi - Compile bindings for Akonadi
 kde-base/kimono:nepomuk - Compile bindings for Nepomuk
 kde-base/kimono:plasma - Compile bindings for KDE's Plasma
 kde-base/klipper:prison - Enable support for barcodes/QRcodes
-kde-base/kmix:canberra - Enable sound event support using media-libs/libcanberra
-kde-base/konqueror:bookmarks - Add dependency on bookmark package.
-kde-base/kopete:addbookmarks - Automatically add incoming urls to bookmarks.
-kde-base/kopete:autoreplace - Automatically replace selected text
-kde-base/kopete:contactnotes - Enables writing personal notes for contacts.
-kde-base/kopete:gadu - Enable the Gadu protocol handler.
-kde-base/kopete:groupwise - Enable the Groupwise protocol handler.
-kde-base/kopete:highlight - Allows you to specify highlights on specific events.
-kde-base/kopete:history - Enables saving chat history.
-kde-base/kopete:latex - Embed latex formatted text into messages.
-kde-base/kopete:meanwhile - Enable the Sametime protocol handler.
-kde-base/kopete:nowlistening - Shows song you currently listen to in your status/etc. Bindings for many players.
-kde-base/kopete:otr - Allows crypting your chat (drugs and talking nonsense are considered as good alternatives ;]).
-kde-base/kopete:pipes - Send messages to external pipe.
-kde-base/kopete:privacy - Filter for incoming messages
-kde-base/kopete:skype - Enable Skype protocol handler (not fully functional yet).
-kde-base/kopete:sms - Enable SMS sendinge functionality.
-kde-base/kopete:statistics - Everybody loves statistic graphs, especially cake ones. ;]
-kde-base/kopete:testbed - Enable the testbed protocol.
-kde-base/kopete:texteffect - Various fancy text effects for your messages (don't ever consider writing us with this enabled ;]).
-kde-base/kopete:translator - Translate incoming and outgoing messages.
-kde-base/kopete:urlpicpreview - Enables in conversation pictures preview.
-kde-base/kopete:webpresence - Show your status and some more information on web.
-kde-base/kopete:winpopup - Enable pop-up messages sending on windows. (same as good old "net send" messages ;])
-kde-base/kopete:yahoo - Enable yahoo protocol support.
-kde-base/kopete:zeroconf - Enable Link-Local Messaging via the bonjour protocol.
 kde-base/korundum:akonadi - Compile bindings for Akonadi
 kde-base/korundum:kate - Compile bindings for KDE Advanced Text Editor
 kde-base/korundum:nepomuk - Compile bindings for Nepomuk
 kde-base/korundum:okular - Compile bindings for kde-base/okular
-kde-base/krdc:rdesktop - Enable runtime dependency for net-misc/rdesktop
-kde-base/krdc:telepathy - Enable desktop sharing through a telepathy client
-kde-base/krfb:ktp - Enable displaying of KDE Telepathy contacts
-kde-base/krfb:telepathy - Enable desktop sharing through a telepathy client
-kde-base/ksnapshot:kipi - Support for the KDE Image Plugin Interface.
-kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
-kde-base/kstars:indi - Enable support for Astronomical control library using libindi
-kde-base/kwalletd:gpg - Support wallets with GnuPG encryption additionally to default blowfish-encrypted file
 kde-base/kwin:gles - Enable support for GLES.
 kde-base/libplasmaclock:kdepim - KDE PIM integration via kde-base/kdepimlibs
-kde-base/lokalize:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
-kde-base/marble:designer-plugin - Enable designer plugin
-kde-base/marble:phonon - Enable sound support via media-libs/phonon
-kde-base/marble:shapefile - Enable support for ESRI shapefiles
-kde-base/marble:zip - Enable support for reading and displaying .kmz files
 kde-base/nepomuk-core:epub - Adds support for reading EPUB ebook metadata
 kde-base/nepomuk-core:migrator - Installs a kde-base/baloo migration tool
-kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
-kde-base/okular:dpi - DPI detection support for PDF rendering via x11-libs/libkscreen
-kde-base/okular:ebook - Add E-Book support
-kde-base/okular:mobi - Add mobipocket support
-kde-base/oxygen-icons:sources - Additionally install the svg sources of the bitmap icons (needed for redistribution)
 kde-base/perlkde:akonadi - Compile bindings for Akonadi
 kde-base/perlkde:attica - Compile bindings for dev-libs/libattica
 kde-base/perlkde:kate - Compile bindings for KDE Advanced Text Editor
@@ -2994,7 +2995,6 @@ kde-base/plasma-workspace:kdepim - KDE PIM integration via kde-base/kdepimlibs
 kde-base/plasma-workspace:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
 kde-base/plasma-workspace:qalculate - Enable Qalculate runner using sci-libs/libqalculate
 kde-base/powerdevil:pm-utils - Adds support for suspend/resume the system through sys-power/pm-utils
-kde-base/poxml:extras - Build po2xml and swappo tools
 kde-base/qtruby:declarative - Compile bindings for dev-qt/qtdeclarative.
 kde-base/qtruby:phonon - Compile bindings for Phonon.
 kde-base/qtruby:qscintilla - Compile bindings for x11-libs/qscintilla.
@@ -3017,7 +3017,6 @@ kde-base/smokeqt:qthelp - Compile bindings for QtHelp from dev-qt/qthelp.
 kde-base/smokeqt:qwt - Compile bindings for x11-libs/qwt.
 kde-base/smokeqt:webkit - Compile bindings for dev-qt/qtwebkit.
 kde-base/smokeqt:xmlpatterns - Compile bindings for dev-qt/qtxmlpatterns.
-kde-base/step:qalculate - Enable the libqalculate library for unit conversion
 kde-base/systemsettings:kscreen - Use kde-misc/kscreen for screen management
 kde-base/systemsettings:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
 kde-frameworks/kdesignerplugin:designer - Build KF5 widgets plugin for QtDesigner
@@ -3040,6 +3039,31 @@ kde-misc/plasma-nm:modemmanager - Enable support for mobile broadband devices
 kde-misc/plasma-nm:openconnect - Build support for the OpenConnect VPN client
 kde-misc/tellico:addressbook - Add support for kdepim addressbook (kabc)
 kde-misc/tellico:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
+kde-plasma/breeze:kde4 - Build the Breeze style for KDE 4
+kde-plasma/kdeplasma-addons:ibus - Use ibus input method via app-i18n/ibus
+kde-plasma/kdeplasma-addons:scim - Enable applets that use app-i18n/scim
+kde-plasma/kfilemetadata:epub - Adds support for reading EPUB ebook metadata
+kde-plasma/kinfocenter:egl - Retrieve information about OpenGL via EGL
+kde-plasma/kinfocenter:gles - Show OpenGL ES information in kinfocenter
+kde-plasma/kinfocenter:nfs - Show information about NFS mounts, shares and log entries
+kde-plasma/kinfocenter:pci - Show advanced PCI information
+kde-plasma/kinfocenter:samba - Show information about Samba mounts, shares and log entries
+kde-plasma/kio-extras:phonon - Enable file audio preview plugin using media-libs/phonon
+kde-plasma/kio-extras:sftp - Enable SFTP protocol support using net-libs/libssh
+kde-plasma/kmenuedit:hotkeys - Enable support for hotkey editing
+kde-plasma/kwin:gles2 - Use OpenGL ES 2 instead of full GL
+kde-plasma/libksysguard:processui - Enables the Interface to view process libs.
+kde-plasma/plasma-desktop:touchpad - Enable configuration module for synaptics-based touchpads.
+kde-plasma/plasma-meta:display-manager - Pull in a graphical display manager
+kde-plasma/plasma-meta:sddm - Pull in the x11-misc/sddm display manager and KCM
+kde-plasma/plasma-meta:wallpapers - Install the KDE wallpapers
+kde-plasma/plasma-nm:modemmanager - Enable support for mobile broadband devices
+kde-plasma/plasma-nm:openconnect - Build support for the OpenConnect VPN client
+kde-plasma/plasma-nm:teamd - Enable Teamd control support
+kde-plasma/plasma-workspace:drkonqi - Enables DrKonqi, the KDE crash handler
+kde-plasma/plasma-workspace:prison - Enable support for barcodes/QRcodes
+kde-plasma/plasma-workspace:qalculate - Enable Qalculate runner using sci-libs/libqalculate
+kde-plasma/plasma-workspace:systemmonitor - Enables the system monitor dialog for the Plasma workspace
 lxde-base/lxdm:consolekit - Enables support for authorization using consolekit
 lxde-base/lxdm:gtk3 - Use GTK+3 instead of 2
 lxqt-base/lxqt-meta:admin - Install app-admin/lxqt-admin
@@ -3077,6 +3101,7 @@ mail-client/alpine:passfile - Adds support for caching passwords into a file bet
 mail-client/alpine:smime - Enable support for S/MIME
 mail-client/alpine:topal - Enable support for net-mail/topal
 mail-client/balsa:crypt - Adds support for GnuPG encryption
+mail-client/balsa:gtkhtml - Use gtkhtml for HTML rendering
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
 mail-client/balsa:rubrica - Adds support for app-office/rubrica addressbook
 mail-client/claws-mail:archive - Enable archiving plugin
@@ -3155,6 +3180,36 @@ mail-filter/opendkim:opendbx - Use opendbx backend to facilitate dataset driven 
 mail-filter/opendkim:poll - Use poll() instead of select() for the provided asynchronous resolver library.
 mail-filter/opendkim:sasl - Used to authenticate to a LDAP server in various ways if required.
 mail-filter/opendkim:unbound - Use the unbound dnssec library to perform DKIM DNS queries.
+mail-filter/opensmtpd-extras:filter-clamav - filter for scanning with app-antivirus/clamav
+mail-filter/opensmtpd-extras:filter-dkim-signer - filter for adding DKIM signatures to outgoing messages
+mail-filter/opensmtpd-extras:filter-dnsbl - filter for checking hosts against the DNS black lists
+mail-filter/opensmtpd-extras:filter-lua - filter for interfacing with dev-lang/lua
+mail-filter/opensmtpd-extras:filter-monkey - filter for arbitrarily rejecting random emails
+mail-filter/opensmtpd-extras:filter-pause - filter to pause on new connections
+mail-filter/opensmtpd-extras:filter-perl - filter for interfacing with dev-lang/perl
+mail-filter/opensmtpd-extras:filter-python - filter for interfacing with dev-lang/python
+mail-filter/opensmtpd-extras:filter-regex - filter for regular expression matching
+mail-filter/opensmtpd-extras:filter-spamassassin - filter for scanning with mail-filter/spamassassin
+mail-filter/opensmtpd-extras:filter-stub - stub filter
+mail-filter/opensmtpd-extras:filter-trace - trace filter
+mail-filter/opensmtpd-extras:filter-void - void filter
+mail-filter/opensmtpd-extras:luajit - Use JIT for Lua via dev-lang/luajit instead of dev-lang/lua
+mail-filter/opensmtpd-extras:queue-null - null queue
+mail-filter/opensmtpd-extras:queue-python - queue for interfacing with dev-lang/python
+mail-filter/opensmtpd-extras:queue-ram - ram queue
+mail-filter/opensmtpd-extras:queue-stub - stub queue
+mail-filter/opensmtpd-extras:scheduler-python - schedulre for interfacing with python
+mail-filter/opensmtpd-extras:scheduler-ram - ram scheduler
+mail-filter/opensmtpd-extras:scheduler-stub - stub scheduler
+mail-filter/opensmtpd-extras:table-ldap - table for lookups with net-nds/openldap
+mail-filter/opensmtpd-extras:table-mysql - table for lookups with virtual/mysql
+mail-filter/opensmtpd-extras:table-passwd - table for lookups using /etc/passwd
+mail-filter/opensmtpd-extras:table-postgres - table for lookups with dev-db/postgresql
+mail-filter/opensmtpd-extras:table-python - table for interfacing with dev-lang/python
+mail-filter/opensmtpd-extras:table-redis - table for lookups with dev-db/redis
+mail-filter/opensmtpd-extras:table-socketmap - table for lookups using a socket map
+mail-filter/opensmtpd-extras:table-sqlite - table for lookups with dev-db/sqlite3
+mail-filter/opensmtpd-extras:table-stub - stub table
 mail-filter/postfwd:tools - Install additional tools for testing postfwd
 mail-filter/postgrey:targrey - Enables the targrey patch
 mail-filter/qmail-scanner:spamassassin - Build faster mail-filter/spamassassin checks into qmail-scanner
@@ -3190,6 +3245,8 @@ mail-mta/netqmail:authcram - Enable AUTHCRAM support
 mail-mta/netqmail:gencertdaily - Generate SSL certificates daily instead of hourly
 mail-mta/netqmail:highvolume - Prepare netqmail for high volume servers
 mail-mta/opensmtpd:mta - Enable this to install as system-wide MTA
+mail-mta/opensmtpd:redis - Enable redis support
+mail-mta/opensmtpd:socketmap - Enable socketmap support
 mail-mta/qmail-ldap:cluster - Enable this if you want to have cluster support in qmail-ldap
 mail-mta/qmail-ldap:gencertdaily - Generate SSL certificates daily instead of hourly
 mail-mta/qmail-ldap:highvolume - Prepare qmail for high volume servers
@@ -3335,7 +3392,7 @@ media-gfx/k3d:3ds - Enable support for 3D Studio models
 media-gfx/k3d:cuda - Use nvidia cuda toolkit for speeding up computations
 media-gfx/k3d:gts - Add Support for the GNU Triangulated Surface Library sci-libs/gts
 media-gfx/kphotoalbum:face - Enable face detection and recognition using media-libs/libkface
-media-gfx/kphotoalbum:geolocation - Add support for kde-base/marble
+media-gfx/kphotoalbum:geolocation - Add support for kde-apps/marble
 media-gfx/kphotoalbum:kipi - Support for the KDE Image Plugin Interface
 media-gfx/kphotoalbum:map - Enable map display support using media-libs/libkgeomap
 media-gfx/librecad:tools - Build additional tool programs
@@ -4573,7 +4630,6 @@ net-dns/bind-tools:gost - Enables gost OpenSSL engine support
 net-dns/bind-tools:gssapi - Enable gssapi support
 net-dns/bind-tools:urandom - Use /dev/urandom instead of /dev/random
 net-dns/ddclient:hardened - Use iproute2 instead of ifconfig to grab an IP address
-net-dns/ddclient:ssl - Connect to the server utilizing SSL
 net-dns/dnsmasq:conntrack - Add support for Linux conntrack connection marking.
 net-dns/dnsmasq:dhcp - Enable support for reading ISC DHCPd lease files
 net-dns/dnsmasq:script - Enable support for calling scripts when leases change
@@ -4664,12 +4720,6 @@ net-fs/netatalk:shadow - Add shadow support
 net-fs/netatalk:ssl - Use dev-libs/openssl to provide DHX User Access Modules. These are not used with most recent versions of OS X and can be kept disabled without risks.
 net-fs/netatalk:tracker - Add support for spotlight like tracker
 net-fs/netatalk:utils - Install afpstats script
-net-fs/nfs-utils:libmount - Link mount.nfs with libmount
-net-fs/nfs-utils:nfsdcld - Enable nfsdcld NFSv4 clientid tracking daemon
-net-fs/nfs-utils:nfsidmap - Enable support for newer nfsidmap helper
-net-fs/nfs-utils:nfsv4 - Enable support for NFSv4
-net-fs/nfs-utils:nfsv41 - Enable support for NFSv4.1
-net-fs/nfs-utils:uuid - Support UUID lookups in rpc.mountd
 net-fs/openafs:modules - Build libafs kernel module. Disable only if you know what you're doing: without this module OpenAFS client will not work.
 net-fs/samba:addns - Enable AD DNS integration
 net-fs/samba:ads - Enable Active Directory support
@@ -4829,10 +4879,8 @@ net-im/qutim:espionage - !!Not recomended, contains privacy risk!! Enable contro
 net-im/qutim:histman - Enable history importer plugin
 net-im/qutim:hunspell - Enable spellchecking using app-text/hunspell
 net-im/qutim:irc - Enable IRC protocol support
-net-im/qutim:kinetic - Enable Growl-like kinetic popups plugin
 net-im/qutim:mobility - Enable several mobility related plugins like vibro notification
 net-im/qutim:mrim - Enable mail.ru protocol support
-net-im/qutim:multimedia - Add sound support via dev-qt/qtmultimedia
 net-im/qutim:otr - Enable plugin for encrypted conversations (Off-The-Record messaging)
 net-im/qutim:phonon - Add sound support via media-libs/phonon or dev-qt/qtphonon
 net-im/qutim:plugman - Enable downloadable content management with dev-libs/libattica
@@ -6299,7 +6347,10 @@ sci-physics/hoomd-blue:cuda - Enable cuda non-bonded kernels
 sci-physics/lammps:lammps-memalign - Enables the use of the posix_memalign() call instead of malloc() when large chunks or memory are allocated by LAMMPS
 sci-physics/lhapdf:octave - Add bindings for sci-mathematics/octave
 sci-physics/meep:mpb - Enable build against sci-physics/mpb
+sci-physics/pythia:fastjet - Build jets using the sci-physics/fastjet package
 sci-physics/pythia:hepmc - Adds support for High Energy Physics Monte Carlo Generators sci-physics/hepmc
+sci-physics/pythia:lhapdf - Support the use of external PDF sets via sci-physics/lhapdf
+sci-physics/pythia:root - Use sci-physics/root trees and histograms (in examples only)
 sci-physics/root:c++11 - Build ROOT using the C++11 standard
 sci-physics/root:c++14 - Build ROOT using the C++14 standard
 sci-physics/root:clarens - Build the Clarens and PEAC plug-ins, to use in a GRID enabled analysis
@@ -6398,6 +6449,7 @@ sys-apps/hwloc:numa - Add support for numa memory allocation
 sys-apps/hwloc:opencl - Enable OpenCL device discovery (AMD only)
 sys-apps/hwloc:pci - Enable PCI device discovery using libpci
 sys-apps/hwloc:plugins - Build hwloc components as plugins so that the hwloc core library does not directly depend on their dependencies (for instance the libpci library)
+sys-apps/ibm-powerpc-utils:rtas - Add support for the Run Time Abstraction Services (RTAS)
 sys-apps/iotools:make-symlinks - Generate sub-command symlinks to iotools -- note that a lot are simple like "xor"
 sys-apps/ipmitool:openipmi - Use the system OpenIPMI implementation.
 sys-apps/iproute2:iptables - include support for iptables filtering
@@ -6467,7 +6519,6 @@ sys-apps/systemd:xkb - Validate XKB keymap in logind
 sys-apps/tcp-wrappers:netgroups - Support matching NIS (host) netgroup names via the @netgroup syntax (if you don't know what this means, you most likely do not need it)
 sys-apps/timer_entropyd:debug - Enable printf debugging and logging to the syslog at DEBUG level
 sys-apps/tuxonice-userui:fbsplash - Add support for framebuffer splash
-sys-apps/ucspi-ssl:tls - Add TLS support (see also http://www.suspectclass.com/~sgifford/ucspi-tls/)
 sys-apps/usb_modeswitch:jimtcl - Use dev-lang/jimtcl instead of dev-lang/tcl for smaller memory footprint
 sys-apps/usermode-utilities:fuse - Build tools (currently umlmount) needing fuse
 sys-apps/util-linux:cramfs - build mkfs/fsck helpers for cramfs filesystems
@@ -7041,6 +7092,7 @@ www-client/elinks:mouse - Make elinks to grab all mouse events
 www-client/firefox:bindist - Disable official Firefox branding (icons, name) which are not binary-redistributable according to upstream.
 www-client/firefox:custom-optimization - Fine-tune custom compiler optimizations (-Os, -O0, -O1, -O2, -O3)
 www-client/firefox:gmp-autoupdate - Allow Gecko Media Plugins (binary blobs) to be automatically downloaded and kept up-to-date in user profiles
+www-client/firefox:jemalloc3 - Enable or disable jemalloc3 (forced-on when supported prior to 38.0)
 www-client/firefox:minimal - Prevent sdk and headers from being installed
 www-client/firefox:pgo - Add support for profile-guided optimization using gcc-4.5, for faster binaries. This option will double the compile time.
 www-client/firefox:system-cairo - Use the system-wide x11-libs/cairo instead of bundled.
@@ -7130,6 +7182,7 @@ www-plugins/gnash:ssh - Enable using SSH for network authentication in libnet
 www-plugins/gnash:ssl - Enable directly using OpenSSL in libnet (not needed for nsplugin ssl support)
 www-plugins/lightspark:gles - Replace default OpenGL renderer with GLESv2
 www-plugins/lightspark:rtmp - Enable Real Time Messaging Protocol using librtmp
+www-servers/apache:alpn - Enable support for Application-Layer Protocol Negotiation (ALPN) in TLS. Needed by HTTP/2.0.
 www-servers/apache:apache2_modules_access_compat - Group authorizations based on host (name or IP address). Available as a compatibility module with previous versions.
 www-servers/apache:apache2_modules_authn_core - Provides core authentication capabilities common to all authentication providers (functionality provided by authn_alias in previous versions).
 www-servers/apache:apache2_modules_authz_core - Provides core authorization capabilities to various authorization/authorization modules, such as authn_file and authz_user.
@@ -7139,6 +7192,7 @@ www-servers/apache:apache2_modules_lbmethod_bybusyness - Pending request countin
 www-servers/apache:apache2_modules_lbmethod_byrequests - Request counting load balancer scheduler algorithm for proxy_balancer.
 www-servers/apache:apache2_modules_lbmethod_bytraffic - Weighted traffic counting load balancer scheduler algorithm for proxy_balancer.
 www-servers/apache:apache2_modules_lbmethod_heartbeat - Heartbeat traffic counting load balancer scheduler algorithm for proxy_balancer.
+www-servers/apache:apache2_modules_macro - Macros for the Apache config file.
 www-servers/apache:apache2_modules_proxy_fcgi - FCGI support module for mod_proxy.
 www-servers/apache:apache2_modules_proxy_wstunnel - Provides support for the tunnelling of web socket connections to a backend websockets server.
 www-servers/apache:apache2_modules_ratelimit - Ratelimit module for transfer rate management
@@ -7517,6 +7571,7 @@ x11-wm/xpra:rencode - Enable rencode support
 x11-wm/xpra:server - Build server-side code
 x11-wm/xpra:vpx - Enable vpx image format support
 x11-wm/xpra:webp - Enable webp image format support
+x11-wm/xpra:x265 - Enable x265 support
 xfce-base/libxfce4ui:glade - Build support for Glade 3's GtkBuilder implementation
 xfce-base/libxfcegui4:glade - Build glade bindings
 xfce-base/xfce4-settings:libcanberra - Enable sound event support using media-libs/libcanberra

@@ -10,5 +10,5 @@ RDEPEND=zlib? ( sys-libs/zlib:0=[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,a
 REQUIRED_USE=python? ( || ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-pypy python_abis_3.2-pypy ) )
 SLOT=0
 SRC_URI=ftp://ftp.astron.com/pub/file/file-5.22.tar.gz ftp://ftp.gw.com/mirrors/pub/unix/file/file-5.22.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	7342c532e8e2ced20e60fdb60ce8ff0d	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	7342c532e8e2ced20e60fdb60ce8ff0d	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	42408102d713fbad60ca21349865edb4
 _md5_=7969f59ea84807b3887a5b73943e8b47
