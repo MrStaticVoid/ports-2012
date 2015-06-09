@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/package.use.mask,v 1.152 2015/05/20 22:48:51 chewi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/package.use.mask,v 1.154 2015/05/28 01:36:22 grknight Exp $
 
 # This file requires >=portage-2.1.1
 

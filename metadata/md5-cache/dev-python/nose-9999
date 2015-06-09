@@ -9,4 +9,4 @@ RDEPEND=dev-python/coverage[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,p
 REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy python_abis_3.2-pypy )
 SLOT=0
 _eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	git-2	e28f0d8a9b321431b1e699782851b827	python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=fdfd79678b67ec89480985345bdb1023
+_md5_=3c6021380fda3ce0c4a6725d53bc7d1f

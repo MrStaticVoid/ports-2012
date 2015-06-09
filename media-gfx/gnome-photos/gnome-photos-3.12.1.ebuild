@@ -19,7 +19,7 @@ RDEPEND="
 	gnome-base/gnome-desktop:3=
 	>=gnome-base/librsvg-2.26.0
 	media-libs/babl
-	>=media-libs/gegl-0.2
+	>=media-libs/gegl-0.2:0
 	>=media-libs/grilo-0.2.6:0.2
 	>=media-plugins/grilo-plugins-0.2.6:0.2[upnp-av]
 	>=media-libs/exempi-1.99.5

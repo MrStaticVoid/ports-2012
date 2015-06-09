@@ -9,5 +9,5 @@ LICENSE=public-domain
 RDEPEND=>=virtual/jdk-1.3 mono? ( dev-lang/mono ) >=dev-java/java-config-2.2.0 python? ( =dev-lang/python-2* )
 SLOT=0
 SRC_URI=http://www.antlr2.org/download/antlr-2.7.7.tar.gz
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	9fb270e417e0e83d64ca52586c4a79de	java-pkg-2	d562d1b6cbce43112feccc8b7632f1bf	java-utils-2	4a7c80c1feba48616b58c79d977e084c	mono	203a4295c06155d318bdff9c6b2d5e1c	multilib	62927b3db3a589b0806255f3a002d5d3	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	9fb270e417e0e83d64ca52586c4a79de	java-pkg-2	d562d1b6cbce43112feccc8b7632f1bf	java-utils-2	4a7c80c1feba48616b58c79d977e084c	mono	203a4295c06155d318bdff9c6b2d5e1c	multilib	62927b3db3a589b0806255f3a002d5d3	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
 _md5_=949d24e3a6602e11edf4127c8b9f1049

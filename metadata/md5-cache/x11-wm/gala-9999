@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
-DEPEND=>=dev-libs/glib-2.32:2 dev-libs/libgee:0.8 media-libs/clutter-gtk >=pantheon-base/plank-0.3 >=x11-libs/granite-0.3 x11-libs/bamf >=x11-libs/gtk+-3.4:3 >=x11-wm/mutter-3.8.4 gnome-base/gnome-desktop:3 || ( dev-lang/vala:0.26 dev-lang/vala:0.24 dev-lang/vala:0.22 ) virtual/pkgconfig >=sys-apps/sed-4 >=dev-vcs/bzr-2.0.1
+DEPEND=>=dev-libs/glib-2.32:2 dev-libs/libgee:0.8 media-libs/clutter-gtk >=pantheon-base/plank-0.3 >=x11-libs/granite-0.3 x11-libs/bamf >=x11-libs/gtk+-3.4:3 >=x11-wm/mutter-3.8.4 gnome-base/gnome-desktop:3 || ( dev-lang/vala:0.28 dev-lang/vala:0.26 dev-lang/vala:0.24 dev-lang/vala:0.22 ) virtual/pkgconfig >=sys-apps/sed-4 >=dev-vcs/bzr-2.0.1
 DESCRIPTION=Pantheon's Window Manager
 EAPI=5
 HOMEPAGE=https://launchpad.net/gala
@@ -7,5 +7,5 @@ IUSE=debug
 LICENSE=GPL-3
 RDEPEND=>=dev-libs/glib-2.32:2 dev-libs/libgee:0.8 media-libs/clutter-gtk >=pantheon-base/plank-0.3 >=x11-libs/granite-0.3 x11-libs/bamf >=x11-libs/gtk+-3.4:3 >=x11-wm/mutter-3.8.4 gnome-base/gnome-desktop:3
 SLOT=0
-_eclasses_=autotools	b49fe68f65ef8b751164926d42b30e60	autotools-utils	6f381431305797b69527d7fba3b6495f	bzr	87fd9041fcbe23dbc8f0e65ce0df6c28	eutils	9fb270e417e0e83d64ca52586c4a79de	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	c961250d50160cd37d6b7fd9e8429c92	vala	a41415fe361172827ed11b6a32ee38fb
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	autotools-utils	106d29d66151588cad8ee4f31122cffb	bzr	87fd9041fcbe23dbc8f0e65ce0df6c28	eutils	9fb270e417e0e83d64ca52586c4a79de	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	vala	09bc7da1a93142c9eb90786e6f6b39d2
 _md5_=77d3aaa1a182b3a3b69791a79e6a35dc

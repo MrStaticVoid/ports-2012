@@ -1,9 +1,17 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.677 2015/05/20 22:50:10 chewi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.684 2015/06/04 18:47:33 kensington Exp $
 
 # This file requires >=portage-2.1.1
 # New entries go on top.
+
+# Johannes Huber <johu@gentoo.org> (31 Nay 2015)
+# No released version available
+kde-plasma/plasma-workspace prison
+
+# Matthias Maier <tamiko@gentoo.org> (27 May 2015)
+# mask lcms use flag for old dcraw versions that depends on lcms:0
+=media-gfx/dcraw-9.10 lcms
 
 # Mike Gilbert <floppym@gentoo.org> (16 May 2015)
 # dev-lang/python[berkdb] fails with recent multilib sys-libs/db (bug 519584).
@@ -243,7 +251,7 @@ sys-infiniband/ofed ofed_drivers_ehca
 # Andreas K. Huettel <dilfridge@gentoo.org> (12 Apr 2014)
 # Upstream regularly forgets to update the bindings after changes in API,
 # leading to build failures. This is becoming more and more painful...
->=kde-base/marble-4.12.49.9999 python
+>=kde-apps/marble-4.12.49.9999 python
 
 # Lars Wendler <polynomial-c@gentoo.org> (12 Apr 2014)
 # Required ffmpeg version still is masked (#507474)
