@@ -1,39 +1,43 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.141 2014/09/18 12:26:22 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.170 2015/05/30 18:08:36 floppym Exp $
 
 EAPI=5
 
-#if LIVE
-AUTOTOOLS_AUTORECONF=yes
-EGIT_REPO_URI="git://anongit.freedesktop.org/${PN}/${PN}
-	http://cgit.freedesktop.org/${PN}/${PN}/"
-
-inherit git-r3
-#endif
-
 AUTOTOOLS_PRUNE_LIBTOOL_FILES=all
-PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
+
+if [[ ${PV} == 9999 ]]; then
+	AUTOTOOLS_AUTORECONF=yes
+	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd
+		http://cgit.freedesktop.org/systemd/systemd"
+	inherit git-r3
+else
+	SRC_URI="http://www.freedesktop.org/software/systemd/${P}.tar.xz"
+	KEYWORDS="~amd64 ~arm ~ia64 ~x86"
+fi
+
 inherit autotools-utils bash-completion-r1 linux-info multilib \
 	multilib-minimal pam python-single-r1 systemd toolchain-funcs udev \
 	user
 
 DESCRIPTION="System and service manager for Linux"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
-SRC_URI="http://www.freedesktop.org/software/systemd/${P}.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1 MIT public-domain"
 SLOT="0/2"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
-IUSE="acl audit cryptsetup curl doc elfutils gcrypt gudev http
-	idn introspection kdbus +kmod lz4 lzma pam policykit python qrcode +seccomp
-	selinux ssl test vanilla"
+IUSE="acl apparmor audit cryptsetup curl doc elfutils gcrypt gnuefi gudev http
+	idn importd introspection kdbus +kmod +lz4 lzma nat pam policykit python
+	qrcode +seccomp selinux ssl sysv-utils terminal test vanilla xkb"
+REQUIRED_USE="importd? ( curl gcrypt lzma )"
 
-MINKV="3.7"
+MINKV="3.8"
 
-COMMON_DEPEND=">=sys-apps/util-linux-2.20:0=
+COMMON_DEPEND=">=sys-apps/util-linux-2.26:0=
 	sys-libs/libcap:0=
+	!<sys-libs/glibc-2.16
 	acl? ( sys-apps/acl:0= )
+	apparmor? ( sys-libs/libapparmor:0= )
 	audit? ( >=sys-process/audit-2:0= )
 	cryptsetup? ( >=sys-fs/cryptsetup-1.6:0= )
 	curl? ( net-misc/curl:0= )
@@ -45,27 +49,35 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.20:0=
 		ssl? ( >=net-libs/gnutls-3.1.4:0= )
 	)
 	idn? ( net-dns/libidn:0= )
+	importd? (
+		app-arch/bzip2:0=
+		sys-libs/zlib:0=
+	)
 	introspection? ( >=dev-libs/gobject-introspection-1.31.1:0= )
 	kmod? ( >=sys-apps/kmod-15:0= )
 	lz4? ( >=app-arch/lz4-0_p119:0=[${MULTILIB_USEDEP}] )
 	lzma? ( >=app-arch/xz-utils-5.0.5-r1:0=[${MULTILIB_USEDEP}] )
+	nat? ( net-firewall/iptables:0= )
 	pam? ( virtual/pam:= )
 	python? ( ${PYTHON_DEPS} )
 	qrcode? ( media-gfx/qrencode:0= )
 	seccomp? ( sys-libs/libseccomp:0= )
 	selinux? ( sys-libs/libselinux:0= )
+	sysv-utils? (
+		!sys-apps/systemd-sysv-utils
+		!sys-apps/sysvinit )
+	terminal? ( >=dev-libs/libevdev-1.2:0=
+		>=x11-libs/libxkbcommon-0.5:0=
+		>=x11-libs/libdrm-2.4:0= )
+	xkb? ( >=x11-libs/libxkbcommon-0.4.1:0= )
 	abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r9
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] )"
 
 # baselayout-2.2 has /run
 RDEPEND="${COMMON_DEPEND}
 	>=sys-apps/baselayout-2.2
-	|| (
-		>=sys-apps/util-linux-2.22
-		<sys-apps/sysvinit-2.88-r4
-	)
 	!sys-auth/nss-myhostname
-	!<sys-libs/glibc-2.14
+	!sys-fs/eudev
 	!sys-fs/udev"
 
 # sys-apps/dbus: the daemon only (+ build-time lib dep for tests)
@@ -87,43 +99,28 @@ DEPEND="${COMMON_DEPEND}
 	ia64? ( >=sys-kernel/linux-headers-3.9 )
 	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.18 )
+	gnuefi? ( >=sys-boot/gnu-efi-3.0.2 )
 	python? ( dev-python/lxml[${PYTHON_USEDEP}] )
+	terminal? ( media-fonts/unifont[utils(+)] )
 	test? ( >=sys-apps/dbus-1.6.8-r1:0 )"
 
-#if LIVE
-DEPEND="${DEPEND}
-	app-text/docbook-xml-dtd:4.2
-	app-text/docbook-xml-dtd:4.5
-	app-text/docbook-xsl-stylesheets
-	dev-libs/libxslt:0
-	dev-libs/gobject-introspection
-	>=dev-libs/libgcrypt-1.4.5:0"
-
-SRC_URI=
-KEYWORDS=
-#endif
-
-src_prepare() {
-#if LIVE
-	if use doc; then
-		gtkdocize --docdir docs/ || die
-	else
-		echo 'EXTRA_DIST =' > docs/gtk-doc.make
-	fi
-
-#endif
-	# Bug 463376
-	sed -i -e 's/GROUP="dialout"/GROUP="uucp"/' rules/*.rules || die
-
-	autotools-utils_src_prepare
-}
+if [[ -n ${AUTOTOOLS_AUTORECONF} ]]; then
+	DEPEND="${DEPEND}
+		app-text/docbook-xml-dtd:4.2
+		app-text/docbook-xml-dtd:4.5
+		app-text/docbook-xsl-stylesheets
+		dev-libs/libxslt:0
+		dev-libs/gobject-introspection-common
+		>=dev-libs/libgcrypt-1.4.5:0"
+fi
 
 pkg_pretend() {
-	local CONFIG_CHECK="~AUTOFS4_FS ~BLK_DEV_BSG ~CGROUPS ~DEVTMPFS ~DMIID
-		~EPOLL ~FANOTIFY ~FHANDLE ~INOTIFY_USER ~IPV6 ~NET ~NET_NS ~PROC_FS
-		~SECCOMP ~SIGNALFD ~SYSFS ~TIMERFD ~TMPFS_XATTR
-		~!IDE ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2
-		~!GRKERNSEC_PROC ~!FW_LOADER_USER_HELPER"
+	local CONFIG_CHECK="~AUTOFS4_FS ~BLK_DEV_BSG ~CGROUPS
+		~DEVPTS_MULTIPLE_INSTANCES ~DEVTMPFS ~DMIID ~EPOLL ~FANOTIFY ~FHANDLE
+		~INOTIFY_USER ~IPV6 ~NET ~NET_NS ~PROC_FS ~SECCOMP ~SIGNALFD ~SYSFS
+		~TIMERFD ~TMPFS_XATTR
+		~!FW_LOADER_USER_HELPER ~!GRKERNSEC_PROC ~!IDE ~!SYSFS_DEPRECATED
+		~!SYSFS_DEPRECATED_V2"
 
 	use acl && CONFIG_CHECK+=" ~TMPFS_POSIX_ACL"
 	kernel_is -lt 3 7 && CONFIG_CHECK+=" ~HOTPLUG"
@@ -159,6 +156,21 @@ pkg_setup() {
 	use python && python-single-r1_pkg_setup
 }
 
+src_prepare() {
+	if [[ -n ${AUTOTOOLS_AUTORECONF} ]]; then
+		if use doc; then
+			gtkdocize --docdir docs/ || die
+		else
+			echo 'EXTRA_DIST =' > docs/gtk-doc.make
+		fi
+	fi
+
+	# Bug 463376
+	sed -i -e 's/GROUP="dialout"/GROUP="uucp"/' rules/*.rules || die
+
+	autotools-utils_src_prepare
+}
+
 src_configure() {
 	# Keep using the one where the rules were installed.
 	MY_UDEVDIR=$(get_udevdir)
@@ -166,14 +178,6 @@ src_configure() {
 	[[ ${MY_UDEVDIR} ]] || MY_UDEVDIR=/lib/udev
 
 	multilib-minimal_src_configure
-}
-
-multilib_native_enable() {
-	if multilib_is_native_abi; then
-		echo "--enable-${1}"
-	else
-		echo "--disable-${1}"
-	fi
 }
 
 multilib_src_configure() {
@@ -204,21 +208,27 @@ multilib_src_configure() {
 
 		# Optional components/dependencies
 		$(multilib_native_use_enable acl)
+		$(multilib_native_use_enable apparmor)
 		$(multilib_native_use_enable audit)
 		$(multilib_native_use_enable cryptsetup libcryptsetup)
 		$(multilib_native_use_enable curl libcurl)
 		$(multilib_native_use_enable doc gtk-doc)
 		$(multilib_native_use_enable elfutils)
 		$(use_enable gcrypt)
+		$(multilib_native_use_enable gnuefi)
 		$(use_enable gudev)
 		$(multilib_native_use_enable http microhttpd)
 		$(usex http $(multilib_native_use_enable ssl gnutls) --disable-gnutls)
 		$(multilib_native_use_enable idn libidn)
+		$(multilib_native_use_enable importd)
+		$(multilib_native_use_enable importd bzip2)
+		$(multilib_native_use_enable importd zlib)
 		$(multilib_native_use_enable introspection)
 		$(use_enable kdbus)
 		$(multilib_native_use_enable kmod)
 		$(use_enable lz4)
 		$(use_enable lzma xz)
+		$(multilib_native_use_enable nat libiptc)
 		$(multilib_native_use_enable pam)
 		$(multilib_native_use_enable policykit polkit)
 		$(multilib_native_use_with python)
@@ -226,50 +236,33 @@ multilib_src_configure() {
 		$(multilib_native_use_enable qrcode qrencode)
 		$(multilib_native_use_enable seccomp)
 		$(multilib_native_use_enable selinux)
+		$(multilib_native_use_enable terminal)
 		$(multilib_native_use_enable test tests)
 		$(multilib_native_use_enable test dbus)
-
-		# Disable optional binaries for non-native abis
-		$(multilib_native_enable backlight)
-		$(multilib_native_enable binfmt)
-		$(multilib_native_enable bootchart)
-		$(multilib_native_enable coredump)
-		$(multilib_native_enable firstboot)
-		$(multilib_native_enable hostnamed)
-		$(multilib_native_enable localed)
-		$(multilib_native_enable logind)
-		$(multilib_native_enable machined)
-		$(multilib_native_enable networkd)
-		$(multilib_native_enable quotacheck)
-		$(multilib_native_enable randomseed)
-		$(multilib_native_enable readahead)
-		$(multilib_native_enable resolved)
-		$(multilib_native_enable rfkill)
-		$(multilib_native_enable sysusers)
-		$(multilib_native_enable timedated)
-		$(multilib_native_enable timesyncd)
-		$(multilib_native_enable tmpfiles)
-		$(multilib_native_enable vconsole)
+		$(multilib_native_use_enable xkb xkbcommon)
 
 		# not supported (avoid automagic deps in the future)
-		--disable-apparmor
 		--disable-chkconfig
 
 		# hardcode a few paths to spare some deps
 		QUOTAON=/usr/sbin/quotaon
 		QUOTACHECK=/usr/sbin/quotacheck
 
+		# TODO: we may need to restrict this to gcc
+		EFI_CC="$(tc-getCC)"
+
 		# dbus paths
 		--with-dbuspolicydir="${EPREFIX}/etc/dbus-1/system.d"
 		--with-dbussessionservicedir="${EPREFIX}/usr/share/dbus-1/services"
 		--with-dbussystemservicedir="${EPREFIX}/usr/share/dbus-1/system-services"
-		--with-dbusinterfacedir="${EPREFIX}/usr/share/dbus-1/interfaces"
 
 		--with-ntp-servers="0.gentoo.pool.ntp.org 1.gentoo.pool.ntp.org 2.gentoo.pool.ntp.org 3.gentoo.pool.ntp.org"
 	)
 
 	if ! multilib_is_native_abi; then
 		myeconfargs+=(
+			MOUNT_{CFLAGS,LIBS}=' '
+
 			ac_cv_search_cap_init=
 			ac_cv_header_sys_capability_h=yes
 		)
@@ -342,27 +335,35 @@ multilib_src_install_all() {
 	prune_libtool_files --modules
 	einstalldocs
 
-	# we just keep sysvinit tools, so no need for the mans
-	rm "${D}"/usr/share/man/man8/{halt,poweroff,reboot,runlevel,shutdown,telinit}.8 \
-		|| die
-	rm "${D}"/usr/share/man/man1/init.1 || die
+	if use sysv-utils; then
+		for app in halt poweroff reboot runlevel shutdown telinit; do
+			dosym "..${ROOTPREFIX-/usr}/bin/systemctl" /sbin/${app}
+		done
+		dosym "..${ROOTPREFIX-/usr}/lib/systemd/systemd" /sbin/init
+	else
+		# we just keep sysvinit tools, so no need for the mans
+		rm "${D}"/usr/share/man/man8/{halt,poweroff,reboot,runlevel,shutdown,telinit}.8 \
+			|| die
+		rm "${D}"/usr/share/man/man1/init.1 || die
+	fi
 
 	# Disable storing coredumps in journald, bug #433457
 	mv "${D}"/usr/lib/sysctl.d/50-coredump.conf{,.disabled} || die
 
 	# Preserve empty dirs in /etc & /var, bug #437008
 	keepdir /etc/binfmt.d /etc/modules-load.d /etc/tmpfiles.d \
-		/etc/systemd/ntp-units.d /etc/systemd/user /var/lib/systemd
+		/etc/systemd/ntp-units.d /etc/systemd/user /var/lib/systemd \
+		/var/log/journal/remote
 
 	# Symlink /etc/sysctl.conf for easy migration.
 	dosym ../sysctl.conf /etc/sysctl.d/99-sysctl.conf
 
 	# If we install these symlinks, there is no way for the sysadmin to remove them
 	# permanently.
-	rm -f "${D}"/etc/systemd/system/multi-user.target.wants/systemd-networkd.service
-	rm -f "${D}"/etc/systemd/system/multi-user.target.wants/systemd-resolved.service
-	rm -f "${D}"/etc/systemd/system/multi-user.target.wants/systemd-timesyncd.service
-	rm -rf "${D}"/etc/systemd/system/network-online.target.wants
+	rm "${D}"/etc/systemd/system/multi-user.target.wants/systemd-networkd.service || die
+	rm "${D}"/etc/systemd/system/multi-user.target.wants/systemd-resolved.service || die
+	rm -r "${D}"/etc/systemd/system/network-online.target.wants || die
+	rm -r "${D}"/etc/systemd/system/sysinit.target.wants || die
 }
 
 migrate_locale() {
@@ -478,31 +479,11 @@ pkg_postinst() {
 		eerror
 	fi
 
-	if [[ ! -L "${ROOT}"/etc/mtab ]]; then
-		ewarn "Upstream mandates the /etc/mtab file should be a symlink to /proc/mounts."
-		ewarn "Not having it is not supported by upstream and will cause tools like 'df'"
-		ewarn "and 'mount' to not work properly. Please run:"
-		ewarn "	# ln -sf '${ROOT}proc/self/mounts' '${ROOT}etc/mtab'"
-		ewarn
-	fi
-
 	if [[ $(readlink "${ROOT}"/etc/resolv.conf) == */run/systemd/network/resolv.conf ]]; then
 		ewarn "resolv.conf is now generated by systemd-resolved. To use it, enable"
 		ewarn "systemd-resolved.service, and create a symlink from /etc/resolv.conf"
 		ewarn "to /run/systemd/resolve/resolv.conf"
 		ewarn
-	fi
-
-	if ! has_version sys-apps/systemd-ui; then
-		elog "To get additional features, a number of optional runtime dependencies may"
-		elog "be installed:"
-		elog "- sys-apps/systemd-ui: for GTK+ systemadm UI and gnome-ask-password-agent"
-	fi
-
-	if has_version sys-apps/openrc &&
-		! has_version sys-fs/udev-init-scripts; then
-		elog "If you plan to boot using OpenRC and udev or eudev, you"
-		elog "need to install the udev-init-scripts package."
 	fi
 }
 

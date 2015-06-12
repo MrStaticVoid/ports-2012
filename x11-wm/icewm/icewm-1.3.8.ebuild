@@ -1,7 +1,9 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/icewm/icewm-1.3.8.ebuild,v 1.7 2015/04/08 17:29:20 mgorny Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit autotools eutils python-single-r1
 
@@ -11,7 +13,7 @@ LICENSE="GPL-2"
 SRC_URI="mirror://sourceforge/${PN}/${P/_}.tar.gz"
 
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ppc ~ppc64 sparc x86"
 IUSE="bidi debug gnome minimal nls truetype uclibc xinerama"
 REQUIRED_USE="gnome? ( ${PYTHON_REQUIRED_USE} )"
 
@@ -21,7 +23,8 @@ RESTRICT="test"
 #fix for icewm preversion package names
 S=${WORKDIR}/${P/_}
 
-RDEPEND="x11-libs/gdk-pixbuf:2
+RDEPEND="
+	x11-libs/gdk-pixbuf:2
 	x11-libs/libX11
 	x11-libs/libXrandr
 	x11-libs/libXext
@@ -59,14 +62,14 @@ pkg_setup() {
 
 src_prepare() {
 	# Fedora patches
-	epatch "${FILESDIR}"/${P}-menu.patch
+	epatch "${FILESDIR}"/${PN}-1.3.8-menu.patch
 	epatch "${FILESDIR}"/${PN}-toolbar.patch
 	epatch "${FILESDIR}"/${PN}-keys.patch
 	epatch "${FILESDIR}"/${PN}-fribidi.patch
 	epatch "${FILESDIR}"/${PN}-1.3.7-dso.patch
 	epatch "${FILESDIR}"/${PN}-defaults.patch
 	epatch "${FILESDIR}"/${PN}-1.3.7-menuiconsize.patch
-	epatch "${FILESDIR}"/${P}-deprecated.patch
+	epatch "${FILESDIR}"/${PN}-1.3.8-deprecated.patch
 
 	epatch "${FILESDIR}"/${PN}-1.3.7-gcc44.patch
 
@@ -74,11 +77,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.3.7-thermal.patch
 
 	# Debian patch fixing multiple build issues, like bug #470148
-	epatch "${FILESDIR}"/${P}-build-fixes.patch
+	epatch "${FILESDIR}"/${PN}-1.3.8-build-fixes.patch
 
-	if use uclibc ; then
-		epatch "${FILESDIR}/${P}-uclibc.patch"
-	fi
+	# Fix bug #486710
+	use uclibc && epatch "${FILESDIR}/${P}-uclibc.patch"
 
 	eautoreconf
 }

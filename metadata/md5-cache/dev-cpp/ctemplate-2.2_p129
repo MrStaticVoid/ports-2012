@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare setup test
-DEPEND=test? ( || ( >=dev-lang/python-2.7.5-r2:2.7 ) ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.69 sys-devel/libtool
+DEPEND=test? ( || ( >=dev-lang/python-2.7.5-r2:2.7 ) ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=A simple but powerful template language for C++
 EAPI=5
 HOMEPAGE=http://code.google.com/p/ctemplate/
 IUSE=doc emacs vim-syntax static-libs test
-KEYWORDS=~amd64 ~arm ~ppc ~x86 ~amd64-linux ~x86-linux
+KEYWORDS=amd64 arm ppc x86 ~amd64-linux ~x86-linux
 LICENSE=BSD
 RDEPEND=vim-syntax? ( >=app-editors/vim-core-7 ) emacs? ( virtual/emacs )
 RESTRICT=test
 SLOT=0
 SRC_URI=http://dev.gentoo.org/~pinkbyte/distfiles/snapshots/ctemplate-2.2_p129.tar.bz2
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	autotools-utils	6f381431305797b69527d7fba3b6495f	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	eutils	32548a82e42dc26e3312581476d2f20c	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-any-r1	4560effd96d3d2a82e50af7cf87166da	python-utils-r1	47dda904cf91c61f45b564d9f834fde1	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=03fa319c3dd87418f71c50d1210704fc
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	autotools-utils	106d29d66151588cad8ee4f31122cffb	elisp-common	9a16929c1a6aec7e1c903289983e114c	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	python-any-r1	da352ea9da8eb9bf158d56cca65d6c82	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=c600a649d28cb21b1952d4f3ea94b68e

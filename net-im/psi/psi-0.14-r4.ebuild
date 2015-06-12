@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/psi/psi-0.14-r4.ebuild,v 1.18 2015/02/22 18:41:23 mgorny Exp $
 
 EAPI=4
 
@@ -18,7 +20,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 ~arm hppa ppc ppc64 x86 ~x86-fbsd"
 IUSE="crypt dbus debug doc extras jingle spell ssl xscreensaver webkit"
 RESTRICT="test"
 
@@ -30,7 +32,7 @@ done
 
 RDEPEND=">=dev-qt/qtgui-4.4:4[qt3support]
 	>=dev-qt/qt3support-4.4:4
-	>=app-crypt/qca-2.0.2:2
+	>=app-crypt/qca-2.0.2:2[qt4(+)]
 	dbus? ( >=dev-qt/qtdbus-4.4:4 )
 	spell? ( >=app-text/enchant-1.3.0 )
 	xscreensaver? ( x11-libs/libXScrnSaver )
@@ -42,10 +44,10 @@ DEPEND="${RDEPEND}
 	sys-devel/qconf
 	doc? ( app-doc/doxygen )"
 
-PDEPEND="crypt? ( app-crypt/qca-gnupg:2 )
+PDEPEND="crypt? ( app-crypt/qca:2[gpg] )
 	jingle? ( net-im/psimedia
-		app-crypt/qca-ossl:2 )
-	ssl? ( app-crypt/qca-ossl:2 )"
+		app-crypt/qca:2[openssl] )
+	ssl? ( app-crypt/qca:2[openssl] )"
 
 S=${WORKDIR}/${MY_P}
 

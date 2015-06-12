@@ -9,4 +9,8 @@
 	<longdescription lang="en">
 		Provides a easy way to access the system keyring service from python.
 	</longdescription>
+	<upstream>
+		<remote-id type="pypi">keyring</remote-id>
+		<remote-id type="bitbucket">kang/python-keyring-lib</remote-id>
+	</upstream>
 </pkgmetadata>

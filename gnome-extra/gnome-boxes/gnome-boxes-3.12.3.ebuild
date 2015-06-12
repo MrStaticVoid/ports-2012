@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-boxes/gnome-boxes-3.12.3.ebuild,v 1.3 2014/07/24 18:20:19 ssuominen Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -21,6 +19,7 @@ KEYWORDS="amd64" # qemu-kvm[spice] is 64bit-only
 
 # NOTE: sys-fs/* stuff is called via exec()
 # FIXME: ovirt is not available in tree
+
 RDEPEND="
 	>=dev-libs/glib-2.38:2
 	>=dev-libs/gobject-introspection-0.9.6
@@ -62,11 +61,13 @@ If you have an AMD Processor, run:
 # modprobe kvm-amd"
 
 pkg_pretend() {
-	linux_config_exists
+	linux-info_get_any_version
 
-	if ! { linux_chkconfig_present KVM_AMD || \
-		linux_chkconfig_present KVM_INTEL; }; then
-		ewarn "You need KVM support in your kernel to use GNOME Boxes!"
+	if linux_config_exists; then
+		if ! { linux_chkconfig_present KVM_AMD || \
+			linux_chkconfig_present KVM_INTEL; }; then
+			ewarn "You need KVM support in your kernel to use GNOME Boxes!"
+		fi
 	fi
 }
 

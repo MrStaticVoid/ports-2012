@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.4.6.ebuild,v 1.17 2014/08/14 08:47:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.4.6.ebuild,v 1.19 2015/03/03 09:53:46 dlan Exp $
 
 EAPI=5
 inherit autotools eutils linux-info pam systemd
@@ -15,14 +15,11 @@ SRC_URI="http://www.freedesktop.org/software/${MY_PN}/dist/${MY_P}.tar.xz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="acl debug doc kernel_linux pam policykit selinux systemd-units test"
 
-# TODO: Cleanup the || () hack later, like end of the year:
-# Skip certain broken glib 2.38 releases wrt #501330
 COMMON_DEPEND=">=dev-libs/dbus-glib-0.100:=
-	|| (  >=dev-libs/glib-2.38.2-r1:2 <dev-libs/glib-2.38:2 )
-	>=dev-libs/glib-2.22:2=
+	>=dev-libs/glib-2.38.2-r1:2=
 	sys-libs/zlib:=
 	x11-libs/libX11:=
 	acl? (

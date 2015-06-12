@@ -1,13 +1,13 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-board/awale/awale-1.5.ebuild,v 1.7 2013/09/06 23:31:43 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-board/awale/awale-1.5.ebuild,v 1.9 2015/03/25 15:32:37 jlec Exp $
 
 # do not use autotools related stuff in stable ebuilds
 # unless you like random breakage: 469796, 469798, 424041
 
 EAPI=5
-inherit eutils gnome2-utils games # STABLE ARCH
-# inherit autotools eutils gnome2-utils games # UNSTABLE ARCH
+
+inherit autotools eutils gnome2-utils games
 
 DESCRIPTION="Free Awale - The game of all Africa"
 HOMEPAGE="http://www.nongnu.org/awale/"
@@ -19,15 +19,15 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE="tk"
 
-RDEPEND="tk? ( dev-lang/tcl dev-lang/tk )"
+RDEPEND="tk? ( dev-lang/tcl:0= dev-lang/tk:0= )"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-build.patch
-	epatch "${DISTDIR}"/${P}-no-autoreconf2.patch.xz # STABLE ARCH
 
 	mv src/xawale.tcl src/xawale.tcl.in || die
-#	mv configure.in configure.ac || die # UNSTABLE ARCH
-#	eautoreconf # UNSTABLE ARCH
+	mv configure.in configure.ac
+	rm aclocal.m4
+	eautoreconf
 }
 
 src_configure() {
@@ -39,8 +39,7 @@ src_configure() {
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install
-	dodoc AUTHORS ChangeLog NEWS README THANKS
+	default
 	prepgamesdirs
 	use tk && fperms +x "${GAMES_DATADIR}"/${PN}/xawale.tcl
 }

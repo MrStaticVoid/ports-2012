@@ -2,10 +2,12 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer>
-    <email>TomWij@gentoo.org</email>
-    <name>Tom Wijsman</name>
+    <email>maintainer-needed@gentoo.org</email>
   </maintainer>
   <longdescription>
     A web-based user administration interface.
   </longdescription>
+  <upstream>
+    <remote-id type="sourceforge">webadmin</remote-id>
+  </upstream>
 </pkgmetadata>

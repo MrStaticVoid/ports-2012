@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fakeweb/fakeweb-1.3.0-r1.ebuild,v 1.3 2014/04/19 07:37:27 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fakeweb/fakeweb-1.3.0-r1.ebuild,v 1.6 2015/04/03 10:54:11 ago Exp $
 
 EAPI=5
 
-USE_RUBY="ruby19 ruby20 ruby21 jruby"
+USE_RUBY="ruby19 ruby20"
 
 RUBY_FAKEGEM_DOCDIR="html"
 RUBY_FAKEGEM_EXTRADOC="CHANGELOG README.rdoc"
@@ -16,7 +16,7 @@ HOMEPAGE="http://github.com/chrisk/fakeweb"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86"
+KEYWORDS="amd64 ~arm ~ppc ~ppc64 ~x86"
 IUSE=""
 
 ruby_add_bdepend "
@@ -48,10 +48,6 @@ each_ruby_prepare() {
 			# Tests fail on mocking of TCPSocket, but fakeweb itself
 			# actually works as evidenced by the thor test suite.
 			rm test/test_fake_web_open_uri.rb test/test_allow_net_connect.rb test/test_fake_web.rb || die
-			;;
-		*jruby)
-			# jruby has different deprecation warnings
-			rm test/test_deprecations.rb || die
 			;;
 	esac
 }

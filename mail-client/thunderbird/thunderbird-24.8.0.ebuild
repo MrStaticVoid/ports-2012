@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/thunderbird/thunderbird-24.8.0.ebuild,v 1.5 2014/09/07 13:27:48 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/thunderbird/thunderbird-24.8.0.ebuild,v 1.7 2015/02/26 15:14:39 axs Exp $
 
 EAPI=5
 WANT_AUTOCONF="2.1"
@@ -38,6 +38,7 @@ KEYWORDS="~alpha amd64 ~arm ppc ppc64 x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 IUSE="bindist crypt gstreamer +jit ldap +lightning +minimal mozdom pulseaudio selinux system-cairo system-icu system-jpeg system-sqlite"
+RESTRICT="!bindist? ( bindist )"
 
 PATCH="thunderbird-24.0-patches-0.1"
 PATCHFF="firefox-24.0-patches-0.9"
@@ -56,7 +57,7 @@ SRC_URI="${SRC_URI}
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
-RDEPEND="
+CDEPEND="
 	>=dev-libs/nss-3.16.2
 	>=dev-libs/nspr-4.10.4
 	>=dev-libs/glib-2.26:2
@@ -71,7 +72,6 @@ RDEPEND="
 	system-sqlite? ( >=dev-db/sqlite-3.8.0.2:3[secure-delete,debug=] )
 	>=media-libs/libvpx-1.0.0
 	kernel_linux? ( media-libs/alsa-lib )
-	selinux? ( sec-policy/selinux-thunderbird )
 	!x11-plugins/enigmail
 	crypt?  ( || (
 		( >=app-crypt/gnupg-2.0
@@ -83,13 +83,17 @@ RDEPEND="
 		=app-crypt/gnupg-1.4*
 	) )"
 
-DEPEND="${RDEPEND}
+DEPEND="${CDEPEND}
 	>=sys-devel/binutils-2.16.1
 	virtual/pkgconfig
 	amd64? ( ${ASM_DEPEND}
 		virtual/opengl )
 	x86? ( ${ASM_DEPEND}
 		virtual/opengl )"
+
+RDEPEND="${CDEPEND}
+	selinux? ( sec-policy/selinux-thunderbird )
+"
 
 if [[ ${PV} =~ beta ]]; then
 	S="${WORKDIR}/comm-beta"

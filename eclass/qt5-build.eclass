@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt5-build.eclass,v 1.7 2014/09/22 00:03:25 pesa Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt5-build.eclass,v 1.17 2015/05/10 14:27:29 pesa Exp $
 
 # @ECLASS: qt5-build.eclass
 # @MAINTAINER:
@@ -22,12 +22,8 @@ inherit eutils flag-o-matic multilib toolchain-funcs virtualx
 QT5_MINOR_VERSION=${PV#*.}
 QT5_MINOR_VERSION=${QT5_MINOR_VERSION%%.*}
 
-HOMEPAGE="https://www.qt.io/ https://qt-project.org/"
-if [[ ${QT5_MINOR_VERSION} -ge 4 ]]; then
-	LICENSE="|| ( LGPL-2.1 LGPL-3 )"
-else
-	LICENSE="|| ( LGPL-2.1 GPL-3 )"
-fi
+HOMEPAGE="https://www.qt.io/"
+LICENSE="|| ( LGPL-2.1 LGPL-3 )"
 SLOT="5"
 
 # @ECLASS-VARIABLE: QT5_MODULE
@@ -51,27 +47,29 @@ case ${PV} in
 		# development releases
 		QT5_BUILD_TYPE="release"
 		MY_P=${QT5_MODULE}-opensource-src-${PV/_/-}
-		SRC_URI="http://download.qt-project.org/development_releases/qt/${PV%.*}/${PV/_/-}/submodules/${MY_P}.tar.xz"
+		SRC_URI="http://download.qt.io/development_releases/qt/${PV%.*}/${PV/_/-}/submodules/${MY_P}.tar.xz"
 		S=${WORKDIR}/${MY_P}
 		;;
 	*)
 		# official stable releases
 		QT5_BUILD_TYPE="release"
 		MY_P=${QT5_MODULE}-opensource-src-${PV}
-		SRC_URI="http://download.qt-project.org/archive/qt/${PV%.*}/${PV}/submodules/${MY_P}.tar.xz"
+		SRC_URI="http://download.qt.io/official_releases/qt/${PV%.*}/${PV}/submodules/${MY_P}.tar.xz"
 		S=${WORKDIR}/${MY_P}
 		;;
 esac
 
 EGIT_REPO_URI=(
-	"git://gitorious.org/qt/${QT5_MODULE}.git"
-	"https://git.gitorious.org/qt/${QT5_MODULE}.git"
+	"git://code.qt.io/qt/${QT5_MODULE}.git"
+	"https://code.qt.io/git/qt/${QT5_MODULE}.git"
+	"https://github.com/qtproject/${QT5_MODULE}.git"
 )
 [[ ${QT5_BUILD_TYPE} == live ]] && inherit git-r3
 
 IUSE="debug test"
 
-[[ ${QT5_BUILD_TYPE} == release && ${QT5_MINOR_VERSION} -le 3 ]] && RESTRICT="test"
+[[ ${PN} == qtwebkit ]] && RESTRICT+=" mirror" # bug 524584
+[[ ${QT5_BUILD_TYPE} == release ]] && RESTRICT+=" test" # bug 457182
 
 DEPEND="
 	dev-lang/perl
@@ -84,8 +82,12 @@ if [[ ${PN} != qttest ]]; then
 		DEPEND+=" test? ( >=dev-qt/qttest-${PV}:5[debug=] )"
 	fi
 fi
+RDEPEND="
+	dev-qt/qtchooser
+"
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install src_test pkg_postinst pkg_postrm
+
 
 # @ECLASS-VARIABLE: PATCHES
 # @DEFAULT_UNSET
@@ -260,11 +262,13 @@ qt5-build_src_install() {
 	if [[ ${PN} == qtcore ]]; then
 		pushd "${QT5_BUILD_DIR}" >/dev/null || die
 
-		set -- emake INSTALL_ROOT="${D}" install_{mkspecs,qmake,syncqt}
+		set -- emake INSTALL_ROOT="${D}" install_{global_docs,mkspecs,qmake,syncqt}
 		einfo "Running $*"
 		"$@"
 
 		popd >/dev/null || die
+
+		docompress -x "${QT5_DOCDIR#${EPREFIX}}"/global
 
 		# install an empty Gentoo/gentoo-qconfig.h in ${D}
 		# so that it's placed under package manager control
@@ -275,9 +279,24 @@ qt5-build_src_install() {
 		)
 
 		# include gentoo-qconfig.h at the beginning of QtCore/qconfig.h
-		sed -i -e '1a#include <Gentoo/gentoo-qconfig.h>\n' \
+		sed -i -e '1i #include <Gentoo/gentoo-qconfig.h>\n' \
 			"${D}${QT5_HEADERDIR}"/QtCore/qconfig.h \
 			|| die "sed failed (qconfig.h)"
+
+		# install qtchooser configuration file
+		cat > "${T}/qt5-${CHOST}.conf" <<-_EOF_
+			${QT5_BINDIR}
+			${QT5_LIBDIR}
+		_EOF_
+
+		(
+			insinto /etc/xdg/qtchooser
+			doins "${T}/qt5-${CHOST}.conf"
+		)
+
+		# convenience symlinks
+		dosym qt5-"${CHOST}".conf /etc/xdg/qtchooser/5.conf
+		dosym qt5-"${CHOST}".conf /etc/xdg/qtchooser/qt5.conf
 	fi
 
 	qt5_install_module_qconfigs
@@ -370,6 +389,7 @@ qt_use_disable_mod() {
 # Prepares the environment for building Qt.
 qt5_prepare_env() {
 	# setup installation directories
+	# note: keep paths in sync with qmake-utils.eclass
 	QT5_PREFIX=${EPREFIX}/usr
 	QT5_HEADERDIR=${QT5_PREFIX}/include/qt5
 	QT5_LIBDIR=${QT5_PREFIX}/$(get_libdir)
@@ -450,7 +470,7 @@ qt5_symlink_tools_to_build_dir() {
 # Runs ./configure for modules belonging to qtbase.
 qt5_base_configure() {
 	# setup toolchain variables used by configure
-	tc-export CC CXX RANLIB STRIP
+	tc-export AR CC CXX OBJDUMP RANLIB STRIP
 	export LD="$(tc-getCXX)"
 
 	# configure arguments
@@ -515,6 +535,7 @@ qt5_base_configure() {
 		-no-libpng -no-libjpeg
 		-no-freetype -no-harfbuzz
 		-no-openssl
+		$([[ ${QT5_MINOR_VERSION} -ge 5 ]] && echo -no-libproxy)
 		-no-xinput2 -no-xcb-xlib
 
 		# always enable glib event loop support
@@ -523,8 +544,8 @@ qt5_base_configure() {
 		# disable everything to prevent automagic deps (part 2)
 		-no-pulseaudio -no-alsa
 
-		# disable gtkstyle because it adds qt4 include paths to the compiler
-		# command line if x11-libs/cairo is built with USE=qt4 (bug 433826)
+		# override in qtgui and qtwidgets where x11-libs/cairo[qt4] is blocked
+		# to avoid adding qt4 include paths (bug 433826)
 		-no-gtkstyle
 
 		# exclude examples and tests from default build
@@ -557,9 +578,9 @@ qt5_base_configure() {
 		# and cause problems on hardened, so turn them off
 		-no-pch
 
-		# reduced relocations cause major breakage on at least arm and ppc, so we
-		# don't specify anything and let configure figure out if they are supported,
-		# see also https://bugreports.qt-project.org/browse/QTBUG-36129
+		# reduced relocations cause major breakage on at least arm and ppc, so
+		# don't specify anything and let the configure figure out if they are
+		# supported; see also https://bugreports.qt.io/browse/QTBUG-36129
 		#-reduce-relocations
 
 		# let configure automatically detect if GNU gold is available

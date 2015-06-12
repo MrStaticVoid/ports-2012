@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.156 2014/09/22 00:03:25 pesa Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.163 2015/04/01 18:45:04 pesa Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -14,38 +14,33 @@ case ${EAPI} in
 	*)	die "qt4-build.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
-inherit eutils flag-o-matic multilib toolchain-funcs versionator
+inherit eutils flag-o-matic multilib toolchain-funcs
 
-if [[ ${PV} == *9999* ]]; then
-	QT4_BUILD_TYPE="live"
-	inherit git-r3
-else
-	QT4_BUILD_TYPE="release"
-fi
-
-HOMEPAGE="https://www.qt.io/ https://qt-project.org/"
+HOMEPAGE="https://www.qt.io/"
 LICENSE="|| ( LGPL-2.1 GPL-3 )"
+SLOT="4"
 
-case ${QT4_BUILD_TYPE} in
-	live)
+case ${PV} in
+	4.?.9999)
+		QT4_BUILD_TYPE="live"
 		EGIT_REPO_URI=(
-			"git://gitorious.org/qt/qt.git"
-			"https://git.gitorious.org/qt/qt.git"
+			"git://code.qt.io/qt/qt.git"
+			"https://code.qt.io/git/qt/qt.git"
+			"https://github.com/qtproject/qt.git"
 		)
 		EGIT_BRANCH=${PV%.9999}
+		inherit git-r3
 		;;
-	release)
+	*)
+		QT4_BUILD_TYPE="release"
 		MY_P=qt-everywhere-opensource-src-${PV/_/-}
-		SRC_URI="http://download.qt-project.org/archive/qt/${PV%.*}/${PV}/${MY_P}.tar.gz"
+		SRC_URI="http://download.qt.io/archive/qt/${PV%.*}/${PV}/${MY_P}.tar.gz"
 		S=${WORKDIR}/${MY_P}
 		;;
 esac
 
 IUSE="aqua debug pch"
-if ! version_is_at_least 4.8.5; then
-	[[ ${CATEGORY}/${PN} != dev-qt/qtwebkit ]] && IUSE+=" c++0x"
-fi
-[[ ${CATEGORY}/${PN} != dev-qt/qtxmlpatterns ]] && IUSE+=" +exceptions"
+[[ ${PN} != qtxmlpatterns ]] && IUSE+=" +exceptions"
 
 DEPEND="virtual/pkgconfig"
 if [[ ${QT4_BUILD_TYPE} == live ]]; then
@@ -78,17 +73,32 @@ qt4-build_pkg_setup() {
 	fi
 }
 
+# @ECLASS-VARIABLE: PATCHES
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Array variable containing all the patches to be applied. This variable
+# is expected to be defined in the global scope of ebuilds. Make sure to
+# specify the full path. This variable is used in src_prepare phase.
+#
+# Example:
+# @CODE
+#	PATCHES=(
+#		"${FILESDIR}/mypatch.patch"
+#		"${FILESDIR}/patches_folder/"
+#	)
+# @CODE
+
 # @ECLASS-VARIABLE: QT4_EXTRACT_DIRECTORIES
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# Space-separated list including the directories that will be extracted from
-# Qt tarball.
+# Space-separated list of directories that will be extracted
+# from Qt tarball.
 
 # @ECLASS-VARIABLE: QT4_TARGET_DIRECTORIES
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# Arguments for build_target_directories. Takes the directories in which the
-# code should be compiled. This is a space-separated list.
+# Space-separated list of directories that will be configured,
+# compiled, and installed. All paths must be relative to ${S}.
 
 # @FUNCTION: qt4-build_src_unpack
 # @DESCRIPTION:
@@ -96,13 +106,13 @@ qt4-build_pkg_setup() {
 qt4-build_src_unpack() {
 	setqtenv
 
-	if ! version_is_at_least 4.4 $(gcc-version); then
+	if [[ $(gcc-major-version) -lt 4 ]] || [[ $(gcc-major-version) -eq 4 && $(gcc-minor-version) -lt 4 ]]; then
 		ewarn
 		ewarn "Using a GCC version lower than 4.4 is not supported."
 		ewarn
 	fi
 
-	if [[ ${CATEGORY}/${PN} == dev-qt/qtwebkit ]]; then
+	if [[ ${PN} == qtwebkit ]]; then
 		eshopts_push -s extglob
 		if is-flagq '-g?(gdb)?([1-9])'; then
 			ewarn
@@ -135,19 +145,6 @@ qt4-build_src_unpack() {
 	esac
 }
 
-# @ECLASS-VARIABLE: PATCHES
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# PATCHES array variable containing all various patches to be applied.
-# This variable is expected to be defined in global scope of ebuild.
-# Make sure to specify the full path. This variable is utilised in
-# src_prepare() phase.
-#
-# @CODE
-#   PATCHES=( "${FILESDIR}/mypatch.patch"
-#             "${FILESDIR}/patches_folder/" )
-# @CODE
-
 # @FUNCTION: qt4-build_src_prepare
 # @DESCRIPTION:
 # Prepare the sources before the configure phase. Strip CFLAGS if necessary, and fix
@@ -176,10 +173,18 @@ qt4-build_src_prepare() {
 		skip_qmake_build
 		skip_project_generation
 		symlink_binaries_to_buildtree
-	fi
+	else
+		# Bug 373061
+		# qmake bus errors with -O2 or -O3 but -O1 works
+		if [[ ${CHOST} == *86*-apple-darwin* ]]; then
+			replace-flags -O[23] -O1
+		fi
 
-	if use_if_iuse c++0x; then
-		append-cxxflags -std=c++0x
+		# Bug 503500
+		# undefined reference with -Os and --as-needed
+		if use x86; then
+			replace-flags -Os -O2
+		fi
 	fi
 
 	# Bug 261632
@@ -187,16 +192,14 @@ qt4-build_src_prepare() {
 		append-flags -mminimal-toc
 	fi
 
-	# Bug 373061
-	# qmake bus errors with -O2 or -O3 but -O1 works
-	if [[ ${CHOST} == *86*-apple-darwin* ]]; then
-		replace-flags -O[23] -O1
-	fi
-
 	# Bug 417105
 	# graphite on gcc 4.7 causes miscompilations
 	if [[ $(gcc-version) == "4.7" ]]; then
 		filter-flags -fgraphite-identity
+	fi
+
+	if use_if_iuse c++0x; then
+		append-cxxflags -std=c++0x
 	fi
 
 	# Respect CC, CXX, {C,CXX,LD}FLAGS in .qmake.cache
@@ -330,7 +333,7 @@ qt4-build_src_configure() {
 		x86-macos)		  conf+=" -arch x86" ;;
 		x86|x86-*)		  conf+=" -arch i386" ;;
 		alpha|arm|ia64|mips|s390) conf+=" -arch $(tc-arch)" ;;
-		hppa|sh)		  conf+=" -arch generic" ;;
+		arm64|hppa|sh)		  conf+=" -arch generic" ;;
 		*) die "$(tc-arch) is unsupported by this eclass. Please file a bug." ;;
 	esac
 

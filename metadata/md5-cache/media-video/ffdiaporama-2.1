@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
-DEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qthelp:4 dev-qt/qtsql:4[sqlite] dev-qt/qtsvg:4 media-gfx/exiv2 media-libs/libsdl[sound] media-libs/taglib !<media-video/ffmpeg-1.2:0 virtual/ffmpeg[encode] >=sys-apps/sed-4
+DEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qthelp:4 dev-qt/qtsql:4[sqlite] dev-qt/qtsvg:4 media-gfx/exiv2 media-libs/libsdl[sound] media-libs/taglib !libav? ( >media-video/ffmpeg-1.2:0=[encode] ) libav? ( >=media-video/libav-9:0=[encode] ) >=sys-apps/sed-4
 DESCRIPTION=Movie creator from photos and video clips
 EAPI=5
 HOMEPAGE=http://ffdiaporama.tuxfamily.org
-IUSE=openclipart texturemate
-KEYWORDS=~amd64 ~x86
+IUSE=libav openclipart texturemate
+KEYWORDS=amd64 x86
 LICENSE=GPL-2 openclipart? ( CC0-1.0 ) texturemate? ( CC-BY-3.0 )
-RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qthelp:4 dev-qt/qtsql:4[sqlite] dev-qt/qtsvg:4 media-gfx/exiv2 media-libs/libsdl[sound] media-libs/taglib !<media-video/ffmpeg-1.2:0 virtual/ffmpeg[encode]
+RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qthelp:4 dev-qt/qtsql:4[sqlite] dev-qt/qtsvg:4 media-gfx/exiv2 media-libs/libsdl[sound] media-libs/taglib !libav? ( >media-video/ffmpeg-1.2:0=[encode] ) libav? ( >=media-video/libav-9:0=[encode] )
 SLOT=0
 SRC_URI=http://ffdiaporama.tuxfamily.org/script/GetPackage.php?f=ffdiaporama_bin_2.1.2014.0209.tar.gz -> ffdiaporama_bin_2.1.2014.0209.tar.gz http://ffdiaporama.tuxfamily.org/script/GetPackage.php?f=ffdiaporama_rsc_2.1.2014.0209.tar.gz -> ffdiaporama_rsc_2.1.2014.0209.tar.gz openclipart? ( http://openclipart.org/downloads/0.18/openclipart-0.18-svgonly.tar.bz2 ) texturemate? ( http://ffdiaporama.tuxfamily.org/script/GetPackage.php?f=ffdiaporama_texturemate_1.0.2014.0125.tar.gz -> ffdiaporama_texturemate_1.0.2014.0125.tar.gz )
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	40136c5fe0002a0d3937e869ae4ee0e2	qt4-r2	118737d78407d7d0a6cdf4147b668ec3	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=48bc8cb200b1b7881ded13462cf4835f
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	62927b3db3a589b0806255f3a002d5d3	qmake-utils	1c0e4f885b876595f09a9bb6c78a687d	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=ed188e41e549b1e0778ccd6d0fdb557e

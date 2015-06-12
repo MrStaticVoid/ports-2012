@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/cups-filters/cups-filters-9999.ebuild,v 1.49 2014/06/07 19:12:16 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/cups-filters/cups-filters-9999.ebuild,v 1.54 2015/03/04 17:41:31 dilfridge Exp $
 
 EAPI=5
 
@@ -39,7 +39,7 @@ RDEPEND="
 	jpeg? ( virtual/jpeg:0 )
 	perl? ( dev-lang/perl:= )
 	png? ( media-libs/libpng:0= )
-	tiff? ( media-libs/tiff )
+	tiff? ( media-libs/tiff:0 )
 	zeroconf? ( net-dns/avahi[dbus] )
 "
 DEPEND="${RDEPEND}"
@@ -72,7 +72,7 @@ src_compile() {
 
 	if use perl; then
 		pushd "${S}/scripting/perl" > /dev/null
-		perl-module_src_prep
+		perl-module_src_configure
 		perl-module_src_compile
 		popd > /dev/null
 	fi
@@ -84,7 +84,7 @@ src_install() {
 	if use perl; then
 		pushd "${S}/scripting/perl" > /dev/null
 		perl-module_src_install
-		fixlocalpod
+		perl_delete_localpod
 		popd > /dev/null
 	fi
 
@@ -103,6 +103,7 @@ src_install() {
 
 	if ! use foomatic ; then
 		# this needs an upstream solution / configure switch
+		rm -v "${ED}/usr/bin/foomatic-rip" || die
 		rm -v "${ED}/usr/libexec/cups/filter/foomatic-rip" || die
 		rm -v "${ED}/usr/share/man/man1/foomatic-rip.1" || die
 	fi
@@ -112,8 +113,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	perl-module_pkg_postinst
-
 	if ! use foomatic ; then
 		ewarn "You are disabling the foomatic code in cups-filters. Please do that ONLY if absolutely."
 		ewarn "necessary. net-print/foomatic-filters as replacement is deprecated and unmaintained."

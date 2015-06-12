@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/pmw/pmw-1.ebuild,v 1.4 2014/04/19 17:53:25 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/pmw/pmw-1.ebuild,v 1.7 2015/05/26 14:05:27 jlec Exp $
 
 EAPI=5
 
-PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 
 inherit python-r1
 
@@ -14,7 +14,7 @@ SRC_URI=""
 
 LICENSE=""
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="alpha amd64 ia64 ppc ~sparc x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="

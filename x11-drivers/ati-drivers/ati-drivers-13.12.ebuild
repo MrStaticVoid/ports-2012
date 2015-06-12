@@ -8,7 +8,7 @@ DESCRIPTION="Ati precompiled drivers for Radeon Evergreen (HD5000 Series) and ne
 HOMEPAGE="http://www.amd.com"
 RUN="${WORKDIR}/amd-catalyst-13.12-linux-x86.x86_64.run"
 SLOT="1"
-DRIVERS_URI="mirror://gentoo/amd-catalyst-13.12-linux-x86.x86_64.zip http://ftp.osuosl.org/pub/funtoo/distfiles/amd-catalyst-13.12-linux-x86.x86_64.zip"
+DRIVERS_URI="mirror://gentoo/amd-catalyst-13.12-linux-x86.x86_64.zip mirror://funtoo/amd-catalyst-13.12-linux-x86.x86_64.zip"
 XVBA_SDK_URI="http://developer.amd.com/wordpress/media/2012/10/xvba-sdk-0.74-404001.tar.gz"
 SRC_URI="${DRIVERS_URI} ${XVBA_SDK_URI}"
 FOLDER_PREFIX="common/"
@@ -23,8 +23,8 @@ RESTRICT="bindist test"
 RDEPEND="
 	!<=media-libs/cogl-1.12.2-r1
 	<=x11-base/xorg-server-1.14.49[-minimal]
-	>=app-admin/eselect-opengl-1.0.7
-	app-admin/eselect-opencl
+	>=app-eselect/eselect-opengl-1.0.7
+	app-eselect/eselect-opencl
 	sys-power/acpid
 	x11-apps/xauth
 	x11-libs/libX11
@@ -149,7 +149,7 @@ QA_DT_HASH="
 	usr/lib\(32\|64\)\?/OpenCL/vendors/amd/libOpenCL.so.1
 "
 
-pkg_pretend() {
+pre_src_compile() {
 	local CONFIG_CHECK="~MTRR ~!DRM ACPI PCI_MSI !LOCKDEP !PAX_KERNEXEC_PLUGIN_METHOD_OR"
 	use amd64 && CONFIG_CHECK+=" COMPAT"
 

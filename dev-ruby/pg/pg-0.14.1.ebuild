@@ -1,13 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/pg/pg-0.14.1.ebuild,v 1.8 2014/04/21 07:07:53 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/pg/pg-0.14.1.ebuild,v 1.11 2015/06/01 21:29:09 mrueg Exp $
 
 EAPI=4
 USE_RUBY="ruby19"
 
 RUBY_FAKEGEM_RECIPE_TEST="rspec"
 
-RUBY_FAKEGEM_TASK_DOC="redocs"
+RUBY_FAKEGEM_RECIPE_DOC="rdoc"
 RUBY_FAKEGEM_DOCDIR="doc"
 RUBY_FAKEGEM_EXTRADOC="ChangeLog Contributors.rdoc README.rdoc History.rdoc"
 
@@ -22,10 +22,10 @@ KEYWORDS="amd64 ~arm ~hppa ppc ppc64 x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64
 IUSE=""
 
 RDEPEND="${RDEPEND}
-	dev-db/postgresql-base"
+	dev-db/postgresql"
 DEPEND="${DEPEND}
-	dev-db/postgresql-base
-	test? ( dev-db/postgresql-server dev-db/postgresql-base[threads] )"
+	dev-db/postgresql
+	test? ( dev-db/postgresql[server,threads] )"
 
 ruby_add_bdepend "
 	doc? (

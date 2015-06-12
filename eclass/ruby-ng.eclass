@@ -18,6 +18,7 @@
 #  * ruby19 - Ruby (MRI) 1.9.x
 #  * ruby20 - Ruby (MRI) 2.0.x
 #  * ruby21 - Ruby (MRI) 2.1.x
+#  * ruby22 - Ruby (MRI) 2.2.x
 #  * ree18  - Ruby Enterprise Edition 1.8.x
 #  * jruby  - JRuby
 #  * rbx    - Rubinius
@@ -32,6 +33,7 @@
 #  * all_ruby_configure
 
 # @ECLASS-VARIABLE: USE_RUBY
+# @DEFAULT_UNSET
 # @REQUIRED
 # @DESCRIPTION:
 # This variable contains a space separated list of targets (see above) a package
@@ -70,7 +72,7 @@
 # (e.g. selenium's firefox driver extension). When set this argument is
 # passed to "grep -E" to remove reporting of these shared objects.
 
-inherit eutils java-utils-2 multilib toolchain-funcs
+inherit eutils java-utils-2 multilib toolchain-funcs ruby-utils
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_test src_install pkg_setup
 
@@ -97,42 +99,7 @@ esac
 # Set `comparator' and `version' to include a comparator (=, >=, etc.) and a
 # version string to the returned string
 ruby_implementation_depend() {
-	local rubypn=
-	local rubyslot=
-
-	case $1 in
-		ruby18)
-			rubypn="dev-lang/ruby"
-			rubyslot=":1.8"
-			;;
-		ruby19)
-			rubypn="dev-lang/ruby"
-			rubyslot=":1.9"
-			;;
-		ruby20)
-			rubypn="dev-lang/ruby"
-			rubyslot=":2.0"
-			;;
-		ruby21)
-			rubypn="dev-lang/ruby"
-			rubyslot=":2.1"
-			;;
-		ree18)
-			rubypn="dev-lang/ruby-enterprise"
-			rubyslot=":1.8"
-			;;
-		jruby)
-			rubypn="dev-java/jruby"
-			rubyslot=""
-			;;
-		rbx)
-			rubypn="dev-lang/rubinius"
-			rubyslot=""
-			;;
-		*) die "$1: unknown Ruby implementation"
-	esac
-
-	echo "$2${rubypn}$3${rubyslot}"
+	_ruby_implementation_depend $1
 }
 
 # @FUNCTION: ruby_samelib
@@ -641,11 +608,24 @@ ruby_get_implementation() {
 	esac
 }
 
-# @FUNCTION: ruby-ng_rspec
+# @FUNCTION: ruby-ng_rspec <arguments>
 # @DESCRIPTION:
 # This is simply a wrapper around the rspec command (executed by $RUBY})
 # which also respects TEST_VERBOSE and NOCOLOR environment variables.
+# Optionally takes arguments to pass on to the rspec invocation.  The
+# environment variable RSPEC_VERSION can be used to control the specific
+# rspec version that must be executed. It defaults to 2 for historical
+# compatibility.
 ruby-ng_rspec() {
+	local version=${RSPEC_VERSION-2}
+	local files="$@"
+
+	# Explicitly pass the expected spec directory since the versioned
+	# rspec wrappers don't handle this automatically.
+	if [ ${#@} -eq 0 ]; then
+		files="spec"
+	fi
+
 	if [[ ${DEPEND} != *"dev-ruby/rspec"* ]]; then
 		ewarn "Missing dev-ruby/rspec in \${DEPEND}"
 	fi
@@ -669,7 +649,7 @@ ruby-ng_rspec() {
 			;;
 	esac
 
-	${RUBY} -S rspec ${rspec_params} "$@" || die "rspec failed"
+	${RUBY} -S rspec-${version} ${rspec_params} ${files} || die "rspec failed"
 }
 
 # @FUNCTION: ruby-ng_cucumber

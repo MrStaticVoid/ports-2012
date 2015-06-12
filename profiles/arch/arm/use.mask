@@ -4,6 +4,11 @@
 # Unmask arm arch specific flags
 -iwmmxt
 
+# Patrick Lauer <patrick@gentoo.org> (28 Apr 2015)
+# Dependencies not keyworded
+ayatana
+
+# Mike Frysinger <vapier@gentoo.org> (25 Feb 2013)
 # doomsday ebuild is not available on this architecture
 doomsday
 
@@ -143,6 +148,7 @@ csharp
 -video_cards_freedreno
 -video_cards_omap
 -video_cards_omapfb
+-video_cards_tegra
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures on which they aren't available
@@ -243,3 +249,6 @@ opencl
 
 # Missing sys-process/numactl keywords.
 numa
+
+# toolkit for nvidia binary drivers
+cg

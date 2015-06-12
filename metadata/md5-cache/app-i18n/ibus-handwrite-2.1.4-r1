@@ -3,12 +3,12 @@ DEPEND=zinnia? ( app-i18n/zinnia app-i18n/zinnia-tomoe ) >=app-i18n/ibus-1.3.0 >
 DESCRIPTION=hand write recognition/input using ibus IM engine
 EAPI=5
 HOMEPAGE=http://code.google.com/p/ibus-handwrite/
-IUSE=nls +zinnia python_targets_python2_7 python_single_target_python2_7
+IUSE=nls +zinnia python_targets_python2_7
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-3
 RDEPEND=zinnia? ( app-i18n/zinnia app-i18n/zinnia-tomoe ) >=app-i18n/ibus-1.3.0 >=x11-libs/gtk+-2.10 x11-libs/gtkglext
-REQUIRED_USE=python_single_target_python2_7? ( python_targets_python2_7 ) ^^ ( python_single_target_python2_7 )
+REQUIRED_USE=python_targets_python2_7
 SLOT=0
 SRC_URI=http://ibus-handwrite.googlecode.com/files/ibus-handwrite-2.1.4.tar.bz2
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	autotools-utils	6f381431305797b69527d7fba3b6495f	eutils	32548a82e42dc26e3312581476d2f20c	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	a71a169a881e0a11d04a7fe12dc39f6e	python-utils-r1	47dda904cf91c61f45b564d9f834fde1	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=11e69c2f9e9079697c79e8a93cb03110
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	autotools-utils	106d29d66151588cad8ee4f31122cffb	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	python-single-r1	7a178335dbd6ea7f50ed4e3e1c13c1e4	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=20c6c590b3f1a3072be3b6a98567e7b5

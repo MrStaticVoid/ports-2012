@@ -1,10 +1,10 @@
 DEFINED_PHASES=compile install postinst postrm prepare unpack
-DEPEND=sec-policy/selinux-apache dev-vcs/git >=sys-apps/policycoreutils-2.0.82 >=sec-policy/selinux-base-policy-9999 sys-devel/m4 >=sys-apps/checkpolicy-2.0.21
+DEPEND=sec-policy/selinux-apache >=dev-vcs/git-1.8.2.1 >=sys-apps/policycoreutils-2.0.82 >=sec-policy/selinux-base-policy-9999 sys-devel/m4 >=sys-apps/checkpolicy-2.0.21
 DESCRIPTION=SELinux policy for awstats
 EAPI=5
-HOMEPAGE=http://www.gentoo.org/proj/en/hardened/selinux/
+HOMEPAGE=https://wiki.gentoo.org/wiki/Project:SELinux
 LICENSE=GPL-2
 RDEPEND=sec-policy/selinux-apache >=sys-apps/policycoreutils-2.0.82 >=sec-policy/selinux-base-policy-9999
 SLOT=0
-_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	selinux-policy-2	76f6046da715a2d83a6057dfe05d605d	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=d221e1f24ac6baf5838c2c0762d1bebc
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	git-r3	a00948a17a774db5e36bc0247c598097	multilib	62927b3db3a589b0806255f3a002d5d3	selinux-policy-2	e341a1fcc47197426608d276b0d68984	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=b1dab2c4bcdb92dabecf299758b05e62

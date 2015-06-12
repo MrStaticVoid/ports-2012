@@ -1,13 +1,13 @@
-DEFINED_PHASES=configure install
-DEPEND=>=dev-libs/boost-1.51.0:= >=dev-libs/libixion-0.7:= sys-libs/zlib >=dev-util/mdds-0.8.1:=
+DEFINED_PHASES=configure install prepare
+DEPEND=>=dev-libs/boost-1.51.0:= =dev-libs/libixion-0.7* sys-libs/zlib:= >=dev-util/mdds-0.8.1
 DESCRIPTION=Standalone file import filter library for spreadsheet documents
 EAPI=5
-HOMEPAGE=http://gitorious.org/orcus/pages/Home
+HOMEPAGE=https://gitlab.com/orcus/orcus/blob/master/README.md
 IUSE=static-libs
-KEYWORDS=~*
+KEYWORDS=amd64 ~arm ~ppc x86
 LICENSE=MIT
-RDEPEND=>=dev-libs/boost-1.51.0:= >=dev-libs/libixion-0.7:= sys-libs/zlib
-SLOT=0/0.5
+RDEPEND=>=dev-libs/boost-1.51.0:= =dev-libs/libixion-0.7* sys-libs/zlib:=
+SLOT=0
 SRC_URI=http://kohei.us/files/orcus/src/liborcus-0.7.0.tar.bz2
-_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=0f9d17c076e0885dc9fcfc8c931b6e50
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=cd7c3850d37ed80ad42593fcf7da65b6

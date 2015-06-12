@@ -3,11 +3,11 @@ DEPEND=ffmpeg? ( virtual/ffmpeg[vdpau?] ) dv? ( >=media-libs/libdv-0.104 ) xml? 
 DESCRIPTION=An open source multimedia framework, designed and developed for television broadcasting
 EAPI=4
 HOMEPAGE=http://www.mltframework.org/
-IUSE=compressed-lumas dv debug ffmpeg frei0r gtk jack kde libsamplerate melt mmx qt4 quicktime rtaudio sdl sse sse2 vorbis xine xml lua python ruby vdpau kernel_linux
+IUSE=compressed-lumas dv debug ffmpeg frei0r gtk jack kde libsamplerate melt cpu_flags_x86_mmx qt4 quicktime rtaudio sdl cpu_flags_x86_sse cpu_flags_x86_sse2 vorbis xine xml lua python ruby vdpau kernel_linux
 KEYWORDS=amd64 ~ppc ~ppc64 x86 ~x86-fbsd ~amd64-linux ~x86-linux
 LICENSE=GPL-2
 RDEPEND=ffmpeg? ( virtual/ffmpeg[vdpau?] ) dv? ( >=media-libs/libdv-0.104 ) xml? ( >=dev-libs/libxml2-2.5 ) vorbis? ( >=media-libs/libvorbis-1.1.2 ) sdl? ( >=media-libs/libsdl-1.2.10[X,opengl] >=media-libs/sdl-image-1.2.4 ) libsamplerate? ( >=media-libs/libsamplerate-0.1.2 ) jack? ( >=media-sound/jack-audio-connection-kit-0.121.3 media-libs/ladspa-sdk >=dev-libs/libxml2-2.5 ) frei0r? ( media-plugins/frei0r-plugins ) gtk? ( x11-libs/gtk+:2 media-libs/libexif x11-libs/pango ) quicktime? ( media-libs/libquicktime ) rtaudio? ( kernel_linux? ( media-libs/alsa-lib ) ) xine? ( >=media-libs/xine-lib-1.1.2_pre20060328-r7 ) qt4? ( dev-qt/qtgui:4 dev-qt/qtsvg:4 media-libs/libexif ) !media-libs/mlt++ lua? ( >=dev-lang/lua-5.1.4-r4 ) ruby? ( dev-lang/ruby ) python? ( =dev-lang/python-2* )
 SLOT=0
 SRC_URI=mirror://sourceforge/mlt/mlt-0.8.2.tar.gz
-_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	98d2432956e2e80dc689fe2c52466233	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=5ed1e517b81586e41562016251c53350
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=96fb5154c4a960c648b25d6c7f335804

@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/libav/libav-9.14.ebuild,v 1.12 2014/08/10 21:00:35 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/libav/libav-9.14.ebuild,v 1.14 2015/03/15 17:33:24 ulm Exp $
 
 EAPI=5
 
@@ -31,15 +31,15 @@ SLOT="0/9"
 [[ ${PV} == *9999 ]] || \
 KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
-IUSE="aac alsa amr bindist +bzip2 cdio cpudetection custom-cflags debug doc
-	+encode faac fdk frei0r +gpl gsm +hardcoded-tables ieee1394 jack jpeg2k mp3
+IUSE="aac alsa amr +bzip2 cdio cpudetection custom-cflags debug doc	+encode
+	faac fdk frei0r +gpl gsm +hardcoded-tables ieee1394 jack jpeg2k mp3
 	+network openssl opus oss pic pulseaudio rtmp schroedinger sdl speex ssl
 	static-libs test theora threads tools truetype v4l vaapi vdpau vorbis vpx X
 	x264 xvid +zlib"
 
 # String for CPU features in the useflag[:configure_option] form
 # if :configure_option isn't set, it will use 'useflag' as configure option
-CPU_FEATURES="3dnow:amd3dnow 3dnowext:amd3dnowext altivec avx mmx mmxext neon ssse3 vis"
+CPU_FEATURES="cpu_flags_x86_3dnow:amd3dnow cpu_flags_x86_3dnowext:amd3dnowext altivec cpu_flags_x86_avx:avx cpu_flags_x86_mmx:mmx cpu_flags_x86_mmxext:mmxext neon cpu_flags_x86_ssse3:ssse3 vis"
 for i in ${CPU_FEATURES} ; do
 	IUSE+=" ${i%:*}"
 done
@@ -106,7 +106,7 @@ DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
 	doc? ( app-text/texi2html )
 	ieee1394? ( >=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}] )
-	mmx? ( dev-lang/yasm )
+	cpu_flags_x86_mmx? ( dev-lang/yasm )
 	rtmp? ( >=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}] )
 	schroedinger? ( >=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}] )
 	ssl? ( >=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}] )
@@ -124,11 +124,11 @@ RDEPEND="${RDEPEND}
 # faac and aac are concurent implementations
 # amr and aac require at least lgpl3
 # x264 requires gpl2
-REQUIRED_USE="bindist? ( !faac !openssl !fdk )
-	rtmp? ( network )
+REQUIRED_USE="rtmp? ( network )
 	amr? ( gpl ) aac? ( gpl ) x264? ( gpl ) X? ( gpl ) cdio? ( gpl )
 	test? ( encode zlib )
 "
+RESTRICT="faac? ( bindist ) fdk? ( bindist ) openssl? ( bindist )"
 
 MULTILIB_WRAPPED_HEADERS=(
 	/usr/include/libavutil/avconfig.h

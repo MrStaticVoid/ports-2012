@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/gnome2-perl/gnome2-perl-1.42.0-r1.ebuild,v 1.1 2014/08/25 02:52:41 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/gnome2-perl/gnome2-perl-1.42.0-r1.ebuild,v 1.3 2015/05/01 12:20:08 dilfridge Exp $
 
 EAPI=5
 
@@ -23,10 +23,9 @@ RDEPEND="x11-libs/gtk+:2
 	gnome-base/libbonoboui
 	>=dev-perl/gnome2-canvas-1.0.0
 	>=dev-perl/glib-perl-1.40.0
-	>=dev-perl/gnome2-vfs-perl-1.0.0
-	dev-lang/perl"
+	>=dev-perl/gnome2-vfs-perl-1.0.0"
 DEPEND="${RDEPEND}
-	dev-perl/extutils-depends
+	dev-perl/ExtUtils-Depends
 	dev-perl/extutils-pkgconfig"
 
 SRC_TEST=do

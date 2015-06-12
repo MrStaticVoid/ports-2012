@@ -1,6 +1,93 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.218 2014/09/24 19:47:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.257 2015/06/04 18:46:48 kensington Exp $
+
+# Ben de Groot <yngwin@gentoo.org> (03 May 2015)
+# media-libs/rubberband lacks arm keyword, bug 548446
+media-video/mpv rubberband
+
+# Patrick Lauer <patrick@gentoo.org> (20 Apr 2015)
+# qt5/kf5 not keyworded on arm
+net-irc/quassel qt5
+
+# Markos Chandras <hwoarang@gentoo.org> (18 Apr 2015)
+# samba-4 not keyworded on arm
+sys-auth/sssd samba
+
+# Markus Meier <maekke@gentoo.org> (03 Apr 2015)
+# Deps not yet stable or keyworded
+=media-libs/libsdl2-2.0.3-r200 fusionsound
+
+# Alexis Ballier <aballier@gentoo.org> (02 Apr 2015)
+# Needs ilmbase (openexr), which does not build and is masked on arm.
+media-libs/freeimage tiff
+
+# Markus Meier <maekke@gentoo.org> (03 Mar 2015)
+# Unkeyworded deps, bug #540540
+sys-auth/sssd augeas
+
+# Michał Górny <mgorny@gentoo.org> (21 Feb 2015)
+# The external QCA plugins are not keyworded on this arch. Since
+# this is only a temporary measure and nothing depends on them,
+# just masking them until the new version goes stable.
+<app-crypt/qca-2.1 logger pkcs11 sasl
+
+# Jason A. Donenfeld <zx2c4@gentoo.org> (09 Feb 2015)
+# Google does not distribute the widevine plugin for ARM. It must be extracted from a Chromebook,
+# and this kind of reverse engineering work likely violates many agreements, so we mask the flag.
+www-client/chromium widevine
+
+# Markos Chandras <hwoarang@gentoo.org> (07 Feb 2015)
+# app-admin/cgmanager misses ARM keyword. Bug #539208
+app-emulation/lxc cgmanager
+
+# Markus Meier <maekke@gentoo.org> (17 Jan 2015)
+# Unkeyworded deps, bug #536226
+net-misc/strongswan strongswan_plugins_unbound
+
+# Markus Meier <maekke@gentoo.org> (17 Jan 2015)
+# Unkeyworded deps, bug #533404
+net-im/gajim jingle gnome kde
+
+# Alexis Ballier <aballier@gentoo.org> (06 Jan 2015)
+# sci-libs/xkaapi does not build here on armv7
+sci-libs/vtk kaapi
+
+# Benda Xu <heroxbd@gentoo.org> (03 Jan 2015)
+# not tested
+app-i18n/anthy canna-2ch
+app-i18n/scim-anthy kasumi
+
+# Gilles Dartiguelongue <eva@gentoo.org> (23 Dec 2014)
+# New dependencies for wayland support in Gnome 3.14
+# See bug #533420.
+media-libs/clutter egl
+x11-wm/mutter kms
+
+# Markus Meier <maekke@gentoo.org> (29 Nov 2014)
+# Unkeyworded deps, bug #518742
+dev-python/ipython doc
+dev-python/oct2py doc
+
+# Patrick Lauer <patrick@gentoo.org> (19 Nov 2014)
+# Missing keywords #529820
+app-office/libreoffice collada
+
+# Michael Weber <xmw@gentoo.org> (15 Nov 2014)
+# missing keywords on media-libs/libharu
+www-client/netsurf pdf-writer
+
+# Markus Meier <maekke@gentoo.org> (14 Nov 2014)
+# Unkeyworded deps, bug #511532
+net-im/prosody libevent mysql postgres sqlite
+
+# Alexis Ballier <aballier@gentoo.org> (24 Oct 2014)
+# sci-libs/hdf is not supported on arm
+sci-libs/netcdf hdf
+
+# Markus Meier <maekke@gentoo.org> (23 Oct 2014)
+# Unkeyworded deps, bug #523468
+net-misc/networkmanager teamd
 
 # Markus Meier <maekke@gentoo.org> (24 Sep 2014)
 # Unkeyworded deps, bug #519618
@@ -34,10 +121,6 @@ mail-filter/opendkim opendbx
 # Unkeyworded deps, bug #507896
 dev-qt/qt-mobility messaging
 
-# Andreas K. Huettel <dilfridge@gentoo.org> (3 May 2014)
-# Missing keywords, should only be a transitionary problem
-kde-base/baloo alternatekcm
-
 # Julian Ospald <hasufell@gentoo.org> (20 Apr 2014)
 # Missing keywords, bug #508226
 media-video/mpv sdl
@@ -53,17 +136,13 @@ media-video/mpv sdl
 
 # Johannes Huber <johu@gentoo.org> (16 Apr 2014)
 # unkeyworded deps
-kde-base/gwenview semantic-desktop
-kde-base/okular dpi
-kde-base/nepomuk-core migrator
+kde-apps/gwenview semantic-desktop
+kde-apps/okular dpi
+kde-apps/nepomuk-core migrator
 
 # Yixun Lan <dlan@gentoo.org> (12 Apr 2014)
 # app-emulation/qemu is not keyworded on arm arch.
 app-emulation/xen-tools system-qemu
-
-# Mike Gilbert <floppym@gentoo.org> (27 Mar 2014)
-# sys-libs/libseccomp is not keyworded on many archs.
-sys-apps/systemd -seccomp
 
 # Markus Meier <maekke@gentoo.org> (25 Feb 2014)
 # stable reverse deps of media-libs/libquvi, bug #495254
@@ -72,7 +151,7 @@ sys-apps/systemd -seccomp
 =media-video/mplayer2-2.0_p20130428-r1 quvi
 
 # Markus Meier <maekke@gentoo.org> (23 Feb 2014)
-# unkeyworded dep, bug #499974
+# Needs sci-physics/bullet tested #499974
 dev-libs/efl physics
 
 # Jason A. Donenfeld <zx2c4@gentoo.org> (27 Jan 2014)
@@ -105,7 +184,7 @@ net-im/telepathy-connection-managers sipe
 
 # Pacho Ramos <pacho@gentoo.org> (31 Oct 2013)
 # Missing keywords, bug #478254
-gnome-base/gnome classic
+gnome-base/gnome classic extras
 
 # Benda Xu <heroxbd@gentoo.org> (31 Oct 2013)
 # Missing keywords from dev-ml/lablgtk, bug #487722
@@ -125,7 +204,7 @@ dev-python/ipython nbconvert
 
 # Johannes Huber <johu@gentoo.org> (15 Sep 2013)
 # Depends on kde-misc/networkmanagement, not keyworded yet.
-kde-base/solid-runtime networkmanager
+kde-apps/solid-runtime networkmanager
 
 # Sergey Popov <pinkbyte@gentoo.org> (06 Sep 2013)
 # sci-libs/hdf does not build properly on arm
@@ -159,10 +238,6 @@ media-libs/phonon zeitgeist
 # Patrick Lauer <patrick@gentoo.org> (31 May 2013)
 # no stable jdk+java-config
 net-misc/tightvnc java
-
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (28 May 2013)
-# depends on sys-devel/llvm[video_cards_radeon]
-media-libs/mesa r600-llvm-compiler
 
 # Andreas K. Huettel <dilfridge@gentoo.org> (27 May 2013)
 # Firmware loader not keyworded yet
@@ -207,6 +282,7 @@ media-gfx/pstoedit emf
 
 # Rick Farina <zerochaos@gentoo.org> (05 Feb 2013)
 # masking all stable packages with java use flag
+net-misc/openconnect java
 dev-util/oprofile java
 =dev-db/qdbm-1.8.78-r1 java
 =dev-libs/beecrypt-4.2.1 java
@@ -223,25 +299,13 @@ media-libs/libjpeg-turbo java
 net-dns/libidn java
 net-misc/tigervnc java
 net-print/cups java
-=sys-devel/gettext-0.18.1.1-r1 java
-=sys-devel/gettext-0.18.1.1-r3 java
-=sys-devel/gettext-0.18.2 java
-=sys-devel/gettext-0.18.3.2 java
-=sys-libs/db-1.85-r3 java
-=sys-libs/db-3.2.9_p2 java
-=sys-libs/db-4.2.52_p5-r1 java
-=sys-libs/db-4.3.29_p1-r1 java
-=sys-libs/db-4.5.20_p2 java
-=sys-libs/db-4.5.20_p2-r1 java
-=sys-libs/db-4.6.21_p4 java
-=sys-libs/db-4.7.25_p4 java
-=sys-libs/db-4.8.30 java
-=sys-libs/db-4.8.30-r1 java
+sys-devel/gettext java
+sys-libs/db java
 =www-client/seamonkey-2.0.14-r1 java
 
 # Alexandre Rostovtsev <tetromino@gentoo.org> (22 Jan 2013)
 # remove mask if/when media-gfx/argyllcms is keywored here.
-x11-misc/colord extra-print-profiles
+x11-misc/colord argyllcms extra-print-profiles
 
 # Alexandre Rostovtsev <tetromino@gentoo.org> (31 Dec 2012)
 # requires app-office/unoconv, which requires virtual/ooo, which is not
@@ -275,15 +339,14 @@ app-accessibility/speech-dispatcher flite
 
 # Markus Meier <maekke@gentoo.org> (23 Dec 2012)
 # mask kde-base/* flags due to unkeyworded dependencies
-kde-base/kalzium editor solver
-kde-base/krdc rdesktop
-kde-base/kopete jingle msn sms
+kde-apps/kalzium editor solver
+kde-apps/krdc rdesktop
+kde-apps/kopete jingle msn sms
 kde-base/kdeplasma-addons fcitx oauth qwt scim
-kde-base/okular ebook chm
-kde-base/kstars indi
-kde-base/kdeutils-meta floppy
-kde-base/kdenetwork-meta ppp
-kde-base/kdesdk-misc extras
+kde-apps/okular ebook chm
+kde-apps/kstars indi
+kde-apps/kdeutils-meta floppy
+kde-apps/kdenetwork-meta ppp
 kde-base/smokeqt qscintilla qwt
 kde-base/qtruby qscintilla qwt
 kde-base/perlqt qscintilla qwt
@@ -294,7 +357,7 @@ kde-base/perlqt qscintilla qwt
 
 # Markus Meier <maekke@gentoo.org> (08 Dec 2012)
 # mask app-office/libreoffice java extensions
-app-office/libreoffice libreoffice_extensions_scripting-beanshell libreoffice_extensions_scripting-javascript libreoffice_extensions_wiki-publisher
+app-office/libreoffice libreoffice_extensions_scripting-beanshell libreoffice_extensions_scripting-javascript libreoffice_extensions_wiki-publisher coinmp gltf
 
 # Markus Meier <maekke@gentoo.org> (17 Oct 2012)
 # spidermonkey is broken on arm see bug #420471
@@ -320,13 +383,6 @@ dev-libs/gobject-introspection -doctool
 # Michael Sterrett <mr_bones_@gentoo.org> (04 Mar 2012)
 # arm is missing keywords for >=dev-libs/json-glib-0.12
 app-admin/syslog-ng json
-
-# Alexandre Rostovtsev <tetromino@gentoo.org> (09 Jan 2012)
-# jsc JIT compilation is supported only on amd64/arm/x86 and their prefixes, so
-# it's masked in base profile and unmasked here (bug #396313).
-net-libs/webkit-gtk -jit
-www-client/epiphany -jit
-www-client/midori -jit
 
 # Anthony G. Basile <blueness@gentoo.org> (Dec 21, 2011)
 # Mask the vde flag on tinc because net-misc/vde is not
@@ -417,7 +473,7 @@ dev-libs/boost mpi
 
 # missing keywords
 media-sound/sox ladspa
-media-plugins/gst-plugins-meta aac dts dv lame libvisual taglib vcd wavpack dvd
+media-plugins/gst-plugins-meta aac dts dv lame libvisual modplug taglib vcd wavpack dvd
 
 # projectm not keyworded, bug #314969
 media-video/vlc projectm chromaprint opencv

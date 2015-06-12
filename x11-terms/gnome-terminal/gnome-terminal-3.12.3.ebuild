@@ -11,14 +11,14 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Terminal/"
 
 LICENSE="GPL-3+"
 SLOT="0"
-IUSE="deprecated +gnome-shell +nautilus"
+IUSE="+deprecated +gnome-shell +nautilus"
 KEYWORDS="*"
 
 # FIXME: automagic dependency on gtk+[X]
 RDEPEND="
 	>=dev-libs/glib-2.39.2:2
 	>=x11-libs/gtk+-3.9.9:3[X]
-	>=x11-libs/vte-0.36.3:2.90
+	x11-libs/vte:2.90
 	>=gnome-base/dconf-0.14
 	>=gnome-base/gconf-2.31.3
 	>=gnome-base/gsettings-desktop-schemas-0.1.0
@@ -48,7 +48,7 @@ src_prepare() {
 		# 	http://pkgs.fedoraproject.org/cgit/gnome-terminal.git/tree/restore-transparency.patch?h=f20-gnome-3-12
 		epatch "${FILESDIR}"/${P}-restore-background-transparency-support.patch
 	fi
-	
+
 	epatch \
 		"${FILESDIR}"/${PN}-3.12.0-remove-set-title-feature-0.patch \
 		"${FILESDIR}"/${PN}-3.12.0-remove-set-title-feature-1.patch \
@@ -66,10 +66,7 @@ src_configure() {
 		--disable-static \
 		--enable-migration \
 		$(use_enable gnome-shell search-provider) \
-		$(use_with nautilus nautilus-extension) \
-		# Docs are broken in this release.
-		#ITSTOOL=$(type -P true) \
-		#XMLLINT=$(type -P true)
+		$(use_with nautilus nautilus-extension)
 }
 
 src_install() {

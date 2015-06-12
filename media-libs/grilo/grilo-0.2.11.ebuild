@@ -1,11 +1,11 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/grilo/grilo-0.2.11.ebuild,v 1.1 2014/09/02 13:04:45 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/grilo/grilo-0.2.11.ebuild,v 1.4 2015/04/08 17:59:35 mgorny Exp $
 
 EAPI="5"
 GCONF_DEBUG="no" # --enable-debug only changes CFLAGS
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 VALA_MIN_API_VERSION="0.12"
 VALA_USE_DEPEND="vapigen"
 
@@ -16,7 +16,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Grilo"
 
 LICENSE="LGPL-2.1+"
 SLOT="0.2/1" # subslot is libgrilo-0.2 soname suffix
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 
 IUSE="gtk examples +introspection +network playlist test vala"
 REQUIRED_USE="test? ( introspection )"

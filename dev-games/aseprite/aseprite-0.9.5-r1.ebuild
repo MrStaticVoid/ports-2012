@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-games/aseprite/aseprite-0.9.5-r1.ebuild,v 1.1 2013/08/10 15:00:11 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-games/aseprite/aseprite-0.9.5-r1.ebuild,v 1.4 2015/03/27 10:20:54 ago Exp $
 
 EAPI="5"
 
@@ -12,7 +12,7 @@ SRC_URI="http://aseprite.googlecode.com/files/aseprite-${PV}.tar.xz"
 
 LICENSE="GPL-2 FTL"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 
 IUSE="debug memleak static test"
 
@@ -27,7 +27,8 @@ RDEPEND="dev-libs/tinyxml
 DEPEND="${RDEPEND}
 	test? ( dev-cpp/gtest )"
 
-PATCHES=( "${FILESDIR}"/aseprite-0.9.5-as-needed.patch )
+PATCHES=( "${FILESDIR}"/aseprite-0.9.5-as-needed.patch
+			"${FILESDIR}"/aseprite-0.9.5-underlinking.patch )
 
 DOCS=( docs/quickref.odt
 	docs/files/ase.txt

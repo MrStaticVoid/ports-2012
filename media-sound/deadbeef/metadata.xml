@@ -25,20 +25,24 @@
 		<flag name='gtk3'>GTK3 based user interface</flag>
 		<flag name='hotkeys'>Hotkeys support plugin</flag>
 		<flag name='lastfm'>Last.fm scrobbling plugin</flag>
+		<flag name='libav'>Libav plugin</flag>
 		<flag name='libnotify'>Notification daemon support plugin</flag>
 		<flag name='libsamplerate'>Sample rate conversion plugin</flag>
 		<flag name='m3u'>m3u playlist plugin</flag>
 		<flag name='mac'>Monkey's Audio plugin</flag>
+		<flag name='mad'>MPEG-1/2/2.5 Layer 3 (MP3) support through mad/libmad</flag>
 		<flag name='midi'>midi support (via timidity) plugin</flag>
 		<flag name='mms'>Microsoft Media Server (MMS) plugin</flag>
 		<flag name='mono2stereo'>mono2stereo plugin</flag>
-		<flag name='mp3'>MPEG-1/2/2.5 Layer 3 (MP3) plugin</flag>
+		<flag name='mp3'>MPEG-1/2/2.5 Layer 3 (MP3) support plugin. It is a virtual use for mad/libmad or mpg123/libmpg123 since deadbeef 0.6.3</flag>
+		<flag name='mpg123'>MPEG-1/2/2.5 Layer 3 (MP3) support through mpg123/libmpg123</flag>
 		<flag name='nls'>Native Language Support (NLS)</flag>
 		<flag name='nullout'>NULL output plugin</flag>
 		<flag name='oss'>Open Sound System (OSS) output plugin</flag>
 		<flag name='playlist-browser'>Playlist browser user interface plugin</flag>
 		<flag name='psf'>AOSDK-based PSF(QSF,SSF,DSF) plugin</flag>
 		<flag name='pulseaudio'>PulseAudio output plugin</flag>
+		<flag name='sc68'>Atari ST and Amiga music plugin</flag>
 		<flag name='shell-exec'>Support for running shell commands</flag>
 		<flag name='shn'>Shorten (SHN) plugin</flag>
 		<flag name='sid'>Commodore64 SID music player plugin</flag>
@@ -50,20 +54,5 @@
 		<flag name='wavpack'>WavPack plugin</flag>
 		<flag name='wma'>Windows media audio plugin</flag>
 		<flag name='zip'>vfs_zip plugin</flag>
-		<!-- deadbeef third party plugins -->
-		<flag name='archive'>Reading media files from archived files</flag>
-		<flag name='bookmark-manager'>Resume playing files (after closing player) from the last timestamp</flag>
-		<flag name='bs2b'>bs2b dsp support. Useful for headphones</flag>
-		<flag name='gnome-mmkeys'>Gnome multimedia keys support</flag>
-		<flag name='infobar'>Download and show lyrics</flag>
-		<flag name='jack'>Jack audio support</flag>
-		<flag name='mpris'>MPRIS support</flag>
-		<flag name='musical-spectrum'>Draws musical spectrum for current track</flag>
-		<flag name='replaygain-control'>Advanced control of replaygain</flag>
-		<flag name='spectrogram'>Draws spectrogram for current track</flag>
-		<flag name='stereo-widener'>Widens stereo</flag>
-		<flag name='vk'>Play music from vk.com social network</flag>
-		<flag name='vu-meter'>Draws vu meter for current track</flag>
-		<flag name='waveform-seekbar'>Draws waveform seekbar for current track</flag>
 	</use>
 </pkgmetadata>

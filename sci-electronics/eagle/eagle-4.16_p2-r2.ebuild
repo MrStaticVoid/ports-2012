@@ -1,6 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-electronics/eagle/eagle-4.16_p2-r2.ebuild,v 1.6 2012/09/24 00:47:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-electronics/eagle/eagle-4.16_p2-r2.ebuild,v 1.8 2015/03/21 20:47:33 jlec Exp $
+
+EAPI=5
 
 inherit eutils
 
@@ -29,13 +31,20 @@ SRC_URI="linguas_de? ( ftp://ftp.cadsoft.de/pub/program/${MY_PV}/${PN}-lin-ger-$
 	!linguas_de? ( ftp://ftp.cadsoft.de/pub/program/${MY_PV}/${PN}-lin-eng-${MY_PV}.tgz
 			doc? ( mirror://gentoo/${MANDOC}-eng-${MANVER}.pdf ) )"
 
-RDEPEND="sys-libs/glibc
-	x11-libs/libXext
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-libs/libXdmcp
-	amd64? ( app-emulation/emul-linux-x86-baselibs
-		 app-emulation/emul-linux-x86-xlibs )"
+RDEPEND="
+	sys-libs/glibc
+	|| (
+		(
+			x11-libs/libXext[abi_x86_32(-)]
+			x11-libs/libX11[abi_x86_32(-)]
+			x11-libs/libXau[abi_x86_32(-)]
+			x11-libs/libXdmcp[abi_x86_32(-)]
+		)
+		amd64? (
+			app-emulation/emul-linux-x86-xlibs[-abi_x86_32(-)]
+		)
+	)
+"
 
 INSTALLDIR="/opt/eagle"
 case "${LINGUAS}" in
@@ -49,23 +58,19 @@ MY_P=${PN}-lin-${MY_LANG}-${MY_PV}
 S="${WORKDIR}/${MY_P}"
 
 src_unpack() {
-
 	unpack ${MY_P}.tgz
 	use doc && cp "${DISTDIR}"/${MANFILE} "${S}"
 
 }
 
 src_install() {
-
-	cd "${S}"
 	dodir ${INSTALLDIR}
 	# Copy all to INSTALLDIR
-	cp -r . "${D}"/${INSTALLDIR}
+	cp -r . "${D}"/${INSTALLDIR} || die
 
 	# Install wrapper (suppressing leading tabs)
 	# see bug #188368 or http://www.cadsoft.de/faq.htm#17040701
-	exeinto /usr/bin
-	newexe "${FILESDIR}/eagle_wrapper_script" eagle
+	newbin "${FILESDIR}/eagle_wrapper_script" eagle
 	# Finally, append the path of the eagle binary respecting INSTALLDIR and any
 	# arguments passed to the script (thanks Denilson)
 	echo "${INSTALLDIR}/bin/eagle" '"$@"' >> "${D}/usr/bin/eagle"
@@ -76,7 +81,7 @@ src_install() {
 	# Conditionally install the user's manual
 	use doc && cp ${MANFILE} "${D}/usr/share/doc/${PF}"
 	# Remove docs left in INSTALLDIR
-	rm -rf "${D}${INSTALLDIR}/{README,install,${MANFILE}}" "${D}${INSTALLDIR}/doc" "${D}${INSTALLDIR}/man"
+	rm -rf "${D}${INSTALLDIR}/{README,install,${MANFILE}}" "${D}${INSTALLDIR}/doc" "${D}${INSTALLDIR}/man" || die
 
 	echo -e "ROOTPATH=${INSTALLDIR}/bin\nPRELINK_PATH_MASK=${INSTALLDIR}" > "${S}/90eagle"
 	doenvd "${S}/90eagle"
@@ -88,9 +93,7 @@ src_install() {
 }
 
 pkg_postinst() {
-
 	elog "Run \`env-update && source /etc/profile\` from within \${ROOT}"
 	elog "now to set up the correct paths."
 	elog "You must first run eagle as root to invoke product registration."
-
 }

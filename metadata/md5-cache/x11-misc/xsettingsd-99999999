@@ -6,5 +6,5 @@ HOMEPAGE=https://code.google.com/p/xsettingsd
 LICENSE=BSD-2
 RDEPEND=x11-libs/libX11
 SLOT=0
-_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	scons-utils	988e24b9e2e4642189b4e97c03e5ae71	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=git-2	e28f0d8a9b321431b1e699782851b827	scons-utils	988e24b9e2e4642189b4e97c03e5ae71
 _md5_=e33b0f78677792e862de21f03c572d70

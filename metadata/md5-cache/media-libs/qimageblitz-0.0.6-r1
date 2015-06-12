@@ -3,11 +3,11 @@ DEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 sys-devel/make >=dev-util/cmake-2.8.12 use
 DESCRIPTION=A graphical effect and filter library for KDE4
 EAPI=5
 HOMEPAGE=http://websvn.kde.org/trunk/kdesupport/qimageblitz/
-IUSE=3dnow altivec debug mmx sse sse2
+IUSE=cpu_flags_x86_3dnow altivec debug cpu_flags_x86_mmx cpu_flags_x86_sse cpu_flags_x86_sse2
 KEYWORDS=amd64 ~arm hppa ppc ppc64 x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris
 LICENSE=GPL-2 LGPL-2
 RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4
 SLOT=0
 SRC_URI=mirror://kde/stable/qimageblitz/qimageblitz-0.0.6.tar.bz2
-_eclasses_=cmake-utils	3c236476577c40ef83fcb42c7f6c0b23	eutils	32548a82e42dc26e3312581476d2f20c	flag-o-matic	75e24bac8423c515dd9c5717f08feb83	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=7ddd89fdfec294bb70127524e73a1d0b
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=9f806b2855de7e54971a569ca1e2f0d1

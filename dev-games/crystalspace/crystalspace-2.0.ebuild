@@ -1,9 +1,9 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-games/crystalspace/crystalspace-2.0.ebuild,v 1.2 2013/11/16 06:47:45 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-games/crystalspace/crystalspace-2.0.ebuild,v 1.4 2015/05/08 16:16:21 mr_bones_ Exp $
 
 EAPI=5
-inherit eutils flag-o-matic multilib java-pkg-opt-2 autotools wxwidgets versionator
+inherit eutils flag-o-matic multilib java-pkg-opt-2 autotools wxwidgets versionator multiprocessing
 
 MY_P=${PN}-src-${PV}
 PATH_P=${PN}-$(get_version_component_range 1-2)
@@ -56,8 +56,7 @@ src_prepare() {
 	sed -i \
 		-e "/^InstallDoc/d" \
 		Jamfile.in \
-		docs/Jamfile \
-		|| die "sed failed"
+		docs/Jamfile || die
 	epatch "${FILESDIR}"/${P}-gcc47.patch
 	AT_M4DIR=mk/autoconf
 	eautoreconf
@@ -95,23 +94,20 @@ src_configure() {
 		$(use_with alsa asound)
 	#remove unwanted CFLAGS added by ./configure
 	sed -i -e '/COMPILER\.CFLAGS\.optimize/d' \
-		Jamconfig \
-		|| die "sed failed"
+		Jamconfig || die
 }
 
 src_compile() {
-	local jamopts=$(echo "${MAKEOPTS}" | sed -ne "/-j/ { s/.*\(-j[[:space:]]*[0-9]\+\).*/\1/; p }")
-	jam -q -dx ${jamopts} || die "compile failed"
+	jam -q -dx -j$(makeopts_jobs) || die
 }
 
 src_install() {
 	for installTarget in bin plugin lib include data config bindings
 	do
-		jam -q -s DESTDIR="${D}" install_${installTarget} \
-			|| die "jam install_${installTarget} failed"
+		jam -q -s DESTDIR="${D}" install_${installTarget} || die
 	done
 	if use doc; then
-		jam -q -s DESTDIR="${D}" install_doc || die "jam install_doc failed"
+		jam -q -s DESTDIR="${D}" install_doc || die
 	fi
 	dodoc README docs/history*
 

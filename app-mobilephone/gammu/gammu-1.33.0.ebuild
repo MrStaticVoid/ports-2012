@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gammu/gammu-1.33.0.ebuild,v 1.1 2013/10/09 01:20:17 creffett Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gammu/gammu-1.33.0.ebuild,v 1.5 2015/04/19 09:47:53 ago Exp $
 
 EAPI=5
 
@@ -14,14 +14,14 @@ SRC_URI="http://dl.cihar.com/${PN}/releases/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="bash-completion bluetooth curl dbi debug irda mysql nls postgres python usb"
 
 RDEPEND="bluetooth? ( net-wireless/bluez )
 	curl? ( net-misc/curl )
 	usb? ( virtual/libusb:1 )
 	mysql? ( virtual/mysql )
-	postgres? ( dev-db/postgresql-server )
+	postgres? ( dev-db/postgresql[server] )
 	dbi? ( >=dev-db/libdbi-0.8.3 )
 	dev-util/dialog"
 DEPEND="${RDEPEND}

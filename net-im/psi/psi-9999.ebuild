@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/psi/psi-9999.ebuild,v 1.23 2015/02/22 18:41:23 mgorny Exp $
 
 EAPI="4"
 
@@ -11,7 +13,7 @@ LANGS_REPO_URI="git://github.com/psi-plus/psi-plus-l10n.git"
 PSI_PLUS_URI="git://github.com/psi-plus/main.git"
 PSI_PLUS_RESOURCES_URI="git://github.com/psi-plus/resources.git"
 
-inherit eutils qt4-r2 multilib git-2 subversion
+inherit eutils gnome2-utils qt4-r2 multilib git-2 subversion
 
 DESCRIPTION="Qt4 Jabber client, with Licq-like interface"
 HOMEPAGE="http://psi-im.org/"
@@ -30,7 +32,8 @@ REQUIRED_USE="
 
 RDEPEND="
 	>=dev-qt/qtgui-4.7:4
-	>=app-crypt/qca-2.0.2:2
+	>=app-crypt/qca-2.0.2:2[qt4(+)]
+	x11-libs/libX11
 	dbus? ( >=dev-qt/qtdbus-4.7:4 )
 	whiteboarding? ( dev-qt/qtsvg:4 )
 	spell? (
@@ -41,7 +44,6 @@ RDEPEND="
 	extras? ( webkit? ( dev-qt/qtwebkit:4 ) )
 	app-arch/unzip
 	|| ( >=sys-libs/zlib-1.2.5.1-r2[minizip] <sys-libs/zlib-1.2.5.1-r1 )
-	net-dns/libidn
 "
 DEPEND="${RDEPEND}
 	extras? (
@@ -52,12 +54,12 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 PDEPEND="
-	crypt? ( app-crypt/qca-gnupg:2 )
+	crypt? ( app-crypt/qca:2[gpg] )
 	jingle? (
 		net-im/psimedia
-		app-crypt/qca-ossl:2
+		app-crypt/qca:2[openssl]
 	)
-	ssl? ( app-crypt/qca-ossl:2 )
+	ssl? ( app-crypt/qca:2[openssl] )
 "
 RESTRICT="test"
 
@@ -199,5 +201,14 @@ src_install() {
 }
 
 pkg_preinst() {
-	true # suppress subversion warnings
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	readme.gentoo_pkg_postinst
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }

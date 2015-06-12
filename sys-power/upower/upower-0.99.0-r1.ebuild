@@ -1,6 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI="5"
+
 inherit eutils systemd
 
 DESCRIPTION="D-Bus abstraction for enumerating power devices and querying history and statistics"
@@ -10,10 +11,11 @@ SRC_URI="http://${PN}.freedesktop.org/releases/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="0/2" # based on SONAME of libupower-glib.so
 KEYWORDS="*"
-IUSE="deprecated +introspection ios kernel_FreeBSD kernel_linux"
+IUSE="+deprecated +introspection ios kernel_FreeBSD kernel_linux"
 
 RDEPEND=">=dev-libs/dbus-glib-0.100
 	>=dev-libs/glib-2.30
+	dev-util/gdbus-codegen
 	sys-apps/dbus:=
 	>=sys-auth/polkit-0.110
 	introspection? ( dev-libs/gobject-introspection )
@@ -28,6 +30,7 @@ RDEPEND=">=dev-libs/dbus-glib-0.100
 		)
 	deprecated? ( >=sys-power/pm-utils-1.4.1-r2 )"
 DEPEND="${RDEPEND}
+	dev-libs/gobject-introspection-common
 	dev-libs/libxslt
 	app-text/docbook-xsl-stylesheets
 	dev-util/intltool

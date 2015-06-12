@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r7.ebuild,v 1.13 2014/08/10 20:33:25 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r7.ebuild,v 1.16 2015/03/21 21:07:10 jlec Exp $
 
 EAPI=2
 
@@ -27,7 +27,7 @@ DEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.4
 	mysql? ( virtual/mysql )
 	ntlm_unsupported_patch? ( >=net-fs/samba-3.0.9 )
 	pam? ( virtual/pam )
-	postgres? ( dev-db/postgresql-base )
+	postgres? ( dev-db/postgresql )
 	ssl? ( >=dev-libs/openssl-0.9.6d )
 	java? ( >=virtual/jdk-1.4 )"
 RDEPEND="${DEPEND}"
@@ -220,8 +220,7 @@ src_install() {
 	newinitd "${FILESDIR}/saslauthd2.rc6" saslauthd || die "Failed to install saslauthd to /etc/init.d"
 	newconfd "${FILESDIR}/saslauthd-${SASLAUTHD_CONF_VER}.conf" saslauthd || die "Failed to install saslauthd to /etc/conf.d"
 
-	exeinto /usr/sbin
-	newexe "${S}/saslauthd/testsaslauthd" testsaslauthd || die "Failed to install testsaslauthd"
+	newsbin "${S}/saslauthd/testsaslauthd" testsaslauthd || die "Failed to install testsaslauthd"
 }
 
 pkg_postinst () {

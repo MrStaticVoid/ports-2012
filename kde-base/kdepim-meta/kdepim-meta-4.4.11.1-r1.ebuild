@@ -1,12 +1,12 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdepim-meta/kdepim-meta-4.4.11.1-r1.ebuild,v 1.1 2014/05/13 22:50:11 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdepim-meta/kdepim-meta-4.4.11.1-r1.ebuild,v 1.7 2015/06/08 20:26:55 dilfridge Exp $
 
 EAPI=5
 inherit kde4-meta-pkg
 
 DESCRIPTION="kdepim - merge this to pull in all kdepim-derived packages"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ppc x86 ~amd64-linux ~x86-linux"
 IUSE="+akonadi nls"
 
 RDEPEND="
@@ -33,8 +33,13 @@ RDEPEND="
 	$(add_kdebase_dep libkleo)
 	$(add_kdebase_dep libkpgp)
 	akonadi? ( $(add_kdebase_dep akonadi) )
-	nls? (
-		$(add_kdebase_dep kde-l10n)
-		$(add_kdebase_dep kdepim-l10n)
-	)
+	nls? ( || (
+		(
+			$(add_kdeapps_dep kde4-l10n '' 15.04.0)
+		)
+		(
+			$(add_kdeapps_dep kde4-l10n '' 4.14.3)
+			$(add_kdebase_dep kdepim-l10n '' 4.4.11.1-r1)
+		)
+	) )
 "

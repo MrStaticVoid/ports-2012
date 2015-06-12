@@ -2,7 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>hasufell@gentoo.org</email>
-		<name>Julian Ospald</name>
+		<email>maintainer-needed@gentoo.org</email>
 	</maintainer>
+	<upstream>
+		<remote-id type="sourceforge">qt4-fsarchiver</remote-id>
+	</upstream>
 </pkgmetadata>

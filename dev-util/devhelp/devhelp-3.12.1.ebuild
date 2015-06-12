@@ -1,12 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/devhelp/devhelp-3.12.1.ebuild,v 1.3 2014/07/23 15:15:48 ago Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
 # gedit-3.8 is python3 only, this also per:
 # https://bugzilla.redhat.com/show_bug.cgi?id=979450
-PYTHON_COMPAT=( python{3_2,3_3} )
+PYTHON_COMPAT=( python{3_3,3_4} )
 
 inherit gnome2 python-single-r1 toolchain-funcs
 
@@ -15,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Devhelp"
 
 LICENSE="GPL-2+"
 SLOT="0/3-1" # subslot = 3-(libdevhelp-3 soname version)
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="*"
 IUSE="gedit"
 REQUIRED_USE="gedit? ( ${PYTHON_REQUIRED_USE} )"
 

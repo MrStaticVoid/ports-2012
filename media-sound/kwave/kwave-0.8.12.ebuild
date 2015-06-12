@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/kwave/kwave-0.8.12.ebuild,v 1.1 2014/08/19 18:36:22 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/kwave/kwave-0.8.12.ebuild,v 1.5 2015/06/04 19:04:15 kensington Exp $
 
 EAPI=5
 
@@ -33,7 +33,7 @@ RDEPEND="
 		media-libs/libogg
 		media-libs/opus
 	)
-	phonon? ( media-libs/phonon )
+	phonon? ( media-libs/phonon[qt4] )
 	pulseaudio? ( media-sound/pulseaudio )
 	vorbis? (
 		media-libs/libogg
@@ -41,10 +41,11 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
-	$(add_kdebase_dep poxml extras)
+	$(add_kdeapps_dep poxml extras)
 	|| ( media-gfx/imagemagick[png,svg] media-gfx/graphicsmagick[imagemagick,png,svg] )
 "
 
+PATCHES=( "${FILESDIR}/${P}-fr.patch" )
 DOCS=( AUTHORS CHANGES LICENSES README TODO )
 
 src_configure() {

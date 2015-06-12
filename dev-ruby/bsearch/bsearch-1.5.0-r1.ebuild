@@ -1,13 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bsearch/bsearch-1.5.0-r1.ebuild,v 1.2 2014/04/05 13:51:03 mrueg Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bsearch/bsearch-1.5.0-r1.ebuild,v 1.14 2015/04/28 09:48:48 ago Exp $
 
 EAPI=5
 
 RUBY_FAKEGEM_TASK_DOC=""
 RUBY_FAKEGEM_EXTRADOC="doc/*"
 
-USE_RUBY="ruby19 ruby20 jruby"
+USE_RUBY="ruby19 ruby20"
 
 inherit ruby-fakegem
 DESCRIPTION="A binary search library for Ruby"
@@ -15,7 +15,7 @@ HOMEPAGE="http://0xcc.net/ruby-bsearch/"
 
 LICENSE="Ruby"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="alpha amd64 ~arm hppa ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 all_ruby_prepare() {

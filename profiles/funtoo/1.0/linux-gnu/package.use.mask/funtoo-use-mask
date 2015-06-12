@@ -1,3 +1,9 @@
-##FL-1194, FL-1101, amsk udev use flag in libsub and virtual/libusb
-dev-libs/libusb udev
-virtual/libusb udev
+# Oleg Vinichenko (10.3.15)
+# mask rdp USE for vlc until freerdp get better shape:
+media-video/vlc rdp
+
+
+#Oleg Vinichenko (15.12.14)
+#FL-1874: mask gles USE in xbmc, breaks.
+media-tv/xbmc gles
+

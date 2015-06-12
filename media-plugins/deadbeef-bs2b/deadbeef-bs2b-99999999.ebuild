@@ -4,17 +4,14 @@ EAPI="5"
 
 inherit deadbeef-plugins git-r3
 
-GITORIOUS_PROJECT="deadbeef-sm-plugins"
-GITORIOUS_REPOSITORY="bs2b"
-
 DESCRIPTION="DeaDBeeF bs2b dsp plugin"
-HOMEPAGE="https://gitorious.org/${GITORIOUS_PROJECT}/${GITORIOUS_REPOSITORY}"
-EGIT_REPO_URI="git://gitorious.org/${GITORIOUS_PROJECT}/${GITORIOUS_REPOSITORY}.git"
+HOMEPAGE="https://gitorious.org/deadbeef-sm-plugins/bs2b"
+EGIT_REPO_URI="https://gitorious.org/deadbeef-sm-plugins/bs2b.git"
 
 LICENSE="MIT"
 KEYWORDS=""
 
-RDEPEND="media-libs/libbs2b"
+RDEPEND+=" media-libs/libbs2b:0"
 
 DEPEND="${RDEPEND}"
 

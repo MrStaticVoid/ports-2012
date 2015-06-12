@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/freevo/freevo-1.9.0.ebuild,v 1.19 2014/08/10 21:02:58 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/freevo/freevo-1.9.0.ebuild,v 1.21 2015/03/21 18:45:40 jlec Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2:2.5"
@@ -22,7 +22,7 @@ RDEPEND="dev-python/beautifulsoup:python-2
 	dev-python/pygame
 	>=dev-python/twisted-core-2.5
 	>=dev-python/twisted-web-0.6
-	net-zope/zope-interface
+	dev-python/zope-interface
 
 	>=dev-python/kaa-base-0.6.0
 	>=dev-python/kaa-metadata-0.7.3
@@ -96,8 +96,7 @@ src_install() {
 		doins "${FILESDIR}/freevo.desktop"
 	fi
 
-	exeinto /usr/bin
-	newexe "${FILESDIR}"/${PN}-1.8.2.boot freevoboot
+	newbin "${FILESDIR}"/${PN}-1.8.2.boot freevoboot
 	newconfd "${FILESDIR}/freevo.conf" freevo
 
 	rm -rf "${D}/usr/share/doc"

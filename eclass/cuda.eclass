@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cuda.eclass,v 1.4 2014/09/17 10:21:37 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cuda.eclass,v 1.7 2015/05/25 10:07:33 jlec Exp $
 
 inherit flag-o-matic toolchain-funcs versionator
 
@@ -71,13 +71,13 @@ cuda_gccdir() {
 	fi
 
 	for ver in ${args}; do
-		has_version sys-devel/gcc:${ver} && \
+		has_version "=sys-devel/gcc-${ver}*" && \
 		 gcc_bindir="$(ls -d ${EPREFIX}/usr/*pc-linux-gnu/gcc-bin/${ver}* | tail -n 1)"
 	done
 
 	if [[ -n ${gcc_bindir} ]]; then
 		if [[ -n ${flag} ]]; then
-			ret="${flag}\\\"${gcc_bindir}\\\""
+			ret="${flag}\"${gcc_bindir}\""
 		else
 			ret="${gcc_bindir}"
 		fi

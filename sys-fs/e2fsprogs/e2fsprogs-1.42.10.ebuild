@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.42.10.ebuild,v 1.19 2014/09/09 01:51:43 jmorgan Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.42.10.ebuild,v 1.25 2015/05/25 10:29:17 vapier Exp $
 
 EAPI=4
 
@@ -9,7 +9,7 @@ case ${PV} in
 *)      UP_PV=${PV} ;;
 esac
 
-inherit autotools eutils flag-o-matic multilib toolchain-funcs
+inherit eutils flag-o-matic multilib toolchain-funcs
 
 DESCRIPTION="Standard EXT2/EXT3/EXT4 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${PN}-${UP_PV}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 -x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 -x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 IUSE="nls static-libs elibc_FreeBSD"
 
 RDEPEND="~sys-libs/${PN}-libs-${PV}
@@ -34,7 +34,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.41.8-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
 	epatch "${FILESDIR}"/${P}-e2fsck-fix-makefile-dependency.patch
-	epatch "${FILESDIR}"/${P}-fix-build-cflags.patch
+	epatch "${FILESDIR}"/${P}-fix-build-cflags.patch #516854
 
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
 	rm -rf doc
@@ -50,7 +50,6 @@ src_prepare() {
 
 	# Avoid rebuild
 	echo '#include_next <ss/ss_err.h>' > lib/ss/ss_err.h
-	eautoreconf
 }
 
 src_configure() {
@@ -88,14 +87,6 @@ src_compile() {
 	if use elibc_FreeBSD ; then
 		cp "${FILESDIR}"/fsck_ext2fs.c .
 		emake V=1 fsck_ext2fs
-	fi
-}
-
-pkg_preinst() {
-	if [[ -r ${EROOT}/etc/mtab ]] ; then
-		if [[ $(<"${EROOT}"/etc/mtab) == "${PN} crap for src_test" ]] ; then
-			rm -f "${EROOT}"/etc/mtab
-		fi
 	fi
 }
 

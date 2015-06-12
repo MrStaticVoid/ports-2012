@@ -1,13 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-9999-r2.ebuild,v 1.6 2014/08/30 08:59:38 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-9999-r2.ebuild,v 1.12 2015/04/08 17:53:03 mgorny Exp $
 
 EAPI=5
 
 GENTOO_DEPEND_ON_PERL=no
 
 # bug #329479: git-remote-testgit is not multiple-version aware
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 [[ ${PV} == *9999 ]] && SCM="git-2"
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/git/git.git"
 EGIT_MASTER=next
@@ -34,9 +34,6 @@ if [[ ${PV} != *9999 ]]; then
 			${SRC_URI_GOOG}/${PN}-htmldocs-${DOC_VER}.tar.${SRC_URI_SUFFIX}
 			)"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-else
-	SRC_URI=""
-	KEYWORDS=""
 fi
 
 LICENSE="GPL-2"
@@ -225,11 +222,13 @@ src_unpack() {
 
 src_prepare() {
 	# bug #350330 - automagic CVS when we don't want it is bad.
-	epatch "${FILESDIR}"/git-2.0.0-r2-optional-cvs.patch
+	epatch "${FILESDIR}"/git-2.2.2-optional-cvs.patch
 
 	# install mediawiki perl modules also in vendor_dir
 	# hack, needs better upstream solution
 	epatch "${FILESDIR}"/git-1.8.5-mw-vendor.patch
+
+	epatch "${FILESDIR}"/${PN}-2.2.0-svn-fe-linking.patch
 
 	epatch_user
 
@@ -378,6 +377,7 @@ src_install() {
 	use doc && doinfo Documentation/{git,gitman}.info
 
 	newbashcomp contrib/completion/git-completion.bash ${PN}
+	bashcomp_alias git gitk
 	# Not really a bash-completion file (bug #477920)
 	# but still needed uncompressed (bug #507480)
 	insinto /usr/share/${PN}
@@ -510,7 +510,7 @@ src_install() {
 		systemd_dounit "${FILESDIR}/git-daemon.socket"
 	fi
 
-	fixlocalpod
+	perl_delete_localpod
 }
 
 src_test() {

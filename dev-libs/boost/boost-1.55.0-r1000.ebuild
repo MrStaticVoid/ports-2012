@@ -3,9 +3,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5-progress"
+PYTHON_ABI_TYPE="multiple"
 PYTHON_DEPEND="python? ( <<>> )"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="*-jython *-pypy-*"
+PYTHON_RESTRICTED_ABIS="*-jython *-pypy"
 
 inherit eutils flag-o-matic multilib multilib-minimal multiprocessing python toolchain-funcs
 
@@ -19,11 +19,12 @@ LICENSE="Boost-1.0"
 SLOT="0/${PV}"
 KEYWORDS="*"
 IUSE="c++11 context debug doc icu mpi +nls python static-libs +threads tools"
+REQUIRED_USE="mpi? ( threads )"
 RESTRICT="test"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.6:0=::${REPOSITORY}[c++11(-)=,${MULTILIB_USEDEP}] )
 	!icu? ( virtual/libiconv[${MULTILIB_USEDEP}] )
-	mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) )
+	mpi? ( virtual/mpi[cxx,threads] )
 	app-arch/bzip2:0=[${MULTILIB_USEDEP}]
 	sys-libs/zlib:0=[${MULTILIB_USEDEP}]
 	!app-admin/eselect-boost
@@ -71,7 +72,11 @@ create_user-config.jam() {
 	fi
 
 	if multilib_is_native_abi && use python; then
-		python_configuration="using python : $(python_get_version) : /usr : $(python_get_includedir) : /usr/$(get_libdir) ;"
+		if tc-is-cross-compiler; then
+			python_configuration="using python : $(python_get_version) : ${SYSROOT}/usr : ${SYSROOT}$(python_get_includedir) : ${SYSROOT}/usr/$(get_libdir) ;"
+		else
+			python_configuration="using python : $(python_get_version) : /usr : $(python_get_includedir) : /usr/$(get_libdir) ;"
+		fi
 	fi
 
 	cat > "${BOOST_ROOT}/user-config.jam" << __EOF__
@@ -392,12 +397,12 @@ pkg_preinst() {
 
 pkg_postinst() {
 	if use mpi && use python; then
-		python_mod_optimize boost
+		python_byte-compile_modules boost
 	fi
 }
 
 pkg_postrm() {
 	if use mpi && use python; then
-		python_mod_cleanup boost
+		python_clean_byte-compiled_modules boost
 	fi
 }

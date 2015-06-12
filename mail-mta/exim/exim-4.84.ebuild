@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/exim-4.84.ebuild,v 1.1 2014/08/13 06:14:55 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/exim-4.84.ebuild,v 1.17 2015/03/21 21:18:34 jlec Exp $
 
 EAPI="5"
 
@@ -19,13 +19,12 @@ HOMEPAGE="http://www.exim.org/"
 
 SLOT="0"
 LICENSE="GPL-2"
-#KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-solaris"
-KEYWORDS="~amd64 ~hppa ~x86-fbsd ~x86-solaris"
+KEYWORDS="alpha amd64 hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd ~x86-solaris"
 
 COMMON_DEPEND=">=sys-apps/sed-4.0.5
 	>=sys-libs/db-3.2
 	dev-libs/libpcre
-	perl? ( sys-devel/libperl )
+	perl? ( dev-lang/perl:= )
 	pam? ( virtual/pam )
 	tcpd? ( sys-apps/tcp-wrappers )
 	ssl? ( dev-libs/openssl )
@@ -33,10 +32,9 @@ COMMON_DEPEND=">=sys-apps/sed-4.0.5
 			  dev-libs/libtasn1 )
 	ldap? ( >=net-nds/openldap-2.0.7 )
 	mysql? ( virtual/mysql )
-	postgres? ( dev-db/postgresql-base )
+	postgres? ( dev-db/postgresql )
 	sasl? ( >=dev-libs/cyrus-sasl-2.1.26-r2 )
 	redis? ( dev-libs/hiredis )
-	selinux? ( sec-policy/selinux-exim )
 	spf? ( >=mail-filter/libspf2-1.2.5-r1 )
 	dmarc? ( mail-filter/opendmarc )
 	srs? ( mail-filter/libsrs_alt )
@@ -71,6 +69,7 @@ RDEPEND="${COMMON_DEPEND}
 	>=net-mail/mailbase-0.00-r5
 	virtual/logger
 	dcc? ( mail-filter/dcc )
+	selinux? ( sec-policy/selinux-exim )
 	"
 
 S=${WORKDIR}/${P//rc/RC}
@@ -160,11 +159,12 @@ src_configure() {
 	#
 	# lookup methods
 
-	# use the "native" interface to the DBM library, support passwd
-	# and directory lookups by default
+	# use the "native" interfaces to the DBM and CDB libraries, support
+	# passwd and directory lookups by default
 	cat >> Makefile <<- EOC
 		USE_DB=yes
 		DBMLIB=-ldb
+		LOOKUP_CDB=yes
 		LOOKUP_PASSWD=yes
 		LOOKUP_DSEARCH=yes
 	EOC
@@ -178,7 +178,7 @@ src_configure() {
 		cat >> Makefile <<- EOC
 			LOOKUP_LDAP=yes
 			LDAP_LIB_TYPE=OPENLDAP2
-			LOOKUP_INCLUDE += -I${EROOT}usr/include/ldap
+			LOOKUP_INCLUDE += -I"${EROOT}"usr/include/ldap
 			LOOKUP_LIBS += -lldap -llber
 		EOC
 	fi
@@ -413,16 +413,13 @@ src_compile() {
 }
 
 src_install () {
-	cd "${S}"/build-exim-gentoo
-	exeinto /usr/sbin
-	doexe exim
+	cd "${S}"/build-exim-gentoo || die
+	dosbin exim
 	if use X; then
-		doexe eximon.bin
-		doexe eximon
+		dosbin eximon.bin
+		dosbin eximon
 	fi
 	fperms 4755 /usr/sbin/exim
-
-	dodir /usr/bin /usr/sbin /usr/lib
 
 	dosym exim /usr/sbin/sendmail
 	dosym exim /usr/sbin/rsmtp
@@ -431,12 +428,11 @@ src_install () {
 	dosym /usr/sbin/exim /usr/bin/newaliases
 	dosym /usr/sbin/sendmail /usr/lib/sendmail
 
-	exeinto /usr/sbin
 	for i in exicyclog exim_dbmbuild exim_dumpdb exim_fixdb exim_lock \
 		exim_tidydb exinext exiwhat exigrep eximstats exiqsumm exiqgrep \
 		convert4r3 convert4r4 exipick
 	do
-		doexe $i
+		dosbin $i
 	done
 
 	dodoc "${S}"/doc/*
@@ -446,7 +442,7 @@ src_install () {
 
 	# conf files
 	insinto /etc/exim
-	newins "${S}"/src/configure.default.orig exim.conf.dist
+	newins "${S}"/src/configure.default exim.conf.dist
 	if use exiscan-acl; then
 		newins "${S}"/src/configure.default exim.conf.exiscan-acl
 	fi

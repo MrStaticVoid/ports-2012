@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mlt/mlt-0.8.2.ebuild,v 1.7 2014/06/22 15:46:01 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mlt/mlt-0.8.2.ebuild,v 1.9 2015/03/25 15:58:52 jlec Exp $
 
 EAPI=4
 PYTHON_DEPEND="python? 2:2.6"
@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="compressed-lumas dv debug ffmpeg frei0r gtk jack kde libsamplerate melt
-mmx qt4 quicktime rtaudio sdl sse sse2 vorbis xine xml lua python ruby vdpau" # java perl php tcl
+cpu_flags_x86_mmx qt4 quicktime rtaudio sdl cpu_flags_x86_sse cpu_flags_x86_sse2 vorbis xine xml lua python ruby vdpau" # java perl php tcl
 IUSE="${IUSE} kernel_linux"
 
 #rtaudio will use OSS on non linux OSes
@@ -43,7 +43,7 @@ RDEPEND="ffmpeg? ( virtual/ffmpeg[vdpau?] )
 #	java? ( >=virtual/jre-1.5 )
 #	perl? ( dev-lang/perl )
 #	php? ( dev-lang/php )
-#	tcl? ( dev-lang/tcl )
+#	tcl? ( dev-lang/tcl:0 )
 
 SWIG_DEPEND=">=dev-lang/swig-2.0"
 DEPEND="${RDEPEND}
@@ -82,8 +82,8 @@ src_configure() {
 		--disable-swfdec
 		$(use_enable debug)
 		$(use_enable dv)
-		$(use_enable sse)
-		$(use_enable sse2)
+		$(use_enable cpu_flags_x86_sse sse)
+		$(use_enable cpu_flags_x86_sse2 sse2)
 		$(use_enable gtk gtk2)
 		$(use_enable vorbis)
 		$(use_enable sdl)
@@ -108,7 +108,7 @@ src_configure() {
 	use compressed-lumas && myconf="${myconf} --luma-compress"
 
 	( use x86 || use amd64 ) && \
-		myconf="${myconf} $(use_enable mmx)" ||
+		myconf="${myconf} $(use_enable cpu_flags_x86_mmx mmx)" ||
 		myconf="${myconf} --disable-mmx"
 
 	use melt || sed -i -e "s;src/melt;;" Makefile

@@ -12,10 +12,7 @@
 inherit eutils fdo-mime libtool gnome.org gnome2-utils
 
 case "${EAPI:-0}" in
-	0|1)
-		EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm
-		;;
-	2|3|4|4-python|5|5-progress)
+	4|4-python|5|5-progress)
 		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install pkg_preinst pkg_postinst pkg_postrm
 		;;
 	*) die "EAPI=${EAPI} is not supported" ;;
@@ -31,7 +28,7 @@ G2CONF=${G2CONF:-""}
 # @DESCRIPTION:
 # Should we delete ALL the .la files?
 # NOT to be used without due consideration.
-if has ${EAPI:-0} 0 1 2 3 4 4-python; then
+if has ${EAPI:-0} 4 4-python; then
 	GNOME2_LA_PUNT=${GNOME2_LA_PUNT:-"no"}
 else
 	GNOME2_LA_PUNT=${GNOME2_LA_PUNT:-""}
@@ -42,12 +39,6 @@ fi
 # @DESCRIPTION:
 # Extra options passed to elibtoolize
 ELTCONF=${ELTCONF:-""}
-
-# @ECLASS-VARIABLE: USE_EINSTALL
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# Should we use EINSTALL instead of DESTDIR. DEPRECATED
-USE_EINSTALL=${USE_EINSTALL:-""}
 
 # @ECLASS-VARIABLE: DOCS
 # @DEFAULT_UNSET
@@ -69,14 +60,12 @@ if [[ ${GCONF_DEBUG} != "no" ]]; then
 	IUSE="debug"
 fi
 
-
 # @FUNCTION: gnome2_src_unpack
 # @DESCRIPTION:
 # Stub function for old EAPI.
 gnome2_src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	has ${EAPI:-0} 0 1 && gnome2_src_prepare
 }
 
 # @FUNCTION: gnome2_src_prepare
@@ -94,13 +83,8 @@ gnome2_src_prepare() {
 	gnome2_disable_deprecation_warning
 
 	# Run libtoolize
-	if has ${EAPI:-0} 0 1 2 3; then
-		elibtoolize ${ELTCONF}
-	else
-		# Everything is fatal EAPI 4 onwards
-		nonfatal elibtoolize ${ELTCONF}
-	fi
-
+	# Everything is fatal EAPI 4 onwards
+	nonfatal elibtoolize ${ELTCONF}
 }
 
 # @FUNCTION: gnome2_src_configure
@@ -122,7 +106,7 @@ gnome2_src_configure() {
 	# rebuild docs.
 	# Preserve old behavior for older EAPI.
 	if grep -q "enable-gtk-doc" "${ECONF_SOURCE:-.}"/configure ; then
-		if has ${EAPI:-0} 0 1 2 3 4 4-python && in_iuse doc ; then
+		if has ${EAPI:-0} 4 4-python && in_iuse doc ; then
 			G2CONF="$(use_enable doc gtk-doc) ${G2CONF}"
 		else
 			G2CONF="--disable-gtk-doc ${G2CONF}"
@@ -141,7 +125,7 @@ gnome2_src_configure() {
 	fi
 
 	# Pass --disable-silent-rules when possible (not needed for eapi5), bug #429308
-	if has ${EAPI:-0} 0 1 2 3 4 4-python; then
+	if has ${EAPI:-0} 4 4-python; then
 		if grep -q "disable-silent-rules" "${ECONF_SOURCE:-.}"/configure; then
 			G2CONF="--disable-silent-rules ${G2CONF}"
 		fi
@@ -175,10 +159,9 @@ gnome2_src_configure() {
 
 # @FUNCTION: gnome2_src_compile
 # @DESCRIPTION:
-# Stub function for old EAPI.
+# Only default src_compile for now
 gnome2_src_compile() {
-	has ${EAPI:-0} 0 1 && gnome2_src_configure "$@"
-	emake || die "compile failure"
+	emake
 }
 
 # @FUNCTION: gnome2_src_install
@@ -186,8 +169,6 @@ gnome2_src_compile() {
 # Gnome specific install. Handles typical GConf and scrollkeeper setup
 # in packages and removal of .la files if requested
 gnome2_src_install() {
-	has ${EAPI:-0} 0 1 2 && ! use prefix && ED="${D}"
-
 	local installation_prefix
 	if [[ -n "${GNOME2_DESTDIR}" ]]; then
 		installation_prefix="${GNOME2_DESTDIR%/}${EPREFIX}/"
@@ -203,18 +184,13 @@ gnome2_src_install() {
 	# we must delay gconf schema installation due to sandbox
 	export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 
-	if [[ -z "${USE_EINSTALL}" || "${USE_EINSTALL}" = "0" ]]; then
-		debug-print "Installing with 'make install'"
-		emake DESTDIR="${GNOME2_DESTDIR:-${D}}" "scrollkeeper_localstate_dir=${installation_prefix}${sk_tmp_dir} " "$@" install || die "install failed"
-	else
-		debug-print "Installing with 'einstall'"
-		einstall "scrollkeeper_localstate_dir=${installation_prefix}${sk_tmp_dir} " "$@" || die "einstall failed"
-	fi
+	debug-print "Installing with 'make install'"
+	emake DESTDIR="${GNOME2_DESTDIR:-${D}}" "scrollkeeper_localstate_dir=${installation_prefix}${sk_tmp_dir} " "$@" install || die "install failed"
 
 	unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 
 	# Handle documentation as 'default' for eapi5 and newer, bug #373131
-	if has ${EAPI:-0} 0 1 2 3 4 4-python; then
+	if has ${EAPI:-0} 4 4-python; then
 		# Manual document installation
 		if [[ -n "${DOCS}" ]]; then
 			dodoc ${DOCS} || die "dodoc failed"
@@ -235,7 +211,7 @@ gnome2_src_install() {
 	rm -fr "${installation_prefix}usr/share/applications/mimeinfo.cache"
 
 	# Delete all .la files
-	if has ${EAPI:-0} 0 1 2 3 4 4-python; then
+	if has ${EAPI:-0} 4 4-python; then
 		if [[ "${GNOME2_LA_PUNT}" != "no" ]]; then
 			ebegin "Removing .la files"
 			if ! use_if_iuse static-libs ; then

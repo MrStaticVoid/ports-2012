@@ -1,9 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pyicq-t/pyicq-t-0.8.1.5-r4.ebuild,v 1.1 2014/03/30 13:44:13 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pyicq-t/pyicq-t-0.8.1.5-r4.ebuild,v 1.5 2015/04/08 18:03:12 mgorny Exp $
 
 EAPI="5"
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 inherit eutils python-single-r1 systemd
 
 MY_P="${P/pyicq-t/pyicqt}"
@@ -14,7 +14,7 @@ S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="webinterface"
 
 DEPEND="net-im/jabber-base"
@@ -43,7 +43,7 @@ src_install() {
 	sed -i \
 		-e "s:<spooldir>[^\<]*</spooldir>:<spooldir>/var/spool/jabber</spooldir>:" \
 		-e "s:<pid>[^\<]*</pid>:<pid>/var/run/jabber/${PN}.pid</pid>:" \
-		"${ED}/etc/jabber/${PN}.xml"
+		"${ED}/etc/jabber/${PN}.xml" || die
 
 	newinitd "${FILESDIR}/${PN}-0.8-initd-r1" ${PN}
 	systemd_dounit "${FILESDIR}/${PN}.service"

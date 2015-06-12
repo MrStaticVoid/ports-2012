@@ -1,11 +1,11 @@
-DEFINED_PHASES=compile configure install prepare unpack
-DEPEND=!<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.69 sys-devel/libtool media-sound/deadbeef >=dev-vcs/git-1.8.2.1
-DESCRIPTION=DeaDBeeF MPRIS-plugin
+DEFINED_PHASES=configure install prepare unpack
+DEPEND=!<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 media-sound/deadbeef:0 >=dev-vcs/git-1.8.2.1
+DESCRIPTION=DeaDBeeF MPRIS plugin
 EAPI=5
-HOMEPAGE=https://github.com/Jerry-Ma/DeaDBeeF-MPRIS-plugin
+HOMEPAGE=https://github.com/Serranya/deadbeef-mpris2-plugin
 LICENSE=GPL-3
-RDEPEND=media-sound/deadbeef
+RDEPEND=media-sound/deadbeef:0
 RESTRICT=mirror
 SLOT=0
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	deadbeef-plugins	4642fd447e9d157b4a8683f052cfa6b3	eutils	32548a82e42dc26e3312581476d2f20c	git-r3	f908736fc2f2912c118910333ea303f4	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=bba0ce8393ab637087e9cbd8e2a77d25
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	deadbeef-plugins	5b20c71759a8715ad73146268a59e3dd	eutils	9fb270e417e0e83d64ca52586c4a79de	git-r3	a00948a17a774db5e36bc0247c598097	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=bdc32808d7af161e567634501747641f

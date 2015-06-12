@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.127 2014/07/11 08:21:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.138 2015/05/28 07:51:10 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -84,6 +84,10 @@ tc-getRANLIB() { tc-getPROG RANLIB ranlib "$@"; }
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the object copier
 tc-getOBJCOPY() { tc-getPROG OBJCOPY objcopy "$@"; }
+# @FUNCTION: tc-getOBJDUMP
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the object dumper
+tc-getOBJDUMP() { tc-getPROG OBJDUMP objdump "$@"; }
 # @FUNCTION: tc-getF77
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the Fortran 77 compiler
@@ -96,6 +100,10 @@ tc-getFC() { tc-getPROG FC gfortran "$@"; }
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the java compiler
 tc-getGCJ() { tc-getPROG GCJ gcj "$@"; }
+# @FUNCTION: tc-getGO
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the Go compiler
+tc-getGO() { tc-getPROG GO gccgo "$@"; }
 # @FUNCTION: tc-getPKG_CONFIG
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the pkg-config tool
@@ -169,7 +177,7 @@ tc-export() {
 # @FUNCTION: tc-is-cross-compiler
 # @RETURN: Shell true if we are using a cross-compiler, shell false otherwise
 tc-is-cross-compiler() {
-	return $([[ ${CBUILD:-${CHOST}} != ${CHOST} ]])
+	[[ ${CBUILD:-${CHOST}} != ${CHOST} ]]
 }
 
 # @FUNCTION: tc-is-softfloat
@@ -210,7 +218,7 @@ tc-is-static-only() {
 	local host=${CTARGET:-${CHOST}}
 
 	# *MiNT doesn't have shared libraries, only platform so far
-	return $([[ ${host} == *-mint* ]])
+	[[ ${host} == *-mint* ]]
 }
 
 # @FUNCTION: tc-export_build_env
@@ -219,10 +227,13 @@ tc-is-static-only() {
 # Export common build related compiler settings.
 tc-export_build_env() {
 	tc-export "$@"
+	# Some build envs will initialize vars like:
+	# : ${BUILD_LDFLAGS:-${LDFLAGS}}
+	# So make sure all variables are non-empty. #526734
 	: ${BUILD_CFLAGS:=-O1 -pipe}
 	: ${BUILD_CXXFLAGS:=-O1 -pipe}
-	: ${BUILD_CPPFLAGS:=}
-	: ${BUILD_LDFLAGS:=}
+	: ${BUILD_CPPFLAGS:= }
+	: ${BUILD_LDFLAGS:= }
 	export BUILD_{C,CXX,CPP,LD}FLAGS
 
 	# Some packages use XXX_FOR_BUILD.
@@ -297,7 +308,78 @@ tc-env_build() {
 # }
 # @CODE
 econf_build() {
-	tc-env_build econf --build=${CBUILD:-${CHOST}} "$@"
+	local CBUILD=${CBUILD:-${CHOST}}
+	tc-env_build econf --build=${CBUILD} --host=${CBUILD} "$@"
+}
+
+# @FUNCTION: tc-ld-is-gold
+# @USAGE: [toolchain prefix]
+# @DESCRIPTION:
+# Return true if the current linker is set to gold.
+tc-ld-is-gold() {
+	local out
+
+	# First check the linker directly.
+	out=$($(tc-getLD "$@") --version 2>&1)
+	if [[ ${out} == *"GNU gold"* ]] ; then
+		return 0
+	fi
+
+	# Then see if they're selecting gold via compiler flags.
+	# Note: We're assuming they're using LDFLAGS to hold the
+	# options and not CFLAGS/CXXFLAGS.
+	local base="${T}/test-tc-gold"
+	cat <<-EOF > "${base}.c"
+	int main() { return 0; }
+	EOF
+	out=$($(tc-getCC "$@") ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} -Wl,--version "${base}.c" -o "${base}" 2>&1)
+	rm -f "${base}"*
+	if [[ ${out} == *"GNU gold"* ]] ; then
+		return 0
+	fi
+
+	# No gold here!
+	return 1
+}
+
+# @FUNCTION: tc-ld-disable-gold
+# @USAGE: [toolchain prefix]
+# @DESCRIPTION:
+# If the gold linker is currently selected, configure the compilation
+# settings so that we use the older bfd linker instead.
+tc-ld-disable-gold() {
+	if ! tc-ld-is-gold "$@" ; then
+		# They aren't using gold, so nothing to do!
+		return
+	fi
+
+	ewarn "Forcing usage of the BFD linker instead of GOLD"
+
+	# Set up LD to point directly to bfd if it's available.
+	# We need to extract the first word in case there are flags appended
+	# to its value (like multilib).  #545218
+	local ld=$(tc-getLD "$@")
+	local bfd_ld="${ld%% *}.bfd"
+	local path_ld=$(which "${bfd_ld}" 2>/dev/null)
+	[[ -e ${path_ld} ]] && export LD=${bfd_ld}
+
+	# Set up LDFLAGS to select gold based on the gcc version.
+	local major=$(gcc-major-version "$@")
+	local minor=$(gcc-minor-version "$@")
+	if [[ ${major} -lt 4 ]] || [[ ${major} -eq 4 && ${minor} -lt 8 ]] ; then
+		# <=gcc-4.7 requires some coercion.  Only works if bfd exists.
+		if [[ -e ${path_ld} ]] ; then
+			local d="${T}/bfd-linker"
+			mkdir -p "${d}"
+			ln -sf "${path_ld}" "${d}"/ld
+			export LDFLAGS="${LDFLAGS} -B${d}"
+		else
+			die "unable to locate a BFD linker to bypass gold"
+		fi
+	else
+		# gcc-4.8+ supports -fuse-ld directly.
+		export LDFLAGS="${LDFLAGS} -fuse-ld=bfd"
+	fi
 }
 
 # @FUNCTION: tc-has-openmp
@@ -373,10 +455,10 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		arm*)		echo arm;;
 		avr*)		ninj avr32 avr;;
 		bfin*)		ninj blackfin bfin;;
-		c6x)		echo c6x;;
+		c6x*)		echo c6x;;
 		cris*)		echo cris;;
-		frv)		echo frv;;
-		hexagon)	echo hexagon;;
+		frv*)		echo frv;;
+		hexagon*)	echo hexagon;;
 		hppa*)		ninj parisc hppa;;
 		i?86*)
 			# Starting with linux-2.6.24, the 'x86_64' and 'i386'
@@ -390,11 +472,12 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 			;;
 		ia64*)		echo ia64;;
 		m68*)		echo m68k;;
-		metag)		echo metag;;
+		metag*)		echo metag;;
+		microblaze*)	echo microblaze;;
 		mips*)		echo mips;;
 		nios2*)		echo nios2;;
 		nios*)		echo nios;;
-		or32)		echo openrisc;;
+		or32*)		echo openrisc;;
 		powerpc*)
 			# Starting with linux-2.6.15, the 'ppc' and 'ppc64' trees
 			# have been unified into simply 'powerpc', but until 2.6.16,
@@ -415,8 +498,9 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 				echo ppc
 			fi
 			;;
+		riscv*)		echo riscv;;
 		s390*)		echo s390;;
-		score)		echo score;;
+		score*)		echo score;;
 		sh64*)		ninj sh64 sh;;
 		sh*)		echo sh;;
 		sparc64*)	ninj sparc64 sparc;;
@@ -578,37 +662,43 @@ gcc-specs-directive() {
 gcc-specs-relro() {
 	local directive
 	directive=$(gcc-specs-directive link_command)
-	return $([[ "${directive/\{!norelro:}" != "${directive}" ]])
+	[[ "${directive/\{!norelro:}" != "${directive}" ]]
 }
 # Returns true if gcc sets now
 gcc-specs-now() {
 	local directive
 	directive=$(gcc-specs-directive link_command)
-	return $([[ "${directive/\{!nonow:}" != "${directive}" ]])
+	[[ "${directive/\{!nonow:}" != "${directive}" ]]
 }
 # Returns true if gcc builds PIEs
 gcc-specs-pie() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!nopie:}" != "${directive}" ]])
+	[[ "${directive/\{!nopie:}" != "${directive}" ]]
 }
 # Returns true if gcc builds with the stack protector
 gcc-specs-ssp() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!fno-stack-protector:}" != "${directive}" ]])
+	[[ "${directive/\{!fno-stack-protector:}" != "${directive}" ]]
 }
 # Returns true if gcc upgrades fstack-protector to fstack-protector-all
 gcc-specs-ssp-to-all() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!fno-stack-protector-all:}" != "${directive}" ]])
+	[[ "${directive/\{!fno-stack-protector-all:}" != "${directive}" ]]
 }
 # Returns true if gcc builds with fno-strict-overflow
 gcc-specs-nostrict() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!fstrict-overflow:}" != "${directive}" ]])
+	[[ "${directive/\{!fstrict-overflow:}" != "${directive}" ]]
+}
+# Returns true if gcc builds with fstack-check
+gcc-specs-stack-check() {
+	local directive
+	directive=$(gcc-specs-directive cc1)
+	[[ "${directive/\{!fno-stack-check:}" != "${directive}" ]]
 }
 
 

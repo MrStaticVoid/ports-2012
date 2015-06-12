@@ -7,6 +7,8 @@ ACCEPT_KEYWORDS="${ARCH}"
 CHOST="x86_64-pc-linux-gnu"
 CFLAGS="-O2 -pipe"
 CXXFLAGS="${CFLAGS}"
+# FL-2051. set sane CPU_FLAGS_X86
+CPU_FLAGS_X86="mmx mmxext sse sse2"
 
 # 2006/06/07 - Danny van Dyk <kugelfang@gentoo.org>
 # Multilib settings for all amd64 subprofiles.
@@ -54,4 +56,7 @@ QEMU_SOFTMMU_TARGETS="i386 x86_64"
 QEMU_USER_TARGETS="i386 x86_64"
 
 # Add new abi's FL-452
-USE_EXPAND_HIDDEN="-ABI_X86"
+# FL-2055: CPU instruction set flags
+USE_EXPAND_HIDDEN="-ABI_X86 -CPU_FLAGS_X86"
+
+GRUB_PLATFORMS="efi-64 pc"

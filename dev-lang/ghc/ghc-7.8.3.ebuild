@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-7.8.3.ebuild,v 1.10 2014/09/05 10:40:45 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-7.8.3.ebuild,v 1.13 2015/03/18 09:46:28 slyfox Exp $
 
 EAPI=5
 
@@ -86,8 +86,7 @@ RDEPEND="
 
 # similar for glibc. we have bootstrapped binaries against glibc-2.17
 DEPEND="${RDEPEND}
-	ghcbootstrap? ( >=dev-haskell/alex-2.3
-		>=dev-haskell/happy-1.18
+	ghcbootstrap? (
 		doc? ( app-text/docbook-xml-dtd:4.2
 			app-text/docbook-xml-dtd:4.5
 			app-text/docbook-xsl-stylesheets
@@ -390,7 +389,7 @@ src_prepare() {
 
 		cd "${S}" # otherwise epatch will break
 
-		epatch "${FILESDIR}/ghc-7.0.4-CHOST-prefix.patch"
+		epatch "${FILESDIR}"/${PN}-7.0.4-CHOST-prefix.patch
 
 		epatch "${FILESDIR}"/${PN}-7.8.1_rc1-libbfd.patch
 
@@ -609,4 +608,8 @@ pkg_prerm() {
 	rm -rf "${PKGCACHE}"
 
 	cp -p "${PKGCACHE}"{.shipped,}
+}
+
+pkg_postrm() {
+	ghc-package_pkg_postrm
 }

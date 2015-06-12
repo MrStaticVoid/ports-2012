@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/impressive/impressive-0.10.5.ebuild,v 1.1 2014/05/19 14:18:09 jlec Exp $
 
 EAPI=5
 
@@ -16,12 +14,12 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_PN}/${PV}/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="*"
 IUSE=""
 
 DEPEND=""
 RDEPEND="${PYTHON_DEPS}
-	app-text/pdftk
+	app-text/mcpdf
 	virtual/python-imaging[${PYTHON_USEDEP}]
 	dev-python/pygame[${PYTHON_USEDEP}]
 	dev-python/pyopengl[${PYTHON_USEDEP}]

@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-9999.ebuild,v 1.37 2014/08/17 02:07:02 twitch153 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-9999.ebuild,v 1.42 2015/04/25 13:57:49 floppym Exp $
 
 EAPI="5"
 
@@ -12,12 +12,12 @@ inherit eutils distutils-r1 git-2 linux-info prefix
 DESCRIPTION="Tool to manage Gentoo overlays"
 HOMEPAGE="http://layman.sourceforge.net"
 SRC_URI=""
-EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/layman.git"
+EGIT_REPO_URI="git://anongit.gentoo.org/proj/layman.git"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="bazaar cvs darcs +git gpg g-sorcery mercurial squashfs subversion test"
+IUSE="bazaar cvs darcs +git gpg g-sorcery mercurial squashfs subversion sync-plugin-portage test"
 
 DEPEND="test? ( dev-vcs/subversion )
 	app-text/asciidoc"
@@ -37,24 +37,35 @@ RDEPEND="
 		)
 	)
 	gpg? ( =dev-python/pyGPG-9999 )
-	sys-apps/portage[${PYTHON_USEDEP}]
+	sync-plugin-portage?  ( >=sys-apps/portage-2.2.16[${PYTHON_USEDEP}] )
+	!sync-plugin-portage? ( sys-apps/portage[${PYTHON_USEDEP}] )
 	>=dev-python/ssl-fetch-0.2[${PYTHON_USEDEP}]
 	"
 
+layman_check_kernel_config() {
+	local CONFIG_CHECK
+	use squashfs && CONFIG_CHECK+=" ~BLK_DEV_LOOP ~SQUASHFS"
+	[[ -n ${CONFIG_CHECK} ]] && check_extra_config
+}
+
 pkg_pretend() {
-	use squashfs && local CONFIG_CHECK="BLK_DEV_LOOP SQUASHFS"
+	layman_check_kernel_config
+}
+
+pkg_setup() {
+	layman_check_kernel_config
 }
 
 python_prepare_all()  {
+	esetup.py setup_plugins
 	distutils-r1_python_prepare_all
 	eprefixify etc/layman.cfg layman/config.py
 }
 
 python_test() {
-	for suite in layman/tests/{dtest,external}.py ; do
-		PYTHONPATH="." "${PYTHON}" ${suite} \
-				|| die "test suite '${suite}' failed"
-	done
+	suite=layman/tests/external.py
+	PYTHONPATH="." "${PYTHON}" ${suite} || die "test suite '${suite}' failed"
+	unset suite
 }
 
 python_compile_all() {

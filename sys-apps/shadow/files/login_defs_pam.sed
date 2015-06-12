@@ -15,10 +15,14 @@
 /^PASS_ALWAYS_WARN/b comment
 /^CHFN_AUTH/b comment
 /^ENVIRON_FILE/b comment
+/^#CREATE_HOME/b uncomment
 
 b exit
 
 : comment
   s:^:#:
+
+: uncomment
+  s:^#::
 
 : exit

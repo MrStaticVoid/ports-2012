@@ -4,17 +4,14 @@ EAPI="5"
 
 inherit deadbeef-plugins git-r3
 
-GITORIOUS_PROJECT="deadbeef-sm-plugins"
-GITORIOUS_REPOSITORY="jack"
-
 DESCRIPTION="DeaDBeeF jack output plugin"
-HOMEPAGE="https://gitorious.org/${GITORIOUS_PROJECT}/${GITORIOUS_REPOSITORY}"
-EGIT_REPO_URI="git://gitorious.org/${GITORIOUS_PROJECT}/${GITORIOUS_REPOSITORY}.git"
+HOMEPAGE="https://gitorious.org/deadbeef-sm-plugins/jack"
+EGIT_REPO_URI="https://gitorious.org/deadbeef-sm-plugins/jack.git"
 
 LICENSE="MIT"
 KEYWORDS=""
 
-RDEPEND="media-sound/jack-audio-connection-kit"
+RDEPEND="media-sound/jack-audio-connection-kit:0"
 
 DEPEND="${RDEPEND}"
 

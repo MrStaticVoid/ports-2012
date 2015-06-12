@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=dev-cpp/glibmm-2.41.2:2 >=x11-libs/gtk+-3.14:3[aqua?,wayland?,X?] >=x11-libs/gdk-pixbuf-2.26:2 >=dev-cpp/atkmm-2.22.2 >=dev-cpp/cairomm-1.9.2.2 >=dev-cpp/pangomm-2.27.1:1.4 dev-libs/libsigc++:2 virtual/pkgconfig doc? ( media-gfx/graphviz dev-libs/libxslt app-doc/doxygen ) app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=C++ interface for GTK+
+EAPI=5
+HOMEPAGE=http://www.gtkmm.org
+IUSE=aqua doc examples test wayland +X
+KEYWORDS=*
+LICENSE=LGPL-2.1
+RDEPEND=>=dev-cpp/glibmm-2.41.2:2 >=x11-libs/gtk+-3.14:3[aqua?,wayland?,X?] >=x11-libs/gdk-pixbuf-2.26:2 >=dev-cpp/atkmm-2.22.2 >=dev-cpp/cairomm-1.9.2.2 >=dev-cpp/pangomm-2.27.1:1.4 dev-libs/libsigc++:2
+REQUIRED_USE=|| ( aqua wayland X )
+SLOT=3.0
+SRC_URI=mirror://gnome/sources/gtkmm/3.14/gtkmm-3.14.0.tar.xz
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	967402bd415c7e321f503839b0207b49	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=acec866176aa9be38b923fbdbc3b4c72

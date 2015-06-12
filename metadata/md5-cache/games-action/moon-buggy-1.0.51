@@ -1,12 +1,12 @@
 DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
-DEPEND=sys-libs/ncurses virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.69 sys-devel/libtool
+DEPEND=sys-libs/ncurses virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=A simple console game, where you drive a car across the moon's surface
-EAPI=2
+EAPI=5
 HOMEPAGE=http://www.seehuhn.de/comp/moon-buggy.html
 KEYWORDS=amd64 ~arm ppc x86
 LICENSE=GPL-2
 RDEPEND=sys-libs/ncurses games-misc/games-envd
 SLOT=0
 SRC_URI=http://www.seehuhn.de/data/moon-buggy-1.0.51.tar.gz
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	games	e221fed675714bd5545b7488aed9f822	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402	user	f54e098dd38ba1c0847a13e685b87747
-_md5_=47647b6c81f0d22754f26eb767afeb0d
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	games	1ad3205dbf62a2c98249f2f59b0a2d39	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	user	f54e098dd38ba1c0847a13e685b87747
+_md5_=50faa4ad71d718c04f597ffa16589053

@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/lxqt-base/lxqt-meta/lxqt-meta-0.7.0-r1.ebuild,v 1.1 2014/05/29 17:59:32 jauhien Exp $
 
 EAPI=5
 
@@ -11,7 +9,7 @@ HOMEPAGE="http://lxqt.org/"
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="~*"
 IUSE="+icons lightdm lximage -minimal +policykit powermanagement sddm ssh-askpass"
 
 S="${WORKDIR}"
@@ -51,7 +49,7 @@ RDEPEND="
 	sddm? (
 		x11-misc/sddm )
 	ssh-askpass? (
-		net-misc/lxqt-openssh-askpass )
+		~lxqt-base/lxqt-openssh-askpass-${PV} )
 "
 
 pkg_postinst() {

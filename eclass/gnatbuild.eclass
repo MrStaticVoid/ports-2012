@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.61 2014/07/13 16:19:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.64 2015/03/31 18:43:33 ulm Exp $
 #
 # Authors: George Shapovalov <george@gentoo.org>
 #          Steve Arnold <nerdboy@gentoo.org>
@@ -27,11 +27,11 @@ EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_postrm src_unpack src_compile src_in
 IUSE="nls"
 # multilib is supported via profiles now, multilib usevar is deprecated
 
-DEPEND=">=app-admin/eselect-gnat-1.3
-          sys-devel/bc
+DEPEND=">=app-eselect/eselect-gnat-1.3
+	sys-devel/bc
 "
 
-RDEPEND="app-admin/eselect-gnat"
+RDEPEND="app-eselect/eselect-gnat"
 
 # Note!
 # It may not be safe to source this at top level. Only source inside local
@@ -309,11 +309,12 @@ gnatbuild_pkg_postinst() {
 	elog
 	. ${GnatCommon} || die "failed to source common code"
 	if [[ ! -f ${PRIMELIST} ]] || [[ ! -s ${PRIMELIST} ]]; then
+		mkdir -p ${SETTINGSDIR}
 		echo "${gnat_profile}" > ${PRIMELIST}
 		elog "The list of primary compilers was empty and got assigned ${gnat_profile}."
 	fi
 	elog "Please edit ${PRIMELIST} and list there gnat profiles intended"
-	elog "for common use."
+	elog "for common use, one per line."
 }
 
 
@@ -773,6 +774,9 @@ EOF
 				"${D}${LIBEXECPATH}"/liblto_plugin.la \
 				|| die "sed update of .la file failed!"
 		fi
+
+		# add config directory (bug 440660)
+		keepdir /etc/ada
 		;;
 
 	prep_env)

@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/anjuta/anjuta-3.12.0.ebuild,v 1.3 2014/07/23 15:15:46 ago Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -18,7 +16,7 @@ HOMEPAGE="http://projects.gnome.org/anjuta/"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="amd64 ~ppc ~sparc x86 ~x86-fbsd"
+KEYWORDS="*"
 IUSE="debug devhelp glade +introspection packagekit subversion terminal test vala"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -50,7 +48,7 @@ COMMON_DEPEND="
 		>=net-libs/serf-1.2:1=
 		>=dev-libs/apr-1:=
 		>=dev-libs/apr-util-1:= )
-	terminal? ( >=x11-libs/vte-0.27.6:2.90 )
+	terminal? ( x11-libs/vte:2.90 )
 	vala? ( $(vala_depend) )
 "
 RDEPEND="${COMMON_DEPEND}

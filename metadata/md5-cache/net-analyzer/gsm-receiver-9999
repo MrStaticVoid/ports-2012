@@ -1,11 +1,11 @@
 DEFINED_PHASES=configure install prepare setup unpack
-DEPEND=net-libs/libosmocore >=net-wireless/gnuradio-3.7_rc:0= virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.69 sys-devel/libtool dev-vcs/git
+DEPEND=net-libs/libosmocore >=net-wireless/gnuradio-3.7_rc:0= virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 dev-vcs/git
 DESCRIPTION=GSM receiver block from the airprobe suite
 EAPI=5
 HOMEPAGE=https://svn.berlin.ccc.de/projects/airprobe/
-IUSE=python_targets_python2_7 python_single_target_python2_7
+IUSE=python_targets_python2_7
 LICENSE=GPL-3
 RDEPEND=net-libs/libosmocore >=net-wireless/gnuradio-3.7_rc:0=
 SLOT=0
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	eutils	32548a82e42dc26e3312581476d2f20c	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	a71a169a881e0a11d04a7fe12dc39f6e	python-utils-r1	47dda904cf91c61f45b564d9f834fde1	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=05245cdb0dbc03298a8d9bd252bf6b5b
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	eutils	9fb270e417e0e83d64ca52586c4a79de	git-2	e28f0d8a9b321431b1e699782851b827	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	python-single-r1	7a178335dbd6ea7f50ed4e3e1c13c1e4	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=ffaa354337599b7e040bb9fd1837b103

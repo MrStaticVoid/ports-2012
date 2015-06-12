@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/enblend/enblend-4.1.3.ebuild,v 1.2 2014/06/15 12:34:05 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/enblend/enblend-4.1.3.ebuild,v 1.5 2015/05/03 15:06:52 bircoph Exp $
 
 EAPI=5
 
@@ -20,19 +20,19 @@ IUSE="debug doc gpu image-cache openmp"
 REQUIRED_USE="openmp? ( !image-cache )"
 
 RDEPEND="
+	>=dev-libs/boost-1.31.0:=
 	media-libs/glew
 	>=media-libs/lcms-2.5:2
 	>=media-libs/libpng-1.2.43:0=
 	>=media-libs/openexr-1.0:=
 	media-libs/plotutils[X]
-	media-libs/tiff
+	media-libs/tiff:=
 	>=media-libs/vigra-1.8.0
 	sci-libs/gsl
 	virtual/jpeg:0=
 	debug? ( dev-libs/dmalloc )
 	gpu? ( media-libs/freeglut )"
 DEPEND="${RDEPEND}
-	>=dev-libs/boost-1.31.0:=
 	sys-apps/help2man
 	virtual/pkgconfig
 	doc? (
@@ -44,15 +44,18 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
+PATCHES=( "${FILESDIR}/${PN}-4.1.3-vigra_check.patch" )
+
 src_prepare() {
 	sed -i -e "/CXX_FLAGS/s:-O3::g" CMakeLists.txt || die
-	sed -i -e "s:doc/enblend:doc/${P}:" doc/CMakeLists.txt || die
+	sed -i -e "s:doc/enblend:share/doc/${PF}:" doc/CMakeLists.txt || die
 	cmake-utils_src_prepare
 }
 
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_CXX_FLAGS_RELEASE=""
+		-DMAKEINFO_EXE="/bin/true"
 		$(cmake-utils_use_enable debug DMALLOC)
 		$(cmake-utils_use doc DOC)
 		$(cmake-utils_use_enable image-cache IMAGECACHE)

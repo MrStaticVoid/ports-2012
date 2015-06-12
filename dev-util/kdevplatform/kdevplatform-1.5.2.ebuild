@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/kdevplatform/kdevplatform-1.5.2.ebuild,v 1.4 2014/02/09 10:33:17 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/kdevplatform/kdevplatform-1.5.2.ebuild,v 1.7 2015/06/04 19:02:21 kensington Exp $
 
 EAPI=5
 
@@ -26,7 +26,7 @@ fi
 
 DEPEND="
 	dev-libs/boost:=
-	dev-libs/grantlee
+	dev-libs/grantlee:0
 	reviewboard? ( dev-libs/qjson )
 	subversion? (
 		dev-libs/apr
@@ -36,7 +36,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}
 	!<dev-util/kdevelop-${KDEVELOP_VERSION}:4
-	$(add_kdebase_dep konsole)
+	$(add_kdeapps_dep konsole)
 	cvs? ( dev-vcs/cvs )
 "
 

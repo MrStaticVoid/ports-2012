@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/tests/toolchain-funcs.sh,v 1.5 2015/05/10 16:38:08 ulm Exp $
 
 source tests-common.sh
 
@@ -51,9 +54,62 @@ do
 
 	if [[ ${actual} != ${exp:-${CHOST}} ]] ; then
 		eerror "Failure for CHOST: ${CHOST} Expected: ${exp} != Actual: ${actual}"
-		((++ret))
+		: $((++ret))
 	fi
 done
 tend ${ret}
+
+#
+# TEST: tc-ld-is-gold
+#
+tbegin "tc-ld-is-gold (bfd selected)"
+LD=ld.bfd tc-ld-is-gold && ret=1 || ret=0
+tend ${ret}
+
+tbegin "tc-ld-is-gold (gold selected)"
+LD=ld.gold tc-ld-is-gold
+ret=$?
+tend ${ret}
+
+tbegin "tc-ld-is-gold (bfd selected via flags)"
+LD=ld.gold LDFLAGS=-fuse-ld=bfd tc-ld-is-gold
+ret=$?
+tend ${ret}
+
+tbegin "tc-ld-is-gold (gold selected via flags)"
+LD=ld.bfd LDFLAGS=-fuse-ld=gold tc-ld-is-gold
+ret=$?
+tend ${ret}
+
+#
+# TEST: tc-ld-disable-gold
+#
+tbegin "tc-ld-disable-gold (bfd selected)"
+(
+export LD=ld.bfd LDFLAGS=
+ewarn() { :; }
+tc-ld-disable-gold
+[[ ${LD} == "ld.bfd" && -z ${LDFLAGS} ]]
+)
+tend $?
+
+tbegin "tc-ld-disable-gold (gold selected)"
+(
+export LD=ld.gold LDFLAGS=
+ewarn() { :; }
+tc-ld-disable-gold
+[[ ${LD} == "ld.bfd" || ${LDFLAGS} == *"-fuse-ld=bfd"* ]]
+)
+tend $?
+
+tbegin "tc-ld-disable-gold (gold selected via flags)"
+(
+export LD= LDFLAGS="-fuse-ld=gold"
+ewarn() { :; }
+tc-ld-disable-gold
+[[ ${LD} == *"/ld.bfd" || ${LDFLAGS} == "-fuse-ld=gold -fuse-ld=bfd" ]]
+)
+tend $?
+
 
 texit

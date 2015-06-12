@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/havp/havp-0.92a-r1.ebuild,v 1.4 2013/10/12 14:10:05 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/havp/havp-0.92a-r1.ebuild,v 1.6 2015/03/21 21:57:42 jlec Exp $
 
-EAPI=4
+EAPI=5
 
 inherit autotools eutils toolchain-funcs user
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE="clamav ssl"
 
-DEPEND="clamav? ( app-antivirus/clamav )"
+DEPEND="clamav? ( >=app-antivirus/clamav-0.98.5 )"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
@@ -24,9 +24,11 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.92a-run.patch
-	epatch "${FILESDIR}"/${PF}-pkg-config-libclamav.patch
+	epatch \
+		"${FILESDIR}"/${PN}-0.92a-run.patch \
+		"${FILESDIR}"/${PF}-pkg-config-libclamav.patch
 	sed -i configure.in -e '/^CFLAGS=/d' || die
+	mv configure.{in,ac} || die
 	eautoreconf
 }
 
@@ -40,8 +42,7 @@ src_configure() {
 }
 
 src_install() {
-	exeinto /usr/sbin
-	doexe ${PN}/${PN}
+	dosbin ${PN}/${PN}
 
 	newinitd "${FILESDIR}/${PN}.initd" ${PN}
 

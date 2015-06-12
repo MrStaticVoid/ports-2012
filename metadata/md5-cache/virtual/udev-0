@@ -1,8 +1,0 @@
-DEFINED_PHASES=-
-DESCRIPTION=Virtual for udev implementation and number of its features
-EAPI=2
-IUSE=+gudev +hwdb keymap selinux static-libs
-KEYWORDS=~*
-RDEPEND=gudev? ( <sys-fs/udev-171[extras] ) hwdb? ( || ( <sys-fs/udev-171[extras] ~sys-fs/udev-141 ) ) keymap? ( || ( <sys-fs/udev-171[extras] ~sys-fs/udev-141 ) ) <sys-fs/udev-171[selinux?]
-SLOT=0
-_md5_=444e4ae65a68315947425c9a3fbb7fe3

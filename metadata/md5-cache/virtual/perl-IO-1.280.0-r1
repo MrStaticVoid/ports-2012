@@ -1,7 +1,0 @@
-DEFINED_PHASES=-
-DESCRIPTION=Virtual for IO
-EAPI=5
-KEYWORDS=~*
-RDEPEND=|| ( =dev-lang/perl-5.18* ~perl-core/IO-1.280.0 ) !>perl-core/IO-1.280.0-r999
-SLOT=0
-_md5_=af6513768d864c2e4600eb12bfef13d8

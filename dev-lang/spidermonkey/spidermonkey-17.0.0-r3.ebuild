@@ -1,8 +1,10 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/spidermonkey/spidermonkey-17.0.0-r3.ebuild,v 1.8 2015/04/08 08:22:09 mgorny Exp $
 
 EAPI="5"
 WANT_AUTOCONF="2.1"
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="threads"
 inherit eutils toolchain-funcs multilib python-any-r1 versionator pax-utils
 
@@ -15,7 +17,7 @@ SRC_URI="http://ftp.mozilla.org/pub/mozilla.org/js/${MY_PN}${PV}.tar.gz"
 LICENSE="NPL-1.1"
 SLOT="17"
 # "MIPS, MacroAssembler is not supported" wrt #491294 for -mips
-KEYWORDS="* -hppa -mips"
+KEYWORDS="alpha amd64 arm -hppa ia64 -mips ppc ppc64 ~s390 ~sh sparc x86 ~x86-fbsd"
 IUSE="debug jit minimal static-libs test"
 
 REQUIRED_USE="debug? ( jit )"

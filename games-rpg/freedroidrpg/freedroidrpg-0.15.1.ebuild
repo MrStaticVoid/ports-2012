@@ -1,9 +1,9 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-rpg/freedroidrpg/freedroidrpg-0.15.1.ebuild,v 1.4 2013/09/05 19:44:48 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-rpg/freedroidrpg/freedroidrpg-0.15.1.ebuild,v 1.8 2015/04/08 18:11:42 mgorny Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python2_6 python2_7 )
+PYTHON_COMPAT=( python2_7 )
 inherit eutils gnome2-utils python-any-r1 games
 
 DESCRIPTION="A modification of the classical Freedroid engine into an RPG"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/freedroid/freedroidRPG-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ppc x86"
 IUSE="opengl vorbis"
 
 RDEPEND="media-libs/libsdl[opengl?,video]

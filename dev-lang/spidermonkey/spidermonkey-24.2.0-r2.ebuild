@@ -1,8 +1,10 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/spidermonkey/spidermonkey-24.2.0-r2.ebuild,v 1.13 2015/04/08 08:22:09 mgorny Exp $
 
 EAPI="5"
 WANT_AUTOCONF="2.1"
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="threads"
 inherit autotools eutils toolchain-funcs multilib python-any-r1 versionator pax-utils
 
@@ -14,7 +16,7 @@ SRC_URI="https://ftp.mozilla.org/pub/mozilla.org/js/${MY_P}.tar.bz2"
 
 LICENSE="NPL-1.1"
 SLOT="24"
-KEYWORDS="~alpha amd64 arm hppa ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~x86-fbsd"
 IUSE="debug icu jit minimal static-libs +system-icu test"
 
 RESTRICT="ia64? ( test )"
@@ -54,9 +56,7 @@ src_prepare() {
 }
 
 src_configure() {
-	# Fix failure on checking Python environment is Mozilla virtualenv
-	export SHELL="/bin/sh"
-
+	export SHELL=/bin/sh
 	cd "${BUILDDIR}" || die
 
 	local myopts=""

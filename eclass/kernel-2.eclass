@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.296 2014/04/21 00:08:15 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.305 2015/05/30 16:09:05 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -37,6 +37,8 @@
 # K_EXTRAEWARN			- same as K_EXTRAEINFO except using ewarn instead of einfo
 # K_SYMLINK				- if this is set, then forcably create symlink anyway
 #
+# K_BASE_VER			- for git-sources, declare the base version this patch is 
+#						  based off of.
 # K_DEFCONFIG			- Allow specifying a different defconfig target.
 #						  If length zero, defaults to "defconfig".
 # K_WANT_GENPATCHES		- Apply genpatches to kernel source. Provide any
@@ -54,6 +56,8 @@
 # K_DEBLOB_AVAILABLE	- A value of "0" will disable all of the optional deblob
 #						  code. If empty, will be set to "1" if deblobbing is
 #						  possible. Test ONLY for "1".
+# K_DEBLOB_TAG     		- This will be the version of deblob script. It's a upstream SVN tag
+#						  such asw -gnu or -gnu1. 
 # K_PREDEBLOBBED		- This kernel was already deblobbed elsewhere.
 #						  If false, either optional deblobbing will be available
 #						  or the license will note the inclusion of freedist
@@ -162,7 +166,6 @@ handle_genpatches() {
 			UNIPATCH_LIST_GENPATCHES+=" ${DISTDIR}/${tarball}"
 			debug-print "genpatches tarball: $tarball"
 		fi
-
 		GENPATCHES_URI+=" ${use_cond_start}mirror://gentoo/${tarball}${use_cond_end}"
 	done
 }
@@ -361,13 +364,13 @@ detect_version() {
 			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE/-git*}.xz ${DISTDIR}/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE}.xz"
 		fi
 	else
+		KV_PATCH_ARR=(${KV_PATCH//\./ })
+
+		# the different majorminor versions have different patch start versions
+		OKV_DICT=(["2"]="${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))" ["3"]="2.6.39" ["4"]="3.19")
+
 		if [[ ${RELEASETYPE} == -rc ]] || [[ ${RELEASETYPE} == -pre ]]; then
-			if [[ ${KV_MAJOR}${KV_PATCH} -eq 30 ]]; then
-				OKV="2.6.39"
-			else
-				KV_PATCH_ARR=(${KV_PATCH//\./ })
-				OKV="${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))"
-			fi
+			OKV=${K_BASE_VER:-$OKV_DICT["${KV_MAJOR}"]}
 			KERNEL_URI="${KERNEL_BASE_URI}/testing/patch-${CKV//_/-}.xz
 						${KERNEL_BASE_URI}/linux-${OKV}.tar.xz"
 			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${CKV//_/-}.xz"
@@ -380,12 +383,7 @@ detect_version() {
 		fi
 
 		if [[ ${RELEASETYPE} == -rc-git ]]; then
-			if [[ ${KV_MAJOR}${KV_PATCH} -eq 30 ]]; then
-				OKV="2.6.39"
-			else
-				KV_PATCH_ARR=(${KV_PATCH//\./ })
-				OKV="${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))"
-			fi
+			OKV=${K_BASE_VER:-$OKV_DICT["${KV_MAJOR}"]}
 			KERNEL_URI="${KERNEL_BASE_URI}/snapshots/patch-${KV_MAJOR}.${KV_PATCH}${RELEASE}.xz
 						${KERNEL_BASE_URI}/testing/patch-${KV_MAJOR}.${KV_PATCH}${RELEASE/-git*}.xz
 						${KERNEL_BASE_URI}/linux-${OKV}.tar.xz"
@@ -395,8 +393,7 @@ detect_version() {
 
 
 	fi
-
-
+	
 	debug-print-kernel2-variables
 
 	handle_genpatches
@@ -449,7 +446,6 @@ if [[ ${ETYPE} == sources ]]; then
 		dev-lang/perl
 		sys-devel/bc
 	)"
-	PDEPEND="!build? ( virtual/dev-manager )"
 
 	SLOT="${PVR}"
 	DESCRIPTION="Sources based on the Linux Kernel."
@@ -481,15 +477,18 @@ if [[ ${ETYPE} == sources ]]; then
 				DEBLOB_PV="${KV_MAJOR}.${KV_MINOR}"
 			fi
 
+			# deblob svn tag, default is -gnu, to change, use K_DEBLOB_TAG in ebuild
+			K_DEBLOB_TAG=${K_DEBLOB_TAG:--gnu}
 			DEBLOB_A="deblob-${DEBLOB_PV}"
 			DEBLOB_CHECK_A="deblob-check-${DEBLOB_PV}"
-			DEBLOB_HOMEPAGE="http://www.fsfla.org/svnwiki/selibre/linux-libre/"
-			DEBLOB_URI_PATH="download/releases/LATEST-${DEBLOB_PV}.N"
+			DEBLOB_HOMEPAGE="http://www.fsfla.org/svn/fsfla/software/linux-libre/releases/tags"
+			DEBLOB_URI_PATH="${DEBLOB_PV}${K_DEBLOB_TAG}"
 			if ! has "${EAPI:-0}" 0 1 ; then
 				DEBLOB_CHECK_URI="${DEBLOB_HOMEPAGE}/${DEBLOB_URI_PATH}/deblob-check -> ${DEBLOB_CHECK_A}"
 			else
 				DEBLOB_CHECK_URI="mirror://gentoo/${DEBLOB_CHECK_A}"
 			fi
+
 			DEBLOB_URI="${DEBLOB_HOMEPAGE}/${DEBLOB_URI_PATH}/${DEBLOB_A}"
 			HOMEPAGE="${HOMEPAGE} ${DEBLOB_HOMEPAGE}"
 
@@ -859,16 +858,18 @@ postinst_sources() {
 	KV_MINOR=$(get_version_component_range 2 ${OKV})
 	KV_PATCH=$(get_version_component_range 3 ${OKV})
 	if [[ "$(tc-arch)" = "sparc" ]]; then
-		if [[ ${KV_MAJOR} -ge 3 || ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.24 ]] ; then
-			echo
-			elog "NOTE: Since 2.6.25 the kernel Makefile has changed in a way that"
-			elog "you now need to do"
-			elog "  make CROSS_COMPILE=sparc64-unknown-linux-gnu-"
-			elog "instead of just"
-			elog "  make"
-			elog "to compile the kernel. For more information please browse to"
-			elog "https://bugs.gentoo.org/show_bug.cgi?id=214765"
-			echo
+		if [[ $(gcc-major-version) -lt 4 && $(gcc-minor-version) -lt 4 ]]; then
+			if [[ ${KV_MAJOR} -ge 3 || ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.24 ]] ; then
+				echo
+				elog "NOTE: Since 2.6.25 the kernel Makefile has changed in a way that"
+				elog "you now need to do"
+				elog "  make CROSS_COMPILE=sparc64-unknown-linux-gnu-"
+				elog "instead of just"
+				elog "  make"
+				elog "to compile the kernel. For more information please browse to"
+				elog "https://bugs.gentoo.org/show_bug.cgi?id=214765"
+				echo
+			fi
 		fi
 	fi
 }
@@ -996,6 +997,22 @@ unipatch() {
 				done
 				UNIPATCH_DROP+=" $(basename ${j})"
 			done
+		else 
+			UNIPATCH_LIST_GENPATCHES+=" ${DISTDIR}/${tarball}"
+			debug-print "genpatches tarball: $tarball"
+
+			# check gcc version < 4.9.X uses patch 5000 and = 4.9.X uses patch 5010			
+			if [[ $(gcc-major-version) -eq 4 ]] && [[ $(gcc-minor-version) -ne 9 ]]; then
+				# drop 5000_enable-additional-cpu-optimizations-for-gcc-4.9.patch
+				if [[ $UNIPATCH_DROP != *"5010_enable-additional-cpu-optimizations-for-gcc-4.9.patch"* ]]; then
+					UNIPATCH_DROP+=" 5010_enable-additional-cpu-optimizations-for-gcc-4.9.patch"
+				fi
+			else
+				if [[ $UNIPATCH_DROP != *"5000_enable-additional-cpu-optimizations-for-gcc.patch"* ]]; then
+					#drop 5000_enable-additional-cpu-optimizations-for-gcc.patch
+					UNIPATCH_DROP+=" 5000_enable-additional-cpu-optimizations-for-gcc.patch"
+				fi
+			fi
 		fi
 	done
 

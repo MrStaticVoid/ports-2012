@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql-v2.eclass,v 1.39 2015/05/24 04:35:49 vapier Exp $
 
 # @ECLASS: mysql-v2.eclass
 # @MAINTAINER:
@@ -45,7 +45,7 @@ MYSQL_EXTRAS=""
 # @DESCRIPTION:
 # The version of the MYSQL_EXTRAS repo to use to build mysql
 # Use "none" to disable it's use
-[[ ${MY_EXTRAS_VER} == "live" ]] && MYSQL_EXTRAS="git-2"
+[[ ${MY_EXTRAS_VER} == "live" ]] && MYSQL_EXTRAS="git-r3"
 
 inherit eutils flag-o-matic gnuconfig ${MYSQL_EXTRAS} ${BUILD_INHERIT} mysql_fx versionator toolchain-funcs user
 
@@ -70,7 +70,7 @@ S="${WORKDIR}/mysql"
 
 [[ ${MY_EXTRAS_VER} == "latest" ]] && MY_EXTRAS_VER="20090228-0714Z"
 if [[ ${MY_EXTRAS_VER} == "live" ]]; then
-	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/mysql-extras.git"
+	EGIT_REPO_URI="git://anongit.gentoo.org/proj/mysql-extras.git"
 	EGIT_CHECKOUT_DIR=${WORKDIR}/mysql-extras
 	EGIT_CLONE_TYPE=shallow
 fi
@@ -83,7 +83,7 @@ fi
 MYSQL_PV_MAJOR="$(get_version_component_range 1-2 ${PV})"
 
 # Cluster is a special case...
-if [[ "${PN}" == "mysql-cluster" ]]; then
+if [[ ${PN} == "mysql-cluster" ]]; then
 	case ${PV} in
 		6.1*|7.0*|7.1*) MYSQL_PV_MAJOR=5.1 ;;
 		7.2*) MYSQL_PV_MAJOR=5.5 ;;
@@ -92,7 +92,7 @@ if [[ "${PN}" == "mysql-cluster" ]]; then
 fi
 
 # MariaDB has left the numbering schema but keeping compatibility
-if [[ "${PN}" == "mariadb" || "${PN}" == "mariadb-galera" ]]; then
+if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]]; then
 	case ${PV} in
 		10.0*|10.1*) MYSQL_PV_MAJOR="5.6" ;;
 	esac
@@ -189,7 +189,7 @@ if [[ ${MY_EXTRAS_VER} != "live" && ${MY_EXTRAS_VER} != "none" ]]; then
 		http://dev.gentoo.org/~grknight/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2"
 fi
 
-DESCRIPTION="A fast, multi-threaded, multi-user SQL database server."
+DESCRIPTION="A fast, multi-threaded, multi-user SQL database server"
 HOMEPAGE="http://www.mysql.com/"
 if [[ ${PN} == "mariadb" ]]; then
 	HOMEPAGE="http://mariadb.org/"
@@ -201,7 +201,7 @@ if [[ ${PN} == "mariadb-galera" ]]; then
 fi
 if [[ ${PN} == "percona-server" ]]; then
 	HOMEPAGE="http://www.percona.com/software/percona-server"
-	DESCRIPTION="An enhanced, drop-in replacement fro MySQL from the Percona team"
+	DESCRIPTION="An enhanced, drop-in replacement for MySQL from the Percona team"
 fi
 LICENSE="GPL-2"
 SLOT="0"
@@ -218,12 +218,19 @@ esac
 # Common IUSE
 IUSE="${IUSE} latin1 extraengine cluster max-idx-128 +community profiling"
 
-if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]] && mysql_version_is_at_least "5.5" ; then
+# This probably could be simplified, but the syntax would have to be just right
+if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]] && \
+	mysql_version_is_at_least "5.5" ; then
 	IUSE="bindist ${IUSE}"
-elif [[ ${PN} == "mysql" || ${PN} == "percona-server" ]] && mysql_check_version_range "5.5.37 to 5.6.11.99" ; then
+	RESTRICT="${RESTRICT} !bindist? ( bindist )"
+elif [[ ${PN} == "mysql" || ${PN} == "percona-server" ]] && \
+	mysql_check_version_range "5.5.37 to 5.6.11.99" ; then
 	IUSE="bindist ${IUSE}"
-elif [[ ${PN} == "mysql-cluster" ]] && mysql_check_version_range "7.2 to 7.2.99.99" ; then
+	RESTRICT="${RESTRICT} !bindist? ( bindist )"
+elif [[ ${PN} == "mysql-cluster" ]] && \
+	mysql_check_version_range "7.2 to 7.2.99.99"  ; then
 	IUSE="bindist ${IUSE}"
+	RESTRICT="${RESTRICT} !bindist? ( bindist )"
 fi
 
 if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]]; then
@@ -262,7 +269,7 @@ REQUIRED_USE="${REQUIRED_USE} minimal? ( !cluster !extraengine !embedded ) stati
 # Be warned, *DEPEND are version-dependant
 # These are used for both runtime and compiletime
 DEPEND="
-	ssl? ( >=dev-libs/openssl-0.9.6d )
+	ssl? ( >=dev-libs/openssl-0.9.6d:0 )
 	kernel_linux? ( sys-process/procps )
 	>=sys-apps/sed-4
 	>=sys-apps/texinfo-4.7-r1
@@ -272,23 +279,23 @@ DEPEND="
 #	!dev-db/mariadb-native-client[mysqlcompat]
 
 # dev-db/mysql-5.6.12+ only works with dev-libs/libedit
-if [[ ${PN} == "mysql" || ${PN} == "percona-server" ]] && mysql_version_is_at_least "5.6.12" ; then
+# This probably could be simplified
+if [[ ${PN} == "mysql" || ${PN} == "percona-server" ]] && \
+	mysql_version_is_at_least "5.6.12" ; then
 	DEPEND="${DEPEND} dev-libs/libedit"
 elif [[ ${PN} == "mysql-cluster" ]] && mysql_version_is_at_least "7.3"; then
 	DEPEND="${DEPEND} dev-libs/libedit"
 else
 	if mysql_version_is_at_least "5.5" ; then
-		DEPEND="${DEPEND} !bindist? ( >=sys-libs/readline-4.1 )"
+		DEPEND="${DEPEND} !bindist? ( >=sys-libs/readline-4.1:0 )"
 	else
-		DEPEND="${DEPEND} >=sys-libs/readline-4.1"
+		DEPEND="${DEPEND} >=sys-libs/readline-4.1:0"
 	fi
-
 fi
 
 if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]] ; then
 	mysql_check_version_range "5.1.38 to 5.3.99" && DEPEND="${DEPEND} libevent? ( >=dev-libs/libevent-1.4 )"
 	mysql_version_is_at_least "5.2" && DEPEND="${DEPEND} oqgraph? ( >=dev-libs/boost-1.40.0 )"
-	mysql_version_is_at_least "5.2.5" && DEPEND="${DEPEND} sphinx? ( app-misc/sphinx )"
 	mysql_version_is_at_least "5.2.10" && DEPEND="${DEPEND} !minimal? ( pam? ( virtual/pam ) )"
 	# Bug 441700 MariaDB >=5.3 include custom mytop
 	mysql_version_is_at_least "5.3" && DEPEND="${DEPEND} perl? ( !dev-db/mytop )"
@@ -522,7 +529,7 @@ mysql-v2_src_unpack() {
 
 	unpack ${A}
 	# Grab the patches
-	[[ "${MY_EXTRAS_VER}" == "live" ]] && S="${WORKDIR}/mysql-extras" git-2_src_unpack
+	[[ "${MY_EXTRAS_VER}" == "live" ]] && S="${WORKDIR}/mysql-extras" git-r3_src_unpack
 
 	mv -f "${WORKDIR}/${MY_SOURCEDIR}" "${S}"
 }
@@ -736,13 +743,13 @@ mysql-v2_pkg_config() {
 	MYSQL_LOG_BIN="$(mysql-v2_getoptval mysqld log-bin)"
 	MYSQL_LOG_BIN=${MYSQL_LOG_BIN%/*}
 
-	if [[ ! -d "${EROOT}"/$MYSQL_TMPDIR ]]; then
+	if [[ ! -d "${ROOT}"/$MYSQL_TMPDIR ]]; then
 		einfo "Creating MySQL tmpdir $MYSQL_TMPDIR"
-		install -d -m 770 -o mysql -g mysql "${EROOT}"/$MYSQL_TMPDIR
+		install -d -m 770 -o mysql -g mysql "${ROOT}"/$MYSQL_TMPDIR
 	fi
-	if [[ ! -d "${EROOT}"/$MYSQL_LOG_BIN ]]; then
+	if [[ ! -d "${ROOT}"/$MYSQL_LOG_BIN ]]; then
 		einfo "Creating MySQL log-bin directory $MYSQL_LOG_BIN"
-		install -d -m 770 -o mysql -g mysql "${EROOT}"/$MYSQL_LOG_BIN
+		install -d -m 770 -o mysql -g mysql "${ROOT}"/$MYSQL_LOG_BIN
 	fi
 	if [[ ! -d "${EROOT}"/$MYSQL_RELAY_LOG ]]; then
 		einfo "Creating MySQL relay-log directory $MYSQL_RELAY_LOG"
@@ -763,7 +770,7 @@ mysql-v2_pkg_config() {
 	if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
 
 		einfo "Please provide a password for the mysql 'root' user now, in the"
-		einfo "MYSQL_ROOT_PASSWORD env var or through the  /root/.my.cnf file."
+		einfo "MYSQL_ROOT_PASSWORD env var or through the ${HOME}/.my.cnf file."
 		ewarn "Avoid [\"'\\_%] characters in the password"
 		read -rsp "    >" pwd1 ; echo
 
@@ -777,8 +784,12 @@ mysql-v2_pkg_config() {
 		unset pwd1 pwd2
 	fi
 
-	local options="--log-warnings=0"
+	local options
 	local sqltmp="$(emktemp)"
+
+	# Fix bug 446200. Don't reference host my.cnf, needs to come first,
+	# see http://bugs.mysql.com/bug.php?id=31312
+	use prefix && options="${options} --defaults-file=${MY_SYSCONFDIR}/my.cnf"
 
 	local help_tables="${ROOT}${MY_SHAREDSTATEDIR}/fill_help_tables.sql"
 	[[ -r "${help_tables}" ]] \
@@ -802,17 +813,12 @@ mysql-v2_pkg_config() {
 
 	use prefix || options="${options} --user=mysql"
 
-	# Fix bug 446200. Don't reference host my.cnf
-	use prefix && [[ -f "${MY_SYSCONFDIR}/my.cnf" ]] \
-		&& options="${options} '--defaults-file=${MY_SYSCONFDIR}/my.cnf'"
-
 	# MySQL 5.6+ needs InnoDB
 	if [[ ${PN} == "mysql" || ${PN} == "percona-server" ]] ; then
 		mysql_version_is_at_least "5.6" || options="${options} --loose-skip-innodb"
 	fi
 
-	einfo "Creating the mysql database and setting proper"
-	einfo "permissions on it ..."
+	einfo "Creating the mysql database and setting proper permissions on it ..."
 
 	# Now that /var/run is a tmpfs mount point, we need to ensure it exists before using it
 	PID_DIR="${EROOT}/var/run/mysqld"
@@ -826,7 +832,7 @@ mysql-v2_pkg_config() {
 	#cmd="'${EROOT}/usr/share/mysql/scripts/mysql_install_db' '--basedir=${EPREFIX}/usr' ${options}"
 	cmd=${EROOT}usr/share/mysql/scripts/mysql_install_db
 	[[ -f ${cmd} ]] || cmd=${EROOT}usr/bin/mysql_install_db
-	cmd="'$cmd' '--basedir=${EPREFIX}/usr' ${options} '--datadir=${EROOT}/${MY_DATADIR}' '--tmpdir=${EROOT}/${MYSQL_TMPDIR}'"
+	cmd="'$cmd' '--basedir=${EPREFIX}/usr' ${options} '--datadir=${ROOT}/${MY_DATADIR}' '--tmpdir=${ROOT}/${MYSQL_TMPDIR}'"
 	einfo "Command: $cmd"
 	eval $cmd \
 		>"${TMPDIR}"/mysql_install_db.log 2>&1
@@ -852,7 +858,7 @@ mysql-v2_pkg_config() {
 	local pidfile="${EROOT}/var/run/mysqld/mysqld${RANDOM}.pid"
 	local mysqld="${EROOT}/usr/sbin/mysqld \
 		${options} \
-		--user=mysql \
+		$(use prefix || echo --user=mysql) \
 		--log-warnings=0 \
 		--basedir=${EROOT}/usr \
 		--datadir=${ROOT}/${MY_DATADIR} \
@@ -861,7 +867,7 @@ mysql-v2_pkg_config() {
 		--default-storage-engine=MyISAM \
 		--socket=${socket} \
 		--pid-file=${pidfile}
-		--tmpdir=${EROOT}/${MYSQL_TMPDIR}"
+		--tmpdir=${ROOT}/${MYSQL_TMPDIR}"
 	#einfo "About to start mysqld: ${mysqld}"
 	ebegin "Starting mysqld"
 	einfo "Command ${mysqld}"
@@ -887,7 +893,7 @@ mysql-v2_pkg_config() {
 		-e "${sql}"
 	eend $?
 
-	ebegin "Loading \"zoneinfo\", this step may require a few seconds ..."
+	ebegin "Loading \"zoneinfo\", this step may require a few seconds"
 	"${EROOT}/usr/bin/mysql" \
 		--socket=${socket} \
 		-hlocalhost \

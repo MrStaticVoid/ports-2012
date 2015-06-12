@@ -1,10 +1,10 @@
 DEFINED_PHASES=compile configure install prepare setup unpack
-DEPEND=dev-qt/qtgui:4 amd64? ( app-emulation/emul-linux-x86-qtlibs ) dev-vcs/git
+DEPEND=|| ( ( dev-qt/qtcore:4[abi_x86_32(-)] dev-qt/qtgui:4[abi_x86_32(-)] ) amd64? ( app-emulation/emul-linux-x86-qtlibs[-abi_x86_32(-)] ) ) dev-vcs/git
 DESCRIPTION=An LD_PRELOAD wrapper that adds tabs to Skype for Linux
 EAPI=4
 HOMEPAGE=http://github.com/kekekeks/skypetab-ng
 LICENSE=LGPL-3
-RDEPEND=dev-qt/qtgui:4 amd64? ( app-emulation/emul-linux-x86-qtlibs ) || ( >=net-im/skype-4.1 <net-im/skype-4.1[-qt-static] )
+RDEPEND=|| ( ( dev-qt/qtcore:4[abi_x86_32(-)] dev-qt/qtgui:4[abi_x86_32(-)] ) amd64? ( app-emulation/emul-linux-x86-qtlibs[-abi_x86_32(-)] ) ) || ( >=net-im/skype-4.1 <net-im/skype-4.1[-qt-static] )
 SLOT=0
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	git-2	2027b81a576527fa16bece425941e094	git-r3	f908736fc2f2912c118910333ea303f4	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	40136c5fe0002a0d3937e869ae4ee0e2	qt4-r2	118737d78407d7d0a6cdf4147b668ec3	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=6e644e525b9150197ff4bcc72bbfef58
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	git-2	e28f0d8a9b321431b1e699782851b827	multilib	62927b3db3a589b0806255f3a002d5d3	qmake-utils	1c0e4f885b876595f09a9bb6c78a687d	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=2f2d225541e7fc54bcd1eb6f7f2dab1e

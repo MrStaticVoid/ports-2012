@@ -1,9 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.36.0.ebuild,v 1.2 2014/02/06 12:19:14 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.36.0.ebuild,v 1.6 2015/04/08 17:58:13 mgorny Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit autotools eutils flag-o-matic java-pkg-opt-2 multilib python-single-r1
 
@@ -28,6 +28,7 @@ RDEPEND="
 	>=media-libs/gd-2.0.34[fontconfig,jpeg,png,truetype,zlib]
 	>=media-libs/libpng-1.2:0
 	!<=sci-chemistry/cluster-1.3.081231
+	sys-devel/libtool
 	virtual/jpeg:0
 	virtual/libiconv
 	X? (
@@ -47,6 +48,7 @@ RDEPEND="
 	gts?	( sci-libs/gts )
 	lasi?	( media-libs/lasi )
 	pdf?	( app-text/poppler )
+	perl?   ( dev-lang/perl:= )
 	python?	( ${PYTHON_DEPS} )
 	qt4?	(
 		dev-qt/qtcore:4
@@ -54,7 +56,7 @@ RDEPEND="
 	)
 	ruby?	( dev-lang/ruby )
 	svg?	( gnome-base/librsvg )
-	tcl?	( >=dev-lang/tcl-8.3 )"
+	tcl?	( >=dev-lang/tcl-8.3:0= )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	sys-devel/flex

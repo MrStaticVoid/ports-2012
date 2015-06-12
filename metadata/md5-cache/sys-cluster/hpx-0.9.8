@@ -3,12 +3,12 @@ DEPEND=tbb? ( dev-cpp/tbb ) >=dev-libs/boost-1.51 dev-libs/libxml2 papi? ( dev-l
 DESCRIPTION=C++ runtime system for parallel and distributed applications
 EAPI=5
 HOMEPAGE=http://stellar.cct.lsu.edu/tag/hpx/
-IUSE=doc examples jemalloc papi +perftools tbb test python_targets_python2_7 python_single_target_python2_7
+IUSE=doc examples jemalloc papi +perftools tbb test python_targets_python2_7
 KEYWORDS=~amd64 ~x86
 LICENSE=Boost-1.0
 RDEPEND=tbb? ( dev-cpp/tbb ) >=dev-libs/boost-1.51 dev-libs/libxml2 papi? ( dev-libs/papi ) sci-libs/hdf5 >=sys-apps/hwloc-1.8 >=sys-libs/libunwind-1 sys-libs/zlib perftools? ( >=dev-util/google-perftools-1.7.1 ) virtual/fortran
-REQUIRED_USE=test? ( python_single_target_python2_7? ( python_targets_python2_7 ) ^^ ( python_single_target_python2_7 ) )
+REQUIRED_USE=test? ( python_targets_python2_7 )
 SLOT=0
 SRC_URI=http://stellar.cct.lsu.edu/files/hpx_0.9.8.7z
-_eclasses_=cmake-utils	3c236476577c40ef83fcb42c7f6c0b23	eutils	32548a82e42dc26e3312581476d2f20c	flag-o-matic	75e24bac8423c515dd9c5717f08feb83	fortran-2	e18b1135d4c478b5c81b23698c483030	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python-single-r1	a71a169a881e0a11d04a7fe12dc39f6e	python-utils-r1	47dda904cf91c61f45b564d9f834fde1	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=8466b483ce996403ecf5d9fa3ed9d33a
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	fortran-2	e18b1135d4c478b5c81b23698c483030	multilib	62927b3db3a589b0806255f3a002d5d3	python-single-r1	7a178335dbd6ea7f50ed4e3e1c13c1e4	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=e6f97c50da51e34bfbab3948a6e6bfda

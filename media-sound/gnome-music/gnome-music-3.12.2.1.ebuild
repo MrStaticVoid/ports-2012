@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gnome-music/gnome-music-3.12.2.1.ebuild,v 1.3 2014/07/23 15:22:59 ago Exp $
+# Distributed under the terms of the GNU General Public License v2$
 
 EAPI="5"
 GCONF_DEBUG="no"

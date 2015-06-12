@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/st/st-0.5.ebuild,v 1.1 2014/04/06 15:20:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/st/st-0.5.ebuild,v 1.3 2015/03/12 14:16:15 xmw Exp $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ SRC_URI="http://dl.suckless.org/st/${P}.tar.gz"
 
 LICENSE="MIT-with-advertising"
 SLOT="0"
-KEYWORDS="~amd64 ~hppa ~x86"
+KEYWORDS="amd64 ~hppa ~x86"
 IUSE="savedconfig"
 
 RDEPEND="media-libs/fontconfig
@@ -26,6 +26,8 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
 src_prepare() {
+	epatch_user
+
 	sed -e '/^CFLAGS/s:[[:space:]]-O[^[:space:]]*[[:space:]]: :' \
 		-e '/^X11INC/{s:/usr/X11R6/include:/usr/include/X11:}' \
 		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \

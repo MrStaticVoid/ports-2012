@@ -1,13 +1,13 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-qt/qt-meta/qt-meta-4.8.5.ebuild,v 1.3 2013/11/03 13:06:34 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-qt/qt-meta/qt-meta-4.8.5.ebuild,v 1.6 2015/04/01 18:52:12 pesa Exp $
 
 EAPI=5
 
-DESCRIPTION="Cross-platform application development framework (meta package)"
-HOMEPAGE="http://qt-project.org/ http://qt.digia.com/"
+DESCRIPTION="Cross-platform application development framework (metapackage)"
+HOMEPAGE="https://www.qt.io/"
 
-LICENSE="|| ( LGPL-2.1 GPL-3 )"
+LICENSE="metapackage"
 SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="+dbus examples kde openvg +qt3support +webkit"
@@ -30,8 +30,8 @@ RDEPEND="
 	>=dev-qt/qtmultimedia-${PV}:4
 	>=dev-qt/qtopengl-${PV}:4
 	openvg? ( >=dev-qt/qtopenvg-${PV}:4 )
-	kde? ( media-libs/phonon )
-	!kde? ( || ( >=dev-qt/qtphonon-${PV}:4 media-libs/phonon ) )
+	kde? ( media-libs/phonon[qt4] )
+	!kde? ( || ( >=dev-qt/qtphonon-${PV}:4 media-libs/phonon[qt4] ) )
 	>=dev-qt/qtscript-${PV}:4
 	>=dev-qt/qtsql-${PV}:4
 	>=dev-qt/qtsvg-${PV}:4

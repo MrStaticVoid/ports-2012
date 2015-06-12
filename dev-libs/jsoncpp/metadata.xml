@@ -5,4 +5,11 @@
     <email>phajdan.jr@gentoo.org</email>
     <name>Pawel Hajdan jr</name>
   </maintainer>
+  <maintainer>
+    <email>mgorny@gentoo.org</email>
+    <name>Michał Górny</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">open-source-parsers/jsoncpp</remote-id>
+  </upstream>
 </pkgmetadata>

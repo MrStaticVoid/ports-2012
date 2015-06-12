@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-qtlibs/emul-linux-x86-qtlibs-20140508-r1.ebuild,v 1.8 2014/08/28 16:55:46 ssuominen Exp $
 
 EAPI=5
 inherit eutils emul-linux-x86

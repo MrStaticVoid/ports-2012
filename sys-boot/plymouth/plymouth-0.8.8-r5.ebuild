@@ -1,8 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/plymouth/plymouth-0.8.8-r5.ebuild,v 1.1 2014/03/01 19:21:50 maksbotan Exp $
 
-EAPI=5
+EAPI="5"
 
 inherit autotools-utils readme.gentoo systemd toolchain-funcs
 
@@ -14,9 +12,9 @@ SRC_URI="
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 IUSE_VIDEO_CARDS="video_cards_intel video_cards_radeon"
-IUSE="${IUSE_VIDEO_CARDS} debug gdm +gtk +libkms +pango static-libs"
+IUSE="${IUSE_VIDEO_CARDS} debug gdm +gtk +libkms +pango static-libs systemd"
 
 CDEPEND="
 	>=media-libs/libpng-1.2.16
@@ -25,6 +23,7 @@ CDEPEND="
 		>=x11-libs/gtk+-2.12:2 )
 	libkms? ( x11-libs/libdrm[libkms] )
 	pango? ( >=x11-libs/pango-1.21 )
+	systemd? ( sys-apps/systemd )
 	video_cards_intel? ( x11-libs/libdrm[video_cards_intel] )
 	video_cards_radeon? ( x11-libs/libdrm[video_cards_radeon] )
 "
@@ -59,12 +58,12 @@ src_configure() {
 		--with-system-root-install=no
 		--localstatedir=/var
 		--without-rhgb-compat-link
-		--enable-systemd-integration
 		$(use_enable debug tracing)
+		$(use_enable gdm gdm-transition)
 		$(use_enable gtk gtk)
 		$(use_enable libkms)
 		$(use_enable pango)
-		$(use_enable gdm gdm-transition)
+		$(use_enable systemd systemd-integration)
 		$(use_enable video_cards_intel libdrm_intel)
 		$(use_enable video_cards_radeon libdrm_radeon)
 		)

@@ -11,7 +11,7 @@ inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 if [[ "${PV}" == *_pre* ]]; then
 	inherit mercurial
 
-	EHG_REPO_URI="http://hg.python.org/cpython"
+	EHG_REPO_URI="https://hg.python.org/cpython"
 	EHG_REVISION=""
 else
 	MY_PV="${PV%_p*}"
@@ -21,13 +21,13 @@ fi
 PATCHSET_REVISION="1"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
-HOMEPAGE="http://www.python.org/"
+HOMEPAGE="https://www.python.org/"
 if [[ "${PV}" == *_pre* ]]; then
 	SRC_URI=""
 else
-	SRC_URI="http://www.python.org/ftp/python/${MY_PV}/${MY_P}.tar.bz2"
+	SRC_URI="https://www.python.org/ftp/python/${MY_PV}/${MY_P}.tar.bz2"
 	if [[ "${PR#r}" -lt 1000 ]]; then
-		SRC_URI+=" http://people.apache.org/~Arfrever/gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+		SRC_URI+=" https://people.apache.org/~Arfrever/gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
 	fi
 fi
 
@@ -103,11 +103,6 @@ src_prepare() {
 	local excluded_patches
 	if ! tc-is-cross-compiler; then
 		excluded_patches="*_all_crosscompile.patch"
-	fi
-
-	if [[ "${PV}" != *_pre* ]]; then
-		# Delete potential useless files.
-		find "(" -name __pycache__ -o -name "*.py[co]" ")" -print0 | xargs -0 rm -fr
 	fi
 
 	local patchset_dir
@@ -227,9 +222,9 @@ src_test() {
 		return
 	fi
 
-	# Byte compiling should be enabled here.
+	# Byte-compilation should be enabled here.
 	# Otherwise test_import fails.
-	python_enable_pyc
+	python_enable_byte-compilation
 
 	# Skip failing tests.
 	local skipped_tests="__all__ contextlib decimal distutils fractions json smtplib tcl tokenize zlib"
@@ -254,7 +249,7 @@ src_test() {
 	elog "cd '${EPREFIX}$(python_get_libdir)/test'"
 	elog "and run the tests separately."
 
-	python_disable_pyc
+	python_disable_byte-compilation
 
 	if [[ "${result}" -ne 0 ]]; then
 		die "emake test failed"
@@ -322,17 +317,18 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
+	python_byte-compile_modules -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn
 		ewarn "\e[1;31m************************************************************************\e[0m"
 		ewarn
 		ewarn "You have just upgraded from an older version of Python. You should:"
-		ewarn "1. Switch active version of Python ${PV%%.*} using 'eselect python'"
-		ewarn "2. Update PYTHON_ABIS variable in make.conf"
-		ewarn "3. Run 'emerge --update --deep --newuse world'"
-		ewarn "4. Run 'python-updater [options]' to rebuild potential remaining Python-related packages"
+		ewarn "1. Run 'emerge --oneshot sys-apps/portage'"
+		ewarn "2. Update potential PYTHON_* variables in make.conf and package.use"
+		ewarn "3. Run 'emerge --nodeps --oneshot sys-apps/portage'"
+		ewarn "4. Switch active version of Python ${PV%%.*} using 'eselect python'"
+		ewarn "5. Run 'emerge --update --deep --newuse @world'"
 		ewarn
 		ewarn "\e[1;31m************************************************************************\e[0m"
 		ewarn
@@ -343,5 +339,5 @@ pkg_postinst() {
 pkg_postrm() {
 	eselect_python_update
 
-	python_mod_cleanup $(python_get_libdir)
+	python_clean_byte-compiled_modules $(python_get_libdir)
 }

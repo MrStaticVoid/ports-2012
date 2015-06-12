@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/docile/docile-1.1.5.ebuild,v 1.1 2014/07/30 05:27:55 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/docile/docile-1.1.5.ebuild,v 1.3 2015/03/20 13:42:55 graaff Exp $
 
 EAPI=5
 
-USE_RUBY="ruby19 ruby20 ruby21 jruby"
+USE_RUBY="ruby19 ruby20 ruby21 ruby22"
 
 RUBY_FAKEGEM_RECIPE_TEST="rspec"
 

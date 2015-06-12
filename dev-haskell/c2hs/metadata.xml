@@ -10,4 +10,10 @@
 		hsch2s), this ensures that C functions are imported with the
 		correct Haskell types.
 	</longdescription>
+	<use>
+		<flag name="regression">run regression tests</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">haskell/c2hs</remote-id>
+	</upstream>
 </pkgmetadata>

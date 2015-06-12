@@ -1,11 +1,12 @@
-DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
-DEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qtsingleapplication[X] dev-qt/qtsql:4[sqlite] dev-qt/qtwebkit:4 dev-db/sqlite:3 phonon? ( || ( media-libs/phonon dev-qt/qtphonon:4 ) ) virtual/pkgconfig >=sys-apps/sed-4 dev-vcs/mercurial
-DESCRIPTION=A Qt4-based RSS/Atom feed reader
+DEFINED_PHASES=configure install postinst postrm preinst prepare unpack
+DEPEND=qt4? ( dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qtsql:4[sqlite] dev-qt/qtwebkit:4 phonon? ( || ( media-libs/phonon[qt4] dev-qt/qtphonon:4 ) ) ) qt5? ( dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtmultimedia:5 dev-qt/qtnetwork:5 dev-qt/qtprintsupport:5 dev-qt/qtsql:5[sqlite] dev-qt/qtwebkit:5 dev-qt/qtwidgets:5 dev-qt/qtxml:5 ) dev-qt/qtsingleapplication[X,qt4(+)?,qt5(-)?] dev-db/sqlite:3 virtual/pkgconfig >=sys-apps/sed-4 >=dev-vcs/git-1.8.2.1
+DESCRIPTION=A Qt-based RSS/Atom feed reader
 EAPI=5
 HOMEPAGE=https://quiterss.org
-IUSE=debug phonon linguas_ar linguas_cs linguas_de linguas_el_GR linguas_es linguas_fa linguas_fi linguas_fr linguas_gl linguas_hu linguas_it linguas_ja linguas_ko linguas_lt linguas_nl linguas_pl linguas_pt_BR linguas_pt_PT linguas_ro_RO linguas_ru linguas_sk linguas_sr linguas_sv linguas_tg_TJ linguas_tr linguas_uk linguas_vi linguas_zh_CN linguas_zh_TW
+IUSE=debug phonon +qt4 qt5 linguas_ar linguas_bg linguas_cs linguas_de linguas_el_GR linguas_es linguas_fa linguas_fi linguas_fr linguas_gl linguas_hi linguas_hu linguas_it linguas_ja linguas_ko linguas_lt linguas_nl linguas_pl linguas_pt_BR linguas_pt_PT linguas_ro_RO linguas_ru linguas_sk linguas_sr linguas_sv linguas_tg_TJ linguas_tr linguas_uk linguas_vi linguas_zh_CN linguas_zh_TW
 LICENSE=GPL-3
-RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qtsingleapplication[X] dev-qt/qtsql:4[sqlite] dev-qt/qtwebkit:4 dev-db/sqlite:3 phonon? ( || ( media-libs/phonon dev-qt/qtphonon:4 ) )
+RDEPEND=qt4? ( dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qtsql:4[sqlite] dev-qt/qtwebkit:4 phonon? ( || ( media-libs/phonon[qt4] dev-qt/qtphonon:4 ) ) ) qt5? ( dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtmultimedia:5 dev-qt/qtnetwork:5 dev-qt/qtprintsupport:5 dev-qt/qtsql:5[sqlite] dev-qt/qtwebkit:5 dev-qt/qtwidgets:5 dev-qt/qtxml:5 ) dev-qt/qtsingleapplication[X,qt4(+)?,qt5(-)?] dev-db/sqlite:3
+REQUIRED_USE=^^ ( qt4 qt5 )
 SLOT=0
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome2-utils	924d80d23c665d976484b8bfb50ae08b	l10n	33bde4fb0cfd3a21a277b66bfd837e19	mercurial	2fbda5894dda6392b71334ee9a92de0b	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	40136c5fe0002a0d3937e869ae4ee0e2	qt4-r2	118737d78407d7d0a6cdf4147b668ec3	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=aa5ab988822b2ccaef20eda25007949c
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	git-r3	a00948a17a774db5e36bc0247c598097	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	l10n	33bde4fb0cfd3a21a277b66bfd837e19	multilib	62927b3db3a589b0806255f3a002d5d3	qmake-utils	1c0e4f885b876595f09a9bb6c78a687d	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=c6a5fa0712dbf8bb95ab3d6858f5f9c5

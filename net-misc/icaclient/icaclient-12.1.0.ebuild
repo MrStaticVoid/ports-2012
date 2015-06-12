@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/icaclient/icaclient-12.1.0.ebuild,v 1.7 2014/06/18 20:40:01 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/icaclient/icaclient-12.1.0.ebuild,v 1.9 2015/04/03 21:48:08 dilfridge Exp $
 
-EAPI=4
+EAPI=5
 
 inherit multilib eutils rpm
 
@@ -39,43 +39,43 @@ QA_TEXTRELS="opt/Citrix/ICAClient/VDSCARD.DLL
 QA_EXECSTACK="opt/Citrix/ICAClient/wfica
 	opt/Citrix/ICAClient/libctxssl.so"
 
-RDEPEND="x11-terms/xterm
+RDEPEND="
+	x11-terms/xterm
 	media-fonts/font-adobe-100dpi
 	media-fonts/font-misc-misc
 	media-fonts/font-cursor-misc
 	media-fonts/font-xfree86-type1
 	media-fonts/font-misc-ethiopic
-	x86? (
-		x11-libs/libXp
-		x11-libs/libXaw
-		x11-libs/libX11
-		x11-libs/libSM
-		x11-libs/libICE
-		x11-libs/libXinerama
-		>=x11-libs/motif-2.3.1:0
-	)
-	amd64? (
-		|| (
-			(
-				>=x11-libs/libXp-1.0.2[abi_x86_32]
-				>=x11-libs/libXaw-1.0.11-r2[abi_x86_32]
-				>=x11-libs/libX11-1.6.2[abi_x86_32]
-				>=x11-libs/libSM-1.2.1-r1[abi_x86_32]
-				>=x11-libs/libICE-1.0.8-r1[abi_x86_32]
-				>=x11-libs/libXinerama-1.1.3[abi_x86_32]
-			)
-			>=app-emulation/emul-linux-x86-xlibs-20110129
-		)
-		|| (
-			>=x11-libs/motif-2.3.4-r1:0[abi_x86_32]
-			>=app-emulation/emul-linux-x86-motif-20110129
-		)
-		>=app-emulation/emul-linux-x86-soundlibs-20110928
-		>=app-emulation/emul-linux-x86-gtklibs-20110928
-		nsplugin? (
-			www-plugins/nspluginwrapper
-		)
-	)"
+	amd64? ( nsplugin? ( www-plugins/nspluginwrapper ) )
+	>=app-crypt/mit-krb5-1.12.1-r2[abi_x86_32(-)]
+	>=dev-libs/atk-2.10.0[abi_x86_32(-)]
+	>=dev-libs/glib-2.38.2-r1:2[abi_x86_32(-)]
+	>=media-libs/alsa-lib-1.0.27.2[abi_x86_32(-)]
+	>=media-libs/gst-plugins-base-0.10.36:0.10[abi_x86_32(-)]
+	>=media-libs/gstreamer-0.10.36-r2:0.10[abi_x86_32(-)]
+	>=media-libs/libogg-1.3.0[abi_x86_32(-)]
+	>=media-libs/libvorbis-1.3.3-r1[abi_x86_32(-)]
+	>=media-libs/speex-1.2_rc1-r1[abi_x86_32(-)]
+	>=virtual/ffmpeg-9-r1[abi_x86_32(-)]
+	>=x11-libs/cairo-1.12.14-r4[abi_x86_32(-)]
+	>=x11-libs/gdk-pixbuf-2.30.7:2[abi_x86_32(-)]
+	>=x11-libs/gtk+-2.24.23:2[abi_x86_32(-)]
+	>=x11-libs/libICE-1.0.8-r1[abi_x86_32(-)]
+	>=x11-libs/libSM-1.2.1-r1[abi_x86_32(-)]
+	>=x11-libs/libX11-1.6.2[abi_x86_32(-)]
+	>=x11-libs/libXaw-1.0.11-r2[abi_x86_32(-)]
+	>=x11-libs/libXext-1.3.2[abi_x86_32(-)]
+	>=x11-libs/libXinerama-1.1.3[abi_x86_32(-)]
+	>=x11-libs/libXmu-1.1.1-r1[abi_x86_32(-)]
+	>=x11-libs/libXp-1.0.2[abi_x86_32(-)]
+	>=x11-libs/libXpm-3.5.10-r1[abi_x86_32(-)]
+	>=x11-libs/libXrender-0.9.8[abi_x86_32(-)]
+	>=x11-libs/libXt-1.1.4[abi_x86_32(-)]
+	>=x11-libs/motif-2.3.4-r1:0[abi_x86_32(-)]
+	>=x11-libs/pango-1.36.3[abi_x86_32(-)]
+	media-libs/flac[abi_x86_32(-)]
+"
+
 DEPEND=""
 S="${WORKDIR}${ICAROOT}"
 

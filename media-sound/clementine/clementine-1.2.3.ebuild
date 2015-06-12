@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/clementine/clementine-1.2.3.ebuild,v 1.2 2014/07/24 11:52:54 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/clementine/clementine-1.2.3.ebuild,v 1.5 2015/03/14 13:14:41 maksbotan Exp $
 
 EAPI=5
 
@@ -30,7 +30,8 @@ REQUIRED_USE="
 
 # qca dep is temporary for bug #489850
 COMMON_DEPEND="
-	app-crypt/qca:2
+	app-crypt/qca:2[qt4(+)]
+	>=dev-qt/qtcore-4.5:4
 	>=dev-qt/qtgui-4.5:4
 	dbus? ( >=dev-qt/qtdbus-4.5:4 )
 	>=dev-qt/qtopengl-4.5:4
@@ -46,8 +47,10 @@ COMMON_DEPEND="
 	>=media-libs/chromaprint-0.6
 	media-libs/gstreamer:0.10
 	media-libs/gst-plugins-base:0.10
+	sys-libs/zlib
 	virtual/glu
 	virtual/opengl
+	x11-libs/libX11
 	ayatana? ( dev-libs/libindicate-qt )
 	cdda? ( dev-libs/libcdio )
 	ipod? ( >=media-libs/libgpod-0.8.0 )
@@ -89,6 +92,10 @@ RESTRICT="test"
 
 [[ ${PV} == *9999* ]] || \
 S="${WORKDIR}/${P^}"
+
+PATCHES=(
+	"${FILESDIR}"/clementine-1.2.3-namespaces.patch
+)
 
 src_prepare() {
 	cmake-utils_src_prepare

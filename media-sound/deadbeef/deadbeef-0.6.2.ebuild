@@ -39,6 +39,7 @@ LICENSE="BSD
 	gtk3? ( GPL-2 )
 	hotkeys? ( ZLIB )
 	lastfm? ( GPL-2 )
+	libav? ( GPL-2 )
 	libnotify? ( GPL-2 )
 	libsamplerate? ( GPL-2 )
 	m3u? ( ZLIB )
@@ -68,71 +69,61 @@ SLOT="0"
 
 IUSE="+alsa +flac +gtk2 +hotkeys +m3u +mp3 +sndfile +vorbis
 	aac adplug alac cdda converter cover cover-imlib2 cover-network curl dts dumb equalizer
-	ffmpeg gme gtk3 lastfm libnotify libsamplerate mac midi mms mono2stereo musepack nls nullout
+	ffmpeg gme gtk3 lastfm libav libnotify libsamplerate mac midi mms mono2stereo musepack nls nullout
 	oss playlist-browser psf pulseaudio shell-exec shn sid tta unity vtx wavpack wma zip"
-
-# deadbeef third party plugins
-IUSE+=" archive bookmark-manager bs2b filebrowser gnome-mmkeys infobar jack mpris musical-spectrum
-	opus replaygain-control spectrogram stereo-widener vk vu-meter waveform-seekbar"
 
 REQUIRED_USE="converter? ( || ( gtk2 gtk3 ) )
 	cover-imlib2? ( cover )
 	cover-network? ( cover curl )
 	cover? ( || ( gtk2 gtk3 ) )
+	ffmpeg? ( !libav )
 	lastfm? ( curl )
 	playlist-browser? ( || ( gtk2 gtk3 ) )
 	|| ( alsa oss pulseaudio nullout )"
 
-PDEPEND="archive? ( media-plugins/deadbeef-archive-reader )
-	bookmark-manager? ( media-plugins/deadbeef-bookmark-manager )
-	bs2b? ( media-plugins/deadbeef-bs2b )
-	filebrowser? ( media-plugins/deadbeef-fb )
-	gnome-mmkeys? ( media-plugins/deadbeef-gnome-mmkeys )
-	infobar? ( media-plugins/deadbeef-infobar )
-	jack? ( media-plugins/deadbeef-jack )
-	mpris? ( media-plugins/deadbeef-mpris )
-	musical-spectrum? ( media-plugins/deadbeef-musical-spectrum )
-	opus? ( media-plugins/deadbeef-opus )
-	replaygain-control? ( media-plugins/deadbeef-replaygain-control )
-	spectrogram? ( media-plugins/deadbeef-spectrogram )
-	stereo-widener? ( media-plugins/deadbeef-stereo-widener )
-	vk? ( media-plugins/deadbeef-vk )
-	vu-meter? ( media-plugins/deadbeef-vu-meter )
-	waveform-seekbar? ( media-plugins/deadbeef-waveform-seekbar )"
+PDEPEND="media-plugins/deadbeef-plugins-meta:0"
 
-RDEPEND="aac? ( media-libs/faad2 )
-	adplug? ( media-libs/adplug )
-	alsa? ( media-libs/alsa-lib )
-	alac? ( media-libs/faad2 )
-	cdda? ( dev-libs/libcdio media-libs/libcddb )
-	cover? ( cover-imlib2? ( media-libs/imlib2 )
-		media-libs/libpng
-		virtual/jpeg
-		x11-libs/gdk-pixbuf[jpeg] )
-	curl? ( net-misc/curl )
-	ffmpeg? ( virtual/ffmpeg )
-	flac? ( media-libs/flac )
-	gme? ( sys-libs/zlib )
-	gtk2? ( x11-libs/gtk+:2 )
+RDEPEND="dev-libs/glib:2
+	aac? ( media-libs/faad2:0 )
+	adplug? ( media-libs/adplug:0 )
+	alsa? ( media-libs/alsa-lib:0 )
+	alac? ( media-libs/faad2:0 )
+	cdda? ( dev-libs/libcdio:0=
+		media-libs/libcddb:0 )
+	cover? ( cover-imlib2? ( media-libs/imlib2:0 )
+		media-libs/libpng:0=
+		virtual/jpeg:0
+		x11-libs/gdk-pixbuf:2[jpeg] )
+	curl? ( net-misc/curl:0 )
+	ffmpeg? ( media-video/ffmpeg:0= )
+	libav? ( media-video/libav:0= )
+	flac? ( media-libs/libogg
+		media-libs/flac:0 )
+	gme? ( sys-libs/zlib:0 )
+	gtk2? ( dev-libs/atk:0
+		x11-libs/cairo:0
+		x11-libs/gtk+:2
+		x11-libs/pango:0 )
 	gtk3? ( x11-libs/gtk+:3 )
-	hotkeys? ( x11-libs/libX11 )
-	libnotify? ( sys-apps/dbus )
-	libsamplerate? ( media-libs/libsamplerate )
-	mac? ( dev-lang/yasm )
-	midi? ( media-sound/timidity-freepats )
-	mp3? ( media-libs/libmad )
-	psf? ( sys-libs/zlib )
-	pulseaudio? ( media-sound/pulseaudio )
-	sndfile? ( media-libs/libsndfile )
-	vorbis? ( media-libs/libogg
-		media-libs/libvorbis )
-	wavpack? ( media-sound/wavpack )
-	zip? ( dev-libs/libzip )"
+	hotkeys? ( x11-libs/libX11:0 )
+	libnotify? ( sys-apps/dbus:0 )
+	libsamplerate? ( media-libs/libsamplerate:0 )
+	mac? ( x86? ( dev-lang/yasm:0 )
+		amd64? ( dev-lang/yasm:0 ) )
+	midi? ( media-sound/timidity-freepats:0 )
+	mp3? ( media-libs/libmad:0 )
+	psf? ( sys-libs/zlib:0 )
+	pulseaudio? ( media-sound/pulseaudio:0 )
+	sndfile? ( media-libs/libsndfile:0 )
+	vorbis? ( media-libs/libogg:0
+		media-libs/libvorbis:0 )
+	wavpack? ( media-sound/wavpack:0 )
+	zip? ( dev-libs/libzip:0 )"
 
 DEPEND="${RDEPEND}
-	virtual/pkgconfig
-	nls? ( virtual/libintl
-		dev-util/intltool )"
+	virtual/pkgconfig:0
+	nls? ( dev-util/intltool:0
+		virtual/libintl:0 )"
 
 src_prepare() {
 	if ! use_if_iuse linguas_pt_BR && use_if_iuse linguas_ru ; then
@@ -158,7 +149,7 @@ src_prepare() {
 
 	if ! use unity ; then
 		# remove unity trash
-		epatch "${FILESDIR}/${PN}-0.6.2-or-higher-remove-unity-trash.patch"
+		epatch "${FILESDIR}/${P}-remove-unity-trash.patch"
 	fi
 
 	config_rpath_update "${S}/config.rpath" || die
@@ -199,6 +190,7 @@ src_configure() {
 		$(use_enable gtk3) \
 		$(use_enable hotkeys) \
 		$(use_enable lastfm lfm) \
+		$(use_enable libav ffmpeg) \
 		$(use_enable libnotify notify) \
 		$(use_enable libsamplerate src) \
 		$(use_enable m3u) \

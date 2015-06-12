@@ -1,7 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nikto/nikto-2.1.5.ebuild,v 1.3 2014/08/30 20:44:39 monsieurp Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nikto/nikto-2.1.5.ebuild,v 1.6 2015/03/21 14:37:40 jlec Exp $
+
 EAPI=5
+
 inherit perl-module
 
 DESCRIPTION="Web Server vulnerability scanner"
@@ -13,47 +15,42 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64 ~ppc ~sparc ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="ssl"
 
-RDEPEND="dev-lang/perl
+RDEPEND="
+	dev-lang/perl
 	>=net-libs/libwhisker-2.5
-		ssl? (
-			dev-libs/openssl
-			dev-perl/Net-SSLeay
-		)"
+	ssl? (
+		dev-libs/openssl:0=
+		dev-perl/Net-SSLeay
+	)"
 
 src_prepare() {
-	sed -i -e 's:config.txt:nikto.conf:g' plugins/* 
-
+	sed -i -e 's:config.txt:nikto.conf:g' plugins/* || die
 	sed -i -e 's:/etc/nikto.conf:/etc/nikto/nikto.conf:;
 	s:# EXECDIR=/usr/local/nikto:EXECDIR=/usr/share/nikto:;
 	s:# use LW2:use LW2:;
-	s:require "$CONFIGFILE{'\''PLUGINDIR'\''}/LW2.pm":# require "$CONFIGFILE{'\''PLUGINDIR'\''}/LW2.pm":;' nikto.pl 
+	s:require "$CONFIGFILE{'\''PLUGINDIR'\''}/LW2.pm":# require "$CONFIGFILE{'\''PLUGINDIR'\''}/LW2.pm":;' nikto.pl || die
 }
 
-src_compile() {
-	einfo "nothing to compile"
-	true
-}
+src_compile() { :; }
 
 src_install() {
 	insinto /etc/nikto
-	doins nikto.conf 
+	doins nikto.conf
 
 	dobin nikto.pl
-	dosym /usr/bin/nikto.pl /usr/bin/nikto
+	dosym nikto.pl /usr/bin/nikto
 
-	dodir /usr/share/nikto
 	insinto /usr/share/nikto
 	doins -r plugins templates databases
 
-	NIKTO_PMS="LW2.pm JSON-PP.pm"
+	NIKTO_PMS='JSON-PP.pm'
 	einfo "symlinking ${NIKTO_PMS} to ${VENDOR_LIB}"
-	for pm in ${NIKTO_PMS}; do
-		dosym /usr/share/nikto/plugins/${pm} ${VENDOR_LIB}/${pm}
+
+	for _PM in ${NIKTO_PMS}; do
+		_TARGET=${VENDOR_LIB}/${_PM}
+		dosym /usr/share/nikto/plugins/${_PM} ${_TARGET}
 	done
-	unset ${NIKTO_PMS}
 
 	dodoc docs/*.txt
 	dohtml docs/nikto_manual.html
-
-	insinto ${VENDOR_PERL}
 }

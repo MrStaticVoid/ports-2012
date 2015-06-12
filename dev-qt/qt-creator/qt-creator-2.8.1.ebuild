@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-qt/qt-creator/qt-creator-2.8.1.ebuild,v 1.4 2013/12/21 17:17:28 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-qt/qt-creator/qt-creator-2.8.1.ebuild,v 1.8 2015/04/01 20:57:55 pesa Exp $
 
 EAPI=5
 
@@ -9,18 +9,18 @@ PLOCALES="cs de es fr it ja pl ru sl uk zh_CN zh_TW"
 inherit eutils l10n multilib qt4-r2
 
 DESCRIPTION="Lightweight IDE for C++/QML development centering around Qt"
-HOMEPAGE="http://qt-project.org/wiki/Category:Tools::QtCreator"
+HOMEPAGE="http://doc.qt.io/qtcreator/"
 LICENSE="LGPL-2.1"
 
 if [[ ${PV} == *9999* ]]; then
 	inherit git-2
-	EGIT_REPO_URI="git://gitorious.org/${PN}/${PN}.git
-		https://git.gitorious.org/${PN}/${PN}.git"
+	EGIT_REPO_URI="git://code.qt.io/${PN}/${PN}.git
+		https://code.qt.io/git/${PN}/${PN}.git"
 else
 	MY_PV=${PV/_/-}
 	MY_P=${PN}-${MY_PV}-src
 	[[ ${MY_PV} == ${PV} ]] && MY_REL=official || MY_REL=development
-	SRC_URI="http://download.qt-project.org/${MY_REL}_releases/${PN/-}/${PV%.*}/${MY_PV}/${MY_P}.tar.gz"
+	SRC_URI="http://download.qt.io/${MY_REL}_releases/${PN/-}/${PV%.*}/${MY_PV}/${MY_P}.tar.gz"
 	S=${WORKDIR}/${MY_P}
 fi
 
@@ -33,20 +33,18 @@ QTC_PLUGINS=(android autotools:autotoolsprojectmanager bazaar
 IUSE="debug doc examples test ${QTC_PLUGINS[@]%:*}"
 
 # minimum Qt version required
-QT_PV="4.8.0:4"
+QT_PV="4.8.5:4"
 
 CDEPEND="
 	=dev-libs/botan-1.10*[threads]
+	>=dev-qt/designer-${QT_PV}
 	>=dev-qt/qtcore-${QT_PV}[ssl]
-	>=dev-qt/qtdeclarative-${QT_PV}
-	|| (
-		( >=dev-qt/qtgui-4.8.5:4 dev-qt/designer:4 )
-		( >=dev-qt/qtgui-${QT_PV} <dev-qt/qtgui-4.8.5:4 )
-	)
+	>=dev-qt/qtdeclarative-${QT_PV}[accessibility]
+	>=dev-qt/qtgui-${QT_PV}[accessibility]
 	>=dev-qt/qthelp-${QT_PV}[doc?]
 	>=dev-qt/qtscript-${QT_PV}
 	>=dev-qt/qtsql-${QT_PV}
-	>=dev-qt/qtsvg-${QT_PV}
+	>=dev-qt/qtsvg-${QT_PV}[accessibility]
 "
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
@@ -83,8 +81,7 @@ src_prepare() {
 	sed -i -e "/^LANGUAGES =/ s:=.*:= $(l10n_get_locales):" \
 		share/qtcreator/translations/translations.pro || die
 
-	# remove bundled qbs for now
-	# TODO: package it and re-enable the plugin
+	# remove bundled qbs
 	rm -rf src/shared/qbs || die
 }
 

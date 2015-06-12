@@ -1,9 +1,11 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/psi/psi-0.15.ebuild,v 1.6 2015/02/22 18:41:23 mgorny Exp $
 
 EAPI=5
 
 PLOCALES="be cs de fr it ja pl pt_BR ru sl sv ur_PK zh_TW"
-inherit eutils l10n multilib qt4-r2 readme.gentoo
+inherit eutils l10n multilib gnome2-utils qt4-r2 readme.gentoo
 
 DESCRIPTION="Qt4 Jabber client, with Licq-like interface"
 HOMEPAGE="http://psi-im.org/"
@@ -16,14 +18,15 @@ done
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd"
 IUSE="crypt dbus debug doc jingle spell ssl xscreensaver whiteboarding"
 RESTRICT="test"
 
 RDEPEND="app-arch/unzip
 	>=dev-qt/qtgui-4.7:4[qt3support]
 	>=dev-qt/qt3support-4.7:4
-	>=app-crypt/qca-2.0.2:2
+	>=app-crypt/qca-2.0.2:2[qt4(+)]
+	x11-libs/libX11
 	dbus? ( >=dev-qt/qtdbus-4.7:4 )
 	spell? ( >=app-text/enchant-1.3.0 )
 	xscreensaver? ( x11-libs/libXScrnSaver )
@@ -34,10 +37,10 @@ DEPEND="${RDEPEND}
 	sys-devel/qconf
 	doc? ( app-doc/doxygen )"
 
-PDEPEND="crypt? ( app-crypt/qca-gnupg:2 )
+PDEPEND="crypt? ( app-crypt/qca:2[gpg] )
 	jingle? ( net-im/psimedia
-		app-crypt/qca-ossl:2 )
-	ssl? ( app-crypt/qca-ossl:2 )"
+		app-crypt/qca:2[openssl] )
+	ssl? ( app-crypt/qca:2[openssl] )"
 
 DOC_CONTENTS='Psi+ support(USE="extras") was removed from ebuild since 0.15'
 FORCE_PRINT_ELOG=1
@@ -105,4 +108,17 @@ src_install() {
 	# install translations
 	insinto /usr/share/${PN}
 	l10n_for_each_locale_do install_locale
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	readme.gentoo_pkg_postinst
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }

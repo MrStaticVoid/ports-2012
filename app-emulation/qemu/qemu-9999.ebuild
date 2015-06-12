@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.89 2014/09/06 10:15:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.100 2015/05/16 04:40:40 vapier Exp $
 
 EAPI=5
 
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="ncurses,readline"
 
 inherit eutils flag-o-matic linux-info toolchain-funcs multilib python-r1 \
@@ -16,7 +16,6 @@ if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://git.qemu.org/qemu.git"
 	inherit git-2
 	SRC_URI=""
-	KEYWORDS=""
 else
 	SRC_URI="http://wiki.qemu-project.org/download/${P}.tar.bz2
 	${BACKPORTS:+
@@ -30,10 +29,10 @@ HOMEPAGE="http://www.qemu.org http://www.linux-kvm.org"
 LICENSE="GPL-2 LGPL-2 BSD-2"
 SLOT="0"
 IUSE="accessibility +aio alsa bluetooth +caps +curl debug +fdt glusterfs \
-gtk infiniband iscsi +jpeg \
+gtk gtk2 infiniband iscsi +jpeg \
 kernel_linux kernel_FreeBSD lzo ncurses nfs nls numa opengl +pin-upstream-blobs
 +png pulseaudio python \
-rbd sasl +seccomp sdl selinux smartcard snappy spice ssh static static-softmmu \
+rbd sasl +seccomp sdl sdl2 selinux smartcard snappy spice ssh static static-softmmu
 static-user systemtap tci test +threads tls usb usbredir +uuid vde +vhost-net \
 virtfs +vnc xattr xen xfs"
 
@@ -43,22 +42,22 @@ x86_64"
 IUSE_SOFTMMU_TARGETS="${COMMON_TARGETS} lm32 moxie ppcemb xtensa xtensaeb"
 IUSE_USER_TARGETS="${COMMON_TARGETS} armeb mipsn32 mipsn32el ppc64abi32 sparc32plus"
 
-use_targets="
-	$(printf ' qemu_softmmu_targets_%s' ${IUSE_SOFTMMU_TARGETS})
-	$(printf ' qemu_user_targets_%s' ${IUSE_USER_TARGETS})
-"
-IUSE+=" ${use_targets}"
+use_softmmu_targets=$(printf ' qemu_softmmu_targets_%s' ${IUSE_SOFTMMU_TARGETS})
+use_user_targets=$(printf ' qemu_user_targets_%s' ${IUSE_USER_TARGETS})
+IUSE+=" ${use_softmmu_targets} ${use_user_targets}"
 
 # Require at least one softmmu or user target.
 # Block USE flag configurations known to not work.
-REQUIRED_USE="|| ( ${use_targets} )
-	python? ( ${PYTHON_REQUIRED_USE} )
+REQUIRED_USE="|| ( ${use_softmmu_targets} ${use_user_targets} )
+	${PYTHON_REQUIRED_USE}
+	gtk2? ( gtk )
 	qemu_softmmu_targets_arm? ( fdt )
 	qemu_softmmu_targets_microblaze? ( fdt )
 	qemu_softmmu_targets_ppc? ( fdt )
 	qemu_softmmu_targets_ppc64? ( fdt )
+	sdl2? ( sdl )
 	static? ( static-softmmu static-user )
-	static-softmmu? ( !alsa !pulseaudio !bluetooth !opengl !gtk )
+	static-softmmu? ( !alsa !pulseaudio !bluetooth !opengl !gtk !gtk2 )
 	virtfs? ( xattr )"
 
 # Yep, you need both libcap and libcap-ng since virtfs only uses libcap.
@@ -76,16 +75,19 @@ SOFTMMU_LIB_DEPEND="${COMMON_LIB_DEPEND}
 	curl? ( >=net-misc/curl-7.15.4[static-libs(+)] )
 	fdt? ( >=sys-apps/dtc-1.4.0[static-libs(+)] )
 	glusterfs? ( >=sys-cluster/glusterfs-3.4.0[static-libs(+)] )
-	infiniband? ( sys-infiniband/librdmacm[static-libs(+)] )
-	jpeg? ( virtual/jpeg[static-libs(+)] )
+	infiniband? ( sys-infiniband/librdmacm:=[static-libs(+)] )
+	jpeg? ( virtual/jpeg:=[static-libs(+)] )
 	lzo? ( dev-libs/lzo:2[static-libs(+)] )
 	ncurses? ( sys-libs/ncurses[static-libs(+)] )
 	nfs? ( >=net-fs/libnfs-1.9.3[static-libs(+)] )
 	numa? ( sys-process/numactl[static-libs(+)] )
-	png? ( media-libs/libpng[static-libs(+)] )
+	png? ( media-libs/libpng:0=[static-libs(+)] )
 	rbd? ( sys-cluster/ceph[static-libs(+)] )
 	sasl? ( dev-libs/cyrus-sasl[static-libs(+)] )
-	sdl? ( >=media-libs/libsdl-1.2.11[static-libs(+)] )
+	sdl? (
+		!sdl2? ( >=media-libs/libsdl-1.2.11[static-libs(+)] )
+		sdl2? ( media-libs/libsdl2[static-libs(+)] )
+	)
 	seccomp? ( >=sys-libs/libseccomp-2.1.0[static-libs(+)] )
 	snappy? ( app-arch/snappy[static-libs(+)] )
 	spice? ( >=app-emulation/spice-0.12.0[static-libs(+)] )
@@ -108,42 +110,52 @@ X86_FIRMWARE_DEPEND="
 		sys-firmware/sgabios
 		sys-firmware/vgabios
 	)"
-RDEPEND="!static-softmmu? ( ${SOFTMMU_LIB_DEPEND//\[static-libs(+)]} )
-	!static-user? ( ${USER_LIB_DEPEND//\[static-libs(+)]} )
+CDEPEND="
+	!static-softmmu? ( $(printf "%s? ( ${SOFTMMU_LIB_DEPEND//\[static-libs(+)]} ) " ${use_softmmu_targets}) )
+	!static-user? ( $(printf "%s? ( ${USER_LIB_DEPEND//\[static-libs(+)]} ) " ${use_user_targets}) )
 	qemu_softmmu_targets_i386? ( ${X86_FIRMWARE_DEPEND} )
 	qemu_softmmu_targets_x86_64? ( ${X86_FIRMWARE_DEPEND} )
 	accessibility? ( app-accessibility/brltty )
 	alsa? ( >=media-libs/alsa-lib-1.0.13 )
 	bluetooth? ( net-wireless/bluez )
 	gtk? (
-		x11-libs/gtk+:3
+		gtk2? ( x11-libs/gtk+:2 )
+		!gtk2? ( x11-libs/gtk+:3 )
 		x11-libs/vte:2.90
 	)
 	iscsi? ( net-libs/libiscsi )
-	opengl? ( virtual/opengl )
+	opengl? (
+		virtual/opengl
+		media-libs/mesa[gles2]
+	)
 	pulseaudio? ( media-sound/pulseaudio )
 	python? ( ${PYTHON_DEPS} )
-	sdl? ( media-libs/libsdl[X] )
-	selinux? ( sec-policy/selinux-qemu )
+	sdl? (
+		!sdl2? ( media-libs/libsdl[X] )
+		sdl2? ( media-libs/libsdl2[X] )
+	)
 	smartcard? ( dev-libs/nss !app-emulation/libcacard )
 	spice? ( >=app-emulation/spice-protocol-0.12.3 )
 	systemtap? ( dev-util/systemtap )
 	usbredir? ( >=sys-apps/usbredir-0.6 )
 	virtfs? ( sys-libs/libcap )
 	xen? ( app-emulation/xen-tools )"
-DEPEND="${RDEPEND}
+DEPEND="${CDEPEND}
 	dev-lang/perl
 	=dev-lang/python-2*
 	sys-apps/texinfo
 	virtual/pkgconfig
 	kernel_linux? ( >=sys-kernel/linux-headers-2.6.35 )
 	gtk? ( nls? ( sys-devel/gettext ) )
-	static-softmmu? ( ${SOFTMMU_LIB_DEPEND} )
-	static-user? ( ${USER_LIB_DEPEND} )
+	static-softmmu? ( $(printf "%s? ( ${SOFTMMU_LIB_DEPEND} ) " ${use_softmmu_targets}) )
+	static-user? ( $(printf "%s? ( ${USER_LIB_DEPEND} ) " ${use_user_targets}) )
 	test? (
 		dev-libs/glib[utils]
 		sys-devel/bc
 	)"
+RDEPEND="${CDEPEND}
+	selinux? ( sec-policy/selinux-qemu )
+"
 
 STRIP_MASK="/usr/share/qemu/palcode-clipper"
 
@@ -331,7 +343,7 @@ qemu_src_configure() {
 		$(conf_softmmu ncurses curses)
 		$(conf_softmmu nfs libnfs)
 		$(conf_softmmu numa)
-		$(conf_softmmu opengl glx)
+		$(conf_softmmu opengl)
 		$(conf_softmmu png vnc-png)
 		$(conf_softmmu rbd)
 		$(conf_softmmu sasl vnc-sasl)
@@ -374,7 +386,8 @@ qemu_src_configure() {
 			--with-system-pixman
 			--audio-drv-list="${audio_opts}"
 		)
-		use gtk && conf_opts+=( --with-gtkabi=3.0 )
+		use gtk && conf_opts+=( --with-gtkabi=$(usex gtk2 2.0 3.0) )
+		use sdl && conf_opts+=( --with-sdlabi=$(usex sdl2 2.0 1.2) )
 		;;
 	esac
 
@@ -390,7 +403,7 @@ qemu_src_configure() {
 		gcc-specs-pie && conf_opts+=( --enable-pie )
 	fi
 
-	einfo "./configure ${conf_opts[*]}"
+	einfo "../configure ${conf_opts[*]}"
 	cd "${builddir}"
 	../configure "${conf_opts[@]}" || die "configure failed"
 
@@ -403,7 +416,7 @@ qemu_src_configure() {
 src_configure() {
 	local target
 
-	python_export_best
+	python_setup
 
 	softmmu_targets= softmmu_bins=()
 	user_targets= user_bins=()
@@ -556,21 +569,10 @@ src_install() {
 pkg_postinst() {
 	if qemu_support_kvm; then
 		readme.gentoo_print_elog
-		ewarn "Migration from qemu-kvm instances and loading qemu-kvm created"
-		ewarn "save states has been removed starting with the 1.6.2 release"
-		ewarn
-		ewarn "It is recommended that you migrate any VMs that may be running"
-		ewarn "on qemu-kvm to a host with a newer qemu and regenerate"
-		ewarn "any saved states with a newer qemu."
-		ewarn
-		ewarn "qemu-kvm was the primary qemu provider in Gentoo through 1.2.x"
+	fi
 
-		if use x86 || use amd64; then
-			ewarn
-			ewarn "The /usr/bin/kvm and /usr/bin/qemu-kvm wrappers are no longer"
-			ewarn "installed.  In order to use kvm acceleration, pass the flag"
-			ewarn "-enable-kvm when running your system target."
-		fi
+	if [[ -n ${softmmu_targets} ]] && use kernel_linux; then
+		udev_reload
 	fi
 
 	fcaps cap_net_admin /usr/libexec/qemu-bridge-helper
@@ -585,7 +587,7 @@ pkg_info() {
 	echo "  $(best_version app-emulation/spice-protocol)"
 	echo "  $(best_version sys-firmware/ipxe)"
 	echo "  $(best_version sys-firmware/seabios)"
-	if has_version sys-firmware/seabios[binary]; then
+	if has_version 'sys-firmware/seabios[binary]'; then
 		echo "    USE=binary"
 	else
 		echo "    USE=''"

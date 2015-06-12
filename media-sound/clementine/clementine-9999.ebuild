@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/clementine/clementine-9999.ebuild,v 1.3 2014/07/24 11:52:54 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/clementine/clementine-9999.ebuild,v 1.5 2015/05/29 05:57:10 idella4 Exp $
 
 EAPI=5
 
@@ -30,7 +30,7 @@ REQUIRED_USE="
 
 # qca dep is temporary for bug #489850
 COMMON_DEPEND="
-	app-crypt/qca:2
+	app-crypt/qca:2[qt4(+)]
 	>=dev-qt/qtgui-4.5:4
 	dbus? ( >=dev-qt/qtdbus-4.5:4 )
 	>=dev-qt/qtopengl-4.5:4
@@ -46,6 +46,7 @@ COMMON_DEPEND="
 	>=media-libs/chromaprint-0.6
 	media-libs/gstreamer:0.10
 	media-libs/gst-plugins-base:0.10
+	dev-libs/crypto++
 	virtual/glu
 	virtual/opengl
 	ayatana? ( dev-libs/libindicate-qt )
@@ -133,6 +134,9 @@ src_configure() {
 		$(cmake-utils_use system-sqlite MY_USERS_WILL_SUFFER_BECAUSE_OF_ME)
 		-DUSE_BUILTIN_TAGLIB=OFF
 		-DUSE_SYSTEM_GMOCK=ON
+		# force to find crypto++ see bug #548544
+		-DCRYPTOPP_LIBRARIES="crypto++"
+		-DCRYPTOPP_FOUND=ON
 		)
 
 	use !debug && append-cppflags -DQT_NO_DEBUG_OUTPUT

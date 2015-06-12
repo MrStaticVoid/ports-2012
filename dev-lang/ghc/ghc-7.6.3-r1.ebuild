@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-7.6.3-r1.ebuild,v 1.14 2014/08/01 20:33:54 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-7.6.3-r1.ebuild,v 1.18 2015/04/26 17:07:50 pacho Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -85,7 +85,7 @@ SRC_URI="!binary? ( http://www.haskell.org/ghc/dist/${PV}/${P}-src.tar.bz2 )"
 [[ -n $arch_binaries ]] && SRC_URI+=" !ghcbootstrap? ( $arch_binaries )"
 LICENSE="BSD"
 SLOT="0/${PV}"
-KEYWORDS="~alpha amd64 ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~alpha amd64 ~ia64 ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc ghcbootstrap ghcmakebinary +gmp llvm"
 IUSE+=" binary" # don't forget about me later!
 IUSE+=" elibc_glibc" # system stuff
@@ -107,12 +107,11 @@ RDEPEND="
 
 # similar for glibc. we have bootstrapped binaries against glibc-2.14
 DEPEND="${RDEPEND}
-	ghcbootstrap? (		>=dev-haskell/alex-2.3
-						>=dev-haskell/happy-1.18
-				doc? (	app-text/docbook-xml-dtd:4.2
-				app-text/docbook-xml-dtd:4.5
-				app-text/docbook-xsl-stylesheets
-				>=dev-libs/libxslt-1.1.2 ) )
+	ghcbootstrap? (
+		doc? ( app-text/docbook-xml-dtd:4.2
+			app-text/docbook-xml-dtd:4.5
+			app-text/docbook-xsl-stylesheets
+			>=dev-libs/libxslt-1.1.2 ) )
 	!ghcbootstrap? ( !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.15 ) ) )"
 
 PDEPEND="!ghcbootstrap? ( =app-admin/haskell-updater-1.2* )"
@@ -417,7 +416,7 @@ src_prepare() {
 
 		cd "${S}" # otherwise epatch will break
 
-		epatch "${FILESDIR}/ghc-7.0.4-CHOST-prefix.patch"
+		epatch "${FILESDIR}"/${PN}-7.0.4-CHOST-prefix.patch
 
 		# epatch "${FILESDIR}"/${PN}-7.0.4-darwin8.patch
 		# failed to apply. FIXME
@@ -822,4 +821,8 @@ pkg_prerm() {
 	rm -rf "${PKGCACHE}"
 
 	cp -p "${PKGCACHE}"{.shipped,}
+}
+
+pkg_postrm() {
+	ghc-package_pkg_postrm
 }

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install
+DEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 designer? ( dev-qt/designer:4 ) app-arch/tar app-arch/gzip
+DESCRIPTION=A Qt port of Neil Hodgson's Scintilla C++ editor class
+EAPI=5-progress
+HOMEPAGE=http://www.riverbankcomputing.co.uk/software/qscintilla/intro
+IUSE=designer doc
+KEYWORDS=*
+LICENSE=|| ( GPL-2 GPL-3 )
+RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 designer? ( dev-qt/designer:4 )
+SLOT=0/12
+SRC_URI=mirror://sourceforge/pyqt/QScintilla-gpl-2.9.tar.gz
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	qmake-utils	1c0e4f885b876595f09a9bb6c78a687d	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=9ef5c7e7125d622cb94090fe7c0caaba

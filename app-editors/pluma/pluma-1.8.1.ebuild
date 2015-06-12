@@ -1,13 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/pluma/pluma-1.8.1.ebuild,v 1.4 2014/07/02 09:45:30 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/pluma/pluma-1.8.1.ebuild,v 1.7 2015/04/08 07:30:32 mgorny Exp $
 
 EAPI="5"
 
 GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit gnome2 multilib python-single-r1 versionator virtualx
 
@@ -33,6 +33,7 @@ RDEPEND="app-text/rarian:0
 	dev-libs/atk:0
 	>=dev-libs/glib-2.32:2
 	>=dev-libs/libxml2-2.5:2
+	>=mate-base/mate-desktop-1.8:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-2.19:2
@@ -63,6 +64,10 @@ DEPEND="${RDEPEND}
 	>=mate-base/mate-common-1.6:0
 	>=sys-devel/gettext-0.17:*
 	virtual/pkgconfig:*"
+
+pkg_setup() {
+	use python && python-single-r1_pkg_setup
+}
 
 src_configure() {
 	gnome2_src_configure \

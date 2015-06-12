@@ -1,13 +1,11 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-geosciences/grass/grass-6.4.2.ebuild,v 1.11 2014/01/06 15:37:42 jlec Exp $
 
 EAPI=4
 
 PYTHON_DEPEND="python? 2"
 WANT_AUTOCONF="2.1"
 
-inherit eutils gnome2 multilib python versionator wxwidgets autotools
+inherit eutils gnome2 multilib python versionator wxwidgets base autotools
 
 MY_PM=${PN}$(get_version_component_range 1-2 ${PV})
 MY_PM=${MY_PM/.}
@@ -19,7 +17,7 @@ SRC_URI="http://grass.osgeo.org/${MY_PM}/source/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="6"
-KEYWORDS="amd64 ppc ~ppc64 x86"
+KEYWORDS="*"
 IUSE="X cairo cxx ffmpeg fftw gmath jpeg motif mysql nls odbc opengl png postgres python readline sqlite tiff truetype wxwidgets"
 
 TCL_DEPS="
@@ -96,6 +94,9 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-6.4.2-ffmpeg-1.patch
 	"${FILESDIR}"/${PN}-6.4.2-configure.patch
 	"${FILESDIR}"/${PN}-6.4.2-libav-9.patch
+	"${FILESDIR}"/iostream_cpp470.patch
+## FL-1753
+	"${FILESDIR}"/${PN}-tk86-fix.patch 
 )
 
 REQUIRED_USE="
@@ -133,8 +134,7 @@ pkg_setup() {
 
 src_prepare() {
 	use opengl || epatch "${FILESDIR}"/${PN}-6.4.0-html-nonviz.patch
-	epatch ${PATCHES[@]}
-	epatch_user
+	base_src_prepare
 	eautoconf
 }
 
@@ -215,7 +215,7 @@ src_configure() {
 
 src_compile() {
 	# we don't want to link against embeded mysql lib
-	emake MYSQLDLIB=""
+	base_src_compile MYSQLDLIB=""
 }
 
 src_install() {

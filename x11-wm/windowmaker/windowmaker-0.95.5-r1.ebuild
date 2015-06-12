@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.95.5-r1.ebuild,v 1.7 2014/05/17 14:06:09 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.95.5-r1.ebuild,v 1.9 2015/05/27 20:24:52 pacho Exp $
 
 EAPI=5
 inherit autotools eutils
@@ -18,6 +18,7 @@ KEYWORDS="alpha amd64 ~arm hppa ~mips ppc ~ppc64 sparc x86 ~amd64-fbsd ~x86-fbsd
 DEPEND="media-libs/fontconfig
 	>=x11-libs/libXft-2.1.0
 	x11-libs/libXmu
+	x11-libs/libXpm
 	x11-libs/libXt
 	x11-libs/libXv
 	gif? ( >=media-libs/giflib-4.1.0-r3 )
@@ -27,7 +28,9 @@ DEPEND="media-libs/fontconfig
 	xinerama? ( x11-libs/libXinerama )
 	xrandr? ( x11-libs/libXrandr )"
 RDEPEND="${DEPEND}
-	nls? ( >=sys-devel/gettext-0.10.39 )"
+	nls? ( >=sys-devel/gettext-0.10.39 )
+	!app-i18n/scim-anthy[gtk3]
+"
 
 S=${WORKDIR}/${P/windowm/WindowM}
 
@@ -50,7 +53,6 @@ src_configure() {
 	local myconf
 
 	# image format types
-	# xpm is provided by X itself
 	myconf="--enable-xpm $(use_enable png) $(use_enable jpeg) $(use_enable gif) $(use_enable tiff)"
 
 	# non required X capabilities

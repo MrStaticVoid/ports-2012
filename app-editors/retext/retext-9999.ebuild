@@ -1,11 +1,12 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/retext/retext-9999.ebuild,v 1.4 2014/07/18 15:24:17 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/retext/retext-9999.ebuild,v 1.6 2015/03/15 13:28:46 jlec Exp $
 
-EAPI="5"
+EAPI=5
 
-PYTHON_COMPAT=( python3_3 )
-PLOCALES="ca cs cy da de es et eu fr it ja pl pt pt_BR ru sk uk zh_CN zh_TW"
+PYTHON_COMPAT=( python3_{3,4} )
+
+PLOCALES="ca cs cy da de es et eu fr it ja pl pt pt_BR ru sk uk vi zh_CN zh_TW"
 
 inherit distutils-r1 l10n
 
@@ -28,18 +29,27 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE="+spell"
 
-RDEPEND+="
+RDEPEND="
 	dev-python/docutils[${PYTHON_USEDEP}]
 	dev-python/markdown[${PYTHON_USEDEP}]
 	dev-python/markups[${PYTHON_USEDEP}]
-	dev-python/PyQt4[webkit,${PYTHON_USEDEP}]
+	dev-python/pygments[${PYTHON_USEDEP}]
+	dev-python/PyQt5[gui,network,printsupport,webkit,widgets,${PYTHON_USEDEP}]
 	spell? ( dev-python/pyenchant[${PYTHON_USEDEP}] )
 "
 
 S="${WORKDIR}"/${MY_P}
 
-src_install() {
-	distutils-r1_src_install
+remove_locale() {
+	find "${ED}" -name "retext_${1}.qm" -delete || die "Failed to remove locale ${1}."
+}
+
+python_test() {
+	esetup.py test
+}
+
+python_install_all() {
+	distutils-r1_python_install_all
 
 	newicon {icons/,}${PN}.png
 	newicon {icons/,}${PN}.svg
@@ -47,8 +57,4 @@ src_install() {
 	l10n_for_each_disabled_locale_do remove_locale
 
 	make_desktop_entry ${PN} "${MY_PN} Editor" ${PN} "Development;Utility;TextEditor"
-}
-
-remove_locale() {
-	find "${D}" -name "retext_${1}.qm" -delete || die "Failed to remove locale ${1}."
 }

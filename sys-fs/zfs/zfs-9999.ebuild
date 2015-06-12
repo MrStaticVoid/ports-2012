@@ -1,9 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/zfs/zfs-9999.ebuild,v 1.54 2014/07/30 19:21:10 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/zfs/zfs-9999.ebuild,v 1.59 2015/05/15 18:29:56 blueness Exp $
 
 EAPI="5"
-PYTHON_COMPAT=( python{2_6,2_7,3_1,3_2,3_3} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 
 inherit python-r1
 
@@ -20,7 +20,7 @@ else
 	SRC_URI="https://github.com/zfsonlinux/${PN}/archive/${PN}-${MY_PV}.tar.gz
 		http://dev.gentoo.org/~ryao/dist/${PN}-kmod-${MY_PV}-p2.tar.xz"
 	S="${WORKDIR}/${PN}-${PN}-${MY_PV}"
-	KEYWORDS="~amd64"
+	KEYWORDS="~amd64 ~arm ~ppc ~ppc64"
 fi
 
 inherit bash-completion-r1 flag-o-matic toolchain-funcs autotools-utils udev systemd
@@ -91,6 +91,7 @@ src_configure() {
 		--bindir="${EPREFIX}/bin"
 		--sbindir="${EPREFIX}/sbin"
 		--with-config=user
+		--with-dracutdir="/usr/$(get_libdir)/dracut"
 		--with-linux="${KV_DIR}"
 		--with-linux-obj="${KV_OUT_DIR}"
 		--with-udevdir="$(get_udevdir)"
@@ -113,7 +114,6 @@ src_configure() {
 src_install() {
 	autotools-utils_src_install
 	gen_usr_ldscript -a uutil nvpair zpool zfs zfs_core
-	#rm -rf "${ED}usr/lib/dracut"
 	use test-suite || rm -rf "${ED}usr/share/zfs"
 
 	use bash-completion && newbashcomp "${FILESDIR}/bash-completion-r1" zfs

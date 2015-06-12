@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer>
-    <email>hasufell@gentoo.org</email>
-    <name>Julian Ospald</name>
+    <email>tamiko@gentoo.org</email>
+    <name>Matthias Maier</name>
   </maintainer>
   <use>
     <flag name="boost">Enable the usage of dev-libs/boost</flag>

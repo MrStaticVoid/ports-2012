@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-color-manager/gnome-color-manager-3.12.3.ebuild,v 1.3 2014/07/23 15:18:03 ago Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -12,7 +10,7 @@ HOMEPAGE="https://git.gnome.org/browse/gnome-color-manager"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
+KEYWORDS="*"
 IUSE="packagekit raw"
 
 # Need gtk+-3.3.8 for https://bugzilla.gnome.org/show_bug.cgi?id=673331
@@ -24,7 +22,7 @@ COMMON_DEPEND="
 	media-libs/tiff
 
 	>=x11-libs/gtk+-3.3.8:3
-	>=x11-libs/vte-0.25.1:2.90
+	x11-libs/vte:2.90
 	>=x11-misc/colord-0.1.34:0=
 	>=x11-libs/colord-gtk-0.1.20
 

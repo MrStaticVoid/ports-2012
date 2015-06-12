@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-3.0.1.ebuild,v 1.12 2014/04/16 16:01:45 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-3.0.1.ebuild,v 1.14 2015/04/07 09:10:10 jlec Exp $
 
 EAPI=5
 
@@ -25,13 +25,13 @@ CDEPEND="
 	dev-libs/libpcre
 	virtual/blas
 	cairo? ( x11-libs/cairo[X] x11-libs/pango )
-	icu? ( dev-libs/icu )
+	icu? ( dev-libs/icu:= )
 	jpeg? ( virtual/jpeg:0 )
 	lapack? ( virtual/lapack )
 	perl? ( dev-lang/perl )
-	png? ( media-libs/libpng )
-	readline? ( sys-libs/readline )
-	tk? ( dev-lang/tk )
+	png? ( media-libs/libpng:0= )
+	readline? ( sys-libs/readline:0= )
+	tk? ( dev-lang/tk:0= )
 	X? ( x11-libs/libXmu x11-misc/xdg-utils )"
 
 DEPEND="${CDEPEND}

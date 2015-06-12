@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/darktable/darktable-9999.ebuild,v 1.13 2014/02/11 05:43:49 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/darktable/darktable-9999.ebuild,v 1.21 2015/06/04 19:03:59 kensington Exp $
 
 EAPI=5
 
-inherit cmake-utils toolchain-funcs gnome2-utils fdo-mime git-2 pax-utils eutils
+inherit cmake-utils flag-o-matic toolchain-funcs gnome2-utils fdo-mime git-r3 pax-utils eutils
 
 EGIT_REPO_URI="git://github.com/darktable-org/darktable.git"
 
@@ -13,11 +13,15 @@ HOMEPAGE="http://www.darktable.org/"
 
 LICENSE="GPL-3 CC-BY-3.0"
 SLOT="0"
-LANGS=" cs da de el es fr it ja nl pl pt_BR pt_PT ru sq sv uk"
+#KEYWORDS="~amd64 ~x86"
+LANGS=" ca cs da de el es fr it ja nl pl pt_BR pt_PT ru sq sv uk"
 # TODO add lua once dev-lang/lua-5.2 is unmasked
-IUSE="colord doc flickr geo gnome-keyring gphoto2 graphicsmagick jpeg2k kde
-nls opencl openmp pax_kernel +rawspeed +slideshow +squish web-services webp
+IUSE="colord cpu_flags_x86_sse3 doc flickr geo gphoto2 graphicsmagick jpeg2k kde libsecret
+nls opencl openmp openexr pax_kernel +rawspeed +slideshow +squish web-services webp
 ${LANGS// / linguas_}"
+
+# sse3 support is required to build darktable
+REQUIRED_USE="cpu_flags_x86_sse3"
 
 CDEPEND="
 	dev-db/sqlite:3
@@ -28,10 +32,9 @@ CDEPEND="
 	media-libs/lcms:2
 	>=media-libs/lensfun-0.2.3
 	media-libs/libpng:0=
-	media-libs/openexr:0=
 	media-libs/tiff:0
 	net-misc/curl
-	virtual/jpeg
+	virtual/jpeg:0
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:2
@@ -39,11 +42,15 @@ CDEPEND="
 	colord? ( x11-misc/colord:0= )
 	flickr? ( media-libs/flickcurl )
 	geo? ( net-libs/libsoup:2.4 )
-	gnome-keyring? ( gnome-base/gnome-keyring )
 	gphoto2? ( media-libs/libgphoto2:= )
 	graphicsmagick? ( media-gfx/graphicsmagick )
 	jpeg2k? ( media-libs/openjpeg:0 )
+	libsecret? (
+		>=app-crypt/libsecret-0.18
+		dev-libs/json-glib
+	)
 	opencl? ( virtual/opencl )
+	openexr? ( media-libs/openexr:0= )
 	slideshow? (
 		media-libs/libsdl
 		virtual/glu
@@ -52,8 +59,10 @@ CDEPEND="
 	web-services? ( dev-libs/json-glib )
 	webp? ( media-libs/libwebp:0= )"
 RDEPEND="${CDEPEND}
-	kde? ( kde-base/kwalletd )"
+	x11-themes/gtk-engines:2
+	kde? ( kde-apps/kwalletd:4 )"
 DEPEND="${CDEPEND}
+	dev-util/intltool
 	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
@@ -64,7 +73,10 @@ pkg_pretend() {
 }
 
 src_prepare() {
+	use cpu_flags_x86_sse3 && append-flags -msse3
+
 	sed -e "s:\(/share/doc/\)darktable:\1${PF}:" \
+		-e "s:\(\${SHARE_INSTALL}/doc/\)darktable:\1${PF}:" \
 		-e "s:LICENSE::" \
 		-i doc/CMakeLists.txt || die
 
@@ -76,12 +88,15 @@ src_configure() {
 		$(cmake-utils_use_use colord COLORD)
 		$(cmake-utils_use_use flickr FLICKR)
 		$(cmake-utils_use_use geo GEO)
-		$(cmake-utils_use_use gnome-keyring GNOME_KEYRING)
 		$(cmake-utils_use_use gphoto2 CAMERA_SUPPORT)
 		$(cmake-utils_use_use graphicsmagick GRAPHICSMAGICK)
 		$(cmake-utils_use_use jpeg2k OPENJPEG)
+		$(cmake-utils_use_use kde KWALLET)
+		$(cmake-utils_use_use libsecret LIBSECRET)
+		$(cmake-utils_use_use libsecret GLIBJSON)
 		$(cmake-utils_use_use nls NLS)
 		$(cmake-utils_use_use opencl OPENCL)
+		$(cmake-utils_use_use openexr OPENEXR)
 		$(cmake-utils_use_use openmp OPENMP)
 		$(cmake-utils_use !rawspeed DONT_USE_RAWSPEED)
 		$(cmake-utils_use_use squish SQUISH)

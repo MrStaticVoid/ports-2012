@@ -1,15 +1,28 @@
 #!/bin/bash
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/tests/tests-common.sh,v 1.15 2015/05/11 17:34:39 ulm Exp $
 
-if ! source /etc/init.d/functions.sh ; then
-	echo "Missing functions.sh.  Please to install!" 1>&2
+if ! source /lib/gentoo/functions.sh ; then
+	echo "Missing functions.sh.  Please install sys-apps/gentoo-functions!" 1>&2
 	exit 1
 fi
 
+# Let overlays override this so they can add their own testsuites.
+TESTS_ECLASS_SEARCH_PATHS=( .. )
+
 inherit() {
-	local e
+	local e path
 	for e in "$@" ; do
-		source ../${e}.eclass
+		for path in "${TESTS_ECLASS_SEARCH_PATHS[@]}" ; do
+			local eclass=${path}/${e}.eclass
+			if [[ -e "${eclass}" ]] ; then
+				source "${eclass}"
+				return 0
+			fi
+		done
 	done
+	die "could not find ${eclass}"
 }
 EXPORT_FUNCTIONS() { :; }
 

@@ -1,9 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/arel/arel-4.0.2.ebuild,v 1.3 2014/08/12 18:44:35 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/arel/arel-4.0.2.ebuild,v 1.5 2015/05/03 06:55:45 graaff Exp $
 
 EAPI=5
-USE_RUBY="ruby19 ruby20 ruby21"
+USE_RUBY="ruby19 ruby20 ruby21 ruby22"
 
 RUBY_FAKEGEM_RECIPE_DOC="rdoc"
 RUBY_FAKEGEM_DOCDIR="doc"
@@ -22,7 +22,9 @@ KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-m
 IUSE=""
 
 ruby_add_bdepend "
+	doc? ( >=dev-ruby/hoe-3.3.1 )
 	test? (
+		>=dev-ruby/hoe-3.3.1
 		>=dev-ruby/minitest-5.2:5
 	)"
 

@@ -1,13 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-base/mate-desktop/mate-desktop-1.8.1-r1.ebuild,v 1.4 2014/07/02 09:46:38 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/mate-base/mate-desktop/mate-desktop-1.8.1-r1.ebuild,v 1.7 2015/04/08 18:13:42 mgorny Exp $
 
 EAPI="5"
 
 GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 
-PYTHON_COMPAT=( python2_6 python2_7 )
+PYTHON_COMPAT=( python2_7 )
 
 inherit gnome2 multilib python-r1 versionator
 
@@ -19,9 +19,10 @@ HOMEPAGE="http://mate-desktop.org"
 
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64 ~arm x86"
 
 IUSE="X startup-notification"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
 	>=dev-libs/glib-2.34:2

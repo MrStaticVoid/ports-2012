@@ -1,12 +1,12 @@
 DEFINED_PHASES=prepare unpack
-DEPEND=|| ( app-arch/plzip app-arch/pdlzip app-arch/lzip ) sys-libs/ncurses
+DEPEND=|| ( app-arch/plzip app-arch/pdlzip app-arch/lzip ) sys-libs/ncurses virtual/pkgconfig
 DESCRIPTION=A powerful and user-friendly console text editor
 EAPI=5
 HOMEPAGE=http://www.gnu.org/software/moe/
-KEYWORDS=~amd64 ~arm ~x86 ~amd64-linux ~x86-linux
+KEYWORDS=amd64 arm x86 ~amd64-linux ~x86-linux
 LICENSE=GPL-3
-RDEPEND=|| ( app-arch/plzip app-arch/pdlzip app-arch/lzip ) sys-libs/ncurses
+RDEPEND=sys-libs/ncurses
 SLOT=0
 SRC_URI=mirror://gnu/moe/moe-1.6.tar.lz
-_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402	unpacker	f300a7ca9131b1024a79762e8edd3c52
-_md5_=9a5065ad19e5a13d3cd216691dd3c7f8
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	unpacker	f300a7ca9131b1024a79762e8edd3c52
+_md5_=8ced271237adf7bc1e94f10ed820992a

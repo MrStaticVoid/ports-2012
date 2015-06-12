@@ -3,7 +3,7 @@
 
 # @ECLASS: python-namespaces.eclass
 # @MAINTAINER:
-# Gentoo Python Project <python@gentoo.org>
+# Arfrever Frehtes Taifersar Arahesis <Arfrever@Apache.Org>
 # @BLURB: Eclass for packages installing Python namespaces
 # @DESCRIPTION:
 # The python-namespaces eclass defines phase functions for packages installing Python namespaces.
@@ -16,13 +16,13 @@ if ! has "${EAPI:-0}" 4 4-python 5 5-progress; then
 	die "EAPI=\"${EAPI}\" not supported by python-namespaces.eclass"
 fi
 
-if ! _python_package_supporting_installation_for_multiple_python_abis; then
-	die "python-namespaces.eclass cannot be used in ebuilds of packages not supporting installation for multiple Python ABIs"
+if ! _python_abi_type multiple; then
+	die "python-namespaces.eclass can not be used in ebuilds not setting PYTHON_ABI_TYPE=\"multiple\" variable"
 fi
 
-# ================================================================================================
-# ===================================== HANDLING OF METADATA =====================================
-# ================================================================================================
+# ========================================================================================================================
+# ================================================= HANDLING OF METADATA =================================================
+# ========================================================================================================================
 
 # @ECLASS-VARIABLE: PYTHON_NAMESPACES
 # @REQUIRED
@@ -46,7 +46,7 @@ _python-namespaces_set_metadata() {
 	done
 
 	DESCRIPTION="Python namespaces: ${_PYTHON_NAMESPACES// /, }"
-	HOMEPAGE="http://www.gentoo.org/"
+	HOMEPAGE=""
 	SRC_URI=""
 
 	LICENSE="public-domain"
@@ -84,9 +84,9 @@ _python-namespaces_set_metadata() {
 _python-namespaces_set_metadata
 unset -f _python-namespaces_set_metadata
 
-# ================================================================================================
-# ======================================= PHASE FUNCTIONS ========================================
-# ================================================================================================
+# ========================================================================================================================
+# =================================================== PHASE FUNCTIONS ====================================================
+# ========================================================================================================================
 
 EXPORT_FUNCTIONS src_install pkg_postinst pkg_postrm
 
@@ -153,7 +153,7 @@ except ImportError:
 # @FUNCTION: python-namespaces_pkg_postinst
 # @DESCRIPTION:
 # Implementation of pkg_postinst() phase. This function is exported.
-# This function calls python_mod_optimize() with __init__.py modules corresponding to Python namespaces.
+# This function calls python_byte-compile_modules() with __init__.py modules corresponding to Python namespaces.
 python-namespaces_pkg_postinst() {
 	if [[ "${EBUILD_PHASE}" != "postinst" ]]; then
 		die "${FUNCNAME}() can be used only in pkg_postinst() phase"
@@ -165,13 +165,13 @@ python-namespaces_pkg_postinst() {
 		die "${FUNCNAME}() does not accept arguments"
 	fi
 
-	python_mod_optimize $(for namespace in $(_python-namespaces_get_enabled_namespaces); do echo ${namespace//.//}/__init__.py; done)
+	python_byte-compile_modules $(for namespace in $(_python-namespaces_get_enabled_namespaces); do echo ${namespace//.//}/__init__.py; done)
 }
 
 # @FUNCTION: python-namespaces_pkg_postrm
 # @DESCRIPTION:
 # Implementation of pkg_postrm() phase. This function is exported.
-# This function calls python_mod_cleanup() with __init__.py modules corresponding to Python namespaces.
+# This function calls python_clean_byte-compiled_modules() with __init__.py modules corresponding to Python namespaces.
 python-namespaces_pkg_postrm() {
 	if [[ "${EBUILD_PHASE}" != "postrm" ]]; then
 		die "${FUNCNAME}() can be used only in pkg_postrm() phase"
@@ -183,5 +183,5 @@ python-namespaces_pkg_postrm() {
 		die "${FUNCNAME}() does not accept arguments"
 	fi
 
-	python_mod_cleanup $(for namespace in $(_python-namespaces_get_enabled_namespaces); do echo ${namespace//.//}/__init__.py; done)
+	python_clean_byte-compiled_modules $(for namespace in $(_python-namespaces_get_enabled_namespaces); do echo ${namespace//.//}/__init__.py; done)
 }

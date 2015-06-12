@@ -5,4 +5,10 @@
 	<longdescription>
 		Cryptographic numbers: functions and algorithms
 	</longdescription>
+	<use>
+		<flag name="integer-gmp">use integer-gmp library</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">vincenthz/hs-crypto-numbers</remote-id>
+	</upstream>
 </pkgmetadata>

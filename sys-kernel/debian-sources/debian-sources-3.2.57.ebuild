@@ -18,7 +18,7 @@ IUSE="binary rt"
 DEPEND="binary? ( >=sys-kernel/genkernel-3.4.40.7 )"
 DESCRIPTION="Debian Sources (and optional binary kernel)"
 HOMEPAGE="http://www.debian.org"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${KERNEL_ARCHIVE} http://ftp.osuosl.org/pub/funtoo/distfiles/${PATCH_ARCHIVE}"
+SRC_URI="mirror://funtoo/${KERNEL_ARCHIVE} mirror://funtoo/${PATCH_ARCHIVE}"
 S="$WORKDIR/linux-${CKV}"
 
 get_patch_list() {
@@ -140,5 +140,9 @@ pkg_postinst() {
 	if [ ! -e ${ROOT}usr/src/linux ]
 	then
 		ln -s linux-${P} ${ROOT}usr/src/linux
+	fi
+
+	if [ -e ${ROOT}lib/modules ]; then
+		depmod -a ${ROOT}lib/modules
 	fi
 }

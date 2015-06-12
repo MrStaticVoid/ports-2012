@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openct/openct-0.6.20-r3.ebuild,v 1.13 2014/08/08 08:00:56 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openct/openct-0.6.20-r3.ebuild,v 1.15 2015/04/02 18:21:41 mr_bones_ Exp $
 
 EAPI=5
 
@@ -9,17 +9,17 @@ inherit eutils flag-o-matic multilib udev user
 DESCRIPTION="library for accessing smart card terminals"
 HOMEPAGE="https://github.com/OpenSC/openct/wiki"
 
-SRC_URI="sourceforge://opensc/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/opensc/${PN}/${P}.tar.gz"
 KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
 IUSE="doc pcsc-lite usb debug +udev"
 
-# libtool is required at runtime for libltdl
+# Drop the libtool dep once libltdl goes stable.
 RDEPEND="pcsc-lite? ( >=sys-apps/pcsc-lite-1.7.2-r1 )
 	usb? ( virtual/libusb:0 )
-	sys-devel/libtool"
+	|| ( dev-libs/libltdl:0 <sys-devel/libtool-2.4.3-r2:2 )"
 
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"

@@ -1,3 +1,6 @@
+# FL-1836. enable soprano use flag:
+app-office/akonadi-server soprano
+
 #FL-1541.Enable xmp USE flag to exiv2. Required for clean kde-meta install.
 media-gfx/exiv2 xmp
 dev-libs/libxml2 -icu
@@ -15,10 +18,3 @@ dev-qt/qtdeclarative qt3support
 dev-qt/qtgui mng qt3support
 dev-qt/qtopengl qt3support
 dev-qt/qtsql mysql qt3support
-
-# Needed by blas which is pulled in when emerging kde-meta
-# Leave until virtual/fortran is properly implemented
-sys-devel/gcc fortran
-
-# Needed by dev-lang/R , pulled in by kde-base/cantor
-sys-libs/zlib minizip

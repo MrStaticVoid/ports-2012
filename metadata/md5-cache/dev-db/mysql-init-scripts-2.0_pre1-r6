@@ -1,8 +1,0 @@
-DEFINED_PHASES=install postinst
-DESCRIPTION=Gentoo MySQL init scripts.
-HOMEPAGE=http://www.gentoo.org/
-KEYWORDS=*
-LICENSE=GPL-2
-RDEPEND=!<dev-db/mysql-5.1
-SLOT=0
-_md5_=c83701145fd6ab365dc007c87ea391d7

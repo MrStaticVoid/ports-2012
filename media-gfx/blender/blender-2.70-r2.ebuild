@@ -27,7 +27,7 @@ fi
 SLOT="0"
 LICENSE="|| ( GPL-2 BL )"
 KEYWORDS="*"
-IUSE="+boost +bullet collada colorio cycles +dds debug doc +elbeem ffmpeg fftw +game-engine jack jpeg2k ndof nls openal openimageio +opennl openmp +openexr player redcode sdl sndfile sse sse2 tiff"
+IUSE="+boost +bullet collada colorio cycles +dds debug doc +elbeem ffmpeg fftw +game-engine jack jpeg2k ndof nls openal openimageio +opennl openmp +openexr player redcode sdl sndfile cpu_flags_x86_sse cpu_flags_x86_sse2 tiff"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	player? ( game-engine )
 	redcode? ( jpeg2k ffmpeg )
@@ -111,7 +111,8 @@ src_prepare() {
 		"${FILESDIR}"/05-${PN}-2.68-unbundle-eigen3.patch \
 		"${FILESDIR}"/06-${PN}-2.68-fix-install-rules.patch \
 		"${FILESDIR}"/07-${PN}-2.70-sse2.patch \
-		"${FILESDIR}"/08-${PN}-2.71-gflags.patch
+		"${FILESDIR}"/08-${PN}-2.71-gflags.patch \
+		"${FILESDIR}"/${PN}-2.72-T42797.diff
 
 	# remove some bundled deps
 	rm -r \
@@ -178,8 +179,8 @@ src_configure() {
 		$(cmake-utils_use_with redcode IMAGE_REDCODE)
 		$(cmake-utils_use_with sdl SDL)
 		$(cmake-utils_use_with sndfile CODEC_SNDFILE)
-		$(cmake-utils_use_with sse RAYOPTIMIZATION)
-		$(cmake-utils_use_with sse2 SSE2)
+		$(cmake-utils_use_with cpu_flags_x86_sse RAYOPTIMIZATION)
+		$(cmake-utils_use_with cpu_flags_x86_sse2 SSE2)
 		$(cmake-utils_use_with bullet BULLET)
 		$(cmake-utils_use_with tiff IMAGE_TIFF)
 		$(cmake-utils_use_with colorio OPENCOLORIO)

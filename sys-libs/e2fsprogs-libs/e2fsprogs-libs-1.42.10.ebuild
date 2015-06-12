@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.42.10.ebuild,v 1.12 2014/08/10 17:25:30 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.42.10.ebuild,v 1.17 2015/05/25 10:21:48 vapier Exp $
 
 EAPI="4"
 
@@ -9,7 +9,7 @@ case ${PV} in
 *)      UP_PV=${PV} ;;
 esac
 
-inherit autotools toolchain-funcs eutils multilib-minimal
+inherit toolchain-funcs eutils multilib-minimal
 
 DESCRIPTION="e2fsprogs libraries (common error and subsystem)"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${PN}-${UP_PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~arm-linux ~x86-linux ~m68k-mint ~x86-solaris"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~arm-linux ~x86-linux ~m68k-mint ~x86-solaris"
 IUSE="nls static-libs"
 
 RDEPEND="!sys-libs/com_err
@@ -35,8 +35,7 @@ S=${WORKDIR}/${P%_pre*}
 src_prepare() {
 	printf 'all:\n%%:;@:\n' > doc/Makefile.in # don't bother with docs #305613
 	epatch "${FILESDIR}"/${PN}-1.42.9-no-quota.patch
-	epatch "${FILESDIR}"/${P}-fix-build-cflags.patch
-	eautoreconf
+	epatch "${FILESDIR}"/${P}-fix-build-cflags.patch #516854
 }
 
 multilib_src_configure() {

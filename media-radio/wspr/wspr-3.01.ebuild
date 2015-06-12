@@ -1,9 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-radio/wspr/wspr-3.01.ebuild,v 1.1 2014/06/26 09:15:52 tomjbe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-radio/wspr/wspr-3.01.ebuild,v 1.3 2015/05/18 14:32:00 tomjbe Exp $
 
 EAPI="5"
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="tk"
 
 inherit autotools fortran-2 distutils-r1 flag-o-matic multilib toolchain-funcs
@@ -21,7 +21,7 @@ IUSE=""
 
 RDEPEND="
 	virtual/python-imaging[tk,${PYTHON_USEDEP}]
-	dev-python/numpy[${PYTHON_USEDEP}]
+	<dev-python/numpy-1.9.0[${PYTHON_USEDEP}]
 	virtual/pmw[${PYTHON_USEDEP}]
 	sci-libs/fftw:3.0
 	media-libs/hamlib

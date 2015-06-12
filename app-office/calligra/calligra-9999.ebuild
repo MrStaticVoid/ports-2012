@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/calligra/calligra-9999.ebuild,v 1.47 2014/06/16 10:45:04 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/calligra/calligra-9999.ebuild,v 1.52 2015/06/04 19:00:44 kensington Exp $
 
 # note: files that need to be checked for dependencies etc:
 # CMakeLists.txt, kexi/CMakeLists.txt kexi/migration/CMakeLists.txt
@@ -74,15 +74,16 @@ RDEPEND="
 	!app-office/kspread
 	!app-office/kword
 	$(add_kdebase_dep kdelibs 'nepomuk?')
+	$(add_kdeapps_dep knewstuff)
 	dev-lang/perl
 	dev-libs/boost
-	$(add_kdebase_dep knewstuff)
+	dev-qt/qtcore:4[exceptions]
 	media-libs/libpng
 	sys-libs/zlib
 	>=dev-qt/qtgui-4.8.1-r1:4
 	virtual/libiconv
 	attica? ( dev-libs/libattica )
-	crypt? ( app-crypt/qca:2 )
+	crypt? ( app-crypt/qca:2[qt4(+)] )
 	eigen? ( dev-cpp/eigen:2 )
 	exif? ( media-gfx/exiv2:= )
 	fftw? ( sci-libs/fftw:3.0 )
@@ -102,17 +103,17 @@ RDEPEND="
 	)
 	jpeg? ( virtual/jpeg:0 )
 	jpeg2k? ( media-libs/openjpeg:0 )
-	kdcraw? ( $(add_kdebase_dep libkdcraw) )
+	kdcraw? ( $(add_kdeapps_dep libkdcraw) )
 	kde? ( $(add_kdebase_dep kactivities) )
 	kdepim? ( $(add_kdebase_dep kdepimlibs) )
 	lcms? (
 		media-libs/lcms:2
 		x11-libs/libX11
 	)
-	marble? ( $(add_kdebase_dep marble) )
+	marble? ( $(add_kdeapps_dep marble) )
 	mysql? ( virtual/mysql )
 	nepomuk? ( dev-libs/soprano )
-	okular? ( $(add_kdebase_dep okular) )
+	okular? ( $(add_kdeapps_dep okular) )
 	opengl? ( virtual/glu )
 	openexr? ( media-libs/openexr )
 	pdf? (
@@ -120,7 +121,7 @@ RDEPEND="
 		media-gfx/pstoedit
 	)
 	postgres? (
-		dev-db/postgresql-base
+		dev-db/postgresql
 		dev-libs/libpqxx
 	)
 	spacenav? ( dev-libs/libspnav  )

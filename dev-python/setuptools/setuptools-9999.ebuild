@@ -3,7 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5-progress"
-PYTHON_MULTIPLE_ABIS="1"
+PYTHON_ABI_TYPE="multiple"
 PYTHON_TESTS_FAILURES_TOLERANT_ABIS="*-jython"
 DISTUTILS_SRC_TEST="py.test"
 
@@ -17,16 +17,20 @@ EHG_REPO_URI="https://bitbucket.org/pypa/setuptools"
 LICENSE="PSF-2"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="test"
 
-DEPEND=""
-RDEPEND=""
+RDEPEND="$(python_abi_depend dev-python/packaging)"
+DEPEND="${RDEPEND}
+	test? ( $(python_abi_depend virtual/python-mock) )"
 
 DOCS="README.txt docs/easy_install.txt docs/pkg_resources.txt docs/setuptools.txt"
-PYTHON_MODULES="_markerlib easy_install.py pkg_resources.py setuptools"
+PYTHON_MODULES="_markerlib easy_install.py pkg_resources setuptools"
 
 src_prepare() {
 	distutils_src_prepare
+
+	# Use system version of dev-python/packaging.
+	rm -r pkg_resources/_vendor/packaging
 
 	# Disable tests requiring network connection.
 	rm setuptools/tests/test_packageindex.py
@@ -38,9 +42,4 @@ src_test() {
 
 src_install() {
 	SETUPTOOLS_DISABLE_VERSIONED_EASY_INSTALL_SCRIPT="1" distutils_src_install
-
-	delete_tests() {
-		rm -r "${ED}$(python_get_sitedir)/setuptools/tests"
-	}
-	python_execute_function -q delete_tests
 }

@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-misc/tellico/tellico-2.3.9.ebuild,v 1.3 2014/07/26 00:04:55 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-misc/tellico/tellico-2.3.9.ebuild,v 1.7 2015/06/04 18:57:32 kensington Exp $
 
 EAPI=5
 
@@ -17,7 +17,7 @@ SRC_URI="http://tellico-project.org/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="4"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ~ppc x86"
 IUSE="addressbook cddb debug nepomuk pdf scanner taglib v4l xmp yaz"
 
 RDEPEND="
@@ -27,10 +27,10 @@ RDEPEND="
 	media-libs/qimageblitz
 	dev-qt/qtdbus:4
 	addressbook? ( $(add_kdebase_dep kdepimlibs) )
-	cddb? ( $(add_kdebase_dep libkcddb) )
+	cddb? ( $(add_kdeapps_dep libkcddb) )
 	nepomuk? ( $(add_kdebase_dep kdelibs 'nepomuk?') )
 	pdf? ( app-text/poppler[qt4] )
-	scanner? ( $(add_kdebase_dep libksane) )
+	scanner? ( $(add_kdeapps_dep libksane) )
 	taglib? ( >=media-libs/taglib-1.5 )
 	v4l? ( >=media-libs/libv4l-0.8.3 )
 	xmp? ( >=media-libs/exempi-2 )
@@ -43,6 +43,7 @@ DEPEND="${RDEPEND}
 # tests need network access and well-defined server responses
 RESTRICT="test"
 
+PATCHES=( "${FILESDIR}/${P}-build.patch")
 DOCS=( AUTHORS ChangeLog README )
 
 src_configure() {

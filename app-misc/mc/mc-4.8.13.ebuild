@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.8.13.ebuild,v 1.1 2014/09/05 21:00:13 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.8.13.ebuild,v 1.11 2015/02/28 14:02:02 ago Exp $
 
 EAPI=5
 
-inherit eutils flag-o-matic
+inherit autotools eutils flag-o-matic
 
 MY_P=${P/_/-}
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.midnight-commander.org/downloads/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm mclib nls samba sftp +slang spell test X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
@@ -43,6 +43,9 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	[[ -n ${LIVE_EBUILD} ]] && ./autogen.sh
+
+	epatch "${FILESDIR}"/${P}-tinfo.patch
+	eautoreconf
 }
 
 S=${WORKDIR}/${MY_P}

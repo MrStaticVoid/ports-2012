@@ -1,11 +1,11 @@
-DEFINED_PHASES=compile configure install postinst preinst prepare unpack
-DEPEND=>=virtual/emacs-22 espeak? ( app-accessibility/espeak ) || ( dev-vcs/subversion[http] dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+DEFINED_PHASES=compile configure install postinst postrm prepare setup unpack
+DEPEND=espeak? ( app-accessibility/espeak ) >=virtual/emacs-24 >=dev-vcs/git-1.8.2.1
 DESCRIPTION=the emacspeak audio desktop
 EAPI=5
 HOMEPAGE=http://emacspeak.sourceforge.net/
 IUSE=+espeak
 LICENSE=BSD GPL-2
-RDEPEND=>=virtual/emacs-22 espeak? ( app-accessibility/espeak ) >=dev-tcltk/tclx-8.4
+RDEPEND=espeak? ( app-accessibility/espeak ) >=dev-tcltk/tclx-8.4 >=virtual/emacs-24
 SLOT=0
-_eclasses_=eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=6c81d82561b1e6014e3ec51f04bf1fb8
+_eclasses_=elisp	d13b0507622afb8ac9e3f54e91d58614	elisp-common	9a16929c1a6aec7e1c903289983e114c	eutils	9fb270e417e0e83d64ca52586c4a79de	git-r3	a00948a17a774db5e36bc0247c598097	multilib	62927b3db3a589b0806255f3a002d5d3	readme.gentoo	106edea5533517715013de909a333abd	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=a390dd4fc5d0a1ebc46558f73ba9a894

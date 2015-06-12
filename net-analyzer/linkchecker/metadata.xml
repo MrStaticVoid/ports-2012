@@ -5,10 +5,10 @@
     <email>jlec@gentoo.org</email>
   </maintainer>
   <use>
-    <flag name="bookmarks">Mozilla Bookmark parsing</flag>
     <flag name="sqlite">Mozilla Bookmark parsing</flag>
     <flag name="login">login form submission</flag>
-    <flag name="nagios">Install nagios cli plugin</flag>
-    <flag name="syntax-check">HTML/CSS syntax checks</flag>
   </use>
+  <upstream>
+    <remote-id type="pypi">LinkChecker</remote-id>
+  </upstream>
 </pkgmetadata>

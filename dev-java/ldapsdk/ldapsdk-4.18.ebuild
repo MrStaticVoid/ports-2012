@@ -6,7 +6,7 @@ inherit eutils java-pkg-2 java-ant-2
 
 DESCRIPTION="Netscape Directory SDK for Java"
 HOMEPAGE="http://www.mozilla.org/directory/javasdk.html"
-SRC_URI="http://www.funtoo.org/distfiles/ldapjdk-${PV}.tar.gz"
+SRC_URI="mirror://funtoo/ldapjdk-${PV}.tar.gz"
 
 LICENSE="MPL-1.1"
 SLOT="4.1"

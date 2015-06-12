@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.27 2014/08/28 18:20:49 swift Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.32 2015/04/21 11:19:10 perfinion Exp $
 
 # Eclass for installing SELinux policy, and optionally
 # reloading the reference-policy based modules.
@@ -63,7 +63,7 @@
 # using a single variable, rather than having to set the packagename_LIVE_REPO
 # variable for each and every SELinux policy module package they want to install.
 # The default value is Gentoo's hardened-refpolicy repository.
-: ${SELINUX_GIT_REPO:="git://git.overlays.gentoo.org/proj/hardened-refpolicy.git https://git.overlays.gentoo.org/gitroot/proj/hardened-refpolicy.git"};
+: ${SELINUX_GIT_REPO:="git://anongit.gentoo.org/proj/hardened-refpolicy.git https://anongit.gentoo.org/git/proj/hardened-refpolicy.git"};
 
 # @ECLASS-VARIABLE: SELINUX_GIT_BRANCH
 # @DESCRIPTION:
@@ -76,24 +76,24 @@
 
 extra_eclass=""
 case ${BASEPOL} in
-	9999)	extra_eclass="git-2";
+	9999)	extra_eclass="git-r3";
 			EGIT_REPO_URI="${SELINUX_GIT_REPO}";
 			EGIT_BRANCH="${SELINUX_GIT_BRANCH}";
-			EGIT_SOURCEDIR="${WORKDIR}/refpolicy";;
+			EGIT_CHECKOUT_DIR="${WORKDIR}/refpolicy";;
 esac
 
 inherit eutils ${extra_eclass}
 
 IUSE=""
 
-HOMEPAGE="http://www.gentoo.org/proj/en/hardened/selinux/"
+HOMEPAGE="https://wiki.gentoo.org/wiki/Project:SELinux"
 if [[ -n ${BASEPOL} ]] && [[ "${BASEPOL}" != "9999" ]];
 then
-	SRC_URI="http://oss.tresys.com/files/refpolicy/refpolicy-${PV}.tar.bz2
+	SRC_URI="https://raw.githubusercontent.com/wiki/TresysTechnology/refpolicy/files/refpolicy-${PV}.tar.bz2
 		http://dev.gentoo.org/~swift/patches/selinux-base-policy/patchbundle-selinux-base-policy-${BASEPOL}.tar.bz2"
 elif [[ "${BASEPOL}" != "9999" ]];
 then
-	SRC_URI="http://oss.tresys.com/files/refpolicy/refpolicy-${PV}.tar.bz2"
+	SRC_URI="https://raw.githubusercontent.com/wiki/TresysTechnology/refpolicy/files/refpolicy-${PV}.tar.bz2"
 else
 	SRC_URI=""
 fi
@@ -117,28 +117,23 @@ DEPEND="${RDEPEND}
 	sys-devel/m4
 	>=sys-apps/checkpolicy-2.0.21"
 
-SELINUX_EXPF="src_unpack src_compile src_install pkg_postinst pkg_postrm"
 case "${EAPI:-0}" in
-	2|3|4|5) SELINUX_EXPF+=" src_prepare" ;;
-	*) ;;
+	0|1|2|3|4) die "EAPI<5 is not supported";;
+	*) : ;;
 esac
 
-EXPORT_FUNCTIONS ${SELINUX_EXPF}
+EXPORT_FUNCTIONS "src_unpack src_prepare src_compile src_install pkg_postinst pkg_postrm"
 
 # @FUNCTION: selinux-policy-2_src_unpack
 # @DESCRIPTION:
-# Unpack the policy sources as offered by upstream (refpolicy). In case of EAPI
-# older than 2, call src_prepare too.
+# Unpack the policy sources as offered by upstream (refpolicy).
 selinux-policy-2_src_unpack() {
 	if [[ "${BASEPOL}" != "9999" ]];
 	then
 		unpack ${A}
 	else
-		git-2_src_unpack
+		git-r3_src_unpack
 	fi
-
-	# Call src_prepare explicitly for EAPI 0 or 1
-	has "${EAPI:-0}" 0 1 && selinux-policy-2_src_prepare
 }
 
 # @FUNCTION: selinux-policy-2_src_prepare
@@ -229,11 +224,16 @@ selinux-policy-2_src_compile() {
 	do
 		use ${useflag} && makeuse="${makeuse} -D use_${useflag}"
 	done
+
 	for i in ${POLICY_TYPES}; do
 		# Support USE flags in builds
 		export M4PARAM="${makeuse}"
-		# Parallel builds are broken, so we need to force -j1 here
-		emake -j1 NAME=$i -C "${S}"/${i} || die "${i} compile failed"
+		if [[ ${BASEPOL} == 2.20140311* ]]; then
+			# Parallel builds are broken in 2.20140311-r7 and earlier, bug 530178
+			emake -j1 NAME=$i -C "${S}"/${i} || die "${i} compile failed"
+		else
+			emake NAME=$i -C "${S}"/${i} || die "${i} compile failed"
+		fi
 	done
 }
 
@@ -318,7 +318,7 @@ selinux-policy-2_pkg_postinst() {
 	# Relabel depending packages
 	PKGSET="";
 	if [ -x /usr/bin/qdepends ] ; then
-	  PKGSET=$(/usr/bin/qdepends -Cq -Q ${CATEGORY}/${PN} | grep -v "sec-policy/selinux-");
+	  PKGSET=$(/usr/bin/qdepends -Cq -r -Q ${CATEGORY}/${PN} | grep -v "sec-policy/selinux-");
 	elif [ -x /usr/bin/equery ] ; then
 	  PKGSET=$(/usr/bin/equery -Cq depends ${CATEGORY}/${PN} | grep -v "sec-policy/selinux-");
 	fi
@@ -333,17 +333,17 @@ selinux-policy-2_pkg_postinst() {
 # deactivating the policy on the system.
 selinux-policy-2_pkg_postrm() {
 	# Only if we are not upgrading
-	if [[ "${EAPI}" -lt 4 || -z "${REPLACED_BY_VERSION}" ]];
+	if [[ -z "${REPLACED_BY_VERSION}" ]];
 	then
 		# build up the command in the case of multiple modules
 		local COMMAND
 		for i in ${MODS}; do
 			COMMAND="-r ${i} ${COMMAND}"
 		done
-	
+
 		for i in ${POLICY_TYPES}; do
 			einfo "Removing the following modules from the $i module store: ${MODS}"
-	
+
 			semodule -s ${i} ${COMMAND}
 			if [ $? -ne 0 ];
 			then

@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-leechcraft/lc-azoth/lc-azoth-9999.ebuild,v 1.12 2014/08/05 19:30:18 maksbotan Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-leechcraft/lc-azoth/lc-azoth-9999.ebuild,v 1.16 2015/03/02 19:08:06 maksbotan Exp $
 
 EAPI="5"
 
@@ -12,8 +12,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE="debug doc astrality +acetamide +adiumstyles +autoidler +autopaste +birthdaynotifier
 		+chathistory +crypt +depester +embedmedia +herbicide +hili +isterique
-		+juick +keeso +lastseen	+metacontacts media +msn +murm +latex +nativeemoticons
-		+otroid +spell sarin shx +standardstyles +vader +woodpecker +xmpp +xtazy"
+		+juick +keeso +lastseen	+metacontacts media +murm +latex +nativeemoticons
+		+otroid +spell sarin shx +standardstyles +vader velvetbird +woodpecker +xmpp +xtazy"
 
 COMMON_DEPEND="~app-leechcraft/lc-core-${PV}
 		dev-libs/qjson
@@ -22,7 +22,6 @@ COMMON_DEPEND="~app-leechcraft/lc-core-${PV}
 		astrality? ( net-libs/telepathy-qt )
 		otroid? ( net-libs/libotr )
 		media? ( dev-qt/qt-mobility[multimedia] )
-		msn? ( net-libs/libmsn )
 		woodpecker? ( dev-libs/kqoauth )
 		xmpp? (
 			=net-libs/qxmpp-9999
@@ -32,7 +31,7 @@ COMMON_DEPEND="~app-leechcraft/lc-core-${PV}
 			~app-leechcraft/lc-xtazy-${PV}
 			dev-qt/qtdbus:4
 		)
-		crypt? ( app-crypt/qca app-crypt/qca-gnupg )
+		crypt? ( app-crypt/qca:2[qt4(+)] )
 		sarin? ( net-libs/tox )
 "
 DEPEND="${COMMON_DEPEND}
@@ -42,6 +41,7 @@ RDEPEND="${COMMON_DEPEND}
 		net-im/telepathy-mission-control
 		net-voip/telepathy-haze
 	)
+	crypt? ( app-crypt/qca:2[gpg] )
 	latex? (
 		|| (
 			media-gfx/imagemagick
@@ -77,7 +77,6 @@ src_configure() {
 		$(cmake-utils_use_enable metacontacts AZOTH_METACONTACTS)
 		$(cmake-utils_use_enable media MEDIACALLS)
 		$(cmake-utils_use_enable latex AZOTH_MODNOK)
-		$(cmake-utils_use_enable msn AZOTH_ZHEET)
 		$(cmake-utils_use_enable murm AZOTH_MURM)
 		$(cmake-utils_use_enable nativeemoticons AZOTH_NATIVEEMOTICONS)
 		$(cmake-utils_use_enable otroid AZOTH_OTROID)
@@ -86,6 +85,7 @@ src_configure() {
 		$(cmake-utils_use_enable shx AZOTH_SHX)
 		$(cmake-utils_use_enable standardstyles AZOTH_STANDARDSTYLES)
 		$(cmake-utils_use_enable vader AZOTH_VADER)
+		$(cmake-utils_use_enable velvetbird AZOTH_VELVETBIRD)
 		$(cmake-utils_use_enable woodpecker AZOTH_WOODPECKER)
 		$(cmake-utils_use_enable xmpp AZOTH_XOOX)
 		$(cmake-utils_use_enable xtazy AZOTH_XTAZY)

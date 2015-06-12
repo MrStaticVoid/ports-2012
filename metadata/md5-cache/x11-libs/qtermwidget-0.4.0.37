@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install prepare test unpack
-DEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DEPEND=dev-qt/designer:4 dev-qt/qtcore:4 dev-qt/qtgui:4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
 DESCRIPTION=Qt4 terminal emulator widget
 EAPI=5
 HOMEPAGE=https://github.com/qterminal/
 IUSE=debug
 KEYWORDS=~amd64 ~arm ~x86
 LICENSE=GPL-2
-RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4
+RDEPEND=dev-qt/designer:4 dev-qt/qtcore:4 dev-qt/qtgui:4
 SLOT=0
 SRC_URI=http://dist.leechcraft.org/3rdparty/qtermwidget/qtermwidget-0.4.0-37-gebf7d6c.tar.xz -> qtermwidget-0.4.0.37.tar.xz
-_eclasses_=cmake-utils	3c236476577c40ef83fcb42c7f6c0b23	eutils	32548a82e42dc26e3312581476d2f20c	flag-o-matic	75e24bac8423c515dd9c5717f08feb83	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	0f1760274637a138b99bb649202ea402	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
-_md5_=01e022ca7757c4719173fe02ada1118f
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_md5_=de8987f1b27cee278e3637ccba797c03

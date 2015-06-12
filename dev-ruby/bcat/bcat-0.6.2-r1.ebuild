@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bcat/bcat-0.6.2-r1.ebuild,v 1.3 2014/08/05 16:00:57 mrueg Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bcat/bcat-0.6.2-r1.ebuild,v 1.12 2015/05/31 10:44:55 maekke Exp $
 
 EAPI=5
 USE_RUBY="ruby19 ruby20"
@@ -15,11 +15,11 @@ HOMEPAGE="http://github.com/rtomayko/bcat"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 ~sparc x86 ~x86-fbsd"
 IUSE=""
 
 # Collides on /usr/bin/bcat, bug 418301
-RDEPEND="${RDEPEND} !!app-accessibility/speech-tools"
+RDEPEND="${RDEPEND} !!<app-accessibility/speech-tools-2.1-r3"
 
 ruby_add_bdepend "doc? ( app-text/ronn )"
 

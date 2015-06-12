@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic5/epic5-1.1.10.ebuild,v 1.3 2014/09/04 04:53:58 binki Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic5/epic5-1.1.10.ebuild,v 1.6 2015/03/25 16:18:58 jlec Exp $
 
 EAPI=4
 
@@ -14,15 +14,16 @@ HOMEPAGE="http://epicsol.org/"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ~ppc x86"
 IUSE="archive ipv6 perl tcl ruby socks5 valgrind"
 
-RDEPEND="virtual/libiconv
-	>=dev-libs/openssl-0.9.8e-r3
+RDEPEND="
+	>=dev-libs/openssl-0.9.8e-r3:0
 	>=sys-libs/ncurses-5.6-r2
+	virtual/libiconv
 	archive? ( app-arch/libarchive )
 	perl? ( >=dev-lang/perl-5.8.8-r2 )
-	tcl? ( dev-lang/tcl )
+	tcl? ( dev-lang/tcl:0 )
 	socks5? ( net-proxy/dante )
 	ruby? ( $(ruby_implementations_depend) )"
 DEPEND="${RDEPEND}
@@ -42,7 +43,8 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.1.2-libarchive-automagic.patch \
+	epatch \
+		"${FILESDIR}"/${PN}-1.1.2-libarchive-automagic.patch \
 		"${FILESDIR}"/${P}-ruby-automagic-as-needed.patch \
 		"${FILESDIR}"/${P}-tcl-automagic-as-needed.patch \
 		"${FILESDIR}"/${PN}-1.1.2-perl-automagic-as-needed.patch \
@@ -69,7 +71,7 @@ src_compile() {
 }
 
 src_install () {
-	emake DESTDIR="${D}" install
+	default
 
 	dodoc BUG_FORM COPYRIGHT EPIC4-USERS-README README KNOWNBUGS VOTES
 

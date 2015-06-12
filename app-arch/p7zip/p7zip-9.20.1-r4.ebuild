@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-9.20.1-r4.ebuild,v 1.5 2013/11/16 07:49:40 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-9.20.1-r4.ebuild,v 1.7 2015/05/04 12:23:31 jlec Exp $
 
 EAPI=4
 
@@ -82,7 +82,9 @@ src_prepare() {
 		sed -e 's/-lc_r/-pthread/' makefile.freebsd > makefile.machine
 	fi
 
-	use static && sed -i -e '/^LOCAL_LIBS=/s/LOCAL_LIBS=/&-static /' makefile.machine
+	if use static; then
+		sed -i -e '/^LOCAL_LIBS=/s/LOCAL_LIBS=/&-static /' makefile.machine || die
+	fi
 
 	if use kde || use wxwidgets; then
 		einfo "Preparing dependency list"
@@ -113,7 +115,6 @@ src_install() {
 		make_wrapper 7zFM "/usr/$(get_libdir)/${PN}/7zFM"
 
 		make_desktop_entry 7zFM "${PN} FM" ${PN} "GTK;Utility;Archiving;Compression"
-		make_desktop_entry 7zG "${PN} GUI" ${PN} "GTK;Utility;Archiving;Compression"
 
 		dobin GUI/p7zipForFilemanager
 		exeinto /usr/$(get_libdir)/${PN}

@@ -1,20 +1,22 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/telepathy-qt/telepathy-qt-0.9.5.ebuild,v 1.1 2014/09/15 16:41:59 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/telepathy-qt/telepathy-qt-0.9.5.ebuild,v 1.8 2015/05/14 16:17:13 pesa Exp $
 
 EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
-inherit base python-any-r1 cmake-utils virtualx multibuild
+inherit python-any-r1 cmake-utils virtualx multibuild
 
-DESCRIPTION="Qt4 bindings for the Telepathy D-Bus protocol"
+DESCRIPTION="Qt bindings for the Telepathy D-Bus protocol"
 HOMEPAGE="http://telepathy.freedesktop.org/"
 SRC_URI="http://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="amd64 ~arm x86"
 IUSE="debug farstream +qt4 qt5 test"
+
+REQUIRED_USE="|| ( qt4 qt5 )"
 
 RDEPEND="
 	farstream? (
@@ -39,7 +41,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	test? (
 		dev-libs/dbus-glib
-		dev-libs/glib
+		dev-libs/glib:2
 		dev-python/dbus-python
 		qt4? ( dev-qt/qttest:4 )
 		qt5? ( dev-qt/qttest:5 )
@@ -48,17 +50,9 @@ DEPEND="${RDEPEND}
 
 DOCS=( AUTHORS ChangeLog HACKING NEWS README )
 
-RESTRICT="test"
-
 pkg_setup() {
 	python-any-r1_pkg_setup
-	MULTIBUILD_VARIANTS=()
-	if use qt4; then
-		MULTIBUILD_VARIANTS+=(qt4)
-	fi
-	if use qt5; then
-		MULTIBUILD_VARIANTS+=(qt5)
-	fi
+	MULTIBUILD_VARIANTS=( $(usev qt4) $(usev qt5) )
 }
 
 src_configure() {
@@ -86,16 +80,16 @@ src_compile() {
 	multibuild_foreach_variant cmake-utils_src_compile
 }
 
-src_install() {
-	multibuild_foreach_variant cmake-utils_src_install
-}
-
 src_test() {
 	mytest() {
 		pushd "${BUILD_DIR}" > /dev/null
-		Xemake test || die "tests failed"
+		VIRTUALX_COMMAND="ctest -E '(CallChannel)'" virtualmake || die "tests failed"
 		popd > /dev/null
 	}
 
 	multibuild_foreach_variant mytest
+}
+
+src_install() {
+	multibuild_foreach_variant cmake-utils_src_install
 }

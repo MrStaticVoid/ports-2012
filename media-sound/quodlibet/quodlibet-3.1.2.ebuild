@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/quodlibet/quodlibet-3.1.2.ebuild,v 1.1 2014/07/09 11:36:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/quodlibet/quodlibet-3.1.2.ebuild,v 1.6 2015/05/30 12:09:12 jer Exp $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -12,13 +12,13 @@ SRC_URI="http://bitbucket.org/lazka/${PN}-files/raw/default/releases/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="amd64 ~ppc ppc64 x86"
 IUSE="+dbus gstreamer ipod +udev"
 
 RDEPEND="dev-libs/keybinder:3[introspection]
-	dev-python/feedparser
-	dev-python/pygobject:3
-	>=media-libs/mutagen-1.22
+	dev-python/feedparser[${PYTHON_USEDEP}]
+	dev-python/pygobject:3[${PYTHON_USEDEP}]
+	>=media-libs/mutagen-1.22[${PYTHON_USEDEP}]
 	gstreamer? (
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
@@ -28,9 +28,9 @@ RDEPEND="dev-libs/keybinder:3[introspection]
 	!gstreamer? ( media-libs/xine-lib )
 	dbus? (
 		app-misc/media-player-info
-		dev-python/dbus-python
+		dev-python/dbus-python[${PYTHON_USEDEP}]
 		)
-	ipod? ( media-libs/libgpod[python] )
+	ipod? ( media-libs/libgpod[python,${PYTHON_USEDEP}] )
 	udev? ( virtual/udev )"
 DEPEND="dev-util/intltool"
 REQUIRED_USE="ipod? ( dbus )"

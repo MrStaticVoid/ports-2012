@@ -1,9 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-9999.ebuild,v 1.1 2014/05/31 04:14:40 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-9999.ebuild,v 1.3 2015/04/08 18:30:30 mgorny Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="threads"
 inherit autotools eutils git-r3 flag-o-matic python-any-r1
 
@@ -31,7 +31,7 @@ DEPEND="dev-libs/boehm-gc
 	gpm? ( >=sys-libs/ncurses-5.2 >=sys-libs/gpm-1.20.0-r5 )
 	guile? ( >=dev-scheme/guile-1.6.4-r1[deprecated,discouraged] )
 	idn? ( net-dns/libidn )
-	perl? ( sys-devel/libperl )
+	perl? ( dev-lang/perl:= )
 	ruby? ( dev-lang/ruby dev-ruby/rubygems )
 	samba? ( net-fs/samba )
 	javascript? ( >=dev-lang/spidermonkey-1.8.5:0= )"

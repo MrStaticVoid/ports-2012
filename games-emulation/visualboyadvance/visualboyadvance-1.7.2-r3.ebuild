@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/visualboyadvance/visualboyadvance-1.7.2-r3.ebuild,v 1.10 2012/10/16 03:00:39 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/visualboyadvance/visualboyadvance-1.7.2-r3.ebuild,v 1.13 2015/06/02 05:14:07 mr_bones_ Exp $
 
-EAPI=2
+EAPI=5
 inherit eutils flag-o-matic autotools games
 
 DESCRIPTION="gameboy, gameboy color, and gameboy advance emulator"
@@ -13,10 +13,10 @@ SRC_URI="mirror://sourceforge/vba/VisualBoyAdvance-src-${PV}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ppc x86 ~x86-fbsd"
-IUSE="gtk mmx nls"
+IUSE="gtk cpu_flags_x86_mmx nls"
 
-RDEPEND="media-libs/libpng
-	media-libs/libsdl
+RDEPEND="media-libs/libpng:0
+	media-libs/libsdl[sound,video]
 	sys-libs/zlib[minizip]
 	gtk? (
 		>=x11-libs/gtk+-2.4:2
@@ -26,7 +26,7 @@ RDEPEND="media-libs/libpng
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	mmx? ( dev-lang/nasm )
+	cpu_flags_x86_mmx? ( dev-lang/nasm )
 	nls? ( sys-devel/gettext )"
 
 S=${WORKDIR}/VisualBoyAdvance-${PV}
@@ -52,13 +52,13 @@ src_prepare() {
 		"${FILESDIR}"/${P}-zlib-1.2.6.patch \
 		"${FILESDIR}"/${P}-sys-types.patch
 
+	mv configure.in configure.ac || die
 	eautoreconf
 
 	sed -i \
 		-e 's:$(localedir):/usr/share/locale:' \
 		-e 's:$(datadir)/locale:/usr/share/locale:' \
-		$(find . -name 'Makefile.in*') \
-		|| die "sed failed"
+		$(find . -name 'Makefile.in*') || die
 }
 
 src_configure() {
@@ -67,16 +67,13 @@ src_configure() {
 
 	# Removed --enable-c-core as it *should* determine this based on arch
 	egamesconf \
-		--disable-dependency-tracking \
-		$(use_with mmx) \
+		$(use_with cpu_flags_x86_mmx mmx) \
 		$(use_enable gtk gtk 2.4) \
-		$(use_enable nls) \
-		|| die
+		$(use_enable nls)
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS ChangeLog NEWS README README-win.txt
+	default
 	if use gtk ; then
 		newicon src/gtk/images/vba-64.png ${PN}.png
 		make_desktop_entry gvba VisualBoyAdvance

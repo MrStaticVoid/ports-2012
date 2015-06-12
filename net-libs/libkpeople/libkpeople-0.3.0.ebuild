@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libkpeople/libkpeople-0.3.0.ebuild,v 1.1 2014/09/16 17:03:24 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libkpeople/libkpeople-0.3.0.ebuild,v 1.3 2015/05/12 14:03:48 kensington Exp $
 
 EAPI=5
 
@@ -16,11 +16,11 @@ else
 fi
 
 DESCRIPTION="KDE contact person abstraction library"
-HOMEPAGE="https://projects.kde.org/projects/playground/network/libkpeople"
+HOMEPAGE="https://projects.kde.org/projects/playground/network/kpeople"
 
 LICENSE="LGPL-2.1"
 SLOT="4/4"
-IUSE="debug examples semantic-desktop test"
+IUSE="debug examples minimal semantic-desktop test"
 
 RDEPEND="
 	$(add_kdebase_dep kdepimlibs)
@@ -29,6 +29,11 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 "
+
+src_prepare() {
+	use minimal && comment_add_subdirectory po
+	kde4-base_src_prepare
+}
 
 src_configure() {
 	local mycmakeargs=(

@@ -11,6 +11,7 @@ app-doc
 app-editors
 app-emacs
 app-emulation
+app-eselect
 app-forensics
 app-i18n
 app-laptop
@@ -31,6 +32,7 @@ dev-db
 dev-dotnet
 dev-embedded
 dev-games
+dev-go
 dev-haskell
 dev-java
 dev-lang
@@ -74,8 +76,11 @@ gnustep-libs
 gpe-base
 gpe-utils
 java-virtuals
+kde-apps
 kde-base
+kde-frameworks
 kde-misc
+kde-plasma
 lxde-base
 lxqt-base
 mail-client
@@ -111,10 +116,8 @@ net-proxy
 net-voip
 net-wireless
 net-zope
+pantheon-base
 perl-core
-razorqt-base
-rox-base
-rox-extra
 sci-astronomy
 sci-biology
 sci-calculators

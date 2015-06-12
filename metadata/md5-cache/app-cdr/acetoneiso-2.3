@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install prepare unpack
-DEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-qt/qtgui:4 dev-qt/qtwebkit:4 kde? ( media-libs/phonon ) !kde? ( || ( dev-qt/qtphonon:4 media-libs/phonon ) )
+DEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-qt/qtgui:4 dev-qt/qtwebkit:4 kde? ( media-libs/phonon[qt4] ) !kde? ( || ( dev-qt/qtphonon:4 media-libs/phonon[qt4] ) )
 DESCRIPTION=a feature-rich and complete software application to manage CD/DVD images
 EAPI=4
 HOMEPAGE=http://sourceforge.net/projects/acetoneiso/
 IUSE=kde
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-3
-RDEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-qt/qtgui:4 dev-qt/qtwebkit:4 kde? ( media-libs/phonon ) !kde? ( || ( dev-qt/qtphonon:4 media-libs/phonon ) ) sys-fs/fuseiso
+RDEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-qt/qtgui:4 dev-qt/qtwebkit:4 kde? ( media-libs/phonon[qt4] ) !kde? ( || ( dev-qt/qtphonon:4 media-libs/phonon[qt4] ) ) sys-fs/fuseiso
 SLOT=0
 SRC_URI=mirror://sourceforge/acetoneiso/acetoneiso_2.3.tar.gz
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	flag-o-matic	75e24bac8423c515dd9c5717f08feb83	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	40136c5fe0002a0d3937e869ae4ee0e2	qt4-r2	118737d78407d7d0a6cdf4147b668ec3	toolchain-funcs	0f1760274637a138b99bb649202ea402
-_md5_=a1dd5f75982f61e91cffac3367cba81e
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	multilib	62927b3db3a589b0806255f3a002d5d3	qmake-utils	1c0e4f885b876595f09a9bb6c78a687d	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=7e83a8434640a8f064fb6af6a1b56c22

@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install prepare setup unpack
-DEPEND=>=media-libs/raul-0.7.0 >=x11-libs/flowcanvas-0.7.1 >=dev-cpp/gtkmm-2.11.12:2.4 >=dev-cpp/glibmm-2.14:2 >=dev-cpp/libglademm-2.6.0:2.4 dev-cpp/libgnomecanvasmm:2.6 >=media-sound/jack-audio-connection-kit-0.107 alsa? ( media-libs/alsa-lib ) lash? ( dev-libs/dbus-glib ) || ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-libs/boost virtual/pkgconfig dev-lang/python !dev-lang/python[-threads]
+DEPEND=>=media-libs/raul-0.7.0 >=x11-libs/flowcanvas-0.7.1 >=dev-cpp/gtkmm-2.11.12:2.4 >=dev-cpp/glibmm-2.14:2 >=dev-cpp/libglademm-2.6.0:2.4 dev-cpp/libgnomecanvasmm:2.6 >=media-sound/jack-audio-connection-kit-0.107 alsa? ( media-libs/alsa-lib ) lash? ( dev-libs/dbus-glib ) || ( >=dev-lang/python-2.7.5-r2:2.7[threads(+)] ) dev-libs/boost virtual/pkgconfig dev-lang/python !dev-lang/python[-threads]
 DESCRIPTION=Modular patch bay for audio and MIDI systems
 EAPI=5
 HOMEPAGE=http://wiki.drobilla.net/Patchage
 IUSE=alsa debug lash
-KEYWORDS=~amd64 ~x86
+KEYWORDS=amd64 x86
 LICENSE=GPL-2
 RDEPEND=>=media-libs/raul-0.7.0 >=x11-libs/flowcanvas-0.7.1 >=dev-cpp/gtkmm-2.11.12:2.4 >=dev-cpp/glibmm-2.14:2 >=dev-cpp/libglademm-2.6.0:2.4 dev-cpp/libgnomecanvasmm:2.6 >=media-sound/jack-audio-connection-kit-0.107 alsa? ( media-libs/alsa-lib ) lash? ( dev-libs/dbus-glib )
 SLOT=0
 SRC_URI=http://download.drobilla.net/patchage-0.5.0.tar.bz2
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-any-r1	4560effd96d3d2a82e50af7cf87166da	python-utils-r1	47dda904cf91c61f45b564d9f834fde1	toolchain-funcs	0f1760274637a138b99bb649202ea402	waf-utils	c83d65d895bcdfc6152948bbafd25453
-_md5_=12b8d0ed810945c97bf86d6568fc3051
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-any-r1	da352ea9da8eb9bf158d56cca65d6c82	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4	waf-utils	e63b892564f1e305cc28f1fee87898ce
+_md5_=fcaa0795bb988b01e9cd02a40b85c189

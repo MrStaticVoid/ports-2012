@@ -1,9 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ardour/ardour-9999.ebuild,v 1.8 2014/05/17 18:21:28 nativemad Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ardour/ardour-9999.ebuild,v 1.18 2015/05/03 12:32:14 nativemad Exp $
 
-EAPI=4
-inherit eutils toolchain-funcs flag-o-matic waf-utils
+EAPI=5
+
+PYTHON_COMPAT=( python2_7 )
+PYTHON_REQ_USE='threads(+)'
+
+inherit eutils toolchain-funcs flag-o-matic python-any-r1 waf-utils
 
 DESCRIPTION="Digital Audio Workstation"
 HOMEPAGE="http://ardour.org/"
@@ -18,15 +22,15 @@ else
 fi
 
 LICENSE="GPL-2"
-SLOT="3"
-IUSE="altivec debug doc nls lv2 sse"
+SLOT="4"
+IUSE="altivec doc jack lv2 cpu_flags_x86_sse"
 
 RDEPEND="media-libs/aubio
 	media-libs/liblo
 	sci-libs/fftw:3.0
 	media-libs/freetype:2
 	>=dev-libs/glib-2.10.1:2
-	dev-cpp/glibmm:2
+	>=dev-cpp/glibmm-2.32.0
 	>=x11-libs/gtk+-2.8.1:2
 	>=dev-libs/libxml2-2.6:2
 	>=media-libs/libsndfile-1.0.18
@@ -36,7 +40,6 @@ RDEPEND="media-libs/aubio
 	media-libs/flac
 	media-libs/raptor:2
 	>=media-libs/liblrdf-0.4.0-r20
-	>=media-sound/jack-audio-connection-kit-0.120
 	>=gnome-base/libgnomecanvas-2
 	media-libs/vamp-plugin-sdk
 	dev-libs/libxslt
@@ -51,6 +54,7 @@ RDEPEND="media-libs/aubio
 	dev-libs/boost
 	>=media-libs/taglib-1.7
 	net-misc/curl
+	jack? ( >=media-sound/jack-audio-connection-kit-0.120 )
 	lv2? (
 		>=media-libs/slv2-0.6.1
 		media-libs/lilv
@@ -61,8 +65,10 @@ RDEPEND="media-libs/aubio
 	)"
 
 DEPEND="${RDEPEND}
+	${PYTHON_DEPS}
 	virtual/pkgconfig
-	nls? ( sys-devel/gettext )
+	>=media-sound/jack-audio-connection-kit-0.120
+	sys-devel/gettext
 	doc? ( app-doc/doxygen[dot] )"
 	if ! [ ${PV} = 9999 ]; then
 		DEPEND="${DEPEND}"
@@ -78,29 +84,44 @@ src_unpack() {
 
 src_prepare(){
 	if ! [ ${PV} = 9999 ]; then
-		PVTEMP=`echo "${PV}" | sed "s/\./-/2"`
-		sed -e '/cmd = "git describe HEAD/,/utf-8/{s:cmd = \"git describe HEAD\":rev = \"'${PVTEMP}-gentoo'\":p;d}' -i "${S}"/wscript
-		sed -e 's/'os.getcwd\(\),\ \'.git'/'os.getcwd\(\),\ \'libs/'' -i "${S}"/wscript
-		sed -e 's/'os.path.exists\(\'.git'/'os.path.exists\(\'wscript/'' -i "${S}"/wscript
-
+		epatch "${FILESDIR}"/${PN}-4.0-revision-naming.patch
+		touch "${S}/libs/ardour/revision.cc"
 	fi
-	epatch "${FILESDIR}"/${PN}-3.5.7-syslibs.patch
-	sed 's/python/python2/' -i waf
-#	sed 's/'FLAGS\'\,\ optimization_flags'/'FLAGS\'\,\ \'\''/g' -i "${S}"/wscript
-	sed 's/'FLAGS\'\,\ compiler_flags'/'FLAGS\'\,\ \'\''/g' -i "${S}"/wscript
+	$(use lv2 || epatch "${FILESDIR}"/${PN}-4.0-lv2.patch)
+	epatch "${FILESDIR}"/${PN}-3.5.403-sse.patch
+	sed -e 's/'FLAGS\'\,\ compiler_flags'/'FLAGS\'\,\ program_flags'/g' -i "${S}"/wscript
+	sed -e 's/'compiler_flags.append\ \(\'-DPROGRAM_'/'program_flags.append\ \(\'-DPROGRAM_'/g' -i "${S}"/wscript
+	sed -e '/compiler_flags\ \=\ \[\]/a \ \ \ \ program_flags\ \=\ \[\]' -i "${S}"/wscript
+	append-flags "-lboost_system"
 }
 
 src_configure() {
+	if use cpu_flags_x86_sse; then
+		MARCH=$(get-flag march)
+		for ARCHWOSSE in i686 i486; do
+			if [[ ${MARCH} = ${ARCHWOSSE} ]]; then
+				for SSEOPT in -msse -msse2 -msse3 -mssse3 -msse4 -msse4.1 -msse4.2; do
+					is-flag ${SSEOPT} && SSEON="yes"
+				done
+				if [ -z ${SSEON} ]; then
+					append-flags -msse
+					elog "You enabled sse but use an march that does not support sse!"
+					elog "We add -msse to the cflags now, but please consider switching your march in make.conf!"
+				fi
+			fi
+		done
+	fi
 	tc-export CC CXX
 	mkdir -p "${D}"
 	waf-utils_src_configure \
 		--destdir="${D}" \
 		--prefix=/usr \
 		--configdir=/etc \
+		--optimize \
+		--nls \
+		$(use jack && echo "--with-backends=alsa,jack" || echo "--with-backends=alsa  --libjack=weak") \
 		$(use lv2 && echo "--lv2" || echo "--no-lv2") \
-		$(use nls && echo "--nls" || echo "--no-nls") \
-		$(use debug && echo "--stl-debug" || echo "--optimize") \
-		$((use altivec || use sse) && echo "--fpu-optimization" || echo "--no-fpu-optimization") \
+		$({ use altivec || use cpu_flags_x86_sse; } && echo "--fpu-optimization" || echo "--no-fpu-optimization") \
 		$(use doc && echo "--docs")
 }
 
@@ -109,7 +130,7 @@ src_install() {
 	mv ${PN}.1 ${PN}${SLOT}.1
 	doman ${PN}${SLOT}.1
 	newicon icons/icon/ardour_icon_mac.png ${PN}${SLOT}.png
-	make_desktop_entry ardour3 ardour3 ardour3 AudioVideo
+	make_desktop_entry ardour4 ardour4 ardour4 AudioVideo
 }
 
 pkg_postinst() {

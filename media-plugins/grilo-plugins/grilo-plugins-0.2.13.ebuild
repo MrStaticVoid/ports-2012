@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/grilo-plugins/grilo-plugins-0.2.13.ebuild,v 1.1 2014/09/02 13:39:14 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/grilo-plugins/grilo-plugins-0.2.13.ebuild,v 1.7 2015/05/14 22:25:54 eva Exp $
 
 EAPI="5"
 GCONF_DEBUG="no" # --enable-debug only changes CFLAGS
@@ -13,13 +13,13 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Grilo"
 
 LICENSE="LGPL-2.1+"
 SLOT="0.2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~ppc ~ppc64 x86"
 IUSE="daap +dvd flickr freebox gnome-online-accounts lua pocket thetvdb tracker upnp-av +vimeo +youtube"
 
 RDEPEND="
 	>=dev-libs/glib-2.36:2
-	>=media-libs/grilo-0.2.10:${SLOT}[network,playlist]
-	>=media-libs/libmediaart-0.1
+	>=media-libs/grilo-0.2.11:${SLOT}[network,playlist]
+	>=media-libs/libmediaart-0.1:1.0
 	>=dev-libs/gom-0.2.1
 
 	dev-libs/gmime:2.6
@@ -44,7 +44,7 @@ RDEPEND="
 		dev-libs/libxml2 )
 	tracker? ( >=app-misc/tracker-0.10.5:= )
 	youtube? (
-		>=dev-libs/libgdata-0.9.1
+		>=dev-libs/libgdata-0.9.1:=
 		dev-libs/totem-pl-parser )
 	upnp-av? ( net-libs/libsoup )
 	vimeo? (

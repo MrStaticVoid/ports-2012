@@ -1,12 +1,12 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/plplot/plplot-5.10.0-r1.ebuild,v 1.2 2014/06/27 19:26:10 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/plplot/plplot-5.10.0-r1.ebuild,v 1.6 2015/05/07 09:14:47 jlec Exp $
 
 EAPI=5
 
 WX_GTK_VER="2.8"
 FORTRAN_NEEDED=fortran
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 VIRTUALX_REQUIRED=test
 
 inherit eutils fortran-2 cmake-utils python-single-r1 toolchain-funcs \
@@ -24,10 +24,10 @@ IUSE="ada cairo cxx doc +dynamic examples fortran gd java jpeg latex lua
 	threads tk truetype wxwidgets X"
 
 RDEPEND="
-	ada? ( virtual/gnat )
+	ada? ( virtual/gnat:* )
 	cairo? ( x11-libs/cairo:0=[svg?,X?] )
 	gd? ( media-libs/gd:2=[jpeg?,png?] )
-	java? ( >=virtual/jre-1.5 )
+	java? ( >=virtual/jre-1.5:* )
 	latex? (
 		app-text/ghostscript-gpl
 		virtual/latex-base
@@ -58,7 +58,7 @@ RDEPEND="
 		dev-lang/tcl:0=
 		dev-tcltk/itcl:0=
 		tk? (
-			dev-lang/tk
+			dev-lang/tk:0=
 			dev-tcltk/itk
 		)
 	)
@@ -99,6 +99,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-5.9.11-octave.patch
 	"${FILESDIR}"/${PN}-5.9.11-multiarch.patch
 	"${FILESDIR}"/${PN}-5.10.0-have-config-h.patch
+	"${FILESDIR}"/${PN}-5.10.0-cmake.patch
 )
 
 pkg_setup() {

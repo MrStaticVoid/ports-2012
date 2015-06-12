@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-fps/qudos/qudos-0.40.1.ebuild,v 1.17 2011/10/26 18:00:22 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-fps/qudos/qudos-0.40.1.ebuild,v 1.19 2015/04/12 06:32:01 mr_bones_ Exp $
 
-EAPI=2
+EAPI=5
 inherit eutils toolchain-funcs games
 
 FILE_STEM="QuDos-${PV}-src"
@@ -53,12 +53,9 @@ default_client() {
 pkg_setup() {
 	games_pkg_setup
 
-	local alert_user
-
 	if ! use qmax && $( use opengl || use sdl ) ; then
 		elog "The 'qmax' graphical improvements are recommended."
 		echo
-		alert_user=y
 	fi
 
 	if use debug ; then
@@ -67,7 +64,6 @@ pkg_setup() {
 		ewarn "src/qcommon/cmd.c:364: warning: dereferencing type-punned"
 		ewarn "pointer will break strict-aliasing rules."
 		echo
-		alert_user=y
 	fi
 
 	# Determine the default sound driver, in order of preference
@@ -87,13 +83,7 @@ pkg_setup() {
 			# OSS is the default sound driver in the Makefile
 			ewarn "The 'oss' USE flag is recommended instead."
 			echo
-			alert_user=y
 		fi
-	fi
-
-	if [[ -n "${alert_user}" ]] ; then
-		ebeep
-		epause
 	fi
 }
 
@@ -160,31 +150,27 @@ src_compile() {
 		WITH_DATADIR=YES \
 		WITH_LIBDIR=YES \
 		BUILD_DEBUG_DIR=release \
-		BUILD_RELEASE_DIR=release \
-		|| die "emake failed"
+		BUILD_RELEASE_DIR=release
 }
 
 src_install() {
 	if default_client ; then
-		newgamesbin ${MY_PN}/QuDos ${PN} \
-			|| die "newgamesbin QuDos failed"
+		newgamesbin ${MY_PN}/QuDos ${PN}
 		# Change from gif to png in next version?
-		newicon docs/q2_orig/quake2.gif ${PN}.gif \
-			|| die "newicon failed"
+		newicon docs/q2_orig/quake2.gif ${PN}.gif
 		make_desktop_entry ${PN} "QuDos" ${PN}.gif
 	fi
 
 	if use dedicated ; then
-		newgamesbin ${MY_PN}/QuDos-ded ${PN}-ded \
-			|| die "newgamesbin QuDos-ded failed"
+		newgamesbin ${MY_PN}/QuDos-ded ${PN}-ded
 	fi
 
 	insinto "$(games_get_libdir)"/${PN}
-	doins -r ${MY_PN}/* || die "doins libs failed"
+	doins -r ${MY_PN}/*
 	rm "${D}/$(games_get_libdir)"/${PN}/QuDos
 
 	insinto "$(games_get_libdir)"/${PN}/baseq2
-	newins "${DISTDIR}/${PK3_FILE}" qudos.pk3 || die "doins ${PK3_FILE} failed"
+	newins "${DISTDIR}/${PK3_FILE}" qudos.pk3
 
 	dodoc $(find docs -name \*.txt) docs/q2_orig/README*
 

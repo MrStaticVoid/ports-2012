@@ -1,12 +1,12 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-3.2.6-r3.ebuild,v 1.10 2014/09/15 08:20:05 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-3.2.6-r3.ebuild,v 1.12 2015/04/08 18:13:25 mgorny Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes"
 GNOME_ORG_MODULE="GConf"
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="xml"
 
 inherit eutils gnome2 multilib-minimal python-r1
@@ -16,7 +16,7 @@ HOMEPAGE="http://projects.gnome.org/gconf/"
 
 LICENSE="LGPL-2+"
 SLOT="2"
-KEYWORDS="alpha amd64 ~arm ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 IUSE="debug +introspection ldap policykit"
 
 RDEPEND="

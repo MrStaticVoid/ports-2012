@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=dev-libs/glib-2.35.0:2 x11-libs/gdk-pixbuf:2 >=x11-libs/gtk+-2.90.7:3 >=dev-libs/json-glib-0.10 >=dev-libs/dbus-glib-0.76 >=gnome-base/gnome-desktop-3.9.91:3= elibc_FreeBSD? ( dev-libs/libexecinfo ) virtual/opengl x11-libs/libSM x11-libs/libICE x11-libs/libXau x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXext x11-libs/libXrender x11-libs/libXtst x11-misc/xdg-user-dirs x11-misc/xdg-user-dirs-gtk x11-apps/xdpyinfo gconf? ( >=gnome-base/gconf-2:2 ) systemd? ( >=sys-apps/systemd-183:0= ) >=dev-lang/perl-5 >=sys-devel/gettext-0.10.40 dev-libs/libxslt >=dev-util/intltool-0.40.6 virtual/pkgconfig !<gnome-base/gdm-2.20.4 doc? ( app-text/xmlto dev-libs/libxslt ) app-arch/xz-utils >=sys-apps/sed-4 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=Gnome session manager
+EAPI=5
+HOMEPAGE=https://git.gnome.org/browse/gnome-session
+IUSE=+deprecated doc elibc_FreeBSD gconf ipv6 systemd debug
+KEYWORDS=*
+LICENSE=GPL-2 LGPL-2 FDL-1.1
+RDEPEND=>=dev-libs/glib-2.35.0:2 x11-libs/gdk-pixbuf:2 >=x11-libs/gtk+-2.90.7:3 >=dev-libs/json-glib-0.10 >=dev-libs/dbus-glib-0.76 >=gnome-base/gnome-desktop-3.9.91:3= elibc_FreeBSD? ( dev-libs/libexecinfo ) virtual/opengl x11-libs/libSM x11-libs/libICE x11-libs/libXau x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXext x11-libs/libXrender x11-libs/libXtst x11-misc/xdg-user-dirs x11-misc/xdg-user-dirs-gtk x11-apps/xdpyinfo gconf? ( >=gnome-base/gconf-2:2 ) systemd? ( >=sys-apps/systemd-183:0= ) gnome-base/gnome-settings-daemon >=gnome-base/gsettings-desktop-schemas-0.1.7 >=x11-themes/gnome-themes-standard-2.91.92 sys-apps/dbus[X] !systemd? ( sys-auth/consolekit ) deprecated? ( sys-power/upower:=[deprecated] )
+SLOT=0
+SRC_URI=mirror://gnome/sources/gnome-session/3.12/gnome-session-3.12.1.tar.xz
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	eutils	9fb270e417e0e83d64ca52586c4a79de	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	967402bd415c7e321f503839b0207b49	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=b1f22022298d9343aecb71531700531d

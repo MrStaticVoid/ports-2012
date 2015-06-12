@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openconnect/openconnect-6.00.ebuild,v 1.1 2014/07/26 19:26:38 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openconnect/openconnect-6.00.ebuild,v 1.4 2015/04/27 19:01:33 floppym Exp $
 
 EAPI="5"
 
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="xml"
 
 inherit eutils linux-info python-any-r1
@@ -17,7 +17,7 @@ SRC_URI="ftp://ftp.infradead.org/pub/${PN}/${P}.tar.gz
 	http://dev.gentoo.org/~hasufell/distfiles/openconnect-script-20140311.tar.xz"
 
 LICENSE="LGPL-2.1 GPL-2"
-SLOT="0"
+SLOT="0/3"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 IUSE="doc +gnutls gssapi java libproxy nls static-libs"
 ILINGUAS="ar cs de el en_GB en_US es eu fi fr gl id lt nl pa pl pt pt_BR sk sl tg ug uk zh_CN zh_TW"
@@ -34,7 +34,7 @@ DEPEND="dev-libs/libxml2
 		>=net-libs/gnutls-3[static-libs?] dev-libs/nettle
 		app-misc/ca-certificates
 	)
-	gssapi? ( app-crypt/mit-krb5 )
+	gssapi? ( virtual/krb5 )
 	libproxy? ( net-libs/libproxy )
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}

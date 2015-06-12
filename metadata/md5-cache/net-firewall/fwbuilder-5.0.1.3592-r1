@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst prepare unpack
-DEPEND=>=dev-qt/qtgui-4.3:4 dev-libs/openssl dev-libs/elfutils !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.14:1.14 ) >=sys-devel/autoconf-2.69 sys-devel/libtool
+DEPEND=>=dev-qt/qtgui-4.3:4 dev-libs/openssl dev-libs/elfutils !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=A firewall GUI
 EAPI=4
 HOMEPAGE=http://www.fwbuilder.org/
@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RDEPEND=>=dev-qt/qtgui-4.3:4 dev-libs/openssl dev-libs/elfutils
 SLOT=0
 SRC_URI=mirror://sourceforge/fwbuilder/fwbuilder-5.0.1.3592.tar.gz
-_eclasses_=autotools	ebea507d219855923e3438c953cf4ab8	base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	qmake-utils	40136c5fe0002a0d3937e869ae4ee0e2	qt4-r2	118737d78407d7d0a6cdf4147b668ec3	toolchain-funcs	0f1760274637a138b99bb649202ea402
+_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	qmake-utils	1c0e4f885b876595f09a9bb6c78a687d	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	42408102d713fbad60ca21349865edb4
 _md5_=65df851e5e4edd87454d41cd50b8d48f

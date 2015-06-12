@@ -1,5 +1,5 @@
-DEFINED_PHASES=compile configure install prepare unpack
-DEPEND=>=dev-libs/glib-2 x11-libs/gtk+:3 x11-libs/vte:2.90 || ( dev-lang/vala:0.24 dev-lang/vala:0.22 dev-lang/vala:0.20 dev-lang/vala:0.18 dev-lang/vala:0.16 ) virtual/pkgconfig nls? ( dev-util/intltool sys-devel/gettext ) dev-lang/python !dev-lang/python[-threads]
+DEFINED_PHASES=compile configure install prepare setup unpack
+DEPEND=>=dev-libs/glib-2 x11-libs/gtk+:3 x11-libs/vte:2.90 || ( >=dev-lang/python-2.7.5-r2:2.7[threads(+)] ) || ( dev-lang/vala:0.28 dev-lang/vala:0.26 dev-lang/vala:0.24 dev-lang/vala:0.22 dev-lang/vala:0.20 ) virtual/pkgconfig nls? ( dev-util/intltool sys-devel/gettext ) dev-lang/python !dev-lang/python[-threads]
 DESCRIPTION=A lightweight vala based terminal
 EAPI=4
 HOMEPAGE=http://gitorious.org/valaterm
@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=>=dev-libs/glib-2 x11-libs/gtk+:3 x11-libs/vte:2.90
 SLOT=0
 SRC_URI=http://gitorious.org/valaterm/valaterm/archive-tarball/0.6 -> valaterm-0.6.tar.gz
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	32548a82e42dc26e3312581476d2f20c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	0f1760274637a138b99bb649202ea402	vala	d8f392783fdc2395fc64af046f2ca961	waf-utils	c83d65d895bcdfc6152948bbafd25453
-_md5_=b7386ea307ebcfdb0e9a927411742682
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-any-r1	da352ea9da8eb9bf158d56cca65d6c82	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4	vala	09bc7da1a93142c9eb90786e6f6b39d2	waf-utils	e63b892564f1e305cc28f1fee87898ce
+_md5_=da9fdbcfcd7eb51bb88dad5f415168a5

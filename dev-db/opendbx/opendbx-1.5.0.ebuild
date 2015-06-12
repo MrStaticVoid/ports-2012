@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/opendbx/opendbx-1.5.0.ebuild,v 1.3 2014/03/10 21:15:06 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/opendbx/opendbx-1.5.0.ebuild,v 1.6 2015/03/15 18:03:52 ulm Exp $
 
 EAPI="5"
 
@@ -16,17 +16,16 @@ SRC_URI="http://www.linuxnetworks.de/opendbx/download/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x64-solaris"
-IUSE="bindist firebird +mysql oracle postgres sqlite sqlite3"
+IUSE="firebird +mysql oracle postgres sqlite sqlite3"
+RESTRICT="firebird? ( bindist )"
 
 DEPEND="mysql? ( virtual/mysql )
-	postgres? ( dev-db/postgresql-base )
+	postgres? ( dev-db/postgresql )
 	sqlite? ( <dev-db/sqlite-3 )
 	sqlite3? ( =dev-db/sqlite-3* )
 	oracle? ( dev-db/oracle-instantclient-basic )
 	firebird? ( dev-db/firebird )"
 RDEPEND="${DEPEND}"
-
-REQUIRED_USE="bindist? ( !firebird )"
 
 S="${WORKDIR}"/${MY_P}
 
@@ -50,7 +49,7 @@ pkg_setup() {
 src_configure() {
 	local backends=""
 
-	use !bindist && use firebird && backends="${backends} firebird"
+	use firebird && backends="${backends} firebird"
 	use mysql && backends="${backends} mysql"
 	use oracle && backends="${backends} oracle"
 	use postgres && backends="${backends} pgsql"

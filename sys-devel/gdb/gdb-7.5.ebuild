@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-7.5.ebuild,v 1.12 2013/11/20 08:15:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-7.5.ebuild,v 1.15 2015/05/04 08:19:53 vapier Exp $
 
 EAPI="3"
 
@@ -8,8 +8,8 @@ inherit flag-o-matic eutils
 
 export CTARGET=${CTARGET:-${CHOST}}
 if [[ ${CTARGET} == ${CHOST} ]] ; then
-	if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
-		export CTARGET=${CATEGORY/cross-}
+	if [[ ${CATEGORY} == cross-* ]] ; then
+		export CTARGET=${CATEGORY#cross-}
 	fi
 fi
 is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
@@ -17,14 +17,6 @@ is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
 RPM=
 MY_PV=${PV}
 case ${PV} in
-*.*.*.*.*.*)
-	# fedora version: gdb-6.8.50.20090302-8.fc11.src.rpm
-	inherit versionator rpm
-	gvcr() { get_version_component_range "$@"; }
-	MY_PV=$(gvcr 1-4)
-	RPM="${PN}-${MY_PV}-$(gvcr 5).fc$(gvcr 6).src.rpm"
-	SRC_URI="mirror://fedora/development/source/SRPMS/${RPM}"
-	;;
 *.*.50.*)
 	# weekly snapshots
 	SRC_URI="ftp://sourceware.org/pub/gdb/snapshots/current/gdb-weekly-${PV}.tar.bz2"
@@ -70,7 +62,7 @@ S=${WORKDIR}/${PN}-${MY_PV}
 
 src_prepare() {
 	[[ -n ${RPM} ]] && rpm_spec_epatch "${WORKDIR}"/gdb.spec
-	use vanilla || [[ -n ${PATCH_VER} ]] && EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
+	! use vanilla && [[ -n ${PATCH_VER} ]] && EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	strip-linguas -u bfd/po opcodes/po
 }
 
