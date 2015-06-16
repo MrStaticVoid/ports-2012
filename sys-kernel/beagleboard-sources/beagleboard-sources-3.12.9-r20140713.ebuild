@@ -14,10 +14,10 @@ detect_arch
 DESCRIPTION="BeagleBone kernel sources"
 HOMEPAGE="https://github.com/beagleboard/kernel"
 
-# See https://thestaticvoid.com/dist/beaglebone-sources/README
+# See https://thestaticvoid.com/dist/beagleboard-sources/README
 SRC_URI="${KERNEL_URI}
 	https://thestaticvoid.com/dist/${PN}/${PF}.xz
-    https://thestaticvoid.com/dist/${PN}/am335x-pm-firmware.bin"
+	https://thestaticvoid.com/dist/${PN}/am335x-pm-firmware.bin"
 
 KEYWORDS="~arm"
 
