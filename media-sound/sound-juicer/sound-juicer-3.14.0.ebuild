@@ -38,6 +38,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50
+	dev-util/itstool
 	>=app-text/scrollkeeper-0.3.5
 	virtual/pkgconfig
 	test? ( ~app-text/docbook-xml-dtd-4.3 )

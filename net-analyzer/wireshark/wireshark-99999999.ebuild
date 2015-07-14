@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-99999999.ebuild,v 1.14 2015/06/01 05:46:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-99999999.ebuild,v 1.16 2015/07/06 03:02:31 jer Exp $
 
 EAPI=5
-inherit autotools eutils fcaps git-r3 multilib qmake-utils qt4-r2 user
+inherit autotools eutils fcaps flag-o-matic git-r3 multilib qmake-utils qt4-r2 user
 
 DESCRIPTION="A network protocol analyzer formerly known as ethereal"
 HOMEPAGE="http://www.wireshark.org/"
@@ -98,7 +98,8 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-1.6.13-ldflags.patch \
 		"${FILESDIR}"/${PN}-1.11.0-oldlibs.patch \
 		"${FILESDIR}"/${PN}-1.99.0.1975-sse4_2.patch \
-		"${FILESDIR}"/${PN}-99999999-pkgconfig.patch
+		"${FILESDIR}"/${PN}-99999999-pkgconfig.patch \
+		"${FILESDIR}"/${PN}-1.99.7-qt-pie.patch
 
 	epatch_user
 
@@ -129,7 +130,11 @@ src_configure() {
 	fi
 
 	use qt4 && export QT_MIN_VERSION=4.6.0
-	use qt5 && export QT_MIN_VERSION=5.3.0
+
+	if use qt5; then
+		export QT_MIN_VERSION=5.3.0
+		append-cxxflags -fPIC -DPIC
+	fi
 
 	# Hack around inability to disable doxygen/fop doc generation
 	use doc || export ac_cv_prog_HAVE_DOXYGEN=false

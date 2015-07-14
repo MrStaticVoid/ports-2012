@@ -1,8 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/mari0/mari0-1.6.ebuild,v 1.11 2015/01/07 09:03:10 tupone Exp $
 
-EAPI=4
+EAPI=5
 
 inherit eutils gnome2-utils games
 
@@ -10,14 +8,11 @@ MY_P=${P/-/_}
 
 DESCRIPTION="A mix from Nintendo's Super Mario Bros and Valve's Portal"
 HOMEPAGE="http://stabyourself.net/mari0/"
-SRC_URI="${P}.zip
-	mirror://gentoo/mari0.svg.gz"
+SRC_URI="mirror://funtoo/${P}.zip"
 
 LICENSE="CC-BY-NC-SA-3.0"
 SLOT="0"
-KEYWORDS="amd64 ~ppc x86"
-IUSE=""
-RESTRICT="fetch" # unsure about legality of graphics
+KEYWORDS="*"
 
 RDEPEND=">=games-engines/love-0.8.0
 	 media-libs/devil[gif,png]"
@@ -25,23 +20,14 @@ DEPEND="app-arch/unzip"
 
 S=${WORKDIR}
 
-pkg_nofetch() {
-	einfo "Please download ${PN}-source.zip from:"
-	einfo "http://stabyourself.net/${PN}/#download"
-	einfo "Move it to ${DISTDIR} and rename it to ${P}.zip"
-	echo
-}
-
 src_install() {
 	local dir=${GAMES_DATADIR}/love/${PN}
 
 	exeinto "${dir}"
 	doexe ${MY_P}.love
 
-	doicon -s scalable ${PN}.svg
 	games_make_wrapper ${PN} "love ${MY_P}.love" "${dir}"
-	make_desktop_entry ${PN}
-
+	domenu "${FILESDIR}"/${PN}.desktop
 	prepgamesdirs
 }
 

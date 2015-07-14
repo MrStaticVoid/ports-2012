@@ -10,5 +10,5 @@ RDEPEND=sys-libs/ncurses sys-libs/zlib X? ( x11-libs/libXext x11-libs/libXxf86vm
 REQUIRED_USE=cddb? ( cdio network ) dvdnav? ( dvd ) enca? ( iconv ) lcms? ( opengl ) libass? ( iconv ) opengl? ( || ( aqua X ) ) portaudio? ( threads ) pvr? ( v4l ) radio? ( v4l || ( alsa oss ) ) v4l? ( threads ) vdpau? ( X ) xinerama? ( X ) xscreensaver? ( X ) xv? ( X )
 SLOT=0
 SRC_URI=http://dev.gentoo.org/~maksbotan/mplayer2-2.0_p20131009.tar.xz
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	multilib	62927b3db3a589b0806255f3a002d5d3	python-any-r1	da352ea9da8eb9bf158d56cca65d6c82	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	multilib	62927b3db3a589b0806255f3a002d5d3	python-any-r1	4756de53ea4d40471a582e898815a5c8	python-utils-r1	ae9becb5d45344c01939c3f57df0d3fd	toolchain-funcs	42408102d713fbad60ca21349865edb4
 _md5_=ff9d27a62d7fe4db6105837aff8855e9

@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/notification-daemon/notification-daemon-0.ebuild,v 1.18 2015/06/07 11:03:31 pacho Exp $
 
 EAPI=5
 
@@ -10,16 +8,16 @@ SRC_URI=""
 
 LICENSE=""
 SLOT="0"
-KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="gnome"
+KEYWORDS="*"
+IUSE="gnome xfce"
 
 RDEPEND="
 	gnome? ( || ( x11-misc/notification-daemon
 		gnome-base/gnome-shell ) )
 	!gnome? ( || (
-		gnome-extra/cinnamon
+	xfce? ( xfce-extra/xfce4-notifyd )
 		x11-misc/notification-daemon
-		xfce-extra/xfce4-notifyd
+		gnome-extra/cinnamon
 		x11-misc/qtnotifydaemon
 		x11-misc/notify-osd
 		x11-misc/dunst

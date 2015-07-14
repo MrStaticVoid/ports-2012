@@ -21,8 +21,8 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	perl? (
-		virtual/perl-Module-Build
-		dev-perl/locale-maketext-lexicon
+		dev-perl/Module-Build
+		dev-perl/Locale-Maketext-Lexicon
 		)
 	test? (
 		dev-libs/glib:2

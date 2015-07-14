@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/acts_as_list/acts_as_list-0.7.2.ebuild,v 1.1 2015/05/12 05:31:37 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/acts_as_list/acts_as_list-0.7.2.ebuild,v 1.3 2015/07/11 06:51:23 graaff Exp $
 
 EAPI=5
-USE_RUBY="ruby19 ruby20"
+USE_RUBY="ruby19 ruby20 ruby21"
 
 RUBY_FAKEGEM_RECIPE_DOC="rdoc"
 
@@ -27,7 +27,7 @@ ruby_add_rdepend ">=dev-ruby/activerecord-3:*"
 ruby_add_bdepend "
 	test? (
 		dev-ruby/test-unit:2
-		dev-ruby/activerecord:3.2[sqlite3]
+		dev-ruby/activerecord:3.2[sqlite]
 	)"
 
 all_ruby_prepare() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-apps/konqueror/konqueror-4.14.3.ebuild,v 1.1 2015/06/04 18:44:41 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-apps/konqueror/konqueror-4.14.3.ebuild,v 1.4 2015/07/01 20:08:48 johu Exp $
 
 EAPI=5
 
@@ -21,12 +21,15 @@ RESTRICT="test"
 DEPEND="
 	$(add_kdeapps_dep libkonq)
 "
+
+# bug #544630: evince[nsplugin] crashes konqueror
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kfind)
 	$(add_kdeapps_dep kfmclient)
 	$(add_kdeapps_dep kurifilter-plugins)
 	bookmarks? ( $(add_kdeapps_dep keditbookmarks) )
 	svg? ( $(add_kdeapps_dep svgpart) )
+	!app-text/evince[nsplugin]
 "
 
 KMEXTRACTONLY="
@@ -47,9 +50,9 @@ src_prepare() {
 pkg_postinst() {
 	kde4-meta_pkg_postinst
 
-	if ! has_version kde-base/dolphin:${SLOT} ; then
+	if ! has_version kde-apps/dolphin:${SLOT} ; then
 		elog "If you want to use konqueror as a filemanager, install the dolphin kpart:"
-		elog "kde-base/dolphin:${SLOT}"
+		elog "kde-apps/dolphin:${SLOT}"
 	fi
 
 	if ! has_version virtual/jre ; then

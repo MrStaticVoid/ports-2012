@@ -86,7 +86,7 @@ RDEPEND="${COMMON_DEPEND}
 	x11-themes/adwaita-icon-theme
 	colord? ( >=gnome-extra/gnome-color-manager-3 )
 	cups? (
-		>=app-admin/system-config-printer-gnome-1.3.5
+		|| ( app-admin/system-config-printer >=app-admin/system-config-printer-gnome-1.3.5 )
 		net-print/cups-pk-helper )
 	input_devices_wacom? ( gnome-base/gnome-settings-daemon[input_devices_wacom] )
 	i18n? ( >=gnome-base/libgnomekbd-3 )

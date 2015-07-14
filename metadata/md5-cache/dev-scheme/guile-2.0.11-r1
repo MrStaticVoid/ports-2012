@@ -1,14 +1,14 @@
 DEFINED_PHASES=configure install
-DEPEND=!dev-scheme/guile:12 dev-libs/boehm-gc[threads?] dev-libs/gmp dev-libs/libffi dev-libs/libunistring sys-devel/libtool virtual/libiconv virtual/libintl emacs? ( virtual/emacs ) virtual/pkgconfig
+DEPEND=!dev-scheme/guile:12 dev-libs/boehm-gc[threads?] dev-libs/gmp:0= dev-libs/libltdl:0= dev-libs/libunistring:0= virtual/libffi virtual/libiconv virtual/libintl emacs? ( virtual/emacs ) virtual/pkgconfig
 DESCRIPTION=Scheme interpreter. Also The GNU extension language
 EAPI=5
 HOMEPAGE=http://www.gnu.org/software/guile/
 IUSE=debug debug-malloc +deprecated emacs networking nls +regex static +threads
 KEYWORDS=*
 LICENSE=LGPL-3+
-RDEPEND=!dev-scheme/guile:12 dev-libs/boehm-gc[threads?] dev-libs/gmp dev-libs/libffi dev-libs/libunistring sys-devel/libtool virtual/libiconv virtual/libintl emacs? ( virtual/emacs )
+RDEPEND=!dev-scheme/guile:12 dev-libs/boehm-gc[threads?] dev-libs/gmp:0= dev-libs/libltdl:0= dev-libs/libunistring:0= virtual/libffi virtual/libiconv virtual/libintl emacs? ( virtual/emacs )
 RESTRICT=mirror
 SLOT=0/2.0.11
 SRC_URI=mirror://gnu/guile/guile-2.0.11.tar.gz
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=34ca7dcf53ec42841e559d574511cc08
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=dc3528ab0b743cc2f0eb622aafcba1eb
