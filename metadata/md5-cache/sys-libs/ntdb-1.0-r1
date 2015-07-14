@@ -1,4 +1,4 @@
-DEFINED_PHASES=compile configure install prepare setup test unpack
+DEFINED_PHASES=compile configure install prepare setup test
 DEPEND=!!<net-fs/samba-4.1.7 python? ( >=dev-lang/python-2.7.5-r2:2.7[threads(+)] >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),python_single_target_python2_7(+)] ) >=dev-lang/python-2.7.5-r2:2.7[threads(+)] >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),python_single_target_python2_7(+)] app-text/docbook-xml-dtd:4.2 dev-lang/python !dev-lang/python[-threads]
 DESCRIPTION=A not-so trivial keyword/data database system
 EAPI=5
@@ -10,5 +10,5 @@ RDEPEND=python? ( >=dev-lang/python-2.7.5-r2:2.7[threads(+)] >=dev-lang/python-e
 REQUIRED_USE=python? ( python_targets_python2_7 )
 SLOT=0
 SRC_URI=http://samba.org/ftp/tdb/ntdb-1.0.tar.gz
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	7342c532e8e2ced20e60fdb60ce8ff0d	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	7a178335dbd6ea7f50ed4e3e1c13c1e4	python-utils-r1	096f8247eae93026af13ab88cf4305cd	toolchain-funcs	42408102d713fbad60ca21349865edb4	waf-utils	e63b892564f1e305cc28f1fee87898ce
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	351da1aa73960a282591217fb57c1bb8	python-utils-r1	ae9becb5d45344c01939c3f57df0d3fd	toolchain-funcs	42408102d713fbad60ca21349865edb4	waf-utils	883eeb94ea142085b68093ca49ff1a88
 _md5_=552627f58743d93ab8f464e9e7038b97

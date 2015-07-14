@@ -1,3 +1,9 @@
+# FL-2625: enable virt-network in libvirt to ease networking setup
+app-emulation/libvirt virt-network
+
+# FL-2573: enable tools USE in chromaprint:
+media-libs/chromaprint tools
+
 # FL-2326: enahnce mutt USEs to more suitable defaults
 mail-client/mutt imap mbox sasl smtp
 

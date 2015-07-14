@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde5.eclass,v 1.10 2015/05/31 15:51:21 mrueg Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde5.eclass,v 1.13 2015/07/06 15:48:51 kensington Exp $
 
 # @ECLASS: kde5.eclass
 # @MAINTAINER:
@@ -136,16 +136,13 @@ case ${KDE_AUTODEPS} in
 
 		if [[ ${CATEGORY} = kde-plasma ]]; then
 			RDEPEND+="
-				!kde-apps/kde4-l10n[-minimal]
+				!kde-apps/kde4-l10n[-minimal(-)]
 				!kde-base/kde-l10n:4[-minimal(-)]
 			"
 		fi
 
 		if [[ ${KDE_BLOCK_SLOT4} = true && ${CATEGORY} = kde-apps ]]; then
-			RDEPEND+="
-				!kde-apps/${PN}:4
-				!kde-base/${PN}
-			"
+			RDEPEND+=" !kde-apps/${PN}:4"
 		fi
 		;;
 esac
@@ -376,15 +373,24 @@ kde5_src_prepare() {
 	# enable only the requested translations
 	# when required
 	if [[ ${KDE_BUILD_TYPE} = release ]] ; then
-		for lang in $(ls po 2> /dev/null) ; do
-			if ! has ${lang} ${LINGUAS} ; then
-				rm -rf po/${lang}
-			fi
-		done
+		if [[ -d po ]] ; then
+			pushd po > /dev/null
+			for lang in *; do
+				if ! has ${lang} ${LINGUAS} ; then
+					if [[ ${lang} != CMakeLists.txt ]] ; then
+						rm -rf ${lang}
+					fi
+					if [[ -e CMakeLists.txt ]] ; then
+						comment_add_subdirectory ${lang}
+					fi
+				fi
+			done
+			popd > /dev/null
+		fi
 
 		if [[ ${KDE_HANDBOOK} = true ]] ; then
 			pushd doc > /dev/null
-			for lang in $(ls) ; do
+			for lang in *; do
 				if ! has ${lang} ${LINGUAS} ; then
 					comment_add_subdirectory ${lang}
 				fi

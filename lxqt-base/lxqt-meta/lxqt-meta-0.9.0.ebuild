@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/lxqt-base/lxqt-meta/lxqt-meta-0.9.0.ebuild,v 1.1 2015/02/10 17:11:15 yngwin Exp $
 
 EAPI=5
 
@@ -7,7 +9,7 @@ HOMEPAGE="http://lxqt.org/"
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86"
 IUSE="admin +filemanager +icons lightdm lximage -minimal +policykit powermanagement
 	sddm ssh-askpass"
 
@@ -28,7 +30,8 @@ RDEPEND="
 		~lxqt-base/lxqt-admin-${PV} )
 	filemanager? (
 		~x11-misc/pcmanfm-qt-${PV} )
-	icons? ( kde-base/oxygen-icons )
+	icons? (
+		>=lxde-base/lxde-icon-theme-0.5 )
 	lightdm? (
 		x11-misc/lightdm )
 	lximage? (

@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-firewall/ipset/ipset-6.24.ebuild,v 1.1 2015/05/14 06:25:02 dlan Exp $
 
 EAPI="5"
 MODULES_OPTIONAL_USE=modules
@@ -12,7 +10,7 @@ SRC_URI="http://ipset.netfilter.org/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="*"
 
 RDEPEND=">=net-firewall/iptables-1.4.7
 	net-libs/libmnl"
@@ -40,7 +38,6 @@ pkg_setup() {
 
 	build_modules=0
 	if use modules; then
-		kernel_is -lt 2 6 35 && die "${PN} requires kernel greater then 2.6.35."
 		if linux_config_src_exists && linux_chkconfig_builtin "MODULES" ; then
 			if linux_chkconfig_present "IP_NF_SET" || \
 				linux_chkconfig_present "IP_SET"; then #274577

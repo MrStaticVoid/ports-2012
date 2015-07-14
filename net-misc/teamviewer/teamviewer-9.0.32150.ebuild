@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/teamviewer/teamviewer-9.0.32150.ebuild,v 1.3 2015/06/18 08:35:17 np-hardass Exp $
 
 EAPI=5
 
@@ -13,7 +15,7 @@ SRC_URI="http://www.teamviewer.com/download/version_${MV}x/teamviewer_linux.deb 
 
 LICENSE="TeamViewer !system-wine? ( LGPL-2.1 )"
 SLOT=${MV}
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86"
 IUSE="system-wine"
 
 RESTRICT="mirror"
@@ -22,32 +24,18 @@ RDEPEND="
 	app-shells/bash
 	x11-misc/xdg-utils
 	!system-wine? (
-		amd64? (
-			app-emulation/emul-linux-x86-baselibs
-			app-emulation/emul-linux-x86-soundlibs
-			|| (
-				(
-					x11-libs/libSM[abi_x86_32]
-					x11-libs/libX11[abi_x86_32]
-					x11-libs/libXau[abi_x86_32]
-					x11-libs/libXdamage[abi_x86_32]
-					x11-libs/libXext[abi_x86_32]
-					x11-libs/libXfixes[abi_x86_32]
-					x11-libs/libXtst[abi_x86_32]
-				)
-				app-emulation/emul-linux-x86-xlibs
-			)
-		)
-		x86? (
-			sys-libs/zlib
-			x11-libs/libSM
-			x11-libs/libX11
-			x11-libs/libXau
-			x11-libs/libXdamage
-			x11-libs/libXext
-			x11-libs/libXfixes
-			x11-libs/libXtst
-		)
+		media-libs/alsa-lib[abi_x86_32(-)]
+		media-libs/freetype[abi_x86_32(-)]
+		sys-libs/zlib[abi_x86_32(-)]
+		x11-libs/libX11[abi_x86_32(-)]
+		x11-libs/libXau[abi_x86_32(-)]
+		x11-libs/libXdamage[abi_x86_32(-)]
+		x11-libs/libXext[abi_x86_32(-)]
+		x11-libs/libXfixes[abi_x86_32(-)]
+		x11-libs/libXrandr[abi_x86_32(-)]
+		x11-libs/libXrender[abi_x86_32(-)]
+		x11-libs/libSM[abi_x86_32(-)]
+		x11-libs/libXtst[abi_x86_32(-)]
 	)
 	system-wine? ( app-emulation/wine )"
 
@@ -67,11 +55,11 @@ EOF
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-9.0.30203-gentoo.patch
+	epatch "${FILESDIR}"/${P}-gentoo.patch
 
 	sed \
 		-e "s#@TVV@#${MV}/tv_bin#g" \
-		"${FILESDIR}"/${PN}d.init > "${T}"/${PN}d${MV} || die
+		"${FILESDIR}"/${PN}d${MV}.init > "${T}"/${PN}d${MV} || die
 }
 
 src_install () {
