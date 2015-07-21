@@ -1,0 +1,12 @@
+DEFINED_PHASES=prepare
+DEPEND=>=dev-lang/perl-5.22 dev-perl/XML-Parser
+DESCRIPTION=Internationalization Tool Collection
+EAPI=5
+HOMEPAGE=https://launchpad.net/intltool/
+KEYWORDS=~*
+LICENSE=GPL-2
+RDEPEND=>=dev-lang/perl-5.22 dev-perl/XML-Parser sys-devel/gettext
+SLOT=0
+SRC_URI=https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=23688b0f13fc782e5e239ce437d3639e
