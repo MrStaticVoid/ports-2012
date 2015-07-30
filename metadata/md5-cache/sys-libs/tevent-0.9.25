@@ -10,5 +10,5 @@ RDEPEND=>=sys-libs/talloc-2.1.2[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,ab
 REQUIRED_USE=python_targets_python2_7
 SLOT=0
 SRC_URI=http://samba.org/ftp/tevent/tevent-0.9.25.tar.gz
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	351da1aa73960a282591217fb57c1bb8	python-utils-r1	ae9becb5d45344c01939c3f57df0d3fd	toolchain-funcs	42408102d713fbad60ca21349865edb4	waf-utils	883eeb94ea142085b68093ca49ff1a88
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	351da1aa73960a282591217fb57c1bb8	python-utils-r1	68e010c13e97b7b2c7bf403ee9c51e1b	toolchain-funcs	42408102d713fbad60ca21349865edb4	waf-utils	883eeb94ea142085b68093ca49ff1a88
 _md5_=f2c0e0fbf313f54143f9bd0fc5922b4b

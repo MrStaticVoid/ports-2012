@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm preinst prepare prerm setup unpack
+DEPEND=binary? ( >=sys-kernel/genkernel-3.4.40.1 )
+DESCRIPTION=Full Linux kernel sources - RHEL6 kernel with OpenVZ patchset
+EAPI=2
+HOMEPAGE=http://www.openvz.org
+IUSE=binary
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=binary? ( >=sys-kernel/genkernel-3.4.40.1 )
+RESTRICT=binchecks strip mirror
+SLOT=2.6.32.042.108.8
+SRC_URI=mirror://kernel/linux/kernel/v2.6/linux-2.6.32.tar.bz2 http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab108.8/configs/config-2.6.32-042stab108.8.i686 http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab108.8/configs/config-2.6.32-042stab108.8.x86_64 http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab108.8/patches/patch-042stab108.8-combined.gz
+_eclasses_=check-reqs	dae17c899997c54a71304df80f276c1b	eutils	9fb270e417e0e83d64ca52586c4a79de	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=7aa0cec0d58f23d3a030f8b4622ee5c9
