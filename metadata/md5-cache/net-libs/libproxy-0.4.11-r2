@@ -11,5 +11,5 @@ RDEPEND=gnome? ( >=dev-libs/glib-2.34.3:2[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_
 REQUIRED_USE=python? ( || ( python_targets_python2_7 ) )
 SLOT=0
 SRC_URI=http://libproxy.googlecode.com/files/libproxy-0.4.11.tar.gz
-_eclasses_=cmake-multilib	ca4c6ecda3062bf851d951987568fdae	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	mono	203a4295c06155d318bdff9c6b2d5e1c	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	python-r1	23846c6ba39f6655e2027001eeed8e81	python-utils-r1	ae9becb5d45344c01939c3f57df0d3fd	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_eclasses_=cmake-multilib	ca4c6ecda3062bf851d951987568fdae	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	mono	203a4295c06155d318bdff9c6b2d5e1c	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	python-r1	d9c8348f26710ea523a385c2328cf027	python-utils-r1	68e010c13e97b7b2c7bf403ee9c51e1b	toolchain-funcs	42408102d713fbad60ca21349865edb4
 _md5_=e35193a4b2e3ff0ae0f35b7cd777a142

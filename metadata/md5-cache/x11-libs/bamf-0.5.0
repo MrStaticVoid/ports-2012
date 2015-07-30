@@ -9,5 +9,5 @@ LICENSE=LGPL-3
 RDEPEND=dev-libs/dbus-glib dev-util/gdbus-codegen dev-libs/glib:2 gnome-base/libgtop:2 x11-libs/gtk+:3 x11-libs/libX11 >=x11-libs/libwnck-3.4.7:3
 SLOT=0
 SRC_URI=http://launchpad.net/bamf/0.5/0.5.0/+download/bamf-0.5.0.tar.gz
-_eclasses_=autotools	2264f05fbbbaaf83d34ec81e72b38ffd	autotools-utils	106d29d66151588cad8ee4f31122cffb	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	python-r1	23846c6ba39f6655e2027001eeed8e81	python-utils-r1	ae9becb5d45344c01939c3f57df0d3fd	toolchain-funcs	42408102d713fbad60ca21349865edb4	vala	09bc7da1a93142c9eb90786e6f6b39d2
+_eclasses_=autotools	2264f05fbbbaaf83d34ec81e72b38ffd	autotools-utils	106d29d66151588cad8ee4f31122cffb	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	python-r1	d9c8348f26710ea523a385c2328cf027	python-utils-r1	68e010c13e97b7b2c7bf403ee9c51e1b	toolchain-funcs	42408102d713fbad60ca21349865edb4	vala	09bc7da1a93142c9eb90786e6f6b39d2
 _md5_=8058cf3b75e9f06b48d5d5ba590bbda6

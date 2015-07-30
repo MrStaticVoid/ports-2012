@@ -1,8 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/ldns/ldns-1.6.17.ebuild,v 1.9 2015/05/08 05:05:41 jer Exp $
 
-EAPI="5"
+EAPI=5
 PYTHON_COMPAT=( python2_7 )
 
 inherit eutils multilib-minimal python-single-r1
@@ -13,7 +11,7 @@ SRC_URI="http://www.nlnetlabs.nl/downloads/${PN}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~ppc-macos ~x64-macos ~x64-solaris"
+KEYWORDS="*"
 IUSE="dane doc +ecdsa gost python +ssl static-libs vim-syntax"
 
 # configure will die if ecdsa is enabled and ssl is not
