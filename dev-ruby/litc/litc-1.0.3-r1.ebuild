@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/litc/litc-1.0.3-r1.ebuild,v 1.6 2015/07/05 18:34:22 graaff Exp $
+# $Id$
 
 EAPI=5
 USE_RUBY="ruby19 ruby20 ruby21"
@@ -12,7 +12,7 @@ RUBY_FAKEGEM_EXTRADOC="README.rdoc"
 inherit ruby-fakegem
 
 DESCRIPTION="A tiny ruby module for Amazon EC2 intance metadata"
-HOMEPAGE="http://github.com/bkaney/litc"
+HOMEPAGE="https://github.com/bkaney/litc"
 
 IUSE=""
 LICENSE="MIT"

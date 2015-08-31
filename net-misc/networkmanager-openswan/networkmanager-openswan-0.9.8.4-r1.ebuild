@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/networkmanager-openswan/networkmanager-openswan-0.9.8.4-r1.ebuild,v 1.3 2014/12/19 13:42:40 pacho Exp $
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,7 +11,7 @@ inherit autotools eutils gnome2
 DESCRIPTION="NetworkManager Openswan plugin"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 
-SRC_URI="${SRC_URI} http://dev.gentoo.org/~pacho/gnome/${P}-patches.tar.bz2"
+SRC_URI="${SRC_URI} https://dev.gentoo.org/~pacho/gnome/${P}-patches.tar.bz2"
 
 LICENSE="GPL-2+"
 SLOT="0"

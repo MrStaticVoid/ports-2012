@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/umurmur/umurmur-0.2.16a.ebuild,v 1.3 2015/06/26 08:04:37 ago Exp $
+# $Id$
 
 EAPI=5
 
 inherit autotools systemd eutils readme.gentoo user
 
 DESCRIPTION="Minimalistic Murmur (Mumble server)"
-HOMEPAGE="http://code.google.com/p/umurmur/ https://github.com/umurmur/umurmur"
+HOMEPAGE="https://code.google.com/p/umurmur/ https://github.com/umurmur/umurmur"
 SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
@@ -82,7 +82,7 @@ pkg_postinst() {
 		elog
 		elog "Because you have enabled PolarSSL support, umurmurd will use a"
 		elog "predefined test-certificate and key if none are configured, which"
-		elog "is insecure. See http://code.google.com/p/umurmur/wiki/Installing02x#Installing_uMurmur_with_PolarSSL_support"
+		elog "is insecure. See https://code.google.com/p/umurmur/wiki/Installing02x#Installing_uMurmur_with_PolarSSL_support"
 		elog "for more information on how to create your certificate and key"
 	fi
 }

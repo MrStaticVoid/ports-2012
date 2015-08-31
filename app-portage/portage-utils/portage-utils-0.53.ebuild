@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.53.ebuild,v 1.3 2015/02/20 01:37:30 vapier Exp $
+# $Id$
 
 EAPI="4"
 
@@ -9,7 +9,7 @@ inherit flag-o-matic toolchain-funcs eutils
 DESCRIPTION="small and fast portage helper tools written in C"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Portage-utils"
 SRC_URI="mirror://gentoo/${P}.tar.xz
-	http://dev.gentoo.org/~vapier/dist/${P}.tar.xz"
+	https://dev.gentoo.org/~vapier/dist/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"

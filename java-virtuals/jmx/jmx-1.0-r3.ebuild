@@ -1,13 +1,13 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jmx/jmx-1.0-r3.ebuild,v 1.6 2012/10/04 17:37:57 sera Exp $
+# $Id$
 
 EAPI=4
 
 inherit java-virtuals-2
 
 DESCRIPTION="Virtual for Java Management Extensions (JMX)"
-HOMEPAGE="http://www.gentoo.org"
+HOMEPAGE="https://www.gentoo.org"
 SRC_URI=""
 
 LICENSE="public-domain"

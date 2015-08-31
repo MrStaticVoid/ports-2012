@@ -8,6 +8,6 @@ KEYWORDS=amd64 x86
 LICENSE=GPL-2
 RDEPEND=>=dev-vcs/bzr-1.6_rc1 dev-python/pygobject dev-python/notify-python >=dev-python/pycairo-1.0 nautilus? ( >=dev-python/nautilus-python-1.0 ) dev-python/notify-python gnome-keyring? ( dev-python/gnome-keyring-python ) gpg? ( app-crypt/seahorse ) =dev-lang/python-2*
 SLOT=0
-SRC_URI=http://launchpad.net/bzr-gtk/gtk3/0.103.0/+download/bzr-gtk-0.103.0.tar.gz
+SRC_URI=https://launchpad.net/bzr-gtk/gtk3/0.103.0/+download/bzr-gtk-0.103.0.tar.gz
 _eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=53ce219d8b47ddb162dd49c3309d041e
+_md5_=61977e58a8b1b3eab7f5b8f7af9d85aa

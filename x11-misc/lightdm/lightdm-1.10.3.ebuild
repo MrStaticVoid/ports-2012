@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/lightdm/lightdm-1.10.3.ebuild,v 1.5 2014/12/05 10:19:25 ago Exp $
+# $Id$
 
 EAPI=5
 inherit autotools eutils pam readme.gentoo systemd
@@ -8,7 +8,7 @@ inherit autotools eutils pam readme.gentoo systemd
 TRUNK_VERSION="1.10"
 DESCRIPTION="A lightweight display manager"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/LightDM"
-SRC_URI="http://launchpad.net/${PN}/${TRUNK_VERSION}/${PV}/+download/${P}.tar.xz
+SRC_URI="https://launchpad.net/${PN}/${TRUNK_VERSION}/${PV}/+download/${P}.tar.xz
 	mirror://gentoo/introspection-20110205.m4.tar.bz2"
 
 LICENSE="GPL-3 LGPL-3"

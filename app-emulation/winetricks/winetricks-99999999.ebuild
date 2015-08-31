@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/winetricks/winetricks-99999999.ebuild,v 1.16 2015/06/04 18:59:05 kensington Exp $
+# $Id$
 
 EAPI=5
 
@@ -16,8 +16,8 @@ else
 fi
 wtg=winetricks-gentoo-2012.11.24
 SRC_URI="${SRC_URI}
-	gtk? ( http://dev.gentoo.org/~tetromino/distfiles/wine/${wtg}.tar.bz2 )
-	kde? ( http://dev.gentoo.org/~tetromino/distfiles/wine/${wtg}.tar.bz2 )"
+	gtk? ( https://dev.gentoo.org/~tetromino/distfiles/wine/${wtg}.tar.bz2 )
+	kde? ( https://dev.gentoo.org/~tetromino/distfiles/wine/${wtg}.tar.bz2 )"
 
 DESCRIPTION="Easy way to install DLLs needed to work around problems in Wine"
 HOMEPAGE="http://winetricks.org http://wiki.winehq.org/winetricks"

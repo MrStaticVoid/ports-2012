@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/android-ndk/android-ndk-8b.ebuild,v 1.2 2012/08/13 21:30:06 cardoe Exp $
+# $Id$
 
 EAPI=3
 
@@ -8,7 +8,7 @@ MY_P="${PN}-r${PV}"
 
 DESCRIPTION="Open Handset Alliance's Android NDK (Native Dev Kit)"
 HOMEPAGE="http://developer.android.com/sdk/ndk/"
-SRC_URI="http://dl.google.com/android/ndk/${MY_P}-linux-x86.tar.bz2"
+SRC_URI="https://dl.google.com/android/ndk/${MY_P}-linux-x86.tar.bz2"
 
 LICENSE="android"
 SLOT="0"

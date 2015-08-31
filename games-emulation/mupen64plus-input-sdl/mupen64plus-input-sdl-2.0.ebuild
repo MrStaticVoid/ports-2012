@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/mupen64plus-input-sdl/mupen64plus-input-sdl-2.0.ebuild,v 1.3 2013/12/19 16:55:18 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ MY_P=${PN}-src-${PV}
 inherit eutils toolchain-funcs games
 
 DESCRIPTION="A fork of Mupen64 Nintendo 64 emulator, SDL input plugin"
-HOMEPAGE="http://code.google.com/p/mupen64plus/"
+HOMEPAGE="https://code.google.com/p/mupen64plus/"
 SRC_URI="https://github.com/mupen64plus/${PN}/releases/download/${PV}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2.1"

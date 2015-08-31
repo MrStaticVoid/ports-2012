@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop-pg-qt/kdevelop-pg-qt-1.1.0.ebuild,v 1.2 2015/07/26 06:31:39 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ inherit kde4-base
 if [[ $PV == *9999* ]]; then
 	KEYWORDS=""
 else
-	SRC_URI="http://quickgit.kde.org/?p=${PN}.git&a=snapshot&h=${PV%%.0} -> ${P}.tar.gz"
+	SRC_URI="https://quickgit.kde.org/?p=${PN}.git&a=snapshot&h=${PV%%.0} -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 

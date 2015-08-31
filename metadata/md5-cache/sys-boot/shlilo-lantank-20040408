@@ -7,4 +7,4 @@ RESTRICT=strip
 SLOT=0
 SRC_URI=mirror://gentoo/sh-lilo-sel-20040408.tar.gz
 _eclasses_=mount-boot	ea24b511b0ad59831d0151aa634dfad2
-_md5_=d4404b2b5ba82222d71bb87be5e08963
+_md5_=4d7530bd11bb4b39fc3b575b77d32a2b

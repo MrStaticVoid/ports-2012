@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox-modules/virtualbox-modules-4.3.28.ebuild,v 1.4 2015/06/14 18:10:40 mgorny Exp $
+# $Id$
 
 # XXX: the tarball here is just the kernel modules split out of the binary
 #      package that comes from virtualbox-bin
@@ -12,7 +12,7 @@ inherit eutils linux-mod user
 MY_P=vbox-kernel-module-src-${PV}
 DESCRIPTION="Kernel Modules for Virtualbox"
 HOMEPAGE="http://www.virtualbox.org/"
-SRC_URI="http://dev.gentoo.org/~polynomial-c/virtualbox/${MY_P}.tar.xz"
+SRC_URI="https://dev.gentoo.org/~polynomial-c/virtualbox/${MY_P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"

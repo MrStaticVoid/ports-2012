@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/kodi/kodi-14.1.ebuild,v 1.8 2015/07/17 02:45:34 vapier Exp $
+# $Id$
 
 EAPI="5"
 
@@ -153,6 +153,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-9999-nomythtv.patch
 	epatch "${FILESDIR}"/${P}-no-arm-flags.patch #400617
 	epatch "${FILESDIR}"/${PN}-14.0-dvddemux-ffmpeg.patch #526992#36
+	epatch "${FILESDIR}"/${P}-gcc-5.patch #557300
 	# The mythtv patch touches configure.ac, so force a regen
 	rm -f configure
 

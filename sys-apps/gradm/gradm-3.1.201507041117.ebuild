@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gradm/gradm-3.1.201507041117.ebuild,v 1.2 2015/07/20 08:17:42 blueness Exp $
+# $Id$
 
 EAPI="5"
 inherit flag-o-matic toolchain-funcs versionator eutils udev
@@ -9,7 +9,7 @@ MY_PV="$(replace_version_separator 2 -)"
 
 DESCRIPTION="Administrative interface for the grsecurity Role Based Access Control system"
 HOMEPAGE="http://www.grsecurity.net/"
-SRC_URI="http://dev.gentoo.org/~blueness/hardened-sources/gradm/${PN}-${MY_PV}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~blueness/hardened-sources/gradm/${PN}-${MY_PV}.tar.gz"
 LICENSE="GPL-2"
 
 SLOT="0"

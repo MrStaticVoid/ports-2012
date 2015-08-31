@@ -1,12 +1,12 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lua/luafilesystem/luafilesystem-1.6.2.ebuild,v 1.1 2014/12/24 10:41:04 mrueg Exp $
+# $Id$
 
 EAPI=5
 inherit multilib toolchain-funcs
 
 DESCRIPTION="File System Library for the Lua Programming Language"
-HOMEPAGE="http://keplerproject.github.com/luafilesystem/"
+HOMEPAGE="https://keplerproject.github.com/luafilesystem/"
 SRC_URI="mirror://github/keplerproject/luafilesystem/${P}.tar.gz"
 
 LICENSE="MIT"

@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/asn1-encoding/asn1-encoding-0.9.0.ebuild,v 1.1 2014/12/13 13:21:24 gienah Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ CABAL_FEATURES="lib profile haddock hoogle hscolour test-suite"
 inherit haskell-cabal
 
 DESCRIPTION="ASN1 data reader and writer in RAW, BER and DER forms"
-HOMEPAGE="http://github.com/vincenthz/hs-asn1"
+HOMEPAGE="https://github.com/vincenthz/hs-asn1"
 SRC_URI="mirror://hackage/packages/archive/${PN}/${PV}/${P}.tar.gz"
 
 LICENSE="BSD"

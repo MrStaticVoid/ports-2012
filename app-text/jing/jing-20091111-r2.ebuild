@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jing/jing-20091111-r2.ebuild,v 1.2 2015/04/05 20:58:05 monsieurp Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Jing: A RELAX NG validator in Java"
 HOMEPAGE="http://thaiopensource.com/relaxng/jing.html"
-SRC_URI="http://jing-trang.googlecode.com/files/${P}.zip"
+SRC_URI="https://jing-trang.googlecode.com/files/${P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
@@ -44,7 +44,7 @@ src_unpack() {
 	popd >/dev/null
 
 	# get the resourses from prebuilt jar
-	# http://code.google.com/p/jing-trang/issues/detail?id=84
+	# https://code.google.com/p/jing-trang/issues/detail?id=84
 	mkdir -p "${S}"/target/classes || die
 	pushd "${S}"/target/classes >/dev/null || die
 		unpack ./../../../bin/${PN}.jar

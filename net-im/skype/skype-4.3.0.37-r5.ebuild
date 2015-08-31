@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/skype/skype-4.3.0.37-r5.ebuild,v 1.7 2015/07/12 15:00:54 amynka Exp $
+# $Id$
 
 EAPI=5
 
@@ -101,7 +101,7 @@ pkg_preinst() {
 pkg_postinst() {
 	gnome2_icon_cache_update
 
-	# http://bugs.gentoo.org/360815
+	# https://bugs.gentoo.org/360815
 	elog "For webcam support, see \"LD_PRELOAD\" section of \"README.lib\" document provided by"
 	elog "media-libs/libv4l package and \"README\" document of this package."
 

@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/parallel/parallel-20150522.ebuild,v 1.3 2015/06/26 08:32:09 ago Exp $
+# $Id$
 
 EAPI=5
 
 DESCRIPTION="A shell tool for executing jobs in parallel locally or on remote machines"
-HOMEPAGE="http://www.gnu.org/software/parallel/"
+HOMEPAGE="https://www.gnu.org/software/parallel/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-3"

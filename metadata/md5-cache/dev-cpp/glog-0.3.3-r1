@@ -2,12 +2,12 @@ DEFINED_PHASES=compile configure install prepare test
 DEPEND=gflags? ( >=dev-cpp/gflags-2.0-r1[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?,abi_ppc_32(-)?,abi_ppc_64(-)?,abi_s390_32(-)?,abi_s390_64(-)?] ) unwind? ( sys-libs/libunwind ) test? ( >=dev-cpp/gmock-1.7.0-r1[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?,abi_ppc_32(-)?,abi_ppc_64(-)?,abi_s390_32(-)?,abi_s390_64(-)?] >=dev-cpp/gtest-1.6.0-r2[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?,abi_ppc_32(-)?,abi_ppc_64(-)?,abi_s390_32(-)?,abi_s390_64(-)?] )
 DESCRIPTION=Google's C++ logging library
 EAPI=4
-HOMEPAGE=http://code.google.com/p/google-glog/
+HOMEPAGE=https://code.google.com/p/google-glog/
 IUSE=gflags static-libs unwind test abi_x86_32 abi_x86_64 abi_x86_x32 abi_mips_n32 abi_mips_n64 abi_mips_o32 abi_ppc_32 abi_ppc_64 abi_s390_32 abi_s390_64
 KEYWORDS=~alpha amd64 arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-linux ~x86-linux
 LICENSE=BSD
 RDEPEND=gflags? ( >=dev-cpp/gflags-2.0-r1[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi_mips_n32(-)?,abi_mips_n64(-)?,abi_mips_o32(-)?,abi_ppc_32(-)?,abi_ppc_64(-)?,abi_s390_32(-)?,abi_s390_64(-)?] ) unwind? ( sys-libs/libunwind )
 SLOT=0
-SRC_URI=http://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=fd89a4801cdde80f05b2ea9c78c236e5
+SRC_URI=https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
+_md5_=68b155a8a5121c9f7394645215367c80

@@ -8,6 +8,6 @@ KEYWORDS=amd64 x86
 LICENSE=GPL-3
 RDEPEND=>=dev-libs/glib-2.32:2 dev-libs/libgee:0.8 media-libs/clutter-gtk >=pantheon-base/plank-0.3 >=x11-libs/granite-0.3 x11-libs/bamf >=x11-libs/gtk+-3.4:3 >=x11-wm/mutter-3.8.4 gnome-base/gnome-desktop:3
 SLOT=0
-SRC_URI=https://launchpad.net/~elementary-os/+archive/ubuntu/stable/+files/gala_0.2.0%7Er472%2Bpkg32%7Eubuntu0.3.1.tar.gz
-_eclasses_=autotools	2264f05fbbbaaf83d34ec81e72b38ffd	autotools-utils	106d29d66151588cad8ee4f31122cffb	eutils	9fb270e417e0e83d64ca52586c4a79de	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	vala	09bc7da1a93142c9eb90786e6f6b39d2
-_md5_=7bb862e38b1845ccefdf540d6f929735
+SRC_URI=https://launchpad.net/~elementary-os/+archive/ubuntu/stable/+files/gala_0.2.0%7Er474%2Bpkg32%2Bbuild1%7Eubuntu0.3.1.tar.gz
+_eclasses_=autotools	8056957fdccf2b3cd6e282a4b4551d1a	autotools-utils	106d29d66151588cad8ee4f31122cffb	eutils	351a78113be5b393c09a2c948701ad36	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	vala	335996addec48717e632dfd1f588ef1c
+_md5_=d53806097419ef66994a4579d14e8f6e

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminator/terminator-0.96-r1.ebuild,v 1.8 2012/10/19 07:13:01 jlec Exp $
+# $Id$
 
 EAPI=4
 
@@ -13,7 +13,7 @@ inherit gnome2 distutils eutils
 
 DESCRIPTION="Multiple GNOME terminals in one window"
 HOMEPAGE="http://www.tenshu.net/p/terminator.html"
-SRC_URI="http://launchpad.net/${PN}/trunk/${PV}/+download/${PN}_${PV}.tar.gz"
+SRC_URI="https://launchpad.net/${PN}/trunk/${PV}/+download/${PN}_${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

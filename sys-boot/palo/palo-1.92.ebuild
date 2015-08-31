@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/palo/palo-1.92.ebuild,v 1.6 2014/01/23 14:43:42 jer Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="PALO : PArisc Linux Loader"
 HOMEPAGE="http://parisc-linux.org/ https://parisc.wiki.kernel.org/"
-SRC_URI="http://dev.gentoo.org/~jer/${P/-/_}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~jer/${P/-/_}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

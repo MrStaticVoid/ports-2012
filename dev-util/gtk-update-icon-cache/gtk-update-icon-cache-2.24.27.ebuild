@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-update-icon-cache/gtk-update-icon-cache-2.24.27.ebuild,v 1.2 2015/05/25 03:05:52 tetromino Exp $
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -9,7 +9,7 @@ inherit gnome2
 
 DESCRIPTION="GTK update icon cache"
 HOMEPAGE="http://www.gtk.org/"
-SRC_URI="http://dev.gentoo.org/~eva/distfiles/${PN}/${P}.tar.xz"
+SRC_URI="https://dev.gentoo.org/~eva/distfiles/${PN}/${P}.tar.xz"
 
 LICENSE="LGPL-2+"
 SLOT="0"

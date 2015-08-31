@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/blt/blt-2.4z-r12.ebuild,v 1.2 2013/04/05 07:01:52 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -13,7 +13,7 @@ HOMEPAGE="
 	http://blt.sourceforge.net/
 	http://jos.decoster.googlepages.com/bltfortk8.5.2"
 SRC_URI="
-	http://dev.gentoo.org/~jlec/distfiles/${PN}${PV}${MY_V_SUFFIX}.tar.gz
+	https://dev.gentoo.org/~jlec/distfiles/${PN}${PV}${MY_V_SUFFIX}.tar.gz
 	http://jos.decoster.googlepages.com/${PN}${PV}${MY_V_SUFFIX}.tar.gz"
 
 IUSE="jpeg static-libs X"

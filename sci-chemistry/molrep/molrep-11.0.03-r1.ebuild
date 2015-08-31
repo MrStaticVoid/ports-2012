@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/molrep/molrep-11.0.03-r1.ebuild,v 1.3 2013/02/21 22:00:47 jlec Exp $
+# $Id$
 
 EAPI=4
 
@@ -8,7 +8,7 @@ inherit eutils flag-o-matic fortran-2 multilib toolchain-funcs
 
 DESCRIPTION="molecular replacement program"
 HOMEPAGE="http://www.ysbl.york.ac.uk/~alexei/molrep.html"
-SRC_URI="http://dev.gentoo.org/~jlec/distfiles/${P}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~jlec/distfiles/${P}.tar.gz"
 
 LICENSE="ccp4"
 SLOT="0"

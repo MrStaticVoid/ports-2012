@@ -9,4 +9,4 @@ RDEPEND=sci-chemistry/apbs sci-chemistry/pdb2pqr !<sci-chemistry/pymol-1.2.2-r1 
 SLOT=0
 SRC_URI=http://pymolapbsplugin.svn.sourceforge.net/viewvc/pymolapbsplugin/trunk/src/apbsplugin.py?revision=15 -> pymol-apbs-plugin-0_p15.py
 _eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=9f7e920696076167330278e0dd87e2a1
+_md5_=805bd9d445575c897fa07ed96737176c

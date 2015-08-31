@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-9999.ebuild,v 1.119 2015/07/19 17:29:33 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -35,7 +35,7 @@ COMMON_DEPEND="
 	gold? ( >=sys-devel/binutils-2.22:*[cxx] )
 	libedit? ( dev-libs/libedit:0=[${MULTILIB_USEDEP}] )
 	libffi? ( >=virtual/libffi-3.0.13-r1:0=[${MULTILIB_USEDEP}] )
-	ncurses? ( >=sys-libs/ncurses-5.9-r3:5=[${MULTILIB_USEDEP}] )
+	ncurses? ( >=sys-libs/ncurses-5.9-r3:0=[${MULTILIB_USEDEP}] )
 	ocaml? (
 		dev-lang/ocaml:0=
 		dev-ml/findlib
@@ -56,6 +56,7 @@ DEPEND="${COMMON_DEPEND}
 	libffi? ( virtual/pkgconfig )
 	lldb? ( dev-lang/swig )
 	!!<dev-python/configparser-3.3.0.2
+	ocaml? ( test? ( dev-ml/ounit ) )
 	${PYTHON_DEPS}"
 RDEPEND="${COMMON_DEPEND}
 	clang? ( !<=sys-devel/clang-${PV}-r99 )
@@ -167,6 +168,9 @@ src_prepare() {
 	# https://llvm.org/bugs/show_bug.cgi?id=18341
 	epatch "${FILESDIR}"/cmake/0004-cmake-Do-not-install-libgtest.patch
 
+	# Allow custom cmake build types (like 'Gentoo')
+	epatch "${FILESDIR}"/cmake/${PN}-3.8-allow_custom_cmake_build_types.patch
+
 	if use clang; then
 		# Automatically select active system GCC's libraries, bugs #406163 and #417913
 		epatch "${FILESDIR}"/clang-3.5-gentoo-runtime-gcc-detection-v3.patch
@@ -178,13 +182,16 @@ src_prepare() {
 
 		# Install clang runtime into /usr/lib/clang
 		# https://llvm.org/bugs/show_bug.cgi?id=23792
-		epatch "${FILESDIR}"/cmake/clang-0001-Install-clang-runtime-into-usr-lib-without-suffix.patch
+		epatch "${FILESDIR}"/cmake/clang-0001-Install-clang-runtime-into-usr-lib-without-suffix-3.8.patch
 		epatch "${FILESDIR}"/cmake/compiler-rt-0001-cmake-Install-compiler-rt-into-usr-lib-without-suffi.patch
 
 		# Make it possible to override CLANG_LIBDIR_SUFFIX
 		# (that is used only to find LLVMgold.so)
 		# https://llvm.org/bugs/show_bug.cgi?id=23793
 		epatch "${FILESDIR}"/cmake/clang-0002-cmake-Make-CLANG_LIBDIR_SUFFIX-overridable.patch
+
+		# Workaround bug #553416 until upstream fixes it
+		epatch "${FILESDIR}"/clang-3.7-strip_doc_refs.patch
 	fi
 
 	if use lldb; then
@@ -330,6 +337,8 @@ multilib_src_configure() {
 
 multilib_src_compile() {
 	cmake-utils_src_compile
+	# TODO: not sure why this target is not correctly called
+	multilib_is_native_abi && use doc && use ocaml && cmake-utils_src_make docs/ocaml_doc
 
 	pax-mark m "${BUILD_DIR}"/bin/llvm-rtdyld
 	pax-mark m "${BUILD_DIR}"/bin/lli

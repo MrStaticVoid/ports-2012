@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-9999.ebuild,v 1.14 2015/06/14 10:32:59 jer Exp $
+# $Id$
 
 EAPI=5
 
@@ -14,7 +14,7 @@ DESCRIPTION="A utility for network discovery and security auditing"
 HOMEPAGE="http://nmap.org/"
 
 EGIT_REPO_URI="https://github.com/nmap/nmap"
-SRC_URI="http://dev.gentoo.org/~jer/nmap-logo-64.png"
+SRC_URI="https://dev.gentoo.org/~jer/nmap-logo-64.png"
 
 LICENSE="GPL-2"
 SLOT="0"

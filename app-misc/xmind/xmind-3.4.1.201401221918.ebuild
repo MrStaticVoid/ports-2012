@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/xmind/xmind-3.4.1.201401221918.ebuild,v 1.3 2014/06/10 11:21:13 zlogene Exp $
+# $Id$
 
 EAPI=5
 
@@ -12,7 +12,7 @@ MY_P="${MY_PN}-${PV}"
 DESCRIPTION="A brainstorming and mind mapping software tool"
 HOMEPAGE="http://www.xmind.net"
 SRC_URI="http://dl2.xmind.net/xmind-downloads/${MY_P}.zip
-	http://dev.gentoo.org/~creffett/distfiles/xmind-icons.tar.xz"
+	https://dev.gentoo.org/~creffett/distfiles/xmind-icons.tar.xz"
 LICENSE="EPL-1.0 LGPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"

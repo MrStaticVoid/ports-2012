@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nacl-toolchain-newlib/nacl-toolchain-newlib-0_p10520.ebuild,v 1.1 2012/12/30 17:57:47 phajdan.jr Exp $
+# $Id$
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ GCC_PV="4.4.3"
 NACL_REVISION="${PV##*_p}"
 
 DESCRIPTION="Native Client newlib-based toolchain (only for compiling IRT)"
-HOMEPAGE="http://code.google.com/chrome/nativeclient/"
+HOMEPAGE="https://code.google.com/chrome/nativeclient/"
 SRC_URI="mirror://gnu/binutils/binutils-${BINUTILS_PV}.tar.bz2
 	ftp://sources.redhat.com/pub/newlib/newlib-${NEWLIB_PV}.tar.gz
 	mirror://gnu/gcc/gcc-${GCC_PV}/gcc-${GCC_PV}.tar.bz2

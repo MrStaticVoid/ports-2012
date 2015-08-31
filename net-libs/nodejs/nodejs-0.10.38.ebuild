@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/nodejs/nodejs-0.10.38.ebuild,v 1.1 2015/05/11 03:46:33 patrick Exp $
+# $Id$
 
 EAPI=5
 
@@ -28,7 +28,7 @@ S=${WORKDIR}/node-v${PV}
 
 src_prepare() {
 	# fix compilation on Darwin
-	# http://code.google.com/p/gyp/issues/detail?id=260
+	# https://code.google.com/p/gyp/issues/detail?id=260
 	sed -i -e "/append('-arch/d" tools/gyp/pylib/gyp/xcode_emulation.py || die
 
 	# make sure we use python2.* while using gyp

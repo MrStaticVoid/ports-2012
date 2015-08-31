@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/mips-sources/mips-sources-3.19.6.ebuild,v 1.1 2015/05/04 02:20:58 kumba Exp $
+# $Id$
 
 # EAPI Version
 EAPI="5"
@@ -41,7 +41,7 @@ BASE_KV="$(get_version_component_range 1-2).0"
 [[ "${EXTRAVERSION}" = -rc* ]] && KVE="${EXTRAVERSION}"
 
 # Portage Vars
-HOMEPAGE="http://www.linux-mips.org/ http://www.gentoo.org/"
+HOMEPAGE="http://www.linux-mips.org/ https://www.gentoo.org/"
 SLOT="${OKV}"
 KEYWORDS="-* ~mips"
 IUSE="cobalt ip27 ip28 ip30 ip32r10k"

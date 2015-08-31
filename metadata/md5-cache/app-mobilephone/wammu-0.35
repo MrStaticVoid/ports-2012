@@ -10,4 +10,4 @@ RDEPEND=>=app-mobilephone/gammu-1.25.0[python] >=dev-python/wxpython-2.8 bluetoo
 SLOT=0
 SRC_URI=http://dl.cihar.com/wammu/v0/wammu-0.35.tar.bz2
 _eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=bdc19bc7b5a278500dda02c67c3bab47
+_md5_=ebdf5ecf0bc5fc4eabdea35d1b2d8e70

@@ -1,14 +1,14 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/inspircd/inspircd-2.0.17.ebuild,v 1.6 2014/12/28 16:26:45 titanofold Exp $
+# $Id$
 
 EAPI=5
 
 inherit eutils multilib toolchain-funcs user
 
 DESCRIPTION="Inspire IRCd - The Stable, High-Performance Modular IRCd"
-HOMEPAGE="http://inspircd.github.com/"
-SRC_URI="http://www.github.com/inspircd/inspircd/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://inspircd.github.com/"
+SRC_URI="https://www.github.com/inspircd/inspircd/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

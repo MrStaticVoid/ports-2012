@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/enlightenment/enlightenment-0.18.7.ebuild,v 1.1 2014/05/11 10:23:50 tommy Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ if [[ "${PV}" == "9999" ]] ; then
 	EGIT_SUB_PROJECT="core"
 	EGIT_URI_APPEND="${PN}"
 else
-	SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${MY_P}.tar.bz2"
+	SRC_URI="https://download.enlightenment.org/rel/apps/${PN}/${MY_P}.tar.bz2"
 	EKEY_STATE="snap"
 fi
 

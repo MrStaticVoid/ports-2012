@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/svg2rlg/svg2rlg-0.3.ebuild,v 1.8 2015/04/08 17:58:14 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ inherit distutils-r1
 
 DESCRIPTION="svg2rlg is a python tool to convert SVG files to reportlab
 graphics"
-HOMEPAGE="http://code.google.com/p/svg2rlg/"
+HOMEPAGE="https://code.google.com/p/svg2rlg/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="BSD"

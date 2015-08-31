@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ispc/ispc-1.8.1.ebuild,v 1.2 2015/04/08 08:22:09 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -9,7 +9,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit toolchain-funcs python-any-r1
 
 DESCRIPTION="Intel SPMD Program Compiler"
-HOMEPAGE="http://ispc.github.com/"
+HOMEPAGE="https://ispc.github.com/"
 
 if [[ ${PV} = *9999 ]]; then
 	inherit git-r3

@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tomboy/tomboy-1.14.1.ebuild,v 1.5 2014/04/25 19:16:09 pacho Exp $
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -9,7 +9,7 @@ GNOME2_LA_PUNT="yes"
 inherit autotools eutils gnome2 mono
 
 DESCRIPTION="Desktop note-taking application"
-HOMEPAGE="http://projects.gnome.org/tomboy/"
+HOMEPAGE="https://projects.gnome.org/tomboy/"
 
 LICENSE="LGPL-2.1"
 SLOT="0"

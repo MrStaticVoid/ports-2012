@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/libav/libav-11.9999.ebuild,v 1.7 2015/05/28 16:39:20 jer Exp $
+# $Id$
 
 EAPI=5
 
@@ -19,12 +19,12 @@ HOMEPAGE="https://libav.org/"
 if [[ ${PV} == *9999 ]] ; then
 	SRC_URI=""
 elif [[ ${PV%_p*} != ${PV} ]] ; then # Gentoo snapshot
-	SRC_URI="http://dev.gentoo.org/~lu_zero/libav/${P}.tar.xz"
+	SRC_URI="https://dev.gentoo.org/~lu_zero/libav/${P}.tar.xz"
 else # Official release
 	SRC_URI="https://libav.org/releases/${P}.tar.xz"
 fi
 # 9999 does not have fate-*.tar.xz
-[[ ${PV%9999} != "" ]] && SRC_URI+=" test? ( http://dev.gentoo.org/~lu_zero/libav/fate-${PV%%.*}.tar.xz )"
+[[ ${PV%9999} != "" ]] && SRC_URI+=" test? ( https://dev.gentoo.org/~lu_zero/libav/fate-${PV%%.*}.tar.xz )"
 
 LICENSE="LGPL-2.1  gpl? ( GPL-3 )"
 SLOT="0/11"

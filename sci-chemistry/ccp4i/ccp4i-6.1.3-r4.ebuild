@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/ccp4i/ccp4i-6.1.3-r4.ebuild,v 1.4 2015/03/27 10:18:43 ago Exp $
+# $Id$
 
 EAPI=5
 
@@ -21,9 +21,9 @@ HOMEPAGE="http://www.ccp4.ac.uk/"
 SRC_URI="
 	${SRC}/${PV}/${MY_P}-core-src.tar.gz
 	mirror://gentoo/${P}-arpwarp.patch.bz2
-	http://dev.gentoo.org/~jlec/distfiles/${PV}-oasis4.0.patch.bz2"
+	https://dev.gentoo.org/~jlec/distfiles/${PV}-oasis4.0.patch.bz2"
 [[ -n ${UPDATE} ]] && SRC_URI="${SRC_URI} ${SRC}/${PV}/updates/${P}-src-patch-${UPDATE}.tar.gz"
-[[ -n ${PATCHDATE} ]] && SRC_URI="${SRC_URI} http://dev.gentoo.org/~jlec/science-dist/${PV}-${PATCHDATE}-updates.patch.bz2"
+[[ -n ${PATCHDATE} ]] && SRC_URI="${SRC_URI} https://dev.gentoo.org/~jlec/science-dist/${PV}-${PATCHDATE}-updates.patch.bz2"
 
 SLOT="0"
 KEYWORDS="amd64 ~ppc x86 ~amd64-linux ~x86-linux"

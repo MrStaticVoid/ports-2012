@@ -1,10 +1,10 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/emerge-delta-webrsync/emerge-delta-webrsync-3.7.2-r1.ebuild,v 1.6 2015/07/24 10:36:36 zlogene Exp $
+# $Id$
 
 EAPI=5
 DESCRIPTION="emerge-webrsync using patches to minimize bandwidth"
-HOMEPAGE="http://www.gentoo.org/proj/en/portage/index.xml"
+HOMEPAGE="https://www.gentoo.org/proj/en/portage/index.xml"
 SRC_URI="https://raw.githubusercontent.com/gentoo/portage/779a9e686d89e31af43e33b1163b01aeff65d7ea/misc/emerge-delta-webrsync -> ${P}"
 LICENSE="GPL-2"
 SLOT="0"

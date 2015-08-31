@@ -1,9 +1,26 @@
+# FL-2748: 6.0-r1 breaks metro builds due to breakage when built with high parallelism.
+>=sys-libs/ncurses-6
+# this has the slotmove to 5
+>=sys-libs/ncurses-5.9-r101
+
+# FL-2726: mask kdelibs-4.14.11 in Funtoo too
+=kde-base/kdelibs-4.14.11
+
+# QA-88: workaround mask of binutils-config-4-r4 to break block with eselect. Until decided.
+>=sys-devel/binutils-config-4-r4
+
+# FL-2704: mask very latet mongodb (and newer), until boost also unmasked.
+>dev-db/mongodb-3.0.4
+
+# FL-2678: mask xbmc. kodi is a new and working version.
+# Users with installed version and not planning to update xbmc need to put this entry to package.unmask
+media-tv/xbmc
+
 # FL-2641: mask damaged libcgroup ebuild.
 =dev-libs/libcgroup-0.41-r1
 
 # FL-2631: mask opencv-3.0, breaks certain packages:
 >media-libs/opencv-2.4.10
-
 
 # FL-2621: mask broken version of pstoedit (from last working)
 >media-gfx/pstoedit-3.62
@@ -21,7 +38,7 @@ sys-apps/makedev
 >net-fs/samba-3.6.25
 
 # FL-1703: these versions of crossdev is a forkbomb(s)
->sys-devel/crossdev-20140917
+>=sys-devel/crossdev-20140917
 
 # Mask the very latest layman, which using a a portage repository configs. Not yet in Funtoo.
 >app-portage/layman-2.2.0-r7

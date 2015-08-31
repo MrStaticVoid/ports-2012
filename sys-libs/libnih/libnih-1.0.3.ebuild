@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libnih/libnih-1.0.3.ebuild,v 1.4 2012/05/24 05:13:29 vapier Exp $
+# $Id$
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ inherit versionator eutils autotools toolchain-funcs
 
 DESCRIPTION="Light-weight 'standard library' of C functions"
 HOMEPAGE="https://launchpad.net/libnih"
-SRC_URI="http://launchpad.net/${PN}/$(get_version_component_range 1-2)/${PV}/+download/${P}.tar.gz"
+SRC_URI="https://launchpad.net/${PN}/$(get_version_component_range 1-2)/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

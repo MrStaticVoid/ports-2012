@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/git-sources/git-sources-4.2_rc3.ebuild,v 1.1 2015/07/20 11:14:23 mpagano Exp $
+# $Id$
 
 EAPI="5"
 UNIPATCH_STRICTORDER="yes"
@@ -18,7 +18,7 @@ inherit kernel-2
 detect_version
 
 DESCRIPTION="The very latest -git version of the Linux kernel"
-HOMEPAGE="http://www.kernel.org"
+HOMEPAGE="https://www.kernel.org"
 SRC_URI="${KERNEL_URI}"
 
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
@@ -27,7 +27,7 @@ IUSE=""
 K_EXTRAEINFO="This kernel is not supported by Gentoo due to its unstable and
 experimental nature. If you have any issues, try a matching vanilla-sources
 ebuild -- if the problem is not there, please contact the upstream kernel
-developers at http://bugzilla.kernel.org and on the linux-kernel mailing list to
+developers at https://bugzilla.kernel.org and on the linux-kernel mailing list to
 report the problem so it can be fixed in time for the next kernel release."
 
 RDEPEND=""

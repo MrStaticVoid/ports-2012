@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/bangarang/bangarang-2.1-r2.ebuild,v 1.6 2015/06/04 19:04:08 kensington Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ inherit kde4-base
 
 DESCRIPTION="Media player for KDE utilizing Nepomuk for tagging"
 HOMEPAGE="http://bangarangkde.wordpress.com"
-[[ ${PV} == 9999 ]] || SRC_URI="http://bangarangissuetracking.googlecode.com/files/${P}.tar.gz"
+[[ ${PV} == 9999 ]] || SRC_URI="https://bangarangissuetracking.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="GPL-3"
 KEYWORDS="amd64 x86"

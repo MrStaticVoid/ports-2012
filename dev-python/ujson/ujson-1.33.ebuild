@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ujson/ujson-1.33.ebuild,v 1.9 2015/06/07 09:15:43 maekke Exp $
+# $Id$
 
 EAPI="5"
 
@@ -11,7 +11,7 @@ PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 inherit distutils-r1
 
 DESCRIPTION="Ultra fast JSON encoder and decoder for Python"
-HOMEPAGE="http://pypi.python.org/pypi/ujson/"
+HOMEPAGE="https://pypi.python.org/pypi/ujson/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.zip"
 
 LICENSE="BSD"

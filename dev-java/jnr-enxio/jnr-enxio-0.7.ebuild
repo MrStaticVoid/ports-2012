@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jnr-enxio/jnr-enxio-0.7.ebuild,v 1.3 2015/06/17 18:38:06 monsieurp Exp $
+# $Id$
 
 EAPI="5"
 
@@ -9,7 +9,7 @@ JAVA_PKG_IUSE="doc examples source test"
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Java Native Runtime Enhanced X-platform I/O"
-SRC_URI="http://github.com/jnr/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/jnr/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 HOMEPAGE="https://github.com/jnr/jnr-enxio"
 
 SLOT="0"

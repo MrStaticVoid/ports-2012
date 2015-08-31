@@ -1,12 +1,12 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/ppp-scripts/ppp-scripts-0.ebuild,v 1.2 2015/07/05 11:37:01 pinkbyte Exp $
+# $Id$
 
 EAPI=5
 
 DESCRIPTION="Common set of scripts for various PPP implementations"
-HOMEPAGE="http://gentoo.org/"
-SRC_URI="http://dev.gentoo.org/~pinkbyte/distfiles/${P}.tar.xz"
+HOMEPAGE="https://gentoo.org/"
+SRC_URI="https://dev.gentoo.org/~pinkbyte/distfiles/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"

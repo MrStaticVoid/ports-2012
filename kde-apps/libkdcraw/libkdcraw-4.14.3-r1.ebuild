@@ -1,11 +1,13 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
-inherit eutils kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE digital camera raw image library wrapper"
-KEYWORDS="*"
+KEYWORDS="amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
@@ -13,6 +15,4 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-	epatch "${FILESDIR}"/libraw-fix.patch
-}
+PATCHES=( "${FILESDIR}/${P}-libraw-0.16.1.patch" )

@@ -9,4 +9,4 @@ RDEPEND==dev-lang/python-2* =dev-lang/python-2*[tk]
 SLOT=0
 SRC_URI=http://download.gna.org/songwrite/EditObj-0.5.7.tar.gz
 _eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=8f84305817ffdbe93ad9a155adc8b2eb
+_md5_=ba0f49935dc0ab4f94730b29e7925c7d

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/psi/psi-0.14-r4.ebuild,v 1.19 2015/07/22 01:55:42 pesa Exp $
+# $Id$
 
 EAPI=4
 
@@ -66,10 +66,10 @@ src_prepare() {
 		iris/src/irisnet/corelib/netinterface_unix.cpp || die 'sed failed'
 
 	if use extras; then
-		# some patches from psi+ project http://code.google.com/p/psi-dev
+		# some patches from psi+ project https://code.google.com/p/psi-dev
 		ewarn "You're about to build heavily patched version of Psi called Psi+."
 		ewarn "It has really nice features but still is under heavy development."
-		ewarn "Take a look at homepage for more info: http://code.google.com/p/psi-dev"
+		ewarn "Take a look at homepage for more info: https://code.google.com/p/psi-dev"
 		ewarn "If you wish to disable some patches just put"
 		ewarn "MY_EPATCH_EXCLUDE=\"list of patches\""
 		ewarn "into /etc/portage/env/${CATEGORY}/${PN} file."

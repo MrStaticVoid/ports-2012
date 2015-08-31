@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/Numdifftools/Numdifftools-0.7.7.ebuild,v 1.2 2015/03/12 12:08:35 heroxbd Exp $
+# $Id$
 
 EAPI=5
 
@@ -12,7 +12,7 @@ MY_PN=numdifftools
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Solves automatic numerical differentiation problems in one or more variables"
-HOMEPAGE="https://pypi.python.org/pypi/Numdifftools http://code.google.com/p/numdifftools/ https://github.com/pbrod/numdifftools"
+HOMEPAGE="https://pypi.python.org/pypi/Numdifftools https://code.google.com/p/numdifftools/ https://github.com/pbrod/numdifftools"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${MY_P}.zip"
 
 SLOT="0"

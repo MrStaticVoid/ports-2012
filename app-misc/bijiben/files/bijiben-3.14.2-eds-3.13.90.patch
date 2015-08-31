@@ -1,0 +1,10 @@
+--- bijiben-3.14.2/src/libbiji/provider/biji-memo-provider.c.orig	2015-02-18 16:01:42.576947170 -0500
++++ bijiben-3.14.2/src/libbiji/provider/biji-memo-provider.c	2015-02-18 16:10:00.235232718 -0500
+@@ -497,6 +497,7 @@ biji_memo_provider_constructed (GObject
+   g_object_ref (priv->info.icon);
+ 
+   e_cal_client_connect (self->priv->source,
++			30,
+                         E_CAL_CLIENT_SOURCE_TYPE_MEMOS,
+                         NULL, /* cancel */
+                         on_client_connected,

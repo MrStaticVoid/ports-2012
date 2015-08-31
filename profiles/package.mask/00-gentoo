@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.16690 2015/07/29 18:49:27 chewi Exp $
+# $Id$
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,13 +30,188 @@
 
 #--- END OF EXAMPLES ---
 
-# James Le Cuirot <chewi@gentoo.org> (29 Jul 2015)
-# dev-java/soap is fixable but it and its related packages are all
-# dead upstream. Removal in 30 days. See bug #556250.
-dev-java/jldap
-dev-java/openspml
-dev-java/openspml2
-dev-java/soap
+# Matt Turner <mattst88@gentoo.org> (28 Aug 2015)
+# Masked for removal in 30 days. Bug 482304
+x11-libs/libXevie
+
+# Hans de Graaff <graaff@gentoo.org> (28 Aug 2015)
+# Masked for removal in 30 days.
+# Only needed for ruby18 which has been removed a long time
+# ago. This gem is a no-op for newer ruby implementations
+# and nothing in the tree depends on it.
+dev-ruby/require_relative
+
+# Manuel Rüger <mrueg@gentoo.org> (26 Aug 2015)
+# Masked for removal in 30 days.
+# Superseded by app-i18n/atokx3.
+# See bug #553208
+app-i18n/atokx2
+
+# Doug Goldstein <cardoe@gentoo.org> (25 Aug 2015)
+# Masked for removal in 30 days. Users should use the modules available
+# via the kernel as upstream has deprecated these packages.
+app-emulation/kvm-kmod
+
+# Bernard Cafarelli <voyageur@gentoo.org> (24 Aug 2015)
+# Masked for removal in 30 days. Abandoned upstream,
+# last version does not compile. Bug #543644
+sys-devel/dragonegg
+
+# Bernard Cafarelli <voyageur@gentoo.org> (24 Aug 2015)
+# New llvm version for testing
+=sys-devel/llvm-3.7.0*
+=sys-devel/clang-3.7.0*
+
+# Andreas Sturmlechner <andreas.sturmlechner@gmail.com> (24 Aug 2015)
+# Masked until >=sys-auth/consolekit-0.9.2 gets unmasked
+=x11-misc/sddm-0.11.0-r2
+
+# Matt Turner <mattst88@gentoo.org> (22 Aug 2015)
+# nouveau has been in the kernel since 2.6.33
+# Masked for removal in 30 days.
+x11-base/nouveau-drm
+
+# Lars Wendler <polynomial-c@gentoo.org> (21 Aug 2015)
+# This version breaks tests in app-admin/rsyslog and 
+# also breaks rule settings.
+# See
+# http://lists.adiscon.net/pipermail/rsyslog/2015-August/041013.html
+# and
+# https://github.com/rsyslog/rsyslog/issues/489
+=dev-libs/liblognorm-1.1.2
+
+# Lars Wendler <polynomial-c@gentoo.org> (20 Aug 2015)
+# Masked for testing
+=net-misc/iputils-20150815
+
+# Hans de Graaff <graaff@gentoo.org> (20 Aug 2015)
+# No longer part of ruby-gnome2. Nothing depends on it.
+# Masked for removal in 30 days.
+dev-ruby/ruby-goocanvas
+
+# Patrice Clement <monsieurp@gentoo.org> (19 Aug 2015)
+# Upstream dead: no releases since 2010.
+# Technology has moved on and there are far better alternatives
+# (easymock, mockito and jmock).
+# Masked for removal in 30 days. See bug #190307.
+dev-java/mockobjects
+
+# Patrice Clement <monsieurp@gentoo.org> (19 Aug 2015)
+# Upstream dead too: no releases since 2005.
+# Masked for removal in 30 days. See bug #190307.
+dev-java/xdoclet
+
+# Johannes Huber <johu@gentoo.org> (18 Aug 2015)
+# Masked for removal in 30 days. Does not compile with
+# dev-python/PyQt4-4.11.4, which blocks stabilization.
+# Dead upstream. Last commit 6 years ago. See bug #558020.
+net-misc/guidedog
+
+# Patrice Clement <monsieurp@gentoo.org> (16 Aug 2015)
+# Dependency of dev-java/base64. This project isn't getting a lot of traction
+# and we already have a ton of Java serialiser APIs in the tree.
+# Masked for removal. See bug #557866.
+dev-java/java-xmlbuilder
+
+# Patrice Clement <monsieurp@gentoo.org> (16 Aug 2015)
+# Last release was in 2008. Does not compile with recent JDKs (>= 1.8).
+# Masked for removal. See bug #557920.
+dev-java/httpunit
+
+# Patrice Clement <monsieurp@gentoo.org> (16 Aug 2015)
+# Project discontinued: part of the java.util namespace as of Java 8.
+# See https://docs.oracle.com/javase/8/docs/api/java/util/Base64.html.
+# Masked for removal. See bug #557866.
+dev-java/base64
+
+# Brian Evans <grknight@gentoo.org> (16 Aug 2015)
+# Mask new PEAR installer as it is likely to break
+# many old scripts
+>=dev-php/pear-1.10.0_alpha1
+>=dev-php/PEAR-PEAR-1.10.0_alpha1
+
+# Patrice Clement <monsieurp@gentoo.org> (14 Aug 2015)
+# Unreachable HOMEPAGE (dead). Very very very old package: 
+# last release came out in 2001.
+# Masked for removal in 30 days. See bug #232666.
+dev-java/tclib
+
+# Patrice Clement <monsieurp@gentoo.org> (14 Aug 2015)
+# Last release is over 13 years old (!).
+# Masked for removal in 30 days. See bug #177032.
+app-text/jdictionary
+
+# Johannes Huber <johu@@gentoo.org> (13 Aug 2015)
+# Nepomuk removal. Announced via portage news item on 2015/08/11.
+# Removal in 30 days. Please switch to the default semantic desktop
+# search engine Baloo by globally enabling semantic-destkop use
+# flag or by using one of the provided kde/plasma desktop profiles.
+dev-db/virtuoso-odbc
+dev-db/virtuoso-jdbc
+dev-db/virtuoso-server
+dev-libs/shared-desktop-ontologies
+dev-libs/soprano
+dev-util/plasmate
+kde-apps/nepomuk
+kde-base/nepomuk-core
+kde-base/nepomuk-widgets
+kde-misc/akonadi-google
+kde-misc/akonadi-social-utils
+kde-misc/ksoprano
+kde-misc/nepomukshell
+kde-misc/pgame
+media-video/bangarang
+
+# Patrice Clement <monsieurp@gentoo.org> (11 Aug 2015)
+# Old and doesn't compile with recent JDKs (>= 1.8).
+# Masked for removal in 30 days. See bug #557210.
+app-text/jing
+
+# Johannes Huber <johu@gentoo.org> (10 Aug 2015)
+# Masked for removal in 30 days. Not needed anymore for
+# KDE Old PIM 4.4.2015.06.
+kde-base/akonadi
+kde-base/kdepim-strigi-analyzer
+
+# Sebastian Pipping <sping@gentoo.org> (8 Aug 2015)
+# Upcoming, too young to go into testing unmasked
+dev-libs/iniparser:4
+
+# Matthew Thode <prometheanfire@gentoo.org> (04 Aug 2015)
+# removing old and never working horizon Bug #556710
+www-apps/horizon
+
+# Mikle Kolyada <zlogene@hemtoo.org> (04 Aug 2015)
+# Unmaintained since 2010. No longer available
+# on CPAN and nothing in the tree depends on it.
+# See bug #556640 for more info. Removal in 30 days.
+dev-perl/gtk2-fu
+
+# Mike Gilbert <floppym@gentoo.org> (03 Aug 2015)
+# Unmaintained upstream. Fails to build. Removal in 30 days.
+# Bugs: 478174, 546192, 556200.
+sys-apps/systemd-ui
+
+# Patrice Clement <monsieurp@gentoo.org> (3 Aug 2015)
+# Broken and no releases in 10 years (!).
+# Removal in 30 days. See bug #451790.
+www-servers/skunkweb
+
+# Sergei Trofimovich <slyfox@gentoo.org> (2 Aug 2015)
+# This package is a part of >=dev-lang/ghc-7.4. Gentoo
+# ebuilds use that. You can safely uninstall dev-haskell/deepseq
+# and fix leftovers with 'haskell-updater' run.
+dev-haskell/deepseq
+
+# Patrice Clement <monsieurp@gentoo.org> (1 Aug 2015)
+# Package relying on j2me. Not useful anymore since j2me has long been removed.
+# Removal in 30 days. See bug #556460.
+dev-java/antenna
+
+# Patrice Clement <monsieurp@gentoo.org> (30 Jul 2015)
+# Broken and upstream dead isn't always a good mix.
+# Removal in 30 days. See bug #368049.
+dev-java/jjtraveler
 
 # Pawel Hajdan, Jr. <phajdan.jr@gentoo.org> (28 Jul 2015)
 # Dev channel releases are only for people who are developers or want more
@@ -64,25 +239,6 @@ dev-java/soap
 # for it for upgrading old user profiles, etc.
 ~mail-client/thunderbird-24.8.0
 
-# Patrice Clement <monsieurp@gentoo.org> (15 Jul 2015)
-# Upstream dead. No update since 2005.
-# Removal in 30 days. See bug #220287.
-dev-java/exolabcore
-dev-java/exolabtools
-
-# Patrice Clement <monsieurp@gentoo.org> (15 Jul 2015)
-# These packages were needed to compile early releases of dev-java/hessian.
-# They have since been obsoleted and have no reason to stay in the
-# tree anymore.
-# Removal in 30 days. See bug #554962.
-dev-java/burlap
-dev-java/caucho-services
-
-# Michael Sterrett <mr_bones_@gentoo.org> (13 Jul 2015)
-# No commit since 2007 and no further linux support besides
-# Masked for removal on 20150812
-games-emulation/handy
-
 # Sergey Popov <pinkbyte@gentoo.org> (13 Jul 2015)
 # Mask new version of Boost - it's known to cause breakages
 ~dev-util/boost-build-1.58.0
@@ -92,41 +248,6 @@ games-emulation/handy
 # Unused and broken. Removal in 30 days, bug #543576 .
 dev-lang/nacl-toolchain-newlib
 
-# Patrice Clement <monsieurp@gentoo.org> (10 Jul 2015)
-# Doesn't compile with recent JDKs (>= 1.8).
-# Removal in 30 days. See bug #542536.
-dev-java/mckoi
-
-# Patrice Clement <monsieurp@gentoo.org> (7 Jul 2015)
-# Upstream dead. No update since 2007.
-# Removal in 30 days. See bug #164536.
-dev-util/fujaba
-
-# Patrice Clement <monsieurp@gentoo.org> (5 Jul 2015)
-# SRC_URI unreachable. Upstream looks dead.
-# Removal in 30 days. See bug #502994.
-app-arch/dczip
-
-# Patrice Clement <monsieurp@gentoo.org> (5 Jul 2015)
-# Package does not compile with recent JDKs (>= jdk-1.8). More recent versions
-# use Gradle which we don't have packaged in Gentoo yet.
-# Removal in 30 days. See bug #552452.
-net-p2p/frostwire
-
-# Manuel Rüger <mrueg@gentoo.org> (5 Jul 2015)
-# Mask for various issues (missing ruby20 support, test failures)
-# Removal in 30 days
-app-text/deplate
-app-text/migemo
-dev-util/travis-yaml
-
-# Hans de Graaff <graaff@gentoo.org> (5 Jul 2015)
-# Mask for removal in 30 days. This is an old slot with a supporting
-# package only needed for this slot. Use dev-ruby/dotenv:2 instead.
-# This also fixes bug #553402 (file collision between slots).
-dev-ruby/dotenv:0
-dev-ruby/dotenv-deployment
-
 # Michael Orlitzky <mjo@gentoo.org> (3 Jul 2015)
 # Mask for removal in 30 days. Superseded by dev-haskell/biosff;
 # use that instead. Bug #553636.
@@ -135,26 +256,6 @@ sci-biology/flower
 # Patrick Lauer <patrick@gentoo.org> (1 Jul 2015)
 # Wrong version #553670
 =sys-kernel/gentoo-sources-4.1.1
-
-# Michael Sterrett <mr_bones_@gentoo.org> (25 Jun 2015)
-# Upstream seems dead; no release since 2006
-# lots of bugs: #252719, #315255, #314459, #159630, #376589, #420783, #540928
-# Masked for removal on 20150725
-games-fps/tremulous
-
-# Pacho Ramos <pacho@gentoo.org> (24 Jun 2015)
-# Replaced by app-admin/system-config-printer, to migrate
-# simply run:
-# emerge -C system-config-printer-common system-config-printer-gnome
-# emerge -1 system-config-printer
-# Removal in a month (#553128).
-app-admin/system-config-printer-common
-app-admin/system-config-printer-gnome
-
-# Patrice Clement <monsieurp@gentoo.org> (22 Jun 2015)
-# No update from upstream since 2002. This package might cause problems with
-# new JDKs. Removal in 30 days.
-dev-java/mockmaker
 
 # Brian Evans <grknight@gentoo.org> (19 Jun 2015)
 # The Cyphertite backup service is closing as of August 18th, 2015.
@@ -170,17 +271,6 @@ app-backup/cyphertite
 # Masking PHP 7 pre-release versions
 dev-lang/php:7.0
 =virtual/httpd-php-7.0
-
-# Michał Górny <mgorny@gentoo.org> (04 Jun 2015)
-# New version of PyPy. Masked for testing and binary package build.
-~dev-python/pypy-2.6.0
-~dev-python/pypy-bin-2.6.0
-~virtual/pypy-2.6.0
-
-# Mike Gilbert <floppym@gentoo.org> (06 May 2015)
-# Obsolete development snapshots.
->=app-emulation/open-vm-tools-2013
->=app-emulation/open-vm-tools-kmod-2013
 
 # Brian Evans <grknight@gentoo.org> (30 Apr 2015)
 # It is unclear if dev-php/smarty-2* is affected by
@@ -243,8 +333,6 @@ virtual/httpd-php:5.3
 # #554864
 =dev-python/django-1.5*
 =dev-python/django-1.6*
-dev-python/south
-dev-python/django-oauth-plus
 
 # Michał Górny <mgorny@gentoo.org> (11 Feb 2015)
 # Potentially destructive to @world, bug #539746.
@@ -354,7 +442,7 @@ app-admin/hwreport
 
 # Samuli Suominen <ssuominen@gentoo.org> (23 Aug 2014)
 # Some compile problems with media-libs/openexr >= 2.2.0
-# See http://bugs.gentoo.org/520240 for more information
+# See https://bugs.gentoo.org/520240 for more information
 >=media-libs/ilmbase-2.2.0
 >=media-libs/openexr-2.2.0
 >=media-gfx/openexr_viewers-2.2.0
@@ -378,7 +466,6 @@ sys-libs/lib-compat
 sys-libs/lib-compat-loki
 games-action/mutantstorm-demo
 games-action/phobiaii
-games-emulation/handy
 games-fps/rtcw
 games-fps/unreal
 games-strategy/heroes3
@@ -519,11 +606,6 @@ www-client/google-chrome:unstable
 # This is not for your production kit quite yet.
 =net-misc/asterisk-12*
 
-# Tom Wijsman <TomWij@gentoo.org> (09 Jan 2014)
-# Monolithic dev-dotnet/{gnome,gtk}-sharp introduction mask, see bug #382491.
->=dev-dotnet/gnome-sharp-2.24.2-r1
->=dev-dotnet/gtk-sharp-2.12.21
-
 # Michał Górny <mgorny@gentoo.org> (15 Dec 2013)
 # Masked for testing due to almost complete redesign. It is now
 # completely split and no longer has an integrated GUI. Currently,
@@ -595,7 +677,7 @@ net-irc/xchat-otr
 # package and have no alternative can unmask at their own risk. See bug #473830.
 #
 # This is continued by Oracle Corporation, which has acquired Sun Microsystems
-# in early 2010; as per http://en.wikipedia.org/wiki/Sun_acquisition_by_Oracle
+# in early 2010; as per https://en.wikipedia.gentoo.org/wiki/Sun_acquisition_by_Oracle
 #
 # Users are suggested to upgrade to one of the newer Oracle packages like
 # dev-java/oracle-jdk-bin or dev-java/oracle-jre-bin or choose another
@@ -649,10 +731,6 @@ app-text/cuneiform
 # 2.5.* has known security and other issues due to an affected
 # bundled ffmpeg, see bugs #446468 and #444262.
 <media-video/avidemux-2.6.2
-
-# Doug Goldstein <cardoe@gentoo.org> (22 Jan 2013)
-# Masked for development
-=sys-block/open-iscsi-2.0.873
 
 # Sven Wegener <swegener@gentoo.org> (21 Dec 2012)
 # temporary mask for socket location change
@@ -712,7 +790,7 @@ kde-misc/kgtk
 
 # Ryan Hill <dirtyepic@gentoo.org> (30 Mar 2011)
 # Masked indefinitely (until 0.40 is released).
-# http://bugs.gentoo.org/354423
+# https://bugs.gentoo.org/354423
 >=app-pda/libopensync-0.30
 >=app-pda/libopensync-plugin-file-0.30
 >=app-pda/libopensync-plugin-irmc-0.30
@@ -724,7 +802,7 @@ app-pda/osynctool
 
 # Ryan Hill <dirtyepic@gentoo.org> (30 Mar 2011)
 # Work in progress
-# http://bugs.gentoo.org/show_bug.cgi?id=354423
+# https://bugs.gentoo.org/show_bug.cgi?id=354423
 app-pda/libopensync-plugin-gnokii
 app-pda/libopensync-plugin-gpe
 app-pda/multisync-gui
@@ -848,7 +926,7 @@ games-util/hearse
 # The following packages contain a remotely-exploitable
 # security vulnerability and have been hard masked accordingly.
 #
-# Please see http://bugs.gentoo.org/show_bug.cgi?id=44351 for more info
+# Please see https://bugs.gentoo.org/show_bug.cgi?id=44351 for more info
 #
 games-fps/unreal-tournament-goty
 games-fps/unreal-tournament-strikeforce

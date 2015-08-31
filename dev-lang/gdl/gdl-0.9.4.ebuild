@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gdl/gdl-0.9.4.ebuild,v 1.4 2015/05/07 15:33:32 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -22,7 +22,7 @@ IUSE="+eigen fftw grib gshhs hdf hdf5 imagemagick netcdf openmp
 RDEPEND="
 	sci-libs/gsl:0=
 	sci-libs/plplot:0=[-dynamic]
-	sys-libs/ncurses:5=
+	sys-libs/ncurses:0=
 	sys-libs/readline:0=
 	sys-libs/zlib:0=
 	x11-libs/libX11:0=

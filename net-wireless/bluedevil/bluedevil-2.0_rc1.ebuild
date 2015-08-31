@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/bluedevil/bluedevil-2.0_rc1.ebuild,v 1.7 2014/12/12 16:53:10 pacho Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ inherit kde4-base
 
 MY_P=${PN}-${PV/_/-}
 DESCRIPTION="Bluetooth stack for KDE"
-HOMEPAGE="http://projects.kde.org/projects/extragear/base/bluedevil"
+HOMEPAGE="https://projects.kde.org/projects/extragear/base/bluedevil"
 SRC_URI="mirror://kde/unstable/${PN}/${PV/_/-}/src/${MY_P}.tar.xz"
 
 LICENSE="GPL-2+"

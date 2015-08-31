@@ -1,16 +1,16 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/mmdb/mmdb-1.24.ebuild,v 1.6 2012/12/06 04:08:35 phajdan.jr Exp $
+# $Id$
 
 EAPI=4
 
 inherit autotools-utils
 
 DESCRIPTION="The Coordinate Library, designed to assist CCP4 developers in working with coordinate files"
-HOMEPAGE="http://launchpad.net/mmdb/"
+HOMEPAGE="https://launchpad.net/mmdb/"
 SRC_URI="
 	http://www.ysbl.york.ac.uk/~emsley/software/${P}.tar.gz
-	http://launchpad.net/mmdb/1.23/${PV}/+download/${P}.tar.gz"
+	https://launchpad.net/mmdb/1.23/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-3"
 SLOT="0"

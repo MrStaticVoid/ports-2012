@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/mockobjects-0.09-r4.ebuild,v 1.4 2010/02/09 19:20:51 josejx Exp $
+# $Id$
 
 EAPI=2
 JAVA_PKG_IUSE="doc examples source test"
@@ -10,7 +10,7 @@ inherit eutils java-pkg-2 java-ant-2
 
 DESCRIPTION="Test-first development process for building object-oriented software"
 HOMEPAGE="http://mockobjects.sf.net"
-SRC_URI="http://dev.gentoo.org/~karltk/java/distfiles/mockobjects-java-${PV}-gentoo.tar.bz2"
+SRC_URI="https://dev.gentoo.org/~karltk/java/distfiles/mockobjects-java-${PV}-gentoo.tar.bz2"
 
 LICENSE="Apache-1.1"
 SLOT="0"

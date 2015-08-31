@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/qmmp/qmmp-0.8.3.ebuild,v 1.3 2015/03/03 23:06:38 hwoarang Exp $
+# $Id$
 
 EAPI="5"
 
@@ -14,7 +14,7 @@ if [ "$PV" != "9999" ]; then
 	KEYWORDS="amd64 ~ppc x86"
 else
 	SRC_URI=""
-	ESVN_REPO_URI="http://qmmp.googlecode.com/svn/trunk/qmmp/"
+	ESVN_REPO_URI="https://qmmp.googlecode.com/svn/trunk/qmmp/"
 	KEYWORDS=""
 fi
 
@@ -40,9 +40,7 @@ RDEPEND="media-libs/taglib
 	mad? ( media-libs/libmad )
 	midi? ( media-sound/wildmidi )
 	mms? ( media-libs/libmms )
-	mplayer? ( || ( media-video/mplayer
-		media-video/mplayer2 )
-	)
+	mplayer? ( media-video/mplayer )
 	mpris? ( dev-qt/qtdbus:4 )
 	musepack? ( >=media-sound/musepack-tools-444 )
 	modplug? ( >=media-libs/libmodplug-0.8.4 )

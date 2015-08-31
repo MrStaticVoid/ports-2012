@@ -9,5 +9,5 @@ LICENSE=PSF-2.2
 RDEPEND=django? ( dev-python/django ) genshi? ( dev-python/genshi ) redland? ( dev-python/rdflib[redland] ) dev-python/chardet dev-python/httplib2 dev-python/utidylib >=app-admin/webapp-config-1.50.15 =dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://gentoo/venus-20100911.tar.bz2
-_eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357	webapp	094698bf1c7a5b1acd3184e94f484017
-_md5_=e91d8722732ccfd7b3b16b1bdfc0756d
+_eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357	webapp	2442891c368d310c1d3fe77d9c77fe5b
+_md5_=c8cca195117ce97d1fae851ec1bc06f2

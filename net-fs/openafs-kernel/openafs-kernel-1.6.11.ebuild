@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs-kernel/openafs-kernel-1.6.11.ebuild,v 1.4 2015/03/24 08:57:41 ago Exp $
+# $Id$
 
 EAPI="5"
 
@@ -18,7 +18,7 @@ HOMEPAGE="http://www.openafs.org/"
 SRC_URI="
 	http://openafs.org/dl/openafs/${MY_PRE}${MY_PV}/${MY_P}-src.tar.bz2
 	http://openafs.org/dl/openafs/${MY_PV}/${MY_P}-doc.tar.bz2
-	http://dev.gentoo.org/~bircoph/patches/${MY_P}-patches.tar.xz
+	https://dev.gentoo.org/~bircoph/patches/${MY_P}-patches.tar.xz
 "
 
 LICENSE="IBM BSD openafs-krb5-a APSL-2"

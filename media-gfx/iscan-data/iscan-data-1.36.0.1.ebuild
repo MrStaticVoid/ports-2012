@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/iscan-data/iscan-data-1.36.0.1.ebuild,v 1.1 2015/07/14 15:48:30 idella4 Exp $
+# $Id$
 
 EAPI=5
 
@@ -13,11 +13,11 @@ DESCRIPTION="Image Scan! for Linux data files"
 HOMEPAGE="http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX"
 # Use a gentoo hosted url since upstream uses a session based url that causes the
 # files to no longer be available after the session expires.
-SRC_URI="http://dev.gentoo.org/~idella4/tarballs//${PN}_${MY_PVR}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~idella4/tarballs//${PN}_${MY_PVR}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="udev"
 
 DEPEND="udev? (

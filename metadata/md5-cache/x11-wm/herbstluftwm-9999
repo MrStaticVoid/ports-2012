@@ -7,5 +7,5 @@ IUSE=examples xinerama zsh-completion
 LICENSE=BSD-2
 RDEPEND=>=dev-libs/glib-2.24:2 x11-libs/libX11 x11-libs/libXext xinerama? ( x11-libs/libXinerama ) app-shells/bash zsh-completion? ( app-shells/zsh )
 SLOT=0
-_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	eutils	9fb270e417e0e83d64ca52586c4a79de	git-r3	d112773018bfed1c4d9e30848045c51c	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=03d2d7450012b3d01eeca1bc2dc082d3
+_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	eutils	351a78113be5b393c09a2c948701ad36	git-r3	eddac8fcf8e23a1d871890d0fb7dab8e	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
+_md5_=a5b9b967d89e7063c26c4fde780d47a6

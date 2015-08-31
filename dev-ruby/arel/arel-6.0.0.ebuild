@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/arel/arel-6.0.0.ebuild,v 1.2 2015/03/24 16:12:45 graaff Exp $
+# $Id$
 
 EAPI=5
 USE_RUBY="ruby19 ruby20 ruby21 ruby22"
@@ -14,7 +14,7 @@ RUBY_FAKEGEM_GEMSPEC="arel.gemspec"
 inherit ruby-fakegem versionator
 
 DESCRIPTION="Arel is a Relational Algebra for Ruby"
-HOMEPAGE="http://github.com/rails/arel"
+HOMEPAGE="https://github.com/rails/arel"
 SRC_URI="https://github.com/rails/arel/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="MIT"
 SLOT="$(get_version_component_range 1-2)"

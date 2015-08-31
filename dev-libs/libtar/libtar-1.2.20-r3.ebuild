@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtar/libtar-1.2.20-r3.ebuild,v 1.3 2015/07/28 08:05:59 ago Exp $
+# $Id$
 
 EAPI=5
 
@@ -9,11 +9,11 @@ inherit autotools-utils
 
 DESCRIPTION="C library for manipulating tar archives"
 HOMEPAGE="http://www.feep.net/libtar/ http://repo.or.cz/w/libtar.git/"
-SRC_URI="http://dev.gentoo.org/~pinkbyte/distfiles/snapshots/${P}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~pinkbyte/distfiles/snapshots/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="amd64 ppc ~ppc64 sparc x86 ~amd64-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="static-libs zlib"
 
 RDEPEND="zlib? ( sys-libs/zlib )

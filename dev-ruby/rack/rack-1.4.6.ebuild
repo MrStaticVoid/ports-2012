@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/rack-1.4.6.ebuild,v 1.9 2015/07/23 09:33:12 ago Exp $
+# $Id$
 
 EAPI=5
 USE_RUBY="ruby19 ruby20"
@@ -13,7 +13,7 @@ RUBY_FAKEGEM_BINWRAP=""
 inherit ruby-fakegem eutils versionator
 
 DESCRIPTION="A modular Ruby webserver interface"
-HOMEPAGE="http://rack.github.com/"
+HOMEPAGE="https://rack.github.com/"
 
 LICENSE="MIT"
 SLOT="$(get_version_component_range 1-2)"

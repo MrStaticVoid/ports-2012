@@ -10,5 +10,5 @@ RDEPEND=X? ( x11-misc/xdg-utils ) jpeg? ( virtual/jpeg:0= ) jpeg2k? ( media-libs
 REQUIRED_USE=test? ( jpeg ) || ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-pypy python_abis_3.2-pypy )
 SLOT=0
 SRC_URI=mirror://pypi/P/Pillow/Pillow-2.8.2.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	351a78113be5b393c09a2c948701ad36	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
 _md5_=a2a91d579b1c7f27f27231f378325f08

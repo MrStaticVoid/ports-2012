@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/coot/coot-0.7.2.ebuild,v 1.3 2014/10/12 11:33:45 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -20,11 +20,11 @@ DESCRIPTION="Crystallographic Object-Oriented Toolkit for model building, comple
 HOMEPAGE="http://www2.mrc-lmb.cam.ac.uk/personal/pemsley/coot/"
 SRC_URI="
 	http://www2.mrc-lmb.cam.ac.uk/Personal/pemsley/coot/source/releases/${MY_P}.tar.gz
-	test? ( http://dev.gentoo.org/~jlec/distfiles/greg-data-${PV}.tar.gz  )"
+	test? ( https://dev.gentoo.org/~jlec/distfiles/greg-data-${PV}.tar.gz  )"
 
 SLOT="0"
 LICENSE="GPL-3"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="+openmp static-libs test"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"

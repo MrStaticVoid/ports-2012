@@ -1,14 +1,14 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-eselect/eselect-wxwidgets/eselect-wxwidgets-20131230.ebuild,v 1.1 2015/03/31 16:58:24 ulm Exp $
+# $Id$
 
 EAPI="5"
 
 WXWRAP_VER=1.3
 
 DESCRIPTION="Eselect module and wrappers for wxWidgets"
-HOMEPAGE="http://www.gentoo.org"
-SRC_URI="http://dev.gentoo.org/~dirtyepic/dist/wxwidgets.eselect-${PV}.bz2"
+HOMEPAGE="https://www.gentoo.org"
+SRC_URI="https://dev.gentoo.org/~dirtyepic/dist/wxwidgets.eselect-${PV}.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

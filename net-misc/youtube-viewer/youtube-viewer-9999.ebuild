@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-viewer/youtube-viewer-9999.ebuild,v 1.18 2015/06/13 19:39:47 dilfridge Exp $
+# $Id$
 
 EAPI=5
 
 inherit perl-module git-2
 
 DESCRIPTION="A command line utility for viewing youtube-videos in Mplayer"
-HOMEPAGE="http://trizen.googlecode.com"
+HOMEPAGE="https://trizen.googlecode.com"
 SRC_URI=""
 EGIT_REPO_URI="git://github.com/trizen/${PN}.git"
 

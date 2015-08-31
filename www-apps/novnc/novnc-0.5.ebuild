@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/novnc/novnc-0.5.ebuild,v 1.4 2015/07/29 18:01:43 zlogene Exp $
+# $Id$
 
 EAPI=5
 
 DESCRIPTION="noVNC is a VNC client implemented using HTML5 technologies"
-HOMEPAGE="http://kanaka.github.com/noVNC/"
+HOMEPAGE="https://kanaka.github.com/noVNC/"
 SRC_URI="https://github.com/kanaka/noVNC/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/noVNC-${PV}"
 

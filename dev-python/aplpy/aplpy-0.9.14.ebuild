@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/aplpy/aplpy-0.9.14.ebuild,v 1.4 2015/04/08 08:05:12 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -12,7 +12,7 @@ MYPN=APLpy
 MYP=${MYPN}-${PV}
 
 DESCRIPTION="Astronomical Plotting Library in Python"
-HOMEPAGE="http://aplpy.github.com/"
+HOMEPAGE="https://aplpy.github.com/"
 SRC_URI="mirror://pypi/${MYPN:0:1}/${MYPN}/${MYP}.tar.gz"
 
 LICENSE="MIT"

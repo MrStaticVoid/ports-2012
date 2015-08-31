@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/psi/psi-9999.ebuild,v 1.24 2015/07/22 01:55:42 pesa Exp $
+# $Id$
 
 EAPI="4"
 
@@ -71,7 +71,7 @@ pkg_setup() {
 		echo
 		ewarn "You're about to build heavily patched version of Psi called Psi+."
 		ewarn "It has really nice features but still is under heavy development."
-		ewarn "Take a look at homepage for more info: http://code.google.com/p/psi-dev"
+		ewarn "Take a look at homepage for more info: https://code.google.com/p/psi-dev"
 		ewarn "If you wish to disable some patches just put"
 		ewarn "MY_EPATCH_EXCLUDE=\"list of patches\""
 		ewarn "into /etc/portage/env/${CATEGORY}/${PN} file."

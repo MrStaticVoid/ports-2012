@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/gjdoc-0.7.9-r2.ebuild,v 1.7 2014/08/10 20:13:49 slyfox Exp $
+# $Id$
 
 EAPI=2
 JAVA_PKG_IUSE="source"
@@ -8,7 +8,7 @@ JAVA_PKG_IUSE="source"
 inherit eutils autotools java-pkg-2
 
 DESCRIPTION="A javadoc compatible Java source documentation generator"
-HOMEPAGE="http://www.gnu.org/software/cp-tools/"
+HOMEPAGE="https://www.gnu.org/software/cp-tools/"
 SRC_URI="mirror://gnu/classpath/${P}.tar.gz"
 
 LICENSE="GPL-2"

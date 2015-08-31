@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/tweepy/tweepy-2.3.ebuild,v 1.2 2015/07/28 15:00:17 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -9,7 +9,7 @@ PYTHON_COMPAT=( python2_7 pypy )
 inherit distutils-r1 vcs-snapshot
 
 DESCRIPTION="A Python library for accessing the Twitter API "
-HOMEPAGE="http://tweepy.github.com/"
+HOMEPAGE="https://tweepy.github.com/"
 SRC_URI="https://github.com/tweepy/${PN}/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="MIT"

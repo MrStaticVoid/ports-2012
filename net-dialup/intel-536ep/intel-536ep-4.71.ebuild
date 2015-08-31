@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/intel-536ep/intel-536ep-4.71.ebuild,v 1.5 2010/02/06 11:12:37 ulm Exp $
+# $Id$
 
 inherit linux-mod
 
@@ -19,7 +19,7 @@ MODULE_NAMES="Intel536(:${S}/coredrv)"
 pkg_setup() {
 	if kernel_is ge 2 6 16; then
 		eerror "This driver is not supported by kernels >= 2.6.16."
-		eerror "Please see http://bugs.gentoo.org/show_bug.cgi?id=127464 for more info."
+		eerror "Please see https://bugs.gentoo.org/show_bug.cgi?id=127464 for more info."
 		die "unsupported kernel version"
 	elif kernel_is 2 4; then
 		BUILD_TARGETS="536core"

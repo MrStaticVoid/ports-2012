@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/automake-wrapper-10.ebuild,v 1.2 2015/07/06 08:22:55 vapier Exp $
+# $Id$
 
 EAPI=4
 
 DESCRIPTION="wrapper for automake to manage multiple automake versions"
-HOMEPAGE="http://www.gentoo.org/"
+HOMEPAGE="https://www.gentoo.org/"
 SRC_URI=""
 
 LICENSE="GPL-2"

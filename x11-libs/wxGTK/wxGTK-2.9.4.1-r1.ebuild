@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.9.4.1-r1.ebuild,v 1.3 2015/03/31 20:05:20 ulm Exp $
 
 EAPI="5"
 
@@ -15,8 +13,8 @@ SRC_URI="mirror://sourceforge/wxpython/wxPython-src-2.9.4.0.tar.bz2
 	doc? ( mirror://sourceforge/wxpython/wxPython-docs-2.9.4.0.tar.bz2 )
 	mirror://sourceforge/wxpython/wxPython-src-${PV}.patch"
 
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="+X aqua doc debug gnome gstreamer opengl pch sdl tiff webkit"
+KEYWORDS="~*"
+IUSE="+X aqua doc debug gnome gstreamer opengl sdl tiff webkit"
 
 SLOT="2.9/2.9.4"
 
@@ -77,10 +75,10 @@ src_configure() {
 	append-flags -fno-strict-aliasing
 
 	# X independent options
-	myconf="--enable-compat26
+	myconf="--disable-precomp-headers
+			--enable-compat26
 			--with-zlib=sys
 			--with-expat=sys
-			$(use_enable pch precomp-headers)
 			$(use_with sdl)"
 
 	# debug in >=2.9

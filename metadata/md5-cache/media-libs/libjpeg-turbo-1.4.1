@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install preinst prepare setup test
-DEPEND=!media-libs/jpeg:0 !media-libs/jpeg:62 abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r5 !app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] ) amd64? ( || ( dev-lang/nasm dev-lang/yasm ) ) x86? ( || ( dev-lang/nasm dev-lang/yasm ) ) amd64-fbsd? ( || ( dev-lang/nasm dev-lang/yasm ) ) x86-fbsd? ( || ( dev-lang/nasm dev-lang/yasm ) ) amd64-linux? ( || ( dev-lang/nasm dev-lang/yasm ) ) x86-linux? ( || ( dev-lang/nasm dev-lang/yasm ) ) x64-macos? ( || ( dev-lang/nasm dev-lang/yasm ) ) java? ( >=virtual/jdk-1.5 ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 java? ( >=dev-java/java-config-2.2.0 )
+DEPEND=!media-libs/jpeg:0 !media-libs/jpeg:62 abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r5 !app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] ) amd64? ( || ( dev-lang/nasm dev-lang/yasm ) ) x86? ( || ( dev-lang/nasm dev-lang/yasm ) ) amd64-fbsd? ( || ( dev-lang/nasm dev-lang/yasm ) ) x86-fbsd? ( || ( dev-lang/nasm dev-lang/yasm ) ) amd64-linux? ( || ( dev-lang/nasm dev-lang/yasm ) ) x86-linux? ( || ( dev-lang/nasm dev-lang/yasm ) ) x64-macos? ( || ( dev-lang/nasm dev-lang/yasm ) ) java? ( >=virtual/jdk-1.5 ) java? ( >=dev-java/java-config-2.2.0 )
 DESCRIPTION=MMX, SSE, and SSE2 SIMD accelerated JPEG library
 EAPI=5
 HOMEPAGE=http://libjpeg-turbo.virtualgl.org/ http://sourceforge.net/projects/libjpeg-turbo/
@@ -9,5 +9,5 @@ LICENSE=BSD IJG
 RDEPEND=!media-libs/jpeg:0 !media-libs/jpeg:62 abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r5 !app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] ) java? ( >=virtual/jre-1.5 ) java? ( >=dev-java/java-config-2.2.0 )
 SLOT=0
 SRC_URI=mirror://sourceforge/libjpeg-turbo/libjpeg-turbo-1.4.1.tar.gz mirror://gentoo/libjpeg8_8d-2.debian.tar.gz
-_eclasses_=autotools	2264f05fbbbaaf83d34ec81e72b38ffd	eutils	9fb270e417e0e83d64ca52586c4a79de	java-pkg-opt-2	f9bbbe5092225a2059aa9e6a3a2b52f1	java-utils-2	abeb792ba9affd97d226ab283bfd07a2	libtool	52d0e17251d04645ffaa61bfdd858944	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
-_md5_=3adb740f438a5cb06d352a598f45458a
+_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	java-pkg-opt-2	4a567b4a22dd2dc61b77c056d29353a5	java-utils-2	7c8af272d218f7b7df22fd16bb0bfb63	libtool	7f78cd7d403808a350c9ae23f5821fb4	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=9636c72a208764d3bcfdf680026b462b

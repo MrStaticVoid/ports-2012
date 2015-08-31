@@ -2,7 +2,7 @@
 
 EAPI=5
 
-VALA_MIN_API_VERSION="0.20"
+VALA_MIN_API_VERSION="0.26"
 PYTHON_COMPAT=( python{3_3,3_4} )
 
 inherit autotools gnome2 python-r1 vala

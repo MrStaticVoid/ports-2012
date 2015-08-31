@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.4.1.ebuild,v 1.1 2015/04/14 22:07:18 vapier Exp $
+# $Id$
 
 EAPI="4"
 
@@ -14,7 +14,7 @@ else
 fi
 
 DESCRIPTION="GNU GPL'd Pico clone with more functionality"
-HOMEPAGE="http://www.nano-editor.org/ http://www.gentoo.org/doc/en/nano-basics-guide.xml"
+HOMEPAGE="http://www.nano-editor.org/ https://www.gentoo.org/doc/en/nano-basics-guide.xml"
 
 LICENSE="GPL-3"
 SLOT="0"

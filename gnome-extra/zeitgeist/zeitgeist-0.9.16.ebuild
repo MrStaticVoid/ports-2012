@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/zeitgeist/zeitgeist-0.9.16.ebuild,v 1.1 2015/07/27 13:54:03 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -13,9 +13,9 @@ inherit autotools-utils bash-completion-r1 eutils python-r1 vala versionator
 DIR_PV=$(get_version_component_range 1-2)
 
 DESCRIPTION="Service to log activities and present to other apps"
-HOMEPAGE="http://launchpad.net/zeitgeist/"
-SRC_URI="http://launchpad.net/zeitgeist/${DIR_PV}/${PV}/+download/${P}.tar.xz
-	http://dev.gentoo.org/~eva/distfiles/${PN}/${P}.tar.xz"
+HOMEPAGE="https://launchpad.net/zeitgeist/"
+SRC_URI="https://launchpad.net/zeitgeist/${DIR_PV}/${PV}/+download/${P}.tar.xz
+	https://dev.gentoo.org/~eva/distfiles/${PN}/${P}.tar.xz"
 
 LICENSE="LGPL-2+ LGPL-3+ GPL-2+"
 SLOT="0"

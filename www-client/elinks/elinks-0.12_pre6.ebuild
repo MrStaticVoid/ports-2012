@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.12_pre6.ebuild,v 1.12 2014/10/09 19:59:57 dilfridge Exp $
+# $Id$
 
 EAPI=4
 inherit eutils autotools flag-o-matic
@@ -9,8 +9,8 @@ MY_P="${P/_/}"
 DESCRIPTION="Advanced and well-established text-mode web browser"
 HOMEPAGE="http://elinks.or.cz/"
 SRC_URI="http://elinks.or.cz/download/${MY_P}.tar.bz2
-	http://dev.gentoo.org/~spock/portage/distfiles/elinks-0.10.4.conf.bz2
-	http://dev.gentoo.org/~axs/distfiles/${PN}-0.12_pre5-js185-patches.tar.bz2"
+	https://dev.gentoo.org/~spock/portage/distfiles/elinks-0.10.4.conf.bz2
+	https://dev.gentoo.org/~axs/distfiles/${PN}-0.12_pre5-js185-patches.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

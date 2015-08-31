@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pypy3/pypy3-2.4.0.ebuild,v 1.5 2015/01/28 19:47:10 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -25,7 +25,7 @@ RDEPEND=">=sys-libs/zlib-1.1.3:0=
 	dev-libs/openssl:0=
 	bzip2? ( app-arch/bzip2:0= )
 	gdbm? ( sys-libs/gdbm:0= )
-	ncurses? ( sys-libs/ncurses:5= )
+	ncurses? ( =sys-libs/ncurses-5*:0= )
 	sqlite? ( dev-db/sqlite:3= )
 	tk? (
 		dev-lang/tk:0=
@@ -41,36 +41,42 @@ PDEPEND="app-admin/python-updater"
 S="${WORKDIR}/${P}-src"
 
 pkg_pretend() {
-	if use low-memory; then
-		CHECKREQS_MEMORY="1750M"
-		use amd64 && CHECKREQS_MEMORY="3500M"
-	else
-		CHECKREQS_MEMORY="3G"
-		use amd64 && CHECKREQS_MEMORY="6G"
+	if [[ ${MERGE_TYPE} != binary ]]; then
+		if use low-memory; then
+			CHECKREQS_MEMORY="1750M"
+			use amd64 && CHECKREQS_MEMORY="3500M"
+		else
+			CHECKREQS_MEMORY="3G"
+			use amd64 && CHECKREQS_MEMORY="6G"
+		fi
 	fi
 
 	check-reqs_pkg_pretend
 }
 
 pkg_setup() {
-	pkg_pretend
+	if [[ ${MERGE_TYPE} != binary ]]; then
+		pkg_pretend
 
-	# unset to allow forcing pypy below :)
-	use low-memory && local EPYTHON=
-	if python_is_installed pypy && [[ ! ${EPYTHON} || ${EPYTHON} == pypy ]]; then
-		einfo "Using PyPy to perform the translation."
-		local EPYTHON=pypy
-	else
-		einfo "Using ${EPYTHON:-python2} to perform the translation. Please note that upstream"
-		einfo "recommends using PyPy for that. If you wish to do so, please install"
-		einfo "virtual/pypy and ensure that EPYTHON variable is unset."
+		# unset to allow forcing pypy below :)
+		use low-memory && local EPYTHON=
+		if python_is_installed pypy && [[ ! ${EPYTHON} || ${EPYTHON} == pypy ]]; then
+			einfo "Using PyPy to perform the translation."
+			local EPYTHON=pypy
+		else
+			einfo "Using ${EPYTHON:-python2} to perform the translation. Please note that upstream"
+			einfo "recommends using PyPy for that. If you wish to do so, please install"
+			einfo "virtual/pypy and ensure that EPYTHON variable is unset."
+		fi
+
+		python-any-r1_pkg_setup
 	fi
-
-	python-any-r1_pkg_setup
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/1.9-scripts-location.patch" \
+	epatch \
+		"${FILESDIR}"/${P}-gcc-4.9.patch \
+		"${FILESDIR}/1.9-scripts-location.patch" \
 		"${FILESDIR}/1.9-distutils.unixccompiler.UnixCCompiler.runtime_library_dir_option.patch" \
 		"${FILESDIR}"/2.3.1-shared-lib.patch	# 517002
 
@@ -197,10 +203,12 @@ src_install() {
 
 	# Generate cffi cache
 	# Please keep in sync with pypy/tool/release/package.py!
-	"${PYTHON}" -c "import _curses" || die "Failed to import _curses (cffi)"
 	"${PYTHON}" -c "import syslog" || die "Failed to import syslog (cffi)"
 	if use gdbm; then
 		"${PYTHON}" -c "import _gdbm" || die "Failed to import gdbm (cffi)"
+	fi
+	if use ncurses; then
+		"${PYTHON}" -c "import _curses" || die "Failed to import _curses (cffi)"
 	fi
 	if use sqlite; then
 		"${PYTHON}" -c "import _sqlite3" || die "Failed to import _sqlite3 (cffi)"

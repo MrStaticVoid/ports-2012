@@ -30,6 +30,7 @@
 >dev-libs/libgit2-0.22.3
 >=dev-libs/libgweather-3.15.1
 >=dev-libs/libical-1.1.0
+>dev-libs/libinput-0.7.0
 >=dev-libs/libpeas-1.13.0
 >=dev-libs/qqwing-1.4.0
 >=dev-libs/totem-pl-parser-3.10.4
@@ -76,8 +77,8 @@
 >=gnome-base/gsettings-desktop-schemas-3.15.1
 >=gnome-base/gvfs-1.23.0
 >=gnome-base/nautilus-3.15.0
->=gnome-extra/california-0.3.0
->=gnome-extra/evolution-data-server-3.13.7
+>gnome-extra/california-0.4.0
+>gnome-extra/evolution-data-server-3.13.90
 >=gnome-extra/gnome-boxes-3.15.1.1
 >=gnome-extra/gnome-calculator-3.15.0
 >=gnome-extra/gnome-clocks-3.15.1
@@ -99,7 +100,7 @@
 >=gnome-extra/yelp-3.15.1
 >=gnome-extra/yelp-xsl-3.15.0
 >=gnome-extra/zenity-3.15.0
->=mail-client/evolution-3.13.7
+>mail-client/evolution-3.13.90
 >=media-gfx/eog-3.15.1
 >=media-gfx/eog-plugins-3.15.0
 >=media-gfx/gnome-font-viewer-3.15.0

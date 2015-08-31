@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/scribus/scribus-9999.ebuild,v 1.17 2015/06/15 19:30:04 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -165,7 +165,7 @@ src_install() {
 	ln -sf html "${ED}"/usr/share/doc/${PF}/en || die
 	cat >> "${T}"/COPYING <<- EOF
 	${PN} is licensed under the "${LICENSE}".
-	Please visit http://www.gnu.org/licenses/gpl-2.0.html for the complete license text.
+	Please visit https://www.gnu.org/licenses/gpl-2.0.html for the complete license text.
 	EOF
 	dodoc "${T}"/COPYING
 	docompress -x /usr/share/doc/${PF}/en /usr/share/doc/${PF}/{AUTHORS,TRANSLATION,LINKS,COPYING}

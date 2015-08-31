@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.64-r2.ebuild,v 1.16 2014/01/18 04:15:35 vapier Exp $
+# $Id$
 
 EAPI="4"
 
@@ -13,7 +13,7 @@ inherit eutils autotools user
 DESCRIPTION="Extremely simple MTA to get mail off the system to a Mailhub"
 HOMEPAGE="ftp://ftp.debian.org/debian/pool/main/s/ssmtp/"
 SRC_URI="mirror://debian/pool/main/s/ssmtp/${P/-/_}.orig.tar.bz2
-	http://dev.gentoo.org/~flameeyes/ssmtp/${P}-patches-${PATCHSET}.tar.bz2"
+	https://dev.gentoo.org/~flameeyes/ssmtp/${P}-patches-${PATCHSET}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

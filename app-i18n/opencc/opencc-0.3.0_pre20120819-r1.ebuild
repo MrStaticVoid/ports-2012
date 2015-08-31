@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/opencc/opencc-0.3.0_pre20120819-r1.ebuild,v 1.6 2015/07/18 07:50:27 jer Exp $
+# $Id$
 
 EAPI=4
 
 inherit cmake-utils multilib eutils
 
 DESCRIPTION="Libraries for Simplified-Traditional Chinese Conversion"
-HOMEPAGE="http://code.google.com/p/open-chinese-convert/"
+HOMEPAGE="https://code.google.com/p/open-chinese-convert/"
 SRC_URI="http://dev.gentooexperimental.org/~scarabeus/${P}.tar.xz"
 
 LICENSE="Apache-2.0"

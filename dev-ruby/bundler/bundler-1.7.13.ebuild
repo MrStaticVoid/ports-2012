@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bundler/bundler-1.7.13.ebuild,v 1.12 2015/07/25 13:01:16 zlogene Exp $
+# $Id$
 
 EAPI=5
 
@@ -17,7 +17,7 @@ RUBY_FAKEGEM_GEMSPEC="${PN}.gemspec"
 inherit ruby-fakegem
 
 DESCRIPTION="An easy way to vendor gem dependencies"
-HOMEPAGE="http://github.com/carlhuda/bundler"
+HOMEPAGE="https://github.com/carlhuda/bundler"
 
 LICENSE="MIT"
 SLOT="0"
@@ -37,7 +37,7 @@ RDEPEND+=" dev-vcs/git"
 
 all_ruby_prepare() {
 	# Bundler only supports running the specs from git:
-	# http://github.com/carlhuda/bundler/issues/issue/738
+	# https://github.com/carlhuda/bundler/issues/issue/738
 	sed -i -e '/when Bundler is bundled/,/^  end/ s:^:#:' spec/runtime/setup_spec.rb || die
 
 	# Fails randomly and no clear cause can be found. Might be related

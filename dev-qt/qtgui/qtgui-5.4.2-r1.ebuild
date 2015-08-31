@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-qt/qtgui/qtgui-5.4.2-r1.ebuild,v 1.1 2015/07/11 18:17:30 pesa Exp $
+# $Id$
 
 EAPI=5
 QT5_MODULE="qtbase"
@@ -9,7 +9,7 @@ inherit qt5-build
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc64 ~x86"
+	KEYWORDS="amd64 arm ~arm64 hppa ~ppc64 ~x86"
 fi
 
 # TODO: directfb, linuxfb, kms integration in eglfs

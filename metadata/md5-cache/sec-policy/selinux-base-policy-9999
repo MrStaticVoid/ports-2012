@@ -2,11 +2,11 @@ DEFINED_PHASES=compile install postinst prepare pretend unpack
 DEPEND=>=dev-vcs/git-1.8.2.1
 DESCRIPTION=SELinux policy for core modules
 EAPI=5
-HOMEPAGE=http://www.gentoo.org/proj/en/hardened/selinux/
+HOMEPAGE=https://www.gentoo.org/proj/en/hardened/selinux/
 IUSE=+unconfined
 LICENSE=GPL-2
 PDEPEND=unconfined? ( sec-policy/selinux-unconfined )
 RDEPEND==sec-policy/selinux-base-9999
 SLOT=0
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	git-r3	d112773018bfed1c4d9e30848045c51c	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=c293780b42cb501f9fa841823bf84db1
+_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	git-r3	eddac8fcf8e23a1d871890d0fb7dab8e	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
+_md5_=70e44d09273359c94f552caee5f5b343

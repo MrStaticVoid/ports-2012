@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tor/tor-0.2.6.7.ebuild,v 1.3 2015/04/10 09:53:47 ago Exp $
+# $Id$
 
 EAPI="5"
 
@@ -94,7 +94,7 @@ pkg_postinst() {
 		ewarn "loop.  See:"
 		ewarn
 		ewarn "    https://trac.torproject.org/projects/tor/ticket/10259"
-		ewarn "    http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59358"
+		ewarn "    https://gcc.gnu.org/bugzilla/show_bug.cgi?id=59358"
 		ewarn
 	fi
 }

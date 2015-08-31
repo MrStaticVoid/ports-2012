@@ -1,3 +1,6 @@
+# FL-2694: testing in ARM for the moment. Plan to unmask for x86 after testing
+=dev-libs/icu-55.1-r1002
+
 # FL-2401: pulseaudio-6 update. Masked for testing
 =media-sound/pulseaudio-6.0
 

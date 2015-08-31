@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/zfs/zfs-0.6.2-r4.ebuild,v 1.5 2015/05/15 18:29:56 blueness Exp $
+# $Id$
 
 EAPI="5"
 PYTHON_COMPAT=( python{2_7,3_3,3_4} )
@@ -18,7 +18,7 @@ else
 	inherit eutils versionator
 	MY_PV=$(replace_version_separator 3 '-')
 	SRC_URI="https://github.com/zfsonlinux/${PN}/archive/${PN}-${MY_PV}.tar.gz
-		http://dev.gentoo.org/~ryao/dist/${PN}-kmod-${MY_PV}-p3.tar.xz"
+		https://dev.gentoo.org/~ryao/dist/${PN}-kmod-${MY_PV}-p3.tar.xz"
 	S="${WORKDIR}/${PN}-${PN}-${MY_PV}"
 	KEYWORDS="~amd64 ~arm ~ppc ~ppc64"
 fi

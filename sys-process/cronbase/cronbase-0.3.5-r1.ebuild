@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/cronbase/cronbase-0.3.5-r1.ebuild,v 1.1 2015/07/23 02:53:54 vapier Exp $
+# $Id$
 
 EAPI="5"
 
 inherit user
 
 DESCRIPTION="base for all cron ebuilds"
-HOMEPAGE="http://www.gentoo.org/"
+HOMEPAGE="https://www.gentoo.org/"
 
 LICENSE="GPL-2"
 SLOT="0"

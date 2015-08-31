@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/pax-utils.eclass,v 1.24 2014/09/28 20:11:05 blueness Exp $
+# $Id$
 
 # @ECLASS: pax-utils.eclass
 # @MAINTAINER:
@@ -29,7 +29,7 @@ _PAX_UTILS_ECLASS=1
 # Control which markings are made:
 # PT = PT_PAX markings, XT = XATTR_PAX markings
 # Default to PT markings.
-PAX_MARKINGS=${PAX_MARKINGS:="PT"}
+PAX_MARKINGS=${PAX_MARKINGS:="PT XT"}
 
 # @FUNCTION: pax-mark
 # @USAGE: <flags> {<ELF files>}
