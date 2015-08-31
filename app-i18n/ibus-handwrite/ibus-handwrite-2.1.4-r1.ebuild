@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/ibus-handwrite/ibus-handwrite-2.1.4-r1.ebuild,v 1.4 2015/07/11 19:07:04 zlogene Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,8 +8,8 @@ PYTHON_COMPAT=( python2_7 )
 inherit eutils python-single-r1 autotools-utils multilib
 
 DESCRIPTION="hand write recognition/input using ibus IM engine"
-HOMEPAGE="http://code.google.com/p/ibus-handwrite/"
-SRC_URI="http://ibus-handwrite.googlecode.com/files/${P}.tar.bz2"
+HOMEPAGE="https://code.google.com/p/ibus-handwrite/"
+SRC_URI="https://ibus-handwrite.googlecode.com/files/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"

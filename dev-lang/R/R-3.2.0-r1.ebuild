@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-3.2.0-r1.ebuild,v 1.1 2015/05/01 13:35:41 gienah Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ DESCRIPTION="Language and environment for statistical computing and graphics"
 HOMEPAGE="http://www.r-project.org/"
 SRC_URI="
 	mirror://cran/src/base/R-3/${P}.tar.gz
-	http://dev.gentoo.org/~bicatali/distfiles/${BCP}.bz2"
+	https://dev.gentoo.org/~bicatali/distfiles/${BCP}.bz2"
 
 LICENSE="|| ( GPL-2 GPL-3 ) LGPL-2.1"
 SLOT="0"

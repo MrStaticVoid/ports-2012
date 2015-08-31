@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/zeitgeist-sharp/zeitgeist-sharp-0.8.0.0-r2.ebuild,v 1.1 2015/07/27 18:33:49 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -14,8 +14,8 @@ DIR_PV2=$(get_version_component_range 1-3)
 DESCRIPTION="Mono DBus API wrapper for Zeitgeist"
 HOMEPAGE="https://launchpad.net/zeitgeist-sharp/"
 SRC_URI="
-	http://launchpad.net/zeitgeist-sharp/${DIR_PV}/${DIR_PV2}/+download/${P}.tar.gz
-	doc? ( http://launchpad.net/zeitgeist-sharp/${DIR_PV}/${DIR_PV2}/+download/${PN}-docs-${DIR_PV2}.tar.gz )"
+	https://launchpad.net/zeitgeist-sharp/${DIR_PV}/${DIR_PV2}/+download/${P}.tar.gz
+	doc? ( https://launchpad.net/zeitgeist-sharp/${DIR_PV}/${DIR_PV2}/+download/${PN}-docs-${DIR_PV2}.tar.gz )"
 
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/ccp4-apps/ccp4-apps-6.1.3-r13.ebuild,v 1.5 2015/05/05 08:53:26 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -20,11 +20,11 @@ HOMEPAGE="http://www.ccp4.ac.uk/"
 SRC="ftp://ftp.ccp4.ac.uk/ccp4"
 SRC_URI="
 	${SRC}/${PV}/${MY_P}-core-src.tar.gz
-	http://dev.gentoo.org/~jlec/distfiles/${PV}-oasis4.0.patch.bz2"
+	https://dev.gentoo.org/~jlec/distfiles/${PV}-oasis4.0.patch.bz2"
 # patch tarball from upstream
 	[[ -n ${UPDATE} ]] && SRC_URI="${SRC_URI} ${SRC}/${PV}/updates/${P}-src-patch-${UPDATE}.tar.gz"
 # patches created by us
-	[[ -n ${PATCHDATE} ]] && SRC_URI="${SRC_URI} http://dev.gentoo.org/~jlec/science-dist/${PV}-${PATCHDATE}-updates.patch.bz2"
+	[[ -n ${PATCHDATE} ]] && SRC_URI="${SRC_URI} https://dev.gentoo.org/~jlec/science-dist/${PV}-${PATCHDATE}-updates.patch.bz2"
 
 for i in $(seq $PATCH_TOT); do
 	NAME="PATCH${i}[1]"

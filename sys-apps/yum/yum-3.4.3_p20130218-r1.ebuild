@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/yum/yum-3.4.3_p20130218-r1.ebuild,v 1.2 2015/07/11 06:56:11 jer Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -13,7 +13,7 @@ inherit eutils multilib python-single-r1
 
 DESCRIPTION="automatic updater and package installer/remover for rpm systems"
 HOMEPAGE="http://yum.baseurl.org/"
-SRC_URI="http://dev.gentoo.org/~creffett/distfiles/${P}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~creffett/distfiles/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/vanilla-sources/vanilla-sources-3.4.108.ebuild,v 1.1 2015/06/19 18:26:30 mpagano Exp $
+# $Id$
 
 EAPI="5"
 K_NOUSENAME="yes"
@@ -13,7 +13,7 @@ inherit kernel-2
 detect_version
 
 DESCRIPTION="Full sources for the Linux kernel"
-HOMEPAGE="http://www.kernel.org"
+HOMEPAGE="https://www.kernel.org"
 SRC_URI="${KERNEL_URI}"
 
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"

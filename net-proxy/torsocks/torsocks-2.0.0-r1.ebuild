@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/torsocks/torsocks-2.0.0-r1.ebuild,v 1.1 2015/01/11 17:08:50 blueness Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ MY_PF="${PN}-${MY_PV}"
 S=${WORKDIR}/${MY_PF}
 
 DESCRIPTION="Use most socks-friendly applications with Tor"
-HOMEPAGE="http://github.com/dgoulet/torsocks"
+HOMEPAGE="https://github.com/dgoulet/torsocks"
 SRC_URI="https://github.com/dgoulet/torsocks/archive/v${MY_PV}.tar.gz -> ${MY_PF}.tar.gz"
 
 LICENSE="GPL-2"

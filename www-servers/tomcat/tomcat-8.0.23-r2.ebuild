@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-8.0.23-r2.ebuild,v 1.4 2015/07/23 09:07:57 ago Exp $
+# $Id$
 
 EAPI="5"
 
@@ -141,5 +141,5 @@ pkg_postinst() {
 	ewarn "tomcat-dbcp.jar is not built at this time. Please fetch jar"
 	ewarn "from upstream binary if you need it. Gentoo Bug # 144276"
 
-#	einfo "Please read http://www.gentoo.org/proj/en/java/tomcat6-guide.xml for more information."
+#	einfo "Please read https://www.gentoo.org/proj/en/java/tomcat6-guide.xml for more information."
 }

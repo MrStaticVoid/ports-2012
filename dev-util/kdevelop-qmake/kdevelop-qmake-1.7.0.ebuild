@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop-qmake/kdevelop-qmake-1.7.0.ebuild,v 1.1 2015/07/25 16:06:00 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -9,7 +9,7 @@ KMNAME="kdev-qmake"
 inherit kde4-base
 
 DESCRIPTION="qmake plugin for KDevelop 4"
-SRC_URI="http://quickgit.kde.org/?p=${KMNAME}.git&a=snapshot&h=${PV%%.0} -> ${P}.tar.gz"
+SRC_URI="https://quickgit.kde.org/?p=${KMNAME}.git&a=snapshot&h=${PV%%.0} -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"

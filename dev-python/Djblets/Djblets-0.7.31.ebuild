@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/Djblets/Djblets-0.7.31.ebuild,v 1.1 2014/09/21 08:23:51 idella4 Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit distutils-r1 versionator
 
 DESCRIPTION="A collection of useful extensions for Django"
-HOMEPAGE="http://github.com/djblets/djblets"
+HOMEPAGE="https://github.com/djblets/djblets"
 SRC_URI="http://downloads.reviewboard.org/releases/${PN}/$(get_version_component_range 1-2)/${P}.tar.gz"
 
 LICENSE="MIT"

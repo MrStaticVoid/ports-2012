@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/vmware-view-open-client/vmware-view-open-client-4.5.0.297975-r1.ebuild,v 1.5 2013/06/22 18:46:17 dilfridge Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,8 +10,8 @@ MY_PV=$(replace_version_separator 3 '-' )
 MY_P="${PN/vm/VM}-source-${MY_PV}"
 
 DESCRIPTION="Open Source VMware View Client"
-HOMEPAGE="http://code.google.com/p/vmware-view-open-client/"
-SRC_URI="http://${PN}.googlecode.com/files/${MY_P}.tar.gz"
+HOMEPAGE="https://code.google.com/p/vmware-view-open-client/"
+SRC_URI="https://${PN}.googlecode.com/files/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"

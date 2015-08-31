@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/redshift/redshift-1.7.ebuild,v 1.6 2014/01/21 22:45:34 eva Exp $
+# $Id$
 
 EAPI=3
 
@@ -10,7 +10,7 @@ inherit eutils gnome2-utils python
 
 DESCRIPTION="A screen color temperature adjusting software"
 HOMEPAGE="http://jonls.dk/redshift/"
-SRC_URI="http://launchpad.net/${PN}/trunk/${PV}/+download/${P}.tar.bz2"
+SRC_URI="https://launchpad.net/${PN}/trunk/${PV}/+download/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"

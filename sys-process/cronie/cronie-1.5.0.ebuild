@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/cronie/cronie-1.5.0.ebuild,v 1.8 2015/07/16 16:52:20 zlogene Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ SRC_URI="https://fedorahosted.org/releases/c/r/cronie/${P}.tar.gz"
 HOMEPAGE="https://fedorahosted.org/cronie/wiki"
 
 LICENSE="ISC BSD BSD-2 GPL-2"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sparc x86"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 sparc x86"
 IUSE="anacron +inotify pam selinux"
 
 DEPEND="pam? ( virtual/pam )
@@ -82,4 +82,10 @@ src_install() {
 
 pkg_postinst() {
 	cron_pkg_postinst
+
+	if [[ -n "${REPLACING_VERSIONS}" ]] ; then
+		ewarn "You should restart ${PN} daemon or else you might experience segfaults"
+		ewarn "or ${PN} not working reliably anymore."
+		einfo "(see https://bugs.gentoo.org/557406 for details.)"
+	fi
 }

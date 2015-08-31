@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/camlimages/camlimages-4.2.1.ebuild,v 1.1 2015/06/28 14:13:22 aballier Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ inherit eutils vcs-snapshot findlib multilib
 
 DESCRIPTION="An image manipulation library for ocaml"
 HOMEPAGE="http://gallium.inria.fr/camlimages/"
-SRC_URI="http://bitbucket.org/camlspotter/camlimages/get/${PV}.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="https://bitbucket.org/camlspotter/camlimages/get/${PV}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0/${PV}"

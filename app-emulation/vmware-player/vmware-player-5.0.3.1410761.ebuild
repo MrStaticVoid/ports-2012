@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/vmware-player/vmware-player-5.0.3.1410761.ebuild,v 1.1 2014/04/12 18:49:05 dilfridge Exp $
+# $Id$
 
 EAPI="4"
 
@@ -110,7 +110,7 @@ src_prepare() {
 clean_bundled_libs() {
 	ebegin 'Removing superfluous libraries'
 	# exclude OpenSSL from unbundling until the AES-NI patch gets into the tree
-	# see http://forums.gentoo.org/viewtopic-t-835867.html
+	# see https://forums.gentoo.org/viewtopic-t-835867.html
 	# must use shipped libgcr.so.0 or else "undefined symbol: gcr_certificate_widget_new"
 	ldconfig -p | sed 's:^\s\+\([^(]*[^( ]\).*=> \(/.*\)$:\1 \2:g;t;d' | fgrep -v 'libcrypto.so.0.9.8
 libssl.so.0.9.8

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-qt/qtwebkit/qtwebkit-5.4.2.ebuild,v 1.2 2015/07/15 01:37:03 pesa Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -9,7 +9,7 @@ inherit python-any-r1 qt5-build
 DESCRIPTION="WebKit rendering library for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
+	KEYWORDS="amd64 arm ~arm64 ~ppc64 ~x86"
 fi
 
 # TODO: qttestlib, geolocation, orientation/sensors

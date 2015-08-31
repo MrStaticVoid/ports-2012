@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gflags/gflags-9999.ebuild,v 1.2 2015/07/22 06:18:08 vapier Exp $
+# $Id$
 
 EAPI="5"
 
@@ -15,7 +15,7 @@ else
 fi
 
 DESCRIPTION="Google's C++ argument parsing library"
-HOMEPAGE="http://code.google.com/p/gflags/"
+HOMEPAGE="https://code.google.com/p/gflags/"
 
 LICENSE="BSD"
 SLOT="0"

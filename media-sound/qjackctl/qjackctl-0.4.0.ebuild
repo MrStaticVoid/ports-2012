@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/qjackctl/qjackctl-0.4.0.ebuild,v 1.2 2015/07/27 09:37:18 aballier Exp $
+# $Id$
 
 EAPI=5
 
@@ -26,6 +26,10 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 DOCS="AUTHORS ChangeLog README TODO TRANSLATORS"
+
+src_prepare() {
+	epatch "${FILESDIR}/${P}-qobject-include.patch"
+}
 
 src_configure() {
 	use qt5 && export PATH="$(qt5_get_bindir):${PATH}"

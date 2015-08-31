@@ -1,13 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/kanjistrokeorders/kanjistrokeorders-2.014.ebuild,v 1.1 2009/10/11 02:31:27 matsuu Exp $
+# $Id$
 
 inherit font
 
 MY_P="KanjiStrokeOrders_v${PV}"
 DESCRIPTION="font to view stroke order diagrams for Kanji, Kana and etc"
-HOMEPAGE="http://sites.google.com/site/nihilistorguk/"
-SRC_URI="http://sites.google.com/site/nihilistorguk/Home/${MY_P}.zip"
+HOMEPAGE="https://sites.google.com/site/nihilistorguk/"
+SRC_URI="https://sites.google.com/site/nihilistorguk/Home/${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"

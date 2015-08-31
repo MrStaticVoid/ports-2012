@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sympy/sympy-0.7.6.ebuild,v 1.2 2015/04/08 08:05:04 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ inherit distutils-r1 eutils virtualx
 DESCRIPTION="Computer Algebra System in pure Python"
 HOMEPAGE="http://sympy.org"
 SRC_URI="https://github.com/${PN}/${PN}/releases/download/${P}/${P}.tar.gz
-	http://dev.gentoo.org/~grozin/${P}-system-mpmath.patch.gz"
+	https://dev.gentoo.org/~grozin/${P}-system-mpmath.patch.gz"
 
 LICENSE="BSD"
 SLOT="0"

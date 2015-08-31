@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/pretty-show/pretty-show-1.6.8.2.ebuild,v 1.1 2015/07/20 18:17:24 slyfox Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ CABAL_FEATURES="bin lib profile haddock hoogle hscolour"
 inherit haskell-cabal
 
 DESCRIPTION="Tools for working with derived 'Show' instances and generic inspection of values"
-HOMEPAGE="http://wiki.github.com/yav/pretty-show"
+HOMEPAGE="https://wiki.github.com/yav/pretty-show"
 SRC_URI="mirror://hackage/packages/archive/${PN}/${PV}/${P}.tar.gz"
 
 LICENSE="MIT"

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-apps/oxygen-icons/oxygen-icons-4.14.3.ebuild,v 1.1 2015/06/04 18:44:38 kensington Exp $
+# $Id$
 
 EAPI=5
 
@@ -15,7 +15,7 @@ DESCRIPTION="Oxygen SVG icon theme"
 HOMEPAGE="http://www.oxygen-icons.org/"
 [[ ${PV} == *9999 ]] || \
 SRC_URI="
-	!sources? ( http://dev.gentoo.org/~kensington/distfiles/${P}.repacked.tar.xz )
+	!sources? ( https://dev.gentoo.org/~kensington/distfiles/${P}.repacked.tar.xz )
 	sources? ( ${SRC_URI} )
 "
 

@@ -1,12 +1,12 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-eselect/eselect-awk/eselect-awk-0.2.ebuild,v 1.1 2015/03/31 16:46:25 ulm Exp $
+# $Id$
 
 EAPI=4
 
 DESCRIPTION="Manages the {,/usr}/bin/awk symlink"
-HOMEPAGE="http://www.gentoo.org"
-SRC_URI="http://dev.gentoo.org/~ottxor/distfiles/${P}.tar.gz"
+HOMEPAGE="https://www.gentoo.org"
+SRC_URI="https://dev.gentoo.org/~ottxor/distfiles/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

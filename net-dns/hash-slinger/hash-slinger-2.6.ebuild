@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/hash-slinger/hash-slinger-2.6.ebuild,v 1.1 2015/02/22 23:31:25 mschiff Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,8 +8,8 @@ PYTHON_COMPAT=( python2_7 )
 inherit python-r1
 
 DESCRIPTION="Various tools to generate special DNS records like SSHFP, TLSA, OPENPGPKEY, IPSECKEY"
-HOMEPAGE="http://people.redhat.com/pwouters/hash-slinger/"
-SRC_URI="http://people.redhat.com/pwouters/${PN}/${P}.tar.gz"
+HOMEPAGE="https://people.redhat.com/pwouters/hash-slinger/"
+SRC_URI="https://people.redhat.com/pwouters/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"

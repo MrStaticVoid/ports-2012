@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacity/audacity-2.1.1.ebuild,v 1.1 2015/07/20 15:21:39 yngwin Exp $
+# $Id$
 
 EAPI=5
 inherit eutils wxwidgets
@@ -8,8 +8,8 @@ inherit eutils wxwidgets
 MY_P="${PN}-minsrc-${PV}"
 DESCRIPTION="Free crossplatform audio editor"
 HOMEPAGE="http://web.audacityteam.org/"
-SRC_URI="http://dev.gentoo.org/~yngwin/distfiles/${MY_P}.tar.xz
-	doc? ( http://dev.gentoo.org/~yngwin/distfiles/${PN}-manual-${PV}.zip )"
+SRC_URI="https://dev.gentoo.org/~yngwin/distfiles/${MY_P}.tar.xz
+	doc? ( https://dev.gentoo.org/~yngwin/distfiles/${PN}-manual-${PV}.zip )"
 	# wget doesn't seem to work on FossHub links, so we mirror
 
 LICENSE="GPL-2"

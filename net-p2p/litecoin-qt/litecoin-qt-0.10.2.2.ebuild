@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/litecoin-qt/litecoin-qt-0.10.2.2.ebuild,v 1.3 2015/07/12 17:16:03 blueness Exp $
+# $Id$
 
 EAPI=5
 
@@ -34,7 +34,7 @@ RDEPEND="
 		net-libs/miniupnpc
 	)
 	sys-libs/db:$(db_ver_to_slot "${DB_VER}")[cxx]
-	virtual/bitcoin-leveldb
+	<=dev-libs/leveldb-1.15.0-r1
 	!qt5? (
 		dev-qt/qtgui:4
 		dbus? (

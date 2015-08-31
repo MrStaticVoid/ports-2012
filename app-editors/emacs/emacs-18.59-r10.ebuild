@@ -1,16 +1,16 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-18.59-r10.ebuild,v 1.8 2015/04/01 21:10:53 ulm Exp $
+# $Id$
 
 EAPI=5
 
 inherit eutils toolchain-funcs flag-o-matic multilib
 
 DESCRIPTION="The extensible self-documenting text editor"
-HOMEPAGE="http://www.gnu.org/software/emacs/"
+HOMEPAGE="https://www.gnu.org/software/emacs/"
 SRC_URI="ftp://ftp.gnu.org/old-gnu/emacs/${P}.tar.gz
 	ftp://ftp.splode.com/pub/users/friedman/emacs/${P}-linux22x-elf-glibc21.diff.gz
-	http://dev.gentoo.org/~ulm/emacs/${P}-patches-8.tar.bz2"
+	https://dev.gentoo.org/~ulm/emacs/${P}-patches-8.tar.bz2"
 
 LICENSE="GPL-1+ GPL-2+ BSD" #HPND
 SLOT="18"

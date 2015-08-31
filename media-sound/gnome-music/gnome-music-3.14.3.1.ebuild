@@ -2,7 +2,7 @@
 
 EAPI="5"
 GCONF_DEBUG="no"
-PYTHON_COMPAT=( python{3_3,3_4} )
+PYTHON_COMPAT=( python3_3 )
 
 inherit gnome2 python-single-r1
 
@@ -11,11 +11,8 @@ HOMEPAGE="http://wiki.gnome.org/Apps/Music"
 
 LICENSE="GPL-2+"
 SLOT="0"
-IUSE=""
+IUSE="python_single_target_python_3.3"
 # Let people emerge this by default, bug #472932
-IUSE+=" +python_single_target_python3_3 python_single_target_python3_4"
-
-REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 KEYWORDS="*"
 

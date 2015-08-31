@@ -2,9 +2,9 @@ DEFINED_PHASES=compile unpack
 DEPEND=sys-apps/gentoo-functions sys-apps/help2man >=dev-vcs/git-1.8.2.1
 DESCRIPTION=Script used to reinstall Python packages after changing of active Python versions
 EAPI=5
-HOMEPAGE=http://www.gentoo.org/proj/en/Python/
+HOMEPAGE=https://www.gentoo.org/proj/en/Python/
 LICENSE=GPL-2
 RDEPEND=sys-apps/gentoo-functions || ( >=sys-apps/portage-2.1.6 >=sys-apps/paludis-0.56.0 sys-apps/pkgcore )
 SLOT=0
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	git-r3	d112773018bfed1c4d9e30848045c51c	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=6d4affa8502b364b50f585a73df1c4dc
+_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	git-r3	eddac8fcf8e23a1d871890d0fb7dab8e	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
+_md5_=89b23d583597f45840b899ac349adbeb

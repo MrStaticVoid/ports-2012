@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ganv/ganv-1.4.2.ebuild,v 1.1 2015/07/28 07:40:31 yngwin Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE='threads(+)'
-inherit waf-utils python-any-r1
+inherit eutils waf-utils python-any-r1
 
 DESCRIPTION="A GTK+ widget for interactive graph-like environments"
 HOMEPAGE="http://drobilla.net/software/ganv/"
@@ -26,6 +26,10 @@ DEPEND="${RDEPEND}
 	nls? ( virtual/libintl )"
 
 DOCS=( AUTHORS NEWS README )
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-no-fdgl.patch
+}
 
 src_configure() {
 	waf-utils_src_configure \

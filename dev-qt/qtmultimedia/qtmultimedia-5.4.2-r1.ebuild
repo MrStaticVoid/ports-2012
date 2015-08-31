@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-qt/qtmultimedia/qtmultimedia-5.4.2-r1.ebuild,v 1.1 2015/07/14 00:10:43 pesa Exp $
+# $Id$
 
 EAPI=5
 inherit qt5-build
@@ -8,7 +8,7 @@ inherit qt5-build
 DESCRIPTION="The Multimedia module for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~hppa ~ppc64 ~x86"
+	KEYWORDS="amd64 arm ~hppa ~ppc64 ~x86"
 fi
 
 IUSE="alsa +gstreamer openal opengl pulseaudio qml widgets"

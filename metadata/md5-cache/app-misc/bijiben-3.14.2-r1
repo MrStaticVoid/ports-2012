@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
+DEPEND=>=app-misc/tracker-1:= >=dev-libs/glib-2.42:2 dev-libs/libxml2 >=gnome-extra/evolution-data-server-3.12.7 gnome-extra/zeitgeist net-libs/gnome-online-accounts net-libs/webkit-gtk:3 sys-apps/util-linux >=mail-client/evolution-3.13.6 >=x11-libs/gtk+-3.14:3 >=dev-util/intltool-0.35.0 sys-devel/gettext virtual/pkgconfig app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=Note editor designed to remain simple to use
+EAPI=5
+HOMEPAGE=https://wiki.gnome.org/Apps/Bijiben
+KEYWORDS=*
+LICENSE=GPL-3+
+RDEPEND=>=app-misc/tracker-1:= >=dev-libs/glib-2.42:2 dev-libs/libxml2 >=gnome-extra/evolution-data-server-3.12.7 gnome-extra/zeitgeist net-libs/gnome-online-accounts net-libs/webkit-gtk:3 sys-apps/util-linux >=mail-client/evolution-3.13.6 >=x11-libs/gtk+-3.14:3
+SLOT=0
+SRC_URI=mirror://gnome/sources/bijiben/3.14/bijiben-3.14.2.tar.xz
+_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	fdo-mime	92d07846ea8ea54172f8c0112a47ae3d	gnome.org	84c1434ce5de42302c744df8431bf1f6	gnome2	bdabf28ddc58452941eb5b33c5b27853	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=505c6233f0ba6cd33a01fe7e36b4eaaa

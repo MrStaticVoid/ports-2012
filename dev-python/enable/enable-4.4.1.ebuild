@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/enable/enable-4.4.1.ebuild,v 1.5 2015/04/18 12:57:55 swegener Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit distutils-r1 virtualx flag-o-matic
 
 DESCRIPTION="Enthought Tool Suite: Drawing and interaction packages"
-HOMEPAGE="http://code.enthought.com/projects/enable/ http://pypi.python.org/pypi/enable"
+HOMEPAGE="http://code.enthought.com/projects/enable/ https://pypi.python.org/pypi/enable"
 SRC_URI="https://github.com/enthought/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"

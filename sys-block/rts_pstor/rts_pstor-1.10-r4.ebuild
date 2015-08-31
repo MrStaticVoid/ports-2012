@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-block/rts_pstor/rts_pstor-1.10-r4.ebuild,v 1.1 2015/05/31 07:12:23 vikraman Exp $
+# $Id$
 
 EAPI=4
 
@@ -8,7 +8,7 @@ inherit linux-mod
 
 DESCRIPTION="PCIE RTS5209 card reader driver for Linux"
 HOMEPAGE="http://www.realtek.com.tw/Downloads/downloadsView.aspx?PNid=15&PFid=25&Level=4&Conn=3&DownTypeID=3"
-SRC_URI="http://dev.gentoo.org/~vikraman/distfiles/${P}.tar.bz2"
+SRC_URI="https://dev.gentoo.org/~vikraman/distfiles/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/boost-m4/boost-m4-0.4-r1.ebuild,v 1.1 2015/07/19 09:57:35 rhill Exp $
+# $Id$
 
 EAPI=4
 
 inherit eutils vcs-snapshot
 
 DESCRIPTION="Another set of autoconf macros for compiling against boost"
-HOMEPAGE="http://github.com/tsuna/boost.m4"
+HOMEPAGE="https://github.com/tsuna/boost.m4"
 SRC_URI="${HOMEPAGE}/tarball/v${PV} -> ${P}.tar.gz"
 
 LICENSE="GPL-3"

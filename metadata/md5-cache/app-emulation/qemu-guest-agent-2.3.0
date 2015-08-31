@@ -4,10 +4,10 @@ DESCRIPTION=QEMU Guest Agent (qemu-ga) for use when running inside a VM
 EAPI=5
 HOMEPAGE=http://wiki.qemu.org/Features/QAPI/GuestAgent
 IUSE=python_targets_python2_7
-KEYWORDS=~amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd
+KEYWORDS=amd64 ~ppc ~ppc64 x86 ~x86-fbsd
 LICENSE=GPL-2 BSD-2
 RDEPEND=>=dev-libs/glib-2.22 !<app-emulation/qemu-1.1.1-r1 !<sys-apps/sysvinit-2.88-r5
 SLOT=0
 SRC_URI=http://wiki.qemu.org/download/qemu-2.3.0.tar.bz2
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	62927b3db3a589b0806255f3a002d5d3	python-r1	d9c8348f26710ea523a385c2328cf027	python-utils-r1	68e010c13e97b7b2c7bf403ee9c51e1b	systemd	b0daeef4b75b0130d34c62aa1930d21e	toolchain-funcs	42408102d713fbad60ca21349865edb4	udev	da001465a2e939c93f7ae16947ce3438
-_md5_=2ba1e2d848a119c3f1bec368cf6cc6de
+_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python-r1	fca51bba23ab2e206194470b2e56c92c	python-utils-r1	39c6b012a0512678e698e712b5b7ecc2	systemd	b0daeef4b75b0130d34c62aa1930d21e	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	udev	37ef89be271b9ae8aa64be024ddb39b5
+_md5_=d02394f64b7095d7053bf89bda609296

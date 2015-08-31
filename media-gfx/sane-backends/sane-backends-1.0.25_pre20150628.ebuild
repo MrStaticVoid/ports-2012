@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/sane-backends-1.0.25_pre20150628.ebuild,v 1.1 2015/07/08 10:47:04 vapier Exp $
+# $Id$
 
 EAPI="5"
 
@@ -94,7 +94,7 @@ IUSE_SANE_BACKENDS="
 	umax_pp
 	xerox_mfp"
 
-IUSE="avahi doc gphoto2 ipv6 threads usb v4l xinetd snmp systemd"
+IUSE="avahi doc gphoto2 ipv6 nls snmp systemd threads usb v4l xinetd"
 
 for backend in ${IUSE_SANE_BACKENDS}; do
 	case ${backend} in
@@ -118,19 +118,28 @@ REQUIRED_USE="
 
 DESCRIPTION="Scanner Access Now Easy - Backends"
 HOMEPAGE="http://www.sane-project.org/"
-if [[ ${PV} == *_pre* ]] ; then
+case ${PV} in
+9999)
+	EGIT_REPO_URI="git://anonscm.debian.org/sane/sane-backends.git"
+	inherit git-r3
+	;;
+*_pre*)
 	MY_P="${PN}-git${PV#*_pre}"
 	SRC_URI="http://www.sane-project.org/snapshots/${MY_P}.tar.gz
 		mirror://gentoo/${MY_P}.tar.gz"
 	S=${WORKDIR}/${MY_P}
-else
+	;;
+*)
 	MY_P=${P}
 	SRC_URI="https://alioth.debian.org/frs/download.php/file/3958/${P}.tar.gz"
-fi
+	;;
+esac
 
 LICENSE="GPL-2 public-domain"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
+if [[ ${PV} != "9999" ]] ; then
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
+fi
 
 RDEPEND="
 	sane_backends_dc210? ( >=virtual/jpeg-0-r2[${MULTILIB_USEDEP}] )
@@ -198,6 +207,13 @@ src_prepare() {
 src_configure() {
 	append-flags -fno-strict-aliasing
 
+	# if LINGUAS is set, just use the listed and supported localizations.
+	if [[ ${LINGUAS+set} == "set" ]]; then
+		mkdir -p po || die
+		strip-linguas -u po
+		printf '%s\n' ${LINGUAS} > po/LINGUAS
+	fi
+
 	multilib-minimal_src_configure
 }
 
@@ -231,19 +247,9 @@ multilib_src_configure() {
 	if ! { use sane_backends_canon_pp || use sane_backends_hpsj5s || use sane_backends_mustek_pp; }; then
 		myconf+=( sane_cv_use_libieee1284=no )
 	fi
-	# if LINGUAS is set, just use the listed and supported localizations.
-	if [ "${LINGUAS-NoLocalesSet}" != NoLocalesSet ]; then
-		mkdir -p po || die
-		echo > po/LINGUAS
-		for lang in ${LINGUAS}; do
-			if [ -a "${S}"/po/${lang}.po ]; then
-				echo ${lang} >> po/LINGUAS
-			fi
-		done
-	fi
 
 	# relative path must be used for tests to work properly
-	ECONF_SOURCE=../${MY_P} \
+	ECONF_SOURCE=${S} \
 	SANEI_JPEG="sanei_jpeg.o" SANEI_JPEG_LO="sanei_jpeg.lo" \
 	BACKENDS="${BACKENDS}" \
 	econf \
@@ -252,6 +258,7 @@ multilib_src_configure() {
 		$(use_with v4l) \
 		$(use_enable avahi) \
 		$(use_enable ipv6) \
+		$(use_enable nls translations) \
 		$(use_enable threads pthread) \
 		"${myconf[@]}"
 }
@@ -259,17 +266,14 @@ multilib_src_configure() {
 multilib_src_compile() {
 	emake VARTEXFONTS="${T}/fonts"
 
-	if use usb; then
-		cd tools/hotplug || die
-		sed -i -e '/^$/d' libsane.usermap || die
-	fi
-
 	if tc-is-cross-compiler; then
+		pushd "${BUILD_DIR}"/tools >/dev/null || die
+
 		# The build system sucks and doesn't handle this properly.
 		# https://alioth.debian.org/tracker/index.php?func=detail&aid=314236&group_id=30186&atid=410366
 		tc-export_build_env BUILD_CC
-		cd "${BUILD_DIR}"/tools || die
-		${BUILD_CC} ${BUILD_CPPFLAGS} ${BUILD_CFLAGS} -I. -I../include -I"${S}"/include \
+		${BUILD_CC} ${BUILD_CPPFLAGS} ${BUILD_CFLAGS} ${BUILD_LDFLAGS} \
+			-I. -I../include -I"${S}"/include \
 			"${S}"/sanei/sanei_config.c "${S}"/sanei/sanei_constrain_value.c \
 			"${S}"/sanei/sanei_init_debug.c "${S}"/tools/sane-desc.c -o sane-desc || die
 		local dirs=( hal hotplug hotplug-ng udev )
@@ -281,6 +285,13 @@ multilib_src_compile() {
 		)
 		mkdir -p "${dirs[@]}" || die
 		emake "${targets[@]}"
+
+		popd >/dev/null
+	fi
+
+	if use usb; then
+		sed -i -e '/^$/d' \
+			tools/hotplug/libsane.usermap || die
 	fi
 }
 

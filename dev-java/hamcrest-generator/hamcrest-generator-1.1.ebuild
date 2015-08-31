@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/hamcrest-generator/hamcrest-generator-1.1.ebuild,v 1.2 2015/07/11 09:21:24 chewi Exp $
+# $Id$
 
 EAPI="5"
 
@@ -13,8 +13,8 @@ MY_P="${MY_PN}-${PV}"
 S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Code generator for Hamcrest's library of matchers for building test expressions"
-HOMEPAGE="http://code.google.com/p/${MY_PN}/"
-SRC_URI="http://${MY_PN}.googlecode.com/files/${MY_P}.tgz"
+HOMEPAGE="https://code.google.com/p/${MY_PN}/"
+SRC_URI="https://${MY_PN}.googlecode.com/files/${MY_P}.tgz"
 
 LICENSE="BSD-2"
 SLOT="0"

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jopt-simple/jopt-simple-4.4.ebuild,v 1.3 2015/06/25 15:09:46 ago Exp $
+# $Id$
 
 EAPI="5"
 
@@ -9,7 +9,7 @@ JAVA_PKG_IUSE="doc source"
 inherit vcs-snapshot java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A Java library for parsing command line options"
-HOMEPAGE="http://pholser.github.com/jopt-simple/"
+HOMEPAGE="https://pholser.github.com/jopt-simple/"
 SRC_URI="https://github.com/pholser/${PN}/tarball/${P} -> ${P}.tar.gz"
 
 LICENSE="MIT"

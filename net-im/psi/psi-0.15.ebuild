@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/psi/psi-0.15.ebuild,v 1.7 2015/07/22 01:55:42 pesa Exp $
+# $Id$
 
 EAPI=5
 
@@ -18,16 +18,15 @@ done
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd"
+KEYWORDS="amd64 ~arm hppa ~ppc ~ppc64 x86 ~x86-fbsd"
 IUSE="crypt dbus debug doc jingle spell ssl xscreensaver whiteboarding"
 RESTRICT="test"
 
 RDEPEND="
 	app-arch/unzip
 	>=app-crypt/qca-2.0.2:2[qt4(+)]
-	dev-qt/qt3support:4
 	dev-qt/qtcore:4
-	dev-qt/qtgui:4[qt3support]
+	dev-qt/qtgui:4
 	>=sys-libs/zlib-1.2.5.1-r2[minizip]
 	x11-libs/libX11
 	dbus? ( dev-qt/qtdbus:4 )

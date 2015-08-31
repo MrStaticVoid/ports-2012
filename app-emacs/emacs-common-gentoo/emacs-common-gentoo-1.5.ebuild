@@ -1,14 +1,14 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.5.ebuild,v 1.12 2015/07/11 20:06:26 ulm Exp $
+# $Id$
 
 EAPI=5
 
 inherit elisp-common eutils fdo-mime gnome2-utils readme.gentoo user
 
 DESCRIPTION="Common files needed by all GNU Emacs versions"
-HOMEPAGE="http://wiki.gentoo.org/wiki/Project:Emacs"
-SRC_URI="http://dev.gentoo.org/~ulm/emacs/${P}.tar.xz"
+HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Emacs"
+SRC_URI="https://dev.gentoo.org/~ulm/emacs/${P}.tar.xz"
 
 LICENSE="GPL-3+"
 SLOT="0"

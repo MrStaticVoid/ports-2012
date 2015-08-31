@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.333 2015/07/24 14:12:53 aballier Exp $
+# $Id$
 
 EAPI=5
 
@@ -14,8 +14,8 @@ else
 	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	if [[ -n "${patchset}" ]]; then
 				SRC_URI="${SRC_URI}
-					http://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
-					http://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
+					https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
+					https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
 			fi
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
@@ -25,11 +25,12 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl doc +kmod selinux static-libs"
+IUSE="acl +kmod selinux static-libs"
 
 RESTRICT="test"
 
 COMMON_DEPEND=">=sys-apps/util-linux-2.24
+	sys-libs/libcap[${MULTILIB_USEDEP}]
 	acl? ( sys-apps/acl )
 	kmod? ( >=sys-apps/kmod-16 )
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
@@ -45,7 +46,6 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/gperf
 	>=dev-util/intltool-0.50
 	>=sys-apps/coreutils-8.16
-	sys-libs/libcap
 	virtual/os-headers
 	virtual/pkgconfig
 	>=sys-devel/make-3.82-r4
@@ -104,7 +104,7 @@ pkg_setup() {
 src_prepare() {
 	if ! [[ ${PV} = 9999* ]]; then
 		# secure_getenv() disable for non-glibc systems wrt bug #443030
-		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 28 ]]; then
+		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 25 ]]; then
 			eerror "The line count for secure_getenv() failed, see bug #443030"
 			die
 		fi
@@ -156,13 +156,10 @@ multilib_src_configure() {
 	# when *required* to avoid external deps or unnecessary compile
 	local econf_args
 	econf_args=(
-		ac_cv_search_cap_init=
 		--libdir=/usr/$(get_libdir)
 		--docdir=/usr/share/doc/${PF}
 		$(multilib_native_use_enable static-libs static)
 		--disable-nls
-		$(multilib_native_use_enable doc gtk-doc)
-		--disable-python-devel
 		--disable-dbus
 		$(multilib_native_use_enable kmod)
 		--disable-xkbcommon
@@ -184,15 +181,14 @@ multilib_src_configure() {
 		--disable-quotacheck
 		--disable-logind
 		--disable-polkit
-		--disable-terminal
 		--disable-myhostname
 		$(multilib_is_native_abi || echo "--disable-manpages")
 		--enable-split-usr
-		--with-html-dir=/usr/share/doc/${PF}/html
 		--without-python
 		--with-bashcompletiondir="$(get_bashcompdir)"
 		--with-rootprefix=
 		$(multilib_is_native_abi && echo "--with-rootlibdir=/$(get_libdir)")
+		--disable-elfutils
 	)
 
 	if ! multilib_is_native_abi; then
@@ -200,9 +196,6 @@ multilib_src_configure() {
 			MOUNT_{CFLAGS,LIBS}=' '
 		)
 	fi
-
-	# Use pregenerated copies when possible wrt #480924
-	[[ ${PV} = 9999* ]] || econf_args+=( --disable-manpages )
 
 	ECONF_SOURCE=${S} econf "${econf_args[@]}"
 }
@@ -231,25 +224,18 @@ multilib_src_compile() {
 			collect
 			scsi_id
 			v4l_id
-			accelerometer
 			mtd_probe
 		)
 		emake "${helper_targets[@]}"
 
-		if [[ ${PV} = 9999* ]]; then
-			local man_targets=(
-				man/udev.conf.5
-				man/systemd.link.5
-				man/udev.7
-				man/systemd-udevd.service.8
-				man/udevadm.8
-			)
-			emake "${man_targets[@]}"
-		fi
-
-		if use doc; then
-			emake -C docs/libudev
-		fi
+		local man_targets=(
+			man/udev.conf.5
+			man/systemd.link.5
+			man/udev.7
+			man/systemd-udevd.service.8
+			man/udevadm.8
+		)
+		emake "${man_targets[@]}"
 	else
 		local lib_targets=( libudev.la )
 		emake "${lib_targets[@]}"
@@ -269,10 +255,8 @@ multilib_src_install() {
 			install-udevlibexecPROGRAMS
 			install-dist_udevconfDATA
 			install-dist_udevrulesDATA
-			install-girDATA
 			install-pkgconfiglibDATA
 			install-pkgconfigdataDATA
-			install-typelibsDATA
 			install-dist_docDATA
 			libudev-install-hook
 			install-directories-hook
@@ -294,16 +278,7 @@ multilib_src_install() {
 			dist_network_DATA="network/99-default.link"
 		)
 		emake -j1 DESTDIR="${D}" "${targets[@]}"
-
-		if use doc; then
-			emake -C docs/libudev DESTDIR="${D}" install
-		fi
-
-		if [[ ${PV} = 9999* ]]; then
-			doman man/{udev.conf.5,systemd.link.5,udev.7,systemd-udevd.service.8,udevadm.8}
-		else
-			doman "${S}"/man/{udev.conf.5,systemd.link.5,udev.7,systemd-udevd.service.8,udevadm.8}
-		fi
+		doman man/{udev.conf.5,systemd.link.5,udev.7,systemd-udevd.service.8,udevadm.8}
 	else
 		local lib_LTLIBRARIES="libudev.la" \
 			pkgconfiglib_DATA="src/libudev/libudev.pc" \
@@ -339,24 +314,6 @@ multilib_src_install_all() {
 	# maintainer note: by not letting the upstream build-sys create the .so
 	# link, you also avoid a parallel make problem
 	mv "${D}"/usr/share/man/man8/systemd-udevd{.service,}.8
-
-	if ! [[ ${PV} = 9999* ]]; then
-		insinto /usr/share/doc/${PF}/html/libudev
-		doins "${S}"/docs/libudev/html/*
-	fi
-}
-
-pkg_preinst() {
-	local htmldir
-	for htmldir in libudev; do
-		if [[ -d ${ROOT%/}/usr/share/gtk-doc/html/${htmldir} ]]; then
-			rm -rf "${ROOT%/}"/usr/share/gtk-doc/html/${htmldir}
-		fi
-		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]; then
-			dosym ../../doc/${PF}/html/${htmldir} \
-				/usr/share/gtk-doc/html/${htmldir}
-		fi
-	done
 }
 
 pkg_postinst() {
@@ -375,7 +332,7 @@ pkg_postinst() {
 		if [[ ${path} == /dev && ${fstype} != devtmpfs ]]; then
 			ewarn "You need to edit your /dev line in ${fstab} to have devtmpfs"
 			ewarn "filesystem. Otherwise udev won't be able to boot."
-			ewarn "See, http://bugs.gentoo.org/453186"
+			ewarn "See, https://bugs.gentoo.org/453186"
 		fi
 	done < "${fstab}"
 
@@ -433,8 +390,8 @@ pkg_postinst() {
 	elog
 	elog "For more information on udev on Gentoo, upgrading, writing udev rules, and"
 	elog "fixing known issues visit:"
-	elog "http://wiki.gentoo.org/wiki/Udev"
-	elog "http://wiki.gentoo.org/wiki/Udev/upgrade"
+	elog "https://wiki.gentoo.org/wiki/Udev"
+	elog "https://wiki.gentoo.org/wiki/Udev/upgrade"
 
 	# If user has disabled 80-net-name-slot.rules using a empty file or a symlink to /dev/null,
 	# do the same for 80-net-setup-link.rules to keep the old behavior
@@ -462,8 +419,8 @@ pkg_postinst() {
 	fi
 
 	# http://cgit.freedesktop.org/systemd/systemd/commit/rules/50-udev-default.rules?id=3dff3e00e044e2d53c76fa842b9a4759d4a50e69
-	# http://bugs.gentoo.org/246847
-	# http://bugs.gentoo.org/514174
+	# https://bugs.gentoo.org/246847
+	# https://bugs.gentoo.org/514174
 	enewgroup input
 
 	# Update hwdb database in case the format is changed by udev version.

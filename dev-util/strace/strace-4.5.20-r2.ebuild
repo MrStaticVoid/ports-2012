@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/strace-4.5.20-r2.ebuild,v 1.9 2011/10/23 15:04:45 armin76 Exp $
+# $Id$
 
 EAPI="2"
 
@@ -9,7 +9,7 @@ inherit flag-o-matic eutils
 DESCRIPTION="A useful diagnostic, instructional, and debugging tool"
 HOMEPAGE="http://sourceforge.net/projects/strace/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2
-	http://dev.gentoo.org/~flameeyes/patches/${PN}/${P}-ioctls.patch.bz2"
+	https://dev.gentoo.org/~flameeyes/patches/${PN}/${P}-ioctls.patch.bz2"
 
 LICENSE="BSD"
 SLOT="0"

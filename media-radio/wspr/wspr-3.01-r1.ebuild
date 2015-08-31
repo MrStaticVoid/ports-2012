@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-radio/wspr/wspr-3.01-r1.ebuild,v 1.1 2015/05/18 14:32:00 tomjbe Exp $
+# $Id$
 
 EAPI="5"
 PYTHON_COMPAT=( python2_7 )
@@ -12,7 +12,7 @@ MY_P=${P}.r2792
 
 DESCRIPTION="Weak Signal Propagation Reporter"
 HOMEPAGE="http://www.physics.princeton.edu/pulsar/K1JT/wspr.html"
-SRC_URI="http://dev.gentoo.org/~tomjbe/distfiles/${MY_P}.tgz"
+SRC_URI="https://dev.gentoo.org/~tomjbe/distfiles/${MY_P}.tgz"
 LICENSE="GPL-2"
 
 SLOT="0"

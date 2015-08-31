@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/invokebinder/invokebinder-1.2.ebuild,v 1.4 2015/04/02 18:10:15 mr_bones_ Exp $
+# $Id$
 
 EAPI="5"
 
@@ -9,7 +9,7 @@ JAVA_PKG_IUSE="doc source test"
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Provide a friendly DSL for binding method handles"
-SRC_URI="http://github.com/headius/invokebinder/archive/invokebinder-1.2.tar.gz"
+SRC_URI="https://github.com/headius/invokebinder/archive/invokebinder-1.2.tar.gz"
 HOMEPAGE="https://github.com/headius/invokebinder"
 
 SLOT="0"

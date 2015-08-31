@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-2.0.14.ebuild,v 1.4 2015/07/11 16:54:41 klausman Exp $
+# $Id$
 
 EAPI=5
 inherit eutils libtool
@@ -60,7 +60,7 @@ src_install() {
 	dohtml {NEWS,README,RELEASE,UPGRADING}.html
 	prune_libtool_files --all
 
-	# http://bugs.gentoo.org/467768
+	# https://bugs.gentoo.org/467768
 	local _rdocdir=/usr/share/doc/${PF}/html/${MY_PN}
 	[[ -d ${ED}/${_rdocdir} ]] && dosym ${_rdocdir} /usr/share/gtk-doc/html/${MY_PN}
 }

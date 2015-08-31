@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/apvlv/apvlv-0.1.4.ebuild,v 1.4 2013/03/17 13:19:04 ssuominen Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ inherit eutils cmake-utils
 
 MY_P="${P}-Source"
 DESCRIPTION="Alf's PDF Viewer Like Vim"
-HOMEPAGE="http://naihe2010.github.com/apvlv/"
+HOMEPAGE="https://naihe2010.github.com/apvlv/"
 SRC_URI="mirror://github/naihe2010/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"

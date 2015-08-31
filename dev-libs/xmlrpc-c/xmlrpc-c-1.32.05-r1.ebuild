@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.32.05-r1.ebuild,v 1.12 2015/07/23 14:32:45 pinkbyte Exp $
+# $Id$
 
 EAPI="4"
 
@@ -19,7 +19,7 @@ inherit eutils multilib
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 HOMEPAGE="http://xmlrpc-c.sourceforge.net/"
-SRC_URI="http://dev.gentoo.org/~maksbotan/${P}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~maksbotan/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"

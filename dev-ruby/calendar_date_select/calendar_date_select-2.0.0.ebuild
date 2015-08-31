@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/calendar_date_select/calendar_date_select-2.0.0.ebuild,v 1.3 2015/03/20 13:31:09 graaff Exp $
+# $Id$
 
 EAPI=4
 
@@ -19,7 +19,7 @@ RUBY_FAKEGEM_EXTRAINSTALL="app"
 inherit ruby-fakegem
 
 DESCRIPTION="A popular and flexible JavaScript DatePicker for RubyOnRails"
-HOMEPAGE="http://code.google.com/p/calendardateselect/"
+HOMEPAGE="https://code.google.com/p/calendardateselect/"
 
 LICENSE="MIT"
 SLOT="0"

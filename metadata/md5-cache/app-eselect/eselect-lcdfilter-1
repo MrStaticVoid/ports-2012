@@ -9,4 +9,4 @@ RDEPEND=app-admin/eselect
 SLOT=0
 SRC_URI=https://github.com/yngwin/eselect-lcdfilter/tarball/v1 -> eselect-lcdfilter-1.tar.gz
 _eclasses_=vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
-_md5_=04f462c12268a13172cd340e49e60674
+_md5_=29133211d7d7459e9e42fd036321b95b

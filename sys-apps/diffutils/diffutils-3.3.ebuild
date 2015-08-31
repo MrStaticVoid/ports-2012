@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-3.3.ebuild,v 1.15 2015/07/21 15:56:38 vapier Exp $
+# $Id$
 
 EAPI=4
 
 inherit flag-o-matic
 
 DESCRIPTION="Tools to make diffs and compare files"
-HOMEPAGE="http://www.gnu.org/software/diffutils/"
+HOMEPAGE="https://www.gnu.org/software/diffutils/"
 SRC_URI="mirror://gnu-alpha/diffutils/${P}.tar.xz
 	mirror://gnu/diffutils/${P}.tar.xz"
 
@@ -39,7 +39,7 @@ src_configure() {
 	econf \
 		--with-packager="Gentoo" \
 		--with-packager-version="${PVR}" \
-		--with-packager-bug-reports="http://bugs.gentoo.org/" \
+		--with-packager-bug-reports="https://bugs.gentoo.org/" \
 		$(use_enable nls)
 }
 

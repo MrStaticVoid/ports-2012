@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ethtool/ethtool-4.0.ebuild,v 1.1 2015/06/02 09:27:06 polynomial-c Exp $
+# $Id$
 
 EAPI="5"
 
 DESCRIPTION="Utility for examining and tuning ethernet-based network interfaces"
-HOMEPAGE="http://www.kernel.org/pub/software/network/ethtool/"
+HOMEPAGE="https://www.kernel.org/pub/software/network/ethtool/"
 SRC_URI="mirror://kernel/software/network/ethtool/${P}.tar.xz"
 
 LICENSE="GPL-2"

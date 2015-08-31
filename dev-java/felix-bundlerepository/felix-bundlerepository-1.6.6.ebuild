@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/felix-bundlerepository/felix-bundlerepository-1.6.6.ebuild,v 1.2 2015/07/27 08:43:48 monsieurp Exp $
+# $Id$
 
 EAPI="5"
 
@@ -14,7 +14,7 @@ MY_PN="org.apache.felix.bundlerepository"
 MY_P="${MY_PN}-${PV}"
 SRC_URI="mirror://apache/felix/${MY_P}-source-release.tar.gz"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 CDEPEND="
 	dev-java/kxml:2
@@ -25,10 +25,10 @@ CDEPEND="
 	dev-java/osgi-obr:0
 "
 
-DEPEND=">=virtual/jdk-1.5
+DEPEND=">=virtual/jdk-1.6
 	${CDEPEND}"
 
-RDEPEND=">=virtual/jre-1.5
+RDEPEND=">=virtual/jre-1.6
 	${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}"

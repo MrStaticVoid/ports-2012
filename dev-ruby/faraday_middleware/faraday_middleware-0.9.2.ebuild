@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/faraday_middleware/faraday_middleware-0.9.2.ebuild,v 1.1 2015/07/08 06:33:45 graaff Exp $
+# $Id$
 
 EAPI=5
 
@@ -36,6 +36,7 @@ ruby_add_rdepend "
 ruby_add_bdepend "test? (
 	dev-ruby/bundler
 	>=dev-ruby/multi_xml-0.5.3
+	>=dev-ruby/rack-cache-1.1
 	>=dev-ruby/simple_oauth-0.1
 	>=dev-ruby/hashie-1.2
 	>=dev-ruby/rash-0.3 )"

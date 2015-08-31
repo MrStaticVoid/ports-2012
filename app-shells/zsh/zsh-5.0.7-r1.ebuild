@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-5.0.7-r1.ebuild,v 1.4 2015/07/22 06:15:24 vapier Exp $
+# $Id$
 
 EAPI=5
 
@@ -18,7 +18,7 @@ IUSE="caps debug doc examples gdbm maildir pcre static unicode"
 
 RDEPEND="
 	>=sys-libs/ncurses-5.1
-	static? ( >=sys-libs/ncurses-5.7-r4[static-libs] )
+	static? ( >=sys-libs/ncurses-5.7-r4:0=[static-libs] )
 	caps? ( sys-libs/libcap )
 	pcre? ( >=dev-libs/libpcre-3.9
 		static? ( >=dev-libs/libpcre-3.9[static-libs] ) )
@@ -146,7 +146,7 @@ src_install() {
 
 pkg_postinst() {
 	if [[ -z ${REPLACING_VERSIONS} ]] ; then
-		# should link to http://www.gentoo.org/doc/en/zsh.xml
+		# should link to https://www.gentoo.org/doc/en/zsh.xml
 		echo
 		elog "If you want to enable Portage completions and Gentoo prompt,"
 		elog "emerge app-shells/gentoo-zsh-completions and add"

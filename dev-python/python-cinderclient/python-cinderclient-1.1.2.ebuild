@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-cinderclient/python-cinderclient-1.1.2.ebuild,v 1.1 2015/07/24 05:32:58 prometheanfire Exp $
+# $Id$
 
 EAPI=5
 # waiting on hacking 0.8 to have py34
@@ -14,7 +14,7 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="test"
 
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
@@ -40,7 +40,7 @@ DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
 RDEPEND=">=dev-python/prettytable-0.7[${PYTHON_USEDEP}]
 		<dev-python/prettytable-0.8[${PYTHON_USEDEP}]
 		>=dev-python/python-keystoneclient-1.2.0[${PYTHON_USEDEP}]
-		>=dev-python/python-keystoneclient-1.4.0[${PYTHON_USEDEP}]
+		<dev-python/python-keystoneclient-1.4.0[${PYTHON_USEDEP}]
 		>=dev-python/requests-2.2.0[${PYTHON_USEDEP}]
 		!~dev-python/requests-2.4.0[${PYTHON_USEDEP}]
 		>=dev-python/simplejson-2.2.0[${PYTHON_USEDEP}]

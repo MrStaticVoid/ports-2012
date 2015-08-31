@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-libav/gst-plugins-libav-1.4.5.ebuild,v 1.4 2015/02/04 13:02:18 pacho Exp $
+# $Id$
 
 EAPI="5"
 inherit eutils flag-o-matic multilib-minimal
@@ -41,7 +41,7 @@ multilib_src_configure() {
 	econf \
 		--disable-maintainer-mode \
 		--with-package-name="Gentoo GStreamer ebuild" \
-		--with-package-origin="http://www.gentoo.org" \
+		--with-package-origin="https://www.gentoo.org" \
 		--disable-fatal-warnings \
 		--with-system-libav \
 		$(use_enable orc)

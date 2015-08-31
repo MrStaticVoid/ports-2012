@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/iscan/iscan-2.30.1.1.ebuild,v 1.1 2015/07/15 22:08:40 np-hardass Exp $
+# $Id$
 
 EAPI="5"
 
@@ -21,7 +21,7 @@ inherit eutils flag-o-matic autotools versionator
 # TODO:
 # (re)add closed-source binary modules which are needed for some scanners.
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 
 MY_PV="$(get_version_component_range 1-3)"
 MY_PVR="$(replace_version_separator 3 -)"
@@ -32,11 +32,11 @@ HOMEPAGE="http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX"
 # Use a gentoo hosted url since upstream uses a session based url that causes the
 # files to no longer be available after the session expires.
 SRC_URI="
-	http://dev.gentoo.org/~idella4/tarballs/${PN}_${MY_PVR}.tar.gz
-	http://dev.gentoo.org/~flameeyes/avasys/${PN}_${MY_PVR}.tar.gz
+	https://dev.gentoo.org/~idella4/tarballs/${PN}_${MY_PVR}.tar.gz
+	https://dev.gentoo.org/~flameeyes/avasys/${PN}_${MY_PVR}.tar.gz
 	doc? (
-		http://dev.gentoo.org/~flameeyes/avasys/${MY_DOC}_e.pdf
-		linguas_ja? ( http://dev.gentoo.org/~flameeyes/avasys/${MY_DOC}_j.pdf )
+		https://dev.gentoo.org/~flameeyes/avasys/${MY_DOC}_e.pdf
+		linguas_ja? ( https://dev.gentoo.org/~flameeyes/avasys/${MY_DOC}_j.pdf )
 	)"
 LICENSE="GPL-2 AVASYS"
 SLOT="0"

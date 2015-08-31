@@ -7,5 +7,5 @@ IUSE=python_targets_python2_7
 LICENSE=GPL-3
 RDEPEND=dev-python/gconf-python gnome-base/gconf[introspection] dev-python/pyxdg >=x11-libs/gtk+-3.10 sys-devel/gettext
 SLOT=0
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	git-r3	d112773018bfed1c4d9e30848045c51c	multilib	62927b3db3a589b0806255f3a002d5d3	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	351da1aa73960a282591217fb57c1bb8	python-utils-r1	68e010c13e97b7b2c7bf403ee9c51e1b	toolchain-funcs	42408102d713fbad60ca21349865edb4	waf-utils	883eeb94ea142085b68093ca49ff1a88
-_md5_=dd92597644111488a01b06ba523d82ac
+_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	git-r3	eddac8fcf8e23a1d871890d0fb7dab8e	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multiprocessing	d769539d9bace6eaca30af23bc2b4dde	python-single-r1	3b63e63ae2b19314bc2a8704f8b09437	python-utils-r1	39c6b012a0512678e698e712b5b7ecc2	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	waf-utils	883eeb94ea142085b68093ca49ff1a88
+_md5_=56e85ef0fefed2620a414e1069509e95

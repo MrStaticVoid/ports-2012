@@ -1,14 +1,14 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/baselayout-java/baselayout-java-0.1.0.ebuild,v 1.11 2015/07/29 17:59:30 grobian Exp $
+# $Id$
 
 EAPI=5
 
 inherit fdo-mime gnome2-utils
 
 DESCRIPTION="Baselayout for Java"
-HOMEPAGE="http://www.gentoo.org/proj/en/java/"
-SRC_URI="http://dev.gentoo.org/~sera/distfiles/${P}.tar.gz"
+HOMEPAGE="https://www.gentoo.org/proj/en/java/"
+SRC_URI="https://dev.gentoo.org/~sera/distfiles/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

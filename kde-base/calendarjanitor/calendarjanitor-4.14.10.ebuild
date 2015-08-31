@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/calendarjanitor/calendarjanitor-4.14.10.ebuild,v 1.1 2015/07/11 11:49:27 johu Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ KMMODULE="console/${PN}"
 inherit kde4-meta
 
 DESCRIPTION="A tool to scan calendar data for buggy instances"
-HOMEPAGE="http://www.kde.org/"
+HOMEPAGE="https://www.kde.org/"
 KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 

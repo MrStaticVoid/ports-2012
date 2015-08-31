@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-qt/qthelp/qthelp-4.8.5-r2.ebuild,v 1.11 2015/05/07 01:13:18 pesa Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ DESCRIPTION="The Help module for the Qt toolkit"
 SRC_URI+="
 	compat? (
 		http://download.qt.io/archive/qt/4.6/qt-assistant-qassistantclient-library-compat-src-4.6.3.tar.gz
-		http://dev.gentoo.org/~pesa/distfiles/qt-assistant-compat-headers-4.7.tar.gz
+		https://dev.gentoo.org/~pesa/distfiles/qt-assistant-compat-headers-4.7.tar.gz
 	)"
 
 SLOT="4"

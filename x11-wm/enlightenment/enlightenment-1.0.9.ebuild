@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/enlightenment/enlightenment-1.0.9.ebuild,v 1.3 2012/05/04 08:58:56 jdhore Exp $
+# $Id$
 
 EAPI="2"
 if [[ ${PV} == *9999 ]] ; then
-	ESVN_REPO_URI="http://svn.enlightenment.org/svn/e/trunk/E16/e"
+	ESVN_REPO_URI="https://svn.enlightenment.org/svn/e/trunk/E16/e"
 	inherit subversion autotools
 	SRC_URI=""
 	#KEYWORDS=""
@@ -17,7 +17,7 @@ fi
 inherit eutils
 
 DESCRIPTION="Enlightenment Window Manager"
-HOMEPAGE="http://www.enlightenment.org/"
+HOMEPAGE="https://www.enlightenment.org/"
 
 LICENSE="BSD"
 SLOT="0"

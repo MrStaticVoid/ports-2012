@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/openra/openra-20120630.ebuild,v 1.6 2013/06/29 19:02:29 hasufell Exp $
+# $Id$
 
 EAPI=4
 
@@ -8,7 +8,7 @@ inherit eutils mono gnome2-utils vcs-snapshot games
 
 DESCRIPTION="A free RTS engine supporting games like Command & Conquer and Red Alert"
 HOMEPAGE="http://open-ra.org/"
-SRC_URI="http://github.com/OpenRA/OpenRA/tarball/release-${PV} -> ${P}.tar.gz"
+SRC_URI="https://github.com/OpenRA/OpenRA/tarball/release-${PV} -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"

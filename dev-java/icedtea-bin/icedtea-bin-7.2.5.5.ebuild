@@ -1,12 +1,12 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea-bin/icedtea-bin-7.2.5.5.ebuild,v 1.6 2015/06/24 10:55:27 ago Exp $
+# $Id$
 
 EAPI="5"
 
 inherit java-vm-2 multilib prefix toolchain-funcs versionator
 
-dist="http://dev.gentoo.org/~chewi/distfiles"
+dist="https://dev.gentoo.org/~chewi/distfiles"
 TARBALL_VERSION="${PV}"
 
 DESCRIPTION="A Gentoo-made binary build of the IcedTea JDK"

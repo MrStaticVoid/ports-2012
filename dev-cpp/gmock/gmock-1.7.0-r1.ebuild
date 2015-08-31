@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gmock/gmock-1.7.0-r1.ebuild,v 1.10 2015/07/29 05:28:07 vapier Exp $
+# $Id$
 
 EAPI="4"
 
@@ -9,8 +9,8 @@ PYTHON_COMPAT=( python2_7 )
 inherit libtool multilib-minimal python-any-r1
 
 DESCRIPTION="Google's C++ mocking framework"
-HOMEPAGE="http://code.google.com/p/googlemock/"
-SRC_URI="http://googlemock.googlecode.com/files/${P}.zip"
+HOMEPAGE="https://code.google.com/p/googlemock/"
+SRC_URI="https://googlemock.googlecode.com/files/${P}.zip"
 
 LICENSE="BSD"
 SLOT="0"

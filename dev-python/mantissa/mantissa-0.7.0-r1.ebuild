@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/mantissa/mantissa-0.7.0-r1.ebuild,v 1.4 2015/04/08 08:05:23 mgorny Exp $
+# $Id$
 
 EAPI="5"
 PYTHON_COMPAT=( python2_7 )
@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit twisted-r1
 
 DESCRIPTION="An extensible, multi-protocol, multi-user, interactive application server"
-HOMEPAGE="http://divmod.org/trac/wiki/DivmodMantissa http://pypi.python.org/pypi/Mantissa"
+HOMEPAGE="http://divmod.org/trac/wiki/DivmodMantissa https://pypi.python.org/pypi/Mantissa"
 SRC_URI="mirror://pypi/${TWISTED_PN:0:1}/${TWISTED_PN}/${TWISTED_P}.tar.gz"
 
 KEYWORDS="amd64 x86"

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.22.4.0.ebuild,v 1.1 2015/07/26 13:58:06 slyfox Exp $
+# $Id$
 
 EAPI=5
 
@@ -37,7 +37,7 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_PN}-${PV}"
 
-CABAL_CORE_LIB_GHC_PV="PM:7.10.2_rc2 PM:7.10.2"
+CABAL_CORE_LIB_GHC_PV="PM:7.10.2_rc2 PM:7.10.2 PM:7.10.2-r1"
 
 src_prepare() {
 	if [[ -n ${LIVE_EBUILD} ]]; then

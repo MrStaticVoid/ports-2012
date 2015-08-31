@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/pms-test-suite/pms-test-suite-9999.ebuild,v 1.4 2015/07/22 01:35:40 mrueg Exp $
+# $Id$
 
 EAPI=4
 
@@ -15,13 +15,13 @@ inherit base distutils
 
 #if LIVE
 EGIT_REPO_URI="git://anongit.gentoo.org/proj/${PN}.git
-	http://anongit.gentoo.org/git/proj/${PN}.git
-	http://bitbucket.org/mgorny/${PN}.git"
+	https://anongit.gentoo.org/git/proj/${PN}.git
+	https://bitbucket.org/mgorny/${PN}.git"
 inherit git-2
 #endif
 
 DESCRIPTION="A test suite for Package Manager PMS compliance"
-HOMEPAGE="http://www.gentoo.org/proj/en/qa/pms/pms-test-suite.xml"
+HOMEPAGE="https://www.gentoo.org/proj/en/qa/pms/pms-test-suite.xml"
 SRC_URI="https://www.bitbucket.org/mgorny/${PN}/downloads/${P}.tar.bz2"
 
 LICENSE="BSD-2"

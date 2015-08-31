@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/libcmis/libcmis-0.5.0-r1.ebuild,v 1.3 2015/07/22 19:33:36 ago Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,7 +11,7 @@ unset SCM_ECLASS
 
 DESCRIPTION="C++ client library for the CMIS interface"
 HOMEPAGE="https://sourceforge.net/projects/libcmis/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz http://dev.gentoo.org/~dilfridge/distfiles/${P}-gcc5.patch.gz"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz https://dev.gentoo.org/~dilfridge/distfiles/${P}-gcc5.patch.gz"
 
 LICENSE="|| ( GPL-2 LGPL-2 MPL-1.1 )"
 SLOT="0.5"

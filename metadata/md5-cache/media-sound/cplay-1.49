@@ -10,4 +10,4 @@ RDEPEND=vorbis? ( media-sound/vorbis-tools ) mp3? ( || ( media-sound/mpg123 medi
 SLOT=0
 SRC_URI=http://mask.tf.hut.fi/~flu/cplay/cplay-1.49.tar.gz
 _eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=ca7f90d936d8831f6e168a11917fdb91
+_md5_=a47b6be6ad3d43bb9c36214477fd86e8

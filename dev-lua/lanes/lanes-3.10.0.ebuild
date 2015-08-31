@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lua/lanes/lanes-3.10.0.ebuild,v 1.2 2015/07/27 21:08:56 williamh Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="lightweight, native, lazy evaluating multithreading library"
 HOMEPAGE="https://github.com/LuaLanes/lanes"
-SRC_URI="http://github.com/LuaLanes/lanes/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/LuaLanes/lanes/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"

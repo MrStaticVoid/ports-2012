@@ -10,4 +10,4 @@ RDEPEND=app-text/recode virtual/awk sys-apps/grep sys-apps/sed || ( net-misc/wge
 SLOT=0
 SRC_URI=mirror://sourceforge/ktoblzcheck/ktoblzcheck-1.39.tar.gz
 _eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=55c1fd075991e1b326b582656035afe9
+_md5_=988c64436f27224bd119c8a401d03f66

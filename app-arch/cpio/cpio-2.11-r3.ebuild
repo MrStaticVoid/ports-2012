@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.11-r3.ebuild,v 1.7 2015/01/16 08:08:14 ago Exp $
+# $Id$
 
 EAPI="5"
 
 inherit autotools eutils
 
 DESCRIPTION="A file archival tool which can also read and write tar files"
-HOMEPAGE="http://www.gnu.org/software/cpio/cpio.html"
+HOMEPAGE="https://www.gnu.org/software/cpio/cpio.html"
 SRC_URI="mirror://gnu/cpio/${P}.tar.bz2"
 
 LICENSE="GPL-3"

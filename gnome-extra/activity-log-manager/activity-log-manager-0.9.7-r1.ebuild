@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/activity-log-manager/activity-log-manager-0.9.7-r1.ebuild,v 1.1 2015/06/28 17:01:15 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -13,7 +13,7 @@ inherit autotools eutils gnome2 vala versionator
 
 DESCRIPTION="GUI which lets you easily control what gets logged by Zeitgeist"
 HOMEPAGE="https://launchpad.net/activity-log-manager/"
-SRC_URI="http://launchpad.net/history-manager/$(get_version_component_range 1-2)/${PV}/+download/${P}.tar.xz"
+SRC_URI="https://launchpad.net/history-manager/$(get_version_component_range 1-2)/${PV}/+download/${P}.tar.xz"
 
 LICENSE="LGPL-2"
 SLOT="0"

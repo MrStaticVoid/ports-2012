@@ -1,8 +1,12 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/package.use.mask,v 1.156 2015/07/28 23:38:05 chewi Exp $
+# $Id$
 
 # This file requires >=portage-2.1.1
+
+# Michael Palimaka <kensington@gentoo.org> (12 Aug 2015)
+# Unkeyworded dependencies
+kde-frameworks/kauth policykit
 
 # James Le Cuirot <chewi@gentoo.org> (28 Jul 2015)
 # JavaFX and the browser plugin are included on x86 Linux.
@@ -159,8 +163,9 @@ www-client/midori -jit
 media-video/transcode -nuv -pic
 
 # Davide Pesavento <pesa@gentoo.org> (30 Nov 2011)
-# JavaScriptCore JIT is supported only on amd64/arm/x86,
-# so it's masked in base profile and unmasked here.
+# The QML (V4) and JSC JITs are supported only on amd64/arm/x86,
+# so the flag is masked in the base profile and unmasked here.
+dev-qt/qtdeclarative -jit
 dev-qt/qtscript -jit
 dev-qt/qtwebkit -jit
 

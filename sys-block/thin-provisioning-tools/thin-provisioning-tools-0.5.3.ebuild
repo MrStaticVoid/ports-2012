@@ -1,14 +1,14 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-block/thin-provisioning-tools/thin-provisioning-tools-0.5.3.ebuild,v 1.1 2015/07/29 05:44:08 vapier Exp $
+# $Id$
 
 EAPI="5"
 
 inherit autotools eutils flag-o-matic
 
 DESCRIPTION="A suite of tools for thin provisioning on Linux"
-HOMEPAGE="http://github.com/jthornber/thin-provisioning-tools"
-SRC_URI="http://github.com/jthornber/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://github.com/jthornber/thin-provisioning-tools"
+SRC_URI="https://github.com/jthornber/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"

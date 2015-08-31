@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/gajim/gajim-0.16.ebuild,v 1.10 2015/06/04 19:05:03 kensington Exp $
+# $Id$
 
 EAPI=5
 
@@ -18,7 +18,7 @@ DESCRIPTION="Jabber client written in PyGTK"
 HOMEPAGE="http://www.gajim.org/"
 SRC_URI="
 	http://www.gajim.org/downloads/$(get_version_component_range 1-2)/${MY_P}.tar.bz2"
-#	test? ( http://dev.gentoo.org/~jlec/distfiles/${PN}-tests-${PV}.tar.xz )"
+#	test? ( https://dev.gentoo.org/~jlec/distfiles/${PN}-tests-${PV}.tar.xz )"
 
 LICENSE="GPL-3"
 SLOT="0"

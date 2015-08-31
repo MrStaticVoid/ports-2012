@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/nodejs/nodejs-0.12.6.ebuild,v 1.1 2015/07/06 02:19:00 patrick Exp $
+# $Id$
 
 EAPI=5
 
@@ -18,7 +18,7 @@ SRC_URI="http://nodejs.org/dist/v${PV}/node-v${PV}.tar.gz"
 
 LICENSE="Apache-1.1 Apache-2.0 BSD BSD-2 MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86 ~x64-macos"
+KEYWORDS="amd64 ~arm x86 ~x64-macos"
 IUSE="debug icu +npm +snapshot +ssl"
 
 RDEPEND="icu? ( dev-libs/icu )
@@ -38,7 +38,7 @@ src_prepare() {
 	export BUILDTYPE=Release
 
 	# fix compilation on Darwin
-	# http://code.google.com/p/gyp/issues/detail?id=260
+	# https://code.google.com/p/gyp/issues/detail?id=260
 	sed -i -e "/append('-arch/d" tools/gyp/pylib/gyp/xcode_emulation.py || die
 
 	# make sure we use python2.* while using gyp

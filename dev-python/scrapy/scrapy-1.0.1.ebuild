@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/scrapy/scrapy-1.0.1.ebuild,v 1.1 2015/07/27 09:01:04 patrick Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ PYTHON_REQ_USE="sqlite(+)"
 inherit vcs-snapshot distutils-r1
 
 DESCRIPTION="A high-level Python Screen Scraping framework"
-HOMEPAGE="http://scrapy.org http://pypi.python.org/pypi/Scrapy/"
+HOMEPAGE="http://scrapy.org https://pypi.python.org/pypi/Scrapy/"
 SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD-2"

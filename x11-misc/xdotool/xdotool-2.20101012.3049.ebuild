@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdotool/xdotool-2.20101012.3049.ebuild,v 1.5 2012/12/23 20:27:54 ulm Exp $
+# $Id$
 
 EAPI=2
 
@@ -8,7 +8,7 @@ inherit eutils toolchain-funcs flag-o-matic multilib
 
 DESCRIPTION="Simulate keyboard input and mouse activity, move and resize windows"
 HOMEPAGE="http://www.semicomplete.com/projects/xdotool/"
-SRC_URI="http://semicomplete.googlecode.com/files/${P}.tar.gz"
+SRC_URI="https://semicomplete.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"

@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sks/sks-1.1.5.ebuild,v 1.1 2014/05/05 22:02:47 mrueg Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ inherit multilib user readme.gentoo systemd
 
 DESCRIPTION="An OpenPGP keyserver which is decentralized and provides highly reliable synchronization"
 HOMEPAGE="https://bitbucket.org/skskeyserver/sks-keyserver"
-SRC_URI="http://bitbucket.org/skskeyserver/sks-keyserver/downloads/${P}.tgz"
+SRC_URI="https://bitbucket.org/skskeyserver/sks-keyserver/downloads/${P}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"

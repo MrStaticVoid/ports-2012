@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/core_kernel/core_kernel-112.06.02.ebuild,v 1.2 2015/02/14 11:43:28 aballier Exp $
+# $Id$
 
 EAPI="5"
 
@@ -12,7 +12,7 @@ inherit oasis
 DESCRIPTION="System-independent part of Core"
 HOMEPAGE="http://www.janestreet.com/ocaml"
 SRC_URI="http://ocaml.janestreet.com/ocaml-core/${PV}/individual/${P}.tar.gz
-	http://dev.gentoo.org/~aballier/distfiles/${P}.tar.gz"
+	https://dev.gentoo.org/~aballier/distfiles/${P}.tar.gz"
 
 LICENSE="LGPL-2.1-with-linking-exception"
 SLOT="0/${PV}"

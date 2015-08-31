@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-firmware/linux-firmware-20150206.ebuild,v 1.4 2015/03/26 13:29:46 ago Exp $
+# $Id$
 
 EAPI=5
 inherit savedconfig
@@ -16,7 +16,7 @@ else
 fi
 
 DESCRIPTION="Linux firmware files"
-HOMEPAGE="http://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git"
+HOMEPAGE="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git"
 
 LICENSE="GPL-1 GPL-2 GPL-3 BSD freedist"
 SLOT="0"

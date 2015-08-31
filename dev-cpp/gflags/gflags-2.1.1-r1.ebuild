@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gflags/gflags-2.1.1-r1.ebuild,v 1.5 2015/07/22 06:18:08 vapier Exp $
+# $Id$
 
 EAPI="5"
 
 inherit cmake-multilib
 
 DESCRIPTION="Google's C++ argument parsing library"
-HOMEPAGE="http://code.google.com/p/gflags/"
+HOMEPAGE="https://code.google.com/p/gflags/"
 SRC_URI="https://github.com/schuhschuh/gflags/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"

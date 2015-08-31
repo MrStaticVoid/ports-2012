@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/pybugz-0.11.1.ebuild,v 1.10 2015/03/29 05:50:54 williamh Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python3_3 python3_4 )
@@ -19,7 +19,7 @@ fi
 inherit bash-completion-r1 distutils-r1
 
 DESCRIPTION="Command line interface to (Gentoo) Bugzilla"
-HOMEPAGE="http://www.github.com/williamh/pybugz"
+HOMEPAGE="https://www.github.com/williamh/pybugz"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="zsh-completion"

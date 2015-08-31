@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libmicrohttpd/libmicrohttpd-0.9.39.ebuild,v 1.8 2015/04/28 09:46:26 ago Exp $
+# $Id$
 
 EAPI="5"
 
 MY_P="${P/_/}"
 
 DESCRIPTION="A small C library that makes it easy to run an HTTP server as part of another application"
-HOMEPAGE="http://www.gnu.org/software/libmicrohttpd/"
+HOMEPAGE="https://www.gnu.org/software/libmicrohttpd/"
 SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz"
 
 IUSE="epoll messages ssl static-libs test"

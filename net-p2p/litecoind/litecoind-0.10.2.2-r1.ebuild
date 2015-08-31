@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/litecoind/litecoind-0.10.2.2-r1.ebuild,v 1.2 2015/07/17 19:10:54 blueness Exp $
+# $Id$
 
 EAPI=5
 
@@ -27,7 +27,7 @@ RDEPEND="
 	logrotate? ( app-admin/logrotate )
 	upnp? ( net-libs/miniupnpc )
 	sys-libs/db:$(db_ver_to_slot "${DB_VER}")[cxx]
-	virtual/bitcoin-leveldb
+	<=dev-libs/leveldb-1.15.0-r1
 "
 DEPEND="${RDEPEND}
 	>=app-shells/bash-4.1

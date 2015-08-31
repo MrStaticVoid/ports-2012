@@ -9,4 +9,4 @@ RDEPEND=app-crypt/gnupg dev-lang/perl =dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://sourceforge/pgpius/pius-2.0.10.tar.bz2
 _eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=e125c7ba766d33f8fc1bc8423a41debf
+_md5_=a085145d1282fa91a552fb9757ae40d3

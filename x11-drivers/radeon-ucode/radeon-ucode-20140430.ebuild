@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/radeon-ucode/radeon-ucode-20140430.ebuild,v 1.1 2014/05/04 12:38:30 chithanh Exp $
+# $Id$
 
 EAPI=5
 
@@ -35,7 +35,7 @@ pkg_postinst() {
 			ewarn "CONFIG_EXTRA_FIRMWARE_DIR=\"/lib/firmware\""
 			ewarn "CONFIG_EXTRA_FIRMWARE=\"${FILES[@]/#/radeon/}\""
 			ewarn "You may skip microcode files for which no hardware is installed."
-			ewarn "More information at http://wiki.gentoo.org/wiki/Radeon#Firmware"
+			ewarn "More information at https://wiki.gentoo.org/wiki/Radeon#Firmware"
 		fi
 	fi
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/zeitgeist-datahub/zeitgeist-datahub-0.9.5.ebuild,v 1.10 2013/04/24 06:48:21 jlec Exp $
+# $Id$
 
 EAPI=4
 
@@ -11,8 +11,8 @@ inherit autotools-utils versionator vala
 MY_PV=$(get_version_component_range 1-2)
 
 DESCRIPTION="Provides passive plugins to insert events into zeitgeist"
-HOMEPAGE="http://launchpad.net/zeitgeist-datahub"
-SRC_URI="http://launchpad.net/zeitgeist-datahub/${MY_PV}/${PV}/+download/${P}.tar.gz"
+HOMEPAGE="https://launchpad.net/zeitgeist-datahub"
+SRC_URI="https://launchpad.net/zeitgeist-datahub/${MY_PV}/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"

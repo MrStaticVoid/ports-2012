@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/stgit/stgit-0.17.1-r1.ebuild,v 1.4 2015/03/03 07:44:45 dlan Exp $
+# $Id$
 
 EAPI="5"
 
@@ -12,7 +12,7 @@ DESCRIPTION="Manage a stack of patches using GIT as a backend"
 HOMEPAGE="http://www.procode.org/stgit/"
 UPSTREAM_VER=0
 [[ -n ${UPSTREAM_VER} ]] && \
-	UPSTREAM_PATCHSET_URI="http://dev.gentoo.org/~dlan/distfiles/${P}-upstream-patches-${UPSTREAM_VER}.tar.xz"
+	UPSTREAM_PATCHSET_URI="https://dev.gentoo.org/~dlan/distfiles/${P}-upstream-patches-${UPSTREAM_VER}.tar.xz"
 
 SRC_URI="http://download.gna.org/${PN}/${P}.tar.gz
 	${UPSTREAM_PATCHSET_URI}"

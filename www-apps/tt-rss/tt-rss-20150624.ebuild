@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/tt-rss/tt-rss-20150624.ebuild,v 1.1 2015/06/24 11:07:30 tomka Exp $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ inherit user eutils webapp vcs-snapshot
 
 DESCRIPTION="Tiny Tiny RSS - A web-based news feed (RSS/Atom) aggregator using AJAX"
 HOMEPAGE="http://tt-rss.org/"
-SRC_URI="http://dev.gentoo.org/~tomka/files/${P}.tar.bz2"
+SRC_URI="https://dev.gentoo.org/~tomka/files/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 KEYWORDS="~amd64 ~mips ~x86"

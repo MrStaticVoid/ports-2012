@@ -9,4 +9,4 @@ RDEPEND=~app-pda/libopensync-0.22 dev-libs/glib:2 =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://www.opensync.org/download/releases/0.22/libopensync-plugin-python-0.22.tar.bz2
 _eclasses_=python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=8e6f928094971bcd2df8510cdaa45c17
+_md5_=b89c19961d42f9f79e1cfed30e54913b

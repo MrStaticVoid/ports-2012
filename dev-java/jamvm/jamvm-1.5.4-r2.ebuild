@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jamvm/jamvm-1.5.4-r2.ebuild,v 1.5 2014/08/10 20:16:11 slyfox Exp $
+# $Id$
 
 EAPI=4
 
@@ -38,7 +38,7 @@ CLASSPATH_DIR="/usr/gnu-classpath-${CLASSPATH_SLOT}"
 
 src_configure() {
 	# Keep libjvm.so out of /usr
-	# http://bugs.gentoo.org/show_bug.cgi?id=181896
+	# https://bugs.gentoo.org/show_bug.cgi?id=181896
 	INSTALL_DIR="/usr/$(get_libdir)/${PN}"
 
 	filter-flags "-fomit-frame-pointer"

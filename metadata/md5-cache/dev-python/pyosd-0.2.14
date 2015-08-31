@@ -10,4 +10,4 @@ RDEPEND=>=x11-libs/xosd-2.2.4 =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://ichi2.net/pyosd/pyosd-0.2.14.tar.gz
 _eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=f488bafc7bd21b53bd6812966b313edf
+_md5_=0f0ebe255c77b88873fa04513fb01406

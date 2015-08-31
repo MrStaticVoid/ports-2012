@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pkgcore/pkgcore-9999.ebuild,v 1.29 2015/07/23 06:36:36 radhermit Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -21,11 +21,16 @@ LICENSE="|| ( BSD GPL-2 )"
 SLOT="0"
 IUSE="doc test"
 
+if [[ ${PV} == *9999 ]] ; then
+	SPHINX="dev-python/sphinx[${PYTHON_USEDEP}]"
+else
+	SPHINX="doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
+fi
 RDEPEND="=dev-python/snakeoil-9999[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}
+	${SPHINX}
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	dev-python/pyparsing[${PYTHON_USEDEP}]
-	dev-python/sphinx[${PYTHON_USEDEP}]
 	test? ( $(python_gen_cond_dep 'dev-python/mock[${PYTHON_USEDEP}]' python2_7) )
 "
 
@@ -41,7 +46,7 @@ python_compile_all() {
 	fi
 
 	if use doc; then
-		esetup.py build_html
+		esetup.py build_docs
 		ln -s "${BUILD_DIR}/sphinx/html" html || die
 	fi
 }

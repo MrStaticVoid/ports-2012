@@ -1,11 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-eselect/eselect-php/eselect-php-0.6.2.ebuild,v 1.2 2015/04/22 12:33:15 pinkbyte Exp $
+# $Id$
 
 EAPI=3
 
 DESCRIPTION="PHP eselect module"
-HOMEPAGE="http://www.gentoo.org"
+HOMEPAGE="https://www.gentoo.org"
 SRC_URI="http://olemarkus.org/~olemarkus/gentoo/eselect-php-${PV}.bz2"
 
 LICENSE="GPL-2"

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/snappy/snappy-1.1.2-r1.ebuild,v 1.7 2015/03/03 05:40:47 dlan Exp $
+# $Id$
 
 EAPI="5"
 
@@ -10,7 +10,7 @@ inherit eutils autotools-multilib
 DESCRIPTION="A high-speed compression/decompression library by Google"
 HOMEPAGE="https://code.google.com/p/snappy/"
 # upstream uses google drive which has hash-based URLS
-SRC_URI="http://dev.gentoo.org/~radhermit/dist/${P}.tar.gz"
+SRC_URI="https://dev.gentoo.org/~radhermit/dist/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"

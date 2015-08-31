@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/database_cleaner/database_cleaner-1.4.0.ebuild,v 1.1 2015/01/08 07:11:21 graaff Exp $
+# $Id$
 
 EAPI=5
 
@@ -17,7 +17,7 @@ RUBY_FAKEGEM_RECIPE_TEST="none"
 inherit ruby-fakegem
 
 DESCRIPTION="Strategies for cleaning databases"
-HOMEPAGE="http://github.com/bmabey/database_cleaner"
+HOMEPAGE="https://github.com/bmabey/database_cleaner"
 
 LICENSE="MIT"
 SLOT="0"

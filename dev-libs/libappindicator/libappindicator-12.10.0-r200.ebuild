@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libappindicator/libappindicator-12.10.0-r200.ebuild,v 1.3 2015/07/26 09:09:41 mgorny Exp $
+# $Id$
 
 EAPI=5
 VALA_MIN_API_VERSION="0.16"
@@ -11,8 +11,8 @@ PYTHON_COMPAT=( python2_7 )
 inherit autotools eutils multilib-minimal python-single-r1 vala
 
 DESCRIPTION="A library to allow applications to export a menu into the Unity Menu bar"
-HOMEPAGE="http://launchpad.net/libappindicator"
-SRC_URI="http://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
+HOMEPAGE="https://launchpad.net/libappindicator"
+SRC_URI="https://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="2"
@@ -45,7 +45,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-conditional-py-bindings.patch
 	eautoreconf
 
-	# Disable MONO for now because of http://bugs.gentoo.org/382491
+	# Disable MONO for now because of https://bugs.gentoo.org/382491
 	sed -i -e '/^MONO_REQUIRED_VERSION/s:=.*:=9999:' configure || die
 }
 

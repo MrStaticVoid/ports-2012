@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/STLport/STLport-5.2.1-r2.ebuild,v 1.1 2013/09/05 12:22:55 pinkbyte Exp $
+# $Id$
 
 EAPI="5"
 
@@ -11,7 +11,7 @@ PATCH_V="2"
 DESCRIPTION="C++ STL library"
 HOMEPAGE="http://stlport.sourceforge.net/"
 SRC_URI="mirror://sourceforge/stlport/${P}.tar.bz2
-	http://dev.gentoo.org/~xarthisius/distfiles/${PN}-patches-${PV}-${PATCH_V}.tbz2"
+	https://dev.gentoo.org/~xarthisius/distfiles/${PN}-patches-${PV}-${PATCH_V}.tbz2"
 
 LICENSE="boehm-gc HPND"
 SLOT="0"

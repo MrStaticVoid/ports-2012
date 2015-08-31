@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-apps/konqueror/konqueror-4.14.3.ebuild,v 1.4 2015/07/01 20:08:48 johu Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ inherit flag-o-matic kde4-meta
 
 DESCRIPTION="KDE: Web browser and file manager"
 HOMEPAGE="
-	http://www.kde.org/applications/internet/konqueror/
+	https://www.kde.org/applications/internet/konqueror/
 	http://konqueror.org/
 "
 KEYWORDS="amd64 ~arm ppc ppc64 x86 ~amd64-linux ~x86-linux"

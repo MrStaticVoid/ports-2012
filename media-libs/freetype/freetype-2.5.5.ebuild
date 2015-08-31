@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.5.5.ebuild,v 1.12 2015/02/27 06:19:31 yngwin Exp $
+# $Id$
 
 EAPI=5
 inherit autotools-multilib flag-o-matic multilib toolchain-funcs
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/freetype/${P/_/}.tar.bz2
 		mirror://nongnu/freetype/ft2demos-${PV}.tar.bz2 )
 	doc?	( mirror://sourceforge/freetype/${PN}-doc-${PV}.tar.bz2
 		mirror://nongnu/freetype/${PN}-doc-${PV}.tar.bz2 )
-	infinality? ( http://dev.gentoo.org/~polynomial-c/${P}-infinality-patches.tar.xz )"
+	infinality? ( https://dev.gentoo.org/~polynomial-c/${P}-infinality-patches.tar.xz )"
 
 LICENSE="|| ( FTL GPL-2+ )"
 SLOT="2"

@@ -1,12 +1,12 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/rt-sources/rt-sources-4.0.5_p4.ebuild,v 1.1 2015/07/08 13:14:57 psomas Exp $
+# $Id$
 
 EAPI="5"
 ETYPE="sources"
 KEYWORDS="~amd64"
 
-HOMEPAGE="http://www.kernel.org/pub/linux/kernel/projects/rt/"
+HOMEPAGE="https://www.kernel.org/pub/linux/kernel/projects/rt/"
 
 inherit versionator
 

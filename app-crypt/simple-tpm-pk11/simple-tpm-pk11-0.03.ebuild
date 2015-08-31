@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/simple-tpm-pk11/simple-tpm-pk11-0.03.ebuild,v 1.1 2015/05/19 20:49:24 perfinion Exp $
+# $Id$
 
 EAPI=5
 
@@ -21,6 +21,7 @@ else
 fi
 
 IUSE=""
+RESTRICT="test" # needs to communicate with the TPM and gtest is all broken
 
 DEPEND="app-crypt/tpm-tools[pkcs11]
 	dev-libs/opencryptoki[tpm]

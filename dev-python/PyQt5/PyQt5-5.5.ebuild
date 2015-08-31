@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/PyQt5/PyQt5-5.5.ebuild,v 1.1 2015/07/25 00:05:11 pesa Exp $
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python{2_7,3_3,3_4} )
@@ -14,10 +14,10 @@ HOMEPAGE="http://www.riverbankcomputing.com/software/pyqt/intro
 MY_PN="PyQt-gpl"
 if [[ ${PV} == *_pre* ]]; then
 	MY_P=${MY_PN}-${PV%_pre*}-snapshot-${REVISION}
-	SRC_URI="http://dev.gentoo.org/~pesa/distfiles/${MY_P}.tar.xz"
+	SRC_URI="https://dev.gentoo.org/~pesa/distfiles/${MY_P}.tar.xz"
 else
 	MY_P=${MY_PN}-${PV}
-	SRC_URI="http://www.riverbankcomputing.com/static/Downloads/${PN}/${MY_P}.tar.gz"
+	SRC_URI="mirror://sourceforge/pyqt/${MY_P}.tar.gz"
 fi
 
 LICENSE="GPL-3"

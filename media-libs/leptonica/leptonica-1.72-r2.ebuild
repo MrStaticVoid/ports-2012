@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/leptonica/leptonica-1.72-r2.ebuild,v 1.1 2015/06/04 23:01:01 chewi Exp $
+# $Id$
 
 EAPI=5
 
 inherit autotools-multilib
 
 DESCRIPTION="C library for image processing and analysis"
-HOMEPAGE="http://code.google.com/p/leptonica/"
+HOMEPAGE="https://code.google.com/p/leptonica/"
 SRC_URI="http://www.leptonica.com/source/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
