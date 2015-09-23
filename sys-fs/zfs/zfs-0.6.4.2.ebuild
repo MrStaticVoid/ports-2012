@@ -103,7 +103,7 @@ src_configure() {
 src_install() {
 	autotools-utils_src_install
 	gen_usr_ldscript -a uutil nvpair zpool zfs zfs_core
-	rm -rf "${ED}usr/lib/dracut"
+	#rm -rf "${ED}usr/lib/dracut"
 	use test-suite || rm -rf "${ED}usr/share/zfs"
 
 	use bash-completion && newbashcomp "${FILESDIR}/bash-completion-r1" zfs
