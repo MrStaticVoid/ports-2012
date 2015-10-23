@@ -7,7 +7,7 @@ inherit kde4-meta-pkg
 
 DESCRIPTION="kdepim - merge this to pull in all kdepim-derived packages"
 HOMEPAGE+=" https://community.kde.org/KDE_PIM"
-KEYWORDS="amd64 ~arm ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ~arm ppc ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="nls"
 
 RDEPEND="
@@ -31,13 +31,8 @@ RDEPEND="
 	$(add_kdebase_dep korganizer)
 	$(add_kdebase_dep ktimetracker)
 	$(add_kdebase_dep ktnef)
-	nls? ( || (
-		(
-			$(add_kdeapps_dep kde4-l10n '' 15.04.0)
-		)
-		(
-			$(add_kdeapps_dep kde4-l10n '' 4.14.3)
-			$(add_kdebase_dep kdepim-l10n '' 4.14.3)
-		)
-	) )
+	nls? (
+		$(add_kdeapps_dep kde4-l10n '' 4.14.3)
+		$(add_kdebase_dep kdepim-l10n '' 4.14.3)
+	)
 "

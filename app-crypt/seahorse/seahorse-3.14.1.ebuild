@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,24 +13,26 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Seahorse"
 LICENSE="GPL-2+ FDL-1.1+"
 SLOT="0"
 IUSE="debug ldap zeroconf"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
 
 COMMON_DEPEND="
-	>=app-crypt/gcr-3.14.0:=
-	>=dev-libs/glib-2.42.0:2
-	>=x11-libs/gtk+-3.14.0:3
-	>=app-crypt/libsecret-0.18
-	>=net-libs/libsoup-2.48.0:2.4
+	>=app-crypt/gcr-3.11.91:=
+	>=dev-libs/glib-2.10:2
+	>=x11-libs/gtk+-3.4:3
+	>=app-crypt/libsecret-0.16
+	>=net-libs/libsoup-2.33.92:2.4
 	x11-misc/shared-mime-info
 
 	net-misc/openssh
 	>=app-crypt/gpgme-1
 	>=app-crypt/gnupg-1.4
+	<app-crypt/gnupg-2.1
 
 	ldap? ( net-nds/openldap:= )
 	zeroconf? ( >=net-dns/avahi-0.6:= )
 "
 DEPEND="${COMMON_DEPEND}
+	dev-util/gdbus-codegen
 	>=dev-util/intltool-0.35
 	sys-devel/gettext
 	virtual/pkgconfig

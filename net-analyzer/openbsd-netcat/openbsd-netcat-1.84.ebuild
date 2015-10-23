@@ -1,6 +1,8 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=5
+EAPI=4
 
 inherit eutils toolchain-funcs rpm
 
@@ -10,7 +12,7 @@ SRC_URI="ftp://ftp.redhat.com/pub/redhat/linux/enterprise/6Server/en/os/SRPMS/nc
 LICENSE="BSD"
 SLOT="0"
 
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86"
 
 IUSE="static"
 

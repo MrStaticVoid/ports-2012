@@ -1,5 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -7,12 +8,12 @@ PLOCALES="de ru"
 inherit bash-completion-r1 eutils l10n
 
 DESCRIPTION="Search and query ebuilds, portage incl. local settings, ext. overlays, version changes, and more"
-HOMEPAGE="http://github.com/vaeth/eix/"
-SRC_URI="mirror://funtoo/${P}.tar.xz"
+HOMEPAGE="https://github.com/vaeth/eix/"
+SRC_URI="https://dev.gentoo.org/~axs/distfiles/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="debug +dep doc nls optimization security strong-optimization strong-security sqlite swap-remote tools"
 
 BOTHDEPEND="sqlite? ( >=dev-db/sqlite-3 )
@@ -34,7 +35,6 @@ pkg_setup() {
 src_prepare() {
 	sed -i -e "s'/'${EPREFIX}/'" -- "${S}"/tmpfiles.d/eix.conf
 	epatch_user
-	epatch "${FILESDIR}/${PN}-0.30.3-disable-rsync.patch"
 }
 
 src_configure() {

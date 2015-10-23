@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -12,17 +14,17 @@ HOMEPAGE="http://fileroller.sourceforge.net/ https://wiki.gnome.org/Apps/FileRol
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
 IUSE="nautilus packagekit"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux"
 
 # gdk-pixbuf used extensively in the source
 # cairo used in eggtreemultidnd.c
 # pango used in fr-window
 RDEPEND="
 	>=app-arch/libarchive-3:=
-	>=dev-libs/glib-2.42:2
-	>=dev-libs/json-glib-1.0.2
-	>=x11-libs/gtk+-3.14:3
-	>=x11-libs/libnotify-0.7.6:=
+	>=dev-libs/glib-2.36:2
+	>=dev-libs/json-glib-0.14
+	>=x11-libs/gtk+-3.13.2:3
+	>=x11-libs/libnotify-0.4.3:=
 	sys-apps/file
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2

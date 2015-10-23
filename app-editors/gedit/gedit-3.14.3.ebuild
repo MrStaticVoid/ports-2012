@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -20,12 +22,12 @@ IUSE="+introspection +python spell vala"
 # we need to fix that
 REQUIRED_USE="python? ( ^^ ( $(python_gen_useflags '*') ) )"
 
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 
 # X libs are not needed for OSX (aqua)
 COMMON_DEPEND="
 	>=dev-libs/libxml2-2.5.0:2
-	>=dev-libs/glib-2.42:2[dbus]
+	>=dev-libs/glib-2.40:2[dbus]
 	>=x11-libs/gtk+-3.14:3[introspection?]
 	>=x11-libs/gtksourceview-3.14.3:3.0[introspection?]
 	>=dev-libs/libpeas-1.7.0[gtk]
@@ -37,11 +39,11 @@ COMMON_DEPEND="
 
 	net-libs/libsoup:2.4
 
-	introspection? ( >=dev-libs/gobject-introspection-1.42 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.3 )
 	python? (
 		${PYTHON_DEPS}
-		>=dev-libs/gobject-introspection-1.42
-		>=x11-libs/gtk+-3.14:3[introspection]
+		>=dev-libs/gobject-introspection-0.9.3
+		>=x11-libs/gtk+-3:3[introspection]
 		dev-python/pycairo[${PYTHON_USEDEP}]
 		>=dev-python/pygobject-3:3[cairo,${PYTHON_USEDEP}]
 		dev-libs/libpeas[${PYTHON_USEDEP}] )
@@ -50,7 +52,7 @@ COMMON_DEPEND="
 		>=app-text/iso-codes-0.35 )
 "
 RDEPEND="${COMMON_DEPEND}
-	x11-themes/adwaita-icon-theme
+	x11-themes/gnome-icon-theme-symbolic
 "
 DEPEND="${COMMON_DEPEND}
 	${vala_depend}

@@ -14,7 +14,7 @@ inherit toolchain-funcs mysql-multilib
 IUSE="$IUSE"
 
 # REMEMBER: also update eclass/mysql*.eclass before committing!
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~sparc-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~sparc-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
 # When MY_EXTRAS is bumped, the index should be revised to exclude these.
 EPATCH_EXCLUDE=''
@@ -29,6 +29,14 @@ RDEPEND="${RDEPEND}"
 # validate_password plugin uses exceptions when it shouldn't yet (until 5.7)
 # disable until we see what happens with it
 MYSQL_CMAKE_NATIVE_DEFINES="-DWITHOUT_VALIDATE_PASSWORD=1"
+
+src_prepare() {
+	mysql-multilib_src_prepare
+	if use libressl ; then
+		sed -i 's/OPENSSL_MAJOR_VERSION STREQUAL "1"/OPENSSL_MAJOR_VERSION STREQUAL "2"/' \
+			"${S}/cmake/ssl.cmake" || die
+	fi
+}
 
 # Official test instructions:
 # USE='embedded extraengine perl ssl static-libs community' \

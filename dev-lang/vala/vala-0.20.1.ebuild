@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -6,11 +8,11 @@ GCONF_DEBUG="no"
 inherit gnome2
 
 DESCRIPTION="Compiler for the GObject type system"
-HOMEPAGE="http://live.gnome.org/Vala"
+HOMEPAGE="https://live.gnome.org/Vala"
 
 LICENSE="LGPL-2.1"
 SLOT="0.20"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 IUSE="test +vapigen"
 
 RDEPEND="

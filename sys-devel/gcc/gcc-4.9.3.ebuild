@@ -48,7 +48,7 @@ SRC_URI="$SRC_URI http://www.mpfr.org/mpfr-${MPFR_VER}/mpfr-${MPFR_VER}.tar.xz"
 SRC_URI="$SRC_URI mirror://gnu/gmp/gmp-${GMP_VER}${GMP_EXTRAVER}.tar.xz"
 
 #Hardened Support:
-SRC_URI="$SRC_URI hardened? ( mirror://gentoo/${SPECS_A} mirror://gentoo/${PIE_A} )"
+SRC_URI="$SRC_URI hardened? ( mirror://funtoo/gcc/${SPECS_A} mirror://funtoo/gcc/${PIE_A} )"
 
 # Graphite support:
 SRC_URI="$SRC_URI graphite? ( mirror://gnu/cloog-${CLOOG_VER}.tar.gz http://isl.gforge.inria.fr/isl-${ISL_VER}.tar.bz2 )"
@@ -63,7 +63,7 @@ DEPEND="${RDEPEND} >=sys-devel/bison-1.875 >=sys-devel/flex-2.5.4 elibc_glibc? (
 PDEPEND=">=sys-devel/gcc-config-1.5 >=sys-devel/libtool-2.4.3 elibc_glibc? ( >=sys-libs/glibc-2.8 )"
 
 tc-is-cross-compiler() {
-	[[ ${CBUILD}:-${CHOST}} != ${CHOST} ]]
+	[[ ${CBUILD:-${CHOST}} != ${CHOST} ]]
 }
 
 is_crosscompile() {
@@ -504,6 +504,9 @@ pkg_postrm() {
 }
 
 pkg_postinst() {
+	if is_crosscompile ; then
+		return
+	fi
 
 	# Here, we will auto-enable the new compiler if none is currently enabled, or
 	# if this is an _._.x upgrade to an already-installed compiler.
@@ -515,13 +518,34 @@ pkg_postinst() {
 	local do_config="yes"
 	curr_gcc_config=$(env -i ROOT="${ROOT}" gcc-config -c ${CTARGET} 2>/dev/null)
 	if [ -n "$curr_gcc_config" ]; then
-		CURR_GCC_CONFIG_VER=$(gcc-config -S ${curr_gcc_config} | awk '{print $2}')
-		if [ "${CURR_GCC_CONFIG_VER%%.*}" != "${GCC_CONFIG_VER%%.*}" ]; then
-			# major versions don't match, don't run gcc-config
+		CURR_GCC_CONFIG_VER="$(gcc-config -S ${curr_gcc_config} | awk '{print $2}')"
+		CURR_MAJOR="${CURR_GCC_CONFIG_VER%%.*}"
+		MAJOR="${GCC_CONFIG_VER%%.*}"
+		if [ "${CURR_MAJOR}" -gt "${MAJOR}" ]; then
+			do_config="yes"
+		elif [ "${CURR_MAJOR}" -lt "${MAJOR}" ]; then
 			do_config="no"
+		else
+			# major versions match -- but if minor version of existing is greater, don't do gcc config
+			CURR_MINOR="${CURR_MAJOR%%.*}"
+			MINOR="${MAJOR%%.*}"
+			if [ "${CURR_MINOR}" -gt "${MINOR}" ]; then
+				do_config="yes"
+			elif [ "${CURR_MINOR}" -lt "${MINOR}" ]; then
+				do_config="no"
+			else
+				# minor versions match -- look at the x.x.Z release to figure out whether to auto-enable
+				CURR_REL="${CURR_MINOR%%.*}"
+				REL="${MINOR%%.}"
+				if [ "${CURR_REL}" -gt "${REL}" ]; then
+					do_config="yes"
+				elif [ "${CURR_REL}" -gt "${REL}" ]; then
+					do_config="no"
+				fi
+			fi
 		fi
-		use multislot && do_config="no"
 	fi
+	use multislot && do_config="no"
 	if [ "$do_config" == "yes" ]; then
 		gcc-config ${CTARGET}-${GCC_CONFIG_VER}
 	else

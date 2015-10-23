@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=dev-libs/boost:= dev-libs/expat >=dev-libs/json-c-0.11-r1:= dev-libs/libgcrypt:0= net-misc/curl sys-libs/glibc dev-libs/yajl sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=An open source Linux client for Google Drive
+EAPI=5
+HOMEPAGE=https://github.com/vitalif/grive2
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=dev-libs/boost:= dev-libs/expat >=dev-libs/json-c-0.11-r1:= dev-libs/libgcrypt:0= net-misc/curl sys-libs/glibc dev-libs/yajl
+SLOT=0
+SRC_URI=https://github.com/vitalif/grive2/archive/5dc7028c8aebb26d35ed31c4b07ac180cc1887c9.tar.gz -> grive-0.4.0_pre20150905.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_md5_=86286efe93e49e7a03cf6d890981325a

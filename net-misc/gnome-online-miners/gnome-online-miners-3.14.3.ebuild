@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,13 +13,13 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeOnlineMiners"
 LICENSE="GPL-2+"
 SLOT="0"
 IUSE=""
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 
 # libgdata[gnome] needed for goa support
 RDEPEND="
-	>=app-misc/tracker-1
+	>=app-misc/tracker-1:0=
 	>=dev-libs/glib-2.35.1:2
-	>=dev-libs/libgdata-0.15.2:0[gnome]
+	>=dev-libs/libgdata-0.15.2:0=[gnome]
 	>=media-libs/grilo-0.2.6:0.2
 	>=net-libs/gnome-online-accounts-3.13.3
 	>=net-libs/libgfbgraph-0.2.2:0.2

@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -6,11 +8,11 @@ GCONF_DEBUG="no"
 inherit gnome2
 
 DESCRIPTION="Extra GNOME icons for specific devices and file types"
-HOMEPAGE="http://www.gnome.org/ http://git.gnome.org/browse/gnome-icon-theme-extras/"
+HOMEPAGE="https://www.gnome.org/ https://git.gnome.org/browse/gnome-icon-theme-extras/"
 
 LICENSE="CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE=""
 
 RDEPEND=">=x11-themes/hicolor-icon-theme-0.10"

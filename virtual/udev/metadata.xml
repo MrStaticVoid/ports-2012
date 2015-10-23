@@ -4,10 +4,10 @@
 	<maintainer>
 		<email>udev-bugs@gentoo.org</email>
 	</maintainer>
-	<use>
-		<flag name='gudev'>Build and install gudev support</flag>
-		<flag name='hwdb'>Build and install hwdb support</flag>
-		<flag name='introspection'>Build and install introspection support</flag>
-		<flag name='keymap'>Build and install keymap support</flag>
-	</use>
+	<maintainer>
+		<email>eudev@gentoo.org</email>
+	</maintainer>
+	<maintainer>
+		<email>systemd@gentoo.org</email>
+	</maintainer>
 </pkgmetadata>

@@ -1,10 +1,12 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
 # Does not work with py3 here
 # It might work with py:2.5 but I didn't test that
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="sqlite"
 
 inherit eutils python-single-r1 multiprocessing autotools
@@ -21,7 +23,7 @@ case ${PV} in
 	MY_P="${PN}-${MY_PV}"
 	SRC_URI="https://github.com/xbmc/xbmc/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
 		!java? ( mirror://gentoo/${P}-generated-addons.tar.xz )"
-	KEYWORDS="*"
+	KEYWORDS="~amd64 ~x86"
 	S=${WORKDIR}/${MY_P}
 	;;
 *|*_p*)
@@ -29,7 +31,7 @@ case ${PV} in
 	MY_P="${PN}-${MY_PV}"
 	SRC_URI="http://mirrors.xbmc.org/releases/source/${MY_P}.tar.gz
 		http://mirrors.xbmc.org/releases/source/${MY_P}-generated-addons.tar.xz"
-	KEYWORDS="*"
+	KEYWORDS="~amd64 ~x86"
 
 	S=${WORKDIR}/${MY_P}-${CODENAME}
 	;;
@@ -40,7 +42,7 @@ HOMEPAGE="http://xbmc.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="airplay alsa altivec avahi bluetooth bluray caps cec css debug +fishbmc gles goom java joystick midi mysql nfs +opengl profile +projectm pulseaudio pvr +rsxs rtmp +samba +sdl cpu_flags_x86_sse cpu_flags_x86_sse2 sftp udisks upnp upower +usb vaapi vdpau webserver +X +xrandr"
+IUSE="airplay alsa altivec avahi bluetooth bluray caps cec css debug +fishbmc gles goom java joystick libav midi mysql nfs +opengl profile +projectm pulseaudio pvr +rsxs rtmp +samba +sdl cpu_flags_x86_sse cpu_flags_x86_sse2 sftp udisks upnp upower +usb vaapi vdpau webserver +X +xrandr"
 REQUIRED_USE="
 	pvr? ( mysql )
 	rsxs? ( X )
@@ -74,6 +76,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	media-libs/jbigkit
 	>=media-libs/libass-0.9.7
 	bluray? ( media-libs/libbluray )
+	css? ( media-libs/libdvdcss )
 	media-libs/libmad
 	media-libs/libmodplug
 	media-libs/libmpeg2
@@ -94,16 +97,15 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	media-libs/tiff
 	pulseaudio? ( media-sound/pulseaudio )
 	media-sound/wavpack
-	|| ( >=media-video/ffmpeg-1.2.1:0=[encode] ( media-libs/libpostproc >=media-video/libav-10_alpha:=[encode] ) )
+	!libav? ( >=media-video/ffmpeg-1.2.1:0=[encode] )
+	libav? ( media-libs/libpostproc:0=
+		>=media-video/libav-10_alpha:0=[encode] )
 	rtmp? ( media-video/rtmpdump )
 	avahi? ( net-dns/avahi )
 	nfs? ( net-fs/libnfs )
 	webserver? ( net-libs/libmicrohttpd[messages] )
 	sftp? ( net-libs/libssh[sftp] )
 	net-misc/curl
-	media-libs/libsidplay
-	media-libs/libhdhomerun
-	media-libs/libdvdread[css?]
 	samba? ( >=net-fs/samba-3.4.6[smbclient(+)] )
 	bluetooth? ( net-wireless/bluez )
 	sys-apps/dbus
@@ -123,7 +125,8 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	vaapi? ( x11-libs/libva[opengl] )
 	vdpau? (
 		|| ( x11-libs/libvdpau >=x11-drivers/nvidia-drivers-180.51 )
-		|| ( >=media-video/ffmpeg-1.2.1:0=[vdpau] >=media-video/libav-10_alpha:=[vdpau] )
+		!libav? ( >=media-video/ffmpeg-1.2.1:0=[vdpau] )
+		libav? ( >=media-video/libav-10_alpha:0=[vdpau] )
 	)
 	X? (
 		x11-apps/xdpyinfo
@@ -133,6 +136,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 		x11-libs/libXrender
 	)"
 RDEPEND="${COMMON_DEPEND}
+	!media-tv/kodi
 	udisks? ( sys-fs/udisks:0 )
 	upower? ( || ( sys-power/upower sys-power/upower-pm-utils ) )"
 DEPEND="${COMMON_DEPEND}
@@ -142,7 +146,7 @@ DEPEND="${COMMON_DEPEND}
 	X? ( x11-proto/xineramaproto )
 	dev-util/cmake
 	x86? ( dev-lang/nasm )
-	java? ( virtual/jre dev-java/groovy )"
+	java? ( virtual/jre )"
 # Force java for latest git version to avoid having to hand maintain the
 # generated addons package.  #488118
 [[ ${PV} == "9999" ]] && DEPEND+=" virtual/jre"
@@ -150,7 +154,7 @@ DEPEND="${COMMON_DEPEND}
 pkg_setup() {
 	python-single-r1_pkg_setup
 
-	if has_version 'media-video/libav' ; then
+	if use libav ; then
 		ewarn "Building ${PN} against media-video/libav is not supported upstream."
 		ewarn "It requires building a (small) wrapper library with some code"
 		ewarn "from media-video/ffmpeg."
@@ -163,10 +167,6 @@ src_unpack() {
 }
 
 src_prepare() {
-	# Debian patches:
-	epatch "${FILESDIR}"/debian/*
-
-	# Gentoo patches:
 	epatch "${FILESDIR}"/${PN}-9999-nomythtv.patch
 	epatch "${FILESDIR}"/${PN}-9999-no-arm-flags.patch #400617
 	# The mythtv patch touches configure.ac, so force a regen
@@ -230,7 +230,7 @@ src_configure() {
 		--disable-ccache \
 		--disable-optimizations \
 		--enable-external-libraries \
-		$(has_version 'media-video/libav' && echo "--enable-libav-compat") \
+		$(usex libav "--enable-libav-compat" "") \
 		$(use_enable airplay) \
 		$(use_enable avahi) \
 		$(use_enable bluray libbluray) \

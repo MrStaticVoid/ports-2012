@@ -19,11 +19,11 @@ else
 	SRC_URI="https://${GITHUB_URI}/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 	S="${WORKDIR}/${MY_P}"
 	DOCKER_GITCOMMIT="786b29d"
-	KEYWORDS="~amd64"
+	KEYWORDS="amd64"
 	[ "$DOCKER_GITCOMMIT" ] || die "DOCKER_GITCOMMIT must be added manually for each bump!"
 fi
 
-inherit bash-completion-r1 linux-info multilib systemd udev user
+inherit bash-completion-r1 eutils linux-info multilib systemd udev user
 
 LICENSE="Apache-2.0"
 SLOT="0"

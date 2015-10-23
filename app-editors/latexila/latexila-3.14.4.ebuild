@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,13 +13,13 @@ HOMEPAGE="https://wiki.gnome.org/Apps/LaTeXila"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 IUSE="+latexmk rubber"
 
 COMMON_DEPEND="
 	app-text/enchant
 	>=app-text/gtkspell-3.0.4:3
-	>=dev-libs/glib-2.42:2[dbus]
+	>=dev-libs/glib-2.40:2[dbus]
 	>=dev-libs/libgee-0.10:0.8=
 	gnome-base/gsettings-desktop-schemas
 	>=x11-libs/gtk+-3.14:3

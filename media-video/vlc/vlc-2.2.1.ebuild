@@ -1,6 +1,8 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=5
+EAPI="5"
 
 SCM=""
 if [ "${PV%9999}" != "${PV}" ] ; then
@@ -33,24 +35,24 @@ LICENSE="LGPL-2.1 GPL-2"
 SLOT="0/5-8" # vlc - vlccore
 
 if [ "${PV%9999}" = "${PV}" ] ; then
-	KEYWORDS="~*"
+	KEYWORDS="~amd64 ~arm ~ppc ~ppc64 -sparc ~x86 ~x86-fbsd"
 else
-	KEYWORDS="~*"
+	KEYWORDS=""
 fi
 
-IUSE="a52 aalib alsa altivec atmo +audioqueue avahi +avcodec
+IUSE="a52 aalib alsa altivec atmo +audioqueue +avcodec
 	+avformat bidi bluray cdda cddb chromaprint dbus dc1394 debug
 	directfb directx dts dvb +dvbpsi dvd dxva2 elibc_glibc +encode faad fdk
 	fluidsynth +ffmpeg flac fontconfig +gcrypt gme gnome gnutls
-	growl httpd ieee1394 jack jpeg kate kde libass libcaca libnotify
+	growl httpd ieee1394 jack jpeg kate kde libass libav libcaca libnotify
 	+libsamplerate libtiger linsys libtar lirc live lua
 	macosx-dialog-provider macosx-eyetv macosx-quartztext macosx-qtkit
 	matroska media-library cpu_flags_x86_mmx modplug mp3 mpeg
 	mtp musepack ncurses neon ogg omxil opencv opengl optimisememory opus
-	oss png postproc projectm pulseaudio +qt4 qt5 rdp rtsp run-as-root samba
+	png postproc projectm pulseaudio +qt4 qt5 rdp rtsp run-as-root samba
 	schroedinger sdl sdl-image sftp shout sid skins speex cpu_flags_x86_sse svg +swscale
 	taglib theora tremor truetype twolame udev upnp vaapi v4l vcdx vdpau
-	vlm vnc vorbis vpx wma-fixed +X x264 x265 +xcb xml xv zvbi"
+	vlm vnc vorbis vpx wma-fixed +X x264 x265 +xcb xml xv zeroconf zvbi"
 
 RDEPEND="
 		!<media-video/ffmpeg-1.2:0
@@ -61,9 +63,14 @@ RDEPEND="
 		a52? ( >=media-libs/a52dec-0.7.4-r3:0 )
 		aalib? ( media-libs/aalib:0 )
 		alsa? ( >=media-libs/alsa-lib-1.0.24:0 )
-		avahi? ( >=net-dns/avahi-0.6:0[dbus] )
-		avcodec? ( media-video/ffmpeg )
-		avformat? ( media-video/ffmpeg )
+		avcodec? (
+			!libav? ( media-video/ffmpeg:0= )
+			libav? ( >=media-video/libav-11:0= )
+		)
+		avformat? (
+			!libav? ( media-video/ffmpeg:0= )
+			libav? ( media-video/libav:0= )
+		)
 		bidi? ( >=dev-libs/fribidi-0.10.4:0 )
 		bluray? ( >=media-libs/libbluray-0.3:0 )
 		cddb? ( >=media-libs/libcddb-1.2:0 )
@@ -72,7 +79,7 @@ RDEPEND="
 		dc1394? ( >=sys-libs/libraw1394-2.0.1:0 >=media-libs/libdc1394-2.1:2 )
 		directfb? ( dev-libs/DirectFB:0 sys-libs/zlib:0 )
 		dts? ( >=media-libs/libdca-0.0.5:0 )
-		dvbpsi? ( >=media-libs/libdvbpsi-0.2.1:0 )
+		dvbpsi? ( >=media-libs/libdvbpsi-0.2.1:0= )
 		dvd? ( >=media-libs/libdvdread-4.9:0 >=media-libs/libdvdnav-4.9:0 )
 		elibc_glibc? ( >=sys-libs/glibc-2.8:2.2 )
 		faad? ( >=media-libs/faad2-2.6.1:0 )
@@ -109,9 +116,11 @@ RDEPEND="
 		opencv? ( >media-libs/opencv-2:0 )
 		opengl? ( virtual/opengl:0 >=x11-libs/libX11-1.3.99.901:0 )
 		opus? ( >=media-libs/opus-1.0.3:0 )
-		oss? ( media-sound/oss )
 		png? ( media-libs/libpng:0= sys-libs/zlib:0 )
-		postproc? ( >=media-video/ffmpeg-2.2 )
+		postproc? (
+			!libav? ( >=media-video/ffmpeg-2.2:0= )
+			libav? ( media-libs/libpostproc:0= )
+		)
 		projectm? ( media-libs/libprojectm:0 media-fonts/dejavu:0 )
 		pulseaudio? ( >=media-sound/pulseaudio-1:0 )
 		qt4? ( >=dev-qt/qtgui-4.6:4 >=dev-qt/qtcore-4.6:4 )
@@ -127,7 +136,10 @@ RDEPEND="
 		skins? ( x11-libs/libXext:0 x11-libs/libXpm:0 x11-libs/libXinerama:0 )
 		speex? ( media-libs/speex:0 )
 		svg? ( >=gnome-base/librsvg-2.9:2 >=x11-libs/cairo-1.13.1:0 )
-		swscale? ( media-video/ffmpeg )
+		swscale? (
+			!libav? ( media-video/ffmpeg:0= )
+			libav? ( media-video/libav:0= )
+		)
 		taglib? ( >=media-libs/taglib-1.9:0 sys-libs/zlib:0 )
 		theora? ( >=media-libs/libtheora-1.0_beta3:0 )
 		tremor? ( media-libs/tremor:0 )
@@ -137,13 +149,23 @@ RDEPEND="
 		udev? ( >=virtual/udev-142:0 )
 		upnp? ( net-libs/libupnp:0 )
 		v4l? ( media-libs/libv4l:0 )
-		vaapi? ( x11-libs/libva:0[X,drm] media-video/ffmpeg:0=[vaapi] )
-		vcdx? ( >=dev-libs/libcdio-0.78.2:0 >=media-video/vcdimager-0.7.22:0 )"
+		vaapi? (
+			x11-libs/libva:0[X,drm]
+			!libav? ( media-video/ffmpeg:0=[vaapi] )
+			libav? ( media-video/libav:0=[vaapi] )
+		)
+		vcdx? ( >=dev-libs/libcdio-0.78.2:0 >=media-video/vcdimager-0.7.22:0 )
+		zeroconf? ( >=net-dns/avahi-0.6:0[dbus] )
+"
 
 # Temporarily block non-live FFMPEG versions as they break vdpau, 9999 works;
 # thus we'll have to wait for a new release there.
 RDEPEND="${RDEPEND}
-		vdpau? ( >=x11-libs/libvdpau-0.6:0 >=media-video/ffmpeg-2.2 )
+		vdpau? (
+			>=x11-libs/libvdpau-0.6:0
+			!libav? ( >=media-video/ffmpeg-2.2:0= )
+			libav? ( >=media-video/libav-10:0= )
+		)
 		vnc? ( >=net-libs/libvncserver-0.9.9:0 )
 		vorbis? ( >=media-libs/libvorbis-1.1:0 )
 		vpx? ( media-libs/libvpx:0 )
@@ -212,7 +234,7 @@ src_prepare() {
 	# config.h:792: warning: ignoring #pragma STDC FENV_ACCESS [-Wunknown-pragmas]
 	# config.h:793: warning: ignoring #pragma STDC FP_CONTRACT [-Wunknown-pragmas]
 	#
-	# http://gcc.gnu.org/c99status.html
+	# https://gcc.gnu.org/c99status.html
 	if [[ "$(tc-getCC)" == *"gcc"* ]] ; then
 		sed -i 's/ifndef __FAST_MATH__/if 0/g' configure.ac || die
 	fi
@@ -246,7 +268,8 @@ src_prepare() {
 	# Bug #541678
 	epatch "${FILESDIR}"/qt4-select.patch
 
-	use oss && epatch "${FILESDIR}"/${PN}-2.2.x-oss-support.patch
+	# Add missed header imgproc_c.h, imgproc.hpp, bug #554562
+	epatch "${FILESDIR}"/opencv-3.0.0.patch
 
 	# Don't use --started-from-file when not using dbus.
 	if ! use dbus ; then
@@ -294,6 +317,8 @@ src_configure() {
 		qt_flag="--enable-qt=4"
 	elif use qt5 ; then
 		qt_flag="--enable-qt=5"
+	else
+		qt_flag="--disable-qt"
 	fi
 
 	econf \
@@ -311,7 +336,6 @@ src_configure() {
 		$(use_enable altivec) \
 		$(use_enable atmo) \
 		$(use_enable audioqueue) \
-		$(use_enable avahi bonjour) \
 		$(use_enable avcodec) \
 		$(use_enable avformat) \
 		$(use_enable bidi fribidi) \
@@ -375,7 +399,6 @@ src_configure() {
 		$(use_enable opengl glspectrum) \
 		$(use_enable opus) \
 		$(use_enable optimisememory optimize-memory) \
-		$(use_enable oss) \
 		$(use_enable png) \
 		$(use_enable postproc) \
 		$(use_enable projectm) \
@@ -419,6 +442,7 @@ src_configure() {
 		$(use_enable xcb) \
 		$(use_enable xml libxml2) \
 		$(use_enable xv xvideo) \
+		$(use_enable zeroconf bonjour) \
 		$(use_enable zvbi) $(use_enable !zvbi telx) \
 		--disable-asdcp \
 		--disable-coverage \
@@ -436,6 +460,7 @@ src_configure() {
 		--disable-mmal-codec \
 		--disable-mmal-vout \
 		--disable-opensles \
+		--disable-oss \
 		--disable-quicktime \
 		--disable-rpi-omxil \
 		--disable-shine \

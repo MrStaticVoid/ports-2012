@@ -1,17 +1,19 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit gnome2 multibuild python-r1
 
 DESCRIPTION="A collection of documentation utilities for the Gnome project"
-HOMEPAGE="http://live.gnome.org/GnomeDocUtils"
+HOMEPAGE="https://live.gnome.org/GnomeDocUtils"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 IUSE=""
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -55,7 +57,7 @@ src_configure() {
 }
 
 src_compile() {
-	python_foreach_impl run_in_build_dir gnome2_src_compile -j1;
+	python_foreach_impl run_in_build_dir gnome2_src_compile
 }
 
 src_test() {
@@ -64,6 +66,6 @@ src_test() {
 
 src_install() {
 	dodoc AUTHORS ChangeLog NEWS README
-	python_foreach_impl run_in_build_dir gnome2_src_install -j1;
+	python_foreach_impl run_in_build_dir gnome2_src_install
 	python_replicate_script "${ED}"/usr/bin/xml2po
 }

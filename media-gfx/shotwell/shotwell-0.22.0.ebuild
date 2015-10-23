@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -19,7 +21,7 @@ SRC_URI="
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE=""
 
 CORE_SUPPORTED_LANGUAGES="
@@ -46,14 +48,14 @@ RDEPEND="
 	media-libs/gst-plugins-good:1.0
 	media-libs/gstreamer:1.0
 	media-libs/lcms:2
-	>=media-libs/libexif-0.6.16
-	>=media-libs/libgphoto2-2.4.2
-	>=media-libs/libraw-0.13.2
+	>=media-libs/libexif-0.6.16:=
+	>=media-libs/libgphoto2-2.4.2:=
+	>=media-libs/libraw-0.13.2:=
 	>=net-libs/libsoup-2.26.0:2.4
 	>=net-libs/rest-0.7:0.7
 	>=net-libs/webkit-gtk-1.4:3
 	virtual/libgudev:=[introspection]
-	>=x11-libs/gtk+-3.14:3[X]"
+	>=x11-libs/gtk+-3.12.2:3[X]"
 DEPEND="${RDEPEND}
 	$(vala_depend)
 	>=sys-devel/m4-1.4.13"

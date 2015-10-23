@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -8,20 +10,20 @@ PYTHON_REQ_USE="xml"
 inherit gnome2 python-r1
 
 DESCRIPTION="Interactive Python accessibility explorer"
-HOMEPAGE="http://live.gnome.org/Accerciser"
+HOMEPAGE="https://wiki.gnome.org/Apps/Accerciser"
 
 LICENSE="BSD CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND="
-	>=app-accessibility/at-spi2-core-2.14.0:2
-	>=dev-python/pygobject-3.14.0:3[${PYTHON_USEDEP}]
-	>=x11-libs/gtk+-3.14.0:3[introspection]
+	>=app-accessibility/at-spi2-core-2.5.2:2
+	>=dev-python/pygobject-2.90.3:3[${PYTHON_USEDEP}]
+	>=x11-libs/gtk+-3.1.13:3[introspection]
 
 	dev-libs/atk[introspection]
-	>=dev-libs/glib-2.42:2
+	>=dev-libs/glib-2.28:2
 	dev-libs/gobject-introspection
 	>=dev-python/ipython-0.11[${PYTHON_USEDEP}]
 	>=dev-python/pyatspi-2.1.5[${PYTHON_USEDEP}]

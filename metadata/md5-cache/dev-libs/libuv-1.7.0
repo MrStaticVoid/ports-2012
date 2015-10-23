@@ -8,5 +8,5 @@ KEYWORDS=~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux
 LICENSE=BSD BSD-2 ISC MIT
 SLOT=0/1
 SRC_URI=https://github.com/libuv/libuv/archive/v1.7.0.tar.gz -> libuv-1.7.0.tar.gz
-_eclasses_=autotools	8056957fdccf2b3cd6e282a4b4551d1a	autotools-utils	106d29d66151588cad8ee4f31122cffb	eutils	351a78113be5b393c09a2c948701ad36	libtool	7f78cd7d403808a350c9ae23f5821fb4	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	autotools-utils	106d29d66151588cad8ee4f31122cffb	eutils	43da5163ba106e87d22d2e7d6d67537f	libtool	7f78cd7d403808a350c9ae23f5821fb4	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multilib-build	60244ad700ae25a353f08ed889b216a2	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=f562ac01f5d4cfe7a91bd65a92d6630c

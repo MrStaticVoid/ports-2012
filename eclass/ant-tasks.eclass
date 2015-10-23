@@ -1,8 +1,5 @@
-# Eclass for building dev-java/ant-* packages
-#
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
-# Author Vlastimil Babka <caster@gentoo.org>
 # $Id$
 
 # @ECLASS: ant-tasks.eclass
@@ -63,12 +60,12 @@ ANT_TASK_PV="${PV}"
 if [[ ${PV} == *beta2* ]]; then
 	MY_PV=${PV/_beta2/beta}
 	UPSTREAM_PREFIX="http://people.apache.org/dist/ant/v1.7.1beta2/src"
-	GENTOO_PREFIX="http://dev.gentoo.org/~caster/distfiles"
+	GENTOO_PREFIX="https://dev.gentoo.org/~caster/distfiles"
 	ANT_TASK_PV=$(get_version_component_range 1-3)
 elif [[ ${PV} == *_rc* ]]; then
 	MY_PV=${PV/_rc/RC}
-	UPSTREAM_PREFIX="http://dev.gentoo.org/~caster/distfiles"
-	GENTOO_PREFIX="http://dev.gentoo.org/~caster/distfiles"
+	UPSTREAM_PREFIX="https://dev.gentoo.org/~caster/distfiles"
+	GENTOO_PREFIX="https://dev.gentoo.org/~caster/distfiles"
 	ANT_TASK_PV=$(get_version_component_range 1-3)
 else
 	# default for final releases
@@ -76,13 +73,13 @@ else
 	UPSTREAM_PREFIX="mirror://apache/ant/source"
 	case ${PV} in
 	1.9.*)
-		GENTOO_PREFIX="http://dev.gentoo.org/~tomwij/files/dist"
+		GENTOO_PREFIX="https://dev.gentoo.org/~tomwij/files/dist"
 		;;
 	1.8.4)
-		GENTOO_PREFIX="http://dev.gentoo.org/~sera/distfiles"
+		GENTOO_PREFIX="https://dev.gentoo.org/~sera/distfiles"
 		;;
 	*)
-		GENTOO_PREFIX="http://dev.gentoo.org/~caster/distfiles"
+		GENTOO_PREFIX="https://dev.gentoo.org/~caster/distfiles"
 		;;
 	esac
 fi

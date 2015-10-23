@@ -1,11 +1,11 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
-DEPEND=dev-libs/glib:2 dev-libs/gobject-introspection dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.4:3[introspection] || ( dev-lang/vala:0.28 dev-lang/vala:0.26 dev-lang/vala:0.24 dev-lang/vala:0.22 dev-lang/vala:0.20 ) virtual/pkgconfig nls? ( sys-devel/gettext ) >=sys-apps/sed-4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/bzr-2.0.1
+DEPEND=dev-libs/glib:2 dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.11.6:3[introspection] || ( dev-lang/vala:0.28 dev-lang/vala:0.26 dev-lang/vala:0.24 ) virtual/pkgconfig nls? ( sys-devel/gettext ) >=sys-apps/sed-4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/bzr-2.0.1
 DESCRIPTION=A development library for elementary development
 EAPI=5
-HOMEPAGE=http://launchpad.net/granite
+HOMEPAGE=https://launchpad.net/granite
 IUSE=demo nls
 LICENSE=LGPL-3
-RDEPEND=dev-libs/glib:2 dev-libs/gobject-introspection dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.4:3[introspection]
+RDEPEND=dev-libs/glib:2 dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.11.6:3[introspection]
 SLOT=0
-_eclasses_=bzr	745bed5705ae699c707ba26ca9e8929a	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	351a78113be5b393c09a2c948701ad36	flag-o-matic	02090c5a622458303e6bf68837ac6b96	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	vala	335996addec48717e632dfd1f588ef1c
-_md5_=483f05f0ba69e771296dc290d351815c
+_eclasses_=bzr	745bed5705ae699c707ba26ca9e8929a	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	vala	335996addec48717e632dfd1f588ef1c
+_md5_=173bf2afa14f57975b563b7a2862646f

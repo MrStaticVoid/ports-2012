@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,8 +13,8 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Terminal/"
 
 LICENSE="GPL-3+"
 SLOT="0"
-IUSE="debug +deprecated +gnome-shell +nautilus"
-KEYWORDS="*"
+IUSE="debug +gnome-shell +nautilus"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux"
 
 # FIXME: automagic dependency on gtk+[X]
 RDEPEND="
@@ -27,12 +29,15 @@ RDEPEND="
 	gnome-shell? ( gnome-base/gnome-shell )
 	nautilus? ( >=gnome-base/nautilus-3 )
 "
-# gtk+:2 needed for gtk-builder-convert, bug 356239
+# itstool required for help/* with non-en LINGUAS, see bug #549358
+# xmllint required for glib-compile-resources, see bug #549304
 DEPEND="${RDEPEND}
 	app-text/yelp-tools
+	dev-libs/libxml2
 	dev-util/appdata-tools
 	dev-util/gdbus-codegen
 	dev-util/gtk-builder-convert
+	dev-util/itstool
 	>=dev-util/intltool-0.50
 	sys-devel/gettext
 	virtual/pkgconfig
@@ -42,16 +47,6 @@ DOC_CONTENTS="To get previous working directory inherited in new opened
 	tab you will need to add the following line to your ~/.bashrc:\n
 	. /etc/profile.d/vte.sh"
 
-src_prepare() {
-	if use deprecated; then
-	# From Fedora:
-	# http://pkgs.fedoraproject.org/cgit/gnome-terminal.git/tree/restore-transparency.patch?h=f20-gnome-3-12
-	epatch "${FILESDIR}"/${PN}-3.14.1-restore-background-transparency-support.patch
-	fi
-	epatch "${FILESDIR}"/${PN}-3.14.1-no-F1-help.patch
-	gnome2_src_prepare
-}
-
 src_configure() {
 	gnome2_src_configure \
 		--disable-static \
@@ -60,9 +55,6 @@ src_configure() {
 		$(use_enable gnome-shell search-provider) \
 		$(use_with nautilus nautilus-extension) \
 		VALAC=$(type -P true)
-		# Docs are broken in this release.
-		#ITSTOOL=$(type -P true) \
-		#XMLLINT=$(type -P true)
 }
 
 src_install() {

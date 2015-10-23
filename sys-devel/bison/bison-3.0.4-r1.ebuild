@@ -1,24 +1,23 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
-WANT_AUTOMAKE="1.14"
-
-inherit flag-o-matic eutils autotools
+inherit flag-o-matic eutils
 
 DESCRIPTION="A general-purpose (yacc-compatible) parser generator"
-HOMEPAGE="http://www.gnu.org/software/bison/"
+HOMEPAGE="https://www.gnu.org/software/bison/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="examples nls static test"
 
 RDEPEND=">=sys-devel/m4-1.4.16"
 DEPEND="${RDEPEND}
 	sys-devel/flex
-	sys-apps/help2man
 	examples? ( dev-lang/perl )
 	nls? ( sys-devel/gettext )
 	test? ( dev-lang/perl )"
@@ -27,7 +26,7 @@ DOCS=( AUTHORS ChangeLog-2012 NEWS README THANKS TODO ) # ChangeLog-1998 PACKAGI
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-optional-perl.patch #538300
-	eautoreconf
+	touch doc/bison.1 #548778
 }
 
 src_configure() {

@@ -15,15 +15,14 @@ SRC_URI="http://people.linux-vserver.org/~dhozac/t/uv-testing/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~sparc x86"
 
 IUSE=""
 
 CDEPEND="dev-libs/beecrypt
 	net-firewall/iptables
 	net-misc/vconfig
-	sys-apps/iproute2
-	sys-apps/coreutils"
+	sys-apps/iproute2"
 
 DEPEND=">dev-libs/dietlibc-0.33
 	${CDEPEND}"

@@ -1,6 +1,9 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
+CMAKE_MAKEFILE_GENERATOR="ninja"
 GCONF_DEBUG="no"
 PYTHON_COMPAT=( python2_7 )
 
@@ -13,7 +16,7 @@ SRC_URI="http://www.webkitgtk.org/releases/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 
 IUSE="coverage doc +egl +geoloc +gstreamer +introspection +jit libsecret +opengl spell +webgl"
 # gles2 wayland X
@@ -35,7 +38,7 @@ REQUIRED_USE="
 RDEPEND="
 	dev-db/sqlite:3=
 	>=dev-libs/glib-2.36:2
-	>=dev-libs/icu-3.8.1-r1:=[-c++11]
+	>=dev-libs/icu-3.8.1-r1:=
 	>=dev-libs/libxml2-2.8:2
 	>=dev-libs/libxslt-1.1.7
 	>=media-libs/fontconfig-2.8:1.0
@@ -112,13 +115,13 @@ pkg_pretend() {
 		check-reqs_pkg_pretend
 	fi
 
-	if ! test-flag-CXX -std=c++11; then
+	if [[ ${MERGE_TYPE} != "binary" ]] && ! test-flag-CXX -std=c++11; then
 		die "You need at least GCC 4.7.x or Clang >= 3.3 for C++11-specific compiler flags"
 	fi
 }
 
 pkg_setup() {
-	if [[ ${MERGE_TYPE} != "binary" ]] ; then
+	if [[ ${MERGE_TYPE} != "binary" ]] && is-flagq "-g*" && ! is-flagq "-g*0" ; then
 		check-reqs_pkg_setup
 	fi
 
@@ -169,13 +172,13 @@ src_configure() {
 	local ruby_interpreter=""
 
 	if has_version "virtual/rubygems[ruby_targets_ruby22]"; then
-		ruby_interpreter="RUBY=$(type -P ruby22)"
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby22)"
 	elif has_version "virtual/rubygems[ruby_targets_ruby21]"; then
-		ruby_interpreter="RUBY=$(type -P ruby21)"
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby21)"
 	elif has_version "virtual/rubygems[ruby_targets_ruby20]"; then
-		ruby_interpreter="RUBY=$(type -P ruby20)"
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby20)"
 	else
-		ruby_interpreter="RUBY=$(type -P ruby19)"
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby19)"
 	fi
 
 	# TODO: Check Web Audio support

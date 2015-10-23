@@ -1,15 +1,24 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 XORG_EAUTORECONF="yes"
 XORG_MULTILIB="yes"
-XORG_BASE_INDIVIDUAL_URI=""
-SRC_URI="http://xkbcommon.org/download/${P}.tar.xz"
+
+if [[ ${PV} = *9999* ]]; then
+	GIT_ECLASS="git-r3"
+	EXPERIMENTAL="true"
+	EGIT_REPO_URI="git://github.com/xkbcommon/${PN}"
+else
+	XORG_BASE_INDIVIDUAL_URI=""
+	SRC_URI="http://xkbcommon.org/download/${P}.tar.xz"
+fi
 
 inherit xorg-2 ${GIT_ECLASS}
 
 DESCRIPTION="X.Org xkbcommon library"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ppc ppc64 sparc x86"
 IUSE="X doc test"
 
 DEPEND="sys-devel/bison

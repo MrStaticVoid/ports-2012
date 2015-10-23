@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -11,7 +13,7 @@ SRC_URI="http://www.freedesktop.org/software/${PN}/${P}.tar.xz"
 # License appears to be a variant of libtiff
 LICENSE="libtiff"
 SLOT="0/5"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 arm ~mips ppc ppc64 x86"
 IUSE=""
 RESTRICT="test"
 

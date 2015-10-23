@@ -10,7 +10,7 @@ PYTHON_REQ_USE='xml'
 inherit eutils python-r1
 
 DESCRIPTION="Converts profiling output to dot graphs"
-HOMEPAGE="https://code.google.com/p/jrfonseca/wiki/Gprof2Dot"
+HOMEPAGE="https://github.com/jrfonseca/gprof2dot"
 SRC_URI="http://www.hartwork.org/public/${P}.tar.xz"
 
 LICENSE="GPL-3"
@@ -43,7 +43,7 @@ src_install() {
 		doins ${PN}.py || die
 		python_optimize || die
 	}
-	python_parallel_foreach_impl abi_specific_install
+	python_foreach_impl abi_specific_install
 
 	dodir /usr/bin || die
 	_make_call_script /usr/bin/${PN} || die

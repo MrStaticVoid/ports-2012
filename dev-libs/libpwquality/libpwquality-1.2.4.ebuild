@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 PYTHON_COMPAT=( python{2_7,3_3,3_4} )
@@ -11,7 +13,7 @@ SRC_URI="https://fedorahosted.org/releases/l/i/${PN}/${P}.tar.bz2"
 
 LICENSE="|| ( BSD GPL-2 )"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 s390 sh sparc x86"
 IUSE="pam python static-libs"
 
 RDEPEND="
@@ -47,7 +49,6 @@ src_configure() {
 }
 
 src_compile() {
-	MAKEOPTS+=" -j1"
 	if_use_python_python_foreach_impl default
 }
 

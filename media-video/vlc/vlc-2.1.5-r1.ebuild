@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -33,7 +35,7 @@ LICENSE="LGPL-2.1 GPL-2"
 SLOT="0/5-7" # vlc - vlccore
 
 if [ "${PV%9999}" = "${PV}" ] ; then
-	KEYWORDS="*"
+	KEYWORDS="amd64 ~arm ppc ppc64 -sparc x86 ~x86-fbsd"
 else
 	KEYWORDS=""
 fi
@@ -46,7 +48,7 @@ IUSE="a52 aalib alsa altivec atmo +audioqueue avahi +avcodec
 	libsamplerate libtiger linsys libtar lirc live lua +macosx
 	+macosx-audio +macosx-dialog-provider +macosx-eyetv +macosx-quartztext
 	+macosx-qtkit +macosx-vout matroska media-library cpu_flags_x86_mmx modplug mp3 mpeg
-	mtp musepack ncurses neon ogg omxil opencv opengl optimisememory opus oss
+	mtp musepack ncurses neon ogg omxil opencv opengl optimisememory opus
 	png +postproc projectm pulseaudio +qt4 rdp rtsp run-as-root samba
 	schroedinger sdl sdl-image sftp shout sid skins speex cpu_flags_x86_sse svg +swscale
 	taglib theora tremor truetype twolame udev upnp vaapi v4l vcdx vdpau
@@ -118,7 +120,6 @@ RDEPEND="
 		opencv? ( >media-libs/opencv-2.0:0 )
 		opengl? ( virtual/opengl:0 >=x11-libs/libX11-1.3.99.901:0 )
 		opus? ( >=media-libs/opus-1.0.3:0 )
-		oss? ( media-sound/oss )
 		png? ( media-libs/libpng:0= sys-libs/zlib:0 )
 		postproc? (
 			!libav? ( >=media-video/ffmpeg-1.2:0= )
@@ -222,13 +223,10 @@ src_prepare() {
 	# config.h:792: warning: ignoring #pragma STDC FENV_ACCESS [-Wunknown-pragmas]
 	# config.h:793: warning: ignoring #pragma STDC FP_CONTRACT [-Wunknown-pragmas]
 	#
-	# http://gcc.gnu.org/c99status.html
+	# https://gcc.gnu.org/c99status.html
 	if [[ "$(tc-getCC)" == *"gcc"* ]] ; then
 		sed -i 's/ifndef __FAST_MATH__/if 0/g' configure.ac || die
 	fi
-
-	# _FORTIFY_SOURCE is set to 2 by default on Gentoo, remove redefine warnings.
-	sed -i '/_FORTIFY_SOURCE.*, 2,/d' configure.ac || die
 
 	# Bootstrap when we are on a git checkout.
 	if [[ "${PV%9999}" != "${PV}" ]] ; then
@@ -248,11 +246,11 @@ src_prepare() {
 	# Fix up broken audio when skipping using a fixed reversed bisected commit.
 	epatch "${FILESDIR}"/${PN}-2.1.0-TomWij-bisected-PA-broken-underflow.patch
 
-	# VLC 2.2.x OSS Backport
-	epatch "${FILESDIR}/${PN}-2.1.5-oss-backport.patch"
-
 	# Fix bug #541654
-	epatch "${FILESDIR}"/${PN}-2.1.x-mem_undefined_functions.patch
+	epatch "${FILESDIR}"/${PN}-2.1-mem_undefined_functions.patch
+
+	# Add missed header imgproc_c.h, imgproc.hpp, bug #554562
+	epatch "${FILESDIR}"/opencv-3.0.0.patch
 
 	# Disable avcodec checks when avcodec is not used.
 	if ! use avcodec; then
@@ -385,7 +383,6 @@ src_configure() {
 		$(use_enable opengl glx) \
 		$(use_enable opus) \
 		$(use_enable optimisememory optimize-memory) \
-		$(use_enable oss) \
 		$(use_enable png) \
 		$(use_enable postproc) \
 		$(use_enable projectm) \
@@ -440,6 +437,7 @@ src_configure() {
 		--disable-maintainer-mode \
 		--disable-merge-ffmpeg \
 		--disable-opensles \
+		--disable-oss \
 		--disable-quicksync \
 		--disable-quicktime \
 		--disable-rpi-omxil \
@@ -450,6 +448,11 @@ src_configure() {
 		--disable-wasapi
 
 		# ^ We don't have these disabled libraries in the Portage tree yet.
+
+	# _FORTIFY_SOURCE is set to 2 in config.h, which is also the default value on Gentoo.
+	# Other values of _FORTIFY_SOURCE may break the build (bug 523144), so definition should not be removed from config.h.
+	# To prevent redefinition warnings, we undefine _FORTIFY_SOURCE at the very start of config.h file
+	sed -i '1i#undef _FORTIFY_SOURCE' "${S}"/config.h || die
 }
 
 src_test() {

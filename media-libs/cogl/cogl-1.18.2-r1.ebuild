@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 CLUTTER_LA_PUNT="yes"
@@ -13,8 +15,9 @@ LICENSE="MIT BSD"
 SLOT="1.0/20" # subslot = .so version
 # doc and profile disable for now due bugs #484750 and #483332
 IUSE="examples gles2 gstreamer +introspection +kms +opengl +pango test wayland" # doc profile
-REQUIRED_USE="wayland? ( gles2 )"
-KEYWORDS="*"
+REQUIRED_USE="wayland? ( gles2 )
+	|| ( gles2 opengl )"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sparc x86"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.32:2

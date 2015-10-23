@@ -11,7 +11,7 @@ SRC_URI="${HOMEPAGE}download/src/all-versions/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0/${PV}"
-KEYWORDS="alpha amd64 ~arm hppa ia64 ppc ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 ~arm hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="
 	adns +caps crypt doc doc-pdf geoip +gtk3 ipv6 kerberos lua +netlink +pcap
 	portaudio +qt4 qt5 sbc selinux smi ssl zlib
@@ -220,7 +220,7 @@ src_install() {
 	insinto /usr/include/wiretap
 	doins wiretap/wtap.h
 
-	if use gtk3 || use qt4; then
+	if use gtk3 || use qt4 || use qt5; then
 		local c d
 		for c in hi lo; do
 			for d in 16 32 48; do
@@ -234,7 +234,7 @@ src_install() {
 		domenu wireshark.desktop
 	fi
 
-	if use qt4; then
+	if use qt4 || use qt5; then
 		sed -e '/Exec=/s|wireshark|&-qt|g' wireshark.desktop > wireshark-qt.desktop || die
 		domenu wireshark-qt.desktop
 	fi

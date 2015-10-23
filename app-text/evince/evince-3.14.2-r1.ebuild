@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -13,7 +15,7 @@ LICENSE="GPL-2+ CC-BY-SA-3.0"
 # subslot = evd3.(suffix of libevdocument3)-evv3.(suffix of libevview3)
 SLOT="0/evd3.4-evv3.3"
 IUSE="djvu dvi gnome +introspection libsecret nautilus nsplugin +postscript t1lib tiff xps"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
 
 # Since 2.26.2, can handle poppler without cairo support. Make it optional ?
 # not mature enough
@@ -22,26 +24,26 @@ KEYWORDS="*"
 # libX11 used for totem-screensaver
 COMMON_DEPEND="
 	dev-libs/atk
-	>=dev-libs/glib-2.42:2[dbus]
+	>=dev-libs/glib-2.36:2[dbus]
 	>=dev-libs/libxml2-2.5:2
-	sys-libs/zlib
+	sys-libs/zlib:=
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.14:3[introspection?]
 	gnome-base/gsettings-desktop-schemas
-	>=x11-libs/cairo-1.10
-	>=app-text/poppler-0.24[cairo]
-	djvu? ( >=app-text/djvu-3.5.17 )
+	>=x11-libs/cairo-1.10:=
+	>=app-text/poppler-0.24:=[cairo]
+	djvu? ( >=app-text/djvu-3.5.17:= )
 	dvi? (
 		virtual/tex-base
-		dev-libs/kpathsea
-		t1lib? ( >=media-libs/t1lib-5 ) )
+		dev-libs/kpathsea:=
+		t1lib? ( >=media-libs/t1lib-5:= ) )
 	gnome? ( gnome-base/gnome-desktop:3 )
 	introspection? ( >=dev-libs/gobject-introspection-1 )
 	libsecret? ( >=app-crypt/libsecret-0.5 )
 	nautilus? ( >=gnome-base/nautilus-2.91.4[introspection?] )
-	postscript? ( >=app-text/libspectre-0.2 )
-	tiff? ( >=media-libs/tiff-3.6 )
-	xps? ( >=app-text/libgxps-0.2.1 )
+	postscript? ( >=app-text/libspectre-0.2:= )
+	tiff? ( >=media-libs/tiff-3.6:0= )
+	xps? ( >=app-text/libgxps-0.2.1:= )
 "
 RDEPEND="${COMMON_DEPEND}
 	gnome-base/gvfs

@@ -42,7 +42,7 @@ inherit eutils multilib toolchain-funcs
 _PYTHON_ALL_IMPLS=(
 	jython2_5 jython2_7
 	pypy pypy3
-	python3_3 python3_4
+	python3_3 python3_4 python3_5
 	python2_7
 )
 
@@ -66,7 +66,7 @@ _python_impl_supported() {
 	# keep in sync with _PYTHON_ALL_IMPLS!
 	# (not using that list because inline patterns shall be faster)
 	case "${impl}" in
-		python2_7|python3_[34]|jython2_[57])
+		python2_7|python3_[345]|jython2_[57])
 			return 0
 			;;
 		pypy1_[89]|pypy2_0|python2_[56]|python3_[12])
@@ -1116,6 +1116,9 @@ python_fix_shebang() {
 # This may be used to work around the quirky open() behavior of python3.
 python_export_utf8_locale() {
 	debug-print-function ${FUNCNAME} "${@}"
+
+	# If the locale program isn't available, just return.
+	type locale >/dev/null || return 0
 
 	if [[ $(locale charmap) != UTF-8 ]]; then
 		if [[ -n ${LC_ALL} ]]; then

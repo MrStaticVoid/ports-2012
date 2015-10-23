@@ -27,10 +27,6 @@ sys-auth/sssd samba
 dev-libs/efl physics sdl
 media-libs/elementary sdl
 
-# Ben de Groot <yngwin@gentoo.org> (15 Mar 2015)
-# Waiting for keywording in bug 543398
->=media-sound/picard-1.3.2 cdda
-
 # Michał Górny <mgorny@gentoo.org> (21 Feb 2015)
 # The external QCA plugins are not keyworded on this arch. Since
 # this is only a temporary measure and nothing depends on them,
@@ -126,10 +122,6 @@ media-video/mpv sdl
 kde-apps/gwenview semantic-desktop
 kde-apps/okular dpi
 kde-base/nepomuk-core migrator
-
-# Pacho Ramos <pacho@gentoo.org> (12 Apr 2014)
-# Missing keywords, bug #507490
-net-misc/modemmanager mbim
 
 # Pacho Ramos <pacho@gentoo.org> (22 Feb 2013)
 # Missing keywords, bug #495250
@@ -317,10 +309,6 @@ dev-java/icedtea systemtap
 # Alexey Shvetsov <alexxy@gentoo.org> (22 Aug 2010)
 # sci-chemistry/msms not available for this arch
 sci-chemistry/vmd msms
-
-# Justin Lecher <jlec@gentoo.org> (13 Aug 2010)
-# MKL not available on this arch
-media-gfx/povray mkl
 
 # Bernard Cafarelli <voyageur@gentoo.org> (26 Apr 2010)
 # This is for x86/amd64 only

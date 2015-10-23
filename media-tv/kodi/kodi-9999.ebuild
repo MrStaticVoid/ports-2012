@@ -9,7 +9,7 @@ EAPI="5"
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="sqlite"
 
-inherit eutils linux-info python-single-r1 multiprocessing autotools
+inherit eutils linux-info python-single-r1 multiprocessing autotools toolchain-funcs
 
 CODENAME="Isengard"
 case ${PV} in
@@ -68,7 +68,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	media-libs/jasper
 	media-libs/jbigkit
 	>=media-libs/libass-0.9.7
-	bluray? ( media-libs/libbluray )
+	bluray? ( >=media-libs/libbluray-0.7.0 )
 	css? ( media-libs/libdvdcss )
 	media-libs/libmad
 	media-libs/libmodplug
@@ -127,6 +127,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-lang/swig
 	dev-libs/crossguid
 	dev-util/gperf
+	texturepacker? ( media-libs/giflib )
 	X? ( x11-proto/xineramaproto )
 	dev-util/cmake
 	x86? ( dev-lang/nasm )
@@ -154,6 +155,7 @@ src_unpack() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-9999-no-arm-flags.patch #400617
 	epatch "${FILESDIR}"/${PN}-9999-texturepacker.patch
+	epatch_user #293109
 
 	# some dirs ship generated autotools, some dont
 	multijob_init
@@ -171,7 +173,9 @@ src_prepare() {
 	multijob_finish
 	elibtoolize
 
-	[[ ${PV} == "9999" ]] && emake -f codegenerator.mk
+	if [[ ${PV} == "9999" ]] || use java ; then #558798
+		tc-env_build emake -f codegenerator.mk
+	fi
 
 	# Disable internal func checks as our USE/DEPEND
 	# stuff handles this just fine already #408395
@@ -185,8 +189,6 @@ src_prepare() {
 	sed -i \
 		-e '/dbus_connection_send_with_reply_and_block/s:-1:3000:' \
 		xbmc/linux/*.cpp || die
-
-	epatch_user #293109
 
 	# Tweak autotool timestamps to avoid regeneration
 	find . -type f -exec touch -r configure {} +

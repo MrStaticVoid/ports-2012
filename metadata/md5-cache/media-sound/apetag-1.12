@@ -3,10 +3,10 @@ DEPEND==dev-lang/python-2*
 DESCRIPTION=Command-line ape 2.0 tagger
 EAPI=3
 HOMEPAGE=http://muth.org/Robert/Apetag/
-KEYWORDS=~amd64 ~x86
+KEYWORDS=~amd64 ~ppc64 ~x86
 LICENSE=GPL-3
 RDEPEND==dev-lang/python-2*
 SLOT=0
 SRC_URI=http://muth.org/Robert/Apetag/apetag.1.12.tar.gz
-_eclasses_=multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
-_md5_=28f1bc31a783bf0f4fdbd8decb5428f2
+_eclasses_=multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=aeb9925e1d5c45ef9c0d01bfa0397f21

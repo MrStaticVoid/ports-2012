@@ -1,13 +1,16 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
 XORG_DRI=dri
+XORG_EAUTORECONF=yes
 inherit linux-info xorg-2
 
 DESCRIPTION="X.Org driver for Intel cards"
 
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86 ~amd64-fbsd -x86-fbsd"
 IUSE="debug +sna +udev uxa xvmc"
 
 REQUIRED_USE="
@@ -31,7 +34,6 @@ RDEPEND="x11-libs/libXext
 	)
 "
 DEPEND="${RDEPEND}
-	sys-devel/automake:1.14
 	>=x11-proto/dri2proto-2.6
 	x11-proto/dri3proto
 	x11-proto/presentproto

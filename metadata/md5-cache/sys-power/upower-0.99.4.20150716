@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install prepare unpack
+DEPEND=>=dev-libs/dbus-glib-0.100 >=dev-libs/glib-2.40 dev-util/gdbus-codegen sys-apps/dbus:= >=sys-auth/polkit-0.110 introspection? ( dev-libs/gobject-introspection ) kernel_linux? ( virtual/libusb:1 virtual/libgudev:= virtual/udev ios? ( >=app-pda/libimobiledevice-1:= >=app-pda/libplist-1:= ) ) deprecated? ( >=sys-power/pm-utils-1.4.1-r2 ) doc? ( dev-util/gtk-doc ) dev-libs/gobject-introspection-common dev-libs/libxslt app-text/docbook-xsl-stylesheets dev-util/intltool virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 dev-vcs/git virtual/pkgconfig
+DESCRIPTION=D-Bus abstraction for enumerating power devices and querying history and statistics
+EAPI=5
+HOMEPAGE=http://upower.freedesktop.org/
+IUSE=doc +deprecated +introspection ios kernel_FreeBSD kernel_linux
+KEYWORDS=-*
+LICENSE=GPL-2
+RDEPEND=>=dev-libs/dbus-glib-0.100 >=dev-libs/glib-2.40 dev-util/gdbus-codegen sys-apps/dbus:= >=sys-auth/polkit-0.110 introspection? ( dev-libs/gobject-introspection ) kernel_linux? ( virtual/libusb:1 virtual/libgudev:= virtual/udev ios? ( >=app-pda/libimobiledevice-1:= >=app-pda/libplist-1:= ) ) deprecated? ( >=sys-power/pm-utils-1.4.1-r2 ) doc? ( dev-util/gtk-doc )
+SLOT=0/3
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	eutils	43da5163ba106e87d22d2e7d6d67537f	git-2	1bb87192831f668cd20d93ffb1689c94	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	systemd	b0daeef4b75b0130d34c62aa1930d21e	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=b02213706f0968e60e71ed5dcf1f035d

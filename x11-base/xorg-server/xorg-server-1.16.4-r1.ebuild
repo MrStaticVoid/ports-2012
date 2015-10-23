@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -8,8 +10,10 @@ EGIT_REPO_URI="git://anongit.freedesktop.org/git/xorg/xserver"
 
 DESCRIPTION="X.Org X servers"
 SLOT="0/1.16.1"
-KEYWORDS="*"
-IUSE="dmx kdrive xnest +xorg xvfb glamor ipv6 minimal nptl selinux +suid systemd tslib +udev unwind wayland"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
+
+IUSE_SERVERS="dmx kdrive xnest xorg xvfb"
+IUSE="${IUSE_SERVERS} glamor ipv6 minimal nptl selinux +suid systemd tslib +udev unwind wayland"
 
 CDEPEND=">=app-eselect/eselect-opengl-1.3.0
 	dev-libs/openssl
@@ -118,7 +122,7 @@ PDEPEND="
 	xorg? ( >=x11-base/xorg-drivers-$(get_version_component_range 1-2) )"
 
 REQUIRED_USE="!minimal? (
-		|| ( dmx kdrive xnest xorg xvfb )
+		|| ( ${IUSE_SERVERS} )
 	)"
 
 #UPSTREAMED_PATCHES=(
@@ -129,8 +133,6 @@ PATCHES=(
 	"${UPSTREAMED_PATCHES[@]}"
 	"${FILESDIR}"/${PN}-1.12-ia64-fix_inx_outx.patch
 	"${FILESDIR}"/${PN}-1.12-unloadsubmodule.patch
-	# needed for new eselect-opengl, bug #541232
-	"${FILESDIR}"/${PN}-1.17-support-multiple-Files-sections.patch
 )
 
 pkg_pretend() {
@@ -199,7 +201,7 @@ src_install() {
 	fi
 
 	newinitd "${FILESDIR}"/xdm-setup.initd-1 xdm-setup
-	newinitd "${FILESDIR}"/xdm.init-15 xdm
+	newinitd "${FILESDIR}"/xdm.initd-11 xdm
 	newconfd "${FILESDIR}"/xdm.confd-4 xdm
 
 	# install the @x11-module-rebuild set for Portage

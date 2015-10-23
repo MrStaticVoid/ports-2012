@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare unpack
+DEPEND=test? ( dev-python/flake8 dev-python/tox )
+DESCRIPTION=change directory command that learns
+EAPI=5
+HOMEPAGE=https://github.com/joelthelion/autojump
+IUSE=python test python_targets_python2_7 python_targets_python3_3 python_targets_python3_4
+KEYWORDS=~amd64 ~x86 ~ppc ~ppc64
+LICENSE=GPL-3
+RDEPEND=python? ( python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) python_targets_python3_3? ( >=dev-lang/python-3.3.2-r2:3.3 ) python_targets_python3_4? ( dev-lang/python:3.4 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,python_targets_python3_3(-)?,python_targets_python3_4(-)?,-python_single_target_python2_7(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-)] )
+RESTRICT=test
+SLOT=0
+SRC_URI=https://github.com/joelthelion/autojump/archive/release-v22.2.4.tar.gz -> autojump-22.2.4.tar.gz
+_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	eutils	43da5163ba106e87d22d2e7d6d67537f	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python-r1	32b376cbb100a3a8083b3a0de023e117	python-utils-r1	9c405693f1f355a718700c5cffffd9e5	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_md5_=c4dc1bf271800e6ea5daf78be846d4a4

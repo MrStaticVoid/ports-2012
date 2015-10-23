@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -11,17 +13,17 @@ SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${P}.tar
 
 LICENSE="CMake"
 SLOT="0"
-KEYWORDS="*"
-IUSE="doc emacs ncurses qt4 qt5"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ~m68k ~mips ~ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+IUSE="doc emacs system-jsoncpp ncurses qt4 qt5"
 
 RDEPEND="
-	>=app-arch/libarchive-2.8.0:=
+	>=app-arch/libarchive-3.0.0:=
 	>=dev-libs/expat-2.0.1
 	>=net-misc/curl-7.20.0-r1[ssl]
 	sys-libs/zlib
 	virtual/pkgconfig
 	emacs? ( virtual/emacs )
-	ncurses? ( sys-libs/ncurses )
+	ncurses? ( sys-libs/ncurses:0= )
 	qt4? (
 		dev-qt/qtcore:4
 		dev-qt/qtgui:4
@@ -31,6 +33,7 @@ RDEPEND="
 		dev-qt/qtgui:5
 		dev-qt/qtwidgets:5
 	)
+	system-jsoncpp? ( >=dev-libs/jsoncpp-0.6.0_rc2:0= )
 "
 DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx )
@@ -128,7 +131,7 @@ src_prepare() {
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_USE_SYSTEM_LIBRARIES=ON
-		-DCMAKE_USE_SYSTEM_LIBRARY_JSONCPP=OFF
+		-DCMAKE_USE_SYSTEM_LIBRARY_JSONCPP=$(usex system-jsoncpp)
 		-DCMAKE_INSTALL_PREFIX="${EPREFIX}"/usr
 		-DCMAKE_DOC_DIR=/share/doc/${PF}
 		-DCMAKE_MAN_DIR=/share/man

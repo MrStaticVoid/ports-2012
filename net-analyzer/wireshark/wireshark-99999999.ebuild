@@ -99,7 +99,6 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-1.11.0-oldlibs.patch \
 		"${FILESDIR}"/${PN}-1.99.0.1975-sse4_2.patch \
 		"${FILESDIR}"/${PN}-99999999-pkgconfig.patch \
-		"${FILESDIR}"/${PN}-1.99.7-qt-pie.patch \
 		"${FILESDIR}"/${PN}-1.99.8-qtchooser.patch
 
 	epatch_user
@@ -197,7 +196,7 @@ src_install() {
 		dohtml -r docbook/{release-notes.html,ws{d,u}g_html{,_chunked}}
 		if use doc-pdf; then
 			insinto /usr/share/doc/${PF}/pdf/
-			doins docbook/{{developer,user}-guide,release-notes}-{a4,us}.pdf
+			doins docbook/{developer,user}-guide-{a4,us}.pdf docbook/release-notes.pdf
 		fi
 	fi
 
@@ -229,7 +228,7 @@ src_install() {
 	insinto /usr/include/wiretap
 	doins wiretap/wtap.h
 
-	if use gtk3 || use qt4; then
+	if use gtk3 || use qt4 || use qt5; then
 		local c d
 		for c in hi lo; do
 			for d in 16 32 48; do
@@ -243,7 +242,7 @@ src_install() {
 		domenu wireshark.desktop
 	fi
 
-	if use qt4; then
+	if use qt4 || use qt5; then
 		sed -e '/Exec=/s|wireshark|&-qt|g' wireshark.desktop > wireshark-qt.desktop || die
 		domenu wireshark-qt.desktop
 	fi
