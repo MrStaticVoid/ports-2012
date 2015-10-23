@@ -1,11 +1,5 @@
-# Base eclass for Java packages
-#
-# Copyright (c) 2004-2005, Thomas Matthijs <axxo@gentoo.org>
-# Copyright (c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
-# Copyright (c) 2004-2015, Gentoo Foundation
-#
-# Licensed under the GNU General Public License, v2
-#
+# Copyright 2004-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 # @ECLASS: java-utils-2.eclass
@@ -124,6 +118,16 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # emerge bar to be compatible with 1.3
 # @CODE
 #	JAVA_PKG_WANT_TARGET=1.3 emerge bar
+# @CODE
+
+# @ECLASS-VARIABLE: JAVA_PKG_DEBUG
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# A variable to be set with "yes" or "y", or ANY string of length non equal to
+# zero. When set, verbosity across java eclasses is increased and extra
+# logging is displayed.
+# @CODE
+#	JAVA_PKG_DEBUG="yes"
 # @CODE
 
 # @ECLASS-VARIABLE: JAVA_RM_FILES
@@ -359,6 +363,15 @@ java-pkg_dojar() {
 			die "${jar} does not exist"
 		fi
 	done
+
+	# Extra logging if enabled.
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Jar file(s) destination: ${JAVA_PKG_JARDEST}"
+		einfo "Jar file(s) created: ${@}"
+		einfo "Complete command:"
+		einfo "${FUNCNAME} ${@}"
+	fi
 
 	java-pkg_do_write_
 }
@@ -638,7 +651,6 @@ java-pkg_dojavadoc() {
 	fi
 
 	# Actual installation
-
 	java-pkg_dohtml -r "${dir_to_install}"
 
 	# Let's make a symlink to the directory we have everything else under
@@ -647,6 +659,15 @@ java-pkg_dojavadoc() {
 	if [[ ${symlink} ]]; then
 		debug-print "symlinking ${dest}/{api,${symlink}}"
 		dosym ${dest}/{api,${symlink}} || die
+	fi
+
+	# Extra logging if enabled.
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Documentation destination: ${dest}"
+		einfo "Directory to install: ${dir_to_install}"
+		einfo "Complete command:"
+		einfo "${FUNCNAME} ${@}"
 	fi
 }
 
@@ -707,6 +728,17 @@ java-pkg_dosrc() {
 		doins ${zip_path} || die "Failed to install source"
 
 	JAVA_SOURCES="${JAVA_PKG_SOURCESPATH}/${zip_name}"
+
+	# Extra logging if enabled.
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Zip filename created: ${zip_name}"
+		einfo "Zip file destination: ${JAVA_PKG_SOURCESPATH}"
+		einfo "Directories zipped: ${@}"
+		einfo "Complete command:"
+		einfo "${FUNCNAME} ${@}"
+	fi
+
 	java-pkg_do_write_
 }
 
@@ -2007,7 +2039,15 @@ ejavac() {
 	local javac_args
 	javac_args="$(java-pkg_javac-args)"
 
-	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ${compiler_executable} ${javac_args} "${@}"
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Compiler executable: ${compiler_executable}"
+		einfo "Extra arguments: ${javac_args}"
+		einfo "Complete command:"
+		einfo "${compiler_executable} ${javac_args} ${@}"
+	fi
+
+	ebegin "Compiling"
 	${compiler_executable} ${javac_args} "${@}" || die "ejavac failed"
 }
 
@@ -2025,6 +2065,15 @@ ejavadoc() {
 		javadoc_args="-Xdoclint:none"
 	fi
 
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Javadoc executable: javadoc"
+		einfo "Extra arguments: ${javadoc_args}"
+		einfo "Complete command:"
+		einfo "javadoc ${javadoc_args} ${@}"
+	fi
+
+	ebegin "Generating JavaDoc"
 	javadoc ${javadoc_args} "${@}" || die "ejavadoc failed"
 }
 
@@ -2102,7 +2151,7 @@ java-pkg_init() {
 	}
 
 	# People do all kinds of weird things.
-	# http://forums.gentoo.org/viewtopic-p-3943166.html
+	# https://forums.gentoo.org/viewtopic-p-3943166.html
 	local silence="${SILENCE_JAVA_OPTIONS_WARNING}"
 	local accept="${I_WANT_GLOBAL_JAVA_OPTIONS}"
 	if [[ -n ${_JAVA_OPTIONS} && -z ${accept} && -z ${silence} ]]; then
@@ -2203,7 +2252,7 @@ java-pkg_init-compiler_() {
 
 		if has ${compiler} ${JAVA_PKG_FILTER_COMPILER}; then
 			if [[ -z ${JAVA_PKG_FORCE_COMPILER} ]]; then
-				einfo "Filtering ${compiler}"
+				einfo "Filtering ${compiler}" >&2
 				continue
 			fi
 		fi
@@ -2243,10 +2292,10 @@ java-pkg_init-compiler_() {
 	# If it hasn't been defined already, default to javac
 	if [[ -z ${GENTOO_COMPILER} ]]; then
 		if [[ -n ${compilers} ]]; then
-			einfo "No suitable compiler found: defaulting to JDK default for compilation"
+			einfo "No suitable compiler found: defaulting to JDK default for compilation" >&2
 		else
 			# probably don't need to notify users about the default.
-			:;#einfo "Defaulting to javac for compilation"
+			:;#einfo "Defaulting to javac for compilation" >&2
 		fi
 		if java-config -g GENTOO_COMPILER 2> /dev/null; then
 			export GENTOO_COMPILER=$(java-config -g GENTOO_COMPILER)
@@ -2254,7 +2303,7 @@ java-pkg_init-compiler_() {
 			export GENTOO_COMPILER=javac
 		fi
 	else
-		einfo "Using ${GENTOO_COMPILER} for compilation"
+		einfo "Using ${GENTOO_COMPILER} for compilation" >&2
 	fi
 
 }
@@ -2765,7 +2814,7 @@ java-pkg_ensure-dep() {
 			eqawarn "java-pkg_ensure-dep: ${dev_error}"
 #			eerror "Because you have ${target_pkg} installed,"
 #			eerror "the package will build without problems, but please"
-#			eerror "report this to http://bugs.gentoo.org."
+#			eerror "report this to https://bugs.gentoo.org."
 #		fi
 	elif [[ ${limit_to} != build && ! ( "${RDEPEND}${PDEPEND}" =~ ${stripped_pkg} ) ]]; then
 		dev_error="The ebuild is attempting to use ${target_pkg}, which is not "
@@ -2776,7 +2825,7 @@ java-pkg_ensure-dep() {
 			eqawarn "java-pkg_ensure-dep: ${dev_error}"
 #			eerror "The package will build without problems, but may fail to run"
 #			eerror "if you don't have ${target_pkg} installed,"
-#			eerror "so please report this to http://bugs.gentoo.org."
+#			eerror "so please report this to https://bugs.gentoo.org."
 #		fi
 	fi
 }
@@ -2823,4 +2872,14 @@ increment-qa-violations() {
 is-java-strict() {
 	[[ -n ${JAVA_PKG_STRICT} ]]
 	return $?
+}
+
+# @FUNCTION: java-pkg_clean
+# @DESCRIPTION:
+# Java package cleaner function. This will remove all *.class and *.jar
+# files, removing any bundled dependencies.
+java-pkg_clean() {
+	if [[ -z "${JAVA_PKG_NO_CLEAN}" ]]; then
+		find "${@}" '(' -name '*.class' -o -name '*.jar' ')' -type f -delete -print || die
+	fi
 }

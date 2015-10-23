@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -10,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Vino"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
 IUSE="crypt libsecret ipv6 jpeg networkmanager ssl +telepathy zeroconf +zlib"
 # bug #394611; tight encoding requires zlib encoding
 REQUIRED_USE="jpeg? ( zlib )"
@@ -20,9 +22,10 @@ REQUIRED_USE="jpeg? ( zlib )"
 RDEPEND="
 	>=dev-libs/glib-2.26:2
 	>=x11-libs/gtk+-3.0.0:3
-	>=dev-libs/libgcrypt-1.1.90
+	>=dev-libs/libgcrypt-1.1.90:0=
+
 	dev-libs/dbus-glib
-	x11-libs/cairo
+	x11-libs/cairo:=
 	x11-libs/pango[X]
 	x11-libs/libICE
 	x11-libs/libX11
@@ -31,15 +34,17 @@ RDEPEND="
 	x11-libs/libXfixes
 	x11-libs/libSM
 	x11-libs/libXtst
-	>=x11-libs/libnotify-0.7.0
-	crypt? ( >=dev-libs/libgcrypt-1.1.90 )
+
+	>=x11-libs/libnotify-0.7.0:=
+
+	crypt? ( >=dev-libs/libgcrypt-1.1.90:0= )
 	libsecret? ( app-crypt/libsecret )
-	jpeg? ( virtual/jpeg:0 )
+	jpeg? ( virtual/jpeg:0= )
 	networkmanager? ( >=net-misc/networkmanager-0.7 )
-	ssl? ( >=net-libs/gnutls-2.2.0 )
+	ssl? ( >=net-libs/gnutls-2.2.0:= )
 	telepathy? ( >=net-libs/telepathy-glib-0.18 )
-	zeroconf? ( >=net-dns/avahi-0.6[dbus] )
-	zlib? ( sys-libs/zlib )
+	zeroconf? ( >=net-dns/avahi-0.6:=[dbus] )
+	zlib? ( sys-libs/zlib:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-lang/perl-5

@@ -3,12 +3,14 @@
 # $Id$
 
 EAPI=5
-PYTHON_COMPAT=( python{2_7,3_3,3_4} )
+
+PYTHON_COMPAT=( python2_7 python3_{3,4,5} )
 
 inherit eutils multibuild multilib python-r1 qmake-utils
 
 DESCRIPTION="Python bindings for the Qt framework"
-HOMEPAGE="http://www.riverbankcomputing.com/software/pyqt/intro
+HOMEPAGE="
+	http://www.riverbankcomputing.com/software/pyqt/intro
 	https://pypi.python.org/pypi/PyQt5"
 
 MY_PN="PyQt-gpl"
@@ -22,7 +24,7 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="amd64 arm ~x86"
 
 # TODO: QtBluetooth, QtLocation, QtNfc, QtWebEngineWidgets
 IUSE="dbus debug declarative designer doc examples gles2 gui help multimedia

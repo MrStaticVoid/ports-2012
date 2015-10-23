@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -6,11 +8,11 @@ GCONF_DEBUG="no"
 inherit gnome2
 
 DESCRIPTION="A quick previewer for Nautilus, the GNOME file manager"
-HOMEPAGE="http://git.gnome.org/browse/sushi"
+HOMEPAGE="https://git.gnome.org/browse/sushi"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE="office"
 
 # Optional app-office/unoconv support (OOo to pdf)

@@ -9,5 +9,5 @@ RDEPEND=binary? ( >=sys-kernel/genkernel-3.4.40.7 )
 RESTRICT=binchecks strip mirror
 SLOT=3.2.57
 SRC_URI=mirror://funtoo/linux_3.2.57.orig.tar.xz mirror://funtoo/linux_3.2.57-3.debian.tar.xz
-_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=333c79c73f0abca6da3cffbdb6dbfd48

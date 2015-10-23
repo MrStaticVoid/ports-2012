@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile install postinst postrm prepare setup
-DEPEND=dev-lang/python dev-python/egenix-mx-base net-print/pkpgcounter dev-python/chardet dev-python/pkipplib ldap? ( dev-python/python-ldap ) mysql? ( dev-python/mysql-python ) postgres? ( dev-db/postgresql[server] dev-python/pygresql ) snmp? ( net-analyzer/net-snmp =dev-python/pysnmp-3.4* ) xml? ( dev-python/jaxml ) =dev-lang/python-2* =dev-lang/python-2*[sqlite?]
+DEPEND=dev-lang/python dev-python/egenix-mx-base net-print/pkpgcounter dev-python/chardet dev-python/pkipplib ldap? ( dev-python/python-ldap ) mysql? ( dev-python/mysql-python ) postgres? ( dev-db/postgresql[server] dev-python/pygresql ) snmp? ( net-analyzer/net-snmp dev-python/pysnmp ) xml? ( dev-python/jaxml ) =dev-lang/python-2* =dev-lang/python-2*[sqlite?]
 DESCRIPTION=Flexible print quota and accounting package for use with CUPS and lpd
 EAPI=3
 HOMEPAGE=http://www.pykota.com
 IUSE=ldap mysql postgres snmp sqlite xml
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
-RDEPEND=dev-lang/python dev-python/egenix-mx-base net-print/pkpgcounter dev-python/chardet dev-python/pkipplib ldap? ( dev-python/python-ldap ) mysql? ( dev-python/mysql-python ) postgres? ( dev-db/postgresql[server] dev-python/pygresql ) snmp? ( net-analyzer/net-snmp =dev-python/pysnmp-3.4* ) xml? ( dev-python/jaxml ) =dev-lang/python-2* =dev-lang/python-2*[sqlite?]
+RDEPEND=dev-lang/python dev-python/egenix-mx-base net-print/pkpgcounter dev-python/chardet dev-python/pkipplib ldap? ( dev-python/python-ldap ) mysql? ( dev-python/mysql-python ) postgres? ( dev-db/postgresql[server] dev-python/pygresql ) snmp? ( net-analyzer/net-snmp dev-python/pysnmp ) xml? ( dev-python/jaxml ) =dev-lang/python-2* =dev-lang/python-2*[sqlite?]
 SLOT=0
 SRC_URI=https://dev.gentoo.org/~dilfridge/distfiles/pykota-1.26.tar.xz
 _eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
-_md5_=5eb52765f18c9723f006e269d81fdbcf
+_md5_=369b5907e2e3c84621b25d291fed7ab0

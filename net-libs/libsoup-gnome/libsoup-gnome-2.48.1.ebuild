@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -16,13 +18,13 @@ SRC_URI="${SRC_URI//-gnome}"
 LICENSE="LGPL-2+"
 SLOT="2.4"
 IUSE="debug +introspection"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~x86-solaris"
 
 RDEPEND="
 	~net-libs/libsoup-${PV}[introspection?,${MULTILIB_USEDEP}]
 	dev-db/sqlite:3=[${MULTILIB_USEDEP}]
-	introspection? ( >=dev-libs/gobject-introspection-1.42.0 )
-	>=net-libs/libsoup-2.48[${MULTILIB_USEDEP}]
+	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )
+	>=net-libs/libsoup-2.42.2-r1[${MULTILIB_USEDEP}]
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.10

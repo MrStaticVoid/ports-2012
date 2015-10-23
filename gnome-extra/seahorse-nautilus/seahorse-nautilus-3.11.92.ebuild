@@ -1,7 +1,9 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
-GCONF_DEBUG="no" # --disable-debug disables all assertions
+GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 
 inherit gnome2
@@ -11,22 +13,20 @@ HOMEPAGE="https://wiki.gnome.org/action/show/Apps/Seahorse"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 COMMON_DEPEND="
 	>=app-crypt/gpgme-1.0.0
-	>=app-crypt/gcr-3.14.0
+	>=app-crypt/gcr-3.4
 	>=dev-libs/dbus-glib-0.35
-	>=dev-libs/glib-2.42.0:2
+	>=dev-libs/glib-2.28:2
 	gnome-base/gnome-keyring
-	>=gnome-base/nautilus-3.14.0
+	>=gnome-base/nautilus-3
 	x11-libs/gtk+:3
 	>=x11-libs/libcryptui-3.9.90
-	>=x11-libs/libnotify-0.7.0:=
-	|| (
-		=app-crypt/gnupg-1.4*
-		=app-crypt/gnupg-2.0* )
+	>=x11-libs/libnotify-0.3:=
+	>=app-crypt/gnupg-1.4
 "
 # seahorse-nautilus was formerly part of seahorse-plugins
 RDEPEND="${COMMON_DEPEND}

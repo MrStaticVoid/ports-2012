@@ -47,13 +47,16 @@ kde-apps/solid-runtime -bluetooth
 kde-base/baloo minimal
 kde-base/kactivities minimal
 kde-base/kde-meta -kdepim minimal
+kde-base/systemsettings -handbook
 net-libs/libkpeople minimal
+net-p2p/ktorrent -plasma
 sys-auth/polkit-kde-agent minimal
 
 # Required by app-office/libreoffice
 media-libs/phonon designer
 
 # Fix REQUIRED_USE conflicts: qt5? ( !qt4 )
+>=app-crypt/pinentry-0.9.6-r5 -qt4
 app-office/akonadi-server -qt5
 >=app-office/texmaker-4.4.1 -qt4
 >=app-office/texstudio-2.9.4 -qt4

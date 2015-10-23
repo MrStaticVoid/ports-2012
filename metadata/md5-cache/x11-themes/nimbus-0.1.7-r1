@@ -9,5 +9,5 @@ LICENSE=LGPL-2
 RDEPEND=gtk? ( x11-libs/gtk+:2 ) !minimal? ( || ( x11-themes/gnome-icon-theme x11-themes/tango-icon-theme ) )
 SLOT=0
 SRC_URI=http://dlc.sun.com/osol/jds/downloads/extras/nimbus/nimbus-0.1.7.tar.bz2
-_eclasses_=autotools	8056957fdccf2b3cd6e282a4b4551d1a	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=e6a0ea6c165e40ff8a309583ce098117

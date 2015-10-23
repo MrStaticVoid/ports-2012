@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-libs/boost:= iconv? ( virtual/libiconv ) lzma? ( app-arch/xz-utils ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=A tool to unpack installers created by Inno Setup
+EAPI=5
+HOMEPAGE=http://constexpr.org/innoextract/
+IUSE=debug +iconv +lzma
+KEYWORDS=~amd64 ~x86
+LICENSE=ZLIB
+RDEPEND=dev-libs/boost:= iconv? ( virtual/libiconv ) lzma? ( app-arch/xz-utils )
+SLOT=0
+SRC_URI=http://constexpr.org/innoextract/files/innoextract-1.5.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=980c9a999fe65c2658af502f94606b73

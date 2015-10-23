@@ -1,32 +1,21 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5-progress"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="3.* *-jython"
+EAPI="5"
 
-inherit distutils
+PYTHON_COMPAT=( python2_7 python3_3 python3_4 )
 
-DESCRIPTION="Python bindings for GnuTLS"
-HOMEPAGE="https://pypi.python.org/pypi/python-gnutls"
+inherit distutils-r1
+
+DESCRIPTION="High level object oriented wrapper around libgnutls"
+HOMEPAGE="http://ag-projects.com/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
-LICENSE="LGPL-2.1"
+LICENSE="LGPL-2+"
 SLOT="0"
-KEYWORDS="*"
-IUSE="examples"
+IUSE=""
 
-DEPEND=">=net-libs/gnutls-3"
-RDEPEND="${DEPEND}"
+KEYWORDS="~amd64 ~x86"
 
-PYTHON_MODULES="gnutls"
-
-src_install() {
-	distutils_src_install
-
-	if use examples; then
-		insinto /usr/share/doc/${PF}
-		doins -r examples
-	fi
-}
+RDEPEND="net-libs/gnutls"

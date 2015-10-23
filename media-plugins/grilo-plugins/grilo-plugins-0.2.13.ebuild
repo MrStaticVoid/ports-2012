@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no" # --enable-debug only changes CFLAGS
@@ -11,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Grilo"
 
 LICENSE="LGPL-2.1+"
 SLOT="0.2"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~ppc ~ppc64 x86"
 IUSE="daap +dvd flickr freebox gnome-online-accounts lua pocket thetvdb tracker upnp-av +vimeo +youtube"
 
 RDEPEND="

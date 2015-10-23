@@ -247,14 +247,14 @@ prepgamesdirs() {
 			find "${D}/${dir}" -type f -print0 | xargs -0 chmod $mode
 
 			# common trees should not be games owned #264872 #537580
-			fowners root:root "${dir}"
+			fowners root:0 "${dir}"
 			fperms 755 "${dir}"
 			if [[ ${dir} == "${GAMES_PREFIX}" \
 						|| ${dir} == "${GAMES_PREFIX_OPT}" ]] ; then
 				for d in $(get_libdir) bin ; do
 					# check if dirs exist to avoid "nonfatal" option
 					if [[ -e ${D}/${dir}/${d} ]] ; then
-						fowners root:root "${dir}/${d}"
+						fowners root:0 "${dir}/${d}"
 						fperms 755 "${dir}/${d}"
 					fi
 				done
@@ -343,7 +343,7 @@ games_pkg_postinst() {
 		esac
 		echo
 		einfo "For more info about Gentoo gaming in general, see our website:"
-		einfo "   http://games.gentoo.org/"
+		einfo "   https://games.gentoo.org/"
 		echo
 	fi
 }

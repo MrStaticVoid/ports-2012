@@ -5,16 +5,20 @@
 EAPI=5
 
 inherit cmake-utils
-inherit git-r3
 
 DESCRIPTION="a tool for analysing captured signals, primarily from software-defined radio receivers"
 HOMEPAGE="https://github.com/miek/inspectrum"
-SRC_URI=""
-EGIT_REPO_URI="https://github.com/miek/inspectrum.git"
+if [[ ${PV} == "9999" ]] ; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/miek/inspectrum.git"
+	KEYWORDS=""
+else
+	SRC_URI="https://github.com/miek/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+fi
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS=""
 IUSE=""
 
 RDEPEND="sci-libs/fftw:3.0=
@@ -23,7 +27,3 @@ RDEPEND="sci-libs/fftw:3.0=
 	dev-qt/qtcore:5"
 DEPEND="virtual/pkgconfig
 	${RDEPEND}"
-
-src_install() {
-	dobin "${BUILD_DIR}"/inspectrum
-}

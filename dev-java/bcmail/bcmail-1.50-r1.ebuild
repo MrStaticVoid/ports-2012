@@ -16,10 +16,10 @@ SRC_URI="http://www.bouncycastle.org/download/${MY_P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~x64-macos"
+KEYWORDS="amd64 ppc ppc64 x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~x64-macos"
 
 CDEPEND="dev-java/bcprov:0[test?]
-		dev-java/bcpkix:0[test?]
+		dev-java/bcpkix:0
 		dev-java/sun-jaf:0
 		dev-java/junit:0
 		dev-java/oracle-javamail:0"
@@ -41,7 +41,7 @@ JAVA_GENTOO_CLASSPATH="
 	oracle-javamail
 "
 
-# Package can't be build with test as bcprov and bcpkix can't be built with test.
+# Package can't be built with test as bcprov and bcpkix can't be built with test.
 RESTRICT="test"
 
 src_unpack() {

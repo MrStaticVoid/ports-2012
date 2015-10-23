@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -8,11 +10,11 @@ VALA_USE_DEPEND="vapigen"
 inherit gnome2 vala
 
 DESCRIPTION="Unicode character map viewer and library"
-HOMEPAGE="http://live.gnome.org/Gucharmap"
+HOMEPAGE="https://live.gnome.org/Gucharmap"
 
 LICENSE="GPL-3"
 SLOT="2.90"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ia64 ppc ppc64 ~sh sparc x86 ~x86-fbsd"
 IUSE="cjk +introspection test vala"
 REQUIRED_USE="vala? ( introspection )"
 

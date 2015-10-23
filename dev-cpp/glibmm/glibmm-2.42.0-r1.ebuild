@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -10,7 +12,7 @@ HOMEPAGE="http://www.gtkmm.org"
 
 LICENSE="LGPL-2.1+ GPL-2+" # GPL-2+ applies only to the build system
 SLOT="2"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~sh sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc debug examples test"
 
 COMMON_DEPEND="
@@ -35,11 +37,9 @@ src_prepare() {
 			-i Makefile.am Makefile.in || die "sed 1 failed"
 	fi
 
-	if ! use examples; then
-		# don't waste time building examples
-		sed 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' \
-			-i Makefile.am Makefile.in || die "sed 2 failed"
-	fi
+	# don't build examples - we want to install example sources, not binaries
+	sed 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' \
+		-i Makefile.am Makefile.in || die "sed 2 failed"
 
 	# Test fails with IPv6 but not v4, upstream bug #720073
 	sed -e 's:giomm_tls_client/test::' \

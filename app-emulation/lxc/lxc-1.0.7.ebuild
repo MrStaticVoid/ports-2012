@@ -1,9 +1,11 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
 MY_P="${P/_/-}"
-PYTHON_COMPAT=( python{3_2,3_3,3_4} )
+PYTHON_COMPAT=( python{3_3,3_4} )
 DISTUTILS_OPTIONAL=1
 
 inherit autotools bash-completion-r1 distutils-r1 eutils linux-info versionator flag-o-matic systemd
@@ -12,7 +14,7 @@ DESCRIPTION="LinuX Containers userspace utilities"
 HOMEPAGE="https://linuxcontainers.org/"
 SRC_URI="https://github.com/lxc/lxc/archive/${MY_P}.tar.gz"
 
-KEYWORDS="*"
+KEYWORDS="amd64 ~arm ~arm64 ppc64 x86"
 
 LICENSE="LGPL-3"
 SLOT="0"
@@ -20,7 +22,7 @@ IUSE="doc examples lua python seccomp"
 
 RDEPEND="net-libs/gnutls
 	sys-libs/libcap
-	lua? ( >=dev-lang/lua-5.1 )
+	lua? ( >=dev-lang/lua-5.1:= )
 	python? ( ${PYTHON_DEPS} )
 	seccomp? ( sys-libs/libseccomp )"
 
@@ -35,6 +37,7 @@ RDEPEND="${RDEPEND}
 
 CONFIG_CHECK="~CGROUPS ~CGROUP_DEVICE
 	~CPUSETS ~CGROUP_CPUACCT
+	~RESOURCE_COUNTERS
 	~CGROUP_SCHED
 
 	~NAMESPACES
@@ -53,6 +56,7 @@ CONFIG_CHECK="~CGROUPS ~CGROUP_DEVICE
 	~!GRKERNSEC_CHROOT_PIVOT
 	~!GRKERNSEC_CHROOT_CHMOD
 	~!GRKERNSEC_CHROOT_CAPS
+	~!GRKERNSEC_PROC
 "
 
 ERROR_DEVPTS_MULTIPLE_INSTANCES="CONFIG_DEVPTS_MULTIPLE_INSTANCES:	needed for pts inside container"
@@ -74,6 +78,7 @@ ERROR_GRKERNSEC_CHROOT_DOUBLE=":CONFIG_GRKERNSEC_CHROOT_DOUBLE	some GRSEC featur
 ERROR_GRKERNSEC_CHROOT_PIVOT=":CONFIG_GRKERNSEC_CHROOT_PIVOT	some GRSEC features make LXC unusable see postinst notes"
 ERROR_GRKERNSEC_CHROOT_CHMOD=":CONFIG_GRKERNSEC_CHROOT_CHMOD	some GRSEC features make LXC unusable see postinst notes"
 ERROR_GRKERNSEC_CHROOT_CAPS=":CONFIG_GRKERNSEC_CHROOT_CAPS	some GRSEC features make LXC unusable see postinst notes"
+ERROR_GRKERNSEC_PROC=":CONFIG_GRKERNSEC_PROC:  this GRSEC feature is incompatible with unprivileged containers"
 
 DOCS=(AUTHORS CONTRIBUTING MAINTAINERS NEWS README doc/FAQ.txt)
 
@@ -101,10 +106,12 @@ src_configure() {
 		--docdir=/usr/share/doc/${PF} \
 		--with-config-path=/etc/lxc	\
 		--with-rootfs-path=/usr/lib/lxc/rootfs \
+		--with-distro=gentoo \
 		$(use_enable doc) \
 		--disable-apparmor \
 		$(use_enable examples) \
 		$(use_enable lua) \
+		$(use_enable seccomp) \
 		--disable-python
 }
 
@@ -125,7 +132,7 @@ src_compile() {
 src_install() {
 	default
 
-	mv "${ED}"/$(get_bashcompdir)/${PN} "${ED}"/$(get_bashcompdir)/${PN}-start || die
+	mv "${ED}"/usr/share/bash-completion/completions/${PN} "${ED}"/$(get_bashcompdir)/${PN}-start || die
 	bashcomp_alias ${PN}-start \
 		${PN}-{attach,cgroup,clone,console,create,destroy,device,execute,freeze,info,monitor,snapshot,start-ephemeral,stop,unfreeze,wait}
 
@@ -150,7 +157,7 @@ src_install() {
 	doexe config/init/systemd/${PN}-devsetup
 	# Use that script with the systemd service (Similar to upstream
 	# Makefile.am
-	cp "${FILESDIR}"/${PN}_at.service ${PN}_at.service
+	cp "${FILESDIR}"/${PN}_at.service ${PN}_at.service || die
 	sed -i \
 		"/Restart=always/a ExecStartPre=/usr/libexec/${PN}/${PN}-devsetup" \
 		${PN}_at.service \

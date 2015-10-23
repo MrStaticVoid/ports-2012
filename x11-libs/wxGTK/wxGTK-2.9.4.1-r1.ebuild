@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -13,8 +15,8 @@ SRC_URI="mirror://sourceforge/wxpython/wxPython-src-2.9.4.0.tar.bz2
 	doc? ( mirror://sourceforge/wxpython/wxPython-docs-2.9.4.0.tar.bz2 )
 	mirror://sourceforge/wxpython/wxPython-src-${PV}.patch"
 
-KEYWORDS="~*"
-IUSE="+X aqua doc debug gnome gstreamer opengl sdl tiff webkit"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="+X aqua doc debug gnome gstreamer opengl pch sdl tiff webkit"
 
 SLOT="2.9/2.9.4"
 
@@ -75,10 +77,10 @@ src_configure() {
 	append-flags -fno-strict-aliasing
 
 	# X independent options
-	myconf="--disable-precomp-headers
-			--enable-compat26
+	myconf="--enable-compat26
 			--with-zlib=sys
 			--with-expat=sys
+			$(use_enable pch precomp-headers)
 			$(use_with sdl)"
 
 	# debug in >=2.9
@@ -89,7 +91,7 @@ src_configure() {
 	# apps can disable these features by building w/ -NDEBUG or wxDEBUG_LEVEL_0.
 	# wxDEBUG_LEVEL=2 enables assertions that have expensive runtime costs.
 	# http://docs.wxwidgets.org/2.9/overview_debugging.html
-	# http://groups.google.com/group/wx-dev/browse_thread/thread/c3c7e78d63d7777f/05dee25410052d9c
+	# https://groups.google.com/group/wx-dev/browse_thread/thread/c3c7e78d63d7777f/05dee25410052d9c
 	use debug \
 		&& myconf="${myconf} --enable-debug=max"
 

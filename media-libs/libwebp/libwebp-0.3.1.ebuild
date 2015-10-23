@@ -6,7 +6,7 @@ EAPI=5
 inherit eutils multilib-minimal
 
 DESCRIPTION="A lossy image compression format"
-HOMEPAGE="https://code.google.com/p/webp/"
+HOMEPAGE="https://developers.google.com/speed/webp/download"
 SRC_URI="https://webp.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="BSD"
@@ -30,7 +30,7 @@ ECONF_SOURCE=${S}
 src_prepare() {
 	# This is conflicting with `usex` later on, upstream is using ac_cv_ wrong
 	# If modifying configure.ac, eautoreconf is required because of "Maintainer mode"
-	sed -i -e '/unset ac_cv_header_GL_glut_h/d' configure || die
+	sed -i -e '/unset ac_cv_header_GL_glut_h/d' configure || die
 }
 
 multilib_src_configure() {

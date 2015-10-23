@@ -1,6 +1,8 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5"
+EAPI=4
 
 inherit eutils flag-o-matic
 
@@ -11,12 +13,13 @@ SRC_URI="ftp://ftp.lprng.com/pub/${MY_PN}/${MY_PN}/${MY_PN}-${PV}.tgz"
 
 LICENSE="|| ( GPL-2 Artistic )"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86"
 IUSE="foomaticdb kerberos nls ssl"
 
 RDEPEND="sys-process/procps
 	ssl? ( dev-libs/openssl )
-	foomaticdb? ( || ( net-print/cups-filters[foomatic] net-print/foomatic-filters[cups] ) net-print/cups[lprng-compat] net-print/foomatic-db )
+	foomaticdb? ( net-print/foomatic-filters net-print/foomatic-db )
+	!>=net-print/cups-1.6.2-r4[-lprng-compat]
 	!<net-print/cups-1.6.2-r4"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )

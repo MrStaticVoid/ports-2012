@@ -69,7 +69,7 @@ DEPEND="${RDEPEND} >=sys-devel/bison-1.875 >=sys-devel/flex-2.5.4 elibc_glibc? (
 PDEPEND=">=sys-devel/gcc-config-1.5 >=sys-devel/libtool-2.4.3 elibc_glibc? ( >=sys-libs/glibc-2.8 )"
 
 tc-is-cross-compiler() {
-	[[ ${CBUILD}:-${CHOST}} != ${CHOST} ]]
+	[[ ${CBUILD:-${CHOST}} != ${CHOST} ]]
 }
 
 is_crosscompile() {

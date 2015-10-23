@@ -1,4 +1,6 @@
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # This version is just for the ABI .5 library
 
@@ -31,7 +33,7 @@ SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches)"
 
 LICENSE="GPL-2"
 SLOT="${PV:0:1}"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
 IUSE=""
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2"

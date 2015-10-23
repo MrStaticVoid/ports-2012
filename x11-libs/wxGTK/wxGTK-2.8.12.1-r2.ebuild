@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -14,8 +16,8 @@ BASE_P="${PN}-${BASE_PV}"
 # docs, and are released more frequently than wxGTK.
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 
-KEYWORDS="~*"
-IUSE="+X aqua doc debug gnome gstreamer odbc opengl sdl tiff"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="+X aqua doc debug gnome gstreamer odbc opengl pch sdl tiff"
 
 SLOT="2.8"
 
@@ -94,14 +96,14 @@ multilib_src_configure() {
 	append-flags -fno-strict-aliasing
 
 	# X independent options
-	myconf="--disable-precomp-headers
-			--enable-compat26
+	myconf="--enable-compat26
 			--enable-shared
 			--enable-unicode
 			--with-regex=builtin
 			--with-zlib=sys
 			--with-expat=sys
 			$(use_enable debug)
+			$(use_enable pch precomp-headers)
 			$(use_with odbc odbc sys)
 			$(use_with sdl)
 			$(use_with tiff libtiff sys)"

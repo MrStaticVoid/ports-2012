@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -16,7 +16,7 @@ SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="-* ~amd64"
+KEYWORDS="~amd64"
 IUSE="pax_kernel +vmci +vsock"
 
 RDEPEND=""
@@ -58,7 +58,7 @@ pkg_setup() {
 	BUILD_TARGETS="auto-build KERNEL_DIR=${KERNEL_DIR} KBUILD_OUTPUT=${KV_OUT_DIR}"
 
 	enewgroup "${VMWARE_GROUP}"
-	filter-flags -mfpmath=sse
+	filter-flags -mfpmath=sse -mavx -mpclmul -maes
 
 	for mod in ${VMWARE_MODULE_LIST}; do
 		MODULE_NAMES="${MODULE_NAMES} ${mod}(misc:${S}/${mod}-only)"

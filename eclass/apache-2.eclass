@@ -71,7 +71,7 @@ esac
 [[ -n "$GENTOO_PATCH_A" ]] || GENTOO_PATCH_A="${GENTOO_PATCHNAME}-${GENTOO_PATCHSTAMP}.tar.bz2"
 
 SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2
-	http://dev.gentoo.org/~${GENTOO_DEVELOPER}/dist/apache/${GENTOO_PATCH_A}"
+	https://dev.gentoo.org/~${GENTOO_DEVELOPER}/dist/apache/${GENTOO_PATCH_A}"
 
 # @VARIABLE: IUSE_MPMS_FORK
 # @DESCRIPTION:
@@ -89,7 +89,7 @@ SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2
 # built-in modules
 
 IUSE_MPMS="${IUSE_MPMS_FORK} ${IUSE_MPMS_THREAD}"
-IUSE="${IUSE} debug doc ldap selinux ssl static suexec threads"
+IUSE="${IUSE} debug doc ldap libressl selinux ssl static suexec threads"
 
 for module in ${IUSE_MODULES} ; do
 	IUSE="${IUSE} apache2_modules_${module}"
@@ -106,7 +106,10 @@ DEPEND="dev-lang/perl
 	apache2_modules_deflate? ( sys-libs/zlib )
 	apache2_modules_mime? ( app-misc/mime-types )
 	ldap? ( =net-nds/openldap-2* )
-	ssl? ( >=dev-libs/openssl-0.9.8m:0= )
+	ssl? (
+		!libressl? ( >=dev-libs/openssl-1.0.2:0= )
+		libressl? ( dev-libs/libressl:= )
+	)
 	!=www-servers/apache-1*"
 RDEPEND+=" ${DEPEND}
 	selinux? ( sec-policy/selinux-apache )"
@@ -365,7 +368,7 @@ check_upgrade() {
 		eerror "(${EROOT}etc/apache2/apache2-builtin-mods) exists on your"
 		eerror "system."
 		eerror
-		eerror "Please read http://www.gentoo.org/doc/en/apache-upgrading.xml"
+		eerror "Please read https://www.gentoo.org/doc/en/apache-upgrading.xml"
 		eerror "for detailed information how to convert this file to the new"
 		eerror "APACHE2_MODULES USE_EXPAND variable."
 		eerror

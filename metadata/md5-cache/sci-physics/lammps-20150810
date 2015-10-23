@@ -4,11 +4,11 @@ DESCRIPTION=Large-scale Atomic/Molecular Massively Parallel Simulator
 EAPI=5
 HOMEPAGE=http://lammps.sandia.gov/
 IUSE=doc examples gzip lammps-memalign mpi python static-libs python_targets_python2_7 python_targets_python3_3
-KEYWORDS=~amd64 ~x86
+KEYWORDS=amd64 x86
 LICENSE=GPL-2
 RDEPEND=mpi? ( virtual/blas virtual/lapack virtual/mpi ) gzip? ( app-arch/gzip ) sci-libs/voro++ python? ( python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) python_targets_python3_3? ( >=dev-lang/python-3.3.2-r2:3.3 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,python_targets_python3_3(-)?,-python_single_target_python2_7(-),-python_single_target_python3_3(-)] ) virtual/fortran
 REQUIRED_USE=python? ( || ( python_targets_python2_7 python_targets_python3_3 ) )
 SLOT=0
 SRC_URI=http://lammps.sandia.gov/tars/lammps-10Aug15.tar.gz
-_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	flag-o-matic	02090c5a622458303e6bf68837ac6b96	fortran-2	e18b1135d4c478b5c81b23698c483030	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python-r1	fca51bba23ab2e206194470b2e56c92c	python-utils-r1	39c6b012a0512678e698e712b5b7ecc2	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
-_md5_=aa8433218090ab584881612039d16cba
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	fortran-2	e18b1135d4c478b5c81b23698c483030	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python-r1	32b376cbb100a3a8083b3a0de023e117	python-utils-r1	9c405693f1f355a718700c5cffffd9e5	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=324e0d53630c131d15e7bdbeb71045bd

@@ -168,7 +168,7 @@ fi
 # Setup packages inheriting this eclass
 case ${KDEBASE} in
 	kde-base)
-		HOMEPAGE="http://www.kde.org/"
+		HOMEPAGE="https://www.kde.org/"
 		LICENSE="GPL-2"
 		if [[ ${KDE_BUILD_TYPE} = live && -z ${I_KNOW_WHAT_I_AM_DOING} ]]; then
 			# Disable tests for live ebuilds by default
@@ -185,7 +185,7 @@ case ${KDEBASE} in
 		esac
 		;;
 	kdevelop)
-		HOMEPAGE="http://www.kdevelop.org/"
+		HOMEPAGE="https://www.kdevelop.org/"
 		LICENSE="GPL-2"
 		;;
 esac
@@ -323,7 +323,7 @@ kdedepend="
 kderdepend=""
 
 if [[ ${CATEGORY} == kde-apps ]]; then
-	kderdepend+=" !kde-base/${PN}"
+	kderdepend+=" !kde-base/${PN}:4"
 fi
 
 # all packages needs oxygen icons for basic iconset
@@ -433,7 +433,7 @@ _calculate_src_uri() {
 				4.4.20*)
 					# KDEPIM 4.4 no-akonadi branch, special case
 					# TODO: Remove this part when KDEPIM 4.4 gets out of the tree
-					SRC_URI="http://dev.gentoo.org/~dilfridge/distfiles/${_kmname_pv}.tar.xz" ;;
+					SRC_URI="https://dev.gentoo.org/~dilfridge/distfiles/${_kmname_pv}.tar.xz" ;;
 				4.?.[6-9]? | 4.??.[6-9]?)
 					# Unstable KDE SC releases
 					SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.xz" ;;
@@ -461,6 +461,12 @@ _calculate_src_uri() {
 				4.14.11)
 					# Part of 15.08.0 actually, sigh. Not stable for next release!
 					SRC_URI="mirror://kde/stable/applications/15.08.0/src/${_kmname_pv}.tar.xz" ;;
+				4.14.12)
+					# Part of 15.08.1 actually, sigh. Not stable for next release!
+					SRC_URI="mirror://kde/stable/applications/15.08.1/src/${_kmname_pv}.tar.xz" ;;
+				4.14.13)
+					# Part of 15.08.2 actually, sigh. Not stable for next release!
+					SRC_URI="mirror://kde/stable/applications/15.08.2/src/${_kmname_pv}.tar.xz" ;;
 				??.?.[6-9]? | ??.??.[4-9]?)
 					# Unstable KDE Applications releases
 					SRC_URI="mirror://kde/unstable/applications/${PV}/src/${_kmname}-${PV}.tar.xz" ;;

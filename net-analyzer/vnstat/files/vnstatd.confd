@@ -1,18 +1,7 @@
 # /etc/conf.d/vnstatd: config file for /etc/init.d/vnstatd
 
-# Configuration file
-VNSTATD_CONFIGFILE="/etc/vnstat.conf"
+# Adjust scheduling priority on vnstatd (default: 0)
+#VNSTATD_NICELEVEL="0"
 
-# PID file
-VNSTATD_PIDFILE="/run/vnstat/vnstatd.pid"
-
-# Options to vnstatd
-# See vnstatd(8) for more details
-# Notes:
-#  * Do not specify another PIDFILE but use the variable above to change the location
-#  * Do not specify another CONFIGFILE but use the variable above to change the location
-VNSTATD_OPTS=""
-
-# Wait x milliseconds after starting and check that daemon is still running.
-# See start-stop-daemon(8) for more details
-SSD_STARTWAIT=500
+# Pass extra options to vnstatd
+#VNSTATD_EXTRAOPTS="--config /etc/vnstat.conf"

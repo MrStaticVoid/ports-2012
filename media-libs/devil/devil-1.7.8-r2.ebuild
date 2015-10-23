@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/openil/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~mips ppc ~ppc64 x86"
+KEYWORDS="amd64 ~arm ~mips ppc ppc64 x86"
 IUSE="allegro gif glut jpeg jpeg2k mng nvtt openexr opengl png sdl cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse3 static-libs tiff xpm X"
 
 RDEPEND="allegro? ( media-libs/allegro:0 )
@@ -38,7 +38,7 @@ DEPEND="${RDEPEND}
 	X? ( x11-proto/xextproto )"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-{CVE-2009-3994,libpng14,nvtt-glut,ILUT}.patch
+	epatch "${FILESDIR}"/${P}-{CVE-2009-3994,libpng14,nvtt-glut,ILUT,restrict,fix-test}.patch
 	eautoreconf
 }
 

@@ -171,3 +171,6 @@ index f19e123..471e7e2 100644
      if (reader->sax == NULL)
  	reader->sax = (xmlSAXHandler *) xmlMalloc(sizeof(xmlSAXHandler));
      if (reader->sax == NULL) {
+-- 
+2.3.5
+

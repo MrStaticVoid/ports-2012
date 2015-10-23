@@ -1,8 +1,10 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
-GNOME2_LA_PUNT="yes" #gmodule is used, which uses dlopen
+GNOME2_LA_PUNT="yes"
 
 inherit autotools bash-completion-r1 eutils gnome2
 
@@ -11,8 +13,8 @@ HOMEPAGE="https://git.gnome.org/browse/gnome-control-center/"
 
 LICENSE="GPL-2+"
 SLOT="2"
-IUSE="+bluetooth +colord +cups +deprecated +gnome-online-accounts +i18n input_devices_wacom kerberos v4l"
-KEYWORDS="*"
+IUSE="+bluetooth +colord +cups +gnome-online-accounts +i18n input_devices_wacom kerberos v4l"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 
 # False positives caused by nested configure scripts
 QA_CONFIGURE_OPTIONS=".*"
@@ -80,7 +82,7 @@ RDEPEND="${COMMON_DEPEND}
 	x11-themes/gnome-icon-theme-symbolic
 	colord? ( >=gnome-extra/gnome-color-manager-3 )
 	cups? (
-		|| ( app-admin/system-config-printer >=app-admin/system-config-printer-gnome-1.3.5 )
+		app-admin/system-config-printer
 		net-print/cups-pk-helper )
 	input_devices_wacom? ( gnome-base/gnome-settings-daemon[input_devices_wacom] )
 	i18n? ( >=gnome-base/libgnomekbd-3 )
@@ -90,7 +92,6 @@ RDEPEND="${COMMON_DEPEND}
 	!gnome-extra/gnome-media[pulseaudio]
 	!<gnome-extra/gnome-media-2.32.0-r300
 	!<net-wireless/gnome-bluetooth-3.3.2
-	deprecated? ( sys-power/upower[deprecated] )
 "
 # PDEPEND to avoid circular dependency
 PDEPEND=">=gnome-base/gnome-session-2.91.6-r1"
@@ -105,44 +106,18 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40.1
 	>=sys-devel/gettext-0.17
 	virtual/pkgconfig
-	cups? ( sys-apps/sed )
+
 	gnome-base/gnome-common
+
+	<sys-libs/timezone-data-2015f
 "
 # Needed for autoreconf
 #	gnome-base/gnome-common
 
 src_prepare() {
-	if use deprecated; then
-		# From Funtoo:
-		# 	https://bugs.funtoo.org/browse/FL-1329
-		epatch "${FILESDIR}"/${PN}-3.14.1-restore-deprecated-code.patch
-	fi
-
-	# Gentoo handles completions in a different directory, bugs #465094 and #477390
-	sed -i "s|^completiondir =.*|completiondir = $(get_bashcompdir)|" \
-		shell/Makefile.am || die "sed completiondir failed"
-
 	# Make some panels and dependencies optional; requires eautoreconf
 	# https://bugzilla.gnome.org/686840, 697478, 700145
-	if use deprecated; then
-		# From Funtoo:
-		# 	https://bugs.funtoo.org/browse/FL-1329
-		epatch "${FILESDIR}"/${PN}-3.14.1-optional-rebased.patch
-	else
-		epatch "${FILESDIR}"/${PN}-3.14.1-optional.patch
-	fi
-
-	# From Funtoo:
-	# 	https://bugs.funtoo.org/browse/FL-1389
-	epatch "${FILESDIR}"/${PN}-3.14.1-disable-automatic-datetime-and-timezone-options.patch
-
-	# From Funtoo:
-	# 	https://bugs.funtoo.org/browse/FL-1391
-	epatch "${FILESDIR}"/${PN}-3.14.1-disable-changing-hostname.patch
-
-	# Make some panels and dependencies optional; requires eautoreconf
-	# https://bugzilla.gnome.org/686840, 697478, 700145
-	#epatch "${FILESDIR}"/${PN}-3.14.0-optional.patch
+	epatch "${FILESDIR}"/${PN}-3.14.0-optional.patch
 
 	# Fix some absolute paths to be appropriate for Gentoo
 	epatch "${FILESDIR}"/${PN}-3.10.2-gentoo-paths.patch
@@ -161,7 +136,6 @@ src_configure() {
 		$(use_enable bluetooth) \
 		$(use_enable colord color) \
 		$(use_enable cups) \
-		$(use_enable deprecated ) \
 		$(use_enable gnome-online-accounts goa) \
 		$(use_enable i18n ibus) \
 		$(use_enable kerberos) \

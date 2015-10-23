@@ -15,12 +15,12 @@ SRC_URI="https://github.com/jauhien/g-sorcery/archive/${PV}.tar.gz -> ${P}.tar.g
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="bson"
-KEYWORDS="~amd64 ~hppa ~x86"
+KEYWORDS="~amd64 ~arm ~hppa ~x86"
 
-DEPEND="bson? ( dev-python/pymongo[$(python_gen_usedep 'python*')] )
-	sys-apps/portage[$(python_gen_usedep 'python*')]"
+DEPEND="bson? ( dev-python/pymongo[${PYTHON_USEDEP}] )
+	sys-apps/portage[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
-PDEPEND=">=app-portage/layman-2.2.0[g-sorcery(-),$(python_gen_usedep 'python*')]"
+PDEPEND=">=app-portage/layman-2.2.0[g-sorcery(-),${PYTHON_USEDEP}]"
 
 python_test() {
 	PYTHONPATH="." "${PYTHON}" scripts/run_tests.py

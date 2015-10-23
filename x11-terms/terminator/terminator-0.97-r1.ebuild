@@ -5,7 +5,6 @@
 EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
-DISTUTILS_NO_PARALLEL_BUILD=true
 
 inherit gnome2 distutils-r1
 
@@ -15,7 +14,7 @@ SRC_URI="https://launchpad.net/${PN}/trunk/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="dbus gnome +libnotify"
 
 RDEPEND="

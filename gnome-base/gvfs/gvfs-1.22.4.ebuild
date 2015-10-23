@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -19,11 +21,11 @@ REQUIRED_USE="
 	udisks? ( udev )
 	systemd? ( udisks )
 "
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 # Can use libgphoto-2.5.0 as well. Automagic detection.
 RDEPEND="
-	>=dev-libs/glib-2.42.0:2
+	>=dev-libs/glib-2.37:2
 	sys-apps/dbus
 	dev-libs/libxml2:2
 	net-misc/openssh
@@ -31,10 +33,10 @@ RDEPEND="
 	archive? ( app-arch/libarchive:= )
 	bluray? ( media-libs/libbluray )
 	fuse? ( >=sys-fs/fuse-2.8.0 )
-	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.14.0 )
+	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.7.1 )
 	gphoto2? ( >=media-libs/libgphoto2-2.4.7:= )
-	gtk? ( >=x11-libs/gtk+-3.14.0:3 )
-	http? ( >=net-libs/libsoup-2.48.0:2.4 )
+	gtk? ( >=x11-libs/gtk+-3.0:3 )
+	http? ( >=net-libs/libsoup-2.42:2.4 )
 	ios? (
 		>=app-pda/libimobiledevice-1.1.5:=
 		>=app-pda/libplist-1:= )

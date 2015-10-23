@@ -1,13 +1,13 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5-progress"
+EAPI=5
 
-PYTHON_ABI_TYPE="single"
-PYTHON_DEPEND="python? ( <<>> )"
-PYTHON_RESTRICTED_ABIS="*-jython *-pypy"
+PYTHON_COMPAT=( python2_7 )
 
 inherit autotools base fdo-mime gnome2-utils flag-o-matic linux-info \
-	multilib multilib-minimal pam python user versionator \
+	multilib multilib-minimal pam python-single-r1 user versionator \
 	java-pkg-opt-2 systemd toolchain-funcs
 
 MY_P=${P/_rc/rc}
@@ -23,7 +23,7 @@ if [[ ${PV} == *9999 ]]; then
 	fi
 else
 	SRC_URI="http://www.cups.org/software/${MY_PV}/${MY_P}-source.tar.bz2"
-	KEYWORDS="*"
+	KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~m68k-mint"
 fi
 
 DESCRIPTION="The Common Unix Printing System"
@@ -52,6 +52,7 @@ CDEPEND="
 	kerberos? ( >=virtual/krb5-0-r1[${MULTILIB_USEDEP}] )
 	!lprng-compat? ( !net-print/lprng )
 	pam? ( virtual/pam )
+	python? ( ${PYTHON_DEPS} )
 	ssl? (
 		>=dev-libs/libgcrypt-1.5.3:0[${MULTILIB_USEDEP}]
 		>=net-libs/gnutls-2.12.23-r6[${MULTILIB_USEDEP}]
@@ -82,6 +83,7 @@ PDEPEND="
 "
 
 REQUIRED_USE="
+	python? ( ${PYTHON_REQUIRED_USE} )
 	usb? ( threads )
 "
 
@@ -109,7 +111,7 @@ pkg_setup() {
 	enewuser lp -1 -1 -1 lp
 	enewgroup lpadmin 106
 
-	use python && python_pkg_setup
+	use python && python-single-r1_pkg_setup
 
 	if use kernel_linux; then
 		linux-info_pkg_setup
@@ -203,7 +205,7 @@ multilib_src_configure() {
 		$(multilib_native_use_with java) \
 		$(use_enable kerberos gssapi) \
 		$(multilib_native_use_enable pam) \
-		$(multilib_native_use_with python python "$(use python && PYTHON -a)") \
+		$(multilib_native_use_with python python "${PYTHON}") \
 		$(use_enable static-libs static) \
 		$(use_enable threads) \
 		$(use_enable ssl gnutls) \

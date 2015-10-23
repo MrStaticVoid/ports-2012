@@ -4,6 +4,7 @@
 
 EAPI=5
 
+CMAKE_MAKEFILE_GENERATOR="emake"
 KDE_LINGUAS="cs de es fr"
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -41,7 +42,7 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
-	$(add_kdeapps_dep poxml extras)
+	$(add_kdeapps_dep poxml)
 	|| ( media-gfx/imagemagick[png,svg] media-gfx/graphicsmagick[imagemagick,png,svg] )
 "
 

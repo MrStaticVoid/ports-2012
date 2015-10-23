@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=dev-ros/diagnostic_aggregator dev-ros/diagnostic_analysis dev-ros/diagnostic_common_diagnostics dev-ros/diagnostic_updater dev-ros/self_test dev-ros/test_diagnostic_aggregator >=dev-vcs/git-1.8.2.1 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-util/catkin dev-python/empy
+DESCRIPTION=Packages related to gathering, viewing, and analyzing diagnostics data from robots
+EAPI=5
+HOMEPAGE=http://wiki.ros.org/diagnostics
+IUSE=test
+LICENSE=BSD
+RDEPEND=dev-ros/diagnostic_aggregator dev-ros/diagnostic_analysis dev-ros/diagnostic_common_diagnostics dev-ros/diagnostic_updater dev-ros/self_test dev-ros/test_diagnostic_aggregator dev-util/catkin dev-python/empy
+SLOT=0
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	git-r3	eddac8fcf8e23a1d871890d0fb7dab8e	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	ros-catkin	5bd0782bea06cf2dd93b07f40e0a5e09	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=2e28d3d589798b82cef5fe05fdc31b11

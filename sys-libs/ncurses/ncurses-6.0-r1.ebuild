@@ -63,20 +63,6 @@ src_configure() {
 
 	multijob_init
 
-	# When installing ncurses, we have to use a compatible version of tic.
-	# This comes up when cross-compiling, doing multilib builds, upgrading,
-	# or installing for the first time.  Build a local copy of tic whenever
-	# the host version isn't available. #249363 #557598
-	if ! ROOT=/ has_version "~sys-libs/${P}:0" ; then
-		# We can't re-use the multilib BUILD_DIR because we run outside of it.
-		BUILD_DIR="${WORKDIR}" \
-		CHOST=${CBUILD} \
-		CFLAGS=${BUILD_CFLAGS} \
-		CXXFLAGS=${BUILD_CXXFLAGS} \
-		CPPFLAGS=${BUILD_CPPFLAGS} \
-		LDFLAGS="${BUILD_LDFLAGS} -static" \
-		multijob_child_init do_configure cross --without-shared --with-normal
-	fi
 	multilib-minimal_src_configure
 	multijob_finish
 }
@@ -154,29 +140,24 @@ do_configure() {
 		conf+=( --without-{pthread,reentrant} )
 	fi
 	# Make sure each variant goes in a unique location.
-	if [[ ${target} != "ncurses" ]] ; then
+	if [[ ${target} == "ncurses" ]] ; then
+		# "ncurses" variant goes into "${EPREFIX}"/usr/include
+		# It is needed on Prefix because the configure script appends
+		# "ncurses" to "${prefix}/include" if "${prefix}" is not /usr.
+		conf+=( --enable-overwrite )
+	else
 		conf+=( --includedir="${EPREFIX}"/usr/include/${target} )
-	fi
-	# See comments in src_configure.
-	if [[ ${target} != "cross" ]] ; then
-		local cross_path="${WORKDIR}/cross"
-		[[ -d ${cross_path} ]] && export TIC_PATH="${cross_path}/progs/tic"
 	fi
 
 	# Force bash until upstream rebuilds the configure script with a newer
 	# version of autotools. #545532
-	CONFIG_SHELL=/bin/bash \
+	CONFIG_SHELL=${EPREFIX}/bin/bash \
 	ECONF_SOURCE=${S} \
 	econf "${conf[@]}" "$@"
 }
 
 src_compile() {
 	# See comments in src_configure.
-	if ! ROOT=/ has_version "~sys-libs/${P}" ; then
-		BUILD_DIR="${WORKDIR}" \
-		do_compile cross -C progs tic
-	fi
-
 	multilib-minimal_src_compile
 }
 
@@ -216,7 +197,7 @@ multilib_src_install() {
 	# Move main libraries into /.
 	if multilib_is_native_abi ; then
 		gen_usr_ldscript -a \
-			"${NCURSES_TARGETS[@]}"
+			"${NCURSES_TARGETS[@]}" \
 			$(use tinfo && usex unicode 'tinfow' '') \
 			$(usev tinfo)
 	fi

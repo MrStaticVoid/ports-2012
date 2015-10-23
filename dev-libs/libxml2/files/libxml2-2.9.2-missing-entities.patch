@@ -26,3 +26,6 @@ index 67c9dfd..a8d1b67 100644
          ((ent->etype != XML_EXTERNAL_GENERAL_PARSED_ENTITY) ||
           (ctxt->options & (XML_PARSE_NOENT | XML_PARSE_DTDVALID)))) {
  	unsigned long oldnbent = ctxt->nbentities;
+-- 
+2.3.5
+

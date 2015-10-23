@@ -44,6 +44,7 @@ dev-perl
 dev-php
 dev-python
 dev-qt
+dev-ros
 dev-ruby
 dev-scheme
 dev-tcltk
@@ -113,9 +114,9 @@ net-print
 net-proxy
 net-voip
 net-wireless
-net-zope
 pantheon-base
 perl-core
+ros-meta
 sci-astronomy
 sci-biology
 sci-calculators

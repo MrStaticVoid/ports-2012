@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst postrm prepare test
+DEPEND=dev-python/setuptools test? ( dev-python/nose ) =dev-lang/python-2*
+DESCRIPTION=hgsubversion is a Mercurial extension for working with Subversion repositories
+EAPI=3
+HOMEPAGE=https://bitbucket.org/durin42/hgsubversion/wiki/Home https://pypi.python.org/pypi/hgsubversion
+IUSE=test
+KEYWORDS=amd64 x86 ~ppc-macos ~x64-macos ~x86-solaris
+LICENSE=GPL-2
+RDEPEND=>=dev-vcs/mercurial-1.4 || ( dev-python/subvertpy >=dev-vcs/subversion-1.5[python] ) =dev-lang/python-2*
+SLOT=0
+SRC_URI=mirror://pypi/h/hgsubversion/hgsubversion-1.4.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	2cc08291ed8a5cd6b4791b24b0056357
+_md5_=b818e6b09d265649c23777122ef44b51

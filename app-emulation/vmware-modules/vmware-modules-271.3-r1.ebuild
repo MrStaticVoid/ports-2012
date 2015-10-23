@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/vmware-modules/vmware-modules-271.3.ebuild,v 1.5 2014/06/09 15:24:07 dilfridge Exp $
+# $Id$
 
 EAPI="4"
 
@@ -44,7 +44,7 @@ pkg_setup() {
 	BUILD_TARGETS="auto-build KERNEL_DIR=${KERNEL_DIR} KBUILD_OUTPUT=${KV_OUT_DIR}"
 
 	enewgroup "${VMWARE_GROUP}"
-	filter-flags -mfpmath=sse
+	filter-flags -mfpmath=sse -mavx -mpclmul -maes
 
 	for mod in ${VMWARE_MODULE_LIST}; do
 		MODULE_NAMES="${MODULE_NAMES} ${mod}(misc:${S}/${mod}-only)"

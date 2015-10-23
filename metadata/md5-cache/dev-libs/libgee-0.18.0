@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare unpack
-DEPEND=>=dev-libs/glib-2.42:2 introspection? ( >=dev-libs/gobject-introspection-1.42 ) virtual/pkgconfig app-arch/xz-utils >=sys-apps/sed-4
+DEPEND=>=dev-libs/glib-2.36:2 introspection? ( >=dev-libs/gobject-introspection-0.9.6:= ) virtual/pkgconfig app-arch/xz-utils >=sys-apps/sed-4
 DESCRIPTION=GObject-based interfaces and classes for commonly used data structures
 EAPI=5
 HOMEPAGE=https://wiki.gnome.org/Projects/Libgee
 IUSE=+introspection
-KEYWORDS=*
+KEYWORDS=alpha amd64 arm ia64 ppc ppc64 ~sh sparc x86 ~x86-linux
 LICENSE=LGPL-2.1+
-RDEPEND=>=dev-libs/glib-2.42:2 introspection? ( >=dev-libs/gobject-introspection-1.42 )
-SLOT=0.8
+RDEPEND=>=dev-libs/glib-2.36:2 introspection? ( >=dev-libs/gobject-introspection-0.9.6:= )
+SLOT=0.8/2
 SRC_URI=mirror://gnome/sources/libgee/0.18/libgee-0.18.0.tar.xz
-_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	fdo-mime	92d07846ea8ea54172f8c0112a47ae3d	gnome.org	84c1434ce5de42302c744df8431bf1f6	gnome2	bdabf28ddc58452941eb5b33c5b27853	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
-_md5_=34eaad7441cbcebbd62362f665b48fb8
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	fdo-mime	92d07846ea8ea54172f8c0112a47ae3d	gnome.org	ad34f378a3d57a6f2f2b8b4aaca4543e	gnome2	bdabf28ddc58452941eb5b33c5b27853	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=c8df42c1b7e3e7f214d013c3d8e46cb0

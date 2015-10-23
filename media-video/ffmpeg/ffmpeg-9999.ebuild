@@ -13,7 +13,7 @@ EAPI="5"
 # changes its ABI then this package will be rebuilt needlessly. Hence, such a
 # package is free _not_ to := depend on FFmpeg but I would strongly encourage
 # doing so since such a case is unlikely.
-FFMPEG_SUBSLOT=54.56.56
+FFMPEG_SUBSLOT=55.57.57
 
 SCM=""
 if [ "${PV#9999}" != "${PV}" ] ; then
@@ -80,7 +80,7 @@ FFMPEG_FLAG_MAP=(
 		zvbi:libzvbi
 		# libavfilter options
 		bs2b:libbs2b flite:libflite frei0r fribidi:libfribidi fontconfig ladspa
-		libass truetype:libfreetype
+		libass truetype:libfreetype rubberband:librubberband
 		# libswresample options
 		libsoxr
 		# Threads; we only support pthread for now but ffmpeg supports more
@@ -90,13 +90,13 @@ FFMPEG_FLAG_MAP=(
 # Same as above but for encoders, i.e. they do something only with USE=encode.
 FFMPEG_ENCODER_FLAG_MAP=(
 	aac:libvo-aacenc amrenc:libvo-amrwbenc mp3:libmp3lame
-	aacplus:libaacplus faac:libfaac snappy:libsnappy theora:libtheora
-	twolame:libtwolame wavpack:libwavpack webp:libwebp x264:libx264 x265:libx265
-	xvid:libxvid
+	aacplus:libaacplus faac:libfaac openh264:libopenh264 snappy:libsnappy
+	theora:libtheora twolame:libtwolame wavpack:libwavpack webp:libwebp
+	x264:libx264 x265:libx265 xvid:libxvid
 )
 
 IUSE="
-	alsa +encode examples jack oss pic static-libs test v4l
+	alsa +encode examples jack libressl oss pic static-libs test v4l
 	${FFMPEG_FLAG_MAP[@]%:*}
 	${FFMPEG_ENCODER_FLAG_MAP[@]%:*}
 "
@@ -165,6 +165,7 @@ RDEPEND="
 		amrenc? ( >=media-libs/vo-amrwbenc-0.1.2-r1[${MULTILIB_USEDEP}] )
 		faac? ( >=media-libs/faac-1.28-r3[${MULTILIB_USEDEP}] )
 		mp3? ( >=media-sound/lame-3.99.5-r1[${MULTILIB_USEDEP}] )
+		openh264? ( >=media-libs/openh264-1.4.0-r1[${MULTILIB_USEDEP}] )
 		snappy? ( >=app-arch/snappy-1.1.2-r1[${MULTILIB_USEDEP}] )
 		theora? (
 			>=media-libs/libtheora-1.1.1[encode,${MULTILIB_USEDEP}]
@@ -205,11 +206,15 @@ RDEPEND="
 	modplug? ( >=media-libs/libmodplug-0.8.8.4-r1[${MULTILIB_USEDEP}] )
 	openal? ( >=media-libs/openal-1.15.1[${MULTILIB_USEDEP}] )
 	opengl? ( >=virtual/opengl-7.0-r1[${MULTILIB_USEDEP}] )
-	openssl? ( >=dev-libs/openssl-1.0.1h-r2[${MULTILIB_USEDEP}] )
+	openssl? (
+		!libressl? ( >=dev-libs/openssl-1.0.1h-r2:0[${MULTILIB_USEDEP}] )
+		libressl? ( dev-libs/libressl[${MULTILIB_USEDEP}] )
+	)
 	opus? ( >=media-libs/opus-1.0.2-r2[${MULTILIB_USEDEP}] )
 	pulseaudio? ( >=media-sound/pulseaudio-2.1-r1[${MULTILIB_USEDEP}] )
 	quvi? ( media-libs/libquvi:0.4[${MULTILIB_USEDEP}] )
 	librtmp? ( >=media-video/rtmpdump-2.4_p20131018[${MULTILIB_USEDEP}] )
+	rubberband? ( >=media-libs/rubberband-1.8.1-r1[${MULTILIB_USEDEP}] )
 	samba? ( >=net-fs/samba-3.6.23-r1[${MULTILIB_USEDEP}] )
 	schroedinger? ( >=media-libs/schroedinger-1.0.11-r1[${MULTILIB_USEDEP}] )
 	sdl? ( >=media-libs/libsdl-1.2.15-r4[sound,video,${MULTILIB_USEDEP}] )

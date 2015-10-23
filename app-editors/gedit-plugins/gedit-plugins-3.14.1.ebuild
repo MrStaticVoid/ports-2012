@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -12,7 +14,7 @@ DESCRIPTION="Official plugins for gedit"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gedit/ShippedPlugins"
 
 LICENSE="GPL-2+"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 SLOT="0"
 
 IUSE_plugins="charmap git terminal zeitgeist"
@@ -28,9 +30,9 @@ REQUIRED_USE="
 
 RDEPEND="
 	>=app-editors/gedit-3.14[python?]
-	>=dev-libs/glib-2.42:2
+	>=dev-libs/glib-2.32:2
 	>=dev-libs/libpeas-1.7.0[gtk,python?]
-	>=x11-libs/gtk+-3.14:3
+	>=x11-libs/gtk+-3.9:3
 	>=x11-libs/gtksourceview-3.14:3.0
 	python? (
 		${PYTHON_DEPS}
@@ -39,7 +41,7 @@ RDEPEND="
 		>=dev-python/dbus-python-0.82[${PYTHON_USEDEP}]
 		dev-python/pycairo[${PYTHON_USEDEP}]
 		dev-python/pygobject:3[cairo,${PYTHON_USEDEP}]
-		>=x11-libs/gtk+-3.14:3[introspection]
+		>=x11-libs/gtk+-3.9:3[introspection]
 		>=x11-libs/gtksourceview-3.14:3.0[introspection]
 		x11-libs/pango[introspection]
 		x11-libs/gdk-pixbuf:2[introspection]

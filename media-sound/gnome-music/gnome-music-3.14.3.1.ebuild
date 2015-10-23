@@ -1,28 +1,30 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
-PYTHON_COMPAT=( python3_3 )
+PYTHON_COMPAT=( python{3_3,3_4} )
 
 inherit gnome2 python-single-r1
 
 DESCRIPTION="Music management for Gnome"
-HOMEPAGE="http://wiki.gnome.org/Apps/Music"
+HOMEPAGE="https://wiki.gnome.org/Apps/Music"
 
 LICENSE="GPL-2+"
 SLOT="0"
-IUSE="python_single_target_python_3.3"
-# Let people emerge this by default, bug #472932
+IUSE=""
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 
 COMMON_DEPEND="
 	${PYTHON_DEPS}
-	>=dev-libs/glib-2.42.0:2
-	>=dev-libs/gobject-introspection-1.42.0
+	>=dev-libs/glib-2.28:2
+	>=dev-libs/gobject-introspection-1.35.9
 	>=media-libs/grilo-0.2.6:0.2[introspection]
 	media-libs/libmediaart:1.0
-	>=x11-libs/gtk+-3.14:3[introspection]
+	>=x11-libs/gtk+-3.13.2:3[introspection]
 "
 # xdg-user-dirs-update needs to be there to create needed dirs
 # https://bugzilla.gnome.org/show_bug.cgi?id=731613

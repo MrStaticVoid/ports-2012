@@ -1,57 +1,40 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
-PYTHON_RESTRICTED_ABIS="*-jython"
-DISTUTILS_SRC_TEST="nosetests"
+EAPI=5
 
-inherit distutils git-r3
+PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy )
 
-DESCRIPTION="Filesystem extended attributes for python"
-HOMEPAGE="http://pyxattr.k1024.org/ https://github.com/iustin/pyxattr https://pypi.python.org/pypi/pyxattr"
+inherit distutils-r1 eutils git-r3
+
+DESCRIPTION="Python interface to xattr"
+HOMEPAGE="http://pyxattr.k1024.org/"
 SRC_URI=""
-EGIT_REPO_URI="https://github.com/iustin/pyxattr"
+EGIT_REPO_URI="
+	https://github.com/iustin/${PN}.git
+	git://github.com/iustin/${PN}.git"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS=""
-IUSE="doc"
+IUSE="test"
 
 RDEPEND="sys-apps/attr"
-DEPEND="${DEPEND}
-	$(python_abi_depend dev-python/setuptools)
-	doc? ( $(python_abi_depend dev-python/sphinx) )"
-
-src_prepare() {
-	distutils_src_prepare
-	sed -e "/extra_compile_args=/d" -i setup.py
-}
-
-src_compile() {
-	distutils_src_compile
-
-	if use doc; then
-		einfo "Generation of documentation"
-		PYTHONPATH="$(ls -d build-$(PYTHON -f --ABI)/lib*)" "$(PYTHON -f)" setup.py build_sphinx || die "Generation of documentation failed"
-	fi
-}
+DEPEND="${RDEPEND}
+	dev-python/setuptools[${PYTHON_USEDEP}]
+	test? ( dev-python/nose[${PYTHON_USEDEP}] )"
 
 src_test() {
-	touch "${T}/test_file"
-	if ! setfattr -n user.attr -v value "${T}/test_file" &> /dev/null; then
-		ewarn "Skipping tests due to missing support for extended attributes in filesystem used by build directory"
-		return
-	fi
+	# Perform the tests in /var/tmp; that location is more likely
+	# to have xattr support than /tmp which is often tmpfs.
+	export TESTDIR=/var/tmp
 
-	distutils_src_test
+	einfo 'Please note that the tests fail if xattrs are not supported'
+	einfo 'by the filesystem used for /var/tmp.'
+	distutils-r1_src_test
 }
 
-src_install() {
-	distutils_src_install
-
-	if use doc; then
-		dohtml -r build/sphinx/html/
-	fi
+python_test() {
+	nosetests || die "Tests fail with ${EPYTHON}"
 }

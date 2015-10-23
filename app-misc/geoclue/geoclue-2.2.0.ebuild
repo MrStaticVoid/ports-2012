@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -12,13 +14,13 @@ SRC_URI="http://www.freedesktop.org/software/${PN}/releases/${MY_PV}/${P}.tar.xz
 
 LICENSE="LGPL-2"
 SLOT="2.0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd"
 IUSE="+modemmanager"
 
 RDEPEND="
 	>=dev-libs/glib-2.34:2
 	>=dev-libs/json-glib-0.14
-	net-libs/libsoup:2.4
+	>=net-libs/libsoup-2.42:2.4
 	sys-apps/dbus
 	modemmanager? ( >=net-misc/modemmanager-1 )
 	!<sci-geosciences/geocode-glib-3.10.0

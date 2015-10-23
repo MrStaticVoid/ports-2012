@@ -1,35 +1,33 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5-progress"
-PYTHON_DEPEND="<<[{*-cpython}xml]>>"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="3.*"
+EAPI="5"
 
-inherit distutils eutils multilib
+PYTHON_COMPAT=(python2_7)
+PYTHON_REQ_USE="xml(+)"
+
+inherit distutils-r1 eutils multilib
 
 DESCRIPTION="Collection of Gentoo-specific tools for Java"
-HOMEPAGE="http://www.gentoo.org/proj/en/java/"
+HOMEPAGE="https://www.gentoo.org/proj/en/java/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 ~arm ppc ppc64 sparc x86 ~amd64-fbsd ~x86-fbsd"
 IUSE=""
 
-DEPEND=""
-RDEPEND=""
+python_prepare_all() {
+	local PATCHES=(
+		"${FILESDIR}/${P}-python2.6.patch"
+		"${FILESDIR}/${P}-no-pyxml.patch"
+	)
 
-PYTHON_VERSIONED_SCRIPTS=("/usr/lib(32|64)?/${PN}/bin/.*")
-PYTHON_MODULES="javatoolkit"
-
-src_prepare(){
-	distutils_src_prepare
-	epatch "${FILESDIR}/${P}-python2.6.patch"
-	epatch "${FILESDIR}/${P}-no-pyxml.patch"
+	distutils-r1_python_prepare_all
 }
 
-src_install() {
-	distutils_src_install --install-scripts="${EPREFIX}/usr/$(get_libdir)/${PN}/bin"
+python_install() {
+	distutils-r1_python_install \
+		--install-scripts="${EPREFIX}"/usr/$(get_libdir)/${PN}/bin
 }

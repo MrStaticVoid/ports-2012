@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
+DEPEND=dev-libs/glib:2 dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.11.6:3[introspection] || ( dev-lang/vala:0.28 dev-lang/vala:0.26 dev-lang/vala:0.24 ) virtual/pkgconfig nls? ( sys-devel/gettext ) >=sys-apps/sed-4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=A development library for elementary development
+EAPI=5
+HOMEPAGE=https://launchpad.net/granite
+IUSE=demo nls
+KEYWORDS=amd64 ~arm x86
+LICENSE=LGPL-3
+RDEPEND=dev-libs/glib:2 dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.11.6:3[introspection]
+SLOT=0
+SRC_URI=https://launchpad.net/granite/0.3/0.3.1/+download/granite-0.3.1.tar.xz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	vala	335996addec48717e632dfd1f588ef1c
+_md5_=399664eec528e6d92471ee53d6bb0bb0

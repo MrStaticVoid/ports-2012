@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install setup
-DEPEND=media-libs/lv2 >=dev-libs/boost-1.40.0 gtk2? ( dev-cpp/gtkmm:2.4 ) >=dev-lang/python-2.7.5-r2:2.7[threads(+)] >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),python_single_target_python2_7(+)] doc? ( app-doc/doxygen media-gfx/graphviz ) virtual/pkgconfig dev-lang/python !dev-lang/python[-threads]
+DEPEND=media-libs/lv2 >=dev-libs/boost-1.40.0 gtk2? ( dev-cpp/gtkmm:2.4 ) >=dev-lang/python-2.7.5-r2:2.7[threads(+)] >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),-python_single_target_python3_5(-),python_single_target_python2_7(+)] doc? ( app-doc/doxygen media-gfx/graphviz ) virtual/pkgconfig dev-lang/python !dev-lang/python[-threads]
 DESCRIPTION=A set of C++ wrappers around the LV2 C API
 EAPI=5
 HOMEPAGE=http://lvtoolkit.org/
@@ -9,5 +9,5 @@ LICENSE=GPL-3+
 RDEPEND=media-libs/lv2 >=dev-libs/boost-1.40.0 gtk2? ( dev-cpp/gtkmm:2.4 )
 SLOT=0
 SRC_URI=https://github.com/lvtk/lvtk/archive/1.2.0.tar.gz -> lvtk-1.2.0.tar.gz
-_eclasses_=eutils	351a78113be5b393c09a2c948701ad36	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multiprocessing	d769539d9bace6eaca30af23bc2b4dde	python-single-r1	3b63e63ae2b19314bc2a8704f8b09437	python-utils-r1	39c6b012a0512678e698e712b5b7ecc2	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	waf-utils	883eeb94ea142085b68093ca49ff1a88
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multiprocessing	d769539d9bace6eaca30af23bc2b4dde	python-single-r1	612c783d1a1a182ad7ea4f2eb0b79e86	python-utils-r1	9c405693f1f355a718700c5cffffd9e5	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	waf-utils	883eeb94ea142085b68093ca49ff1a88
 _md5_=cc0a504dec769e8ce1ed65589004d499

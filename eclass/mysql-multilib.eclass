@@ -27,7 +27,7 @@ MYSQL_EXTRAS=""
 # Use "none" to disable it's use
 [[ ${MY_EXTRAS_VER} == "live" ]] && MYSQL_EXTRAS="git-r3"
 
-inherit eutils flag-o-matic ${MYSQL_EXTRAS} mysql-cmake mysql_fx versionator \
+inherit eutils systemd flag-o-matic ${MYSQL_EXTRAS} mysql-cmake mysql_fx versionator \
 	toolchain-funcs user cmake-utils multilib-minimal
 
 #
@@ -170,9 +170,9 @@ SRC_URI="${SERVER_URI}"
 if [[ ${MY_EXTRAS_VER} != "live" && ${MY_EXTRAS_VER} != "none" ]]; then
 	SRC_URI="${SRC_URI}
 		mirror://gentoo/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
-		http://dev.gentoo.org/~robbat2/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
-		http://dev.gentoo.org/~jmbsvicetto/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
-		http://dev.gentoo.org/~grknight/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2"
+		https://dev.gentoo.org/~robbat2/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
+		https://dev.gentoo.org/~jmbsvicetto/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
+		https://dev.gentoo.org/~grknight/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2"
 fi
 
 DESCRIPTION="A fast, multi-threaded, multi-user SQL database server"
@@ -190,10 +190,12 @@ if [[ ${PN} == "percona-server" ]]; then
 	DESCRIPTION="An enhanced, drop-in replacement for MySQL from the Percona team"
 fi
 LICENSE="GPL-2"
-SLOT="0/${SUBSLOT:=0}"
+SLOT="0/${SUBSLOT:-0}"
 
-IUSE="+community cluster debug embedded extraengine jemalloc latin1
-	+perl profiling selinux ssl systemtap static static-libs tcmalloc test"
+IUSE="+community cluster debug embedded extraengine jemalloc latin1 libressl +openssl
+	+perl profiling selinux systemtap static static-libs tcmalloc test yassl"
+
+REQUIRED_USE="^^ ( yassl openssl libressl )"
 
 ### Begin readline/libedit
 ### If the world was perfect, we would use external libedit on both to have a similar experience
@@ -231,6 +233,9 @@ if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]]; then
 	# Choices are bzip2, lz4, lzma, lzo.  bzip2 and lzma enabled by default as they are system libraries
 	mysql_version_is_at_least "10.1.1" && IUSE="${IUSE} innodb-lz4 innodb-lzo"
 
+	# It can also compress with app-arch/snappy
+	mysql_version_is_at_least "10.1.7" && IUSE="${IUSE} innodb-snappy"
+
 	# 10.1.2 introduces a cracklib password checker
 	mysql_version_is_at_least "10.1.1" && IUSE="${IUSE} cracklib"
 fi
@@ -258,7 +263,7 @@ fi
 
 REQUIRED_USE="
 	${REQUIRED_USE} tcmalloc? ( !jemalloc ) jemalloc? ( !tcmalloc )
-	 static? ( !ssl )"
+	 static? ( yassl )"
 
 #
 # DEPENDENCIES:
@@ -268,7 +273,6 @@ REQUIRED_USE="
 # These are used for both runtime and compiletime
 # MULTILIB_USEDEP only set for libraries used by the client library
 DEPEND="
-	ssl? ( >=dev-libs/openssl-1.0.0:0=[${MULTILIB_USEDEP},static-libs?] )
 	kernel_linux? (
 		sys-process/procps:0=
 		dev-libs/libaio:0=
@@ -284,18 +288,21 @@ DEPEND="
 if [[ ${HAS_TOOLS_PATCH} ]] ; then
 	DEPEND+="
 		client-libs? (
-			ssl? ( >=dev-libs/openssl-1.0.0:0=[${MULTILIB_USEDEP},static-libs?] )
+			openssl? ( >=dev-libs/openssl-1.0.0:0=[${MULTILIB_USEDEP},static-libs?] )
+			libressl? ( dev-libs/libressl:0=[${MULTILIB_USEDEP},static-libs?] )
 			>=sys-libs/zlib-1.2.3:0=[${MULTILIB_USEDEP},static-libs?]
 		)
 		!client-libs? (
-			ssl? ( >=dev-libs/openssl-1.0.0:0=[static-libs?] )
+			openssl? ( >=dev-libs/openssl-1.0.0:0=[static-libs?] )
+			libressl? ( dev-libs/libressl:0=[static-libs?] )
 			>=sys-libs/zlib-1.2.3:0=[static-libs?]
 		)
 		tools? ( sys-libs/ncurses:0= ) embedded? ( sys-libs/ncurses:0= )
 	"
 else
 	DEPEND+="
-		ssl? ( >=dev-libs/openssl-1.0.0:0=[${MULTILIB_USEDEP},static-libs?] )
+		openssl? ( >=dev-libs/openssl-1.0.0:0=[${MULTILIB_USEDEP},static-libs?] )
+		libressl? ( dev-libs/libressl:0=[${MULTILIB_USEDEP},static-libs?] )
 		>=sys-libs/zlib-1.2.3:0=[${MULTILIB_USEDEP},static-libs?]
 		sys-libs/ncurses:0=[${MULTILIB_USEDEP}]
 	"
@@ -364,6 +371,7 @@ if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]] ; then
 		"
 
 	mysql_version_is_at_least "10.1.2" && DEPEND="${DEPEND} cracklib? ( sys-libs/cracklib:0= )"
+	mysql_version_is_at_least "10.1.7" && DEPEND="${DEPEND} innodb-snappy? ( app-arch/snappy )"
 fi
 
 if [[ ${PN} == "percona-server" ]] ; then
@@ -571,7 +579,9 @@ mysql-multilib_src_configure() {
 		CXXFLAGS="${CXXFLAGS} -fno-implicit-templates"
 	fi
 	# As of 5.7, exceptions are used!
-	if ! mysql_version_is_at_least "5.7" ; then
+	if [[ ${PN} == "percona-server" ]] && mysql_version_is_at_least "5.6.26" ; then
+                CXXFLAGS="${CXXFLAGS} -fno-rtti"
+        elif ! mysql_version_is_at_least "5.7" ; then
 		CXXFLAGS="${CXXFLAGS} -fno-exceptions -fno-rtti"
 	fi
 	export CXXFLAGS
@@ -631,10 +641,20 @@ multilib_src_configure() {
 		-DENABLED_LOCAL_INFILE=1
 		-DMYSQL_UNIX_ADDR=${EPREFIX}/var/run/mysqld/mysqld.sock
 		-DINSTALL_UNIX_ADDRDIR=${EPREFIX}/var/run/mysqld/mysqld.sock
-		-DWITH_SSL=$(usex ssl system bundled)
 		-DWITH_DEFAULT_COMPILER_OPTIONS=0
 		-DWITH_DEFAULT_FEATURE_SET=0
+		-DINSTALL_SYSTEMD_UNITDIR=$(systemd_get_unitdir)
 	)
+
+	if in_iuse systemd ; then
+		mycmakeargs+=( -DWITH_SYSTEMD=$(usex systemd) )
+	fi
+
+	if use openssl || use libressl ; then
+		mycmakeargs+=( -DWITH_SSL=system )
+	else
+		mycmakeargs+=( -DWITH_SSL=bundled )
+	fi
 
 	if in_iuse client-libs ; then
 		mycmakeargs+=( -DWITHOUT_CLIENTLIBS=$(usex client-libs 0 1) )
@@ -779,6 +799,27 @@ mysql-multilib_pkg_preinst() {
 	if [[ ${PN} == "mysql-cluster" ]] ; then
 		mysql_version_is_at_least "7.2.9" && java-pkg-opt-2_pkg_preinst
 	fi
+	# Here we need to see if the implementation switched client libraries
+	# First, we check if this is a new instance of the package and a client library already exists
+	# Then, we check if this package is rebuilt but the previous instance did not
+	# have the client-libs USE set.
+	# Instances which do not have a client-libs USE can only be replaced by a different provider
+	local SHOW_ABI_MESSAGE
+	if ! in_iuse client-libs || use_if_iuse client-libs ; then
+	        if [[ -z ${REPLACING_VERSIONS} && -e "${EROOT}usr/$(get_libdir)/libmysqlclient.so" ]] ; then
+			SHOW_ABI_MESSAGE=1
+		elif [[ ${REPLACING_VERSIONS} && -e "${EROOT}usr/$(get_libdir)/libmysqlclient.so" ]] && \
+			in_iuse client-libs && has_version "${CATEGORY}/${PN}[-client-libs(+)]" ; then
+			SHOW_ABI_MESSAGE=1
+		fi
+
+	fi
+	if [[ ${SHOW_ABI_MESSAGE} ]] ; then
+                elog "Due to ABI changes when switching between different client libraries,"
+                elog "revdep-rebuild must find and rebuild all packages linking to libmysqlclient."
+                elog "Please run: revdep-rebuild --library libmysqlclient.so.${SUBSLOT:-18}"
+                ewarn "Failure to run revdep-rebuild may cause issues with other programs or libraries"
+        fi
 }
 
 # @FUNCTION: mysql-multilib_pkg_postinst

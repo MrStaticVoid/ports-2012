@@ -28,7 +28,7 @@ else
 	SRC_URI+=" ${BACKPORTS:+
 		https://dev.gentoo.org/~cardoe/distfiles/${P}-${BACKPORTS}.tar.xz
 		https://dev.gentoo.org/~tamiko/distfiles/${P}-${BACKPORTS}.tar.xz}"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 	SLOT="0/${PV}"
 fi
 S="${WORKDIR}/${P%_rc*}"
@@ -58,7 +58,7 @@ REQUIRED_USE="libvirtd? ( || ( lxc openvz qemu uml virtualbox xen ) )
 # package will use 3 by default. Since we don't have slot pinning in an API,
 # we must go with the most recent
 RDEPEND="sys-libs/readline:=
-	sys-libs/ncurses
+	sys-libs/ncurses:0=
 	>=net-misc/curl-7.18.0
 	net-firewall/ebtables
 	>=net-firewall/iptables-1.4.10[ipv6]
@@ -325,8 +325,8 @@ src_configure() {
 	myconf+=" $(use_with lvm storage-lvm)"
 	myconf+=" $(use_with iscsi storage-iscsi)"
 	myconf+=" $(use_with parted storage-disk)"
-	mycond+=" $(use_with glusterfs)"
-	mycond+=" $(use_with glusterfs storage-gluster)"
+	myconf+=" $(use_with glusterfs)"
+	myconf+=" $(use_with glusterfs storage-gluster)"
 	myconf+=" $(use_with lvm storage-mpath)"
 	myconf+=" $(use_with rbd storage-rbd)"
 	myconf+=" $(use_with numa numactl)"

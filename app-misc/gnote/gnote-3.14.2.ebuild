@@ -1,30 +1,37 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
 
-inherit gnome2 readme.gentoo
+inherit autotools gnome2 readme.gentoo
 
 DESCRIPTION="Desktop note-taking application"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gnote"
 
+BOOST_M4_COMMIT=32553aaf4d5090da19aa0ec33b936982c685009f
+SRC_URI="${SRC_URI}
+	https://github.com/tsuna/boost.m4/archive/${BOOST_M4_COMMIT}.zip -> boost.m4-${BOOST_M4_COMMIT}.zip"
+# Use sys-devel/boost-m4 when it's bumped, bug #549618
+
 LICENSE="GPL-3+ FDL-1.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 IUSE="debug X"
 
 # Automagic glib-2.32 dep
 COMMON_DEPEND="
-	>=app-crypt/libsecret-0.18
+	>=app-crypt/libsecret-0.8
 	>=app-text/gtkspell-3.0:3
-	>=dev-cpp/glibmm-2.42:2
-	>=dev-cpp/gtkmm-3.14:3.0
+	>=dev-cpp/glibmm-2.32:2
+	>=dev-cpp/gtkmm-3.10:3.0
 	>=dev-libs/boost-1.34
-	>=dev-libs/glib-2.42:2
+	>=dev-libs/glib-2.32:2
 	>=dev-libs/libxml2-2:2
 	dev-libs/libxslt
 	>=sys-apps/util-linux-2.16:=
-	>=x11-libs/gtk+-3.14:3
+	>=x11-libs/gtk+-3.10:3
 	X? ( x11-libs/libX11 )
 "
 RDEPEND="${COMMON_DEPEND}
@@ -38,6 +45,10 @@ DEPEND="${DEPEND}
 "
 
 src_prepare() {
+	# Use newer boost.m4 to allow build with gcc-5.1; fixed upsteam in 3.16
+	cp "../boost.m4-${BOOST_M4_COMMIT}/build-aux/boost.m4" m4/ || die
+	eautoreconf
+
 	# Do not alter CFLAGS
 	sed 's/-DDEBUG -g/-DDEBUG/' -i configure.ac configure || die
 	gnome2_src_prepare

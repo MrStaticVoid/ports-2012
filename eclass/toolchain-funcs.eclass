@@ -725,6 +725,7 @@ gen_usr_ldscript() {
 	# Eventually we'd like to get rid of this func completely #417451
 	case ${CTARGET:-${CHOST}} in
 	*-darwin*) ;;
+	*-android*) return 0 ;;
 	*linux*|*-freebsd*|*-openbsd*|*-netbsd*)
 		use prefix && return 0 ;;
 	*) return 0 ;;
@@ -825,7 +826,7 @@ gen_usr_ldscript() {
 			   redirects the linker to the real lib.  And yes, this works in the cross-
 			   compiling scenario as the sysroot-ed linker will prepend the real path.
 
-			   See bug http://bugs.gentoo.org/4411 for more info.
+			   See bug https://bugs.gentoo.org/4411 for more info.
 			 */
 			${output_format}
 			GROUP ( ${EPREFIX}/${libdir}/${tlib} )

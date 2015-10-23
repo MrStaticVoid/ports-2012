@@ -11,11 +11,11 @@ SRC_URI="https://github.com/vgough/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~sparc ~x86"
+KEYWORDS="amd64 ~arm ~sparc x86"
 IUSE="xattr nls"
 
 RDEPEND="dev-libs/boost:=
-	dev-libs/openssl:=
+	dev-libs/openssl:0
 	>=dev-libs/rlog-1.3
 	>=sys-fs/fuse-2.5
 	sys-libs/zlib"

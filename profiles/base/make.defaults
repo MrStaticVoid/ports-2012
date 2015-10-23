@@ -16,7 +16,7 @@ USE_EXPAND_VALUES_USERLAND="BSD GNU"
 
 # Env vars to expand into USE vars.  Modifying this requires prior
 # discussion on gentoo-dev@lists.gentoo.org.
-USE_EXPAND="ABI_MIPS ABI_PPC ABI_S390 ABI_X86 ALSA_CARDS APACHE2_MODULES APACHE2_MPMS CALLIGRA_FEATURES CAMERAS COLLECTD_PLUGINS CPU_FLAGS_X86 CROSSCOMPILE_OPTS CURL_SSL DRACUT_MODULES DVB_CARDS ELIBC ENLIGHTENMENT_MODULES FCDSL_CARDS FFTOOLS FOO2ZJS_DEVICES FRITZCAPI_CARDS GPSD_PROTOCOLS GRUB_PLATFORMS INPUT_DEVICES KERNEL LCD_DEVICES LIBREOFFICE_EXTENSIONS LINGUAS LIRC_DEVICES MONKEYD_PLUGINS NETBEANS_MODULES NGINX_MODULES_HTTP NGINX_MODULES_MAIL OFED_DRIVERS OFFICE_IMPLEMENTATION OPENMPI_FABRICS OPENMPI_OFED_FEATURES OPENMPI_RM PHP_TARGETS PYTHON_SINGLE_TARGET PYTHON_TARGETS QEMU_SOFTMMU_TARGETS QEMU_USER_TARGETS RUBY_TARGETS SANE_BACKENDS USERLAND UWSGI_PLUGINS VIDEO_CARDS VOICEMAIL_STORAGE XFCE_PLUGINS XTABLES_ADDONS"
+USE_EXPAND="ABI_MIPS ABI_PPC ABI_S390 ABI_X86 ALSA_CARDS APACHE2_MODULES APACHE2_MPMS CALLIGRA_FEATURES CAMERAS COLLECTD_PLUGINS CPU_FLAGS_X86 CROSSCOMPILE_OPTS CURL_SSL DRACUT_MODULES DVB_CARDS ELIBC ENLIGHTENMENT_MODULES FCDSL_CARDS FFTOOLS FOO2ZJS_DEVICES FRITZCAPI_CARDS GPSD_PROTOCOLS GRUB_PLATFORMS INPUT_DEVICES KERNEL LCD_DEVICES LIBREOFFICE_EXTENSIONS LINGUAS LIRC_DEVICES MONKEYD_PLUGINS NETBEANS_MODULES NGINX_MODULES_HTTP NGINX_MODULES_MAIL OFED_DRIVERS OFFICE_IMPLEMENTATION OPENMPI_FABRICS OPENMPI_OFED_FEATURES OPENMPI_RM PHP_TARGETS PYTHON_SINGLE_TARGET PYTHON_TARGETS QEMU_SOFTMMU_TARGETS QEMU_USER_TARGETS RUBY_TARGETS SANE_BACKENDS USERLAND UWSGI_PLUGINS VIDEO_CARDS VOICEMAIL_STORAGE XFCE_PLUGINS XTABLES_ADDONS ROS_MESSAGES"
 
 # USE_EXPAND variables whose contents are not shown in package manager
 # output. Changes need discussion on gentoo-dev.
@@ -101,15 +101,19 @@ NETBEANS="apisupport cnd groovy gsf harness ide identity j2ee java mobility nb p
 # Build kernel modules from linux-mod by default:
 USE="${USE} modules"
 
-# Manuel Rüger <mrueg@gentoo.org> (16 Mar 2014)
+# Manuel Rüger <mrueg@gentoo.org> (09 Sep 2015)
 # Default Ruby build targets
-RUBY_TARGETS="ruby19 ruby20"
+RUBY_TARGETS="ruby20 ruby21"
 
 # Samuli Suominen <ssuominen@gentoo.org> (03 Dec 2009)
 # Enable USE cxx by default so base-system and toolchain pkgs can start using USE cxx
 # instead of USE nocxx.
 # https://archives.gentoo.org/gentoo-dev/msg_a181cd0d36600067b599f4b996c6989f.xml
 USE="${USE} cxx"
+
+# Enable extended filesystem attribute support by default.
+# https://archives.gentoo.org/gentoo-dev/message/ba0e3457e4b807e79816f0df03566af0
+USE="${USE} xattr"
 
 # Tiziano Müller <dev-zero@gentoo.org> (24 Jan 2010)
 # We usually don't want python to (re)write .py[co] files during phase runs
@@ -124,8 +128,6 @@ BOOTSTRAP_USE="cxx unicode internal-glib python_targets_python3_4 python_targets
 
 # Mike Gilbert <floppym@gentoo.org> (15 May 2012)
 # Default target(s) for python-r1.eclass
-PYTHON_TARGETS="python2_7 python3_4"
-PYTHON_SINGLE_TARGET="python2_7"
 
 # Michał Górny <mgorny@gentoo.org> (10 Aug 2013)
 # Moved from portage's make.globals.
@@ -138,4 +140,4 @@ UNINSTALL_IGNORE="/lib/modules/* /var/run /var/lock"
 
 # Andreas K. Hüttel <dilfridge@gentoo.org> (23 Aug 2013)
 # Make emerge messages default to English as per Council decision
-LC_MESSAGES=C
+LC_MESSAGES="C"

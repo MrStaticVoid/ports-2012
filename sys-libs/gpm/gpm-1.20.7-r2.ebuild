@@ -1,6 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # emacs support disabled due to #99533 #335900
 
@@ -14,17 +12,15 @@ SRC_URI="http://www.nico.schottelius.org/software/${PN}/archives/${P}.tar.lzma"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 s390 ~sh sparc x86"
+KEYWORDS="*"
 IUSE="selinux static-libs"
 
-RDEPEND=">=sys-libs/ncurses-5.9-r3[${MULTILIB_USEDEP}]
-	selinux? ( sec-policy/selinux-gpm )
+RDEPEND="selinux? ( sec-policy/selinux-gpm )
 	abi_x86_32? (
 		!<=app-emulation/emul-linux-x86-baselibs-20130224-r12
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
 	)"
-DEPEND=">=sys-libs/ncurses-5.9-r3[${MULTILIB_USEDEP}]
-	app-arch/xz-utils
+DEPEND="app-arch/xz-utils
 	sys-apps/texinfo
 	virtual/yacc"
 
@@ -42,6 +38,7 @@ src_prepare() {
 
 multilib_src_configure() {
 	econf \
+		--without-curses \
 		--sysconfdir=/etc/gpm \
 		$(use_enable static-libs static) \
 		emacs=/bin/false

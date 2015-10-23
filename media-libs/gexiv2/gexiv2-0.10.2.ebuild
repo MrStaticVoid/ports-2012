@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -14,11 +16,13 @@ SRC_URI="mirror://gnome/sources/${PN}/${MY_PV}/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
-IUSE="+introspection python static-libs"
+KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sparc x86"
+IUSE="introspection python static-libs"
+
+REQUIRED_USE="python? ( introspection ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="${PYTHON_DEPS}
-	>=dev-libs/glib-2.42.0:2
+	>=dev-libs/glib-2.26.1:2
 	>=media-gfx/exiv2-0.21:0=
 	introspection? ( dev-libs/gobject-introspection )"
 DEPEND="${RDEPEND}

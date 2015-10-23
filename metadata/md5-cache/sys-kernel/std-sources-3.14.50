@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install prepare unpack
+DESCRIPTION=Kernel Sources and Patches for the System Rescue CD Standard Kernel
+EAPI=5
+HOMEPAGE=http://kernel.sysresccd.org/
+KEYWORDS=-* ~amd64
+LICENSE=GPL-2
+RESTRICT=mirror
+SLOT=3.14.50
+SRC_URI=mirror://kernel/linux/kernel/v3.x/linux-3.14.tar.xz
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=75309fdc846c13ec0f9a0685c4e43e38

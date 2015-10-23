@@ -19,7 +19,7 @@ SRC_URI="https://dev.gentoo.org/~jer/nmap-logo-64.png"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="ipv6 +nse system-lua ncat ndiff nls nmap-update nping ssl zenmap"
+IUSE="ipv6 libressl +nse system-lua ncat ndiff nls nmap-update nping ssl zenmap"
 NMAP_LINGUAS=( de fr hr it ja pl pt_BR ru zh )
 IUSE+=" ${NMAP_LINGUAS[@]/#/linguas_}"
 
@@ -30,7 +30,7 @@ REQUIRED_USE="
 "
 
 RDEPEND="
-	dev-libs/liblinear
+	dev-libs/liblinear:=
 	dev-libs/libpcre
 	net-libs/libpcap[ipv6?]
 	zenmap? (
@@ -41,7 +41,10 @@ RDEPEND="
 	ndiff? ( ${PYTHON_DEPS} )
 	nls? ( virtual/libintl )
 	nmap-update? ( dev-libs/apr dev-vcs/subversion )
-	ssl? ( dev-libs/openssl:0= )
+	ssl? (
+		!libressl? ( dev-libs/openssl:0= )
+		libressl? ( dev-libs/libressl:= )
+	)
 "
 DEPEND="
 	${RDEPEND}
@@ -61,12 +64,10 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-4.75-nolua.patch \
 		"${FILESDIR}"/${PN}-5.10_beta1-string.patch \
 		"${FILESDIR}"/${PN}-5.21-python.patch \
-		"${FILESDIR}"/${PN}-6.01-make.patch \
 		"${FILESDIR}"/${PN}-6.25-liblua-ar.patch \
 		"${FILESDIR}"/${PN}-6.46-uninstaller.patch \
 		"${FILESDIR}"/${PN}-6.47-no-libnl.patch \
-		"${FILESDIR}"/${PN}-no-FORTIFY_SOURCE.patch \
-		"${FILESDIR}"/${PN}-6.47-ncat-lua.patch
+		"${FILESDIR}"/${PN}-no-FORTIFY_SOURCE.patch
 
 	if use nls; then
 		local lingua=''
@@ -118,6 +119,12 @@ src_configure() {
 }
 
 src_compile() {
+	local dep deps="build-dnet build-nbase build-nsock build-netutil"
+
+	for dep in ${deps}; do
+		emake makefile.dep ${dep}
+	done
+
 	emake \
 		AR=$(tc-getAR) \
 		RANLIB=$(tc-getRANLIB )

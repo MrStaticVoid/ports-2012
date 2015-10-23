@@ -5,7 +5,7 @@
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
 DESCRIPTION="The GNU Compiler Collection"
-HOMEPAGE="http://gcc.gnu.org/"
+HOMEPAGE="https://gcc.gnu.org/"
 RESTRICT="strip" # cross-compilers need controlled stripping
 
 inherit eutils fixheadtails flag-o-matic gnuconfig libtool multilib pax-utils toolchain-funcs versionator
@@ -160,8 +160,11 @@ IUSE+=" ${IUSE_DEF[*]/#/+}"
 # Support upgrade paths here or people get pissed
 if ! tc_version_is_at_least 4.7 || is_crosscompile || use multislot || [[ ${GCC_PV} == *_alpha* ]] ; then
 	SLOT="${GCC_CONFIG_VER}"
-else
+elif ! tc_version_is_at_least 5.0 ; then
 	SLOT="${GCC_BRANCH_VER}"
+else
+	# Upstream changed versioning w/gcc-5+, so SLOT matches major only. #555164
+	SLOT="${GCCMAJOR}"
 fi
 
 #---->> DEPEND <<----
@@ -238,7 +241,7 @@ S=$(
 gentoo_urls() {
 	local devspace="HTTP~vapier/dist/URI HTTP~rhill/dist/URI
 	HTTP~zorry/patches/gcc/URI HTTP~blueness/dist/URI"
-	devspace=${devspace//HTTP/http:\/\/dev.gentoo.org\/}
+	devspace=${devspace//HTTP/https:\/\/dev.gentoo.org\/}
 	echo mirror://gentoo/$1 ${devspace//URI/$1}
 }
 
@@ -1617,7 +1620,7 @@ toolchain_src_install() {
 	# We remove the generated fixincludes, as they can cause things to break
 	# (ncurses, openssl, etc).  We do not prevent them from being built, as
 	# in the following commit which we revert:
-	# http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/eclass/toolchain.eclass?r1=1.647&r2=1.648
+	# https://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/eclass/toolchain.eclass?r1=1.647&r2=1.648
 	# This is because bsd userland needs fixedincludes to build gcc, while
 	# linux does not.  Both can dispose of them afterwards.
 	while read x ; do
@@ -1957,7 +1960,7 @@ toolchain_pkg_postinst() {
 		echo
 		ewarn "You might want to review the GCC upgrade guide when moving between"
 		ewarn "major versions (like 4.2 to 4.3):"
-		ewarn "http://www.gentoo.org/doc/en/gcc-upgrading.xml"
+		ewarn "https://wiki.gentoo.org/wiki/Upgrading_GCC"
 		echo
 
 		# Clean up old paths
