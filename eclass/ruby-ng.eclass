@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -80,7 +81,7 @@ case ${EAPI} in
 	0|1)
 		die "Unsupported EAPI=${EAPI} (too old) for ruby-ng.eclass" ;;
 	2|3) ;;
-	4|4-python|5|5-progress)
+	4|5)
 		# S is no longer automatically assigned when it doesn't exist.
 		S="${WORKDIR}"
 		;;
@@ -291,7 +292,7 @@ if [[ ${RUBY_OPTIONAL} != yes ]]; then
 	RDEPEND="${RDEPEND} $(ruby_implementations_depend)"
 
 	case ${EAPI:-0} in
-		4|4-python|5|5-progress)
+		4|5)
 			REQUIRED_USE+=" || ( $(ruby_get_use_targets) )"
 			;;
 	esac
@@ -300,7 +301,7 @@ fi
 _ruby_invoke_environment() {
 	old_S=${S}
 	case ${EAPI} in
-		4|4-python|5|5-progress)
+		4|5)
 			if [ -z "${RUBY_S}" ]; then
 				sub_S=${P}
 			else
@@ -368,7 +369,7 @@ _ruby_each_implementation() {
 		eerror "You need to select at least one compatible Ruby installation target via RUBY_TARGETS in make.conf."
 		eerror "Compatible targets for this package are: ${USE_RUBY}"
 		eerror
-		eerror "See http://www.gentoo.org/proj/en/prog_lang/ruby/index.xml#doc_chap3 for more information."
+		eerror "See https://www.gentoo.org/proj/en/prog_lang/ruby/index.xml#doc_chap3 for more information."
 		eerror
 		die "No compatible Ruby target selected."
 	fi
