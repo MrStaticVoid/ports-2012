@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare setup test unpack
-DEPEND=doc? ( dev-python/epydoc ) test? ( >=sys-apps/portage-2.1.10.3 sys-apps/pkgcore >=sys-apps/paludis-0.64.2[python] ) =dev-lang/python-2*
+DEPEND=doc? ( dev-python/epydoc ) test? ( >=sys-apps/portage-2.1.10.3 sys-apps/pkgcore >=sys-apps/paludis-0.64.2[python] ) || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 DESCRIPTION=A test suite for Package Manager PMS compliance
 EAPI=4
 HOMEPAGE=https://www.gentoo.org/proj/en/qa/pms/pms-test-suite.xml
 IUSE=doc test
 KEYWORDS=~amd64 ~x86
 LICENSE=BSD-2
-RDEPEND=>=app-portage/gentoopm-0.1.5 dev-python/dbus-python dev-python/pygobject:2 =dev-lang/python-2*
+RDEPEND=>=app-portage/gentoopm-0.1.5 dev-python/dbus-python dev-python/pygobject:2 || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 RESTRICT=test
 SLOT=0
 SRC_URI=https://www.bitbucket.org/mgorny/pms-test-suite/downloads/pms-test-suite-0.2.tar.bz2
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_eclasses_=base	84d9f879f57a8316ff02be0373a3d6f9	distutils	def8c8eb435ec28fd9315114640f6c84	eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python	06d7be3e54573292f012e3cc433d8297	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=1c61b47191ce90a88394fb294e86c13e

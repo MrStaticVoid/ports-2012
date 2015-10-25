@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: multilib-build.eclass
 # @MAINTAINER:
@@ -20,7 +21,7 @@ if [[ ! ${_MULTILIB_BUILD} ]]; then
 
 # EAPI=4 is required for meaningful MULTILIB_USEDEP.
 case ${EAPI:-0} in
-	4|4-python|5|5-progress) ;;
+	4|5) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 

@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: bash-completion-r1.eclass
 # @MAINTAINER:
@@ -25,7 +26,7 @@
 inherit toolchain-funcs
 
 case ${EAPI:-0} in
-	0|1|2|3|4|4-python|5|5-progress) ;;
+	0|1|2|3|4|5) ;;
 	*) die "EAPI ${EAPI} unsupported (yet)."
 esac
 

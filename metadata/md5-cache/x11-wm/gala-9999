@@ -7,5 +7,5 @@ IUSE=debug
 LICENSE=GPL-3
 RDEPEND=>=dev-libs/glib-2.32:2 dev-libs/libgee:0.8 media-libs/clutter-gtk >=pantheon-base/plank-0.3 >=x11-libs/granite-0.3 x11-libs/bamf >=x11-libs/gtk+-3.4:3 >=x11-wm/mutter-3.8.4 gnome-base/gnome-desktop:3
 SLOT=0
-_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	autotools-utils	106d29d66151588cad8ee4f31122cffb	bzr	745bed5705ae699c707ba26ca9e8929a	eutils	43da5163ba106e87d22d2e7d6d67537f	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	vala	335996addec48717e632dfd1f588ef1c
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	autotools-utils	0bf099a6e3dfeaf20a7a94504d8dd896	bzr	745bed5705ae699c707ba26ca9e8929a	eutils	43da5163ba106e87d22d2e7d6d67537f	gnome2-utils	588052cacdf74572e68bdfeaece20534	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	vala	335996addec48717e632dfd1f588ef1c
 _md5_=77d3aaa1a182b3a3b69791a79e6a35dc
