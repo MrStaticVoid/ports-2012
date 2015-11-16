@@ -67,7 +67,7 @@ inherit eutils flag-o-matic perl-module ruby-ng ssl-cert toolchain-funcs user
 
 DESCRIPTION="Robust, small and high performance http and reverse proxy server"
 HOMEPAGE="http://tengine.taobao.org"
-SRC_URI="http://${PN}.taobao.org/download/${P}.tar.gz"
+SRC_URI="mirror://gentoo/${P}.tar.gz http://${PN}.taobao.org/download/${P}.tar.gz"
 
 for m in ${!mod_a[@]} ; do
 	SRC_URI+=" tengine_external_modules_http_${m}? (
@@ -79,8 +79,6 @@ LICENSE="BSD-2"
 for m in ${!mod_a[@]} ; do
 	LICENSE+=" tengine_external_modules_http_${m}? ( ${mod_lic[$m]} )"
 done
-
-RESTRICT="mirror"
 
 SLOT="0"
 KEYWORDS="*"

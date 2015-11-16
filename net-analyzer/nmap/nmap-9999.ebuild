@@ -120,6 +120,7 @@ src_configure() {
 
 src_compile() {
 	local dep deps="build-dnet build-nbase build-nsock build-netutil"
+	use system-lua || deps="build-lua ${deps}"
 
 	for dep in ${deps}; do
 		emake makefile.dep ${dep}
@@ -127,7 +128,7 @@ src_compile() {
 
 	emake \
 		AR=$(tc-getAR) \
-		RANLIB=$(tc-getRANLIB )
+		RANLIB=$(tc-getRANLIB)
 }
 
 src_install() {

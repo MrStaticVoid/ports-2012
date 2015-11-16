@@ -6,7 +6,7 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 python3_{3,4,5} )
 
-PYTHON_REQ_USE='tk?'
+PYTHON_REQ_USE='tk?,threads(+)'
 
 inherit distutils-r1 eutils flag-o-matic git-r3 virtualx toolchain-funcs
 
@@ -62,7 +62,7 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 	doc? (
 		app-text/dvipng
-		virtual/python-imaging[${PYTHON_USEDEP}]
+		dev-python/pillow[${PYTHON_USEDEP}]
 		dev-python/ipython[${PYTHON_USEDEP}]
 		dev-python/numpydoc[${PYTHON_USEDEP}]
 		dev-python/xlwt[${PYTHON_USEDEP}]
@@ -86,10 +86,7 @@ RDEPEND="${COMMON_DEPEND}
 			)
 		)
 	excel? ( dev-python/xlwt[${PYTHON_USEDEP}] )
-	fltk? (
-		$(python_gen_cond_dep 'dev-python/pyfltk[${PYTHON_USEDEP}]' python2_7)
-		$(python_gen_cond_dep 'dev-python/pyfltk[${PYTHON_USEDEP}]' 'python3*')
-		)
+	fltk? ( dev-python/pyfltk[${PYTHON_USEDEP}] )
 	gtk3? (
 		dev-python/pygobject:3[${PYTHON_USEDEP}]
 		x11-libs/gtk+:3[introspection] )
@@ -106,8 +103,6 @@ RDEPEND="${COMMON_DEPEND}
 	qt4? ( dev-python/PyQt4[X,${PYTHON_USEDEP}] )
 	qt5? ( dev-python/PyQt5[gui,widgets,${PYTHON_USEDEP}] )
 	"
-
-RESTRICT="mirror"
 
 # A few C++ source files are written to srcdir.
 # Other than that, the ebuild shall be fit for out-of-source build.
@@ -215,6 +210,7 @@ python_configure() {
 wrap_setup() {
 	local MPLSETUPCFG=${BUILD_DIR}/setup.cfg
 	export MPLSETUPCFG
+	unset DISPLAY
 
 	# Note: remove build... if switching to out-of-source build
 	"${@}" build --build-lib="${BUILD_DIR}"/build/lib

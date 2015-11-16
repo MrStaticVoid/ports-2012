@@ -77,12 +77,12 @@ pkg_setup() {
 	GCC_BRANCH_VER=${SLOT}
 	GCC_CONFIG_VER=${PV}
 	DATAPATH=${PREFIX}/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}
+	CFLAGS="-O2 -pipe"
+	FFLAGS="$CFLAGS"
+	FCFLAGS="$CFLAGS"
+	CXXFLAGS="$CFLAGS"
 	if is_crosscompile; then
 		BINPATH=${PREFIX}/${CHOST}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}
-		CFLAGS="-O2 -pipe"
-		FFLAGS="$CFLAGS"
-		FCFLAGS="$CFLAGS"
-		CXXFLAGS="$CFLAGS"
 	else
 		BINPATH=${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}
 	fi

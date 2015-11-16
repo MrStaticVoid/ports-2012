@@ -1,11 +1,11 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=5
 
 DESCRIPTION="Gentoo Package Manager Specification"
-HOMEPAGE="https://wiki.gentoo.org/wiki/Project:PMS"
+HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Package_Manager_Specification"
 SRC_URI="!binary? ( https://dev.gentoo.org/~ulm/distfiles/${P}.tar.xz )
 	binary? ( https://dev.gentoo.org/~ulm/distfiles/${P}-prebuilt.tar.xz )"
 
@@ -38,7 +38,8 @@ src_compile() {
 src_install() {
 	dodoc pms.pdf eapi-cheatsheet.pdf
 	if use html; then
-		dohtml *.html pms.css $(shopt -s nullglob; echo *.png)
+		docinto html
+		dodoc *.html pms.css $(shopt -s nullglob; echo *.png)
 		dosym {..,/usr/share/doc/${PF}/html}/eapi-cheatsheet.pdf
 	fi
 }

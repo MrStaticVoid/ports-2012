@@ -1,5 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-
+# $Id$
 
 EAPI=5
 inherit autotools bash-completion-r1 eutils flag-o-matic gnome2-utils linux-info readme.gentoo systemd user versionator udev multilib-minimal
@@ -15,7 +16,8 @@ SRC_URI="http://freedesktop.org/software/pulseaudio/releases/${P}.tar.xz"
 LICENSE="!gdbm? ( LGPL-2.1 ) gdbm? ( GPL-2 )"
 
 SLOT="0"
-KEYWORDS="*"
+#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ~ia64 ~ppc ppc64 ~sh sparc x86 ~amd64-linux ~x86-linux"
 
 # +alsa-plugin as discussed in bug #519530
 IUSE="+alsa +alsa-plugin +asyncns bluetooth +caps dbus doc equalizer +gdbm +glib
@@ -66,7 +68,6 @@ RDEPEND="
 	equalizer? ( sci-libs/fftw:3.0 )
 	ofono-headset? ( >=net-misc/ofono-1.13 )
 	orc? ( >=dev-lang/orc-0.4.15 )
-	oss? ( media-sound/oss )
 	ssl? ( dev-libs/openssl:0 )
 	>=media-libs/speex-1.2_rc1
 	gdbm? ( sys-libs/gdbm )
@@ -111,7 +112,7 @@ RDEPEND="${RDEPEND}
 	)
 "
 
-pre_src_compile() {
+pkg_pretend() {
 	CONFIG_CHECK="~HIGH_RES_TIMERS"
 	WARNING_HIGH_RES_TIMERS="CONFIG_HIGH_RES_TIMERS:\tis not set (required for enabling timer-based scheduling in pulseaudio)\n"
 	check_extra_config
@@ -377,5 +378,12 @@ pkg_postinst() {
 	if use libsamplerate; then
 		elog "The libsamplerate based resamplers are now deprecated, because they offer no"
 		elog "particular advantage over speex. Upstream suggests disabling them."
+	fi
+
+	# Needed for pulseaudio-6.0 update from older versions
+	if use udev; then
+		if ! version_is_at_least 6.0 ${REPLACING_VERSIONS}; then
+			udevadm control --reload && udevadm trigger
+		fi
 	fi
 }

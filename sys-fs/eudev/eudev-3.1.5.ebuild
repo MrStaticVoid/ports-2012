@@ -48,7 +48,8 @@ RDEPEND="${COMMON_DEPEND}
 	!<sys-fs/lvm2-2.02.103
 	!<sec-policy/selinux-base-2.20120725-r10
 	!sys-fs/udev
-	!sys-apps/systemd"
+	!sys-apps/systemd
+	!>sys-fs/udev-init-scripts-27"
 
 PDEPEND=">=sys-fs/udev-init-scripts-26
 	hwdb? ( >=sys-apps/hwids-20140304[udev] )"
