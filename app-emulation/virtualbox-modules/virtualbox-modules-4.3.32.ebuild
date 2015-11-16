@@ -16,7 +16,7 @@ SRC_URI="https://dev.gentoo.org/~polynomial-c/virtualbox/${MY_P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE="pax_kernel"
 
 RDEPEND="!=app-emulation/virtualbox-9999"
@@ -30,7 +30,7 @@ MODULE_NAMES="vboxdrv(misc:${S}) vboxnetflt(misc:${S}) vboxnetadp(misc:${S}) vbo
 pkg_setup() {
 	linux-mod_pkg_setup
 
-	BUILD_PARAMS="KERN_DIR=${KV_DIR} O=${KV_OUT_DIR}"
+	BUILD_PARAMS="KERN_DIR=${KV_DIR} O=${KV_OUT_DIR} V=1 KBUILD_VERBOSE=1"
 	enewgroup vboxusers
 }
 

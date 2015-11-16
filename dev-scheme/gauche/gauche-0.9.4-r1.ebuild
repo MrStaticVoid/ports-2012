@@ -6,7 +6,8 @@ EAPI="5"
 
 inherit autotools eutils
 
-MY_P="${P^g}"
+# Switch to ^g when we switch to EAPI=6.
+MY_P="G${P:1}"
 
 DESCRIPTION="A Unix system friendly Scheme Interpreter"
 HOMEPAGE="http://practical-scheme.net/gauche/"
@@ -31,6 +32,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-ext-ldflags.diff
 	epatch "${FILESDIR}"/${PN}-xz-info.diff
 	epatch "${FILESDIR}"/${PN}-rfc.tls.diff
+
+	mv gc/src/*.[Ss] gc || die
+	sed -i "/^EXTRA_libgc_la_SOURCES/s|src/||g" gc/Makefile.am
+
 	eautoconf
 }
 

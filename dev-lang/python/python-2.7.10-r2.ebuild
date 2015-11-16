@@ -17,7 +17,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 
 LICENSE="PSF-2"
 SLOT="2.7"
-#KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
 IUSE="-berkdb build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
@@ -30,34 +30,34 @@ RDEPEND="app-arch/bzip2
 	virtual/libffi
 	virtual/libintl
 	xml? ( >=dev-libs/expat-2.1 )
-		berkdb? ( || (
-			sys-libs/db:5.3
-			sys-libs/db:5.2
-			sys-libs/db:5.1
-			sys-libs/db:5.0
-			sys-libs/db:4.8
-			sys-libs/db:4.7
-			sys-libs/db:4.6
-			sys-libs/db:4.5
-			sys-libs/db:4.4
-			sys-libs/db:4.3
-			sys-libs/db:4.2
-		) )
-		gdbm? ( sys-libs/gdbm[berkdb] )
-		ncurses? (
-			>=sys-libs/ncurses-5.2
-			readline? ( >=sys-libs/readline-4.1 )
-		)
-		sqlite? ( >=dev-db/sqlite-3.3.8:3 )
-		ssl? (
-			!libressl? ( dev-libs/openssl:0 )
-			libressl? ( dev-libs/libressl )
-		)
-		tk? (
-			>=dev-lang/tk-8.0
-			dev-tcltk/blt
-			dev-tcltk/tix
-		)
+	berkdb? ( || (
+		sys-libs/db:5.3
+		sys-libs/db:5.2
+		sys-libs/db:5.1
+		sys-libs/db:5.0
+		sys-libs/db:4.8
+		sys-libs/db:4.7
+		sys-libs/db:4.6
+		sys-libs/db:4.5
+		sys-libs/db:4.4
+		sys-libs/db:4.3
+		sys-libs/db:4.2
+	) )
+	gdbm? ( sys-libs/gdbm[berkdb] )
+	ncurses? (
+		>=sys-libs/ncurses-5.2
+		readline? ( >=sys-libs/readline-4.1 )
+	)
+	sqlite? ( >=dev-db/sqlite-3.3.8:3 )
+	ssl? (
+		!libressl? ( dev-libs/openssl:0 )
+		libressl? ( dev-libs/libressl )
+	)
+	tk? (
+		>=dev-lang/tk-8.0
+		dev-tcltk/blt
+		dev-tcltk/tix
+	)
 	!!<sys-apps/portage-2.1.9"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
@@ -306,15 +306,18 @@ src_install() {
 		-i "${ED}etc/conf.d/pydoc-${SLOT}" "${ED}etc/init.d/pydoc-${SLOT}" || die "sed failed"
 
 	# for python-exec
-	python_export python${SLOT} EPYTHON PYTHON PYTHON_SITEDIR
+	local vars=( EPYTHON PYTHON_SITEDIR )
 
 	# if not using a cross-compiler, use the fresh binary
 	if ! tc-is-cross-compiler; then
-		local PYTHON=./python
+		local -x PYTHON=./python
 		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
+	else
+		vars=( PYTHON "${vars[@]}" )
 	fi
 
-	echo "EPYTHON='${EPYTHON}'" > epython.py
+	python_export "python${SLOT}" "${vars[@]}"
+	echo "EPYTHON='${EPYTHON}'" > epython.py || die
 	python_domodule epython.py
 }
 

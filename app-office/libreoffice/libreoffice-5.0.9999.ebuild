@@ -115,7 +115,7 @@ COMMON_DEPEND="
 	app-text/libwpd:0.10[tools]
 	app-text/libwpg:0.3
 	=app-text/libwps-0.4*
-	>=app-text/poppler-0.16:=[xpdf-headers(+),cxx]
+	>=app-text/poppler-0.16:=[cxx]
 	>=dev-cpp/clucene-2.3.3.4-r2
 	=dev-cpp/libcmis-0.5*
 	dev-db/unixODBC
@@ -342,6 +342,7 @@ src_prepare() {
 	fi
 
 	epatch "${PATCHES[@]}"
+	epatch_user
 
 	AT_M4DIR="m4" eautoreconf
 	# hack in the autogen.sh

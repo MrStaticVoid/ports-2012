@@ -7,5 +7,5 @@ LICENSE=ZSH
 RDEPEND=!app-shells/gentoo-zsh-completions >=app-shells/zsh-4.3.5
 SLOT=0
 SRC_URI=https://github.com/radhermit/gentoo-zsh-completions/archive/20150103.tar.gz -> funtoo-zsh-completions-20150103.tar.gz
-_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_eclasses_=eutils	8644194de7be04932084752fb1327080	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=bfd0c90eb8bb9b4ec3e4ff1dcbf479c2

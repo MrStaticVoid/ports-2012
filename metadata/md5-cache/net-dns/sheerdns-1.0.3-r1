@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install prepare
+DESCRIPTION=Sheerdns is a small, simple, fast master only DNS server
+EAPI=5
+HOMEPAGE=http://threading.2038bug.com/sheerdns/
+KEYWORDS=amd64 ~ppc x86
+LICENSE=GPL-2
+SLOT=0
+SRC_URI=http://threading.2038bug.com/sheerdns/sheerdns-1.0.3.tar.gz
+_eclasses_=eutils	8644194de7be04932084752fb1327080	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=92c76515bceb607cb6ea2446fff8df93

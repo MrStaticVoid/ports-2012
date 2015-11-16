@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -11,12 +13,13 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug cpu_flags_x86_mmx mp3rtp sndfile static-libs"
 
 # These deps are without MULTILIB_USEDEP and are correct since we only build
 # libmp3lame for multilib and these deps apply to the lame frontend executable.
-RDEPEND=">=sys-libs/ncurses-5.7-r7
+RDEPEND="
+	>=sys-libs/ncurses-5.7-r7:0=
 	sndfile? ( >=media-libs/libsndfile-1.0.2 )
 	abi_x86_32? ( !app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] )"
 DEPEND="${RDEPEND}
@@ -28,6 +31,7 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-3.96-ccc.patch \
 		"${FILESDIR}"/${PN}-3.98-gtk-path.patch \
 		"${FILESDIR}"/${PN}-3.99.5-tinfo.patch \
+		"${FILESDIR}"/${PN}-3.99.5-msse.patch \
 		"${WORKDIR}"/${P}-automake-2.12.patch
 
 	mkdir libmp3lame/i386/.libs || die #workaround parallel build with nasm

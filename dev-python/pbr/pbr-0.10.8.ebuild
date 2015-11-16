@@ -5,6 +5,7 @@
 EAPI=5
 
 PYTHON_COMPAT=( python2_7 python3_{3,4} )
+PYTHON_REQ_USE="threads(+)"
 
 inherit distutils-r1
 
@@ -31,7 +32,7 @@ DEPEND="
 		>=dev-python/testresources-0.2.4[${PYTHON_USEDEP}]
 		>=dev-python/testscenarios-0.4[${PYTHON_USEDEP}]
 		>=dev-python/testtools-0.9.34[${PYTHON_USEDEP}] )"
-RDEPEND=">dev-python/pip-1.4[${PYTHON_USEDEP}]"
+PDEPEND=">dev-python/pip-1.4[${PYTHON_USEDEP}]"
 
 # Requ'd for testsuite
 DISTUTILS_IN_SOURCE_BUILD=1

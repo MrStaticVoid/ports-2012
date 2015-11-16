@@ -192,7 +192,7 @@ fi
 LICENSE="GPL-2"
 SLOT="0/${SUBSLOT:-0}"
 
-IUSE="+community cluster debug embedded extraengine jemalloc latin1 libressl +openssl
+IUSE="debug embedded extraengine jemalloc latin1 libressl +openssl
 	+perl profiling selinux systemtap static static-libs tcmalloc test yassl"
 
 REQUIRED_USE="^^ ( yassl openssl libressl )"
@@ -212,6 +212,9 @@ REQUIRED_USE="^^ ( yassl openssl libressl )"
 #	mysql_check_version_range "7.2 to 7.2.99.99"  ; then
 #	IUSE="bindist ${IUSE}"
 #fi
+
+# Tests always fail when libressl is enabled due to hard-coded ciphers in the tests
+RESTRICT="libressl? ( test )"
 
 if [[ ${PN} == "mariadb" || ${PN} == "mariadb-galera" ]] ; then
 	IUSE="bindist ${IUSE}"
@@ -500,15 +503,22 @@ mysql-multilib_disable_test() {
 # Perform some basic tests and tasks during pkg_pretend phase:
 mysql-multilib_pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]] ; then
-		if use_if_iuse tokudb && [[ $(gcc-major-version) -lt 4 || \
-			$(gcc-major-version) -eq 4 && $(gcc-minor-version) -lt 7 ]] ; then
+		local GCC_MAJOR_SET=$(gcc-major-version)
+		local GCC_MINOR_SET=$(gcc-minor-version)
+		if use_if_iuse tokudb && [[ ${GCC_MAJOR_SET} -lt 4 || \
+			${GCC_MAJOR_SET} -eq 4 && ${GCC_MINOR_SET} -lt 7 ]] ; then
 			eerror "${PN} with tokudb needs to be built with gcc-4.7 or later."
 			eerror "Please use gcc-config to switch to gcc-4.7 or later version."
 			die
 		fi
-	fi
-	if use_if_iuse cluster && [[ "${PN}" != "mysql-cluster" ]]; then
-		die "NDB Cluster support has been removed from all packages except mysql-cluster"
+		# Bug 565584.  InnoDB now requires atomic functions introduced with gcc-4.7 on
+		# non x86{,_64} arches
+		if ! use amd64 && ! use x86 && [[ ${GCC_MAJOR_SET} -lt 4 || \
+			${GCC_MAJOR_SET} -eq 4 && ${GCC_MINOR_SET} -lt 7 ]] ; then
+			eerror "${PN} needs to be built with gcc-4.7 or later."
+			eerror "Please use gcc-config to switch to gcc-4.7 or later version."
+			die
+		fi
 	fi
 }
 
@@ -605,7 +615,7 @@ multilib_src_configure() {
 
 	if ! multilib_is_native_abi && in_iuse client-libs ; then
 		if ! use client-libs ; then
-			ewarn "Skipping multilib build due to client-libs USE disabled"
+			einfo "Skipping multilib build due to client-libs USE disabled"
 			return 0
 		fi
 	fi
@@ -643,7 +653,7 @@ multilib_src_configure() {
 		-DINSTALL_UNIX_ADDRDIR=${EPREFIX}/var/run/mysqld/mysqld.sock
 		-DWITH_DEFAULT_COMPILER_OPTIONS=0
 		-DWITH_DEFAULT_FEATURE_SET=0
-		-DINSTALL_SYSTEMD_UNITDIR=$(systemd_get_unitdir)
+		-DINSTALL_SYSTEMD_UNITDIR="$(systemd_get_unitdir)"
 	)
 
 	if in_iuse systemd ; then
@@ -740,7 +750,6 @@ mysql-multilib_src_compile() {
 multilib_src_compile() {
 	if ! multilib_is_native_abi && in_iuse client-libs ; then
 		if ! use client-libs ; then
-			ewarn "Skipping multilib build due to client-libs USE disabled"
 			return 0
 		fi
 	fi
@@ -770,7 +779,6 @@ multilib_src_install() {
 
 	if ! multilib_is_native_abi && in_iuse client-libs ; then
 		if ! use client-libs ; then
-			ewarn "Skipping multilib build due to client-libs USE disabled"
 			return 0
 		fi
 	fi
@@ -870,7 +878,7 @@ mysql-multilib_pkg_postinst() {
 				einfo
 				elog "This install includes the PAM authentication plugin."
 				elog "To activate and configure the PAM plugin, please read:"
-				elog "https://kb.askmonty.org/en/pam-authentication-plugin/"
+				elog "https://mariadb.com/kb/en/mariadb/pam-authentication-plugin/"
 				einfo
 			fi
 		fi
@@ -886,7 +894,7 @@ mysql-multilib_pkg_postinst() {
 		elog "mysql_upgrade tool."
 		einfo
 
-		if [[ ${PN} == "mariadb-galera" ]] ; then
+		if [[ ${PN} == "mariadb-galera" ]] || use_if_iuse galera ; then
 			einfo
 			elog "Be sure to edit the my.cnf file to activate your cluster settings."
 			elog "This should be done after running \"emerge --config =${CATEGORY}/${PF}\""
@@ -913,9 +921,10 @@ mysql-multilib_getopt() {
 # Use my_print_defaults to extract specific config options
 mysql-multilib_getoptval() {
 	local mypd="${EROOT}"/usr/bin/my_print_defaults
-	section="$1"
-	flag="--${2}="
-	"${mypd}" $section | sed -n "/^${flag}/s,${flag},,gp"
+	local section="$1"
+	local flag="--${2}="
+	local extra_options="${3}"
+	"${mypd}" $extra_options $section | sed -n "/^${flag}/s,${flag},,gp"
 }
 
 # @FUNCTION: mysql-multilib_pkg_config
@@ -976,6 +985,10 @@ mysql-multilib_pkg_config() {
 
 	if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
 		MYSQL_ROOT_PASSWORD="$(mysql-multilib_getoptval 'client mysql' password)"
+		# Sometimes --show is required to display passwords in some implementations of my_print_defaults
+		if [[ "${MYSQL_ROOT_PASSWORD}" == '*****' ]]; then
+			MYSQL_ROOT_PASSWORD="$(mysql-multilib_getoptval 'client mysql' password --show)"
+		fi
 	fi
 	MYSQL_TMPDIR="$(mysql-multilib_getoptval mysqld tmpdir)"
 	# These are dir+prefix
@@ -1039,7 +1052,7 @@ mysql-multilib_pkg_config() {
 	help_tables="${TMPDIR}/fill_help_tables.sql"
 
 	# Figure out which options we need to disable to do the setup
-	helpfile="${TMPDIR}/mysqld-help"
+	local helpfile="${TMPDIR}/mysqld-help"
 	${EROOT}/usr/sbin/mysqld --verbose --help >"${helpfile}" 2>/dev/null
 	for opt in grant-tables host-cache name-resolve networking slave-start \
 		federated ssl log-bin relay-log slow-query-log external-locking \

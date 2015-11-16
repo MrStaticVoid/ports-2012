@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -6,11 +8,10 @@ GNOME_ORG_MODULE="NetworkManager"
 GNOME2_LA_PUNT="yes"
 VALA_MIN_API_VERSION="0.18"
 VALA_USE_DEPEND="vapigen"
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 
-# Tests need python2, https://bugzilla.gnome.org/show_bug.cgi?id=739448
-PYTHON_COMPAT=( python2_7 )
-
-inherit bash-completion-r1 eutils gnome2 linux-info multilib python-any-r1 user readme.gentoo toolchain-funcs vala versionator virtualx udev
+inherit autotools bash-completion-r1 eutils gnome2 linux-info multilib python-any-r1 systemd \
+	user readme.gentoo toolchain-funcs vala versionator virtualx udev
 
 DESCRIPTION="Universal network configuration daemon for laptops, desktops, servers and virtualization hosts"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
@@ -18,41 +19,32 @@ HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 LICENSE="GPL-2+"
 SLOT="0" # add subslot if libnm-util.so.2 or libnm-glib.so.4 bumps soname version
 
-IUSE="bluetooth connection-sharing consolekit dhclient gnutls introspection \
-kernel_linux +nss modemmanager ncurses policykit +ppp resolvconf selinux teamd test \
-vala wext +wifi zeroconf" # wimax
+IUSE="bluetooth connection-sharing consolekit +dhclient dhcpcd gnutls +introspection \
+kernel_linux +nss +modemmanager ncurses +ppp resolvconf selinux systemd teamd test \
+vala +wext +wifi zeroconf" # wimax
 
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 arm ~arm64 ppc ppc64 ~sparc x86"
 
 REQUIRED_USE="
 	modemmanager? ( ppp )
-	^^ ( nss gnutls )"
+	^^ ( nss gnutls )
+	^^ ( dhclient dhcpcd )
+"
 
 # gobject-introspection-0.10.3 is needed due to gnome bug 642300
 # wpa_supplicant-0.7.3-r3 is needed due to bug 359271
 # TODO: Qt support?
-#
-# iputils version needed due path changes (#523632). Upstream fixed
-# it with a major refactor committed to 'master' for handling different
-# paths for arping and other tools and, then, the version requirement
-# will be able to be dropped on next major NM version
-PLUGINS="openconnect openswan openvpn pptp sstp vpnc"
-
-for PLUGIN in ${PLUGINS}; do
-	IUSE="${IUSE} plugins_${PLUGIN}"
-	done
-
 COMMON_DEPEND="
 	>=sys-apps/dbus-1.2
-	>=dev-libs/dbus-glib-0.102
+	>=dev-libs/dbus-glib-0.100
 	>=dev-libs/glib-2.32:2
 	>=dev-libs/libnl-3.2.8:3=
+	>=sys-auth/polkit-0.106
 	net-libs/libndp
 	>=net-libs/libsoup-2.26:2.4=
 	net-misc/iputils
-	sys-libs/readline
-	virtual/libgudev:=
-	zeroconf? ( net-dns/avahi:=[autoipd] )
+	sys-libs/readline:0
+	>=virtual/libgudev-165:=
 	bluetooth? ( >=net-wireless/bluez-5 )
 	connection-sharing? (
 		net-dns/dnsmasq[dhcp]
@@ -64,28 +56,22 @@ COMMON_DEPEND="
 	ncurses? ( >=dev-libs/newt-0.52.15 )
 	nss? ( >=dev-libs/nss-3.11:= )
 	dhclient? ( >=net-misc/dhcp-4[client] )
-	introspection? ( >=dev-libs/gobject-introspection-0.10.3 )
-	policykit? ( >=sys-auth/polkit-0.106 )
-	ppp? ( >=net-dialup/ppp-2.4.5:=[ipv6] )
+	dhcpcd? ( >=net-misc/dhcpcd-4.0.0_rc3 )
+	introspection? ( >=dev-libs/gobject-introspection-0.10.3:= )
+	ppp? ( >=net-dialup/ppp-2.4.5:=[ipv6] net-dialup/rp-pppoe )
 	resolvconf? ( net-dns/openresolv )
+	systemd? ( >=sys-apps/systemd-209:0= )
+	!systemd? ( || ( sys-power/upower sys-power/upower-pm-utils ) )
 	teamd? ( >=net-misc/libteam-1.9 )
-
-	plugins_openconnect? ( net-misc/networkmanager-openconnect )
-	plugins_openswan? ( net-misc/networkmanager-openswan )
-	plugins_openvpn? ( net-misc/networkmanager-openvpn )
-	plugins_pptp? ( net-misc/networkmanager-pptp )
-	plugins_sstp? ( net-misc/networkmanager-sstp )
-	plugins_vpnc? ( net-misc/networkmanager-vpnc )
+	zeroconf? ( net-dns/avahi:=[autoipd] )
 "
 RDEPEND="${COMMON_DEPEND}
-	virtual/udev
 	consolekit? ( sys-auth/consolekit )
-	wifi? ( net-wireless/rfkill >=net-wireless/wpa_supplicant-0.7.3-r3[dbus] )
-	|| ( sys-power/upower sys-power/upower-pm-utils )
+	wifi? ( >=net-wireless/wpa_supplicant-0.7.3-r3[dbus] )
 "
 DEPEND="${COMMON_DEPEND}
-	dev-util/gtk-doc-am
 	dev-util/gdbus-codegen
+	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.40
 	>=sys-devel/gettext-0.17
 	>=sys-kernel/linux-headers-2.6.29
@@ -104,13 +90,13 @@ sysfs_deprecated_check() {
 	if { linux_chkconfig_present SYSFS_DEPRECATED_V2; }; then
 		eerror "Please disable SYSFS_DEPRECATED_V2 support in your kernel config and recompile your kernel"
 		eerror "or NetworkManager will not work correctly."
-		eerror "See http://bugs.gentoo.org/333639 for more info."
+		eerror "See https://bugs.gentoo.org/333639 for more info."
 		die "CONFIG_SYSFS_DEPRECATED_V2 support detected!"
 	fi
 	eend $?
 }
 
-pre_src_compile() {
+pkg_pretend() {
 	if use kernel_linux; then
 		get_version
 		if linux_config_exists; then
@@ -118,7 +104,7 @@ pre_src_compile() {
 		else
 			ewarn "Was unable to determine your kernel .config"
 			ewarn "Please note that if CONFIG_SYSFS_DEPRECATED_V2 is set in your kernel .config, NetworkManager will not work correctly."
-			ewarn "See http://bugs.gentoo.org/333639 for more info."
+			ewarn "See https://bugs.gentoo.org/333639 for more info."
 		fi
 
 	fi
@@ -135,15 +121,15 @@ src_prepare() {
 	# Force use of /run, avoid eautoreconf, upstream bug #737139
 	sed -e 's:$localstatedir/run/:/run/:' -i configure || die
 
+	# Partially revert commit that breaks dhcpcd detection, bug #549970
+	epatch "${FILESDIR}"/${PN}-1.0.2-configure-dhcpcd.patch
+
 	use vala && vala_src_prepare
 
-	# FL-2555, FL-2491: attempt to solve DNS and resolv.conf problems
-	epatch "${FILESDIR}"/0001-dns-Fix-falling-back-in-the-resolv.conf-methods.patch
-
-	# FL-2541: A fix to nm-dispatcher warning on shutdown (a cosmetic problem)
-	epatch "${FILESDIR}"/nm-dispatcher-warning-fix.patch
-
 	epatch_user # don't remove, users often want custom patches for NM
+
+	eautoreconf
+
 	gnome2_src_prepare
 }
 
@@ -158,6 +144,10 @@ src_configure() {
 		myconf="${myconf} --with-pppd-plugin-dir=/usr/$(get_libdir)/pppd/${PPPD_VER}"
 	fi
 
+	# unit files directory needs to be passed only when systemd is enabled,
+	# otherwise systemd support is not disabled completely, bug #524534
+	use systemd && myconf="${myconf} "$(systemd_with_unitdir)""
+
 	# TODO: enable wimax when we have a libnl:3 compatible revision of it
 	# wimax will be removed, bug #522822
 	# ifnet plugin always disabled until someone volunteers to actively
@@ -169,9 +159,7 @@ src_configure() {
 		--disable-lto \
 		--disable-config-plugin-ibft \
 		--disable-ifnet \
-		--without-dhcpcd \
 		--without-netconfig \
-		--without-systemd \
 		--with-dbus-sys-dir=/etc/dbus-1/system.d \
 		--with-udev-dir="$(get_udevdir)" \
 		--with-config-plugins-default=keyfile \
@@ -179,13 +167,14 @@ src_configure() {
 		--with-libsoup=yes \
 		--enable-concheck \
 		--with-crypto=$(usex nss nss gnutls) \
-		--with-session-tracking=$(usex consolekit consolekit) \
-		--with-suspend-resume=upower \
+		--with-session-tracking=$(usex systemd systemd $(usex consolekit consolekit no)) \
+		--with-suspend-resume=$(usex systemd systemd upower) \
 		$(use_enable bluetooth bluez5-dun) \
 		$(use_enable introspection) \
 		$(use_enable ppp) \
 		--disable-wimax \
 		$(use_with dhclient) \
+		$(use_with dhcpcd) \
 		$(use_with modemmanager modem-manager-1) \
 		$(use_with ncurses nmtui) \
 		$(use_with resolvconf) \
@@ -207,9 +196,10 @@ src_install() {
 	# Install completions at proper place, bug #465100
 	gnome2_src_install completiondir="$(get_bashcompdir)"
 
-	readme.gentoo_create_doc
+	! use systemd && readme.gentoo_create_doc
 
 	newinitd "${FILESDIR}/init.d.NetworkManager" NetworkManager
+	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
 
 	# /var/run/NetworkManager is used by some distros, but not by Gentoo
 	rmdir -v "${ED}/var/run/NetworkManager" || die "rmdir failed"
@@ -218,25 +208,23 @@ src_install() {
 	# Need to keep the /etc/NetworkManager/dispatched.d for dispatcher scripts
 	keepdir /etc/NetworkManager/dispatcher.d
 
+	# Provide openrc net dependency only when nm is connected
+	exeinto /etc/NetworkManager/dispatcher.d
+	newexe "${FILESDIR}/10-openrc-status-r4" 10-openrc-status
+	sed -e "s:@EPREFIX@:${EPREFIX}:g" \
+		-i "${ED}/etc/NetworkManager/dispatcher.d/10-openrc-status" || die
+
 	keepdir /etc/NetworkManager/system-connections
 	chmod 0600 "${ED}"/etc/NetworkManager/system-connections/.keep* # bug #383765
-
-	# Install default NetworkManager.conf with internal dhcp client. FL-2372 reference bug.
-	insinto /etc/NetworkManager
-	doins "${FILESDIR}"/1.0.2/NetworkManager.conf
-
 
 	# Allow users in plugdev group to modify system connections
 	insinto /usr/share/polkit-1/rules.d/
 	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
-
-	# Funtoo addwifi script
-	newsbin ${FILESDIR}/addwifi-with-delay-r1 addwifi
 }
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-	readme.gentoo_print_elog
+	! use systemd && readme.gentoo_print_elog
 
 	if [[ -e "${EROOT}etc/NetworkManager/nm-system-settings.conf" ]]; then
 		ewarn "The ${PN} system configuration file has moved to a new location."
@@ -263,6 +251,31 @@ pkg_postinst() {
 			elog "without changing its behavior, you may want to remove it."
 			;;
 		esac
+	fi
+
+	# ifnet plugin was disabled for systemd users with 0.9.8.6 version
+	# and for all people with 0.9.10.0-r1 (see ChangeLog for full explanations)
+	if use systemd; then
+		if ! version_is_at_least 0.9.8.6 ${REPLACING_VERSIONS}; then
+			ewarn "Ifnet plugin won't be used with systemd support enabled"
+			ewarn "as it is meant to be used with openRC and can cause collisions"
+			ewarn "(like bug #485658)."
+			ewarn "Because of this, you will likely need to reconfigure some of"
+			ewarn "your networks. To do this you can rely on Gnome control center,"
+			ewarn "nm-connection-editor or nmtui tools for example once updated"
+			ewarn "NetworkManager version is installed."
+		fi
+	else
+		if ! version_is_at_least 0.9.10.0-r1 ${REPLACING_VERSIONS}; then
+			ewarn "Ifnet plugin is now disabled because of it being unattended"
+			ewarn "and unmaintained for a long time, leading to some unfixed bugs"
+			ewarn "and new problems appearing. We will now use upstream 'keyfile'"
+			ewarn "plugin."
+			ewarn "Because of this, you will likely need to reconfigure some of"
+			ewarn "your networks. To do this you can rely on Gnome control center,"
+			ewarn "nm-connection-editor or nmtui tools for example once updated"
+			ewarn "NetworkManager version is installed."
+		fi
 	fi
 
 	# NM fallbacks to plugin specified at compile time (upstream bug #738611)

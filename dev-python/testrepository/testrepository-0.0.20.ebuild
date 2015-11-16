@@ -5,6 +5,7 @@
 EAPI=5
 
 PYTHON_COMPAT=( python2_7 python3_{3,4,5} pypy pypy3 )
+PYTHON_REQ_USE="threads(+)"
 
 inherit distutils-r1
 
@@ -34,9 +35,15 @@ DEPEND="
 # Required for test phase
 DISTUTILS_IN_SOURCE_BUILD=1
 
+PATCHES=(
+	"${FILESDIR}"/${P}-test-backport.patch
+	"${FILESDIR}"/${P}-test-backport1.patch
+)
+
 python_test() {
 	# some errors appear to have crept in the suite undert py3 since addition.
 	# Python2.7 now passes all.
 
-	esetup.py testr
+	${PYTHON} testr init || die
+	${PYTHON} testr run || die
 }

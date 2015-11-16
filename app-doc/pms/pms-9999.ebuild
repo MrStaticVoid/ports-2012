@@ -10,7 +10,7 @@ EGIT_REPO_URI="git://anongit.gentoo.org/proj/${PN}.git
 	https://anongit.gentoo.org/git/proj/${PN}.git"
 
 DESCRIPTION="Gentoo Package Manager Specification (draft)"
-HOMEPAGE="https://wiki.gentoo.org/wiki/Project:PMS"
+HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Package_Manager_Specification"
 
 LICENSE="CC-BY-SA-3.0"
 SLOT="live"
@@ -36,7 +36,8 @@ src_compile() {
 src_install() {
 	dodoc pms.pdf eapi-cheatsheet.pdf
 	if use html; then
-		dohtml *.html pms.css $(shopt -s nullglob; echo *.png)
+		docinto html
+		dodoc *.html pms.css $(shopt -s nullglob; echo *.png)
 		dosym {..,/usr/share/doc/${PF}/html}/eapi-cheatsheet.pdf
 	fi
 }
