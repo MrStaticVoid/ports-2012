@@ -24,7 +24,7 @@ SRC_URI="
 
 LICENSE="GPL-2 NVIDIA-r2"
 SLOT="0/352"
-KEYWORDS="-* ~amd64 ~x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="-* amd64 x86 ~amd64-fbsd ~x86-fbsd"
 RESTRICT="bindist mirror strip"
 EMULTILIB_PKG="true"
 
@@ -92,7 +92,7 @@ pkg_pretend() {
 		ewarn "Do not file a bug report about this."
 	fi
 
-	# Since Nvidia ships 3 different series of drivers, we need to give the user
+	# Since Nvidia ships many different series of drivers, we need to give the user
 	# some kind of guidance as to what version they should install. This tries
 	# to point the user in the right direction but can't be perfect. check
 	# nvidia-driver.eclass

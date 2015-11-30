@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -18,7 +19,7 @@ inherit versionator
 # @DESCRIPTION:
 # Currently kde4 eclasses support EAPI 5.
 case ${EAPI} in
-	5|5-progress) : ;;
+	5) : ;;
 	*) die "EAPI=${EAPI:-0} is not supported" ;;
 esac
 
@@ -35,7 +36,7 @@ esac
 # @DESCRIPTION:
 # This gets set to a non-zero value when a package is considered a kde or
 # kdevelop ebuild.
-if [[ ${CATEGORY} = kde-base || ${CATEGORY} = kde-apps ]]; then
+if [[ ${CATEGORY} = kde-base || ${CATEGORY} = kde-apps || ${CATEGORY} = kde-frameworks ]]; then
 	debug-print "${ECLASS}: KDEBASE ebuild recognized"
 	KDEBASE=kde-base
 elif [[ ${KMNAME-${PN}} = kdevelop ]]; then
@@ -350,7 +351,7 @@ _enable_selected_linguas_dir() {
 
 	[[ -d  ${dir} ]] || die "linguas dir \"${dir}\" does not exist"
 	comment_all_add_subdirectory "${dir}"
-	pushd "${dir}" > /dev/null
+	pushd "${dir}" > /dev/null || die
 
 	# fix all various crazy sr@Latn variations
 	# this part is only ease for ebuilds, so there wont be any die when this
@@ -389,7 +390,7 @@ _enable_selected_linguas_dir() {
 	done
 	[[ -n ${linguas} ]] && echo ">>> Enabling languages: ${linguas}"
 
-	popd > /dev/null
+	popd > /dev/null || die
 }
 
 # @FUNCTION: get_kde_version
