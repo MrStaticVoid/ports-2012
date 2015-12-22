@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -10,7 +12,7 @@ HOMEPAGE="http://www.freedesktop.org/software/PackageKit/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86"
 IUSE="nls systemd test udev"
 
 # gdk-pixbuf used in gpk-animated-icon

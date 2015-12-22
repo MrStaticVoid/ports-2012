@@ -1,7 +1,9 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="4"
-inherit eutils user flag-o-matic multilib autotools pam versionator
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
@@ -17,7 +19,7 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	mirror://gentoo/${P}-sctp.patch.xz
 	${HPN_PATCH:+hpn? (
 		mirror://gentoo/${HPN_PATCH}
-		http://dev.gentoo.org/~vapier/dist/${HPN_PATCH}
+		https://dev.gentoo.org/~vapier/dist/${HPN_PATCH}
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
 	)}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
@@ -26,7 +28,7 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 
 LICENSE="BSD GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 IUSE="bindist ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit pam +pie sctp selinux skey static X X509"
 REQUIRED_USE="pie? ( !static )"
 
@@ -110,6 +112,7 @@ src_prepare() {
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
 		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
+		epatch "${FILESDIR}"/${PN}-6.7_p1-xmalloc-include.patch
 		save_version X509
 	fi
 	if ! use X509 ; then
@@ -173,7 +176,6 @@ static_use_with() {
 src_configure() {
 	local myconf=()
 	addwrite /dev/ptmx
-	addpredict /etc/skey/skeykeys #skey configure code triggers this
 
 	use static && append-ldflags -static
 
@@ -210,7 +212,7 @@ src_install() {
 	emake install-nokeys DESTDIR="${D}"
 	fperms 600 /etc/ssh/sshd_config
 	dobin contrib/ssh-copy-id
-	newinitd "${FILESDIR}"/sshd.rc6.4-r1 sshd
+	newinitd "${FILESDIR}"/sshd.rc6.4 sshd
 	newconfd "${FILESDIR}"/sshd.confd sshd
 	keepdir /var/empty
 
@@ -259,6 +261,8 @@ src_install() {
 	diropts -m 0700
 	dodir /etc/skel/.ssh
 
+	systemd_dounit "${FILESDIR}"/sshd.{service,socket}
+	systemd_newunit "${FILESDIR}"/sshd_at.service 'sshd@.service'
 }
 
 src_test() {

@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -9,14 +11,14 @@ HOMEPAGE="http://lxqt.org/"
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~arm ~x86"
 IUSE="+icons lightdm lximage -minimal +policykit powermanagement sddm ssh-askpass"
 
 S="${WORKDIR}"
 
 DOC_CONTENTS="
 	For your convenience you can review
-	http://www.gentoo.org/proj/en/desktop/lxde/lxde-howto.xml and
+	https://www.gentoo.org/proj/en/desktop/lxde/lxde-howto.xml and
 	http://wiki.lxde.org/en/LXDE-Qt"
 
 RDEPEND="

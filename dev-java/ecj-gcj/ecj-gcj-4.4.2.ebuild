@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ecj-gcj/ecj-gcj-4.4.2.ebuild,v 1.3 2015/03/31 18:49:02 ulm Exp $
+# $Id$
 
 EAPI=5
 
@@ -15,11 +15,11 @@ SRC_URI="http://download.eclipse.org/eclipse/downloads/drops4/${DMF}/${MY_PN}src
 
 LICENSE="EPL-1.0"
 SLOT="4.4"
-KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~ppc64 ~x86"
+KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86"
 IUSE="+native"
 
 RDEPEND="sys-devel/gcc:*[gcj]
-	|| ( app-eselect/eselect-java >=app-eselect/eselect-ecj-0.6 )"
+	app-eselect/eselect-java"
 DEPEND="${RDEPEND}
 	app-arch/unzip
 	!dev-java/eclipse-ecj:3.5[gcj]"

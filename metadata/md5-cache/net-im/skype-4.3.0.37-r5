@@ -3,13 +3,13 @@ DEPEND=>=sys-apps/sed-4
 DESCRIPTION=P2P Internet Telephony (VoiceIP) client
 EAPI=5
 HOMEPAGE=http://www.skype.com/
-IUSE=apulse pax_kernel +pulseaudio selinux
+IUSE=apulse pax_kernel plasma +pulseaudio selinux
 KEYWORDS=~amd64 ~x86
 LICENSE=skype-4.0.0.7-copyright BSD MIT RSA W3C regexp-UofT no-source-code
-RDEPEND=virtual/ttf-fonts amd64? ( || ( ( dev-qt/qtcore:4[abi_x86_32(-)] dev-qt/qtdbus:4[abi_x86_32(-)] dev-qt/qtgui:4[accessibility,abi_x86_32(-)] dev-qt/qtwebkit:4[abi_x86_32(-)] ) >=app-emulation/emul-linux-x86-qtlibs-20120520[-abi_x86_32(-)] ) || ( media-libs/alsa-lib[abi_x86_32(-)] >=app-emulation/emul-linux-x86-soundlibs-20120520[-abi_x86_32(-)] ) || ( ( x11-libs/libX11[abi_x86_32(-)] x11-libs/libXext[abi_x86_32(-)] x11-libs/libXScrnSaver[abi_x86_32(-)] x11-libs/libXv[abi_x86_32(-)] ) >=app-emulation/emul-linux-x86-xlibs-20120520[-abi_x86_32(-)] ) pulseaudio? ( || ( media-sound/pulseaudio[abi_x86_32(-)] >=app-emulation/emul-linux-x86-soundlibs-20120520[-abi_x86_32(-)] ) ) apulse? ( media-sound/apulse[abi_x86_32(-)] ) ) x86? ( media-libs/alsa-lib x11-libs/libX11 x11-libs/libXext x11-libs/libXScrnSaver x11-libs/libXv dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-qt/qtgui:4[accessibility] dev-qt/qtwebkit:4 apulse? ( media-sound/apulse ) ) pulseaudio? ( media-sound/pulseaudio ) selinux? ( sec-policy/selinux-skype )
+RDEPEND=virtual/ttf-fonts dev-qt/qtcore:4[abi_x86_32(-)] dev-qt/qtdbus:4[abi_x86_32(-)] dev-qt/qtgui:4[accessibility,abi_x86_32(-)] dev-qt/qtwebkit:4[abi_x86_32(-)] media-libs/alsa-lib[abi_x86_32(-)] x11-libs/libX11[abi_x86_32(-)] x11-libs/libXext[abi_x86_32(-)] x11-libs/libXScrnSaver[abi_x86_32(-)] x11-libs/libXv[abi_x86_32(-)] apulse? ( media-sound/apulse[abi_x86_32(-)] ) plasma? ( dev-libs/sni-qt[abi_x86_32(-)] ) pulseaudio? ( media-sound/pulseaudio[abi_x86_32(-)] ) selinux? ( sec-policy/selinux-skype )
 REQUIRED_USE=apulse? ( !pulseaudio )
 RESTRICT=mirror bindist strip
 SLOT=0
 SRC_URI=http://download.skype.com/linux/skype-4.3.0.37.tar.bz2
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	62927b3db3a589b0806255f3a002d5d3	pax-utils	dfe060cb70d89757fde5c1ff8405e950	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=b8d74ab7ae533684f6bda3499fe00dce
+_eclasses_=eutils	8644194de7be04932084752fb1327080	gnome2-utils	968e31c6fcd13eb2eaf6852e88dfdd36	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	pax-utils	9dd3f9de6dccb2463faf55e568439d1c	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
+_md5_=29b39fa1764e486542cbdbc6dcf79670

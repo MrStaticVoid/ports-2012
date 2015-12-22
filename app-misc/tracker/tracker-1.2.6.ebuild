@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -17,7 +19,7 @@ IUSE="cue eds elibc_glibc exif ffmpeg firefox-bookmarks flac gif gsf
 gstreamer gtk iptc +iso +jpeg +miner-fs mp3 nautilus networkmanager
 pdf playlist rss test thunderbird +tiff upnp-av upower +vorbis +xml xmp xps"
 
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 
 REQUIRED_USE="
 	?? ( gstreamer ffmpeg )
@@ -31,22 +33,22 @@ REQUIRED_USE="
 # sqlite-3.7.16 for FTS4 support
 RDEPEND="
 	>=app-i18n/enca-1.9
-	>=dev-db/sqlite-3.7.16
-	>=dev-libs/glib-2.42:2
-	>=dev-libs/gobject-introspection-1.42
-	>=dev-libs/icu-4.8.1.1
+	>=dev-db/sqlite-3.7.16:=
+	>=dev-libs/glib-2.40:2
+	>=dev-libs/gobject-introspection-0.9.5
+	>=dev-libs/icu-4.8.1.1:=
 	|| (
 		>=media-gfx/imagemagick-5.2.1[png,jpeg=]
 		media-gfx/graphicsmagick[imagemagick,png,jpeg=] )
-	>=media-libs/libpng-1.2:0
+	>=media-libs/libpng-1.2:0=
 	>=media-libs/libmediaart-0.5:1.0
-	>=x11-libs/pango-1
+	>=x11-libs/pango-1:=
 	sys-apps/util-linux
 
 	cue? ( media-libs/libcue )
 	eds? (
-		>=mail-client/evolution-3.3.5
-		>=gnome-extra/evolution-data-server-3.3.5
+		>=mail-client/evolution-3.3.5:=
+		>=gnome-extra/evolution-data-server-3.3.5:=
 		<mail-client/evolution-3.5.3
 		<gnome-extra/evolution-data-server-3.5.3 )
 	elibc_glibc? ( >=sys-libs/glibc-2.12 )
@@ -65,14 +67,14 @@ RDEPEND="
 		>=dev-libs/libgee-0.3:0.8
 		>=x11-libs/gtk+-3:3 )
 	iptc? ( media-libs/libiptcdata )
-	iso? ( >=sys-libs/libosinfo-0.2.9 )
+	iso? ( >=sys-libs/libosinfo-0.2.9:= )
 	jpeg? ( virtual/jpeg:0 )
-	upower? ( || ( >=sys-power/upower-0.9 sys-power/upower-pm-utils ) )
+	upower? ( || ( >=sys-power/upower-0.9:= sys-power/upower-pm-utils ) )
 	mp3? ( >=media-libs/taglib-1.6 )
 	networkmanager? ( >=net-misc/networkmanager-0.8 )
 	pdf? (
-		>=x11-libs/cairo-1
-		>=app-text/poppler-0.16[cairo,utils]
+		>=x11-libs/cairo-1:=
+		>=app-text/poppler-0.16:=[cairo,utils]
 		>=x11-libs/gtk+-2.12:2 )
 	playlist? ( >=dev-libs/totem-pl-parser-3 )
 	rss? ( net-libs/libgrss:0.5 )

@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -80,7 +81,7 @@ case ${EAPI} in
 	0|1)
 		die "Unsupported EAPI=${EAPI} (too old) for ruby-ng.eclass" ;;
 	2|3) ;;
-	4|4-python|5|5-progress)
+	4|5)
 		# S is no longer automatically assigned when it doesn't exist.
 		S="${WORKDIR}"
 		;;
@@ -291,7 +292,7 @@ if [[ ${RUBY_OPTIONAL} != yes ]]; then
 	RDEPEND="${RDEPEND} $(ruby_implementations_depend)"
 
 	case ${EAPI:-0} in
-		4|4-python|5|5-progress)
+		4|5)
 			REQUIRED_USE+=" || ( $(ruby_get_use_targets) )"
 			;;
 	esac
@@ -300,8 +301,8 @@ fi
 _ruby_invoke_environment() {
 	old_S=${S}
 	case ${EAPI} in
-		4|4-python|5|5-progress)
-			if [ -z ${RUBY_S} ]; then
+		4|5)
+			if [ -z "${RUBY_S}" ]; then
 				sub_S=${P}
 			else
 				sub_S=${RUBY_S}
@@ -315,7 +316,7 @@ _ruby_invoke_environment() {
 	# Special case, for the always-lovely GitHub fetches. With this,
 	# we allow the star glob to just expand to whatever directory it's
 	# called.
-	if [[ ${sub_S} = *"*"* ]]; then
+	if [[ "${sub_S}" = *"*"* ]]; then
 		case ${EAPI} in
 			2|3)
 				#The old method of setting S depends on undefined package
@@ -323,9 +324,9 @@ _ruby_invoke_environment() {
 				eqawarn "Using * expansion of S is deprecated. Use EAPI and RUBY_S instead."
 				;;
 		esac
-		pushd "${WORKDIR}"/all &>/dev/null
-		sub_S=$(eval ls -d ${sub_S} 2>/dev/null)
-		popd &>/dev/null
+		pushd "${WORKDIR}"/all &>/dev/null || die
+		sub_S=$(eval ls -d "${sub_S}" 2>/dev/null)
+		popd &>/dev/null || die
 	fi
 
 	environment=$1; shift
@@ -334,16 +335,16 @@ _ruby_invoke_environment() {
 	S="${my_WORKDIR}"/"${sub_S}"
 
 	if [[ -d "${S}" ]]; then
-		pushd "$S" &>/dev/null
+		pushd "$S" &>/dev/null || die
 	elif [[ -d "${my_WORKDIR}" ]]; then
-		pushd "${my_WORKDIR}" &>/dev/null
+		pushd "${my_WORKDIR}" &>/dev/null || die
 	else
-		pushd "${WORKDIR}" &>/dev/null
+		pushd "${WORKDIR}" &>/dev/null || die
 	fi
 
 	ebegin "Running ${_PHASE:-${EBUILD_PHASE}} phase for $environment"
 	"$@"
-	popd &>/dev/null
+	popd &>/dev/null || die
 
 	S=${old_S}
 }
@@ -368,7 +369,7 @@ _ruby_each_implementation() {
 		eerror "You need to select at least one compatible Ruby installation target via RUBY_TARGETS in make.conf."
 		eerror "Compatible targets for this package are: ${USE_RUBY}"
 		eerror
-		eerror "See http://www.gentoo.org/proj/en/prog_lang/ruby/index.xml#doc_chap3 for more information."
+		eerror "See https://www.gentoo.org/proj/en/prog_lang/ruby/index.xml#doc_chap3 for more information."
 		eerror
 		die "No compatible Ruby target selected."
 	fi
@@ -391,7 +392,7 @@ ruby-ng_pkg_setup() {
 # Unpack the source archive.
 ruby-ng_src_unpack() {
 	mkdir "${WORKDIR}"/all
-	pushd "${WORKDIR}"/all &>/dev/null
+	pushd "${WORKDIR}"/all &>/dev/null || die
 
 	# We don't support an each-unpack, it's either all or nothing!
 	if type all_ruby_unpack &>/dev/null; then
@@ -400,7 +401,7 @@ ruby-ng_src_unpack() {
 		[[ -n ${A} ]] && unpack ${A}
 	fi
 
-	popd &>/dev/null
+	popd &>/dev/null || die
 }
 
 _ruby_apply_patches() {

@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -12,7 +14,7 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/Farstream"
 SRC_URI="http://freedesktop.org/software/farstream/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1+"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
 IUSE="+introspection test upnp"
 
 SLOT="0.2/5" # .so version
@@ -27,7 +29,7 @@ COMMONDEPEND="
 	>=dev-libs/glib-2.32:2
 	>=net-libs/libnice-0.1.8
 	introspection? ( >=dev-libs/gobject-introspection-0.10.11 )
-	upnp? ( >=net-libs/gupnp-igd-0.2 )
+	upnp? ( >=net-libs/gupnp-igd-0.2:= )
 "
 RDEPEND="${COMMONDEPEND}
 	>=media-libs/gst-plugins-good-1.4:1.0

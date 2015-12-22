@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 inherit autotools multilib user
@@ -8,7 +10,7 @@ HOMEPAGE="http://www.snort.org/"
 SRC_URI="https://www.snort.org/downloads/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~arm ~mips ~ppc ~ppc64 ~sparc ~x86"
 IUSE="static +gre +mpls +targetbased +ppm +perfprofiling
 +non-ether-decoders control-socket file-inspect high-availability
 shared-rep side-channel sourcefire linux-smp-stats inline-init-failopen
@@ -16,7 +18,7 @@ shared-rep side-channel sourcefire linux-smp-stats inline-init-failopen
 +react +flexresp3 large-pcap-64bit selinux"
 
 DEPEND=">=net-libs/libpcap-1.3.0
-	>=net-libs/daq-2.0.2[static-libs]
+	>=net-libs/daq-2.0.2
 	>=dev-libs/libpcre-8.33
 	dev-libs/libdnet
 	sys-libs/zlib"
@@ -89,7 +91,8 @@ src_configure() {
 		--disable-build-dynamic-examples \
 		--disable-profile \
 		--disable-ppm-test \
-		--disable-intel-soft-cpm
+		--disable-intel-soft-cpm \
+		--disable-static-daq
 }
 
 src_install() {

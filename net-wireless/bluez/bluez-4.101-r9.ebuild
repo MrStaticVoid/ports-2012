@@ -1,18 +1,20 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5"
-PYTHON_COMPAT=( python{2_6,2_7} )
+EAPI=5
+PYTHON_COMPAT=( python2_7 )
 inherit autotools eutils multilib python-single-r1 readme.gentoo \
 	systemd user multilib-minimal
 
 DESCRIPTION="Bluetooth Tools and System Daemons for Linux"
 HOMEPAGE="http://www.bluez.org/"
 SRC_URI="mirror://kernel/linux/bluetooth/${P}.tar.xz
-	http://dev.gentoo.org/~pacho/bluez/${P}-patches.tar.xz"
+	https://dev.gentoo.org/~pacho/bluez/${P}-patches.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 arm hppa ppc ppc64 x86"
 IUSE="alsa cups debug gstreamer hid2hci pcmcia readline selinux test-programs usb"
 
 REQUIRED_USE="test-programs? ( ${PYTHON_REQUIRED_USE} )"

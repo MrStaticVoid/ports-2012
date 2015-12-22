@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-misc/monitorix/monitorix-3.5.1.ebuild,v 1.3 2015/04/06 03:19:46 reavertm Exp $
+# $Id$
 
 EAPI="5"
 
 inherit eutils systemd user
 
 DESCRIPTION="A lightweight system monitoring tool"
-HOMEPAGE="http://www.${PN}.org/"
+HOMEPAGE="http://www.monitorix.org/"
 SRC_URI="http://www.${PN}.org/${P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -24,7 +24,7 @@ RDEPEND="dev-perl/Config-General
 	dev-perl/MIME-Lite
 	dev-perl/XML-Simple
 	net-analyzer/rrdtool[perl]
-	virtual/perl-CGI
+	dev-perl/CGI
 	apcupsd? ( sys-power/apcupsd )
 	hddtemp? ( app-admin/hddtemp )
 	httpd? ( virtual/httpd-cgi )

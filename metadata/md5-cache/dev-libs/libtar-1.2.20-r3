@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=zlib? ( sys-libs/zlib ) !zlib? ( app-arch/gzip ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=C library for manipulating tar archives
+EAPI=5
+HOMEPAGE=http://www.feep.net/libtar/ http://repo.or.cz/w/libtar.git/
+IUSE=static-libs zlib
+KEYWORDS=amd64 ppc ppc64 sparc x86 ~amd64-fbsd ~amd64-linux ~x86-linux ~ppc-macos
+LICENSE=GPL-2
+RDEPEND=zlib? ( sys-libs/zlib ) !zlib? ( app-arch/gzip )
+SLOT=0
+SRC_URI=https://dev.gentoo.org/~pinkbyte/distfiles/snapshots/libtar-1.2.20.tar.gz
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	autotools-utils	0bf099a6e3dfeaf20a7a94504d8dd896	eutils	8644194de7be04932084752fb1327080	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=934b59bb71d012ecd7b738aeb6406c20

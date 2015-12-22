@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>sound</herd>
@@ -15,4 +15,8 @@
     <flag name="tremor">use libivorbis from <pkg>media-libs/tremor</pkg> instead of <pkg>media-libs/libvorbis</pkg></flag>
     <flag name="wma">add support for Windows Media Audio</flag>
   </use>
+  <upstream>
+    <remote-id type="github">cmus/cmus</remote-id>
+    <remote-id type="sourceforge">cmus</remote-id>
+  </upstream>
 </pkgmetadata>

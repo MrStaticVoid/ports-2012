@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/soylatte-jdk-bin/soylatte-jdk-bin-1.0.3.ebuild,v 1.2 2012/09/29 17:01:47 grobian Exp $
+# $Id$
 
 EAPI="3"
 
@@ -23,12 +23,16 @@ RDEPEND="dev-db/unixODBC"
 
 JAVA_PROVIDE="jdbc-stdext"
 
-MY_P=soylatte16-i386-${PV}
-use x64-macos && MY_P=soylatte16-amd64-${PV}
+chdir_s() {
+	local MY_P=soylatte16-i386-${PV}
+	use x64-macos && MY_P=soylatte16-amd64-${PV}
 
-S=${WORKDIR}/${MY_P}
+	cd "${WORKDIR}"/${MY_P}
+}
 
 src_prepare() {
+	chdir_s
+
 	# fix install_names
 	local arch=i586
 	use x64-macos && arch=amd64
@@ -74,6 +78,8 @@ src_prepare() {
 }
 
 src_install() {
+	chdir_s
+
 	local dirs="bin include jre lib man"
 	dodir /opt/${P}
 

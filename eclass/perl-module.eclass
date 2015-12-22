@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: perl-module.eclass
 # @MAINTAINER:
@@ -17,7 +18,7 @@ inherit eutils multiprocessing unpacker
 PERL_EXPF="src_unpack src_prepare src_configure src_compile src_test src_install"
 
 case "${EAPI:-0}" in
-	5|5-progress)
+	5)
 		[[ ${CATEGORY} == "perl-core" ]] && \
 			PERL_EXPF+=" pkg_postinst pkg_postrm"
 
@@ -140,9 +141,9 @@ perl-module_src_configure() {
 			fi
 		else
 			einfo "Using Module::Build"
-			if [[ ${DEPEND} != *virtual/perl-Module-Build* && ${PN} != Module-Build ]] ; then
+			if [[ ${DEPEND} != *virtual/perl-Module-Build* && ${DEPEND} != *dev-perl/Module-Build* && ${PN} != Module-Build ]] ; then
 				eqawarn "QA Notice: The ebuild uses Module::Build but doesn't depend on it."
-				eqawarn " Add virtual/perl-Module-Build to DEPEND!"
+				eqawarn " Add dev-perl/Module-Build to DEPEND!"
 				if [[ -n ${PERLQAFATAL} ]]; then
 					eerror "Bailing out due to PERLQAFATAL=1";
 					die

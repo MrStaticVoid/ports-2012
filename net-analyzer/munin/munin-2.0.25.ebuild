@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/munin/munin-2.0.25.ebuild,v 1.2 2014/12/28 16:08:50 titanofold Exp $
+# $Id$
 
 EAPI=5
 
@@ -14,7 +14,7 @@ DESCRIPTION="Munin Server Monitoring Tool"
 HOMEPAGE="http://munin-monitoring.org/"
 SRC_URI="
 	mirror://sourceforge/munin/${MY_P}.tar.gz
-	http://dev.gentoo.org/~jlec/distfiles/${P}-gentoo-${PATCHSET}.tar.xz"
+	https://dev.gentoo.org/~jlec/distfiles/${P}-gentoo-${PATCHSET}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -76,7 +76,7 @@ DEPEND_COM="
 
 # Keep this seperate, as previous versions have had other deps here
 DEPEND="${DEPEND_COM}
-	virtual/perl-Module-Build
+	dev-perl/Module-Build
 	java? ( >=virtual/jdk-1.5 )
 	test? (
 		dev-perl/Test-Deep

@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -16,7 +18,7 @@ SRC_URI="${SRC_URI//-gnome}"
 LICENSE="LGPL-2+"
 SLOT="2.4"
 IUSE="debug +introspection"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~x86-solaris"
 
 RDEPEND="
 	~net-libs/libsoup-${PV}[introspection?]
@@ -35,7 +37,7 @@ S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	# Use lib present on the system
-	epatch "${FILESDIR}"/${P}-system-lib.patch
+	epatch "${FILESDIR}"/${PN}-2.46.0-system-lib.patch
 	eautoreconf
 	gnome2_src_prepare
 }

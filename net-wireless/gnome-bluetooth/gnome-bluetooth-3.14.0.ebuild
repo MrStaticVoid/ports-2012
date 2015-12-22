@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -11,13 +13,13 @@ HOMEPAGE="https://wiki.gnome.org/GnomeBluetooth"
 LICENSE="GPL-2+ LGPL-2.1+ FDL-1.1+"
 SLOT="2/13" # subslot = libgnome-bluetooth soname version
 IUSE="+introspection"
-KEYWORDS="*"
+KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.42.0:2
-	>=x11-libs/gtk+-3.14.0:3[introspection?]
+	>=dev-libs/glib-2.37.3:2
+	>=x11-libs/gtk+-3.11.2:3[introspection?]
 	virtual/udev
-	introspection? ( >=dev-libs/gobject-introspection-1.42.0 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )
 "
 RDEPEND="${COMMON_DEPEND}
 	>=net-wireless/bluez-5

@@ -1,14 +1,14 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.16.3.ebuild,v 1.1 2015/03/09 17:46:59 vapier Exp $
+# $Id$
 
 EAPI="4"
 PYTHON_COMPAT=( python{3_3,3_4} )
 
-inherit flag-o-matic python-any-r1 toolchain-funcs autotools
+inherit flag-o-matic python-any-r1 toolchain-funcs
 
 DESCRIPTION="Network utility to retrieve files from the WWW"
-HOMEPAGE="http://www.gnu.org/software/wget/"
+HOMEPAGE="https://www.gnu.org/software/wget/"
 SRC_URI="mirror://gnu/wget/${P}.tar.xz"
 
 LICENSE="GPL-3"

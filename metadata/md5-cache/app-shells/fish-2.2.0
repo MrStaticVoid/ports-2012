@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst prepare test unpack
+DEPEND=sys-libs/ncurses sys-devel/bc sys-devel/gettext X? ( x11-misc/xsel )
+DESCRIPTION=fish is the Friendly Interactive SHell
+EAPI=5
+HOMEPAGE=http://fishshell.com/
+IUSE=X
+KEYWORDS=~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris
+LICENSE=GPL-2
+RDEPEND=sys-libs/ncurses sys-devel/bc sys-devel/gettext X? ( x11-misc/xsel )
+SLOT=0
+SRC_URI=http://fishshell.com/files/2.2.0/fish-2.2.0.tar.gz
+_eclasses_=base	9fc6743731ec1d8d8a5eb88ccd5944b6	eutils	8644194de7be04932084752fb1327080	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=0821daedf8e67948465d3d313071a4b8

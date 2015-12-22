@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libdbusmenu/libdbusmenu-12.10.2-r2.ebuild,v 1.1 2015/04/19 16:30:45 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,8 +11,8 @@ PYTHON_COMPAT=( python2_7 )
 inherit eutils flag-o-matic multilib-minimal python-single-r1 vala
 
 DESCRIPTION="Library to pass menu structure across DBus"
-HOMEPAGE="http://launchpad.net/dbusmenu"
-SRC_URI="http://launchpad.net/${PN/lib}/${PV%.*}/${PV}/+download/${P}.tar.gz"
+HOMEPAGE="https://launchpad.net/dbusmenu"
+SRC_URI="https://launchpad.net/${PN/lib}/${PV%.*}/${PV}/+download/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="0"
@@ -31,6 +31,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	app-text/gnome-doc-utils
 	dev-util/intltool
+	sys-devel/gettext
 	virtual/pkgconfig[${MULTILIB_USEDEP}]
 	introspection? ( $(vala_depend) )"
 

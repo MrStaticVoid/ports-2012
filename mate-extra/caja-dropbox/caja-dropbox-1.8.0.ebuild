@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-extra/caja-dropbox/caja-dropbox-1.8.0.ebuild,v 1.2 2015/04/08 18:13:51 mgorny Exp $
+# $Id$
 
 EAPI="5"
 
@@ -25,7 +25,7 @@ RDEPEND="
 	dev-libs/atk:0
 	>=dev-libs/glib-2.14:2
 	dev-python/pygtk:2[${PYTHON_USEDEP}]
-	|| ( >=mate-base/caja-1.8:0 >=mate-base/mate-file-manager-1.6:0 )
+	>=mate-base/caja-1.8:0
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2
 	net-misc/dropbox:0
@@ -39,7 +39,7 @@ DEPEND="${RDEPEND}
 	dev-python/docutils:0
 	virtual/pkgconfig:*"
 
-G2CONF="${G2CONF} $(use_enable debug) --disable-static"
+DOCS="AUTHORS ChangeLog NEWS README"
 
 CONFIG_CHECK="~INOTIFY_USER"
 
@@ -47,6 +47,8 @@ pkg_setup () {
 	python-single-r1_pkg_setup
 	check_extra_config
 	enewgroup dropbox
+
+	G2CONF="${G2CONF} $(use_enable debug) --disable-static"
 }
 
 src_prepare() {
@@ -62,8 +64,6 @@ src_prepare() {
 
 	AT_NOELIBTOOLIZE=yes eautoreconf
 }
-
-DOCS="AUTHORS ChangeLog NEWS README"
 
 src_install () {
 	python_fix_shebang caja-dropbox.in

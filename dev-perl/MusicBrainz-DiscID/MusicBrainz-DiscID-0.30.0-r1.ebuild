@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/MusicBrainz-DiscID/MusicBrainz-DiscID-0.30.0-r1.ebuild,v 1.3 2015/03/25 13:49:59 monsieurp Exp $
+# $Id$
 
 EAPI=5
 
@@ -9,7 +9,7 @@ MODULE_VERSION=0.03
 inherit perl-module
 
 DESCRIPTION="Perl interface for the MusicBrainz libdiscid library"
-SRC_URI+=" http://dev.gentoo.org/~tove/distfiles/${CATEGORY}/${PN}/${P}-patch.tar.bz2"
+SRC_URI+=" https://dev.gentoo.org/~tove/distfiles/${CATEGORY}/${PN}/${P}-patch.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -18,7 +18,7 @@ IUSE="test"
 
 RDEPEND=">=media-libs/libdiscid-0.2.2"
 DEPEND="${RDEPEND}
-	virtual/perl-Module-Build
+	dev-perl/Module-Build
 	virtual/pkgconfig
 	test? (
 		dev-perl/Test-Pod

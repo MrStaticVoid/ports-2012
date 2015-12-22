@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>funtoo</herd>
+	<herd>base-system</herd>
 	<use>
-		<flag name="minizip">Enable optional contributed library for handling zip files.</flag>
+		<flag name="minizip">include the minizip library for quick and dirty zip extraction</flag>
 	</use>
+	<upstream>
+		<remote-id type="cpe">cpe:/a:gnu:zlib</remote-id>
+	</upstream>
 </pkgmetadata>

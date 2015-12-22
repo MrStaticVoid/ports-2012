@@ -1,13 +1,14 @@
-# Copyright owners: Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
-DISTUTILS_SRC_TEST="py.test"
+EAPI=5
 
-inherit distutils mercurial
+PYTHON_COMPAT=( python2_7 python3_{3,4} pypy pypy3 )
 
-DESCRIPTION="Python 2 and 3 compatibility utilities"
+inherit distutils-r1 mercurial
+
+DESCRIPTION="Python 2 and 3 compatibility library"
 HOMEPAGE="https://bitbucket.org/gutworth/six https://pypi.python.org/pypi/six"
 SRC_URI=""
 EHG_REPO_URI="https://bitbucket.org/gutworth/six"
@@ -15,30 +16,22 @@ EHG_REPO_URI="https://bitbucket.org/gutworth/six"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS=""
-IUSE="doc"
+IUSE="doc test"
 
-DEPEND="$(python_abi_depend dev-python/setuptools)
-	doc? ( $(python_abi_depend dev-python/sphinx) )"
-RDEPEND=""
+DEPEND="
+	dev-python/setuptools[${PYTHON_USEDEP}]
+	doc? ( dev-python/sphinx )
+	test? ( >=dev-python/pytest-2.2.0[${PYTHON_USEDEP}] )"
 
-DOCS="CHANGES README"
-PYTHON_MODULES="six.py"
-
-src_compile() {
-	distutils_src_compile
-
-	if use doc; then
-		einfo "Generation of documentation"
-		pushd documentation > /dev/null
-		emake html
-		popd > /dev/null
-	fi
+python_compile_all() {
+	use doc && emake -C documentation html
 }
 
-src_install() {
-	distutils_src_install
+python_test() {
+	py.test -v || die "Testing failed with ${EPYTHON}"
+}
 
-	if use doc; then
-		dohtml -r documentation/_build/html/
-	fi
+python_install_all() {
+	use doc && local HTML_DOCS=( documentation/_build/html/ )
+	distutils-r1_python_install_all
 }

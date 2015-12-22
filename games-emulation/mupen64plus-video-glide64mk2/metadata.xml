@@ -10,6 +10,10 @@
 		<name>Christian Birchinger</name>
 	</maintainer>
 	<use>
-		<flag name='hires'>Support hi-resolution textures (requires <pkg>dev-libs/boost</pkg>)</flag>
+		<flag name="gles2">Use GLES2 instead of OpenGL</flag>
+		<flag name="hires">Support hi-resolution textures (requires <pkg>dev-libs/boost</pkg>)</flag>
 	</use>
+	<upstream>
+		<remote-id type="github">mupen64plus/mupen64plus-video-glide64mk2</remote-id>
+	</upstream>
 </pkgmetadata>

@@ -1,25 +1,33 @@
-# Copyright owners: Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
+EAPI=5
 
-inherit distutils
+PYTHON_COMPAT=( python2_7 python3_{3,4,5} pypy )
+
+inherit distutils-r1
 
 DESCRIPTION="Interface Python with pkg-config"
-HOMEPAGE="https://github.com/matze/pkgconfig https://pypi.python.org/pypi/pkgconfig"
+HOMEPAGE="https://pypi.python.org/pypi/pkgconfig/ https://github.com/matze/pkgconfig"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
-LICENSE="MIT"
 SLOT="0"
-KEYWORDS="*"
-IUSE=""
+LICENSE="MIT"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+IUSE="test"
 
-RDEPEND="virtual/pkgconfig"
+RDEPEND=""
 DEPEND="${RDEPEND}
-	$(python_abi_depend dev-python/setuptools)"
+	dev-python/setuptools[${PYTHON_USEDEP}]
+	test? ( >=dev-python/nose-1[${PYTHON_USEDEP}] )
+"
 
-src_prepare() {
-	distutils_src_prepare
-	sed -e "/setup_requires=/d" -i setup.py
+python_prepare_all() {
+	sed -e '/nose/d' -i setup.py || die
+	distutils-r1_python_prepare_all
+}
+
+python_test() {
+	nosetests || die
 }

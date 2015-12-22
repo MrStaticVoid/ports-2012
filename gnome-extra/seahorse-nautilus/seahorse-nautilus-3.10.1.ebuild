@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no" # --disable-debug disables all assertions
@@ -11,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/action/show/Apps/Seahorse"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 COMMON_DEPEND="

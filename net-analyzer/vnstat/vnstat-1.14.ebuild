@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 inherit toolchain-funcs user
@@ -9,11 +11,20 @@ SRC_URI="http://humdi.net/vnstat/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
-IUSE="gd"
+KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86"
+IUSE="gd selinux test"
 
-DEPEND="gd? ( media-libs/gd[png] )"
-RDEPEND="${DEPEND}"
+COMMON_DEPEND="
+	gd? ( media-libs/gd[png] )
+"
+DEPEND="
+	${COMMON_DEPEND}
+	test? ( dev-libs/check )
+"
+RDEPEND="
+	${COMMON_DEPEND}
+	selinux? ( sec-policy/selinux-vnstatd )
+"
 
 pkg_setup() {
 	enewgroup vnstat
@@ -23,11 +34,14 @@ pkg_setup() {
 src_prepare() {
 	tc-export CC
 
-	sed -i 's:^DaemonUser.*:DaemonUser "vnstat":' cfg/vnstat.conf || die "Failed to set DaemonUser!"
-	sed -i 's:^DaemonGroup.*:DaemonGroup "vnstat":' cfg/vnstat.conf || die "Failed to set DaemonGroup!"
-	sed -i 's:^MaxBWethnone.*:# &:' cfg/vnstat.conf || die "Failed to comment out example!"
-	sed -i 's:vnstat[.]log:vnstatd.log:' cfg/vnstat.conf || die "Failed to adjust LogFile name!"
-	sed -i 's:^PidFile.*:PidFile "/run/vnstat/vnstatd.pid":' cfg/vnstat.conf || die "Failed to adjust PidFile directive!"
+	sed -i \
+		-e 's|vnstat[.]log|vnstatd.log|' \
+		-e 's|vnstat[.]pid|vnstatd/vnstatd.pid|' \
+		-e 's|/var/run|/run|' \
+		cfg/${PN}.conf || die
+	sed -i \
+		-e '/PIDFILE/s|/var/run|/run|' \
+		src/common.h || die
 }
 
 src_compile() {
@@ -38,45 +52,19 @@ src_install() {
 	use gd && dobin src/vnstati
 	dobin src/vnstat src/vnstatd
 
-	exeinto /usr/share/${PN}
-	newexe "${FILESDIR}"/vnstat.cron vnstat.cron
+	exeinto /etc/cron.hourly
+	newexe "${FILESDIR}"/vnstat.cron vnstat
 
 	insinto /etc
 	doins cfg/vnstat.conf
 	fowners root:vnstat /etc/vnstat.conf
 
 	newconfd "${FILESDIR}"/vnstatd.confd vnstatd
-	newinitd "${FILESDIR}"/vnstatd.initd vnstatd
-	keepdir /var/lib/vnstat
+	newinitd "${FILESDIR}"/vnstatd.initd-r1 vnstatd
 
 	use gd && doman man/vnstati.1
 	doman man/vnstat.1 man/vnstatd.1
+
 	newdoc INSTALL README.setup
 	dodoc CHANGES README UPGRADE FAQ examples/vnstat.cgi
-}
-pkg_postinst() {
-	# Workaround feature/bug #141619
-	chown -R vnstat:vnstat "${EROOT}"var/lib/vnstat
-	chown vnstat:vnstat "${EROOT}"var/run/vnstatd
-	ewarn "vnStat db files owning user and group has been changed to \"vnstat\"."
-
-	elog
-	elog "Repeat the following command for every interface you"
-	elog "wish to monitor (replace eth0):"
-	elog "   vnstat -u -i eth0"
-	elog "and set correct permissions after that, e.g."
-	elog "   chown -R vnstat:vnstat /var/lib/vnstat"
-	elog
-	elog "It is highly recommended to use the included vnstatd to update your"
-	elog "vnStat databases."
-	elog
-	elog "If you want to use the old cron way to update your vnStat databases,"
-	elog "you have to install the cronjob manually:"
-	elog ""
-	elog "   cp /usr/share/${PN}/vnstat.cron /etc/cron.hourly/vnstat"
-	elog ""
-	elog "Note: if an interface transfers more than ~4GB in"
-	elog "the time between cron runs, you may miss traffic."
-	elog "That's why using vnstatd instead of the cronjob is"
-	elog "the recommended way to update your vnStat databases."
 }

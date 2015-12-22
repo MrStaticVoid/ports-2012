@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
@@ -11,4 +11,8 @@
 		<flag name="telepathy">Enable telepathy support</flag>
 		<flag name="vte">Enable virtual terminal support (for SSH sessions)</flag>
 	</use>
+	<upstream>
+		<remote-id type="github">FreeRDP/Remmina</remote-id>
+		<remote-id type="sourceforge">remmina</remote-id>
+	</upstream>
 </pkgmetadata>

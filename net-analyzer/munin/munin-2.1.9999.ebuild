@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/munin/munin-2.1.9999.ebuild,v 1.7 2015/01/03 12:12:32 swift Exp $
+# $Id$
 
 EAPI=5
 
@@ -65,7 +65,7 @@ DEPEND_COM="dev-lang/perl[berkdb]
 
 # Keep this seperate, as previous versions have had other deps here
 DEPEND="${DEPEND_COM}
-	virtual/perl-Module-Build
+	dev-perl/Module-Build
 	java? ( >=virtual/jdk-1.5 )
 	test? (
 		dev-perl/Test-Deep
@@ -164,7 +164,7 @@ src_install() {
 
 	# parallel install doesn't work and it's also pointless to have this
 	# run in parallel for now (because it uses internal loops).
-	emake -j1 DESTDIR="${D}" $(usex minimal install-minimal install)
+	emake -j1 DESTDIR="${D}" $(usex minimal "install-minimal install-man" install)
 
 	# we remove /run from the install, as it's not the package's to deal
 	# with.

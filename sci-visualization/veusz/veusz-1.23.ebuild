@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/veusz/veusz-1.23.ebuild,v 1.1 2015/05/13 12:18:53 jlec Exp $
+# $Id$
 
 EAPI=5
 
@@ -19,7 +19,7 @@ IUSE="dbus doc emf fits hdf5 minuit vo"
 
 CDEPEND="
 	dev-python/numpy[${PYTHON_USEDEP}]
-	>=dev-python/PyQt4-4.6[X,svg,${PYTHON_USEDEP}]
+	>=dev-python/PyQt4-4.11.4[X,svg,${PYTHON_USEDEP}]
 "
 RDEPEND="${CDEPEND}
 	dbus? ( dev-python/dbus-python[${PYTHON_USEDEP}] )
@@ -48,8 +48,14 @@ python_install() {
 	distutils-r1_python_install
 	# symlink the license, bug #341653
 	rm "${D}/$(python_get_sitedir)"/${PN}/{COPYING,AUTHORS,ChangeLog} || die
-	ln -s "${PORTDIR}"/licenses/${LICENSE} \
-		"${D}/$(python_get_sitedir)"/${PN}/COPYING || die
+	mkdir -p "${D}/$(python_get_sitedir)" || die
+	cat >> "${D}/$(python_get_sitedir)"/${PN}/COPYING <<- EOF
+	Please visit
+
+	https://www.gnu.org/licenses/gpl-2.0.html
+
+	for the full license text.
+	EOF
 }
 
 python_install_all() {

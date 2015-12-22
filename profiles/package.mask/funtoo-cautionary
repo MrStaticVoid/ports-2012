@@ -1,18 +1,36 @@
-# FL-2312: mask gnupg-2.1, breaks gnome apps
->app-crypt/gnupg-2.0.27-r1
+# precautionary mask as newer versions appear to break GNOME 3 and other DE's
+>sys-auth/consolekit-0.4.6
 
-#FL-2265: mask gnutls-3.4. Broken ebuild
+# FL-2726: mask kdelibs-4.14.11 in Funtoo too
+=kde-base/kdelibs-4.14.11
+
+# FL-2678: mask xbmc. kodi is a new and working version.
+# Users with installed version and not planning to update xbmc need to put this entry to package.unmask
+media-tv/xbmc
+
+# FL-2641: mask damaged libcgroup ebuild.
+=dev-libs/libcgroup-0.41-r1
+
+# FL-2631: mask opencv-3.0, breaks certain packages:
+>media-libs/opencv-2.4.10
+
+# FL-2621: mask broken version of pstoedit (from last working)
+>media-gfx/pstoedit-3.62
+
+# FL-2600: rise mask for gnupg.
+>app-crypt/gnupg-2.0.28
+
+# mask sys-apps/makedev. This one collides with baselayout, makedev is part of baselayout.
+sys-apps/makedev
+
+#FL-2265: mask gnutls-3.410. Broken ebuild
 =net-libs/gnutls-3.4.0*
 
-#FL-2161: mask samba-4, until it's deps get better shape
->net-fs/samba-3.6.25
+#FL-2936, FL-2161: mask samba-4.1
+=net-fs/samba-4.1*
 
 # FL-1703: these versions of crossdev is a forkbomb(s)
-=sys-devel/crossdev-20140917
-=sys-devel/crossdev-20141030
-
-# Mask the very latest layman, which using a a portage repository configs. Not yet in Funtoo.
->app-portage/layman-2.2.0-r7
+>=sys-devel/crossdev-20140917
 
 # FL-2020, FL-2015, mask very latest libevent, breaks packages.
 >dev-libs/libevent-2.0.22
@@ -21,15 +39,12 @@
 # Cautionary mask dev-lang/swig-3.0.3, failures reported.
 >dev-lang/swig-3.0.2
 
-# Protect against beta OpenRC
->=sys-apps/openrc-0.12.5
+# QA-289
+>=dev-db/mysql-init-scripts-2.1_alpha4
 
 # mask latest nfs-utils, there is major change in netmount/nfsmount in latest openrc. nfs-utils using new scripts and has higher openrc dependency. This can be removed with openrc update
 
 >net-fs/nfs-utils-1.3.0-r1
-
-# FL-1880: mask handbrake, higher than 0.9.9
->media-video/handbrake-0.9.9-r1
 
 # FL-1855, mask usbutils-008, until we sort udev failure.
 
@@ -47,12 +62,6 @@ app-text/pdftk
 # Daniel Robbins (28 Jun 2014)
 # FL-738: can break building of multiple packages (erlang, nginx, glibc, possibly guile (FL-919)
 app-admin/eselect-sh
-
-# Oleg Vinichenko (10 June 2014)
-# mask back python-3.4, this one not really fine to have installed. Also it become a default python version in stages.
-# Next time, allow to unmask only stable version of python with a consequent change of default PYTHON_ABIS. THis is 
-# FL-1274, FL-1265
->=dev-lang/python-3.4
 
 # Ryan Harris (23 Jul 2013)
 # Mask phoronix-test-suite due to security concerns

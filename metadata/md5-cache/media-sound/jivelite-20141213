@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install prepare unpack
+DEPEND=dev-lang/luajit dev-lua/lua-cjson dev-lua/luacrypto dev-lua/luaexpat dev-lua/luafilesystem dev-lua/luasocket media-libs/libsdl media-libs/sdl-image media-libs/sdl-ttf media-libs/sdl-gfx >=dev-vcs/git-1.8.2.1
+DESCRIPTION=Experimental squeezebox and derivative control application
+EAPI=5
+HOMEPAGE=https://code.google.com/p/jivelite/
+KEYWORDS=~amd64 ~x86
+LICENSE=jivelite
+RDEPEND=dev-lang/luajit dev-lua/lua-cjson dev-lua/luacrypto dev-lua/luaexpat dev-lua/luafilesystem dev-lua/luasocket media-libs/libsdl media-libs/sdl-image media-libs/sdl-ttf media-libs/sdl-gfx
+SLOT=0
+_eclasses_=eutils	8644194de7be04932084752fb1327080	git-r3	1502b9838d043db47700b8120083e637	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=82ed428980ca1c40bb93d553e9f6546c

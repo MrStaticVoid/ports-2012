@@ -1,10 +1,12 @@
 #!/sbin/runscript
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 extra_commands="checkconfig"
 
 depend() {
-	use netif.lo
+	use net.lo
 	# localmount needed for $basedir
 	need localmount
 }
@@ -95,7 +97,7 @@ start() {
 	start-stop-daemon \
 		${DEBUG:+"--verbose"} \
 		--start \
-		--exec "${basedir}"/bin/mysqld_safe \
+		--exec "${basedir}"/sbin/mysqld \
 		--pidfile "${pidfile}" \
 		--background \
 		--wait ${startup_early_timeout} \
@@ -125,7 +127,7 @@ stop() {
 	start-stop-daemon \
 		${DEBUG:+"--verbose"} \
 		--stop \
-		--exec "${basedir}"/bin/mysqld_safe \
+		--exec "${basedir}"/sbin/mysqld \
 		--pidfile "${pidfile}" \
 		--retry ${stop_timeout}
 	eend $?

@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: multilib-build.eclass
 # @MAINTAINER:
@@ -20,7 +21,7 @@ if [[ ! ${_MULTILIB_BUILD} ]]; then
 
 # EAPI=4 is required for meaningful MULTILIB_USEDEP.
 case ${EAPI:-0} in
-	4|4-python|5|5-progress) ;;
+	4|5) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
@@ -511,14 +512,6 @@ _EOF_
 					# Note: match a space afterwards to avoid collision potential.
 					sed -e "/${MULTILIB_ABI_FLAG} /s&error.*&include <${CHOST}${f}>&" \
 						-i "${wrapper}" || die
-
-					# Hack for emul-linux-x86 compatibility.
-					# It assumes amd64 will come after x86, and will use amd64
-					# headers if no specific x86 headers were installed.
-					if [[ ${ABI} == amd64 ]]; then
-						sed -e "/abi_x86_32 /s&error.*&include <${CHOST}${f}>&" \
-							-i "${wrapper}" || die
-					fi
 
 					# Needed for swig.
 					if multilib_is_native_abi; then

@@ -10,5 +10,5 @@ RDEPEND=games-misc/games-envd dedicated? ( games-fps/doom3[dedicated] ) opengl? 
 RESTRICT=mirror strip
 SLOT=0
 SRC_URI=http://ducttape.glenmurphy.com/ducttape0006.zip
-_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	9fb270e417e0e83d64ca52586c4a79de	games	1ad3205dbf62a2c98249f2f59b0a2d39	games-mods	9d44c6f45289592ca9cf29d77424a048	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	user	f54e098dd38ba1c0847a13e685b87747
-_md5_=476b45ed64fb352f21a0f81813c3a08a
+_eclasses_=base	9fc6743731ec1d8d8a5eb88ccd5944b6	eutils	8644194de7be04932084752fb1327080	games	4dae170e58f773c484e07d18ef441804	games-mods	926c26c3723d1136680b3196a162ff9e	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	user	906f3c8eb3a2350a4f1191a89baa3e46
+_md5_=a7fd375e7c35b6fa04b74671ed3e628e

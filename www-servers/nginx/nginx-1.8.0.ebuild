@@ -283,8 +283,6 @@ for m in ${!mod_a[@]} ; do
 	LICENSE+=" nginx_modules_external_${m}? ( ${mod_lic[$m]} )"
 done
 
-RESTRICT="mirror"
-
 SLOT="0"
 KEYWORDS="*"
 

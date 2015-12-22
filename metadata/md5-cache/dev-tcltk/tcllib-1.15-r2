@@ -8,6 +8,6 @@ KEYWORDS=alpha amd64 hppa ia64 ~mips ppc ppc64 s390 sparc x86 ~x86-fbsd ~x86-fre
 LICENSE=BSD
 RDEPEND=dev-lang/tcl:0=
 SLOT=0
-SRC_URI=http://dev.gentoo.org/~jlec/distfiles/tcllib-1.15-manpage-rename.patch.xz http://dev.gentoo.org/~jlec/distfiles/tcllib-1.15-test.patch.xz mirror://sourceforge/tcllib/tcllib-1.15.tar.bz2
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	virtualx	73cfc129b4b9ba23aed1abb10c825d86
-_md5_=267635ce2b79cb38f06b00c1b6ea1752
+SRC_URI=https://dev.gentoo.org/~jlec/distfiles/tcllib-1.15-manpage-rename.patch.xz https://dev.gentoo.org/~jlec/distfiles/tcllib-1.15-test.patch.xz mirror://sourceforge/tcllib/tcllib-1.15.tar.bz2
+_eclasses_=eutils	8644194de7be04932084752fb1327080	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	virtualx	31995099f3454bb5fc3e8b5cdd3af7a8
+_md5_=80c8fe2ce908c0afaad0dde7192f2b1b

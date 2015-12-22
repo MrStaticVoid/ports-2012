@@ -81,7 +81,7 @@ diff -urN gnome-shell-3.12.2-patched/js/ui/status/system.js gnome-shell-3.12.2-p
 +        let disabled = Main.sessionMode.isLocked ||
 +                       (Main.sessionMode.isGreeter &&
 +                        this._loginScreenSettings.get_boolean(DISABLE_RESTART_KEY));
-+        this._hibernateAction.visible = this._haveShutdown && !disabled;
++        this._hibernateAction.visible = this._haveHibernate && !disabled;
 +        this._updateActionsVisibility();
 +    },
 +

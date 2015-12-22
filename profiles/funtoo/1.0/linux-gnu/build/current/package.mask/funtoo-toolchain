@@ -8,7 +8,7 @@
 # They will allow for rev bumps to get to users, but not
 # wholesale new ${PV}.
 
->=sys-libs/glibc-2.21
+>=sys-libs/glibc-2.20-r3
 >=sys-kernel/linux-headers-4.1
->=sys-devel/gcc-4.9.3
->=sys-devel/binutils-2.26
+>sys-devel/gcc-4.9.3
+>=sys-devel/binutils-2.25-r3

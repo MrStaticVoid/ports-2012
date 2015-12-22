@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -12,19 +14,20 @@ HOMEPAGE="https://wiki.gnome.org/action/show/Apps/Terminal/VTE"
 LICENSE="LGPL-2+"
 SLOT="2.91"
 IUSE="debug glade +introspection vala"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~sh sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~x64-solaris ~x86-solaris"
 
 PDEPEND=">=x11-libs/gnome-pty-helper-${PV}"
 RDEPEND="
-	!x11-libs/vte:2.90[glade]
-	>=dev-libs/glib-2.42.0:2
-	>=x11-libs/gtk+-3.14.0:3[introspection?]
-	>=x11-libs/pango-1.36.0
-	sys-libs/ncurses
+	>=dev-libs/glib-2.40:2
+	>=x11-libs/gtk+-3.8:3[introspection?]
+	>=x11-libs/pango-1.22.0
+
+	sys-libs/ncurses:0=
 	x11-libs/libX11
 	x11-libs/libXft
-	glade? ( >=dev-util/glade-3.18.0:3.10 )
-	introspection? ( >=dev-libs/gobject-introspection-1.42.0 )
+
+	glade? ( >=dev-util/glade-3.9:3.10 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.0 )
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)
@@ -32,6 +35,9 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	sys-devel/gettext
 	virtual/pkgconfig
+"
+RDEPEND="${RDEPEND}
+	!x11-libs/vte:2.90[glade]
 "
 
 src_prepare() {

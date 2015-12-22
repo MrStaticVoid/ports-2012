@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jnr-posix/jnr-posix-3.0.10.ebuild,v 1.1 2015/03/21 23:17:44 monsieurp Exp $
+# $Id$
 
 EAPI="5"
 
@@ -14,16 +14,15 @@ SRC_URI="https://github.com/jnr/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="|| ( CPL-1.0 GPL-2 LGPL-2.1 )"
 SLOT="3.0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux ~x86-solaris"
 
-COMMON_DEP="
-	dev-java/jnr-constants:0
+CDEPEND="dev-java/jnr-constants:0
 	dev-java/jnr-ffi:2"
 
-RDEPEND="${COMMON_DEP}
+RDEPEND="${CDEPEND}
 	>=virtual/jre-1.6"
 
-DEPEND="${COMMON_DEP}
+DEPEND="${CDEPEND}
 	>=virtual/jdk-1.6
 	test? (
 		dev-java/ant-junit

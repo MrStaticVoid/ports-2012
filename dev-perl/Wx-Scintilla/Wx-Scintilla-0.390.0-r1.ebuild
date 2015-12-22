@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Wx-Scintilla/Wx-Scintilla-0.390.0-r1.ebuild,v 1.1 2014/08/26 19:46:41 axs Exp $
+# $Id$
 
 EAPI=5
 
@@ -12,7 +12,7 @@ MODULE_VERSION=0.39
 inherit wxwidgets perl-module
 
 DESCRIPTION="Scintilla source code editing component for wxWidgets"
-SRC_URI+=" http://dev.gentoo.org/~tove/distfiles/dev-perl/${PN}-0.34-patches.tar.gz"
+SRC_URI+=" https://dev.gentoo.org/~tove/distfiles/dev-perl/${PN}-0.34-patches.tar.gz"
 
 LICENSE+=" HPND"
 SLOT="0"
@@ -25,7 +25,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	>=dev-perl/ExtUtils-XSpp-0.160.200
-	>=virtual/perl-Module-Build-0.360.0
+	>=dev-perl/Module-Build-0.360.0
 "
 
 PATCHES=(

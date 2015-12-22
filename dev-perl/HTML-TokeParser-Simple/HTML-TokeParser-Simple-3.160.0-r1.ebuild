@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-TokeParser-Simple/HTML-TokeParser-Simple-3.160.0-r1.ebuild,v 1.2 2015/01/08 19:34:16 zlogene Exp $
+# $Id$
 
 EAPI=5
 
@@ -16,7 +16,7 @@ IUSE=""
 
 RDEPEND=">=dev-perl/HTML-Parser-3.25"
 DEPEND="${RDEPEND}
-	virtual/perl-Module-Build
+	dev-perl/Module-Build
 	virtual/perl-Test-Simple
 	dev-perl/Sub-Override"
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/root-docs/root-docs-5.34.26.ebuild,v 1.3 2015/04/11 11:29:10 bircoph Exp $
+# $Id$
 
 EAPI=5
 
@@ -16,7 +16,7 @@ if [[ ${PV} == "9999" ]] ; then
 	KEYWORDS=""
 else
 	SRC_URI="ftp://root.cern.ch/${ROOT_PN}/${ROOT_PN}_v${PV}.source.tar.gz"
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 	S="${WORKDIR}/${ROOT_PN}"
 fi
 
@@ -41,8 +41,8 @@ VIRTUALX_REQUIRED="api"
 
 DEPEND="
 	app-text/pandoc
-	app-text/texlive
 	dev-haskell/pandoc-citeproc[bibutils]
+	dev-texlive/texlive-latex
 	virtual/pkgconfig
 	api? (
 		media-fonts/dejavu

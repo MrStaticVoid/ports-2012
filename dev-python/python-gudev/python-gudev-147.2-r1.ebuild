@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-gudev/python-gudev-147.2-r1.ebuild,v 1.4 2015/04/08 08:05:05 mgorny Exp $
+# $Id$
 
 EAPI=5
 
@@ -11,12 +11,12 @@ PYTHON_COMPAT=( python2_7 )
 inherit autotools-utils python-r1 vcs-snapshot eutils
 
 DESCRIPTION="Python binding to the GUDev udev helper library"
-HOMEPAGE="http://github.com/nzjrs/python-gudev"
+HOMEPAGE="https://github.com/nzjrs/python-gudev"
 SRC_URI="https://github.com/nzjrs/${PN}/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND="dev-python/pygobject:2[${PYTHON_USEDEP}]

@@ -4,10 +4,10 @@ DESCRIPTION=A module for merging hierarchies using the C3 algorithm
 EAPI=5
 HOMEPAGE=http://search.cpan.org/dist/Algorithm-C3/
 IUSE=test
-KEYWORDS=~alpha ~amd64 ~ppc64 ~sparc ~x86 ~x86-solaris
+KEYWORDS=~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~ppc-aix ~ppc-macos ~x64-macos ~x86-solaris
 LICENSE=|| ( Artistic GPL-1+ )
 RDEPEND=dev-lang/perl:=[-build(-)]
 SLOT=0
 SRC_URI=mirror://cpan/authors/id/H/HA/HAARG/Algorithm-C3-0.09.tar.gz
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	multiprocessing	d7f2985a2c76c365ee20269db5261414	perl-module	e8c3ded8c0835a8632022dfbce561b5c	toolchain-funcs	42408102d713fbad60ca21349865edb4	unpacker	f300a7ca9131b1024a79762e8edd3c52
-_md5_=027a015e79379a88ccee9a1d25d06c80
+_eclasses_=eutils	8644194de7be04932084752fb1327080	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multiprocessing	e32940a7b2a9992ad217eccddb84d548	perl-module	1cfb38bf68a24c8394e41d2f53003146	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	unpacker	1d149d9bda7723e740cfd28118f27813
+_md5_=3fbe40408b7f3e69576ad2a5ac890d82

@@ -9,4 +9,4 @@ RESTRICT=strip fetch mirror
 SLOT=0
 SRC_URI=http://www.lsi.com/downloads/Public/Host%20Bus%20Adapters/Host%20Bus%20Adapters%20Common%20Files/SAS_SATA_12G_P5/SAS3IRCU_P5.zip doc? ( http://www.lsi.com/downloads/Public/Host%20Bus%20Adapters/SAS3IRCU_UG.pdf )
 _eclasses_=mount-boot	ea24b511b0ad59831d0151aa634dfad2
-_md5_=500034887dca770a8447630e116cce71
+_md5_=feffbaea0403b4028d06476d8b1f593a

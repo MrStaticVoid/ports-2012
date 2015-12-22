@@ -1,13 +1,13 @@
 DEFINED_PHASES=configure install postinst postrm prepare
-DEPEND=>=sys-devel/m4-1.4.16 sys-devel/flex sys-apps/help2man examples? ( dev-lang/perl ) nls? ( sys-devel/gettext ) test? ( dev-lang/perl ) !<sys-devel/gettext-0.18.1.1-r3 =sys-devel/automake-1.14* >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=>=sys-devel/m4-1.4.16 sys-devel/flex examples? ( dev-lang/perl ) nls? ( sys-devel/gettext ) test? ( dev-lang/perl )
 DESCRIPTION=A general-purpose (yacc-compatible) parser generator
 EAPI=5
-HOMEPAGE=http://www.gnu.org/software/bison/
+HOMEPAGE=https://www.gnu.org/software/bison/
 IUSE=examples nls static test
-KEYWORDS=~*
+KEYWORDS=alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris
 LICENSE=GPL-2
 RDEPEND=>=sys-devel/m4-1.4.16
 SLOT=0
 SRC_URI=mirror://gnu/bison/bison-3.0.4.tar.xz
-_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=bb9b39010591b6988e17cb28f4e3224f
+_eclasses_=eutils	8644194de7be04932084752fb1327080	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=9473162066e1022fd91fd5752435adcb

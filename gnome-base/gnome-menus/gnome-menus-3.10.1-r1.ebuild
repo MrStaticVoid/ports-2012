@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -8,11 +10,11 @@ inherit eutils gnome2
 DESCRIPTION="Library for the Desktop Menu fd.o specification"
 HOMEPAGE="https://git.gnome.org/browse/gnome-menus"
 SRC_URI="${SRC_URI}
-	http://dev.gentoo.org/~tetromino/distfiles/${PN}/${PN}-3.10.1-patches.tar.xz"
+	https://dev.gentoo.org/~tetromino/distfiles/${PN}/${PN}-3.10.1-patches.tar.xz"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="3"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ppc ~ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE="debug +introspection test"
 

@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libindicator/libindicator-12.10.1-r301.ebuild,v 1.1 2015/05/07 18:32:21 mgorny Exp $
+# $Id$
 
 EAPI=5
-inherit eutils flag-o-matic virtualx multilib-minimal
+inherit autotools eutils flag-o-matic virtualx multilib-minimal
 
 DESCRIPTION="A set of symbols and convience functions that all indicators would like to use"
-HOMEPAGE="http://launchpad.net/libindicator"
-SRC_URI="http://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
+HOMEPAGE="https://launchpad.net/libindicator"
+SRC_URI="https://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="3"
@@ -19,6 +19,12 @@ RDEPEND=">=dev-libs/glib-2.22[${MULTILIB_USEDEP}]
 DEPEND="${RDEPEND}
 	virtual/pkgconfig[${MULTILIB_USEDEP}]
 	test? ( dev-util/dbus-test-runner )"
+
+src_prepare() {
+	# https://bugs.launchpad.net/libindicator/+bug/1502925
+	epatch "${FILESDIR}"/${PN}-ldflags-spacing.patch
+	eautoreconf
+}
 
 multilib_src_configure() {
 	append-flags -Wno-error

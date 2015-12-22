@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare test unpack
-DEPEND=dev-perl/Alien-wxWidgets dev-perl/wxperl >=dev-perl/ExtUtils-XSpp-0.160.200 >=virtual/perl-Module-Build-0.360.0 dev-lang/perl:=[-build(-)]
+DEPEND=dev-perl/Alien-wxWidgets dev-perl/wxperl >=dev-perl/ExtUtils-XSpp-0.160.200 >=dev-perl/Module-Build-0.360.0 dev-lang/perl:=[-build(-)]
 DESCRIPTION=Scintilla source code editing component for wxWidgets
 EAPI=5
 HOMEPAGE=http://search.cpan.org/dist/Wx-Scintilla/
@@ -7,6 +7,6 @@ KEYWORDS=~amd64 ~x86
 LICENSE=|| ( Artistic GPL-1+ ) HPND
 RDEPEND=dev-perl/Alien-wxWidgets dev-perl/wxperl dev-lang/perl:=[-build(-)]
 SLOT=0
-SRC_URI=mirror://cpan/authors/id/A/AZ/AZAWAWI/Wx-Scintilla-0.39.tar.gz http://dev.gentoo.org/~tove/distfiles/dev-perl/Wx-Scintilla-0.34-patches.tar.gz
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	multiprocessing	d7f2985a2c76c365ee20269db5261414	perl-module	e8c3ded8c0835a8632022dfbce561b5c	toolchain-funcs	42408102d713fbad60ca21349865edb4	unpacker	f300a7ca9131b1024a79762e8edd3c52	wxwidgets	6d6eec2685256d35511e7b6d5461bec9
-_md5_=1e73212964be7564626a89bb2ff39902
+SRC_URI=mirror://cpan/authors/id/A/AZ/AZAWAWI/Wx-Scintilla-0.39.tar.gz https://dev.gentoo.org/~tove/distfiles/dev-perl/Wx-Scintilla-0.34-patches.tar.gz
+_eclasses_=eutils	8644194de7be04932084752fb1327080	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	multiprocessing	e32940a7b2a9992ad217eccddb84d548	perl-module	1cfb38bf68a24c8394e41d2f53003146	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	unpacker	1d149d9bda7723e740cfd28118f27813	wxwidgets	2a19d3cd9b18703ae9fb53123722061c
+_md5_=15b2180aae495eec74bd909620e3413b

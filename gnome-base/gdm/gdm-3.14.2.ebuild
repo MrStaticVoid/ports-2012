@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -21,7 +23,7 @@ LICENSE="
 SLOT="0"
 IUSE="accessibility audit branding fprint +introspection ipv6 plymouth selinux smartcard +systemd tcpd test wayland xinerama"
 REQUIRED_USE="wayland? ( systemd )"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc x86"
 
 # NOTE: x11-base/xorg-server dep is for X_SERVER_PATH etc, bug #295686
 # nspr used by smartcard extension
@@ -29,10 +31,10 @@ KEYWORDS="*"
 # We need either systemd or >=openrc-0.12 to restart gdm properly, bug #463784
 COMMON_DEPEND="
 	app-text/iso-codes
-	>=dev-libs/glib-2.42.0:2
-	>=x11-libs/gtk+-3.14.0:3
-	>=gnome-base/dconf-0.22
-	>=gnome-base/gnome-settings-daemon-3.14.0
+	>=dev-libs/glib-2.36:2
+	>=x11-libs/gtk+-2.91.1:3
+	>=gnome-base/dconf-0.20
+	>=gnome-base/gnome-settings-daemon-3.1.4
 	gnome-base/gsettings-desktop-schemas
 	>=media-libs/fontconfig-2.5.0
 	>=media-libs/libcanberra-0.4[gtk3]
@@ -60,7 +62,7 @@ COMMON_DEPEND="
 	sys-auth/pambase[systemd?]
 
 	audit? ( sys-process/audit )
-	introspection? ( >=dev-libs/gobject-introspection-1.42.0 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.12 )
 	plymouth? ( sys-boot/plymouth )
 	selinux? ( sys-libs/libselinux )
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
@@ -70,14 +72,14 @@ COMMON_DEPEND="
 # fprintd is used via dbus by gdm-fingerprint-extension
 # gnome-session-3.6 needed to avoid freezing with orca
 RDEPEND="${COMMON_DEPEND}
-	>=gnome-base/gnome-session-3.14.0
-	>=gnome-base/gnome-shell-3.14.0
+	>=gnome-base/gnome-session-3.6
+	>=gnome-base/gnome-shell-3.1.90
 	gnome-extra/polkit-gnome:0
 	x11-apps/xhost
 	x11-themes/gnome-icon-theme-symbolic
 
 	accessibility? (
-		>=app-accessibility/orca-3.14.0
+		>=app-accessibility/orca-3.10
 		app-accessibility/caribou
 		gnome-extra/mousetweaks )
 	fprint? (

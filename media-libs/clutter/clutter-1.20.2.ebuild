@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,12 +13,12 @@ DESCRIPTION="Clutter is a library for creating graphical user interfaces"
 
 LICENSE="LGPL-2.1+ FDL-1.1+"
 SLOT="1.0"
-IUSE="aqua debug doc +egl gtk +introspection test wayland +X"
+IUSE="aqua debug doc egl gtk +introspection test wayland +X"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	wayland? ( egl )
 "
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sparc x86"
 
 # NOTE: glx flavour uses libdrm + >=mesa-7.3
 # XXX: uprof needed for profiling
@@ -32,7 +34,7 @@ RDEPEND="
 	>=x11-libs/pango-1.30[introspection?]
 
 	virtual/opengl
-	x11-libs/libdrm
+	x11-libs/libdrm:=
 
 	egl? (
 		>=dev-libs/libinput-0.4

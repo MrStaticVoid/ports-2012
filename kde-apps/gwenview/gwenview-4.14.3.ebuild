@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-apps/gwenview/gwenview-4.14.3.ebuild,v 1.1 2015/06/04 18:44:46 kensington Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,7 +10,7 @@ inherit kde4-base
 
 DESCRIPTION="KDE image viewer"
 HOMEPAGE="
-	http://www.kde.org/applications/graphics/gwenview/
+	https://www.kde.org/applications/graphics/gwenview/
 	http://gwenview.sourceforge.net/
 "
 KEYWORDS="amd64 ~arm ppc ppc64 x86 ~amd64-linux ~x86-linux"
@@ -54,8 +54,8 @@ src_configure() {
 pkg_postinst() {
 	kde4-base_pkg_postinst
 
-	if ! has_version kde-base/svgpart:${SLOT} ; then
-		elog "For SVG support, install kde-base/svgpart:${SLOT}"
+	if ! has_version kde-apps/svgpart:${SLOT} ; then
+		elog "For SVG support, install kde-apps/svgpart:${SLOT}"
 	fi
 
 	if use kipi && ! has_version media-plugins/kipi-plugins ; then

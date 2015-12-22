@@ -1,11 +1,12 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/scribus/scribus-9999.ebuild,v 1.16 2015/05/29 09:37:12 jlec Exp $
+# $Id$
 
 EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="tk?"
+CMAKE_MAKEFILE_GENERATOR=ninja
 
 inherit cmake-utils fdo-mime flag-o-matic multilib python-single-r1 subversion
 
@@ -38,8 +39,6 @@ COMMON_DEPEND="
 	dev-libs/hyphen
 	dev-libs/librevenge
 	dev-libs/libxml2
-	dev-qt/linguist:5
-	dev-qt/linguist-tools:5
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 	dev-qt/qtnetwork:5
@@ -66,18 +65,16 @@ COMMON_DEPEND="
 	graphicsmagick? ( media-gfx/graphicsmagick )
 	osg? ( dev-games/openscenegraph )
 	pdf? ( app-text/podofo )
-	scripts? ( virtual/python-imaging[tk?,${PYTHON_USEDEP}] )
-	tk? ( virtual/python-imaging[tk?,${PYTHON_USEDEP}] )
+	scripts? ( dev-python/pillow[tk?,${PYTHON_USEDEP}] )
+	tk? ( dev-python/pillow[tk?,${PYTHON_USEDEP}] )
 "
 RDEPEND="${COMMON_DEPEND}
 	app-text/ghostscript-gpl"
 DEPEND="${COMMON_DEPEND}
+	dev-qt/linguist-tools:5
 	virtual/pkgconfig"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-1.5.0-docdir.patch
-	"${FILESDIR}"/${PN}-1.5.0-fpic.patch
-	)
+PATCHES=( "${FILESDIR}"/${PN}-1.5.0-docdir.patch )
 
 src_prepare() {
 	rm -r codegen/cheetah || die
@@ -164,11 +161,11 @@ src_install() {
 	ln -sf html "${ED}"/usr/share/doc/${PF}/en || die
 	cat >> "${T}"/COPYING <<- EOF
 	${PN} is licensed under the "${LICENSE}".
-	Please visit http://www.gnu.org/licenses/gpl-2.0.html for the complete license text.
+	Please visit https://www.gnu.org/licenses/gpl-2.0.html for the complete license text.
 	EOF
 	dodoc "${T}"/COPYING
 	docompress -x /usr/share/doc/${PF}/en /usr/share/doc/${PF}/{AUTHORS,TRANSLATION,LINKS,COPYING}
-	doicon resources/icons/scribus.png
+	doicon resources/iconsets/*/scribus.png
 	domenu scribus.desktop
 }
 
@@ -183,22 +180,21 @@ pkg_postrm() {
 }
 
 safe_delete () {
-	case $1 in
-		dir)
-			if [[ -d "${2}" ]]; then
+	if path_exists $2; then
+		case $1 in
+			dir)
 				ebegin "Deleting ${2} recursively"
 				rm -r "${2}" || die
 				eend $?
-			fi
-			;;
-		file)
-			if [[ -f "${2}" ]]; then
+				;;
+			file)
 				ebegin "Deleting ${2}"
 				rm "${2}" || die
 				eend $?
-			fi
-			;;
-		*)
-			die "Wrong usage"
-	esac
+				;;
+			*)
+				die "Wrong usage"
+				;;
+		esac
+	fi
 }

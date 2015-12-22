@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<herd>wine</herd>
 	<maintainer>
-		<email>flameeyes@gentoo.org</email>
-		<name>Diego Elio Pettenò</name>
-	</maintainer>
-	<maintainer>
-		<email>hasufell@gentoo.org</email>
-		<name>Julian Ospald</name>
+		<email>np-hardass@gentoo.org</email>
+		<name>NP-Hardass</name>		
 	</maintainer>
 	<use>
-		<flag name="system-wine">Use <pkg>app-emulation/wine</pkg> instead of bundled one.</flag>
+		<flag name="system-wine">Use <pkg>app-emulation/wine</pkg> instead of bundled wine.</flag>
 	</use>
 </pkgmetadata>
-

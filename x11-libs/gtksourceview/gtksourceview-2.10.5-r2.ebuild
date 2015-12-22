@@ -1,4 +1,6 @@
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -8,11 +10,11 @@ GNOME_TARBALL_SUFFIX="bz2"
 inherit eutils gnome2 virtualx
 
 DESCRIPTION="A text widget implementing syntax highlighting and other features"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="https://www.gnome.org/"
 
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="2.0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="glade"
 
 # FIXME: We could avoid the glade conditional and dep completely if upstream

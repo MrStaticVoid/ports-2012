@@ -3,10 +3,13 @@
 <pkgmetadata>
 <herd>desktop-misc</herd>
 <maintainer>
-<email>jer@gentoo.org</email>
-<name>Jeroen Roovers</name>
+	<email>jer@gentoo.org</email>
 </maintainer>
 <use>
-<flag name='i3'>Compile in support for the <pkg>x11-wm/i3</pkg> window manager</flag>
+	<flag name="i3">Compile in support for the <pkg>x11-wm/i3</pkg> window manager</flag>
+	<flag name="windowmode">Enable normal window mode</flag>
 </use>
+<upstream>
+	<remote-id type="github">DaveDavenport/rofi</remote-id>
+</upstream>
 </pkgmetadata>

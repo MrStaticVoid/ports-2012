@@ -1,4 +1,6 @@
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -6,17 +8,17 @@ GCONF_DEBUG="no"
 inherit gnome2
 
 DESCRIPTION="Mouse accessibility enhancements for the GNOME desktop"
-HOMEPAGE="http://live.gnome.org/Mousetweaks/Home"
+HOMEPAGE="https://live.gnome.org/Mousetweaks/Home"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.40.0:2
-	>=x11-libs/gtk+-3.12.0:3
-	>=gnome-base/gsettings-desktop-schemas-3.12.0
+	>=dev-libs/glib-2.25.9:2
+	>=x11-libs/gtk+-3:3
+	>=gnome-base/gsettings-desktop-schemas-0.1
 
 	x11-libs/libX11
 	x11-libs/libXtst

@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvswitch/files/ovsdb-server-r1,v 1.1 2013/04/08 19:37:58 dev-zero Exp $
+# $Id$
 
 description="Open vSwitch database server"
 
@@ -31,15 +31,5 @@ depend() {
 }
 
 start_pre() {
-        local db="/var/lib/openvswitch/conf.db"
-	
 	checkpath -d "/var/run/openvswitch" -m 0750
-	
-	if [ ! -e "${db}" ]; then
-		ovsdb-tool create "${db}" "/usr/share/openvswitch/vswitch.ovsschema"
-	fi
-	
-	if [ "$(ovsdb-tool needs-conversion)" = "yes" ]; then
-		ovsdb-tool convert ${db}
-	fi
 }

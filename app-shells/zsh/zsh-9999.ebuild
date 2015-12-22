@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-9999.ebuild,v 1.4 2015/01/04 01:34:42 radhermit Exp $
+# $Id$
 
 EAPI=5
 
@@ -10,9 +10,9 @@ if [[ ${PV} == 9999* ]] ; then
 	inherit git-r3 autotools
 	EGIT_REPO_URI="git://git.code.sf.net/p/zsh/code"
 else
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-	SRC_URI="http://www.zsh.org/pub/${P}.tar.bz2
-		doc? ( http://www.zsh.org/pub/${P}-doc.tar.bz2 )"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+	SRC_URI="http://www.zsh.org/pub/${P}.tar.xz
+		doc? ( http://www.zsh.org/pub/${P}-doc.tar.xz )"
 fi
 
 DESCRIPTION="UNIX Shell similar to the Korn shell"
@@ -23,11 +23,13 @@ SLOT="0"
 IUSE="caps debug doc examples gdbm maildir pcre static unicode"
 
 RDEPEND="
-	>=sys-libs/ncurses-5.1
-	static? ( >=sys-libs/ncurses-5.7-r4[static-libs] )
+	>=sys-libs/ncurses-5.1:0
+	static? ( >=sys-libs/ncurses-5.7-r4:0=[static-libs] )
 	caps? ( sys-libs/libcap )
-	pcre? ( >=dev-libs/libpcre-3.9
-		static? ( >=dev-libs/libpcre-3.9[static-libs] ) )
+	pcre? (
+		>=dev-libs/libpcre-3.9
+		static? ( >=dev-libs/libpcre-3.9[static-libs] )
+	)
 	gdbm? ( sys-libs/gdbm )
 "
 DEPEND="sys-apps/groff
@@ -67,23 +69,24 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf
+	local myconf=()
 
 	if use static ; then
-		myconf+=" --disable-dynamic"
+		myconf+=( --disable-dynamic )
 		append-ldflags -static
 	fi
 	if use debug ; then
-		myconf+=" \
-			--enable-zsh-debug \
-			--enable-zsh-mem-debug \
-			--enable-zsh-mem-warning \
-			--enable-zsh-secure-free \
-			--enable-zsh-hash-debug"
+		myconf+=(
+			--enable-zsh-debug
+			--enable-zsh-mem-debug
+			--enable-zsh-mem-warning
+			--enable-zsh-secure-free
+			--enable-zsh-hash-debug
+		)
 	fi
 
 	if [[ ${CHOST} == *-darwin* ]]; then
-		myconf+=" --enable-libs=-liconv"
+		myconf+=( --enable-libs=-liconv )
 		append-ldflags -Wl,-x
 	fi
 
@@ -101,7 +104,7 @@ src_configure() {
 		$(use_enable caps cap) \
 		$(use_enable unicode multibyte) \
 		$(use_enable gdbm ) \
-		${myconf}
+		"${myconf[@]}"
 
 	if use static ; then
 		# compile all modules statically, see Bug #27392
@@ -144,14 +147,25 @@ src_install() {
 	insinto /usr/share/zsh/${PV%_*}/functions/Prompts
 	newins "${FILESDIR}"/prompt_gentoo_setup-1 prompt_gentoo_setup
 
-	# install miscellaneous scripts; bug #54520
 	local i
+
+	# install miscellaneous scripts (bug #54520)
 	sed -e "s:/usr/local/bin/perl:${EPREFIX}/usr/bin/perl:g" \
 		-e "s:/usr/local/bin/zsh:${EPREFIX}/bin/zsh:g" \
-		-i "${S}"/{Util,Misc}/* || die
+		-i {Util,Misc}/* || die
 	for i in Util Misc ; do
 		insinto /usr/share/zsh/${PV%_*}/${i}
 		doins ${i}/*
+	done
+
+	# install header files (bug #538684)
+	insinto /usr/include/zsh
+	doins config.h Src/*.epro
+	for i in Src/{zsh.mdh,*.h} ; do
+		sed -e 's@\.\./config\.h@config.h@' \
+			-e 's@#\(\s*\)include "\([^"]\+\)"@#\1include <zsh/\2>@' \
+			-i "${i}"
+		doins "${i}"
 	done
 
 	dodoc ChangeLog* META-FAQ NEWS README config.modules

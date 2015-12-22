@@ -1,11 +1,11 @@
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
-DEPEND=dev-libs/glib:2 dev-libs/gobject-introspection dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.4:3[introspection] || ( dev-lang/vala:0.28 dev-lang/vala:0.26 dev-lang/vala:0.24 dev-lang/vala:0.22 dev-lang/vala:0.20 ) virtual/pkgconfig nls? ( sys-devel/gettext ) >=sys-apps/sed-4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/bzr-2.0.1
+DEPEND=dev-libs/glib:2 dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.11.6:3[introspection] || ( dev-lang/vala:0.30 dev-lang/vala:0.28 dev-lang/vala:0.26 dev-lang/vala:0.24 ) virtual/pkgconfig nls? ( sys-devel/gettext ) >=sys-apps/sed-4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/bzr-2.0.1
 DESCRIPTION=A development library for elementary development
 EAPI=5
-HOMEPAGE=http://launchpad.net/granite
+HOMEPAGE=https://launchpad.net/granite
 IUSE=demo nls
 LICENSE=LGPL-3
-RDEPEND=dev-libs/glib:2 dev-libs/gobject-introspection dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.4:3[introspection]
+RDEPEND=dev-libs/glib:2 dev-libs/libgee:0.8[introspection] >=x11-libs/gtk+-3.11.6:3[introspection]
 SLOT=0
-_eclasses_=bzr	87fd9041fcbe23dbc8f0e65ce0df6c28	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	vala	09bc7da1a93142c9eb90786e6f6b39d2
-_md5_=483f05f0ba69e771296dc290d351815c
+_eclasses_=bzr	745bed5705ae699c707ba26ca9e8929a	cmake-utils	f16fa5681153277df51f001deaf17ff8	eutils	8644194de7be04932084752fb1327080	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	gnome2-utils	968e31c6fcd13eb2eaf6852e88dfdd36	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	vala	15f7a43101d2ff0c6dcdab272c02f469	versionator	99ae9d758cbe7cfed19170e7d48f5a9c	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
+_md5_=173bf2afa14f57975b563b7a2862646f

@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes" # Not gnome macro but similar
@@ -12,12 +14,12 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeKeyring"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="+caps debug pam selinux +ssh-agent"
-KEYWORDS="*"
+IUSE="+caps debug pam selinux +ssh-agent test"
+KEYWORDS="alpha amd64 arm ~arm64 ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 RDEPEND="
-	>=app-crypt/gcr-3.14.0:=[gtk]
-	>=dev-libs/glib-2.42.0:2
+	>=app-crypt/gcr-3.5.3:=[gtk]
+	>=dev-libs/glib-2.38:2
 	app-misc/ca-certificates
 	>=dev-libs/libgcrypt-1.2.2:0=
 	>=sys-apps/dbus-1.1.1
@@ -25,16 +27,16 @@ RDEPEND="
 	pam? ( virtual/pam )
 "
 DEPEND="${RDEPEND}
-	${PYTHON_DEPS}
 	app-text/docbook-xml-dtd:4.3
 	dev-libs/libxslt
 	>=dev-util/intltool-0.35
 	sys-devel/gettext
 	virtual/pkgconfig
+	test? ( ${PYTHON_DEPS} )
 "
 
 pkg_setup() {
-	python-any-r1_pkg_setup
+	use test && python-any-r1_pkg_setup
 }
 
 src_prepare() {
@@ -42,17 +44,6 @@ src_prepare() {
 	sed -e 's/CFLAGS="$CFLAGS -g"//' \
 		-e 's/CFLAGS="$CFLAGS -O0"//' \
 		-i configure.ac configure || die
-
-	# FIXME: some tests write to /tmp (instead of TMPDIR)
-	# Disable failing tests
-	#sed -e 's|\(g_test_add.*/gkm/data-asn1/integers.*;\)|/*\1*/|' \
-	#	-i "${S}"/pkcs11/gkm/test-data-asn1.c || die
-	#sed -e 's|\(g_test_add.*/gkm/timer/cancel.*;\)|/*\1*/|' \
-	#	-i "${S}"/pkcs11/gkm/test-timer.c || die
-	# For some reason all pam tests make the testsuite retun 77
-	# which is considered an error but the test framework,
-	# but all tests are successful, upstream bug #731030
-	#sed -e '558,595 d' -i "${S}"/pam/test-pam.c || die
 
 	gnome2_src_prepare
 }

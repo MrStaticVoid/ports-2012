@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20141019.3.19.ebuild,v 1.1 2015/05/12 07:01:05 vapier Exp $
+# $Id$
 
 # The Debian ca-certificates package merely takes the CA database as it exists
 # in the nss package and repackages it for use by openssl.
@@ -52,7 +52,7 @@ if ${PRECOMPILED} ; then
 else
 	SRC_URI="mirror://debian/pool/main/c/${PN}/${PN}_${DEB_VER}${NMU_PR:++nmu}${NMU_PR}.tar.xz
 		ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${RTM_NAME}/src/nss-${NSS_VER}.tar.gz
-		cacert? ( http://dev.gentoo.org/~anarchy/patches/nss-3.14.1-add_spi+cacerts_ca_certs.patch )"
+		cacert? ( https://dev.gentoo.org/~anarchy/patches/nss-3.14.1-add_spi+cacerts_ca_certs.patch )"
 fi
 
 LICENSE="MPL-1.1"
@@ -68,10 +68,10 @@ if ${PRECOMPILED} ; then
 		kernel_AIX? ( app-arch/deb2targz )
 		!<sys-apps/portage-2.1.10.41"
 fi
-# openssl: we run `c_rehash`
+# openssl: we run `c_rehash`; newer version for alt-cert-paths #552540
 # debianutils: we run `run-parts`
 RDEPEND="${DEPEND}
-	dev-libs/openssl
+	>=dev-libs/openssl-1.0.1o
 	sys-apps/debianutils"
 
 if ! ${PRECOMPILED}; then
@@ -171,7 +171,7 @@ pkg_postinst() {
 		# to include their stuff in the db.
 		# However it's too overzealous when the user has custom certs in place.
 		# --fresh is to clean up dangling symlinks
-		"${EROOT}"/usr/sbin/update-ca-certificates --root "${EROOT}"
+		"${EROOT}"/usr/sbin/update-ca-certificates --root "${ROOT}"
 	fi
 
 	local c badcerts=0

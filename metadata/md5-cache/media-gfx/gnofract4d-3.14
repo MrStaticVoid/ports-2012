@@ -1,12 +1,12 @@
 DEFINED_PHASES=compile install postinst postrm prepare
-DEPEND=x11-libs/gtk+:2 >=media-libs/libpng-1.4 virtual/jpeg >=dev-python/pygtk-2 >=gnome-base/gconf-2 virtual/pkgconfig =dev-lang/python-2*
+DEPEND=x11-libs/gtk+:2 >=media-libs/libpng-1.4 virtual/jpeg >=dev-python/pygtk-2 >=gnome-base/gconf-2 virtual/pkgconfig || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 DESCRIPTION=A program for drawing beautiful mathematically-based images known as fractals
 EAPI=3
 HOMEPAGE=http://gnofract4d.sourceforge.net/
 KEYWORDS=~amd64 ~x86
 LICENSE=BSD
-RDEPEND=x11-libs/gtk+:2 >=media-libs/libpng-1.4 virtual/jpeg >=dev-python/pygtk-2 >=gnome-base/gconf-2 =dev-lang/python-2*
+RDEPEND=x11-libs/gtk+:2 >=media-libs/libpng-1.4 virtual/jpeg >=dev-python/pygtk-2 >=gnome-base/gconf-2 || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 SLOT=0
 SRC_URI=mirror://sourceforge/gnofract4d/gnofract4d-3.14.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	9fb270e417e0e83d64ca52586c4a79de	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	multilib	62927b3db3a589b0806255f3a002d5d3	python	2cc08291ed8a5cd6b4791b24b0056357	toolchain-funcs	42408102d713fbad60ca21349865edb4
-_md5_=5b00a8be009f57f3fb875c3acab241cc
+_eclasses_=distutils	ad9e4720eb3e69090dd968b152fc611b	eutils	8644194de7be04932084752fb1327080	fdo-mime	92d07846ea8ea54172f8c0112a47ae3d	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	python	0c2c16ea4f9074d3248bd4365d03890c	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=39d4f14f60e9770b1fdd5442a5eb6aa8

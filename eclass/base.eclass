@@ -1,5 +1,22 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+# DEPRECATED
+# This eclass has been deprecated and must not be used by any new
+# ebuilds or eclasses. Replacements for particular phase functions
+# in EAPI 2+:
+#
+# base_src_unpack() - default (or unpacker_src_unpack if unpacker.eclass
+#     was inherited)
+# base_src_prepare() - inherit eutils, inline:
+#     epatch "${PATCHES[@]}" # if PATCHES defined as array
+#     epatch ${PATCHES} # if PATCHES defined as string
+#     epatch_user
+# base_src_configure() - default
+# base_src_compile() - default
+# base_src_install() - default
+# base_src_install_docs() - einstalldocs from eutils.eclass
 
 # @ECLASS: base.eclass
 # @MAINTAINER:
@@ -17,16 +34,11 @@ inherit eutils
 
 BASE_EXPF="src_unpack src_compile src_install"
 case "${EAPI:-0}" in
-	2|3|4|4-python|5|5-progress) BASE_EXPF+=" src_prepare src_configure" ;;
+	2|3|4|5) BASE_EXPF+=" src_prepare src_configure" ;;
 	*) ;;
 esac
 
 EXPORT_FUNCTIONS ${BASE_EXPF}
-
-# @ECLASS-VARIABLE: BASE_DESTDIR
-# @DESCRIPTION:
-# Custom destination directory for base_src_install().
-# ${D} is used by default.
 
 # @ECLASS-VARIABLE: DOCS
 # @DESCRIPTION:
@@ -164,7 +176,7 @@ base_src_make() {
 base_src_install() {
 	debug-print-function $FUNCNAME "$@"
 
-	emake DESTDIR="${BASE_DESTDIR-${D}}" "$@" install || die "died running make install, $FUNCNAME"
+	emake DESTDIR="${D}" "$@" install || die "died running make install, $FUNCNAME"
 	base_src_install_docs
 }
 

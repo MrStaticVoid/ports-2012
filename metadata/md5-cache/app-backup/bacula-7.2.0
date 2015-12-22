@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst prepare setup unpack
+DEPEND=dev-libs/gmp !bacula-clientonly? ( postgres? ( dev-db/postgresql[threads] ) mysql? ( virtual/mysql ) sqlite? ( dev-db/sqlite:3 ) !bacula-nodir? ( virtual/mta ) ) qt4? ( dev-qt/qtsvg:4 x11-libs/qwt:5 ) logwatch? ( sys-apps/logwatch ) tcpd? ( >=sys-apps/tcp-wrappers-7.6 ) readline? ( >=sys-libs/readline-4.1 ) static? ( acl? ( virtual/acl[static-libs] ) sys-libs/zlib[static-libs] dev-libs/lzo[static-libs] sys-libs/ncurses[static-libs] ssl? ( dev-libs/openssl[static-libs] ) ) !static? ( acl? ( virtual/acl ) sys-libs/zlib dev-libs/lzo sys-libs/ncurses ssl? ( dev-libs/openssl ) ) virtual/pkgconfig
+DESCRIPTION=Featureful client/server network backup suite
+EAPI=5
+HOMEPAGE=http://www.bacula.org/
+IUSE=acl bacula-clientonly bacula-nodir bacula-nosd examples ipv6 logwatch mysql postgres qt4 readline +sqlite ssl static tcpd vim-syntax X
+KEYWORDS=~amd64 ~ppc ~sparc ~x86
+LICENSE=AGPL-3
+RDEPEND=dev-libs/gmp !bacula-clientonly? ( postgres? ( dev-db/postgresql[threads] ) mysql? ( virtual/mysql ) sqlite? ( dev-db/sqlite:3 ) !bacula-nodir? ( virtual/mta ) ) qt4? ( dev-qt/qtsvg:4 x11-libs/qwt:5 ) logwatch? ( sys-apps/logwatch ) tcpd? ( >=sys-apps/tcp-wrappers-7.6 ) readline? ( >=sys-libs/readline-4.1 ) static? ( acl? ( virtual/acl[static-libs] ) sys-libs/zlib[static-libs] dev-libs/lzo[static-libs] sys-libs/ncurses[static-libs] ssl? ( dev-libs/openssl[static-libs] ) ) !static? ( acl? ( virtual/acl ) sys-libs/zlib dev-libs/lzo sys-libs/ncurses ssl? ( dev-libs/openssl ) ) !bacula-clientonly? ( !bacula-nosd? ( sys-block/mtx app-arch/mt-st ) ) vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )
+REQUIRED_USE=|| ( ^^ ( mysql postgres sqlite ) bacula-clientonly ) static? ( bacula-clientonly )
+SLOT=0
+SRC_URI=mirror://sourceforge/bacula/bacula-7.2.0.tar.gz
+_eclasses_=base	9fc6743731ec1d8d8a5eb88ccd5944b6	eutils	8644194de7be04932084752fb1327080	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	qmake-utils	05b63bb5c708c5903a9de5c58c8e43c8	qt4-r2	cb2cb5856695b300266b425da70e82d8	systemd	6b4f0cefa642270eded7e6ca816fd181	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	user	906f3c8eb3a2350a4f1191a89baa3e46
+_md5_=429ebf846f0b8d24484714e24809400d

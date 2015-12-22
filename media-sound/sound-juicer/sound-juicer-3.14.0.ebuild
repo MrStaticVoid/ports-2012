@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -10,15 +12,15 @@ HOMEPAGE="https://wiki.gnome.org/Apps/SoundJuicer"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
 IUSE="flac test vorbis"
 
 COMMON_DEPEND="
 	app-text/iso-codes
-	>=dev-libs/glib-2.42.0:2
-	>=x11-libs/gtk+-3.14.0:3
+	>=dev-libs/glib-2.38:2
+	>=x11-libs/gtk+-3.4:3
 	media-libs/libcanberra[gtk3]
-	>=app-cdr/brasero-3.11.0
+	>=app-cdr/brasero-2.90
 	sys-apps/dbus
 	gnome-base/gsettings-desktop-schemas
 
@@ -55,7 +57,7 @@ src_prepare() {
 }
 
 src_configure() {
-	gnome2_src_configure ITSTOOLS="$(type -P true)"
+	gnome2_src_configure ITSTOOL="$(type -P true)"
 }
 
 pkg_postinst() {

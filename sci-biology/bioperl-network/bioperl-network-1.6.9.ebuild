@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/bioperl-network/bioperl-network-1.6.9.ebuild,v 1.4 2015/05/27 10:14:27 ago Exp $
+# $Id$
 
 EAPI="5"
 
@@ -21,7 +21,7 @@ SRC_TEST="do"
 
 CDEPEND=">=sci-biology/bioperl-${PV}
 	>=dev-perl/Graph-0.86"
-DEPEND="virtual/perl-Module-Build
+DEPEND="dev-perl/Module-Build
 	${CDEPEND}"
 RDEPEND="${CDEPEND}"
 

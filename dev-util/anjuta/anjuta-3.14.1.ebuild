@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -16,34 +18,38 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Anjuta"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 ~ppc ~sparc x86 ~x86-fbsd"
 
 IUSE="debug devhelp glade +introspection packagekit subversion terminal test vala"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 # FIXME: make python dependency non-automagic
 COMMON_DEPEND="
-	>=dev-libs/glib-2.42:2
+	>=dev-libs/glib-2.34:2
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.10:3
 	>=dev-libs/libxml2-2.4.23
-	>=dev-libs/gdl-3.5.5:3
-	>=x11-libs/gtksourceview-3.14:3.0
+	>=dev-libs/gdl-3.5.5:3=
+	>=x11-libs/gtksourceview-3:3.0
+
 	sys-devel/autogen
-	>=gnome-extra/libgda-5:5
+
+	>=gnome-extra/libgda-5:5=
 	dev-util/ctags
+
 	x11-libs/libXext
 	x11-libs/libXrender
+
 	${PYTHON_DEPS}
 
-	devhelp? ( >=dev-util/devhelp-3.7.4 )
-	glade? ( >=dev-util/glade-3.12:3.10 )
-	introspection? ( >=dev-libs/gobject-introspection-1.42 )
+	devhelp? ( >=dev-util/devhelp-3.7.4:= )
+	glade? ( >=dev-util/glade-3.12:3.10= )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )
 	subversion? (
-		>=dev-vcs/subversion-1.8
-		>=net-libs/serf-1.2:1
-		>=dev-libs/apr-1
-		>=dev-libs/apr-util-1 )
+		>=dev-vcs/subversion-1.8:=
+		>=net-libs/serf-1.2:1=
+		>=dev-libs/apr-1:=
+		>=dev-libs/apr-util-1:= )
 	terminal? ( >=x11-libs/vte-0.27.6:2.91 )
 	vala? ( $(vala_depend) )
 "

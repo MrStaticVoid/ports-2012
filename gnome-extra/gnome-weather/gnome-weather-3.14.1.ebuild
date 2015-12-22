@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -10,15 +12,15 @@ HOMEPAGE="https://wiki.gnome.org/Design/Apps/Weather"
 
 LICENSE="GPL-2+ LGPL-2+ MIT CC-BY-3.0 CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/gjs-1.42.0
-	>=dev-libs/glib-2.42.0:2
-	>=dev-libs/gobject-introspection-1.42.0
-	>=dev-libs/libgweather-3.14.0
-	>=x11-libs/gtk+-3.14.0:3
+	>=dev-libs/gjs-1.41.4
+	>=dev-libs/glib-2.32:2
+	>=dev-libs/gobject-introspection-1.35.9
+	>=dev-libs/libgweather-3.9.5
+	>=x11-libs/gtk+-3.11.4:3
 "
 DEPEND="${RDEPEND}
 	dev-util/appdata-tools

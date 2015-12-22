@@ -1,7 +1,8 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
-
 PYTHON_COMPAT=( python2_7 )
 
 inherit eutils python-single-r1
@@ -11,8 +12,10 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/Farstream"
 SRC_URI="http://freedesktop.org/software/farstream/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1+"
-KEYWORDS="*"
-IUSE="+introspection python msn test upnp"
+KEYWORDS="alpha amd64 arm hppa ~ia64 ppc ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
+
+IUSE="+introspection python test upnp"
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 SLOT="0.1"
 
@@ -36,7 +39,6 @@ RDEPEND="${COMMONDEPEND}
 	|| (
 		>=media-plugins/gst-plugins-libnice-0.1.0:0.10
 		<=net-libs/libnice-0.1.3[gstreamer] )
-	msn? ( >=media-plugins/gst-plugins-mimic-0.10.17:0.10 )
 	!net-libs/farsight2
 "
 # This package is just a rename from farsight2
@@ -52,6 +54,9 @@ DEPEND="${COMMONDEPEND}
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
+# FIXME: do an out-of-tree build for tests if USE=-msn
+RESTRICT="test"
+
 pkg_setup() {
 	use python && python-single-r1_pkg_setup
 }
@@ -63,7 +68,6 @@ src_prepare() {
 
 src_configure() {
 	plugins="fsrawconference,fsrtpconference,fsfunnel,fsrtcpfilter,fsvideoanyrate"
-	use msn && plugins="${plugins},fsmsnconference"
 	econf --disable-static \
 		$(use_enable introspection) \
 		$(use_enable python) \
@@ -78,14 +82,4 @@ src_install() {
 
 	# Remove .la files since static libs are no longer being installed
 	find "${D}" -name '*.la' -exec rm -f '{}' + || die
-}
-
-src_test() {
-	# FIXME: do an out-of-tree build for tests if USE=-msn
-	if ! use msn; then
-		elog "Tests disabled without msn use flag"
-		return
-	fi
-
-	emake -j1 check
 }

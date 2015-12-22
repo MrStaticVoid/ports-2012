@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -11,24 +13,24 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Vinagre"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 ~arm ~ia64 ~ppc ~ppc64 x86"
 IUSE="avahi rdp +ssh spice +telepathy"
 
 # cairo used in vinagre-tab
 # gdk-pixbuf used all over the place
 RDEPEND="
-	>=dev-libs/glib-2.42.0:2
-	>=x11-libs/gtk+-3.14.0:3
+	>=dev-libs/glib-2.28.0:2
+	>=x11-libs/gtk+-3.9.6:3
 	app-crypt/libsecret
 	>=dev-libs/libxml2-2.6.31:2
 	>=net-libs/gtk-vnc-0.4.3[gtk3]
 	x11-libs/cairo:=
 	x11-libs/gdk-pixbuf:2
-	x11-themes/adwaita-icon-theme
+	x11-themes/hicolor-icon-theme
 
 	avahi? ( >=net-dns/avahi-0.6.26[dbus,gtk3] )
-	rdp? ( <net-misc/freerdp-1.2 )
-	ssh? ( x11-libs/vte:2.91 )
+	rdp? ( net-misc/freerdp )
+	ssh? ( >=x11-libs/vte-0.20:2.91 )
 	spice? (
 		app-emulation/spice-protocol
 		>=net-misc/spice-gtk-0.5[gtk3] )

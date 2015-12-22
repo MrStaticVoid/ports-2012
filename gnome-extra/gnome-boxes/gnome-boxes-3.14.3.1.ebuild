@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -23,7 +25,7 @@ KEYWORDS="amd64" # qemu-kvm[spice] is 64bit-only
 #        to use its pre-generated files so do not copy all the
 #        vala deps like live ebuild has.
 RDEPEND="
-	>=app-arch/libarchive-3
+	>=app-arch/libarchive-3:=
 	>=dev-libs/glib-2.38:2
 	>=dev-libs/gobject-introspection-0.9.6
 	>=dev-libs/libxml2-2.7.8:2
@@ -43,7 +45,7 @@ RDEPEND="
 	sys-fs/fuse
 	sys-fs/fuseiso
 	sys-fs/mtools
-	virtual/libgudev
+	virtual/libgudev:=
 "
 #	!bindist? ( gnome-extra/gnome-boxes-nonfree )
 

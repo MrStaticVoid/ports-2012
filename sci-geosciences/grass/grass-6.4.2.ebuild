@@ -1,11 +1,13 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=4
 
 PYTHON_DEPEND="python? 2"
 WANT_AUTOCONF="2.1"
 
-inherit eutils gnome2 multilib python versionator wxwidgets base autotools
+inherit eutils gnome2 multilib python versionator wxwidgets autotools
 
 MY_PM=${PN}$(get_version_component_range 1-2 ${PV})
 MY_PM=${MY_PM/.}
@@ -17,12 +19,13 @@ SRC_URI="http://grass.osgeo.org/${MY_PM}/source/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="6"
-KEYWORDS="*"
+KEYWORDS="amd64 ppc ~ppc64 x86"
 IUSE="X cairo cxx ffmpeg fftw gmath jpeg motif mysql nls odbc opengl png postgres python readline sqlite tiff truetype wxwidgets"
 
 TCL_DEPS="
-	>=dev-lang/tcl-8.5
-	>=dev-lang/tk-8.5"
+	>=dev-lang/tcl-8.5:0
+	>=dev-lang/tk-8.5:0
+	"
 
 RDEPEND="
 	>=app-admin/eselect-1.2
@@ -38,18 +41,18 @@ RDEPEND="
 		virtual/blas
 		virtual/lapack
 	)
-	jpeg? ( virtual/jpeg )
+	jpeg? ( virtual/jpeg:0 )
 	mysql? ( virtual/mysql )
 	odbc? ( dev-db/unixODBC )
 	opengl? (
 		virtual/opengl
 		${TCL_DEPS}
 	)
-	png? ( media-libs/libpng )
-	postgres? ( >=dev-db/postgresql-base-8.4 )
-	readline? ( sys-libs/readline )
+	png? ( media-libs/libpng:0 )
+	postgres? ( >=dev-db/postgresql-8.4 )
+	readline? ( sys-libs/readline:0 )
 	sqlite? ( dev-db/sqlite:3 )
-	tiff? ( media-libs/tiff )
+	tiff? ( media-libs/tiff:0 )
 	truetype? ( media-libs/freetype:2 )
 	wxwidgets? ( >=dev-python/wxpython-2.8.10.1[cairo,opengl?] )
 	X? (
@@ -94,9 +97,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-6.4.2-ffmpeg-1.patch
 	"${FILESDIR}"/${PN}-6.4.2-configure.patch
 	"${FILESDIR}"/${PN}-6.4.2-libav-9.patch
-	"${FILESDIR}"/iostream_cpp470.patch
-## FL-1753
-	"${FILESDIR}"/${PN}-tk86-fix.patch 
 )
 
 REQUIRED_USE="
@@ -134,7 +134,8 @@ pkg_setup() {
 
 src_prepare() {
 	use opengl || epatch "${FILESDIR}"/${PN}-6.4.0-html-nonviz.patch
-	base_src_prepare
+	epatch ${PATCHES[@]}
+	epatch_user
 	eautoconf
 }
 
@@ -215,7 +216,7 @@ src_configure() {
 
 src_compile() {
 	# we don't want to link against embeded mysql lib
-	base_src_compile MYSQLDLIB=""
+	emake MYSQLDLIB=""
 }
 
 src_install() {
