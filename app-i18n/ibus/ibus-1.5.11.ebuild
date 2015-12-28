@@ -18,7 +18,7 @@ HOMEPAGE="https://github.com/ibus/ibus/wiki"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ppc ppc64 ~sparc x86 ~x86-fbsd"
+KEYWORDS="~alpha amd64 arm ~ia64 ppc ppc64 ~sparc x86 ~x86-fbsd"
 IUSE="deprecated gconf gtk +gtk3 +introspection nls +python test vala wayland +X"
 REQUIRED_USE="
 	|| ( gtk gtk3 X )
@@ -186,6 +186,5 @@ pkg_postrm() {
 	use gtk && gnome2_query_immodules_gtk2
 	use gtk3 && gnome2_query_immodules_gtk3
 	use gconf && gnome2_schemas_update
-	gnome2_schemas_savelist
 	gnome2_icon_cache_update
 }

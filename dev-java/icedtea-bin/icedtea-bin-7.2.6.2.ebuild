@@ -1,12 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 
 inherit java-vm-2 multilib prefix toolchain-funcs versionator
 
-dist="https://dev.gentoo.org/~chewi/distfiles"
+dist="mirror://funtoo/icedtea"
 TARBALL_VERSION="${PV}"
 
 DESCRIPTION="A Gentoo-made binary build of the IcedTea JDK"
@@ -14,7 +12,7 @@ HOMEPAGE="http://icedtea.classpath.org"
 SRC_URI="doc? ( ${dist}/${PN}-doc-${TARBALL_VERSION}.tar.xz )
 	source? ( ${dist}/${PN}-src-${TARBALL_VERSION}.tar.xz )"
 
-for arch in amd64 arm ppc ppc64 x86; do
+for arch in amd64 x86; do
 	SRC_URI+="
 		${arch}? (
 			${dist}/${PN}-core-${TARBALL_VERSION}-${arch}.tar.xz
@@ -24,12 +22,12 @@ done
 
 LICENSE="GPL-2-with-linking-exception"
 SLOT="7"
-KEYWORDS="-* amd64 ~arm ~ppc ~ppc64 x86"
+KEYWORDS="-* amd64 x86"
 
 IUSE="+alsa cjk +cups doc examples +gtk headless-awt nsplugin nss pulseaudio selinux source webstart"
 REQUIRED_USE="gtk? ( !headless-awt ) nsplugin? ( !headless-awt )"
 
-RESTRICT="preserve-libs strip"
+RESTRICT="mirror preserve-libs strip"
 QA_PREBUILT="opt/.*"
 
 # gsettings-desktop-schemas is needed for native proxy support. #431972
@@ -42,7 +40,7 @@ RDEPEND=">=dev-libs/glib-2.42:2
 	>=media-libs/freetype-2.5.5:2
 	>=media-libs/lcms-2.6:2
 	>=sys-devel/gcc-4.9.3
-	>=sys-libs/glibc-2.21
+	>=sys-libs/glibc-2.20
 	>=sys-libs/zlib-1.2.8-r1
 	virtual/jpeg:62
 	alsa? ( >=media-libs/alsa-lib-1.0 )

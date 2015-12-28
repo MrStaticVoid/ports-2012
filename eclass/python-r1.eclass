@@ -47,7 +47,7 @@ case "${EAPI:-0}" in
 			die "Unsupported EAPI=${EAPI:-4} (too old, allowed only on restricted set of packages) for ${ECLASS}"
 		fi
 		;;
-	5)
+	5|6)
 		# EAPI=5 is required for sane USE_EXPAND dependencies
 		;;
 	*)
@@ -63,6 +63,7 @@ elif [[ ${_PYTHON_ANY_R1} ]]; then
 	die 'python-r1.eclass can not be used with python-any-r1.eclass.'
 fi
 
+[[ ${EAPI} == [45] ]] && inherit eutils
 inherit multibuild python-utils-r1
 
 # @ECLASS-VARIABLE: PYTHON_COMPAT
@@ -81,12 +82,6 @@ inherit multibuild python-utils-r1
 # @CODE
 # PYTHON_COMPAT=( python2_7 python3_{3,4} )
 # @CODE
-if ! declare -p PYTHON_COMPAT &>/dev/null; then
-	die 'PYTHON_COMPAT not declared.'
-fi
-if [[ $(declare -p PYTHON_COMPAT) != "declare -a"* ]]; then
-	die 'PYTHON_COMPAT must be an array.'
-fi
 
 # @ECLASS-VARIABLE: PYTHON_COMPAT_OVERRIDE
 # @INTERNAL
@@ -185,24 +180,17 @@ fi
 # @CODE
 
 _python_set_globals() {
-	local impls=()
-
 	PYTHON_DEPS=
 	local i PYTHON_PKG_DEP
-	for i in "${PYTHON_COMPAT[@]}"; do
-		_python_impl_supported "${i}" || continue
 
+	_python_set_impls
+
+	for i in "${_PYTHON_SUPPORTED_IMPLS[@]}"; do
 		python_export "${i}" PYTHON_PKG_DEP
 		PYTHON_DEPS+="python_targets_${i}? ( ${PYTHON_PKG_DEP} ) "
-
-		impls+=( "${i}" )
 	done
 
-	if [[ ${#impls[@]} -eq 0 ]]; then
-		die "No supported implementation in PYTHON_COMPAT."
-	fi
-
-	local flags=( "${impls[@]/#/python_targets_}" )
+	local flags=( "${_PYTHON_SUPPORTED_IMPLS[@]/#/python_targets_}" )
 	local optflags=${flags[@]/%/(-)?}
 
 	# A nice QA trick here. Since a python-single-r1 package has to have
@@ -211,7 +199,7 @@ _python_set_globals() {
 	# it should prevent developers from mistakenly depending on packages
 	# not supporting multiple Python implementations.
 
-	local flags_st=( "${impls[@]/#/-python_single_target_}" )
+	local flags_st=( "${_PYTHON_SUPPORTED_IMPLS[@]/#/-python_single_target_}" )
 	optflags+=,${flags_st[@]/%/(-)}
 
 	IUSE=${flags[*]}
@@ -231,8 +219,10 @@ _python_set_globals() {
 	else
 		PYTHON_DEPS+="dev-lang/python-exec:2[${PYTHON_USEDEP}]"
 	fi
+	readonly PYTHON_DEPS PYTHON_REQUIRED_USE PYTHON_USEDEP
 }
 _python_set_globals
+unset -f _python_set_globals
 
 # @FUNCTION: _python_validate_useflags
 # @INTERNAL
@@ -243,9 +233,7 @@ _python_validate_useflags() {
 
 	local i
 
-	for i in "${PYTHON_COMPAT[@]}"; do
-		_python_impl_supported "${i}" || continue
-
+	for i in "${_PYTHON_SUPPORTED_IMPLS[@]}"; do
 		use "python_targets_${i}" && return 0
 	done
 
@@ -287,9 +275,7 @@ python_gen_usedep() {
 	local impl pattern
 	local matches=()
 
-	for impl in "${PYTHON_COMPAT[@]}"; do
-		_python_impl_supported "${impl}" || continue
-
+	for impl in "${_PYTHON_SUPPORTED_IMPLS[@]}"; do
 		for pattern; do
 			if [[ ${impl} == ${pattern} ]]; then
 				matches+=(
@@ -330,9 +316,7 @@ python_gen_useflags() {
 	local impl pattern
 	local matches=()
 
-	for impl in "${PYTHON_COMPAT[@]}"; do
-		_python_impl_supported "${impl}" || continue
-
+	for impl in "${_PYTHON_SUPPORTED_IMPLS[@]}"; do
 		for pattern; do
 			if [[ ${impl} == ${pattern} ]]; then
 				matches+=( "python_targets_${impl}" )
@@ -379,17 +363,15 @@ python_gen_cond_dep() {
 	local dep=${1}
 	shift
 
-	for impl in "${PYTHON_COMPAT[@]}"; do
-		_python_impl_supported "${impl}" || continue
-
+	for impl in "${_PYTHON_SUPPORTED_IMPLS[@]}"; do
 		for pattern; do
 			if [[ ${impl} == ${pattern} ]]; then
 				# substitute ${PYTHON_USEDEP} if used
 				# (since python_gen_usedep() will not return ${PYTHON_USEDEP}
 				#  the code is run at most once)
 				if [[ ${dep} == *'${PYTHON_USEDEP}'* ]]; then
-					local PYTHON_USEDEP=$(python_gen_usedep "${@}")
-					dep=${dep//\$\{PYTHON_USEDEP\}/${PYTHON_USEDEP}}
+					local usedep=$(python_gen_usedep "${@}")
+					dep=${dep//\$\{PYTHON_USEDEP\}/${usedep}}
 				fi
 
 				matches+=( "python_targets_${impl}? ( ${dep} )" )
@@ -457,12 +439,9 @@ _python_obtain_impls() {
 
 	MULTIBUILD_VARIANTS=()
 
-	for impl in "${_PYTHON_ALL_IMPLS[@]}"; do
-		if has "${impl}" "${PYTHON_COMPAT[@]}" \
-			&& use "python_targets_${impl}"
-		then
-			MULTIBUILD_VARIANTS+=( "${impl}" )
-		fi
+	for impl in "${_PYTHON_SUPPORTED_IMPLS[@]}"; do
+		has "${impl}" "${PYTHON_COMPAT[@]}" && \
+		use "python_targets_${impl}" && MULTIBUILD_VARIANTS+=( "${impl}" )
 	done
 }
 
@@ -526,6 +505,8 @@ python_foreach_impl() {
 python_parallel_foreach_impl() {
 	debug-print-function ${FUNCNAME} "${@}"
 
+	[[ ${EAPI} == [45] ]] || die "${FUNCNAME} is banned in EAPI ${EAPI}"
+
 	if [[ ! ${_PYTHON_PARALLEL_WARNED} ]]; then
 		eqawarn "python_parallel_foreach_impl() is no longer meaningful. All runs"
 		eqawarn "are non-parallel now. Please replace the call with python_foreach_impl."
@@ -578,6 +559,7 @@ python_setup() {
 		done
 	}
 	python_foreach_impl _python_try_impl
+	unset -f _python_try_impl
 
 	if [[ ! ${best_impl} ]]; then
 		eerror "${FUNCNAME}: none of the enabled implementation matched the patterns."
@@ -601,6 +583,8 @@ python_setup() {
 python_export_best() {
 	debug-print-function ${FUNCNAME} "${@}"
 
+	[[ ${EAPI} == [45] ]] || die "${FUNCNAME} is banned in EAPI ${EAPI}"
+
 	eqawarn "python_export_best() is deprecated. Please use python_setup instead,"
 	eqawarn "combined with python_export if necessary."
 
@@ -613,6 +597,7 @@ python_export_best() {
 		best=${MULTIBUILD_VARIANT}
 	}
 	multibuild_for_best_variant _python_set_best
+	unset -f _python_set_best
 
 	debug-print "${FUNCNAME}: Best implementation is: ${best}"
 	python_export "${best}" "${@}"
@@ -647,6 +632,7 @@ python_replicate_script() {
 
 	local files=( "${@}" )
 	python_foreach_impl _python_replicate_script
+	unset -f _python_replicate_script
 
 	# install the wrappers
 	local f
