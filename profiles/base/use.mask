@@ -2,15 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+# Brian Evans <grknight@gentoo.org> (2 Dec 2015)
+# php 5.4 is end of life, masked for removal
+php_targets_php5-4
+
 # Daniel Kuehn <lejonet@gentoo.org> (13 Nov 2015)
 # Masking sssd USE-flag globally and unmasking it on the tested arches
 # to stop minor arches from blocking major arches AND prevent the dropping
 # of keywords on sudo for said minor arches, in regards to ssd and sudo bugs
 # 540540 and 525674
 sssd
-
-# php 7 is still masked for testing
-php_targets_php7-0
 
 # cilk has been ported only to x86 systems
 cilk
@@ -327,10 +328,8 @@ dxr3
 
 # Ralph Sennhauser <sera@gentoo.org> (31 Jul 2012)
 # Unmask in arch specific profiles when jython implementaton is available.
-python_targets_jython2_5
 python_targets_jython2_7
 python_targets_jython3_1
-python_single_target_jython2_5
 python_single_target_jython2_7
 python_single_target_jython3_1
 
