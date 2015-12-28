@@ -1,6 +1,8 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="5"
+EAPI=3
 
 inherit eutils python toolchain-funcs
 
@@ -12,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2.1"
 
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 ppc x86"
 
 IUSE="aac airplay +alsa ao asf avahi cdda curl cxx ffmpeg flac gvfs ices
 jack mac mlib-update mms +mad modplug mp3 mp4 musepack ofa oss
@@ -68,7 +70,7 @@ RDEPEND="server? (
 DEPEND="${RDEPEND}
 	dev-lang/python
 	python? ( dev-python/pyrex )
-	perl? ( virtual/perl-Module-Build )
+	perl? ( dev-perl/Module-Build )
 	virtual/pkgconfig
 	test? ( dev-util/cunit )
 	"
@@ -105,10 +107,14 @@ src_prepare() {
 	cd .waf* || die
 	epatch "${FILESDIR}/${PN}"-0.8DrO_o-waflib-fix-perl.patch
 	cd "${S}"
-	epatch "${FILESDIR}/${P}"-fix-ffmpeg-compile-error.patch
+	epatch "${FILESDIR}/${P}"-ffmpeg-0.11.patch #443256
+	epatch "${FILESDIR}/${P}"-libav-9-p2.patch #443256
 	epatch "${FILESDIR}/${P}"-libav-9.patch #443256
 	epatch "${FILESDIR}/${P}"-cython-0.19.1.patch
 	epatch "${FILESDIR}/${P}"-memset.patch
+	epatch "${FILESDIR}/${P}"-ffmpeg2.patch #536232
+	epatch "${FILESDIR}/${P}"-cpython.patch
+	epatch "${FILESDIR}/${P}"-modpug.patch #536046
 
 	if has_version dev-libs/libcdio-paranoia; then
 		sed -i -e 's:cdio/cdda.h:cdio/paranoia/cdda.h:' src/plugins/cdda/cdda.c || die

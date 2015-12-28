@@ -26,11 +26,12 @@ PATCHES=(
 	"${FILESDIR}"/1.9.0-mapping.patch
 	)
 
-pkg_pretend() {
+pkg_setup() {
 	six_dir_check() {
-		local dir="${ROOT}"/$(python_get_sitedir)/six
-		[[ -d "${dir}" ]] \
-			&& die "${PN} doesn't work if ${dir} is a directory #546730"
+		local dir="${ROOT%/}$(python_get_sitedir)"/six
+		if [[ -d "${dir}" ]]; then
+			die "${PN} doesn't work if ${dir} is a directory #546730"
+		fi
 	}
 	python_foreach_impl six_dir_check
 }
