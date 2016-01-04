@@ -1,9 +1,9 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/sdlmame/sdlmame-0.149.ebuild,v 1.2 2014/05/15 16:40:11 ulm Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python2_6 python2_7 )
 inherit eutils flag-o-matic python-any-r1 games
 
 MY_PV=${PV/.}
@@ -13,12 +13,12 @@ MY_P=${MY_P%%_p*}
 MY_CONF_VER="0.139"
 
 # patches
-SRC_URI="$(for PATCH_VER in $(seq 1 ${PV##*_p}) ; do echo "https://dev.gentoo.org/~hasufell/distfiles/${MY_P}u${PATCH_VER}_diff.zip"; done)"
+SRC_URI="$(for PATCH_VER in $(seq 1 ${PV##*_p}) ; do echo "http://dev.gentoo.org/~hasufell/distfiles/${MY_P}u${PATCH_VER}_diff.zip"; done)"
 
 DESCRIPTION="Multiple Arcade Machine Emulator (SDL)"
 HOMEPAGE="http://mamedev.org/"
 # Upstream doesn't allow fetching with unknown User-Agent such as wget
-SRC_URI="$SRC_URI https://dev.gentoo.org/~hasufell/distfiles/${MY_P/sdl}s.zip"
+SRC_URI="$SRC_URI http://dev.gentoo.org/~hasufell/distfiles/${MY_P/sdl}s.zip"
 if [[ ${PN} == "sdlmame" ]] ; then
 	SRC_URI="$SRC_URI http://www.netswarm.net/misc/sdlmame-ui.bdf.gz"
 fi

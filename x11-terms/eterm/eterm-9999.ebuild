@@ -1,21 +1,23 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/eterm-9999.ebuild,v 1.15 2009/03/08 20:08:58 gentoofan23 Exp $
 
-EAPI="3"
+EAPI="2"
 inherit eutils autotools
 
 MY_P=Eterm-${PV}
 
 if [[ ${PV} == "9999" ]] ; then
-	ESVN_REPO_URI="https://svn.enlightenment.org/svn/e/trunk/eterm/Eterm"
+	ESVN_REPO_URI="http://svn.enlightenment.org/svn/e/trunk/eterm"
 	inherit subversion
 	SRC_URI=""
 	KEYWORDS=""
 else
 	SRC_URI="http://www.eterm.org/download/${MY_P}.tar.gz
-		!minimal? ( http://www.eterm.org/download/Eterm-bg-${PV}.tar.gz )"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~ppc-macos ~x86-macos"
+		!minimal? ( http://www.eterm.org/download/Eterm-bg-${PV}.tar.gz )
+		mirror://sourceforge/eterm/${MY_P}.tar.gz
+		!minimal? ( mirror://sourceforge/eterm/Eterm-bg-${PV}.tar.gz )"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd"
 fi
 
 DESCRIPTION="A vt102 terminal emulator for X"
@@ -23,9 +25,9 @@ HOMEPAGE="http://www.eterm.org/"
 
 LICENSE="BSD"
 SLOT="0"
-IUSE="escreen minimal cpu_flags_x86_mmx cpu_flags_x86_sse2 unicode +utempter"
+IUSE="escreen minimal mmx sse2 unicode"
 
-RDEPEND="x11-libs/libX11
+DEPEND="x11-libs/libX11
 	x11-libs/libXmu
 	x11-libs/libXt
 	x11-libs/libICE
@@ -34,9 +36,7 @@ RDEPEND="x11-libs/libX11
 	x11-proto/xproto
 	>=x11-libs/libast-0.6.1
 	media-libs/imlib2[X]
-	media-fonts/font-misc-misc
 	escreen? ( app-misc/screen )"
-DEPEND="${RDEPEND}"
 
 if [[ ${PV} == "9999" ]] ; then
 	S=${WORKDIR}/${ECVS_MODULE}
@@ -47,7 +47,7 @@ fi
 src_unpack() {
 	if [[ ${PV} == "9999" ]] ; then
 		subversion_src_unpack
-		cd "${S}"
+		cd "${WORKDIR}/Eterm"
 		eautoreconf
 	else
 		unpack ${MY_P}.tar.gz
@@ -58,25 +58,24 @@ src_unpack() {
 
 src_configure() {
 	export TIC="true"
+	if [[ ${PV} == "9999" ]] ; then
+		cd "${WORKDIR}/Eterm"
+	fi
 	econf \
-		--disable-static \
 		$(use_enable escreen) \
 		--with-imlib \
 		--enable-trans \
-		$(use_enable cpu_flags_x86_mmx mmx) \
-		$(use_enable cpu_flags_x86_sse2 sse2) \
+		$(use_enable mmx) \
+		$(use_enable sse2) \
 		$(use_enable unicode multi-charset) \
-		$(use_enable utempter utmp) \
 		--with-delete=execute \
 		--with-backspace=auto
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	cd "${WORKDIR}/Eterm"
+	emake DESTDIR="${D}" install || die "install failed"
 	dodoc ChangeLog README ReleaseNotes
 	use escreen && dodoc doc/README.Escreen
 	dodoc bg/README.backgrounds
-
-	# We don't install headers to link against this library
-	rm -f "${D}"/usr/*/libEterm.{so,la}
 }

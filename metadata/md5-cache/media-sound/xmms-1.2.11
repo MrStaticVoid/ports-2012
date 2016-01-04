@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst unpack
+DEPEND==x11-libs/gtk+-1.2* >=sys-devel/automake-1.9 >=sys-devel/autoconf-2.5 sys-devel/libtool nls? ( dev-util/intltool dev-lang/perl sys-devel/gettext ) !nls? ( !<sys-devel/gettext-0.14.1 )
+DESCRIPTION=X MultiMedia System
+HOMEPAGE=http://www.xmms.org/
+IUSE=nls esd mmx vorbis 3dnow mikmod directfb alsa oss arts jack sndfile lirc flac mad mp3
+KEYWORDS=alpha amd64 arm hppa ia64 mips ppc ppc64 sh sparc x86
+LICENSE=GPL-2
+PDEPEND=lirc? ( media-plugins/xmms-lirc ) flac? ( media-libs/flac ) mikmod? ( media-plugins/xmms-mikmod ) mp3? ( mad? ( >=media-plugins/xmms-mad-0.7 ) >=media-plugins/xmms-mpg123-1.2.10-r1 ) vorbis? ( >=media-plugins/xmms-vorbis-1.2.10-r1 ) sndfile? ( media-plugins/xmms-sndfile ) alsa? ( media-plugins/xmms-alsa ) arts? ( media-plugins/xmms-arts ) jack? ( media-plugins/xmms-jack ) esd? ( media-plugins/xmms-esd ) oss? ( media-plugins/xmms-oss )
+RDEPEND==x11-libs/gtk+-1.2* directfb? ( dev-libs/DirectFB ) app-arch/unzip
+SLOT=0
+SRC_URI=http://www.xmms.org/files/1.2.x/xmms-1.2.11.tar.bz2 mirror://gentoo/gentoo_ice-xmms-0.2.tar.bz2 http://dev.gentoo.org/~eradicator/xmms/xmms-1.2.10-gentoo-m4-1.1.tar.bz2
+_eclasses_=eutils	d9bd2ddd85a58e470b49ca997e255a4c	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	libtool	b75230758539a7da029e24afdb693960	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=1c348202254eee780fdcc48c73d51d09

@@ -19,10 +19,7 @@ else
 	d=.
 fi
 make -C ${d} -j -f codegenerator.mk
-tar="${DISTDIR}/${P}-generated-addons.tar.xz"
-tar cf - ${d}/xbmc/interfaces/python/generated/*.cpp | xz > "${tar}"
+tar cf - ${d}/xbmc/interfaces/python/generated/*.cpp | xz > ${DISTDIR}/${P}-generated-addons.tar.xz
 if [[ ${PV} != "9999" ]] ; then
 	rm -rf ${PN}-*/
 fi
-
-du -b "${tar}"
