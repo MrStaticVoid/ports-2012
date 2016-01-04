@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst prerm unpack
+DEPEND=media-gfx/sane-backends[usb] >=app-arch/rpm2targz-9.0.0.3g
+DESCRIPTION=Scanner driver
+EAPI=4
+HOMEPAGE=http://welcome.solutions.brother.com/bsc/public_s/id/linux/en/download_scn.html#brscan4
+KEYWORDS=~x86 ~amd64
+LICENSE=GPL-2
+RDEPEND=media-gfx/sane-backends[usb]
+SLOT=0
+SRC_URI=amd64? ( http://www.brother.com/pub/bsc/linux/dlf/brscan4-0.4.2-1.x86_64.rpm ) x86? ( http://www.brother.com/pub/bsc/linux/dlf/brscan4-0.4.2-1.i386.rpm )
+_eclasses_=eutils	d9bd2ddd85a58e470b49ca997e255a4c	multilib	3972ca401cf7dbb430df9995f5d8d580	rpm	514a1840ee796656311a029ea952faa9	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=b138835ceb7b609cf4ae53924797a8f6

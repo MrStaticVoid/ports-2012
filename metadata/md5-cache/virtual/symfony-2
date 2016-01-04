@@ -1,0 +1,10 @@
+DEFINED_PHASES=postinst
+DESCRIPTION=Virtual for Symfony
+EAPI=4
+HOMEPAGE=http://www.symfony.com
+IUSE=apache apc dev less mongodb mysql nginx
+KEYWORDS=~amd64 ~x86
+LICENSE=metapackage
+RDEPEND=dev-lang/php[intl,cli,ctype,mysql,pdo,session,simplexml,tokenizer,xml] apc? ( dev-php/pecl-apc ) apache? ( www-servers/apache ) nginx? ( www-servers/nginx ) mongodb? ( dev-db/mongodb dev-php/pecl-mongo ) mysql? ( dev-db/mysql ) less? ( net-libs/nodejs ) dev? ( dev-ruby/capistrano-symfony )
+SLOT=0
+_md5_=24a44c5456eaa05e11e36257605772be

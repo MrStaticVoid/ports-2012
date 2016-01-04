@@ -1,0 +1,8 @@
+DEFINED_PHASES=-
+DESCRIPTION=Virtual for Broadcom BCM 2835 C library
+EAPI=4
+KEYWORDS=~arm ~x86 ~amd64
+LICENSE=metapackage
+RDEPEND=|| ( dev-libs/bcm2835 media-libs/bcm2835-libs )
+SLOT=0
+_md5_=cbb5161560cd68efdf476871cd4ca2b2
