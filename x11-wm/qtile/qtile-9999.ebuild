@@ -20,7 +20,7 @@ IUSE="dbus widget-google-calendar widget-imap widget-launchbar widget-mpd widget
 
 REQUIRED_USE="widget-mpris? ( dbus )
 	widget-keyboardkbdd? ( dbus )
-	widget-google-calendar? ( python_targets_python2_7 )
+	widget-google-calendar? ( || ( python_targets_python2_7 python_targets_python3_4 ) )
 	widget-wlan? ( python_targets_python2_7 )
 "
 
@@ -28,9 +28,9 @@ RDEPEND="x11-libs/cairo[xcb] x11-libs/pango
 	$(python_gen_cond_dep 'dev-python/asyncio[${PYTHON_USEDEP}]' 'python3_3')
 	$(python_gen_cond_dep 'dev-python/trollius[${PYTHON_USEDEP}]' 'python2*')
 	>=dev-python/six-1.4.1[${PYTHON_USEDEP}]
-	>=dev-python/xcffib-0.3.0[${PYTHON_USEDEP}]
+	>=dev-python/xcffib-0.4.0[${PYTHON_USEDEP}]
 	>=dev-python/cairocffi-0.7[${PYTHON_USEDEP}]
-	>=dev-python/cffi-1.1[${PYTHON_USEDEP}]
+	>=dev-python/cffi-1.3[${PYTHON_USEDEP}]
 	dbus? (
 		dev-python/dbus-python[${PYTHON_USEDEP}]
 		>=dev-python/pygobject-3.4.2-r1000[${PYTHON_USEDEP}]
@@ -39,7 +39,7 @@ RDEPEND="x11-libs/cairo[xcb] x11-libs/pango
 		dev-python/httplib2[${PYTHON_USEDEP}]
 		dev-python/python-dateutil[${PYTHON_USEDEP}]
 		dev-python/oauth2client[$PYTHON_USEDEP]
-		dev-python/google-api-python-client[python_targets_python2_7]
+		dev-python/google-api-python-client[${PYTHON_USEDEP}]
 	)
 	widget-imap? ( dev-python/keyring[${PYTHON_USEDEP}] )
 	widget-launchbar? ( dev-python/pyxdg[${PYTHON_USEDEP}] )

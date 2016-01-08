@@ -1,4 +1,6 @@
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -15,7 +17,7 @@ SRC_URI="
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86"
 IUSE="examples grass gsl mapserver postgres python test"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )
@@ -41,7 +43,7 @@ RDEPEND="
 		( || ( <x11-libs/qwt-6.1.2:6[svg] >=x11-libs/qwt-6.1.2:6[svg,qt4] ) >=x11-libs/qwtpolar-1 )
 		( x11-libs/qwt:5[svg] <x11-libs/qwtpolar-1 )
 	)
-	grass? ( >=sci-geosciences/grass-6.4 )
+	grass? ( || ( >=sci-geosciences/grass-7.0.0 ) )
 	mapserver? ( dev-libs/fcgi )
 	postgres? ( dev-db/postgresql:* )
 	python? (

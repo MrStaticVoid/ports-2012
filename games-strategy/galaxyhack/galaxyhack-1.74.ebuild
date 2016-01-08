@@ -12,12 +12,12 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2
 
 LICENSE="GPL-2 galaxyhack"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE=""
 
 DEPEND="media-libs/libsdl[video]
-	media-libs/sdl-image
-	media-libs/sdl-mixer
+	media-libs/sdl-image[png]
+	media-libs/sdl-mixer[mod,vorbis]
 	>=dev-libs/boost-1.34"
 RDEPEND=${DEPEND}
 
