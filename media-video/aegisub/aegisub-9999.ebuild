@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -9,7 +9,7 @@ AUTOTOOLS_IN_SOURCE_BUILD=1
 PLOCALES="ar bg ca cs da de el es eu fa fi fr_FR gl hu id it ja ko nl pl pt_BR pt_PT ru sr_RS@latin sr_RS uk_UA vi zh_CN zh_TW"
 WX_GTK_VER="3.0"
 
-inherit autotools-utils fdo-mime gnome2-utils l10n toolchain-funcs wxwidgets git-2
+inherit autotools-utils fdo-mime flag-o-matic gnome2-utils l10n wxwidgets git-2
 
 DESCRIPTION="Advanced subtitle editor"
 HOMEPAGE="http://www.aegisub.org/"
@@ -24,7 +24,7 @@ IUSE="alsa debug +ffmpeg +fftw openal oss portaudio pulseaudio spell"
 # However, most of these minimal versions date back to 2006-2010 yy.
 # Such version specifiers are meaningless nowadays, so they are omitted.
 RDEPEND="
-	>=dev-lang/luajit-2.0.4:2
+	>=dev-lang/luajit-2.0.4:2[lua52compat]
 	>=dev-libs/boost-1.50.0:=[icu,nls,threads]
 	>=dev-libs/icu-4.8.1.1:=
 	>=x11-libs/wxGTK-3.0.0:${WX_GTK_VER}[X,opengl,debug?]
@@ -58,7 +58,6 @@ REQUIRED_USE="
 # Unfortunately, luabins upstream is dead since 2011.
 # Thus unbundling luabins is not worth the effort.
 PATCHES=(
-	"${FILESDIR}/${PN}-3.2.2-fix-lua-regexp.patch"
 	"${FILESDIR}/${P}-unbundle-luajit.patch"
 	"${FILESDIR}/${P}-add-missing-pthread-flags.patch"
 	"${FILESDIR}/${PN}-3.2.2-respect-user-compiler-flags.patch"
