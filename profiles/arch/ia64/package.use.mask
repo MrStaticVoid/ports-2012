@@ -2,6 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+# Michael Weber <xmw@gentoo.org> (09 Jan 2016)
+# no ia64 support in media-libs/glfw
+app-text/mupdf opengl
+
 # Mike Frysinger <vapier@gentoo.org> (22 Dec 2015)
 # Needs keywording. #569254
 net-firewall/iptables nftables
@@ -116,10 +120,6 @@ x11-drivers/xf86-video-ati glamor
 # Christoph Junghans <ottxor@gentoo.org> (21 Jul 2014)
 # Missing keywords on sci-libs/libcerf (bug 517726)
 sci-visualization/gnuplot libcerf
-
-# Markos Chandras <hwoarang@gentoo.org> (26 Apr 2014)
-# dev-libs/jansson is not keyworded for ia64. Bug #507428
-app-admin/ulogd json
 
 # Pacho Ramos <pacho@gentoo.org> (12 Apr 2014)
 # Missing keywords, bug #507490

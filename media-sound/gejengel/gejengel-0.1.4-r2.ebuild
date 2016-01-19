@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=4
+EAPI=5
 inherit autotools eutils multilib flag-o-matic
 
 DESCRIPTION="Lightweight audio player"
@@ -11,7 +11,7 @@ SRC_URI="https://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="+alsa audioscrobbler debug dbus +ffmpeg flac libnotify mad openal pulseaudio syslog"
 
 RDEPEND="dev-cpp/gtkmm:2.4
@@ -53,6 +53,7 @@ src_prepare() {
 }
 
 src_configure() {
+	append-cxxflags -std=c++11
 	econf \
 		--disable-shared \
 		$(use_enable syslog logging) \

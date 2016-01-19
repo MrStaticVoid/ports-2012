@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -46,10 +46,7 @@ RDEPEND=">=media-libs/libsfml-2.1
 			dev-libs/libevdev
 			virtual/udev
 	)
-	ffmpeg? (
-			virtual/ffmpeg
-			!!>=media-video/libav-10
-	)
+	ffmpeg? ( virtual/ffmpeg )
 	llvm? ( sys-devel/llvm )
 	openal? (
 			media-libs/openal
@@ -122,18 +119,15 @@ src_prepare() {
 	# Remove ALL the bundled libraries, aside from:
 	# - SOIL: The sources are not public.
 	# - Bochs-disasm: Don't know what it is.
-	# - GL: A custom gl.h file is used.
 	# - gtest: Their build set up solely relies on the build in gtest.
 	# - xxhash: Not on the tree.
 	mv Externals/SOIL . || die
 	mv Externals/Bochs_disasm . || die
-	mv Externals/GL . || die
 	mv Externals/gtest . || die
 	mv Externals/xxhash . || die
 	rm -r Externals/* || die "Failed to delete Externals dir."
 	mv Bochs_disasm Externals || die
 	mv SOIL Externals || die
-	mv GL Externals || die
 	mv gtest Externals || die
 	mv xxhash Externals || die
 }

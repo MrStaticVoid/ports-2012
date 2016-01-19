@@ -17,7 +17,7 @@ if [[ $PV == *9999 ]]; then
 	EGIT_REPO_URI="git://xenbits.xen.org/${PN}.git"
 	SRC_URI=""
 else
-	KEYWORDS="~amd64 ~arm ~arm64 -x86"
+	KEYWORDS="amd64 ~arm ~arm64 -x86"
 	UPSTREAM_VER=
 	SECURITY_VER=0
 	# var set to reflect https://dev.gentoo.org/~idella4/
@@ -185,4 +185,8 @@ pkg_postinst() {
 	elog " http://en.gentoo-wiki.com/wiki/Xen/"
 
 	use efi && einfo "The efi executable is installed in boot/efi/gentoo"
+
+	elog "You can optionally block the installation of /boot/xen-syms by an entry"
+	elog "in folder /etc/portage/env using the portage's feature INSTALL_MASK"
+	elog "e.g. echo ${msg} > /etc/portage/env/xen.conf"
 }

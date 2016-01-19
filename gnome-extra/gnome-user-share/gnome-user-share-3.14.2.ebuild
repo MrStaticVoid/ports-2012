@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -24,7 +22,7 @@ RDEPEND="
 	>=gnome-base/nautilus-2.91.7
 	media-libs/libcanberra[gtk3]
 	>=www-apache/mod_dnssd-0.6
-	>=www-servers/apache-2.2[apache2_modules_dav,apache2_modules_dav_fs,apache2_modules_authn_file,apache2_modules_auth_digest,apache2_modules_authz_groupfile,apache2_mpms_prefork]
+	>=www-servers/apache-2.2[apache2_modules_dav,apache2_modules_dav_fs,apache2_modules_authn_file,apache2_modules_auth_digest,apache2_modules_authz_groupfile]
 	>=x11-libs/libnotify-0.7:=
 	bluetooth? (
 		>=net-wireless/gnome-bluetooth-3.9.3:2=
@@ -38,6 +36,10 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	epatch ${FILESDIR}/gnome-user-share-3.14-remove-prefork.patch || die
+}
 
 src_configure() {
 	gnome2_src_configure \
