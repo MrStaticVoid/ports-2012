@@ -174,6 +174,9 @@ src_prepare() {
 	# https://bugs.gentoo.org/show_bug.cgi?id=565358
 	epatch "${FILESDIR}"/llvm-3.8-llvm-config.patch
 
+	# disable use of SDK on OSX, bug #568758
+	sed -i -e 's/xcrun/false/' utils/lit/lit/util.py || die
+
 	if use clang; then
 		# Automatically select active system GCC's libraries, bugs #406163 and #417913
 		epatch "${FILESDIR}"/clang-3.5-gentoo-runtime-gcc-detection-v3.patch
@@ -201,10 +204,10 @@ src_prepare() {
 			-i tools/lldb/scripts/Python/modules/CMakeLists.txt || die
 	fi
 
-	python_setup
-
 	# User patches
 	epatch_user
+
+	python_setup
 
 	# Native libdir is used to hold LLVMgold.so
 	NATIVE_LIBDIR=$(get_libdir)
@@ -215,7 +218,7 @@ multilib_src_configure() {
 	if use multitarget; then
 		targets=all
 	else
-		targets='host;CppBackend'
+		targets='host;BPF;CppBackend'
 		use video_cards_radeon && targets+=';AMDGPU'
 	fi
 

@@ -4,7 +4,7 @@ not using the toolchain eclass.
 The current "gold" master ebuild -- the one that contains all the most recent
 changes and new ebuilds should be based upon, is:
 
-gcc-4.9.2-r2.ebuild
+gcc-4.9.3-r2.ebuild
 
 == Introduction ==
 
