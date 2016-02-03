@@ -54,6 +54,16 @@ esvn_clean() {
 	find "$@" -type d -name '.svn' -prune -print0 | xargs -0 rm -rf
 }
 
+# @FUNCTION: egit_clean
+# @USAGE: [list of dirs]
+# @DESCRIPTION:
+# Remove .git* directories/files recursiveley.  Useful when a source tarball
+# contains internal Git directories.  Defaults to $PWD.
+egit_clean() {
+	[[ -z $* ]] && set -- .
+	find "$@" -type d -name '.git*' -prune -print0 | xargs -0 rm -rf
+}
+
 # @FUNCTION: estack_push
 # @USAGE: <stack> [items to push]
 # @DESCRIPTION:
@@ -99,7 +109,7 @@ estack_pop() {
 	if [[ -n ${_estack_retvar} ]] ; then
 		eval ${_estack_retvar}=\"\${${_estack_name}\[${_estack_i}\]}\"
 	fi
-	eval unset ${_estack_name}\[${_estack_i}\]
+	eval unset \"${_estack_name}\[${_estack_i}\]\"
 }
 
 # @FUNCTION: evar_push

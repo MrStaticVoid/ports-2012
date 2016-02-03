@@ -13,7 +13,7 @@ SRC_URI="https://tarballs.openstack.org/${PN}/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="doc mysql postgres +sqlite +swift test"
 REQUIRED_USE="|| ( mysql postgres sqlite )"
 
@@ -133,7 +133,7 @@ RDEPEND="
 	!~dev-python/python-keystoneclient-1.8.0[${PYTHON_USEDEP}]
 	<=dev-python/python-keystoneclient-2.0.0-r9999[${PYTHON_USEDEP}]
 	>=dev-python/pyopenssl-0.14[${PYTHON_USEDEP}]
-	<=dev-python/pyopenssl-0.15.1[${PYTHON_USEDEP}]
+	<=dev-python/pyopenssl-0.15.1-r9999[${PYTHON_USEDEP}]
 	>=dev-python/six-1.9.0[${PYTHON_USEDEP}]
 	<=dev-python/six-1.10.0[${PYTHON_USEDEP}]
 	>=dev-python/oslo-db-2.4.1[${PYTHON_USEDEP}]

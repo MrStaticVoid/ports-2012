@@ -30,17 +30,60 @@
 
 #--- END OF EXAMPLES ---
 
+# Bernard Cafarelli <voyageur@gentoo.org> (27 Jan 2016)
+# New llvm version, masked for testing
+=sys-devel/llvm-3.8.0*
+=sys-devel/clang-3.8.0*
+
+# James Le Cuirot <chewi@gentoo.org> (26 Jan 2016)
+# No new release since 2008. Removal in 30 days.
+app-cdr/webcdwriter
+
+# James Le Cuirot <chewi@gentoo.org> (26 Jan 2016)
+# Now part of eselect-java. Removal in 30 days.
+app-eselect/eselect-maven
+
+# Michael Sterrett <mr_bones_@gentoo.org> (20 Jan 2016)
+# Buggy and no updates in 9 years.
+# Masked for removal on 20160219
+games-roguelike/slashem
+
+# Michael Sterrett <mr_bones_@gentoo.org> (20 Jan 2016)
+# Upstream went away.  No updates in 8 years.
+# Masked for removal on 20160219
+games-strategy/attal
+
+# Sergey Popov <pinkbyte@gentoo.org> (20 Jan 2016)
+# Mask new versions of Boost - they are known to cause breakages
+~dev-util/boost-build-1.60.0
+~dev-libs/boost-1.60.0
+~dev-util/boost-build-1.59.0
+~dev-libs/boost-1.59.0
+
+# Mike Frysinger <vapier@gentoo.org> (18 Jan 2016)
+# Force people to migrate to the new combined libraries:
+# media-libs/elementary & dev-libs/efl. #571796
+app-benchmarks/expedite
+dev-libs/ecore
+dev-libs/edbus
+dev-libs/eet
+dev-libs/eeze
+dev-libs/efreet
+dev-libs/eina
+dev-libs/eio
+dev-libs/embryo
+dev-libs/eobj
+dev-libs/ephysics
+media-libs/edje
+media-libs/emotion
+media-libs/ethumb
+media-libs/evas
+
 # Sergei Trofimovich <slyfox@gentoo.org> (19 Jan 2016)
 # Mask broken package. Exposes badly designed API
 # that can't be transparently used in ghc-7.8 and
 # ghc-7.10, bug #561122
 dev-haskell/extra:0
-
-# Pacho Ramos <pacho@gentoo.org> (16 Jan 2016)
-# Dead for years, not compatible with latest libsigc++ (#569514), it
-# requires either a lot of patching or move to a forked project that tries
-# to continue it. Removal in a month.
-media-sound/seq24
 
 # James Le Cuirot <chewi@gentoo.org> (14 Jan 2016)
 # Superseded by gnu-classpath. Removal in 30 days.
@@ -71,24 +114,8 @@ dev-perl/ExtUtils-Constant
 media-libs/opengtl
 
 # Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561120. Removal in a month
-games-fps/ut2003-bonuspack-cm
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
 # Cannot be downloaded either mirrored, bug #561142. Removal in a month
 games-fps/ut2004-alienswarm
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561144. Removal in a month
-games-fps/ut2004-fragops
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561146. Removal in a month
-games-fps/ut2004-hamsterbash
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561148. Removal in a month
-games-fps/ut2004-ultraduel
 
 # Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
 # Cannot be downloaded either mirrored, bug #561150. Removal in a month
@@ -97,24 +124,6 @@ games-rpg/sacred-gold
 # Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
 # Cannot be downloaded either mirrored, bug #561154. Removal in a month
 games-strategy/coldwar
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561162. Removal in a month
-games-fps/ut2003-bonuspack-de
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561166
-# The ebuild needs to be either adapted to the new file or rely and trust
-# the file from a new SRC_URI. Removal in a month.
-games-fps/ut2004-bonuspack-cbp2
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561168. Removal in a month
-games-fps/ut2004-cor
-
-# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
-# Cannot be downloaded either mirrored, bug #561172. Removal in a month
-games-fps/ut2004-crossfire
 
 # Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
 # Cannot be downloaded either mirrored, bug #561176. Removal in a month
@@ -510,11 +519,6 @@ app-mobilephone/kannel-sqlbox
 net-proxy/dansguardian
 
 # Pacho Ramos <pacho@gentoo.org> (05 Jan 2016)
-# Needs to be bumped but it lacks maintainer, bug #505124. Removal in a
-# month.
-app-emulation/vagrant
-
-# Pacho Ramos <pacho@gentoo.org> (05 Jan 2016)
 # Cannot be download, license is incorrect, bug #505752. Removal in a month.
 games-strategy/coldwar-demo
 
@@ -715,30 +719,9 @@ media-video/bombono-dvd
 # Removal in a month.
 sci-electronics/gspeakers
 
-# Michael Sterrett <mr_bones_@gentoo.org> (30 Dec 2015)
-# Upstream has gone away and games-strategy/xbattleai is
-# basically a superset anyhow.
-# Masked for removal on 20160129
-games-strategy/xbattle
-
 # Victor Ostorga <vostorga@gentoo.org> (30 Dec 2015)
 # Mask this liferea version because upstream released it broken
 =net-news/liferea-1.10.17
-
-# Michael Sterrett <mr_bones_@gentoo.org> (30 Dec 2015)
-# Unnecessary with newer version of games-simulation/flightgear
-# Masked for removal on 20160129
-games-simulation/fgrun
-
-# Michael Sterrett <mr_bones_@gentoo.org> (29 Dec 2015)
-# Fetch fails since it looks like it's distributed via stream now (bug #553728)
-# Masked for removal on 20160128
-games-strategy/revenge-of-the-titans
-
-# Michael Sterrett <mr_bones_@gentoo.org> (29 Dec 2015)
-# Lacking in fun; no upstream; crashy (bug #550890)
-# Masked for removal on 20160128
-games-simulation/qct
 
 # Justin Lecher <jlec@gentoo.org> (29 Dec 2015)
 # Fails to build and test runs
@@ -746,43 +729,17 @@ games-simulation/qct
 # #370021, #478614, #513964
 sci-libs/libbufr
 
-# Michael Palimaka <kensington@gentoo.org> (27 Dec 2015)
-# Fails to build. Dead upstream. Masked for removal in 30 days.
-# Bug 541522
-dev-util/pmk
-
 # Mikle Kolyada <zlogene@gentoo.org> (26 Dec 2015)
 # Dead upstream (last activity in 2003)
 # Nothing in the tree depends on it
 # Masked for removal
 dev-perl/SpeedyCGI
 
-# Sergey Popov <pinkbyte@gentoo.org> (25 Dec 2015)
-# Old versions lacks multilib support and proper subslots
-# Masked for removal
-<dev-libs/boost-1.55.0
-<dev-util/boost-build-1.55.0
-
 # Manuel Rüger <mrueg@rueg.eu> (24 Dec 2015)
 # Effectively unmaintained, multiple bugs
 # Bug 288611,358013,413987,468186,480854,528750,548480,566226
 # Masked for removal in 30 days.
 media-tv/xawtv
-
-# Michael Palimaka <kensington@gentoo.org> (22 Dec 2015)
-# Fails to build. Dead upstream. Masked for removal in 30 days.
-# Bug 566446
-media-video/vmaid
-
-# Michael Palimaka <kensington@gentoo.org> (22 Dec 2015)
-# No longer works. Dead upstream. Masked for removal in 30 days.
-# Bug 507914
-app-doc/ebookmerge
-
-# Michael Sterrett <mr_bones_@gentoo.org> (21 Dec 2015)
-# Vanished from the internet. (bug #561148)
-# Masked for removal on 20160120
-games-fps/ut2004-ultraduel
 
 # Patrick Lauer <patrick@gentoo.org> (20 Dec 2015)
 # Mask TOFU release that doesn't work #567768 and friends
@@ -791,12 +748,6 @@ games-fps/ut2004-ultraduel
 # Patrick Lauer <patrick@gentoo.org> (20 Dec 2015)
 # Ebuild uninstallable #557090
 =app-crypt/gkeys-0.1-r1
-
-# Michael Sterrett <mr_bones_@gentoo.org> (18 Dec 2015)
-# Unmaintained and no reason to use it or keep it around
-# when games-roguelike/rogue is a better choice.
-# Masked for removal on 20160117
-games-misc/bsd-games-non-free
 
 # Brian Evans <grknight@gentoo.org> (17 Dec 2015)
 # "The drizzle project is long dead, it should be removed,
@@ -814,8 +765,8 @@ dev-perl/YAML-Parser-Syck
 
 # Fabian Groffen <grobian@gentoo.org> (11 Dec 2015)
 # Release candidates for Exim 4.87
-=mail-mta/exim-4.87_rc1
 =mail-mta/exim-4.87_rc2
+=mail-mta/exim-4.87_rc3
 
 # Pawel Hajdan, Jr. <phajdan.jr@gentoo.org> (07 Dec 2015)
 # Dev channel releases are only for people who are developers or want more
@@ -874,11 +825,6 @@ virtual/python-imaging
 # Keep it masked until they are done. sys-fs/duperemove is
 # the suggested replacement for the meantime.
 sys-fs/bedup
-
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (29 Oct 2015)
-# Mask until it is decided how to address xorg-server file collisions #564358
-=x11-drivers/xf86-input-evdev-2.10.0
-=x11-drivers/xf86-input-evdev-2.10.1
 
 # Ian Delaney <idella4@gentoo.org> (27 Oct 2015)
 # fails to build dev-lisp/sbcl-1.2.16 #563812
@@ -943,11 +889,6 @@ dev-libs/iniparser:4
 # for it for upgrading old user profiles, etc.
 ~mail-client/thunderbird-24.8.0
 
-# Sergey Popov <pinkbyte@gentoo.org> (13 Jul 2015)
-# Mask new version of Boost - it's known to cause breakages
-~dev-util/boost-build-1.58.0
-~dev-libs/boost-1.58.0
-
 # Patrick Lauer <patrick@gentoo.org> (1 Jul 2015)
 # Wrong version #553670
 =sys-kernel/gentoo-sources-4.1.1
@@ -956,12 +897,6 @@ dev-libs/iniparser:4
 # Has race condition / failure modes that make systems unusable
 # See #551724 and duplicates
 =sys-fs/udev-init-scripts-29
-
-# Ryan Hill <rhill@gentoo.org> (28 Apr 2015)
-# Moving to /lib/gentoo/functions.sh broke the eclass
-# by changing output it relies on. See bug #504118,
-# 547586, and 547962.
->=sys-devel/gcc-config-1.8-r1
 
 # Patrick Lauer <patrick@gentoo.org> (10 Apr 2015)
 # Breaks pretty much all consumers, like samba
