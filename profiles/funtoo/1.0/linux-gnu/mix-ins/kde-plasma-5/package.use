@@ -1,11 +1,12 @@
 # Funtoo Linux KDE Plasma 5 mix-in (see FL-2372, FL-2581)
 
 #FL-3052
-media-libs/mesa wayland
+media-libs/mesa egl wayland
 dev-libs/wayland abi_x86_32
 
 # USE flag changes required for a clean simultaneous merge of kde-base/kde-meta and kde-plasma/plasma-meta
 >=app-crypt/pinentry-0.9.6-r5 -qt4
+>=media-libs/mlt-0.9.8-r1 -kde -qt4
 dev-libs/libpcre pcre16
 dev-python/PyQt4 script sql webkit
 dev-qt/qtgui evdev mng

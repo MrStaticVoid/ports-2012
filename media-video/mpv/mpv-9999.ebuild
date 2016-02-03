@@ -23,7 +23,7 @@ else
 	inherit git-r3
 fi
 SRC_URI+=" https://waf.io/waf-${WAF_PV}"
-DOCS+=( README.md etc/example.conf etc/input.conf )
+DOCS+=( README.md )
 
 # See Copyright in source tarball and bug #506946. Waf is BSD, libmpv is ISC.
 LICENSE="GPL-2+ BSD ISC"
@@ -46,7 +46,7 @@ REQUIRED_USE="
 	opengl? ( X )
 	uchardet? ( iconv )
 	v4l? ( || ( alsa oss ) )
-	vaapi? ( || ( X wayland ) )
+	vaapi? ( || ( gbm X wayland ) )
 	vdpau? ( X )
 	wayland? ( egl )
 	xinerama? ( X )
@@ -94,7 +94,7 @@ COMMON_DEPEND="
 	samba? ( net-fs/samba )
 	sdl? ( media-libs/libsdl2[sound,threads,video,X?,wayland?] )
 	v4l? ( media-libs/libv4l )
-	vaapi? ( >=x11-libs/libva-1.4.0[X?,wayland?] )
+	vaapi? ( >=x11-libs/libva-1.4.0[drm?,X?,wayland?] )
 	wayland? (
 		>=dev-libs/wayland-1.6.0
 		>=x11-libs/libxkbcommon-0.3.0
@@ -239,6 +239,7 @@ src_configure() {
 		$(use_enable vaapi)		# See below for vaapi-x-egl
 		$(usex vaapi "$(use_enable X vaapi-x11)" '--disable-vaapi-x11')
 		$(usex vaapi "$(use_enable wayland vaapi-wayland)" '--disable-vaapi-wayland')
+		$(usex vaapi "$(use_enable gbm vaapi-drm)" '--disable-vaapi-drm')
 		$(usex vaapi "$(use_enable opengl vaapi-glx)" '--disable-vaapi-glx')
 		$(use_enable libcaca caca)
 		$(use_enable jpeg)
