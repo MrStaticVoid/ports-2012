@@ -1,6 +1,6 @@
 DEFINED_PHASES=compile install prepare unpack
 DEPEND=dev-libs/libxml2:2 x11-libs/gdk-pixbuf:2[jpeg] media-sound/deadbeef:0[curl] media-sound/deadbeef:0 gtk2? ( media-sound/deadbeef:0[gtk2] ) gtk3? ( media-sound/deadbeef:0[gtk3] ) dev-vcs/mercurial
-DESCRIPTION=DeaDBeeF infobar plugin that shows lyrics and artist's biography for the current track
+DESCRIPTION=DeaDBeeF infobar plugin that shows lyrics and artist's biography
 EAPI=5
 HOMEPAGE=https://bitbucket.org/dsimbiriatin/deadbeef-infobar
 IUSE=+gtk2 gtk3
@@ -9,5 +9,5 @@ RDEPEND=dev-libs/libxml2:2 x11-libs/gdk-pixbuf:2[jpeg] media-sound/deadbeef:0[cu
 REQUIRED_USE=|| ( gtk2 gtk3 )
 RESTRICT=mirror
 SLOT=0
-_eclasses_=deadbeef-plugins	58855d41853653942bcec2363c537212	eutils	8982475656ba7ade9b3201397efbd612	mercurial	789038b352d112bcff9dff083aa40d8d	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
-_md5_=c1e12e0774d5e0da1fb92976f1f887a6
+_eclasses_=deadbeef-plugins	16bcde3107386bd9cbfbb6bd528cb53a	eutils	8982475656ba7ade9b3201397efbd612	mercurial	789038b352d112bcff9dff083aa40d8d	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=eb0616ad6d75656475d2c6bfc95e19f6

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
+	<maintainer type="person">
 		<email>damex.pp@gmail.com</email>
 		<name>Roman Kuzmitsky</name>
 	</maintainer>
@@ -18,8 +18,11 @@
 		<flag name='mpris'>MPRIS support</flag>
 		<flag name='musical-spectrum'>Draws musical spectrum for current track</flag>
 		<flag name='opus'>Ogg opus decoder support</flag>
+		<flag name='quick-search'>Quick search support</flag>
 		<flag name='replaygain-control'>Advanced control of replaygain</flag>
+		<flag name='soxr'>Sox resampler</flag>
 		<flag name='spectrogram'>Draws spectrogram for current track</flag>
+		<flag name='statusnotifier'>Provides tray icon in plasma5 (implements StatusNotifierItem)</flag>
 		<flag name='stereo-widener'>Widens stereo</flag>
 		<flag name='vk'>Play music from vk.com social network</flag>
 		<flag name='vu-meter'>Draws vu meter for current track</flag>

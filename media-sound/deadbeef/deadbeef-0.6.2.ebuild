@@ -1,4 +1,6 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -11,7 +13,7 @@ inherit autotools eutils fdo-mime gnome2-utils l10n
 
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
 DESCRIPTION="foobar2k-like music player"
 HOMEPAGE="http://deadbeef.sourceforge.net"
@@ -21,7 +23,7 @@ RESTRICT="mirror"
 LICENSE="BSD
 	UNICODE
 	ZLIB
-	aac? ( GPL GPL-2 )
+	aac? ( GPL-1 GPL-2 )
 	adplug? ( LGPL-2.1 ZLIB )
 	alac? ( MIT GPL-2 )
 	alsa? ( GPL-2 )
@@ -52,7 +54,7 @@ LICENSE="BSD
 	nullout? ( ZLIB )
 	oss? ( GPL-2 )
 	playlist-browser? ( ZLIB )
-	psf? ( BSD GPL MAME ZLIB )
+	psf? ( BSD GPL-1 MAME ZLIB )
 	pulseaudio? ( GPL-2 )
 	shell-exec? ( GPL-2 )
 	shn? ( shorten ZLIB )
@@ -108,8 +110,6 @@ RDEPEND="dev-libs/glib:2
 	hotkeys? ( x11-libs/libX11:0 )
 	libnotify? ( sys-apps/dbus:0 )
 	libsamplerate? ( media-libs/libsamplerate:0 )
-	mac? ( x86? ( dev-lang/yasm:0 )
-		amd64? ( dev-lang/yasm:0 ) )
 	midi? ( media-sound/timidity-freepats:0 )
 	mp3? ( media-libs/libmad:0 )
 	psf? ( sys-libs/zlib:0 )
@@ -123,7 +123,9 @@ RDEPEND="dev-libs/glib:2
 DEPEND="${RDEPEND}
 	virtual/pkgconfig:0
 	nls? ( dev-util/intltool:0
-		virtual/libintl:0 )"
+		virtual/libintl:0 )
+	mac? ( x86? ( dev-lang/yasm:0 )
+		amd64? ( dev-lang/yasm:0 ) )"
 
 src_prepare() {
 	if ! use_if_iuse linguas_pt_BR && use_if_iuse linguas_ru ; then

@@ -1,4 +1,6 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -12,5 +14,6 @@ LICENSE="MIT"
 KEYWORDS=""
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}.patch"
+	epatch "${FILESDIR}/${PN}-api.patch"
+	epatch "${FILESDIR}/${PN}-build.patch"
 }
