@@ -11,5 +11,5 @@ REQUIRED_USE=|| ( gtk2 gtk3 )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/cboxdoerfer/ddb_vu_meter/archive/940d8d72a46993619c3fba4cde5e30c95f5a4b82.tar.gz -> deadbeef-vu-meter-20140914.tar.gz
-_eclasses_=deadbeef-plugins	58855d41853653942bcec2363c537212	eutils	8982475656ba7ade9b3201397efbd612	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
-_md5_=60057865d42cf2a103eb031a65c7465b
+_eclasses_=deadbeef-plugins	16bcde3107386bd9cbfbb6bd528cb53a	eutils	8982475656ba7ade9b3201397efbd612	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=6c4c1fd2c8a6cb7ee744084c9b9bc281

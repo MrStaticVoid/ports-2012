@@ -1,4 +1,6 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -6,7 +8,7 @@ DEADBEEF_GUI="yes"
 
 inherit deadbeef-plugins
 
-DESCRIPTION="DeaDBeeF infobar plugin for DeadBeeF that shows lyrics and artist's biography for the current track"
+DESCRIPTION="DeaDBeeF infobar plugin that shows lyrics and artist's biography"
 HOMEPAGE="https://bitbucket.org/dsimbiriatin/deadbeef-infobar"
 SRC_URI="https://bitbucket.org/dsimbiriatin/${PN}/downloads/${P}.tar.gz"
 

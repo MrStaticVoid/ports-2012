@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -167,6 +167,11 @@ multilib_src_configure() {
 		# disable -flto since it is an optimization flag
 		# and makes distcc less effective
 		cc_cv_CFLAGS__flto=no
+		# disable -fuse-ld=gold since Gentoo supports explicit linker
+		# choice and forcing gold is undesired, #539998
+		# ld.gold may collide with user's LDFLAGS, #545168
+		# ld.gold breaks sparc, #573874
+		cc_cv_LDFLAGS__Wl__fuse_ld_gold=no
 
 		# Workaround for gcc-4.7, bug 554454.
 		cc_cv_CFLAGS__Werror_shadow=no
@@ -424,6 +429,7 @@ pkg_postinst() {
 	enewgroup input
 	enewgroup systemd-journal
 	newusergroup systemd-bus-proxy
+	newusergroup systemd-coredump
 	newusergroup systemd-journal-gateway
 	newusergroup systemd-journal-remote
 	newusergroup systemd-journal-upload

@@ -13,7 +13,7 @@ HOMEPAGE="http://gambas.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${MY_PN}-${PV}.tar.bz2"
 
 LICENSE="GPL-2"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86"
 
 IUSE="+curl +net +qt4 +x11
 	bzip2 cairo crypt dbus examples gmp gnome gsl gstreamer gtk2 gtk3 httpd image-imlib image-io jit libxml mime
@@ -101,7 +101,7 @@ autocrap_cleanup() {
 }
 
 src_prepare() {
-	# funtoo-ism
+	# gentoo-ism
 	epatch "${FILESDIR}/${PN}-3.7.x-app-makefile.am.patch"
 	epatch "${FILESDIR}/${PN}-3.7.x-main-makefile.am.patch"
 
