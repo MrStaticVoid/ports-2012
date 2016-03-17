@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -16,7 +14,7 @@ HOMEPAGE="http://cyberelk.net/tim/software/system-config-printer/"
 SRC_URI="http://cyberelk.net/tim/data/system-config-printer/${MY_V}/${P}.tar.xz"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ppc ppc64 ~sh ~sparc x86"
+KEYWORDS="*"
 SLOT="0"
 
 IUSE="doc gnome-keyring policykit"
@@ -38,7 +36,10 @@ RDEPEND="
 	>=dev-python/pycups-1.9.60[${PYTHON_USEDEP}]
 	dev-python/pycurl[${PYTHON_USEDEP}]
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
+	dev-python/requests[${PYTHON_USEDEP}]
+	dev-python/urllib3[${PYTHON_USEDEP}]
 	net-print/cups[dbus]
+	net-print/cups-pk-helper
 	virtual/libusb:1
 	>=virtual/udev-172
 	x11-libs/gtk+:3[introspection]

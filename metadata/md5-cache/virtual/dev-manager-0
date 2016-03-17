@@ -1,5 +1,6 @@
 DEFINED_PHASES=-
 DESCRIPTION=Virtual for the device filesystem manager
+EAPI=0
 KEYWORDS=*
 RDEPEND=|| ( virtual/udev sys-fs/mdev sys-fs/smdev )
 SLOT=0

@@ -10,5 +10,5 @@ RDEPEND=binary? ( >=sys-kernel/genkernel-3.4.40.1 ) =sys-devel/gcc-4.8.5*
 RESTRICT=binchecks strip mirror
 SLOT=2.6.32.042.111.12
 SRC_URI=mirror://kernel/linux/kernel/v2.6/linux-2.6.32.tar.bz2 http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab111.12/configs/config-2.6.32-042stab111.12.i686 http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab111.12/configs/config-2.6.32-042stab111.12.x86_64 http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab111.12/patches/patch-042stab111.12-combined.gz
-_eclasses_=check-reqs	aee25bdf4e2f459af86d17f7c41dcdf6	eutils	8982475656ba7ade9b3201397efbd612	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
-_md5_=7ced276c460560656229c86d8f82a243
+_eclasses_=check-reqs	aee25bdf4e2f459af86d17f7c41dcdf6	eutils	9d81603248f2ba3ec59124320d123e5e	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=9d60c99606fa507c26e4dbb0045c8608
