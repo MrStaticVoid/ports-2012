@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=media-libs/libmad media-libs/libogg media-libs/libvorbis sidplay? ( media-libs/libsidplay:1 ) X? ( x11-libs/libXext x11-libs/libXxf86vm x11-libs/libX11 x11-libs/libXpm ) alsa? ( media-libs/alsa-lib ) adplug? ( media-libs/adplug ) flac? ( media-libs/flac ) sdl? ( media-libs/libsdl ) media-sound/timidity-eawpatches
 SLOT=0
 SRC_URI=http://stian.cubic.org/ocp/ocp-0.1.20.tar.bz2 ftp://ftp.cubic.org/pub/player/gfx/opencp25image1.zip ftp://ftp.cubic.org/pub/player/gfx/opencp25ani1.zip
-_eclasses_=eutils	8982475656ba7ade9b3201397efbd612	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_eclasses_=eutils	9d81603248f2ba3ec59124320d123e5e	flag-o-matic	d270fa247153df66074f795fa42dba3e	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=900c613bff7039c6ce5137a1030db4a0

@@ -4,11 +4,11 @@ DESCRIPTION=QEmacs is a very small but powerful UNIX editor
 EAPI=5
 HOMEPAGE=http://savannah.nongnu.org/projects/qemacs
 IUSE=X png unicode xv
-KEYWORDS=amd64 ~arm ~ppc ~x86
+KEYWORDS=amd64 arm ~ppc x86
 LICENSE=LGPL-2.1+ GPL-2+
 RDEPEND=X? ( x11-libs/libX11 x11-libs/libXext xv? ( x11-libs/libXv ) ) png? ( >=media-libs/libpng-1.2:0= )
 RESTRICT=test
 SLOT=0
 SRC_URI=https://dev.gentoo.org/~ulm/distfiles/qemacs-0.4.1_pre20150916.tar.xz
-_eclasses_=eutils	8982475656ba7ade9b3201397efbd612	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
-_md5_=65959ec77aebfd563d4025c52df92713
+_eclasses_=eutils	9d81603248f2ba3ec59124320d123e5e	flag-o-matic	d270fa247153df66074f795fa42dba3e	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=7dd1d8445da55208342facb17a8a13ef

@@ -4,6 +4,7 @@
 	<maintainer type="person">
 		<email>itumaykin+gentoo@gmail.com</email>
 		<name>Coacher</name>
+		<description>Proxied maintainer; set to assignee in all bugs</description>
 	</maintainer>
 	<maintainer type="person">
 		<email>maksbotan@gentoo.org</email>
@@ -13,7 +14,11 @@
 		<email>proxy-maint@gentoo.org</email>
 		<name>Proxy Maintainers</name>
 	</maintainer>
+	<use>
+		<flag name="uchardet">Enable charset discovery via <pkg>dev-libs/uchardet</pkg></flag>
+	</use>
 	<upstream>
+		<bugs-to>http://devel.aegisub.org/wiki/NewTicket</bugs-to>
 		<remote-id type="github">Aegisub/Aegisub</remote-id>
 	</upstream>
 </pkgmetadata>

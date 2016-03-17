@@ -1,5 +1,6 @@
 DEFINED_PHASES=-
 DESCRIPTION=Virtual for the package manager
+EAPI=0
 KEYWORDS=*
 RDEPEND=|| ( sys-apps/portage )
 SLOT=0

@@ -69,13 +69,15 @@ DEPEND="
 
 CONFIG_CHECK=~IPV6
 
-DOCS=( README TODO ChangeLog NEWS AUTHORS )
+DOCS=( README.md TODO ChangeLog NEWS AUTHORS )
 
 pkg_setup() {
 	use ipv6 && linux-info_pkg_setup
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-includewlan.patch"
+
 	# Allow user patches #478482
 	epatch_user
 }
@@ -139,7 +141,8 @@ src_configure() {
 		-DBUILD_BUILTIN_CONFIG=ON
 		-DBUILD_OLD_CONFIG=ON
 		-DBUILD_I18N=ON
-		-DMAINTAINER_MODE=ON
+		-DMAINTAINER_MODE=OFF
+		-DRELEASE=ON
 		-DBUILD_AUDACIOUS_LEGACY=OFF
 		-DBUILD_BMPX=OFF
 		-DDOC_PATH=/usr/share/doc/${PF}
